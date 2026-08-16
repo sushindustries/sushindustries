@@ -9,20 +9,6 @@
 		"scroll",
 		"markdown"
 	],
-	"exports": {
-		".": "./src/index.ts",
-		"./reveal": "./src/reveal.tsx",
-		"./smooth-scroll": "./src/smooth-scroll.tsx",
-		"./scroll-spin": "./src/scroll-spin.tsx",
-		"./card": "./src/card.tsx",
-		"./section": "./src/section.tsx",
-		"./markdown-view": "./src/markdown-view.tsx",
-		"./registry": "./registry.ts",
-		"./showcase": "./src/showcase.tsx",
-		"./icon": "./src/icon.tsx",
-		"./doc-aside": "./src/doc-aside.tsx",
-		"./archive": "./src/archive.tsx"
-	},
 	"files": [
 		"src",
 		"registry.ts",
@@ -60,5 +46,65 @@
 		"react": "^19.2.8",
 		"react-dom": "^19.2.8",
 		"zod": "4.4.3"
+	},
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.cts",
+	"exports": {
+		".": {
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		},
+		"./archive": {
+			"import": "./dist/archive.mjs",
+			"require": "./dist/archive.cjs"
+		},
+		"./card": {
+			"import": "./dist/card.mjs",
+			"require": "./dist/card.cjs"
+		},
+		"./doc-aside": {
+			"import": "./dist/doc-aside.mjs",
+			"require": "./dist/doc-aside.cjs"
+		},
+		"./icon": {
+			"import": "./dist/icon.mjs",
+			"require": "./dist/icon.cjs"
+		},
+		"./markdown-view": {
+			"import": "./dist/markdown-view.mjs",
+			"require": "./dist/markdown-view.cjs"
+		},
+		"./reveal": {
+			"import": "./dist/reveal.mjs",
+			"require": "./dist/reveal.cjs"
+		},
+		"./scroll-spin": {
+			"import": "./dist/scroll-spin.mjs",
+			"require": "./dist/scroll-spin.cjs"
+		},
+		"./section": {
+			"import": "./dist/section.mjs",
+			"require": "./dist/section.cjs"
+		},
+		"./showcase": {
+			"import": "./dist/showcase.mjs",
+			"require": "./dist/showcase.cjs"
+		},
+		"./smooth-scroll": {
+			"types": "./dist/smooth-scroll.d.cts",
+			"import": "./dist/smooth-scroll.mjs",
+			"require": "./dist/smooth-scroll.cjs"
+		},
+		"./registry": {
+			"types": "./registry.ts",
+			"import": "./registry.ts",
+			"require": "./registry.ts",
+			"default": "./registry.ts",
+			"module": "./registry.ts",
+			"browser": "./registry.ts",
+			"production": "./registry.ts"
+		},
+		"./package.json": "./package.json"
 	}
 }
