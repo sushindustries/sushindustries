@@ -101,13 +101,9 @@ html {
 	/*
 	 * Always reserve the scrollbar's width, whether or not there is one.
 	 *
-	 * Opening the mobile drawer locks the page with `overflow: hidden`, which
-	 * takes the scrollbar away. Without a reserved gutter the document becomes
-	 * about fifteen pixels wider at that instant and every centred thing on the
-	 * page slides sideways - the hero visibly jumps as the menu opens.
-	 *
-	 * It also fixes the quieter version of the same thing: navigating from a
-	 * page that scrolls to one that does not.
+	 * Otherwise the content width depends on whether a given page happens to be
+	 * long enough to need a scrollbar, and every centred thing shifts sideways
+	 * by about fifteen pixels on the way from a long page to a short one.
 	 */
 	scrollbar-gutter: stable;
 }
@@ -944,20 +940,20 @@ svg {
 }
 
 /*
- * The page stops scrolling while the drawer is open.
+ * There is deliberately no `overflow: hidden` scroll lock here.
  *
- * `:has()` reads the `<details>` state from the root, so the lock is the same
- * CSS-only mechanism as the menu itself - no effect, no state, nothing to
- * unwind if a component unmounts mid-transition.
+ * The obvious way to stop the page moving behind the drawer is
+ * `html:has(.nav-burger[open]) { overflow: hidden }`, and it is worse than the
+ * problem. Making the scrolling element non-scrollable drops its scroll
+ * offset, so opening the menu halfway down a page throws the reader back to
+ * the top - and closing it does not bring them back. Losing someone's place is
+ * a worse outcome than a page that can still be scrolled while covered.
  *
- * Locking the page is what makes the drawer's own scrolling work at all. With
- * the page still scrollable underneath, a drag that starts in the menu and
- * continues past its end moves the article behind it, and a menu that scrolls
- * the page it is covering does not read as a menu.
+ * What actually needed fixing was scroll chaining, and that is handled where it
+ * happens: `overscroll-behavior: contain` and `touch-action: pan-y` on the
+ * sheet, plus `data-lenis-prevent` so the smooth-scroll driver leaves the
+ * drawer's own scrolling to the browser.
  */
-html:has(.nav-burger[open]) {
-	overflow: hidden;
-}
 
 /*
  * The dimmed page behind it. A pseudo-element on the details rather than a

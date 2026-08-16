@@ -88,9 +88,8 @@ page change rather than as something opening.
 > reads as "leave this subtree to the browser". Anyone not using Lenis gets an
 > inert data attribute. Alongside it, `overscroll-behavior: contain` stops the
 > scroll chaining at the end of the list, `touch-action: pan-y` claims vertical
-> drags, and `html:has(.nav-burger[open]) { overflow: hidden }` locks the page
-> outright - the same CSS-only mechanism as the menu, so there is no state to
-> unwind if the component unmounts mid-transition.
+> drags. What it does not do is lock the page: see below for why that cure was
+> worse than the disease.
 
 > [!CAUTION] `opacity: 0` takes the pseudo-elements with it
 > The burger is three bars: the element's own background, plus `::before` and
@@ -113,11 +112,26 @@ the same place, having changed shape.
 
 Escape also closes it, for free, because it is a `<details>`.
 
-Nothing on the page moves as it opens. Locking the page removes the scrollbar,
-which makes the document about fifteen pixels wider at that instant, and every
-centred thing slides sideways - on the home page the hero visibly jumps.
-`scrollbar-gutter: stable` on `html` reserves the width whether or not there is
-a scrollbar in it, so the lock changes nothing about the layout.
+Nothing on the page moves as it opens, and getting there meant taking something
+out rather than adding it.
+
+The obvious way to stop the page moving behind a drawer is
+`html:has(.nav-burger[open]) { overflow: hidden }`. It is worse than the
+problem it solves, twice over. Making the scrolling element non-scrollable
+drops its scroll offset, so opening the menu halfway down a page throws the
+reader back to the top and closing it does not bring them back. It also removes
+the scrollbar, which makes the document about fifteen pixels wider at that
+instant, so everything centred slides sideways as the menu arrives.
+
+So there is no scroll lock. What actually needed fixing was scroll chaining,
+and that is handled where it happens: `overscroll-behavior` and `touch-action`
+on the sheet, and `data-lenis-prevent` so the smooth-scroll driver leaves the
+drawer alone. The page behind can still be scrolled while it is covered, which
+is a smaller cost than losing someone's place.
+
+`scrollbar-gutter: stable` stays on `html` regardless, because the width of the
+gutter should not depend on whether a given page happens to be long enough to
+need it.
 
 Inside the drawer, every row starts with a tile on one column, group headers
 included. Items sit behind a rule set in by the tile's width rather than
