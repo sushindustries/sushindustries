@@ -1,3060 +1,3559 @@
 /*
  * Design tokens and atomic utilities.
  *
- * Nori ground, rice text, one salmon accent, monospace for structure. The
- * palette is sushi by colour, not by pictogram.
+ * Cool grey ground, warm off-white text, one salmon accent for actions and one
+ * blue for containers. Monospace for structure.
  *
- * Every class does one thing. Components compose them; components do not get
- * their own stylesheets. The few named blocks at the bottom (nav, hero, card,
- * prose) exist because they carry layout that would take six atoms to say and
- * would still be wrong at the breakpoint.
+ * ── The cascade, declared ────────────────────────────────────────────────
+ *
+ * Four layers, in this order, and the order is the whole design:
+ *
+ *   tokens      custom properties. Nothing else.
+ *   base        the reset and the element defaults.
+ *   blocks      named things - the nav, a card, the laptop. Layout that would
+ *               take six classes to say and still be wrong at a breakpoint.
+ *   utilities   one class, one job.
+ *
+ * Utilities are last, so **a utility always beats a block**, regardless of
+ * specificity. That is what makes "compose in the markup" true rather than
+ * aspirational: `<div className="card p-3">` gets 12px of padding without
+ * anybody writing `.card.p-3` or an `!important`, and without the block having
+ * to be careful about how specific it is.
+ *
+ * It also means a block can be written the way it reads best - descendant
+ * selectors, states, attributes - without that specificity leaking out and
+ * beating the scale.
+ *
+ * Anything that needs to beat a utility is a bug in the utility.
+ *
+ * ── What goes where ──────────────────────────────────────────────────────
+ *
+ * A named block earns its place by carrying something markup cannot say: a
+ * pseudo-element, a state, a combinator, a media query, or a layout that would
+ * be six classes and still wrong. `pnpm doctor` fails a block whose every
+ * declaration already exists as a utility - that block is the same properties
+ * written a second time, somewhere the scale no longer reaches.
  */
 
-:root {
-	/*
-	 * Ground and surfaces: cool grey with a green cast left in it.
-	 *
-	 * Not neutral grey - a truly neutral dark reads as switched-off rather than
-	 * as a material, and the salmon accent goes muddy on it. These are within a
-	 * few points of neutral on the blue-green side, which is enough to make a
-	 * frosted panel over them look like glass over slate rather than like a
-	 * grey box on a black one.
-	 */
-	--nori-900: #0e1214;
-	--nori-800: #14191c;
-	--nori-700: #1b2125;
-	--nori-600: #232a2f;
-	--line: #313a40;
-	--line-soft: #242c31;
+@layer tokens, base, blocks, utilities;
 
-	/* Text: warm off-white, so the surface reads as lacquer rather than LCD. */
-	--rice: #ece7dc;
-	--rice-dim: #8e9a97;
-	--rice-faint: #5d6b6c;
+@layer tokens {
+	:root {
+		/*
+		 * Ground and surfaces: cool grey with a green cast left in it.
+		 *
+		 * Not neutral grey - a truly neutral dark reads as switched-off rather than
+		 * as a material, and the salmon accent goes muddy on it. These are within a
+		 * few points of neutral on the blue-green side, which is enough to make a
+		 * frosted panel over them look like glass over slate rather than like a
+		 * grey box on a black one.
+		 */
+		--nori-900: #0e1214;
+		--nori-800: #14191c;
+		--nori-700: #1b2125;
+		--nori-600: #232a2f;
+		--line: #313a40;
+		--line-soft: #242c31;
 
-	--salmon: #ff9270;
-	--salmon-deep: #e8734d;
-	--wasabi: #9dbe4a;
-	--tamago: #e8b84b;
-	--tuna: #e0645a;
-	--info: #6fb0bd;
+		/* Text: warm off-white, so the surface reads as lacquer rather than LCD. */
+		--rice: #ece7dc;
+		--rice-dim: #8e9a97;
+		--rice-faint: #5d6b6c;
 
-	/*
-	 * Ink on an accent fill. Dark enough to read on salmon, warm enough not to
-	 * look like black dropped on it. Not `--bg-0`: the ground is green-black and
-	 * goes muddy over orange.
-	 */
-	--on-accent: #2a1006;
+		--salmon: #ff9270;
+		--salmon-deep: #e8734d;
+		--wasabi: #9dbe4a;
+		--tamago: #e8b84b;
+		--tuna: #e0645a;
+		--info: #6fb0bd;
 
-	--bg-0: var(--nori-900);
-	--bg-1: var(--nori-800);
-	--bg-2: var(--nori-700);
-	--bg-3: var(--nori-600);
-	--fg: var(--rice);
-	--fg-dim: var(--rice-dim);
-	--fg-faint: var(--rice-faint);
-	--accent: var(--salmon);
-	--accent-dim: var(--salmon-deep);
+		/*
+		 * Ink on an accent fill. Dark enough to read on salmon, warm enough not to
+		 * look like black dropped on it. Not `--bg-0`: the ground is green-black and
+		 * goes muddy over orange.
+		 */
+		--on-accent: #2a1006;
 
-	--r: 6px;
-	--r-lg: 10px;
-	--r-card: 16px;
+		--bg-0: var(--nori-900);
+		--bg-1: var(--nori-800);
+		--bg-2: var(--nori-700);
+		--bg-3: var(--nori-600);
+		--fg: var(--rice);
+		--fg-dim: var(--rice-dim);
+		--fg-faint: var(--rice-faint);
+		--accent: var(--salmon);
+		--accent-dim: var(--salmon-deep);
 
-	/*
-	 * Frosted glass, as three values rather than as a look copied per rule.
-	 *
-	 * `--glass` is a translucent fill; `--glass-edge` is the lit top edge that
-	 * does most of the work; `--glass-blur` is the filter. They are separate
-	 * because the fill and the edge belong on every glass surface and the blur
-	 * does not: see the rule below.
-	 *
-	 * ONE BLUR PER SURFACE. A `backdrop-filter` makes its element a backdrop
-	 * root and forces a GPU readback, so blurs nested inside blurs multiply.
-	 * Eighteen blurred icon tiles inside a blurred panel inside a blurred
-	 * header crashed the renderer outright. Glass on overlays - the header, a
-	 * menu panel, the drawer - and fill-plus-edge without the filter on
-	 * everything that is merely a surface, like a card.
-	 */
-	--glass: color-mix(in srgb, var(--nori-700) 62%, transparent);
-	--glass-edge: color-mix(in srgb, var(--rice) 9%, transparent);
-	--glass-blur: blur(18px) saturate(130%);
+		--r: 6px;
+		--r-lg: 10px;
+		--r-card: 16px;
 
-	/*
-	 * The dimming behind a modal. Near-black rather than the page ground,
-	 * because a scrim made of the background colour tints what is behind it
-	 * instead of darkening it, and the point is to take the page away.
-	 */
-	--scrim: color-mix(in srgb, #05080a 58%, transparent);
+		/*
+		 * Frosted glass, as three values rather than as a look copied per rule.
+		 *
+		 * `--glass` is a translucent fill; `--glass-edge` is the lit top edge that
+		 * does most of the work; `--glass-blur` is the filter. They are separate
+		 * because the fill and the edge belong on every glass surface and the blur
+		 * does not: see the rule below.
+		 *
+		 * ONE BLUR PER SURFACE. A `backdrop-filter` makes its element a backdrop
+		 * root and forces a GPU readback, so blurs nested inside blurs multiply.
+		 * Eighteen blurred icon tiles inside a blurred panel inside a blurred
+		 * header crashed the renderer outright. Glass on overlays - the header, a
+		 * menu panel, the drawer - and fill-plus-edge without the filter on
+		 * everything that is merely a surface, like a card.
+		 */
+		--glass: color-mix(in srgb, var(--nori-700) 62%, transparent);
+		--glass-edge: color-mix(in srgb, var(--rice) 9%, transparent);
+		--glass-blur: blur(18px) saturate(130%);
 
-	/*
-	 * Folders are blue, and that is not decoration.
-	 *
-	 * Every other coloured thing on this site is the salmon accent, so a folder
-	 * being blue is what separates "a thing you open" from "a thing you press".
-	 * Two hues total: one for actions, one for containers.
-	 */
-	--folder: #6ea8d8;
-	--folder-deep: #3f6f9c;
-	--folder-fill: color-mix(in srgb, var(--folder) 22%, transparent);
+		/*
+		 * The dimming behind a modal. Near-black rather than the page ground,
+		 * because a scrim made of the background colour tints what is behind it
+		 * instead of darkening it, and the point is to take the page away.
+		 */
+		--scrim: color-mix(in srgb, #05080a 58%, transparent);
 
-	/* The sticky header's height, so anything that must clear it can say so. */
-	--nav-height: 66px;
+		/*
+		 * Folders are blue, and that is not decoration.
+		 *
+		 * Every other coloured thing on this site is the salmon accent, so a folder
+		 * being blue is what separates "a thing you open" from "a thing you press".
+		 * Two hues total: one for actions, one for containers.
+		 */
+		--folder: #6ea8d8;
+		--folder-deep: #3f6f9c;
+		--folder-fill: color-mix(in srgb, var(--folder) 22%, transparent);
 
-	--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+		/* The sticky header's height, so anything that must clear it can say so. */
+		--nav-height: 66px;
 
-	--mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
-	--sans: ui-sans-serif, -apple-system, "SF Pro Text", system-ui, sans-serif;
+		--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 
-	/* Spacing. A short scale on purpose: every value a section can need, and no
+		--mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+		--sans: ui-sans-serif, -apple-system, "SF Pro Text", system-ui, sans-serif;
+
+		/* Spacing. A short scale on purpose: every value a section can need, and no
 	   value it can pick arbitrarily. */
-	--s-1: 4px;
-	--s-2: 8px;
-	--s-3: 12px;
-	--s-4: 16px;
-	--s-5: 24px;
-	--s-6: 32px;
-	--s-7: 48px;
-	--s-8: 72px;
-	--s-9: 120px;
+		--s-1: 4px;
+		--s-2: 8px;
+		--s-3: 12px;
+		--s-4: 16px;
+		--s-5: 24px;
+		--s-6: 32px;
+		--s-7: 48px;
+		--s-8: 72px;
+		--s-9: 120px;
 
-	/* Type. Body sizes are rem so they follow the reader's browser setting.
+		/* Type. Body sizes are rem so they follow the reader's browser setting.
 	   Headings are clamped so one scale covers phone through desktop without a
 	   media query per heading. */
-	--t-xs: 0.6875rem;
-	--t-sm: 0.8125rem;
-	--t-md: 0.9375rem;
-	--t-lg: 1.0625rem;
-	--t-h3: clamp(1.0625rem, 0.9rem + 0.7vw, 1.375rem);
-	--t-h2: clamp(1.5rem, 1.1rem + 1.9vw, 2.5rem);
-	--t-h1: clamp(2.75rem, 1.4rem + 6.4vw, 6.5rem);
+		--t-xs: 0.6875rem;
+		--t-sm: 0.8125rem;
+		--t-md: 0.9375rem;
+		--t-lg: 1.0625rem;
+		--t-h3: clamp(1.0625rem, 0.9rem + 0.7vw, 1.375rem);
+		--t-h2: clamp(1.5rem, 1.1rem + 1.9vw, 2.5rem);
+		--t-h1: clamp(2.75rem, 1.4rem + 6.4vw, 6.5rem);
 
-	--container: 1180px;
-	/* The gutter the container keeps between itself and the screen edge. */
-	--gutter: var(--s-5);
+		--container: 1180px;
+		/* The gutter the container keeps between itself and the screen edge. */
+		--gutter: var(--s-5);
 
-	/*
-	 * Fluid page rhythm.
-	 *
-	 * The `--s-*` scale above is fixed on purpose: a 12px gap inside a card is
-	 * 12px on every device, because it is spacing between two things that are
-	 * themselves a fixed size. Scaling it with the viewport makes a card look
-	 * puffy on a desktop and cramped on a phone.
-	 *
-	 * The distance between sections is the opposite. It is a proportion of the
-	 * page, and 120px of air above a heading is generous on a laptop and half a
-	 * screen on a phone. So these three are fluid, and they are the only ones.
-	 *
-	 * Each is `clamp(floor, rem + vw, ceiling)`. The middle term carries a rem
-	 * as well as a vw so the value still responds when someone increases their
-	 * browser's font size - a preferred term of pure `vw` ignores that setting
-	 * entirely, which is the usual way a fluid scale becomes an accessibility
-	 * problem.
-	 */
-	--space-block: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
-	--space-section: clamp(3rem, 2rem + 5vw, 7.5rem);
-	--space-page: clamp(4rem, 2.5rem + 7.5vw, 11rem);
+		/*
+		 * Fluid page rhythm.
+		 *
+		 * The `--s-*` scale above is fixed on purpose: a 12px gap inside a card is
+		 * 12px on every device, because it is spacing between two things that are
+		 * themselves a fixed size. Scaling it with the viewport makes a card look
+		 * puffy on a desktop and cramped on a phone.
+		 *
+		 * The distance between sections is the opposite. It is a proportion of the
+		 * page, and 120px of air above a heading is generous on a laptop and half a
+		 * screen on a phone. So these three are fluid, and they are the only ones.
+		 *
+		 * Each is `clamp(floor, rem + vw, ceiling)`. The middle term carries a rem
+		 * as well as a vw so the value still responds when someone increases their
+		 * browser's font size - a preferred term of pure `vw` ignores that setting
+		 * entirely, which is the usual way a fluid scale becomes an accessibility
+		 * problem.
+		 */
+		--space-block: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+		--space-section: clamp(3rem, 2rem + 5vw, 7.5rem);
+		--space-page: clamp(4rem, 2.5rem + 7.5vw, 11rem);
 
-	/* Breakpoint, as a documented value. Custom properties cannot be used
+		/* Breakpoint, as a documented value. Custom properties cannot be used
 	   inside a media query, so this exists to be quoted - the query still
 	   writes the number. */
-	--bp-narrow: 860px;
+		--bp-narrow: 860px;
+	}
 }
 
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
+@layer base {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	html {
+		/* Lenis animates scroll itself; leaving native smooth on fights it. */
+		scroll-behavior: auto;
+		-webkit-text-size-adjust: 100%;
+		/*
+		 * Always reserve the scrollbar's width, whether or not there is one.
+		 *
+		 * Otherwise the content width depends on whether a given page happens to be
+		 * long enough to need a scrollbar, and every centred thing shifts sideways
+		 * by about fifteen pixels on the way from a long page to a short one.
+		 */
+		scrollbar-gutter: stable;
+	}
+
+	body {
+		margin: 0;
+		background: var(--bg-0);
+		color: var(--fg);
+		font: var(--t-md) / 1.6 var(--sans);
+		-webkit-font-smoothing: antialiased;
+		overflow-x: hidden;
+	}
+
+	h1,
+	h2,
+	h3,
+	p,
+	figure {
+		margin: 0;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	img,
+	svg {
+		display: block;
+		max-width: 100%;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 3px;
+		border-radius: 2px;
+	}
 }
 
-html {
-	/* Lenis animates scroll itself; leaving native smooth on fights it. */
-	scroll-behavior: auto;
-	-webkit-text-size-adjust: 100%;
+@layer utilities {
+	/* layout */
+	.flex {
+		display: flex;
+	}
+	.grid {
+		display: grid;
+	}
+	.block {
+		display: block;
+	}
+	.hidden {
+		display: none;
+	}
+	.col {
+		flex-direction: column;
+	}
+	.wrap {
+		flex-wrap: wrap;
+	}
+	.items-center {
+		align-items: center;
+	}
+	.items-start {
+		align-items: flex-start;
+	}
+	.items-end {
+		align-items: flex-end;
+	}
+	.items-baseline {
+		align-items: baseline;
+	}
+	.justify-center {
+		justify-content: center;
+	}
+	.justify-between {
+		justify-content: space-between;
+	}
+	.flex-1 {
+		flex: 1;
+	}
+	.shrink-0 {
+		flex-shrink: 0;
+	}
+	.min-w-0 {
+		min-width: 0;
+	}
+	.relative {
+		position: relative;
+	}
+	.absolute {
+		position: absolute;
+	}
+	.sticky {
+		position: sticky;
+	}
+	.inset-0 {
+		inset: 0;
+	}
+	.z-1 {
+		z-index: 1;
+	}
+	.z-nav {
+		z-index: 20;
+	}
+
+	.gap-1 {
+		gap: var(--s-1);
+	}
+	.gap-2 {
+		gap: var(--s-2);
+	}
+	.gap-3 {
+		gap: var(--s-3);
+	}
+	.gap-4 {
+		gap: var(--s-4);
+	}
+	.gap-5 {
+		gap: var(--s-5);
+	}
+	.gap-6 {
+		gap: var(--s-6);
+	}
+	.gap-7 {
+		gap: var(--s-7);
+	}
+
+	/* spacing */
+	.m-0 {
+		margin: 0;
+	}
+	.mx-auto {
+		margin-inline: auto;
+	}
+	.mt-1 {
+		margin-top: var(--s-1);
+	}
+	.mt-2 {
+		margin-top: var(--s-2);
+	}
+	.mt-3 {
+		margin-top: var(--s-3);
+	}
+	.mt-4 {
+		margin-top: var(--s-4);
+	}
+	.mt-5 {
+		margin-top: var(--s-5);
+	}
+	.mt-6 {
+		margin-top: var(--s-6);
+	}
+	.mt-7 {
+		margin-top: var(--s-7);
+	}
+	.mb-2 {
+		margin-bottom: var(--s-2);
+	}
+	.mb-3 {
+		margin-bottom: var(--s-3);
+	}
+	.mb-4 {
+		margin-bottom: var(--s-4);
+	}
+	.mb-5 {
+		margin-bottom: var(--s-5);
+	}
+	.mb-6 {
+		margin-bottom: var(--s-6);
+	}
+	.p-3 {
+		padding: var(--s-3);
+	}
+	.p-4 {
+		padding: var(--s-4);
+	}
+	.p-5 {
+		padding: var(--s-5);
+	}
+	.p-6 {
+		padding: var(--s-6);
+	}
+	.px-3 {
+		padding-inline: var(--s-3);
+	}
+	.px-4 {
+		padding-inline: var(--s-4);
+	}
+	.px-5 {
+		padding-inline: var(--s-5);
+	}
+	.py-2 {
+		padding-block: var(--s-2);
+	}
+	.py-3 {
+		padding-block: var(--s-3);
+	}
+
+	/* sizing */
+	.w-full {
+		width: 100%;
+	}
+	.h-full {
+		height: 100%;
+	}
+	.max-w-prose {
+		max-width: 62ch;
+	}
+	.max-w-sm {
+		max-width: 460px;
+	}
+
+	/* type */
+	.text-xs {
+		font-size: var(--t-xs);
+	}
+	.text-sm {
+		font-size: var(--t-sm);
+	}
+	.text-md {
+		font-size: var(--t-md);
+	}
+	.text-lg {
+		font-size: var(--t-lg);
+	}
+	.font-medium {
+		font-weight: 500;
+	}
+	.font-semibold {
+		font-weight: 600;
+	}
+	.mono {
+		font-family: var(--mono);
+	}
+	.uppercase {
+		text-transform: uppercase;
+	}
+	.text-center {
+		text-align: center;
+	}
+	.text-balance {
+		text-wrap: balance;
+	}
+	.text-pretty {
+		text-wrap: pretty;
+	}
+	.leading-tight {
+		line-height: 1.15;
+	}
+
+	.h1 {
+		font-size: var(--t-h1);
+		line-height: 0.92;
+		letter-spacing: -0.04em;
+		font-weight: 600;
+	}
+
+	.h2 {
+		font-size: var(--t-h2);
+		line-height: 1.08;
+		letter-spacing: -0.025em;
+		font-weight: 600;
+	}
+
+	.h3 {
+		font-size: var(--t-h3);
+		line-height: 1.25;
+		letter-spacing: -0.012em;
+		font-weight: 600;
+	}
+
 	/*
-	 * Always reserve the scrollbar's width, whether or not there is one.
-	 *
-	 * Otherwise the content width depends on whether a given page happens to be
-	 * long enough to need a scrollbar, and every centred thing shifts sideways
-	 * by about fifteen pixels on the way from a long page to a short one.
+	 * Structural labels are monospace, uppercase and letter-spaced. This is the
+	 * one type gesture the site repeats, and it is what separates a section from
+	 * the section above it without drawing a line.
 	 */
-	scrollbar-gutter: stable;
-}
+	.label {
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+	}
 
-body {
-	margin: 0;
-	background: var(--bg-0);
-	color: var(--fg);
-	font: var(--t-md) / 1.6 var(--sans);
-	-webkit-font-smoothing: antialiased;
-	overflow-x: hidden;
-}
+	.truncate {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 
-h1,
-h2,
-h3,
-p,
-figure {
-	margin: 0;
-}
+	/* colour */
+	.fg {
+		color: var(--fg);
+	}
+	.fg-dim {
+		color: var(--fg-dim);
+	}
+	.fg-faint {
+		color: var(--fg-faint);
+	}
+	.fg-accent {
+		color: var(--accent);
+	}
 
-a {
-	color: inherit;
-	text-decoration: none;
-}
-
-img,
-svg {
-	display: block;
-	max-width: 100%;
-}
-
-:focus-visible {
-	outline: 2px solid var(--accent);
-	outline-offset: 3px;
-	border-radius: 2px;
-}
-
-/* layout */
-.flex {
-	display: flex;
-}
-.grid {
-	display: grid;
-}
-.block {
-	display: block;
-}
-.hidden {
-	display: none;
-}
-.col {
-	flex-direction: column;
-}
-.wrap {
-	flex-wrap: wrap;
-}
-.items-center {
-	align-items: center;
-}
-.items-start {
-	align-items: flex-start;
-}
-.items-end {
-	align-items: flex-end;
-}
-.items-baseline {
-	align-items: baseline;
-}
-.justify-center {
-	justify-content: center;
-}
-.justify-between {
-	justify-content: space-between;
-}
-.flex-1 {
-	flex: 1;
-}
-.shrink-0 {
-	flex-shrink: 0;
-}
-.min-w-0 {
-	min-width: 0;
-}
-.relative {
-	position: relative;
-}
-.absolute {
-	position: absolute;
-}
-.sticky {
-	position: sticky;
-}
-.inset-0 {
-	inset: 0;
-}
-.z-1 {
-	z-index: 1;
-}
-.z-nav {
-	z-index: 20;
-}
-
-.gap-1 {
-	gap: var(--s-1);
-}
-.gap-2 {
-	gap: var(--s-2);
-}
-.gap-3 {
-	gap: var(--s-3);
-}
-.gap-4 {
-	gap: var(--s-4);
-}
-.gap-5 {
-	gap: var(--s-5);
-}
-.gap-6 {
-	gap: var(--s-6);
-}
-.gap-7 {
-	gap: var(--s-7);
-}
-
-/* spacing */
-.m-0 {
-	margin: 0;
-}
-.mx-auto {
-	margin-inline: auto;
-}
-.mt-1 {
-	margin-top: var(--s-1);
-}
-.mt-2 {
-	margin-top: var(--s-2);
-}
-.mt-3 {
-	margin-top: var(--s-3);
-}
-.mt-4 {
-	margin-top: var(--s-4);
-}
-.mt-5 {
-	margin-top: var(--s-5);
-}
-.mt-6 {
-	margin-top: var(--s-6);
-}
-.mt-7 {
-	margin-top: var(--s-7);
-}
-.mb-2 {
-	margin-bottom: var(--s-2);
-}
-.mb-3 {
-	margin-bottom: var(--s-3);
-}
-.mb-4 {
-	margin-bottom: var(--s-4);
-}
-.mb-5 {
-	margin-bottom: var(--s-5);
-}
-.mb-6 {
-	margin-bottom: var(--s-6);
-}
-.p-3 {
-	padding: var(--s-3);
-}
-.p-4 {
-	padding: var(--s-4);
-}
-.p-5 {
-	padding: var(--s-5);
-}
-.p-6 {
-	padding: var(--s-6);
-}
-.px-3 {
-	padding-inline: var(--s-3);
-}
-.px-4 {
-	padding-inline: var(--s-4);
-}
-.px-5 {
-	padding-inline: var(--s-5);
-}
-.py-2 {
-	padding-block: var(--s-2);
-}
-.py-3 {
-	padding-block: var(--s-3);
-}
-
-/* sizing */
-.w-full {
-	width: 100%;
-}
-.h-full {
-	height: 100%;
-}
-.max-w-prose {
-	max-width: 62ch;
-}
-.max-w-sm {
-	max-width: 460px;
-}
-
-/* type */
-.text-xs {
-	font-size: var(--t-xs);
-}
-.text-sm {
-	font-size: var(--t-sm);
-}
-.text-md {
-	font-size: var(--t-md);
-}
-.text-lg {
-	font-size: var(--t-lg);
-}
-.font-medium {
-	font-weight: 500;
-}
-.font-semibold {
-	font-weight: 600;
-}
-.mono {
-	font-family: var(--mono);
-}
-.uppercase {
-	text-transform: uppercase;
-}
-.text-center {
-	text-align: center;
-}
-.text-balance {
-	text-wrap: balance;
-}
-.text-pretty {
-	text-wrap: pretty;
-}
-.leading-tight {
-	line-height: 1.15;
-}
-
-.h1 {
-	font-size: var(--t-h1);
-	line-height: 0.92;
-	letter-spacing: -0.04em;
-	font-weight: 600;
-}
-
-.h2 {
-	font-size: var(--t-h2);
-	line-height: 1.08;
-	letter-spacing: -0.025em;
-	font-weight: 600;
-}
-
-.h3 {
-	font-size: var(--t-h3);
-	line-height: 1.25;
-	letter-spacing: -0.012em;
-	font-weight: 600;
-}
-
-/*
- * Structural labels are monospace, uppercase and letter-spaced. This is the
- * one type gesture the site repeats, and it is what separates a section from
- * the section above it without drawing a line.
- */
-.label {
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	color: var(--fg-faint);
-}
-
-.truncate {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-/* colour */
-.fg {
-	color: var(--fg);
-}
-.fg-dim {
-	color: var(--fg-dim);
-}
-.fg-faint {
-	color: var(--fg-faint);
-}
-.fg-accent {
-	color: var(--accent);
-}
-
-/* surface */
-.bg-1 {
-	background: var(--bg-1);
-}
-.bg-2 {
-	background: var(--bg-2);
-}
-.border {
-	border: 1px solid var(--line);
-}
-.border-t {
-	border-top: 1px solid var(--line-soft);
-}
-.border-b {
-	border-bottom: 1px solid var(--line-soft);
-}
-.rounded {
-	border-radius: var(--r);
-}
-.rounded-lg {
-	border-radius: var(--r-lg);
-}
-.rounded-xl {
-	border-radius: var(--r-card);
-}
-.rounded-full {
-	border-radius: 999px;
-}
-.overflow-hidden {
-	overflow: hidden;
-}
-.pointer {
-	cursor: pointer;
-}
-
-/*
- * Available to screen readers, invisible to everyone else. The clip-path is
- * what keeps it out of the layout without `display: none`, which would take it
- * out of the accessibility tree too.
- */
-.sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip-path: inset(50%);
-	white-space: nowrap;
-	border: 0;
-}
-
-/* ── credits ─────────────────────────────────────────────────── */
-
-/*
- * Deliberately quieter than `.card`. Work I depend on is listed, not
- * promoted - if these looked like the package cards, the page would read as
- * though I wrote them.
- */
-.credit-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-	gap: var(--s-3);
-}
-
-.credit {
-	display: flex;
-	flex-direction: column;
-	gap: var(--s-1);
-	padding: var(--s-3) var(--s-4);
-	border: 1px solid transparent;
-	border-radius: var(--r-lg);
-	background: var(--bg-1);
-	transition:
-		border-color 200ms ease,
-		background 200ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.credit:hover {
+	/* surface */
+	.bg-1 {
+		background: var(--bg-1);
+	}
+	.bg-2 {
 		background: var(--bg-2);
-		border-color: var(--line-soft);
+	}
+	.border {
+		border: 1px solid var(--line);
+	}
+	.border-t {
+		border-top: 1px solid var(--line-soft);
+	}
+	.border-b {
+		border-bottom: 1px solid var(--line-soft);
+	}
+	.rounded {
+		border-radius: var(--r);
+	}
+	.rounded-lg {
+		border-radius: var(--r-lg);
+	}
+	.rounded-xl {
+		border-radius: var(--r-card);
+	}
+	.rounded-full {
+		border-radius: 999px;
+	}
+	.overflow-hidden {
+		overflow: hidden;
+	}
+	.pointer {
+		cursor: pointer;
+	}
+
+	/*
+	 * Available to screen readers, invisible to everyone else. The clip-path is
+	 * what keeps it out of the layout without `display: none`, which would take it
+	 * out of the accessibility tree too.
+	 */
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+		border: 0;
 	}
 }
 
-/* ── page rhythm ─────────────────────────────────────────────── */
+@layer blocks {
+	/* ── credits ─────────────────────────────────────────────────── */
 
-/*
- * `min()` rather than `max-width` plus padding.
- *
- * One declaration says the whole rule: as wide as the content box allows, less
- * a gutter on each side, and never wider than the measure. There is no second
- * value to keep in step, and it cannot produce the classic bug where the
- * padding is inside the max-width and the container is narrower than it claims.
- *
- * `100%`, never `100vw`. `vw` includes the scrollbar, so `width: 100vw` on a
- * page that scrolls is about fifteen pixels wider than the space available and
- * the whole document gains a horizontal scrollbar.
- */
-.container {
-	width: min(100% - var(--gutter) * 2, var(--container));
-	margin-inline: auto;
-}
+	/*
+	 * Deliberately quieter than `.card`. Work I depend on is listed, not
+	 * promoted - if these looked like the package cards, the page would read as
+	 * though I wrote them.
+	 */
+	.credit-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+		gap: var(--s-3);
+	}
 
-/*
- * Opt a subtree into container queries.
- *
- * This is the unit that actually matters for a component library. A media
- * query asks how wide the window is; a component three levels inside a sidebar
- * does not care, and cannot be correct in both places from one answer. With
- * `container-type: inline-size` on an ancestor, `cqi` and `@container` ask how
- * much room this component was given, which is the question it can answer.
- *
- * `inline-size` rather than `size`: querying the block axis requires the
- * container to have a height that does not depend on its content, and almost
- * nothing on a page does.
- */
-.cq {
-	container-type: inline-size;
-}
+	.credit {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-1);
+		padding: var(--s-3) var(--s-4);
+		border: 1px solid transparent;
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+		transition:
+			border-color 200ms ease,
+			background 200ms ease;
+	}
 
-/*
- * Fluid, so the breakpoint that used to switch this between two fixed values
- * is gone. The distance between sections is a proportion of the page rather
- * than a measurement, and a `clamp` says that in one line instead of in two
- * rules that have to be kept in step.
- */
-.section {
-	padding-block: var(--space-page);
-	border-top: 1px solid var(--line-soft);
-}
+	@media (hover: hover) and (pointer: fine) {
+		.credit:hover {
+			background: var(--bg-2);
+			border-color: var(--line-soft);
+		}
+	}
 
-/*
- * Rhythm inside a section, from the same fluid scale as the space around it.
- *
- * Owned by the section rather than set as a margin on each child: a heading
- * that knows how far it sits from the paragraph under it has to be told again
- * every time it is used somewhere else, and the two answers drift.
- */
-.section > * + * {
-	margin-top: var(--space-block);
-}
+	/* ── page rhythm ─────────────────────────────────────────────── */
 
-/* The heading group is one thing, so it keeps its own tighter spacing. */
-.section > .label + * {
-	margin-top: var(--s-3);
-}
+	/*
+	 * `min()` rather than `max-width` plus padding.
+	 *
+	 * One declaration says the whole rule: as wide as the content box allows, less
+	 * a gutter on each side, and never wider than the measure. There is no second
+	 * value to keep in step, and it cannot produce the classic bug where the
+	 * padding is inside the max-width and the container is narrower than it claims.
+	 *
+	 * `100%`, never `100vw`. `vw` includes the scrollbar, so `width: 100vw` on a
+	 * page that scrolls is about fifteen pixels wider than the space available and
+	 * the whole document gains a horizontal scrollbar.
+	 */
+	.container {
+		width: min(100% - var(--gutter) * 2, var(--container));
+		margin-inline: auto;
+	}
 
-/* ── scroll reveal ───────────────────────────────────────────── */
+	/*
+	 * Opt a subtree into container queries.
+	 *
+	 * This is the unit that actually matters for a component library. A media
+	 * query asks how wide the window is; a component three levels inside a sidebar
+	 * does not care, and cannot be correct in both places from one answer. With
+	 * `container-type: inline-size` on an ancestor, `cqi` and `@container` ask how
+	 * much room this component was given, which is the question it can answer.
+	 *
+	 * `inline-size` rather than `size`: querying the block axis requires the
+	 * container to have a height that does not depend on its content, and almost
+	 * nothing on a page does.
+	 */
+	.cq {
+		container-type: inline-size;
+	}
 
-[data-reveal] {
-	transition:
-		opacity 700ms var(--ease-out),
-		transform 700ms var(--ease-out);
-}
+	/*
+	 * Fluid, so the breakpoint that used to switch this between two fixed values
+	 * is gone. The distance between sections is a proportion of the page rather
+	 * than a measurement, and a `clamp` says that in one line instead of in two
+	 * rules that have to be kept in step.
+	 */
+	.section {
+		padding-block: var(--space-page);
+		border-top: 1px solid var(--line-soft);
+	}
 
-[data-reveal="out"] {
-	opacity: 0;
-	transform: translateY(18px);
-}
+	/*
+	 * Rhythm inside a section, from the same fluid scale as the space around it.
+	 *
+	 * Owned by the section rather than set as a margin on each child: a heading
+	 * that knows how far it sits from the paragraph under it has to be told again
+	 * every time it is used somewhere else, and the two answers drift.
+	 */
+	.section > * + * {
+		margin-top: var(--space-block);
+	}
 
-[data-reveal="in"] {
-	opacity: 1;
-	transform: none;
-}
+	/* The heading group is one thing, so it keeps its own tighter spacing. */
+	.section > .label + * {
+		margin-top: var(--s-3);
+	}
 
-@media (prefers-reduced-motion: reduce) {
+	/* ── scroll reveal ───────────────────────────────────────────── */
+
 	[data-reveal] {
-		transition: none;
+		transition:
+			opacity 700ms var(--ease-out),
+			transform 700ms var(--ease-out);
 	}
+
 	[data-reveal="out"] {
+		opacity: 0;
+		transform: translateY(18px);
+	}
+
+	[data-reveal="in"] {
 		opacity: 1;
 		transform: none;
 	}
-}
 
-/* ── nav ─────────────────────────────────────────────────────── */
+	@media (prefers-reduced-motion: reduce) {
+		[data-reveal] {
+			transition: none;
+		}
+		[data-reveal="out"] {
+			opacity: 1;
+			transform: none;
+		}
+	}
 
-/*
- * The blur is on a pseudo-element, not on `.nav` itself, and that is load
- * bearing.
- *
- * `backdrop-filter` on an element makes it a containing block for every
- * `position: fixed` descendant. With it on `.nav`, the mobile drawer inside
- * this header measured `inset: 0` against the header rather than against the
- * viewport - so a full-height drawer came out header-height, in the wrong
- * place, with a scrim that dimmed sixty pixels of the page.
- *
- * Moving the filter down one level leaves `.nav` an ordinary element, and the
- * glass looks identical.
- */
-.nav {
-	position: sticky;
-	top: 0;
-	z-index: 20;
-	border-bottom: 1px solid var(--line-soft);
-}
+	/* ── nav ─────────────────────────────────────────────────────── */
 
-/*
- * Frosted, not tinted.
- *
- * At 82% opacity this was a dark bar with a slight blur behind it, and
- * anything scrolling under it - the hero's model especially - disappeared at
- * the boundary rather than passing behind it. Glass is the opposite: a light
- * fill and a strong blur, so what goes under it stays visible and goes soft.
- *
- * The gradient is a lit top edge fading out. That single highlight is what
- * separates "translucent panel" from "sheet of glass", and it costs nothing.
- */
-.nav::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	background:
-		linear-gradient(to bottom, var(--glass-edge), transparent 55%),
-		color-mix(in srgb, var(--nori-900) 55%, transparent);
-	backdrop-filter: var(--glass-blur);
-}
+	/*
+	 * The blur is on a pseudo-element, not on `.nav` itself, and that is load
+	 * bearing.
+	 *
+	 * `backdrop-filter` on an element makes it a containing block for every
+	 * `position: fixed` descendant. With it on `.nav`, the mobile drawer inside
+	 * this header measured `inset: 0` against the header rather than against the
+	 * viewport - so a full-height drawer came out header-height, in the wrong
+	 * place, with a scrim that dimmed sixty pixels of the page.
+	 *
+	 * Moving the filter down one level leaves `.nav` an ordinary element, and the
+	 * glass looks identical.
+	 */
+	.nav {
+		position: sticky;
+		top: 0;
+		z-index: 20;
+		border-bottom: 1px solid var(--line-soft);
+	}
 
-.nav-link {
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: var(--fg-faint);
-	padding: var(--s-2);
-	transition: color 160ms ease;
-}
+	/*
+	 * Frosted, not tinted.
+	 *
+	 * At 82% opacity this was a dark bar with a slight blur behind it, and
+	 * anything scrolling under it - the hero's model especially - disappeared at
+	 * the boundary rather than passing behind it. Glass is the opposite: a light
+	 * fill and a strong blur, so what goes under it stays visible and goes soft.
+	 *
+	 * The gradient is a lit top edge fading out. That single highlight is what
+	 * separates "translucent panel" from "sheet of glass", and it costs nothing.
+	 */
+	.nav::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background:
+			linear-gradient(to bottom, var(--glass-edge), transparent 55%),
+			color-mix(in srgb, var(--nori-900) 55%, transparent);
+		backdrop-filter: var(--glass-blur);
+	}
 
-@media (hover: hover) and (pointer: fine) {
-	.nav-link:hover {
+	.nav-link {
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+		padding: var(--s-2);
+		transition: color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.nav-link:hover {
+			color: var(--fg);
+		}
+	}
+
+	.nav-link[data-active="true"] {
 		color: var(--fg);
 	}
-}
 
-.nav-link[data-active="true"] {
-	color: var(--fg);
-}
-
-/*
- * The expanding panels.
- *
- * Built on <details>, so `[open]` is the state and there is nothing to
- * synchronise. The summary marker is removed in two ways because Safari still
- * wants the WebKit pseudo-element.
- */
-.nav-menu,
-.nav-burger,
-.nav-group {
-	position: relative;
-}
-
-.nav-menu summary,
-.nav-burger summary,
-.nav-group summary {
-	list-style: none;
-	cursor: pointer;
-}
-
-.nav-menu summary::-webkit-details-marker,
-.nav-burger summary::-webkit-details-marker,
-.nav-group summary::-webkit-details-marker {
-	display: none;
-}
-
-.nav-chevron {
-	color: var(--fg-faint);
-	transition: transform 220ms var(--ease-out);
-}
-
-[open] > summary .nav-chevron {
-	transform: rotate(180deg);
-}
-
-.nav-menu[open] > summary,
-.nav-group[open] > summary {
-	color: var(--fg);
-}
-
-/*
- * Absolutely positioned, so opening a panel never moves the page under the
- * pointer that opened it.
- *
- * Right-aligned rather than centred on its trigger. Centring reads better on
- * the middle entry and puts the last one half off-screen, and a panel that has
- * to be clamped by the viewport is a panel whose left edge moves depending on
- * which trigger opened it. Anchored to the right, every panel opens in the same
- * place relative to its trigger.
- */
-.nav-panel {
-	position: absolute;
-	top: calc(100% + var(--s-3));
-	right: 0;
-	z-index: 21;
-	width: max-content;
-	max-width: min(46rem, calc(100vw - var(--s-6)));
-	padding: var(--s-3);
-	border: 1px solid var(--line);
-	border-radius: var(--r-card);
-	background:
-		linear-gradient(to bottom, var(--glass-edge), transparent 40%),
-		color-mix(in srgb, var(--nori-800) 88%, transparent);
-	backdrop-filter: var(--glass-blur);
-	box-shadow: 0 24px 60px color-mix(in srgb, var(--nori-900) 76%, transparent);
-	transform-origin: top right;
-	animation: nav-panel-in 220ms var(--ease-out);
-}
-
-/*
- * Soft expansion: it grows into place rather than appearing.
- *
- * A scale that starts near 1 and a translate of a few pixels is the whole
- * effect. Anything larger reads as a zoom, and the panel then has to travel far
- * enough that the eye follows the movement instead of the content.
- */
-@keyframes nav-panel-in {
-	from {
-		opacity: 0;
-		scale: 0.97;
-		translate: 0 -6px;
+	/*
+	 * The expanding panels.
+	 *
+	 * Built on <details>, so `[open]` is the state and there is nothing to
+	 * synchronise. The summary marker is removed in two ways because Safari still
+	 * wants the WebKit pseudo-element.
+	 */
+	.nav-menu,
+	.nav-burger,
+	.nav-group {
+		position: relative;
 	}
-}
 
-/*
- * Two or three columns, worked out from the panel's width rather than declared.
- *
- * One column is a list, and a list is what the nav already is - the panel earns
- * its existence by showing the whole set at once. `auto-fit` means a panel with
- * two items is two columns wide rather than a tall narrow strip.
- */
-.nav-panel-list {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-	gap: var(--s-1);
-	padding: 0;
-	list-style: none;
-}
+	.nav-menu summary,
+	.nav-burger summary,
+	.nav-group summary {
+		list-style: none;
+		cursor: pointer;
+	}
 
-.nav-panel-item {
-	display: flex;
-	align-items: start;
-	gap: var(--s-3);
-	padding: var(--s-3);
-	border: 1px solid transparent;
-	border-radius: var(--r-lg);
-	color: var(--fg-dim);
-	transition:
-		background 160ms ease,
-		border-color 160ms ease;
-}
+	.nav-menu summary::-webkit-details-marker,
+	.nav-burger summary::-webkit-details-marker,
+	.nav-group summary::-webkit-details-marker {
+		display: none;
+	}
 
-/*
- * The icon tile: glass, made of a gradient rather than of a filter.
- *
- * A light top edge over a darker fill is what actually reads as a raised piece
- * of glass. `backdrop-filter` on a 34px tile adds almost nothing to that, and
- * it is not free: each one becomes its own backdrop root, and eighteen of them
- * inside a panel that is itself blurred inside a header that is also blurred
- * crashed the renderer outright.
- *
- * One blur per surface is the rule that came out of it. A blur inside a blur
- * inside a blur is not a design decision, it is three GPU readbacks per frame.
- */
-.nav-panel-icon {
-	display: grid;
-	place-items: center;
-	flex: 0 0 auto;
-	width: 34px;
-	height: 34px;
-	border: 1px solid color-mix(in srgb, var(--rice) 12%, transparent);
-	border-radius: var(--r-lg);
-	background:
-		linear-gradient(
-			160deg,
-			color-mix(in srgb, var(--rice) 10%, transparent),
-			transparent 62%
-		),
-		var(--bg-3);
-	color: var(--fg-dim);
-	transition:
-		color 160ms ease,
-		border-color 160ms ease;
-}
+	.nav-chevron {
+		color: var(--fg-faint);
+		transition: transform 220ms var(--ease-out);
+	}
 
-@media (hover: hover) and (pointer: fine) {
-	.nav-panel-item:hover {
+	[open] > summary .nav-chevron {
+		transform: rotate(180deg);
+	}
+
+	.nav-menu[open] > summary,
+	.nav-group[open] > summary {
+		color: var(--fg);
+	}
+
+	/*
+	 * Absolutely positioned, so opening a panel never moves the page under the
+	 * pointer that opened it.
+	 *
+	 * Right-aligned rather than centred on its trigger. Centring reads better on
+	 * the middle entry and puts the last one half off-screen, and a panel that has
+	 * to be clamped by the viewport is a panel whose left edge moves depending on
+	 * which trigger opened it. Anchored to the right, every panel opens in the same
+	 * place relative to its trigger.
+	 */
+	.nav-panel {
+		position: absolute;
+		top: calc(100% + var(--s-3));
+		right: 0;
+		z-index: 21;
+		width: max-content;
+		max-width: min(46rem, calc(100vw - var(--s-6)));
+		padding: var(--s-3);
+		border: 1px solid var(--line);
+		border-radius: var(--r-card);
+		background:
+			linear-gradient(to bottom, var(--glass-edge), transparent 40%),
+			color-mix(in srgb, var(--nori-800) 88%, transparent);
+		backdrop-filter: var(--glass-blur);
+		box-shadow: 0 24px 60px color-mix(in srgb, var(--nori-900) 76%, transparent);
+		transform-origin: top right;
+		animation: nav-panel-in 220ms var(--ease-out);
+	}
+
+	/*
+	 * Soft expansion: it grows into place rather than appearing.
+	 *
+	 * A scale that starts near 1 and a translate of a few pixels is the whole
+	 * effect. Anything larger reads as a zoom, and the panel then has to travel far
+	 * enough that the eye follows the movement instead of the content.
+	 */
+	@keyframes nav-panel-in {
+		from {
+			opacity: 0;
+			scale: 0.97;
+			translate: 0 -6px;
+		}
+	}
+
+	/*
+	 * Two or three columns, worked out from the panel's width rather than declared.
+	 *
+	 * One column is a list, and a list is what the nav already is - the panel earns
+	 * its existence by showing the whole set at once. `auto-fit` means a panel with
+	 * two items is two columns wide rather than a tall narrow strip.
+	 */
+	.nav-panel-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+		gap: var(--s-1);
+		padding: 0;
+		list-style: none;
+	}
+
+	.nav-panel-item {
+		display: flex;
+		align-items: start;
+		gap: var(--s-3);
+		padding: var(--s-3);
+		border: 1px solid transparent;
+		border-radius: var(--r-lg);
+		color: var(--fg-dim);
+		transition:
+			background 160ms ease,
+			border-color 160ms ease;
+	}
+
+	/*
+	 * The icon tile: glass, made of a gradient rather than of a filter.
+	 *
+	 * A light top edge over a darker fill is what actually reads as a raised piece
+	 * of glass. `backdrop-filter` on a 34px tile adds almost nothing to that, and
+	 * it is not free: each one becomes its own backdrop root, and eighteen of them
+	 * inside a panel that is itself blurred inside a header that is also blurred
+	 * crashed the renderer outright.
+	 *
+	 * One blur per surface is the rule that came out of it. A blur inside a blur
+	 * inside a blur is not a design decision, it is three GPU readbacks per frame.
+	 */
+	.nav-panel-icon {
+		display: grid;
+		place-items: center;
+		flex: 0 0 auto;
+		width: 34px;
+		height: 34px;
+		border: 1px solid color-mix(in srgb, var(--rice) 12%, transparent);
+		border-radius: var(--r-lg);
+		background:
+			linear-gradient(
+				160deg,
+				color-mix(in srgb, var(--rice) 10%, transparent),
+				transparent 62%
+			),
+			var(--bg-3);
+		color: var(--fg-dim);
+		transition:
+			color 160ms ease,
+			border-color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.nav-panel-item:hover {
+			background: var(--bg-2);
+			border-color: var(--line-soft);
+		}
+
+		/* The tile lifts with the row, so the whole item reads as one target. */
+		.nav-panel-item:hover .nav-panel-icon {
+			border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+			color: var(--accent);
+		}
+	}
+
+	.nav-panel-item:focus-visible {
 		background: var(--bg-2);
 		border-color: var(--line-soft);
 	}
 
-	/* The tile lifts with the row, so the whole item reads as one target. */
-	.nav-panel-item:hover .nav-panel-icon {
-		border-color: color-mix(in srgb, var(--accent) 45%, transparent);
-		color: var(--accent);
-	}
-}
-
-.nav-panel-item:focus-visible {
-	background: var(--bg-2);
-	border-color: var(--line-soft);
-}
-
-.nav-panel-description {
-	display: block;
-	margin-top: 2px;
-	font-size: var(--t-xs);
-	line-height: 1.5;
-	color: var(--fg-faint);
-}
-
-.nav-panel-all {
-	display: block;
-	margin-top: var(--s-2);
-	padding: var(--s-3);
-	border-top: 1px solid var(--line-soft);
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: var(--fg-faint);
-	transition: color 160ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.nav-panel-all:hover {
-		color: var(--accent);
-	}
-}
-
-/* ── the mobile drawer ───────────────────────────────────────── */
-
-/*
- * Hidden until the row is. The two are exclusive by construction rather than
- * by a JavaScript check, so there is no width at which both or neither shows.
- */
-.nav-burger {
-	display: none;
-}
-
-.nav-burger-toggle {
-	display: grid;
-	place-items: center;
-	width: 42px;
-	height: 42px;
-	border: 1px solid var(--line-soft);
-	border-radius: var(--r-lg);
-	background: var(--bg-1);
-	color: var(--fg-dim);
-}
-
-/*
- * While open, the toggle floats above the drawer.
- *
- * It has to. The drawer is fixed and full-screen on a phone, so it covers the
- * header the toggle lives in - and a full-screen menu whose only close control
- * is underneath it has no exit at all. Lifting the same control above the sheet
- * is better than adding a second one: the thing that closes the menu is
- * visibly the thing that opened it, in the same place, having turned into an X.
- */
-.nav-burger[open] .nav-burger-toggle {
-	position: fixed;
-	top: var(--s-3);
-	right: var(--s-4);
-	z-index: 31;
-	border-color: var(--line);
-	background: var(--bg-2);
-	color: var(--fg);
-}
-
-/*
- * Three bars that become a cross.
- *
- * Drawn here rather than taken from the glyph set, because a glyph cannot morph
- * and the morph is the affordance: it says the same control closes what it
- * opened.
- */
-.nav-burger-bars,
-.nav-burger-bars::before,
-.nav-burger-bars::after {
-	display: block;
-	width: 16px;
-	height: 1.5px;
-	border-radius: 2px;
-	background: currentColor;
-	transition:
-		transform 260ms var(--ease-out),
-		background 160ms ease;
-}
-
-.nav-burger-bars::before,
-.nav-burger-bars::after {
-	content: "";
-	position: relative;
-}
-
-.nav-burger-bars::before {
-	top: -5px;
-}
-
-.nav-burger-bars::after {
-	top: 3.5px;
-}
-
-/*
- * Open: the middle bar goes, the outer two cross.
- *
- * `background: transparent` on the middle bar, not `opacity: 0`. Opacity on an
- * element groups it with its pseudo-elements, and nothing inside can opt back
- * in - `opacity: 1` on a child cannot escape a parent's `opacity: 0`. Written
- * that way the press hid all three bars, so the full-screen drawer opened with
- * no visible way out of it.
- *
- * Only the parent's own background draws the middle bar, so clearing it leaves
- * the other two untouched.
- */
-.nav-burger[open] .nav-burger-bars {
-	background: transparent;
-}
-
-/*
- * Both bars translate to the centre line, then rotate about it. The offsets are
- * the negatives of the `top` values above: 5px up for one, 5px down for the
- * other, so the cross meets rather than nearly meeting.
- */
-.nav-burger[open] .nav-burger-bars::before {
-	transform: translateY(5px) rotate(45deg);
-}
-
-.nav-burger[open] .nav-burger-bars::after {
-	transform: translateY(-5px) rotate(-45deg);
-}
-
-/*
- * A drawer, not a dropdown.
- *
- * Full height against the right edge, so the menu is somewhere rather than on
- * top of something. A dropdown of this many entries covers the page it came
- * from and leaves the reader unsure whether they navigated.
- *
- * On a phone it takes the whole screen. A 23rem panel on a 390px device is not
- * a drawer, it is a panel with a 40px strip of unusable page beside it, and
- * that strip is a tap target for "close" that nobody can hit reliably. Full
- * width also means the items get the width they were designed at instead of
- * being squeezed. The tablet keeps the drawer, where a strip of page is wide
- * enough to still read as page.
- *
- * `100dvh`, not `100vh`: on iOS Safari `vh` is the height with the toolbar
- * hidden, so a `100vh` drawer runs under the address bar and the last entry is
- * unreachable.
- */
-.nav-sheet {
-	position: fixed;
-	top: 0;
-	right: 0;
-	z-index: 30;
-	display: flex;
-	flex-direction: column;
-	gap: var(--s-1);
-	width: min(23rem, 86vw);
-	height: 100dvh;
-	padding: calc(var(--s-8) + var(--s-3)) var(--s-4) var(--s-6);
-	overflow-y: auto;
-	/*
-	 * The drawer takes the drag, and the page does not get it.
-	 *
-	 * `overscroll-behavior` stops the scroll chaining onward once the drawer
-	 * hits its end, and `touch-action: pan-y` claims vertical drags for this
-	 * element rather than letting the browser hand them to the page behind.
-	 * Without the pair, a drag inside the menu scrolls the article under it,
-	 * which is the one thing a modal surface must not do.
-	 */
-	overscroll-behavior: contain;
-	touch-action: pan-y;
-	border-left: 1px solid var(--line);
-	/*
-	 * Opaque, and no blur. The drawer sits over a 62% scrim, so whatever a
-	 * backdrop-filter would have blurred is already hidden - it was paying for
-	 * a full-screen GPU readback every frame to composite something invisible.
-	 */
-	background: var(--bg-1);
-	box-shadow: -24px 0 60px color-mix(in srgb, var(--nori-900) 70%, transparent);
-	/*
-	 * Slower than the desktop panel, and deliberately. A drawer travels the
-	 * width of the screen, and a full-screen surface that arrives in 200ms
-	 * reads as a page change rather than as something opening.
-	 */
-	animation: nav-sheet-in 420ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes nav-sheet-in {
-	from {
-		translate: 100% 0;
-	}
-}
-
-/*
- * There is deliberately no `overflow: hidden` scroll lock here.
- *
- * The obvious way to stop the page moving behind the drawer is
- * `html:has(.nav-burger[open]) { overflow: hidden }`, and it is worse than the
- * problem. Making the scrolling element non-scrollable drops its scroll
- * offset, so opening the menu halfway down a page throws the reader back to
- * the top - and closing it does not bring them back. Losing someone's place is
- * a worse outcome than a page that can still be scrolled while covered.
- *
- * What actually needed fixing was scroll chaining, and that is handled where it
- * happens: `overscroll-behavior: contain` and `touch-action: pan-y` on the
- * sheet, plus `data-lenis-prevent` so the smooth-scroll driver leaves the
- * drawer's own scrolling to the browser.
- */
-
-/*
- * The dimmed page behind it. A pseudo-element on the details rather than a
- * second node, so nothing in the markup exists only to be a backdrop.
- */
-.nav-burger[open]::before {
-	content: "";
-	position: fixed;
-	inset: 0;
-	z-index: 29;
-	background: color-mix(in srgb, var(--nori-900) 62%, transparent);
-	animation: nav-scrim-in 420ms ease;
-}
-
-@keyframes nav-scrim-in {
-	from {
-		opacity: 0;
-	}
-}
-
-/*
- * Phones: the whole screen.
- *
- * The border and the shadow go with the strip of page they were separating it
- * from. A shadow against a screen edge is a smudge.
- */
-@media (max-width: 620px) {
-	.nav-sheet {
-		width: 100%;
-		border-left: 0;
-		box-shadow: none;
-	}
-}
-
-/*
- * Group headers and item rows share one left edge.
- *
- * Both use the same horizontal padding, and the nested list adds none. Any
- * indent on the list would push every icon tile a few pixels right of the
- * group's own icon, and the drawer would read as two columns that nearly line
- * up, which is worse than either lining up or clearly not.
- *
- * `44px` is the minimum comfortable touch target, and a nav row is the control
- * most likely to be tapped by a thumb reaching across a screen.
- */
-/* The drawer's own heading, so the sheet does not start mid-list. */
-.nav-sheet-title {
-	padding: 0 var(--s-3) var(--s-3);
-	border-bottom: 1px solid var(--line-soft);
-}
-
-.nav-group-summary {
-	min-height: 44px;
-	padding: var(--s-2) var(--s-3);
-	border-radius: var(--r-lg);
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: var(--fg-dim);
-	transition: background 160ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.nav-group-summary:hover {
-		background: var(--bg-2);
-		color: var(--fg);
-	}
-}
-
-/* No hover on a touch screen, so the press itself has to answer. */
-.nav-group-summary:active,
-.nav-sheet .nav-panel-item:active {
-	background: var(--bg-2);
-}
-
-/* The chevron goes to the end of the row; the icon stays with the label. */
-.nav-group-summary .nav-chevron {
-	margin-left: auto;
-}
-
-/* Inside the drawer the panel list is a plain column: the width is not there. */
-.nav-sheet .nav-panel-list {
-	grid-template-columns: minmax(0, 1fr);
-	gap: 2px;
-	padding: 0;
-}
-
-.nav-sheet .nav-panel-item {
-	min-height: 44px;
-	padding: var(--s-3);
-}
-
-/*
- * Items sit under their group, on the same left edge.
- *
- * Every row in the drawer starts with a 34px tile, group headers included, so
- * the tiles form one column down the sheet. A rule set in behind them is what
- * says the items belong to the group above; indenting them instead would break
- * that column and the drawer would read as two lists that nearly line up.
- */
-.nav-sheet .nav-panel-list,
-.nav-sheet > .nav-group > .nav-panel-all {
-	margin-left: calc(var(--s-3) + 17px);
-	border-left: 1px solid var(--line-soft);
-	padding-left: var(--s-3);
-}
-
-/* The nested tiles are smaller: they are inside a rule, not starting one. */
-.nav-sheet .nav-panel-item .nav-panel-icon {
-	width: 28px;
-	height: 28px;
-}
-
-.nav-sheet .nav-panel-all {
-	margin-bottom: var(--s-4);
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.nav-panel,
-	.nav-sheet,
-	.nav-burger[open]::before {
-		animation: none;
-	}
-
-	.nav-chevron,
-	.nav-burger-bars,
-	.nav-burger-bars::before,
-	.nav-burger-bars::after {
-		transition: none;
-	}
-}
-
-/*
- * The switch. One breakpoint, and the two halves are mutually exclusive on
- * either side of it.
- */
-@media (max-width: 860px) {
-	.nav-row {
-		display: none;
-	}
-
-	.nav-burger {
+	.nav-panel-description {
 		display: block;
-	}
-}
-
-/* ── grid and spacer ─────────────────────────────────────────── */
-
-/*
- * `auto-fit` plus `minmax` works the column count out from the space
- * available, so there is no breakpoint here and no column count to keep in
- * step with one. A grid inside a sidebar gets it right for the same reason a
- * grid on a full page does: it is asking about its own width, not the
- * viewport's.
- */
-.grid-auto {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(var(--grid-min, 16rem), 1fr));
-}
-
-.grid-auto[data-gap="1"] {
-	gap: var(--s-1);
-}
-.grid-auto[data-gap="2"] {
-	gap: var(--s-2);
-}
-.grid-auto[data-gap="3"] {
-	gap: var(--s-3);
-}
-.grid-auto[data-gap="4"] {
-	gap: var(--s-4);
-}
-.grid-auto[data-gap="5"] {
-	gap: var(--s-5);
-}
-.grid-auto[data-gap="6"] {
-	gap: var(--s-6);
-}
-.grid-auto[data-gap="7"] {
-	gap: var(--s-7);
-}
-
-/*
- * A fixed count, for content that is genuinely paired. A before and an after
- * that reflow to one column stop being a comparison, so these hold until the
- * narrow breakpoint and then give up all at once.
- */
-.grid-auto[data-columns="2"] {
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.grid-auto[data-columns="3"] {
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-.grid-auto[data-columns="4"] {
-	grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-@media (max-width: 860px) {
-	.grid-auto[data-columns] {
-		grid-template-columns: minmax(0, 1fr);
-	}
-}
-
-.spacer {
-	display: block;
-}
-
-.spacer[data-size="1"] {
-	height: var(--s-1);
-}
-.spacer[data-size="2"] {
-	height: var(--s-2);
-}
-.spacer[data-size="3"] {
-	height: var(--s-3);
-}
-.spacer[data-size="4"] {
-	height: var(--s-4);
-}
-.spacer[data-size="5"] {
-	height: var(--s-5);
-}
-.spacer[data-size="6"] {
-	height: var(--s-6);
-}
-.spacer[data-size="7"] {
-	height: var(--s-7);
-}
-
-/*
- * The rule sits in the middle of the gap rather than at its edge, so the space
- * above and below stays symmetric and the spacer keeps its declared height.
- */
-.spacer[data-rule] {
-	display: flex;
-	align-items: center;
-	gap: var(--s-3);
-}
-
-.spacer[data-rule]::before,
-.spacer[data-rule]::after {
-	content: "";
-	flex: 1;
-	height: 1px;
-	background: var(--line-soft);
-}
-
-.spacer-label {
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	color: var(--fg-faint);
-}
-
-/* ── hero ────────────────────────────────────────────────────── */
-
-/*
- * `--nav-height` is the sticky header's own height, declared once so anything
- * that has to clear it can say so rather than guess. The header is a 42px
- * control in `var(--s-3)` of padding.
- */
-.hero {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	align-items: center;
-	gap: var(--s-7);
-	min-height: min(88svh, 780px);
-	/*
-	 * Top padding clears the sticky header. Without it the hero starts at the
-	 * top of the document, the header sits on top of it, and the tallest thing
-	 * in the hero - the model - is cut off by a bar it never knew about.
-	 */
-	padding-block: calc(var(--nav-height) + var(--s-6)) var(--s-8);
-}
-
-/*
- * The stage the mark occupies.
- *
- * Square, centred, and bounded on both axes. `min()` against a viewport unit
- * and a fixed ceiling is what keeps it whole: on a short laptop window the
- * height wins, on a wide monitor the ceiling does, and it never grows to fill
- * a column just because the column is there.
- *
- * It was previously bounded only by height, so on a wide screen the model grew
- * to half the page and ran under the header.
- */
-.logo-stage {
-	aspect-ratio: 1;
-	width: min(100%, 62svh, 460px);
-	margin-inline: auto;
-	display: grid;
-	place-items: center;
-	/*
-	 * The 3D of the CSS spin. `perspective` on the stage rather than on the
-	 * spinning element means the vanishing point is the middle of the stage, so
-	 * the mark turns about the centre of the space it is in rather than about
-	 * its own centre, which is what makes it read as an object in a box.
-	 */
-	perspective: 1100px;
-}
-
-.logo-spin {
-	width: 82%;
-	transform-style: preserve-3d;
-	will-change: transform;
-	color: var(--fg);
-}
-
-/* Holds the stage open before the canvas exists. Not a mark, and not shaped
-   like one - just the space, so the arrival is a material change. */
-.logo-placeholder {
-	display: grid;
-	place-items: center;
-	width: 100%;
-	height: 100%;
-}
-
-/* ── cards ───────────────────────────────────────────────────── */
-
-.card-grid {
-	display: grid;
-	grid-template-columns: repeat(
-			auto-fit,
-			minmax(clamp(260px, 30vw, 320px), 1fr)
-		);
-	gap: var(--s-4);
-}
-
-/*
- * Glass by fill and edge, and no `backdrop-filter`.
- *
- * A card is a surface on the page, not an overlay above it, so there is
- * nothing behind it worth blurring - and there are a dozen of them in a grid.
- * A dozen backdrop roots is a dozen GPU readbacks a frame, which is the cost
- * that crashed the renderer when it was tried on the nav's icon tiles.
- *
- * The lit top edge is what carries the material. It is the same gradient the
- * header uses, at a lower strength, so a card and the nav read as the same
- * substance at different thicknesses.
- */
-.card {
-	display: flex;
-	flex-direction: column;
-	gap: var(--s-3);
-	padding: var(--s-5);
-	background:
-		linear-gradient(to bottom, var(--glass-edge), transparent 42%), var(--bg-1);
-	border: 1px solid var(--line-soft);
-	border-radius: var(--r-card);
-	transition:
-		border-color 200ms ease,
-		background 200ms ease,
-		transform 260ms var(--ease-out);
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.card:hover {
-		background: var(--bg-2);
-		border-color: var(--line);
-		transform: translateY(-3px);
-	}
-}
-
-/* ── code ────────────────────────────────────────────────────── */
-
-.code {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: var(--s-4);
-	padding: var(--s-3) var(--s-4);
-	background: var(--bg-1);
-	border: 1px solid var(--line-soft);
-	border-radius: var(--r-lg);
-	font-family: var(--mono);
-	font-size: var(--t-sm);
-	overflow-x: auto;
-}
-
-.code-block {
-	margin: 0;
-	padding: var(--s-4);
-	background: var(--bg-1);
-	border: 1px solid var(--line-soft);
-	border-radius: var(--r-lg);
-	font-family: var(--mono);
-	font-size: var(--t-sm);
-	line-height: 1.7;
-	overflow-x: auto;
-	tab-size: 2;
-}
-
-/* ── responsive ──────────────────────────────────────────────── */
-
-/* --bp-narrow: 860px. Below it the two-column hero stacks, mark first. */
-@media (max-width: 860px) {
-	.hero {
-		grid-template-columns: 1fr;
-		gap: var(--s-6);
-		min-height: 0;
-		padding-block: var(--s-7);
+		margin-top: 2px;
+		font-size: var(--t-xs);
+		line-height: 1.5;
+		color: var(--fg-faint);
 	}
 
-	.logo-stage {
-		max-width: 340px;
-		max-height: none;
-		order: -1;
-	}
-
-	.nav-narrow-hide {
-		display: none;
-	}
-}
-
-/* ── showcase ────────────────────────────────────────────────── */
-
-/*
- * The component museum frame: a toolbar, a stage, and the install commands
- * under it. Full-bleed inside prose, because a component shown at 62ch is not
- * being shown at all.
- */
-.showcase {
-	margin: var(--s-6) 0 0;
-	border: 1px solid var(--line-soft);
-	border-radius: var(--r-card);
-	background: var(--bg-1);
-	overflow: hidden;
-}
-
-.showcase-bar {
-	border-bottom: 1px solid var(--line-soft);
-}
-
-/* fieldset arrives with a border, padding and min-width nobody asked for. */
-.showcase-group {
-	padding: 0;
-	border: 0;
-	min-width: 0;
-}
-
-.showcase-btn {
-	display: inline-flex;
-	align-items: center;
-	gap: var(--s-2);
-	padding: var(--s-1) var(--s-3);
-	border: 1px solid transparent;
-	border-radius: var(--r);
-	background: transparent;
-	color: var(--fg-faint);
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-	cursor: pointer;
-	transition:
-		color 160ms ease,
-		background 160ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.showcase-btn:hover {
-		color: var(--fg);
-	}
-}
-
-.showcase-btn[data-active="true"] {
-	background: var(--bg-3);
-	border-color: var(--line-soft);
-	color: var(--fg);
-}
-
-/*
- * The device toggle.
- *
- * No transition in here, unlike the tabs above it. These get pressed a dozen
- * times while reading one page, and on a control used that often an animation
- * reads as lag rather than as polish. The state change is the feedback.
- */
-.showcase-devices {
-	flex: 0 0 auto;
-	gap: 2px;
-	padding: 2px;
-	margin: 0;
-	min-width: 0;
-	border: 1px solid var(--line-soft);
-	border-radius: var(--r-lg);
-	background: var(--bg-2);
-}
-
-.showcase-device {
-	display: inline-flex;
-	align-items: center;
-	gap: var(--s-1);
-	padding: var(--s-1) var(--s-2);
-	border: 0;
-	border-radius: var(--r);
-	background: transparent;
-	color: var(--fg-faint);
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	white-space: nowrap;
-	cursor: pointer;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.showcase-device:hover {
-		color: var(--fg-dim);
-	}
-}
-
-.showcase-device[data-active="true"] {
-	background: var(--bg-3);
-	color: var(--fg);
-}
-
-.showcase-device:focus-visible {
-	outline: 2px solid var(--accent);
-	outline-offset: 1px;
-}
-
-/*
- * The stage: the page ground behind the frames, so a narrow viewport reads as
- * a narrow viewport rather than as a broken layout.
- *
- * `align-items: start` so a short component does not stretch its frame to
- * match the tallest one, which would hide the fact that it was short. In
- * compare the frames are a row that scrolls; with one selected they centre, so
- * the frame stays where the eye already was when switching out of compare.
- */
-.showcase-stage {
-	display: flex;
-	align-items: start;
-	justify-content: center;
-	gap: var(--s-4);
-	background: var(--bg-0);
-	padding: var(--s-3);
-}
-
-.showcase-stage[data-view="compare"] {
-	justify-content: start;
-	overflow-x: auto;
-}
-
-.showcase-frame {
-	flex: 0 0 auto;
-	margin: 0;
-	max-width: 100%;
-}
-
-/*
- * Every frame says which width it is and why that width. A frame with no label
- * is a screenshot; a labelled one is a claim a reader can check.
- */
-.showcase-frame-label {
-	padding: 0 var(--s-1) var(--s-2);
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	color: var(--fg-faint);
-}
-
-.showcase-frame-label strong {
-	color: var(--fg-dim);
-	font-weight: 500;
-}
-
-.showcase-frame-note {
-	margin-left: auto;
-	padding-left: var(--s-3);
-}
-
-.showcase-viewport {
-	display: block;
-	width: 100%;
-	border: 1px solid var(--line-soft);
-	border-radius: var(--r-lg);
-	background: var(--bg-0);
-}
-
-/* One frame at a time: the width change is worth animating, a row is not. */
-.showcase-stage:not([data-view="compare"]) .showcase-viewport {
-	transition: width 320ms var(--ease-out);
-}
-
-@media (max-width: 860px) {
-	/* The note is the first thing to go when the label runs out of room. */
-	.showcase-frame-note {
-		display: none;
-	}
-}
-
-.showcase-code {
-	max-height: 480px;
-	overflow: auto;
-}
-
-.showcase-code .code-block {
-	margin: 0;
-	border: 0;
-	border-radius: 0;
-}
-
-/*
- * Installer name, then the command, on a shared column pair.
- *
- * `max-content` sizes the first column to the longest label, so "TanStack" and
- * "shadcn" both end where the longer one does and every command starts at the
- * same x. Sized per row, the block reads as two unrelated lines rather than as
- * a table of the same thing twice.
- */
-.showcase-install {
-	display: grid;
-	grid-template-columns: max-content minmax(0, 1fr);
-	align-items: center;
-	gap: var(--s-2) var(--s-4);
-	border-top: 1px solid var(--line-soft);
-}
-
-@media (max-width: 860px) {
-	/* One column: at this width the label column steals the command's room. */
-	.showcase-install {
-		grid-template-columns: minmax(0, 1fr);
-		gap: var(--s-1);
-	}
-
-	.showcase-install > .label {
+	.nav-panel-all {
+		display: block;
 		margin-top: var(--s-2);
-	}
-}
-
-/* The preview page inside the iframe: no chrome, just the component. */
-.preview-root {
-	padding: var(--s-5);
-}
-
-/*
- * Card fit: one centred object, clipped, never scrolling.
- *
- * `place-items: center` on a full-viewport grid is what standardises the cards
- * - every thumbnail presents its component the same way regardless of the
- * component's own size, so the grid reads as a set rather than as ten
- * unrelated screenshots.
- */
-.preview-root.is-card {
-	display: grid;
-	place-items: center;
-	width: 100%;
-	height: 100svh;
-	padding: var(--s-4);
-	overflow: hidden;
-}
-
-.preview-root.is-card > * {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-/* ── prose ───────────────────────────────────────────────────── */
-
-/*
- * README typography. Scoped to .prose so it can never leak into the
- * atomic classes - inside here elements are styled by tag, which is exactly
- * what atomic CSS exists to avoid everywhere else. Markdown is the one place
- * that trade is correct: the tags come from the author, not from the app.
- */
-.prose {
-	max-width: 68ch;
-	color: var(--fg-dim);
-}
-
-.prose > * + * {
-	margin-top: var(--s-4);
-}
-
-.prose h1,
-.prose h2,
-.prose h3 {
-	color: var(--fg);
-	letter-spacing: -0.02em;
-	line-height: 1.2;
-	margin-top: var(--s-7);
-}
-
-.prose h1 {
-	font-size: var(--t-h2);
-}
-.prose h2 {
-	font-size: var(--t-h3);
-}
-.prose h3 {
-	font-size: var(--t-lg);
-}
-
-.prose code {
-	font-family: var(--mono);
-	font-size: 0.9em;
-	color: var(--accent);
-}
-
-.prose .code-block {
-	margin-top: var(--s-4);
-	border: 1px solid var(--line-soft);
-	border-radius: var(--r-lg);
-	font-family: var(--mono);
-	font-size: var(--t-sm);
-	line-height: 1.7;
-	tab-size: 2;
-}
-
-.prose .code-block code {
-	color: inherit;
-	font-size: inherit;
-}
-
-.prose ul,
-.prose ol {
-	padding-left: var(--s-5);
-}
-
-.prose li + li {
-	margin-top: var(--s-2);
-}
-
-.prose blockquote {
-	margin: var(--s-5) 0;
-	padding-left: var(--s-4);
-	border-left: 2px solid var(--line);
-	color: var(--fg-faint);
-}
-
-.prose table {
-	width: 100%;
-	border-collapse: collapse;
-	font-size: var(--t-sm);
-	display: block;
-	overflow-x: auto;
-}
-
-.prose th,
-.prose td {
-	padding: var(--s-2) var(--s-3);
-	border-bottom: 1px solid var(--line-soft);
-	text-align: left;
-}
-
-.prose th {
-	color: var(--fg);
-	font-weight: 600;
-}
-
-.prose hr {
-	border: 0;
-	border-top: 1px solid var(--line-soft);
-}
-
-/* ── callouts ────────────────────────────────────────────────── */
-
-/*
- * `> [!NOTE] Title` blocks. The parser emits GitHub's alert class names, so
- * these selectors match what it writes rather than something invented here.
- */
-.prose .markdown-alert {
-	margin-top: var(--s-5);
-	padding: var(--s-4);
-	border-left: 2px solid var(--accent);
-	border-radius: 0 var(--r-lg) var(--r-lg) 0;
-	background: var(--bg-1);
-}
-
-.prose .markdown-alert-title {
-	margin: 0 0 var(--s-2);
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	color: var(--fg);
-}
-
-.prose .markdown-alert-content > * + * {
-	margin-top: var(--s-3);
-}
-
-.prose .markdown-alert-note {
-	border-left-color: var(--info);
-}
-.prose .markdown-alert-tip {
-	border-left-color: var(--wasabi);
-}
-.prose .markdown-alert-warning {
-	border-left-color: var(--tamago);
-}
-.prose .markdown-alert-caution {
-	border-left-color: var(--accent);
-}
-
-/* ── tabs ────────────────────────────────────────────────────── */
-
-/*
- * CSS-only tabs. A radio group drives the panels through :checked sibling
- * selectors, so they work before hydration and on a page with no JavaScript
- * at all - which matters, because on a docs page the tabs are the content.
- */
-.tabs {
-	margin-top: var(--s-5);
-	border: 1px solid var(--line-soft);
-	border-radius: var(--r-lg);
-	overflow: hidden;
-}
-
-.tab-list {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--s-1);
-	padding: var(--s-2);
-	background: var(--bg-1);
-	border-bottom: 1px solid var(--line-soft);
-}
-
-.tab-label {
-	display: inline-flex;
-	align-items: center;
-	padding: var(--s-1) var(--s-3);
-	border-radius: var(--r);
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-	color: var(--fg-faint);
-	cursor: pointer;
-	transition:
-		color 160ms ease,
-		background 160ms ease;
-}
-
-/* Visually hidden, but still focusable and still the accessible control. */
-.tab-radio {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	opacity: 0;
-	pointer-events: none;
-}
-
-.tab-label:has(.tab-radio:checked) {
-	background: var(--bg-3);
-	color: var(--fg);
-}
-
-.tab-label:has(.tab-radio:focus-visible) {
-	outline: 2px solid var(--accent);
-	outline-offset: 2px;
-}
-
-.tab-panel {
-	display: none;
-	padding: var(--s-4);
-}
-
-.tab-panel > * {
-	margin-top: 0;
-}
-
-/*
- * Panel N shows when label N's radio is checked. Written out per index because
- * CSS cannot count between siblings; five is more tabs than a doc should have.
- */
-.tab-list:has(.tab-label:nth-of-type(1) .tab-radio:checked)
-~ .tab-panel[data-index="0"],
-.tab-list:has(.tab-label:nth-of-type(2) .tab-radio:checked)
-	~ .tab-panel[data-index="1"],
-.tab-list:has(.tab-label:nth-of-type(3) .tab-radio:checked)
-	~ .tab-panel[data-index="2"],
-.tab-list:has(.tab-label:nth-of-type(4) .tab-radio:checked)
-	~ .tab-panel[data-index="3"],
-.tab-list:has(.tab-label:nth-of-type(5) .tab-radio:checked)
-	~ .tab-panel[data-index="4"] {
-	display: block;
-}
-
-/* ── doc layout and aside ────────────────────────────────────── */
-
-/*
- * Contents on the left, prose on the right. The sidebar column is fixed rather
- * than fractional so the measure of the prose does not change between a page
- * with three headings and a page with none.
- */
-.doc-layout {
-	display: grid;
-	grid-template-columns: 200px minmax(0, 1fr);
-	gap: var(--s-7);
-	align-items: start;
-}
-
-.doc-aside {
-	position: sticky;
-	/* Clears the sticky site nav, which is about 52px tall. */
-	top: 72px;
-	max-height: calc(100svh - 96px);
-	overflow-y: auto;
-	scrollbar-width: none;
-}
-
-.doc-aside::-webkit-scrollbar {
-	display: none;
-}
-
-/* Desktop and tablet: the label is a heading, not a control. */
-.doc-aside-summary {
-	display: block;
-	padding-bottom: var(--s-3);
-}
-
-.doc-aside-chevron {
-	display: none;
-}
-
-.doc-aside-list {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	border-left: 1px solid var(--line-soft);
-}
-
-.doc-aside-link {
-	display: block;
-	padding: var(--s-2) var(--s-3);
-	margin-left: -1px;
-	border-left: 1px solid transparent;
-	font-size: var(--t-sm);
-	line-height: 1.35;
-	color: var(--fg-faint);
-	transition:
-		color 160ms ease,
-		border-color 160ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.doc-aside-link:hover {
-		color: var(--fg-dim);
-	}
-}
-
-.doc-aside-link[data-active="true"] {
-	color: var(--fg);
-	border-left-color: var(--accent);
-}
-
-/* The toggle only does anything at mobile width. */
-.doc-aside-toggle:focus-visible + .doc-aside-summary {
-	outline: 2px solid var(--accent);
-	outline-offset: 2px;
-	border-radius: var(--r);
-}
-
-/*
- * Headings are the scroll targets, and the sticky nav would otherwise cover
- * whichever one you jumped to.
- */
-.prose h2,
-.prose h3 {
-	scroll-margin-top: 80px;
-}
-
-/* ── tablet ──────────────────────────────────────────────────── */
-
-/* Narrower rail, same behaviour. Below this the rail stops paying for itself. */
-@media (max-width: 1080px) and (min-width: 861px) {
-	.doc-layout {
-		grid-template-columns: 160px minmax(0, 1fr);
-		gap: var(--s-5);
-	}
-}
-
-/* ── mobile ──────────────────────────────────────────────────── */
-
-/*
- * --bp-narrow: 860px. The rail becomes one collapsed row above the prose.
- * A phone has no column to spare, and a contents list that pushes the article
- * down by ten lines is worse than no contents list.
- */
-@media (max-width: 860px) {
-	.doc-layout {
-		grid-template-columns: minmax(0, 1fr);
-		gap: var(--s-4);
+		padding: var(--s-3);
+		border-top: 1px solid var(--line-soft);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+		transition: color 160ms ease;
 	}
 
-	.doc-aside {
-		position: static;
-		max-height: none;
+	@media (hover: hover) and (pointer: fine) {
+		.nav-panel-all:hover {
+			color: var(--accent);
+		}
+	}
+
+	/* ── the mobile drawer ───────────────────────────────────────── */
+
+	/*
+	 * Hidden until the row is. The two are exclusive by construction rather than
+	 * by a JavaScript check, so there is no width at which both or neither shows.
+	 */
+	.nav-burger {
+		display: none;
+	}
+
+	.nav-burger-toggle {
+		display: grid;
+		place-items: center;
+		width: 42px;
+		height: 42px;
 		border: 1px solid var(--line-soft);
 		border-radius: var(--r-lg);
 		background: var(--bg-1);
+		color: var(--fg-dim);
 	}
 
+	/*
+	 * While open, the toggle floats above the drawer.
+	 *
+	 * It has to. The drawer is fixed and full-screen on a phone, so it covers the
+	 * header the toggle lives in - and a full-screen menu whose only close control
+	 * is underneath it has no exit at all. Lifting the same control above the sheet
+	 * is better than adding a second one: the thing that closes the menu is
+	 * visibly the thing that opened it, in the same place, having turned into an X.
+	 */
+	.nav-burger[open] .nav-burger-toggle {
+		position: fixed;
+		top: var(--s-3);
+		right: var(--s-4);
+		z-index: 31;
+		border-color: var(--line);
+		background: var(--bg-2);
+		color: var(--fg);
+	}
+
+	/*
+	 * Three bars that become a cross.
+	 *
+	 * Drawn here rather than taken from the glyph set, because a glyph cannot morph
+	 * and the morph is the affordance: it says the same control closes what it
+	 * opened.
+	 */
+	.nav-burger-bars,
+	.nav-burger-bars::before,
+	.nav-burger-bars::after {
+		display: block;
+		width: 16px;
+		height: 1.5px;
+		border-radius: 2px;
+		background: currentColor;
+		transition:
+			transform 260ms var(--ease-out),
+			background 160ms ease;
+	}
+
+	.nav-burger-bars::before,
+	.nav-burger-bars::after {
+		content: "";
+		position: relative;
+	}
+
+	.nav-burger-bars::before {
+		top: -5px;
+	}
+
+	.nav-burger-bars::after {
+		top: 3.5px;
+	}
+
+	/*
+	 * Open: the middle bar goes, the outer two cross.
+	 *
+	 * `background: transparent` on the middle bar, not `opacity: 0`. Opacity on an
+	 * element groups it with its pseudo-elements, and nothing inside can opt back
+	 * in - `opacity: 1` on a child cannot escape a parent's `opacity: 0`. Written
+	 * that way the press hid all three bars, so the full-screen drawer opened with
+	 * no visible way out of it.
+	 *
+	 * Only the parent's own background draws the middle bar, so clearing it leaves
+	 * the other two untouched.
+	 */
+	.nav-burger[open] .nav-burger-bars {
+		background: transparent;
+	}
+
+	/*
+	 * Both bars translate to the centre line, then rotate about it. The offsets are
+	 * the negatives of the `top` values above: 5px up for one, 5px down for the
+	 * other, so the cross meets rather than nearly meeting.
+	 */
+	.nav-burger[open] .nav-burger-bars::before {
+		transform: translateY(5px) rotate(45deg);
+	}
+
+	.nav-burger[open] .nav-burger-bars::after {
+		transform: translateY(-5px) rotate(-45deg);
+	}
+
+	/*
+	 * A drawer, not a dropdown.
+	 *
+	 * Full height against the right edge, so the menu is somewhere rather than on
+	 * top of something. A dropdown of this many entries covers the page it came
+	 * from and leaves the reader unsure whether they navigated.
+	 *
+	 * On a phone it takes the whole screen. A 23rem panel on a 390px device is not
+	 * a drawer, it is a panel with a 40px strip of unusable page beside it, and
+	 * that strip is a tap target for "close" that nobody can hit reliably. Full
+	 * width also means the items get the width they were designed at instead of
+	 * being squeezed. The tablet keeps the drawer, where a strip of page is wide
+	 * enough to still read as page.
+	 *
+	 * `100dvh`, not `100vh`: on iOS Safari `vh` is the height with the toolbar
+	 * hidden, so a `100vh` drawer runs under the address bar and the last entry is
+	 * unreachable.
+	 */
+	.nav-sheet {
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 30;
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-1);
+		width: min(23rem, 86vw);
+		height: 100dvh;
+		padding: calc(var(--s-8) + var(--s-3)) var(--s-4) var(--s-6);
+		overflow-y: auto;
+		/*
+		 * The drawer takes the drag, and the page does not get it.
+		 *
+		 * `overscroll-behavior` stops the scroll chaining onward once the drawer
+		 * hits its end, and `touch-action: pan-y` claims vertical drags for this
+		 * element rather than letting the browser hand them to the page behind.
+		 * Without the pair, a drag inside the menu scrolls the article under it,
+		 * which is the one thing a modal surface must not do.
+		 */
+		overscroll-behavior: contain;
+		touch-action: pan-y;
+		border-left: 1px solid var(--line);
+		/*
+		 * Opaque, and no blur. The drawer sits over a 62% scrim, so whatever a
+		 * backdrop-filter would have blurred is already hidden - it was paying for
+		 * a full-screen GPU readback every frame to composite something invisible.
+		 */
+		background: var(--bg-1);
+		box-shadow: -24px 0 60px
+			color-mix(in srgb, var(--nori-900) 70%, transparent);
+		/*
+		 * Slower than the desktop panel, and deliberately. A drawer travels the
+		 * width of the screen, and a full-screen surface that arrives in 200ms
+		 * reads as a page change rather than as something opening.
+		 */
+		animation: nav-sheet-in 420ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	@keyframes nav-sheet-in {
+		from {
+			translate: 100% 0;
+		}
+	}
+
+	/*
+	 * There is deliberately no `overflow: hidden` scroll lock here.
+	 *
+	 * The obvious way to stop the page moving behind the drawer is
+	 * `html:has(.nav-burger[open]) { overflow: hidden }`, and it is worse than the
+	 * problem. Making the scrolling element non-scrollable drops its scroll
+	 * offset, so opening the menu halfway down a page throws the reader back to
+	 * the top - and closing it does not bring them back. Losing someone's place is
+	 * a worse outcome than a page that can still be scrolled while covered.
+	 *
+	 * What actually needed fixing was scroll chaining, and that is handled where it
+	 * happens: `overscroll-behavior: contain` and `touch-action: pan-y` on the
+	 * sheet, plus `data-lenis-prevent` so the smooth-scroll driver leaves the
+	 * drawer's own scrolling to the browser.
+	 */
+
+	/*
+	 * The dimmed page behind it. A pseudo-element on the details rather than a
+	 * second node, so nothing in the markup exists only to be a backdrop.
+	 */
+	.nav-burger[open]::before {
+		content: "";
+		position: fixed;
+		inset: 0;
+		z-index: 29;
+		background: color-mix(in srgb, var(--nori-900) 62%, transparent);
+		animation: nav-scrim-in 420ms ease;
+	}
+
+	@keyframes nav-scrim-in {
+		from {
+			opacity: 0;
+		}
+	}
+
+	/*
+	 * Phones: the whole screen.
+	 *
+	 * The border and the shadow go with the strip of page they were separating it
+	 * from. A shadow against a screen edge is a smudge.
+	 */
+	@media (max-width: 620px) {
+		.nav-sheet {
+			width: 100%;
+			border-left: 0;
+			box-shadow: none;
+		}
+	}
+
+	/*
+	 * Group headers and item rows share one left edge.
+	 *
+	 * Both use the same horizontal padding, and the nested list adds none. Any
+	 * indent on the list would push every icon tile a few pixels right of the
+	 * group's own icon, and the drawer would read as two columns that nearly line
+	 * up, which is worse than either lining up or clearly not.
+	 *
+	 * `44px` is the minimum comfortable touch target, and a nav row is the control
+	 * most likely to be tapped by a thumb reaching across a screen.
+	 */
+	/* The drawer's own heading, so the sheet does not start mid-list. */
+	.nav-sheet-title {
+		padding: 0 var(--s-3) var(--s-3);
+		border-bottom: 1px solid var(--line-soft);
+	}
+
+	.nav-group-summary {
+		min-height: 44px;
+		padding: var(--s-2) var(--s-3);
+		border-radius: var(--r-lg);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--fg-dim);
+		transition: background 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.nav-group-summary:hover {
+			background: var(--bg-2);
+			color: var(--fg);
+		}
+	}
+
+	/* No hover on a touch screen, so the press itself has to answer. */
+	.nav-group-summary:active,
+	.nav-sheet .nav-panel-item:active {
+		background: var(--bg-2);
+	}
+
+	/* The chevron goes to the end of the row; the icon stays with the label. */
+	.nav-group-summary .nav-chevron {
+		margin-left: auto;
+	}
+
+	/* Inside the drawer the panel list is a plain column: the width is not there. */
+	.nav-sheet .nav-panel-list {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 2px;
+		padding: 0;
+	}
+
+	.nav-sheet .nav-panel-item {
+		min-height: 44px;
+		padding: var(--s-3);
+	}
+
+	/*
+	 * Items sit under their group, on the same left edge.
+	 *
+	 * Every row in the drawer starts with a 34px tile, group headers included, so
+	 * the tiles form one column down the sheet. A rule set in behind them is what
+	 * says the items belong to the group above; indenting them instead would break
+	 * that column and the drawer would read as two lists that nearly line up.
+	 */
+	.nav-sheet .nav-panel-list,
+	.nav-sheet > .nav-group > .nav-panel-all {
+		margin-left: calc(var(--s-3) + 17px);
+		border-left: 1px solid var(--line-soft);
+		padding-left: var(--s-3);
+	}
+
+	/* The nested tiles are smaller: they are inside a rule, not starting one. */
+	.nav-sheet .nav-panel-item .nav-panel-icon {
+		width: 28px;
+		height: 28px;
+	}
+
+	.nav-sheet .nav-panel-all {
+		margin-bottom: var(--s-4);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.nav-panel,
+		.nav-sheet,
+		.nav-burger[open]::before {
+			animation: none;
+		}
+
+		.nav-chevron,
+		.nav-burger-bars,
+		.nav-burger-bars::before,
+		.nav-burger-bars::after {
+			transition: none;
+		}
+	}
+
+	/*
+	 * The switch. One breakpoint, and the two halves are mutually exclusive on
+	 * either side of it.
+	 */
+	@media (max-width: 860px) {
+		.nav-row {
+			display: none;
+		}
+
+		.nav-burger {
+			display: block;
+		}
+	}
+
+	/* ── grid and spacer ─────────────────────────────────────────── */
+
+	/*
+	 * `auto-fit` plus `minmax` works the column count out from the space
+	 * available, so there is no breakpoint here and no column count to keep in
+	 * step with one. A grid inside a sidebar gets it right for the same reason a
+	 * grid on a full page does: it is asking about its own width, not the
+	 * viewport's.
+	 */
+	.grid-auto {
+		display: grid;
+		grid-template-columns: repeat(
+				auto-fit,
+				minmax(var(--grid-min, 16rem), 1fr)
+			);
+	}
+
+	.grid-auto[data-gap="1"] {
+		gap: var(--s-1);
+	}
+	.grid-auto[data-gap="2"] {
+		gap: var(--s-2);
+	}
+	.grid-auto[data-gap="3"] {
+		gap: var(--s-3);
+	}
+	.grid-auto[data-gap="4"] {
+		gap: var(--s-4);
+	}
+	.grid-auto[data-gap="5"] {
+		gap: var(--s-5);
+	}
+	.grid-auto[data-gap="6"] {
+		gap: var(--s-6);
+	}
+	.grid-auto[data-gap="7"] {
+		gap: var(--s-7);
+	}
+
+	/*
+	 * A fixed count, for content that is genuinely paired. A before and an after
+	 * that reflow to one column stop being a comparison, so these hold until the
+	 * narrow breakpoint and then give up all at once.
+	 */
+	.grid-auto[data-columns="2"] {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.grid-auto[data-columns="3"] {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+	.grid-auto[data-columns="4"] {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	@media (max-width: 860px) {
+		.grid-auto[data-columns] {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	.spacer {
+		display: block;
+	}
+
+	.spacer[data-size="1"] {
+		height: var(--s-1);
+	}
+	.spacer[data-size="2"] {
+		height: var(--s-2);
+	}
+	.spacer[data-size="3"] {
+		height: var(--s-3);
+	}
+	.spacer[data-size="4"] {
+		height: var(--s-4);
+	}
+	.spacer[data-size="5"] {
+		height: var(--s-5);
+	}
+	.spacer[data-size="6"] {
+		height: var(--s-6);
+	}
+	.spacer[data-size="7"] {
+		height: var(--s-7);
+	}
+
+	/*
+	 * The rule sits in the middle of the gap rather than at its edge, so the space
+	 * above and below stays symmetric and the spacer keeps its declared height.
+	 */
+	.spacer[data-rule] {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+	}
+
+	.spacer[data-rule]::before,
+	.spacer[data-rule]::after {
+		content: "";
+		flex: 1;
+		height: 1px;
+		background: var(--line-soft);
+	}
+
+	.spacer-label {
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+	}
+
+	/* ── hero ────────────────────────────────────────────────────── */
+
+	/*
+	 * `--nav-height` is the sticky header's own height, declared once so anything
+	 * that has to clear it can say so rather than guess. The header is a 42px
+	 * control in `var(--s-3)` of padding.
+	 */
+	.hero {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		gap: var(--s-7);
+		min-height: min(88svh, 780px);
+		/*
+		 * Top padding clears the sticky header. Without it the hero starts at the
+		 * top of the document, the header sits on top of it, and the tallest thing
+		 * in the hero - the model - is cut off by a bar it never knew about.
+		 */
+		padding-block: calc(var(--nav-height) + var(--s-6)) var(--s-8);
+	}
+
+	/*
+	 * The stage the mark occupies.
+	 *
+	 * Square, centred, and bounded on both axes. `min()` against a viewport unit
+	 * and a fixed ceiling is what keeps it whole: on a short laptop window the
+	 * height wins, on a wide monitor the ceiling does, and it never grows to fill
+	 * a column just because the column is there.
+	 *
+	 * It was previously bounded only by height, so on a wide screen the model grew
+	 * to half the page and ran under the header.
+	 */
+	.logo-stage {
+		aspect-ratio: 1;
+		width: min(100%, 62svh, 460px);
+		margin-inline: auto;
+		display: grid;
+		place-items: center;
+		/*
+		 * The 3D of the CSS spin. `perspective` on the stage rather than on the
+		 * spinning element means the vanishing point is the middle of the stage, so
+		 * the mark turns about the centre of the space it is in rather than about
+		 * its own centre, which is what makes it read as an object in a box.
+		 */
+		perspective: 1100px;
+	}
+
+	.logo-spin {
+		width: 82%;
+		transform-style: preserve-3d;
+		will-change: transform;
+		color: var(--fg);
+	}
+
+	/* Holds the stage open before the canvas exists. Not a mark, and not shaped
+   like one - just the space, so the arrival is a material change. */
+	.logo-placeholder {
+		display: grid;
+		place-items: center;
+		width: 100%;
+		height: 100%;
+	}
+
+	/* ── cards ───────────────────────────────────────────────────── */
+
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(
+				auto-fit,
+				minmax(clamp(260px, 30vw, 320px), 1fr)
+			);
+		gap: var(--s-4);
+	}
+
+	/*
+	 * Glass by fill and edge, and no `backdrop-filter`.
+	 *
+	 * A card is a surface on the page, not an overlay above it, so there is
+	 * nothing behind it worth blurring - and there are a dozen of them in a grid.
+	 * A dozen backdrop roots is a dozen GPU readbacks a frame, which is the cost
+	 * that crashed the renderer when it was tried on the nav's icon tiles.
+	 *
+	 * The lit top edge is what carries the material. It is the same gradient the
+	 * header uses, at a lower strength, so a card and the nav read as the same
+	 * substance at different thicknesses.
+	 */
+	.card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-3);
+		padding: var(--s-5);
+		background:
+			linear-gradient(to bottom, var(--glass-edge), transparent 42%),
+			var(--bg-1);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-card);
+		transition:
+			border-color 200ms ease,
+			background 200ms ease,
+			transform 260ms var(--ease-out);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.card:hover {
+			background: var(--bg-2);
+			border-color: var(--line);
+			transform: translateY(-3px);
+		}
+	}
+
+	/* ── code ────────────────────────────────────────────────────── */
+
+	.code {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--s-4);
+		padding: var(--s-3) var(--s-4);
+		background: var(--bg-1);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		font-family: var(--mono);
+		font-size: var(--t-sm);
+		overflow-x: auto;
+	}
+
+	.code-block {
+		margin: 0;
+		padding: var(--s-4);
+		background: var(--bg-1);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		font-family: var(--mono);
+		font-size: var(--t-sm);
+		line-height: 1.7;
+		overflow-x: auto;
+		tab-size: 2;
+	}
+
+	/* ── responsive ──────────────────────────────────────────────── */
+
+	/* --bp-narrow: 860px. Below it the two-column hero stacks, mark first. */
+	@media (max-width: 860px) {
+		.hero {
+			grid-template-columns: 1fr;
+			gap: var(--s-6);
+			min-height: 0;
+			padding-block: var(--s-7);
+		}
+
+		.logo-stage {
+			max-width: 340px;
+			max-height: none;
+			order: -1;
+		}
+
+		.nav-narrow-hide {
+			display: none;
+		}
+	}
+
+	/* ── showcase ────────────────────────────────────────────────── */
+
+	/*
+	 * The component museum frame: a toolbar, a stage, and the install commands
+	 * under it. Full-bleed inside prose, because a component shown at 62ch is not
+	 * being shown at all.
+	 */
+	.showcase {
+		margin: var(--s-6) 0 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-card);
+		background: var(--bg-1);
+		overflow: hidden;
+	}
+
+	.showcase-bar {
+		border-bottom: 1px solid var(--line-soft);
+	}
+
+	/* fieldset arrives with a border, padding and min-width nobody asked for. */
+	.showcase-group {
+		padding: 0;
+		border: 0;
+		min-width: 0;
+	}
+
+	.showcase-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-2);
+		padding: var(--s-1) var(--s-3);
+		border: 1px solid transparent;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-faint);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition:
+			color 160ms ease,
+			background 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.showcase-btn:hover {
+			color: var(--fg);
+		}
+	}
+
+	.showcase-btn[data-active="true"] {
+		background: var(--bg-3);
+		border-color: var(--line-soft);
+		color: var(--fg);
+	}
+
+	/*
+	 * The device toggle.
+	 *
+	 * No transition in here, unlike the tabs above it. These get pressed a dozen
+	 * times while reading one page, and on a control used that often an animation
+	 * reads as lag rather than as polish. The state change is the feedback.
+	 */
+	.showcase-devices {
+		flex: 0 0 auto;
+		gap: 2px;
+		padding: 2px;
+		margin: 0;
+		min-width: 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-2);
+	}
+
+	.showcase-device {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-1);
+		padding: var(--s-1) var(--s-2);
+		border: 0;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-faint);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		white-space: nowrap;
+		cursor: pointer;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.showcase-device:hover {
+			color: var(--fg-dim);
+		}
+	}
+
+	.showcase-device[data-active="true"] {
+		background: var(--bg-3);
+		color: var(--fg);
+	}
+
+	.showcase-device:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 1px;
+	}
+
+	/*
+	 * The stage: the page ground behind the frames, so a narrow viewport reads as
+	 * a narrow viewport rather than as a broken layout.
+	 *
+	 * `align-items: start` so a short component does not stretch its frame to
+	 * match the tallest one, which would hide the fact that it was short. In
+	 * compare the frames are a row that scrolls; with one selected they centre, so
+	 * the frame stays where the eye already was when switching out of compare.
+	 */
+	.showcase-stage {
+		display: flex;
+		align-items: start;
+		justify-content: center;
+		gap: var(--s-4);
+		background: var(--bg-0);
+		padding: var(--s-3);
+	}
+
+	.showcase-stage[data-view="compare"] {
+		justify-content: start;
+		overflow-x: auto;
+	}
+
+	.showcase-frame {
+		flex: 0 0 auto;
+		margin: 0;
+		max-width: 100%;
+	}
+
+	/*
+	 * Every frame says which width it is and why that width. A frame with no label
+	 * is a screenshot; a labelled one is a claim a reader can check.
+	 */
+	.showcase-frame-label {
+		padding: 0 var(--s-1) var(--s-2);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--fg-faint);
+	}
+
+	.showcase-frame-label strong {
+		color: var(--fg-dim);
+		font-weight: 500;
+	}
+
+	.showcase-frame-note {
+		margin-left: auto;
+		padding-left: var(--s-3);
+	}
+
+	.showcase-viewport {
+		display: block;
+		width: 100%;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-0);
+	}
+
+	/* One frame at a time: the width change is worth animating, a row is not. */
+	.showcase-stage:not([data-view="compare"]) .showcase-viewport {
+		transition: width 320ms var(--ease-out);
+	}
+
+	@media (max-width: 860px) {
+		/* The note is the first thing to go when the label runs out of room. */
+		.showcase-frame-note {
+			display: none;
+		}
+	}
+
+	.showcase-code {
+		max-height: 480px;
+		overflow: auto;
+	}
+
+	.showcase-code .code-block {
+		margin: 0;
+		border: 0;
+		border-radius: 0;
+	}
+
+	/*
+	 * Installer name, then the command, on a shared column pair.
+	 *
+	 * `max-content` sizes the first column to the longest label, so "TanStack" and
+	 * "shadcn" both end where the longer one does and every command starts at the
+	 * same x. Sized per row, the block reads as two unrelated lines rather than as
+	 * a table of the same thing twice.
+	 */
+	.showcase-install {
+		display: grid;
+		grid-template-columns: max-content minmax(0, 1fr);
+		align-items: center;
+		gap: var(--s-2) var(--s-4);
+		border-top: 1px solid var(--line-soft);
+	}
+
+	@media (max-width: 860px) {
+		/* One column: at this width the label column steals the command's room. */
+		.showcase-install {
+			grid-template-columns: minmax(0, 1fr);
+			gap: var(--s-1);
+		}
+
+		.showcase-install > .label {
+			margin-top: var(--s-2);
+		}
+	}
+
+	/* The preview page inside the iframe: no chrome, just the component. */
+	.preview-root {
+		padding: var(--s-5);
+	}
+
+	/*
+	 * Card fit: one centred object, clipped, never scrolling.
+	 *
+	 * `place-items: center` on a full-viewport grid is what standardises the cards
+	 * - every thumbnail presents its component the same way regardless of the
+	 * component's own size, so the grid reads as a set rather than as ten
+	 * unrelated screenshots.
+	 */
+	.preview-root.is-card {
+		display: grid;
+		place-items: center;
+		width: 100%;
+		height: 100svh;
+		padding: var(--s-4);
+		overflow: hidden;
+	}
+
+	.preview-root.is-card > * {
+		max-width: 100%;
+		max-height: 100%;
+	}
+
+	/* ── prose ───────────────────────────────────────────────────── */
+
+	/*
+	 * README typography. Scoped to .prose so it can never leak into the
+	 * atomic classes - inside here elements are styled by tag, which is exactly
+	 * what atomic CSS exists to avoid everywhere else. Markdown is the one place
+	 * that trade is correct: the tags come from the author, not from the app.
+	 */
+	.prose {
+		max-width: 68ch;
+		color: var(--fg-dim);
+	}
+
+	.prose > * + * {
+		margin-top: var(--s-4);
+	}
+
+	.prose h1,
+	.prose h2,
+	.prose h3 {
+		color: var(--fg);
+		letter-spacing: -0.02em;
+		line-height: 1.2;
+		margin-top: var(--s-7);
+	}
+
+	.prose h1 {
+		font-size: var(--t-h2);
+	}
+	.prose h2 {
+		font-size: var(--t-h3);
+	}
+	.prose h3 {
+		font-size: var(--t-lg);
+	}
+
+	.prose code {
+		font-family: var(--mono);
+		font-size: 0.9em;
+		color: var(--accent);
+	}
+
+	.prose .code-block {
+		margin-top: var(--s-4);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		font-family: var(--mono);
+		font-size: var(--t-sm);
+		line-height: 1.7;
+		tab-size: 2;
+	}
+
+	.prose .code-block code {
+		color: inherit;
+		font-size: inherit;
+	}
+
+	.prose ul,
+	.prose ol {
+		padding-left: var(--s-5);
+	}
+
+	.prose li + li {
+		margin-top: var(--s-2);
+	}
+
+	.prose blockquote {
+		margin: var(--s-5) 0;
+		padding-left: var(--s-4);
+		border-left: 2px solid var(--line);
+		color: var(--fg-faint);
+	}
+
+	.prose table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: var(--t-sm);
+		display: block;
+		overflow-x: auto;
+	}
+
+	.prose th,
+	.prose td {
+		padding: var(--s-2) var(--s-3);
+		border-bottom: 1px solid var(--line-soft);
+		text-align: left;
+	}
+
+	.prose th {
+		color: var(--fg);
+		font-weight: 600;
+	}
+
+	.prose hr {
+		border: 0;
+		border-top: 1px solid var(--line-soft);
+	}
+
+	/* ── callouts ────────────────────────────────────────────────── */
+
+	/*
+	 * `> [!NOTE] Title` blocks. The parser emits GitHub's alert class names, so
+	 * these selectors match what it writes rather than something invented here.
+	 */
+	.prose .markdown-alert {
+		margin-top: var(--s-5);
+		padding: var(--s-4);
+		border-left: 2px solid var(--accent);
+		border-radius: 0 var(--r-lg) var(--r-lg) 0;
+		background: var(--bg-1);
+	}
+
+	.prose .markdown-alert-title {
+		margin: 0 0 var(--s-2);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--fg);
+	}
+
+	.prose .markdown-alert-content > * + * {
+		margin-top: var(--s-3);
+	}
+
+	.prose .markdown-alert-note {
+		border-left-color: var(--info);
+	}
+	.prose .markdown-alert-tip {
+		border-left-color: var(--wasabi);
+	}
+	.prose .markdown-alert-warning {
+		border-left-color: var(--tamago);
+	}
+	.prose .markdown-alert-caution {
+		border-left-color: var(--accent);
+	}
+
+	/* ── tabs ────────────────────────────────────────────────────── */
+
+	/*
+	 * CSS-only tabs. A radio group drives the panels through :checked sibling
+	 * selectors, so they work before hydration and on a page with no JavaScript
+	 * at all - which matters, because on a docs page the tabs are the content.
+	 */
+	.tabs {
+		margin-top: var(--s-5);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		overflow: hidden;
+	}
+
+	.tab-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--s-1);
+		padding: var(--s-2);
+		background: var(--bg-1);
+		border-bottom: 1px solid var(--line-soft);
+	}
+
+	.tab-label {
+		display: inline-flex;
+		align-items: center;
+		padding: var(--s-1) var(--s-3);
+		border-radius: var(--r);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+		cursor: pointer;
+		transition:
+			color 160ms ease,
+			background 160ms ease;
+	}
+
+	/* Visually hidden, but still focusable and still the accessible control. */
+	.tab-radio {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.tab-label:has(.tab-radio:checked) {
+		background: var(--bg-3);
+		color: var(--fg);
+	}
+
+	.tab-label:has(.tab-radio:focus-visible) {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+	}
+
+	.tab-panel {
+		display: none;
+		padding: var(--s-4);
+	}
+
+	.tab-panel > * {
+		margin-top: 0;
+	}
+
+	/*
+	 * Panel N shows when label N's radio is checked. Written out per index because
+	 * CSS cannot count between siblings; five is more tabs than a doc should have.
+	 */
+	.tab-list:has(.tab-label:nth-of-type(1) .tab-radio:checked)
+	~ .tab-panel[data-index="0"],
+	.tab-list:has(.tab-label:nth-of-type(2) .tab-radio:checked)
+		~ .tab-panel[data-index="1"],
+	.tab-list:has(.tab-label:nth-of-type(3) .tab-radio:checked)
+		~ .tab-panel[data-index="2"],
+	.tab-list:has(.tab-label:nth-of-type(4) .tab-radio:checked)
+		~ .tab-panel[data-index="3"],
+	.tab-list:has(.tab-label:nth-of-type(5) .tab-radio:checked)
+		~ .tab-panel[data-index="4"] {
+		display: block;
+	}
+
+	/* ── doc layout and aside ────────────────────────────────────── */
+
+	/*
+	 * Contents on the left, prose on the right. The sidebar column is fixed rather
+	 * than fractional so the measure of the prose does not change between a page
+	 * with three headings and a page with none.
+	 */
+	.doc-layout {
+		display: grid;
+		grid-template-columns: 200px minmax(0, 1fr);
+		gap: var(--s-7);
+		align-items: start;
+	}
+
+	.doc-aside {
+		position: sticky;
+		/* Clears the sticky site nav, which is about 52px tall. */
+		top: 72px;
+		max-height: calc(100svh - 96px);
+		overflow-y: auto;
+		scrollbar-width: none;
+	}
+
+	.doc-aside::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Desktop and tablet: the label is a heading, not a control. */
 	.doc-aside-summary {
+		display: block;
+		padding-bottom: var(--s-3);
+	}
+
+	.doc-aside-chevron {
+		display: none;
+	}
+
+	.doc-aside-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		border-left: 1px solid var(--line-soft);
+	}
+
+	.doc-aside-link {
+		display: block;
+		padding: var(--s-2) var(--s-3);
+		margin-left: -1px;
+		border-left: 1px solid transparent;
+		font-size: var(--t-sm);
+		line-height: 1.35;
+		color: var(--fg-faint);
+		transition:
+			color 160ms ease,
+			border-color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.doc-aside-link:hover {
+			color: var(--fg-dim);
+		}
+	}
+
+	.doc-aside-link[data-active="true"] {
+		color: var(--fg);
+		border-left-color: var(--accent);
+	}
+
+	/* The toggle only does anything at mobile width. */
+	.doc-aside-toggle:focus-visible + .doc-aside-summary {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+		border-radius: var(--r);
+	}
+
+	/*
+	 * Headings are the scroll targets, and the sticky nav would otherwise cover
+	 * whichever one you jumped to.
+	 */
+	.prose h2,
+	.prose h3 {
+		scroll-margin-top: 80px;
+	}
+
+	/* ── tablet ──────────────────────────────────────────────────── */
+
+	/* Narrower rail, same behaviour. Below this the rail stops paying for itself. */
+	@media (max-width: 1080px) and (min-width: 861px) {
+		.doc-layout {
+			grid-template-columns: 160px minmax(0, 1fr);
+			gap: var(--s-5);
+		}
+	}
+
+	/* ── mobile ──────────────────────────────────────────────────── */
+
+	/*
+	 * --bp-narrow: 860px. The rail becomes one collapsed row above the prose.
+	 * A phone has no column to spare, and a contents list that pushes the article
+	 * down by ten lines is worse than no contents list.
+	 */
+	@media (max-width: 860px) {
+		.doc-layout {
+			grid-template-columns: minmax(0, 1fr);
+			gap: var(--s-4);
+		}
+
+		.doc-aside {
+			position: static;
+			max-height: none;
+			border: 1px solid var(--line-soft);
+			border-radius: var(--r-lg);
+			background: var(--bg-1);
+		}
+
+		.doc-aside-summary {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: var(--s-3);
+			padding: var(--s-3) var(--s-4);
+			cursor: pointer;
+			min-height: 44px;
+		}
+
+		.doc-aside-chevron {
+			display: block;
+			color: var(--fg-faint);
+			transform: rotate(90deg);
+			transition: transform 200ms var(--ease-out);
+		}
+
+		.doc-aside-toggle:checked + .doc-aside-summary .doc-aside-chevron {
+			transform: rotate(-90deg);
+		}
+
+		/* Collapsed by default: the article is what the reader came for. */
+		.doc-aside-list {
+			display: none;
+			border-left: 0;
+			border-top: 1px solid var(--line-soft);
+			padding: var(--s-2);
+		}
+
+		.doc-aside-toggle:checked ~ nav .doc-aside-list {
+			display: block;
+		}
+
+		.doc-aside-link {
+			margin-left: 0;
+			border-left: 0;
+			padding: var(--s-3) var(--s-4);
+			min-height: 44px;
+		}
+
+		.doc-aside-link[data-active="true"] {
+			border-left: 0;
+			background: var(--bg-2);
+			border-radius: var(--r);
+		}
+	}
+
+	.archive-chip {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-2);
+		padding: var(--s-2) var(--s-3);
+		min-height: 36px;
+		border: 1px solid var(--line-soft);
+		border-radius: 999px;
+		background: var(--bg-1);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+		transition:
+			color 160ms ease,
+			background 160ms ease,
+			border-color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.archive-chip:hover {
+			color: var(--fg);
+			border-color: var(--line);
+		}
+	}
+
+	.archive-chip.is-active {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: var(--on-accent);
+		font-weight: 600;
+	}
+
+	.archive-count {
+		opacity: 0.6;
+		font-variant-numeric: tabular-nums;
+	}
+
+	/*
+	 * Wider minimum than the package grid: these cards carry a preview, and a
+	 * component squeezed into 260px is being misrepresented.
+	 */
+	.archive-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+		gap: var(--s-4);
+	}
+
+	.archive-card {
+		display: flex;
+		flex-direction: column;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-card);
+		background: var(--bg-1);
+		overflow: hidden;
+		transition:
+			border-color 200ms ease,
+			transform 260ms var(--ease-out);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.archive-card:hover {
+			border-color: var(--line);
+			transform: translateY(-3px);
+		}
+	}
+
+	/*
+	 * A fixed-ratio window on the component. The ground colour shows through so a
+	 * preview with nothing in it reads as empty rather than broken.
+	 */
+	.archive-preview {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		display: grid;
+		place-items: center;
+		background: var(--bg-0);
+		border-bottom: 1px solid var(--line-soft);
+		overflow: hidden;
+	}
+
+	.archive-frame {
+		width: 100%;
+		height: 100%;
+		border: 0;
+		/* The preview is a picture: the click belongs to the card. */
+		pointer-events: none;
+	}
+
+	/*
+	 * Tags are secondary to categories, so they are quieter: square, smaller, and
+	 * lower contrast. If they looked like the category chips the reader would have
+	 * two equal-weight controls and no idea which one to use first.
+	 */
+	.archive-tag {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-2);
+		padding: var(--s-1) var(--s-2);
+		min-height: 28px;
+		border: 1px solid transparent;
+		border-radius: var(--r);
+		background: var(--bg-2);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--fg-faint);
+		transition:
+			color 160ms ease,
+			border-color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.archive-tag:hover {
+			color: var(--fg);
+			border-color: var(--line);
+		}
+	}
+
+	.archive-tag.is-active {
+		color: var(--fg);
+		border-color: var(--accent);
+	}
+
+	/* ── menu ────────────────────────────────────────────────────── */
+
+	/*
+	 * The context menu surface.
+	 *
+	 * `position: fixed` because it is placed at a pointer, and a pointer is in
+	 * viewport coordinates. Anything absolute would be relative to whichever
+	 * ancestor happened to be positioned, which for a menu that can open from any
+	 * tile is a different answer every time.
+	 */
+	.menu {
+		position: fixed;
+		z-index: 60;
+		min-width: 13rem;
+		padding: var(--s-1);
+		border: 1px solid var(--line);
+		border-radius: var(--r-lg);
+		background:
+			linear-gradient(to bottom, var(--glass-edge), transparent 40%),
+			color-mix(in srgb, var(--nori-800) 92%, transparent);
+		backdrop-filter: var(--glass-blur);
+		box-shadow: 0 18px 44px color-mix(in srgb, var(--nori-900) 74%, transparent);
+		animation: menu-in 130ms var(--ease-out);
+	}
+
+	/*
+	 * Fast, and from the corner it was summoned at. A context menu is the most
+	 * impatient surface on a page - it opens because somebody is already reaching
+	 * for the thing inside it.
+	 */
+	@keyframes menu-in {
+		from {
+			opacity: 0;
+			scale: 0.96;
+		}
+	}
+
+	.menu-item {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		width: 100%;
+		min-height: 38px;
+		padding: var(--s-2) var(--s-3);
+		border: 0;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		font-size: var(--t-sm);
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.menu-item:disabled {
+		color: var(--fg-faint);
+		cursor: default;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.menu-item:not(:disabled):hover {
+			background: var(--bg-2);
+			color: var(--fg);
+		}
+	}
+
+	/* Focus is how this is driven from a keyboard, so it must be as loud as hover. */
+	.menu-item:focus-visible {
+		background: var(--bg-2);
+		color: var(--fg);
+		outline: 2px solid var(--accent);
+		outline-offset: -2px;
+	}
+
+	/* ── shelf ───────────────────────────────────────────────────── */
+
+	/*
+	 * The shelf and its window, as one unit. The dialog is a child of this rather
+	 * than a portal, because `showModal()` puts it in the top layer regardless of
+	 * where it sits in the tree - so there is nothing to gain from moving it and a
+	 * portal to keep in sync if it were.
+	 */
+	.shelf-root {
+		display: block;
+	}
+
+	/*
+	 * A shelf of folders.
+	 *
+	 * `auto-fit` with a `minmax` floor rather than a column count: the shelf sits
+	 * in a section on the home page and in a showcase frame at 320px, and neither
+	 * should need to be told about the other.
+	 */
+	.shelf {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+		gap: var(--s-3);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.shelf-cell {
+		min-width: 0;
+	}
+
+	.shelf-face {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--s-2);
+		width: 100%;
+		height: 100%;
+		padding: var(--s-4) var(--s-3) var(--s-5);
+		border: 1px solid transparent;
+		/* Squarer than the rest of the site. A desktop icon is a small square
+	   thing, and the 16px card radius made these read as cards with pictures
+	   on them rather than as icons. */
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		text-align: center;
+		cursor: pointer;
+		transition:
+			background 160ms ease,
+			border-color 160ms ease,
+			transform 220ms var(--ease-out);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.shelf-face:hover {
+			background:
+				linear-gradient(to bottom, var(--glass-edge), transparent 45%),
+				var(--bg-1);
+			border-color: var(--line-soft);
+			transform: translateY(-2px);
+		}
+	}
+
+	.shelf-face:focus-visible {
+		background: var(--bg-1);
+		border-color: var(--line-soft);
+	}
+
+	/* No hover on a touch screen, so the press has to answer for itself. */
+	.shelf-face:active {
+		background: var(--bg-2);
+		transform: translateY(0);
+	}
+
+	.shelf-glyph {
+		position: relative;
+		display: grid;
+		place-items: center;
+		color: var(--fg-faint);
+		transition: color 160ms ease;
+	}
+
+	/*
+	 * How many things are inside, on the folder itself.
+	 *
+	 * A folder you have to open to discover is empty is a folder that wasted a
+	 * click, and this is the cheapest possible way to not do that.
+	 */
+	.shelf-count {
+		position: absolute;
+		right: -6px;
+		bottom: 2px;
+		min-width: 18px;
+		padding: 0 4px;
+		border-radius: 999px;
+		background: var(--bg-3);
+		color: var(--fg-dim);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		line-height: 18px;
+		text-align: center;
+	}
+
+	.shelf-name {
+		color: var(--fg);
+		font-size: var(--t-sm);
+		font-weight: 500;
+		overflow-wrap: anywhere;
+	}
+
+	.shelf-note {
+		font-size: var(--t-xs);
+		line-height: 1.4;
+		color: var(--fg-faint);
+	}
+
+	/*
+	 * The visible way into the menu.
+	 *
+	 * Always present rather than revealed on hover. A control that only exists
+	 * while a pointer is over it does not exist on a touch screen, and this one is
+	 * the only route to the menu for anyone who does not right-click.
+	 */
+	.shelf-more,
+	.window-more {
+		position: absolute;
+		top: var(--s-2);
+		right: var(--s-2);
+		display: grid;
+		place-items: center;
+		width: 30px;
+		height: 30px;
+		border: 1px solid transparent;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-faint);
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.shelf-more:hover,
+		.window-more:hover {
+			background: var(--bg-2);
+			color: var(--fg);
+		}
+	}
+
+	/* ── window ──────────────────────────────────────────────────── */
+
+	/*
+	 * The dialog.
+	 *
+	 * Sized in `min()` against both a viewport unit and a ceiling, so it is a
+	 * window on a monitor and very nearly the whole screen on a phone without a
+	 * breakpoint deciding which.
+	 *
+	 * No z-index anywhere in here: `showModal()` puts it in the top layer, which
+	 * is above every stacking context on the page by definition. That is most of
+	 * the reason for using a real dialog rather than a div.
+	 */
+	.window {
+		width: min(46rem, 100% - var(--s-4) * 2);
+		max-height: min(80dvh, 44rem);
+		padding: 0;
+		border: 1px solid var(--line);
+		border-radius: var(--r-card);
+		background:
+			linear-gradient(to bottom, var(--glass-edge), transparent 30%),
+			color-mix(in srgb, var(--nori-800) 94%, transparent);
+		backdrop-filter: var(--glass-blur);
+		color: var(--fg);
+		box-shadow: 0 40px 90px color-mix(in srgb, var(--nori-900) 80%, transparent);
+		overflow: hidden;
+		animation: window-in 200ms var(--ease-out);
+	}
+
+	.window::backdrop {
+		background: var(--scrim);
+		animation: window-scrim-in 200ms ease;
+	}
+
+	@keyframes window-in {
+		from {
+			opacity: 0;
+			scale: 0.97;
+			translate: 0 8px;
+		}
+	}
+
+	@keyframes window-scrim-in {
+		from {
+			opacity: 0;
+		}
+	}
+
+	.window-frame {
+		display: flex;
+		flex-direction: column;
+		max-height: inherit;
+	}
+
+	.window-bar {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		padding: var(--s-3) var(--s-3) var(--s-3) var(--s-4);
+		border-bottom: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--nori-900) 40%, transparent);
+	}
+
+	.window-path {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 2px;
+		min-width: 0;
+		flex: 1;
+	}
+
+	.window-crumb {
+		display: inline-flex;
+		align-items: center;
+		gap: 2px;
+		min-width: 0;
+	}
+
+	.window-sep {
+		color: var(--fg-faint);
+		transform: rotate(-90deg);
+	}
+
+	.window-crumb-button {
+		padding: var(--s-1) var(--s-2);
+		border: 0;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-faint);
+		font: inherit;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		cursor: pointer;
+	}
+
+	/* The last crumb is where you are, so it is not dressed as somewhere to go. */
+	.window-crumb-button[aria-current="true"] {
+		color: var(--fg);
+		cursor: default;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.window-crumb-button:not([aria-current="true"]):hover {
+			background: var(--bg-2);
+			color: var(--fg);
+		}
+	}
+
+	.window-close {
+		display: grid;
+		place-items: center;
+		flex: 0 0 auto;
+		width: 34px;
+		height: 34px;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-dim);
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.window-close:hover {
+			background: var(--bg-2);
+			color: var(--fg);
+		}
+	}
+
+	/* The window's own scrolling area, holding a grid rather than a list. */
+	.window-canvas {
+		padding: var(--s-3);
+		overflow-y: auto;
+		overscroll-behavior: contain;
+	}
+
+	.window-list {
+		margin: 0;
+		padding: var(--s-2);
+		list-style: none;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+	}
+
+	.window-row-cell {
+		min-width: 0;
+	}
+
+	.window-row {
+		position: relative;
+	}
+
+	.window-face {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		width: 100%;
+		/* Room on the right for the menu button, which is absolutely placed. */
+		padding: var(--s-3) calc(var(--s-6) + var(--s-2)) var(--s-3) var(--s-3);
+		min-height: 48px;
+		border: 1px solid transparent;
+		border-radius: var(--r-lg);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		text-align: left;
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			border-color 140ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.window-face:hover {
+			background: var(--bg-2);
+			border-color: var(--line-soft);
+		}
+	}
+
+	.window-face:focus-visible {
+		background: var(--bg-2);
+		border-color: var(--line-soft);
+	}
+
+	.window-face:active {
+		background: var(--bg-3);
+	}
+
+	.window-icon {
+		display: grid;
+		place-items: center;
+		flex: 0 0 auto;
+		width: 32px;
+		height: 32px;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		background:
+			linear-gradient(160deg, var(--glass-edge), transparent 60%), var(--bg-3);
+		color: var(--fg-dim);
+	}
+
+	.window-note {
+		display: block;
+		margin-top: 1px;
+		font-size: var(--t-xs);
+		line-height: 1.45;
+		color: var(--fg-faint);
+	}
+
+	.window-meta {
+		flex: 0 0 auto;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--fg-faint);
+	}
+
+	.window-into {
+		flex: 0 0 auto;
+		color: var(--fg-faint);
+		transform: rotate(-90deg);
+	}
+
+	/*
+	 * The window's own menu button sits inside a row rather than a tile, so it is
+	 * centred on the row instead of pinned to a corner.
+	 */
+	.window-more {
+		top: 50%;
+		translate: 0 -50%;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.menu,
+		.window,
+		.window::backdrop {
+			animation: none;
+		}
+
+		.shelf-face {
+			transition: none;
+		}
+	}
+
+	@media (max-width: 620px) {
+		/* A phone gets bigger targets and fewer of them per row. */
+		.shelf {
+			grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+		}
+
+		.window {
+			width: 100%;
+			max-height: 86dvh;
+		}
+	}
+
+	/* ── folders, in blue ────────────────────────────────────────── */
+
+	/*
+	 * A drawn folder rather than an outlined one.
+	 *
+	 * The glyph is stroked paths, and `fill` on the paths in CSS beats the
+	 * `fill="none"` presentation attribute on the SVG - so the same glyph is a
+	 * line icon everywhere else and a solid folder here, with no second drawing to
+	 * keep in step. The stroke stays as the lit edge on top of the fill, which is
+	 * what gives it a front face and a back.
+	 */
+	.shelf-glyph svg path,
+	.window-icon svg path {
+		fill: var(--folder-fill);
+		transition:
+			fill 160ms ease,
+			stroke 160ms ease;
+	}
+
+	.shelf-glyph,
+	.window-icon {
+		color: var(--folder);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.shelf-face:hover .shelf-glyph,
+		.window-face:hover .window-icon {
+			color: var(--folder);
+		}
+
+		.shelf-face:hover .shelf-glyph svg path,
+		.window-face:hover .window-icon svg path {
+			fill: color-mix(in srgb, var(--folder) 34%, transparent);
+		}
+	}
+
+	/* A file is not a folder, so it does not get the folder's fill or its blue. */
+	.window-icon:has(svg path[d^="M6 3h8l4 4v14H6z"]),
+	.shelf-glyph:has(svg path[d^="M6 3h8l4 4v14H6z"]) {
+		color: var(--fg-dim);
+	}
+
+	.window-icon:has(svg path[d^="M6 3h8l4 4v14H6z"]) svg path,
+	.shelf-glyph:has(svg path[d^="M6 3h8l4 4v14H6z"]) svg path {
+		fill: color-mix(in srgb, var(--rice) 6%, transparent);
+	}
+
+	/* ── laptop ──────────────────────────────────────────────────── */
+
+	/*
+	 * The stage carries the perspective, so the lid, the base and the screen all
+	 * agree about where the viewer is standing. `1400px` is a long lens: the
+	 * machine should look like it is being looked at, not like it is being
+	 * photographed with a wide angle from six inches away.
+	 */
+	.laptop {
+		position: relative;
+		width: min(100%, 60rem);
+		margin-inline: auto;
+		perspective: 1400px;
+		perspective-origin: 50% 20%;
+	}
+
+	/*
+	 * Open, and staying that way.
+	 *
+	 * It used to rotate up from shut as you scrolled to it, which meant the screen
+	 * was unreadable until the animation finished and unusable while it ran. A
+	 * frame around real controls should not make you wait to reach them.
+	 *
+	 * `-4deg` is a lid leaning very slightly back, which is how an open laptop
+	 * actually sits. Zero would be a rectangle, and the small tilt is the whole
+	 * reason the perspective on the stage has anything to do.
+	 */
+	.laptop-lid {
+		position: relative;
+		transform-origin: 50% 100%;
+		transform: rotateX(-4deg);
+		transform-style: preserve-3d;
+		aspect-ratio: 16 / 10.4;
+		border: 1px solid var(--line);
+		border-radius: var(--r-card) var(--r-card) 4px 4px;
+		background: var(--nori-900);
+		box-shadow: 0 1px 0 var(--glass-edge) inset;
+	}
+
+	.laptop-screen {
+		position: absolute;
+		inset: 8px;
+		display: flex;
+		flex-direction: column;
+		border-radius: var(--r-lg);
+		background: var(--bg-0);
+		overflow: hidden;
+		/*
+		 * Above the back panel, explicitly.
+		 *
+		 * Both are children of a `preserve-3d` lid, and z-order there is decided by
+		 * 3D position rather than by document order - which browsers resolve
+		 * consistently for painting and less consistently for hit-testing. Saying
+		 * it in two ways, with a positive `translateZ` here and `pointer-events:
+		 * none` on the panel, means no engine has to be trusted about it.
+		 */
+		transform: translateZ(1px);
+	}
+
+	.laptop-wallpaper {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		/* Behind the desktop, and never in the way of a click on a folder. */
+		pointer-events: none;
+	}
+
+	/*
+	 * The back of the lid, two pixels behind the screen.
+	 *
+	 * With the lid static it is never seen face on, but it is what the bezel's
+	 * edges are made of at this angle - without it the screen's border is a line
+	 * rather than the edge of a panel with thickness.
+	 */
+	.laptop-back {
+		position: absolute;
+		inset: 0;
+		border-radius: var(--r-card) var(--r-card) 4px 4px;
+		background: linear-gradient(160deg, var(--nori-700), var(--nori-900));
+		transform: translateZ(-2px);
+		/*
+		 * Decorative, and it must never be clickable.
+		 *
+		 * It is `inset: 0` over the whole lid and comes after the screen in the
+		 * DOM, so the only thing keeping it behind is `preserve-3d` honouring its
+		 * `translateZ`. Any ancestor that flattens the 3D context - a filter, an
+		 * overflow, a browser quirk - puts this panel on top of the screen, where
+		 * it swallows every click on every folder and looks completely fine while
+		 * doing it.
+		 */
+		pointer-events: none;
+	}
+
+	.laptop-strip {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		gap: var(--s-3);
-		padding: var(--s-3) var(--s-4);
-		cursor: pointer;
-		min-height: 44px;
+		flex: 0 0 auto;
+		padding: var(--s-2) var(--s-3);
+		border-bottom: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--nori-800) 80%, transparent);
+		backdrop-filter: blur(8px);
 	}
 
-	.doc-aside-chevron {
-		display: block;
+	.laptop-title {
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
 		color: var(--fg-faint);
-		transform: rotate(90deg);
-		transition: transform 200ms var(--ease-out);
 	}
 
-	.doc-aside-toggle:checked + .doc-aside-summary .doc-aside-chevron {
-		transform: rotate(-90deg);
+	/*
+	 * The desktop scrolls on its own, and lets go at the end.
+	 */
+	.laptop-desktop {
+		flex: 1;
+		min-height: 0;
+		padding: var(--s-4);
+		overflow-y: auto;
+		/*
+		 * Chains, deliberately. `overscroll-behavior: contain` was here and it
+		 * trapped people: scroll reaches the bottom of the desktop and the page
+		 * stops moving, so the only way past the laptop is to find a margin
+		 * beside it. Containment is right for a modal somebody chose to open and
+		 * wrong for a panel sitting in the middle of an article they are reading
+		 * through.
+		 */
+		touch-action: pan-y;
 	}
 
-	/* Collapsed by default: the article is what the reader came for. */
-	.doc-aside-list {
-		display: none;
-		border-left: 0;
-		border-top: 1px solid var(--line-soft);
-		padding: var(--s-2);
+	/*
+	 * The base, drawn as two slabs laid back in 3D.
+	 *
+	 * `rotateX(72deg)` is a deck seen at a shallow angle. Exactly 90 would be
+	 * edge-on and invisible; this is the angle at which a keyboard deck reads as a
+	 * surface receding away from you.
+	 */
+	.laptop-base {
+		position: relative;
+		height: 26px;
+		transform-style: preserve-3d;
+		transform: rotateX(72deg);
+		transform-origin: 50% 0;
 	}
 
-	.doc-aside-toggle:checked ~ nav .doc-aside-list {
+	.laptop-deck {
+		position: absolute;
+		inset: 0;
+		border: 1px solid var(--line);
+		border-top: 0;
+		border-radius: 0 0 var(--r) var(--r);
+		background: linear-gradient(
+			to bottom,
+			var(--nori-600),
+			var(--nori-800) 70%
+		);
+	}
+
+	.laptop-pad {
+		position: absolute;
+		left: 50%;
+		top: 30%;
+		width: 22%;
+		height: 42%;
+		translate: -50% 0;
+		border-radius: 3px;
+		background: color-mix(in srgb, var(--nori-900) 60%, transparent);
+	}
+
+	/*
+	 * Contact shadow. It is what stops the machine floating, and it is a
+	 * pseudo-surface rather than a box-shadow so it can be wider than the object
+	 * and softer at the edges than a shadow is allowed to be.
+	 */
+	.laptop-shadow {
+		position: absolute;
+		left: 50%;
+		bottom: -18px;
+		width: 78%;
+		height: 34px;
+		translate: -50% 0;
+		background: radial-gradient(
+			ellipse at center,
+			color-mix(in srgb, var(--nori-900) 85%, transparent),
+			transparent 70%
+		);
+		filter: blur(6px);
+		pointer-events: none;
+	}
+
+	/*
+	 * Small screens get a shallower lens and a shorter machine.
+	 *
+	 * At 320px the 16:10 lid is 200px tall, which is not a desktop anyone can use,
+	 * so the aspect ratio gives way to a taller screen. It stops looking quite so
+	 * much like a laptop and starts being usable, which is the right way round.
+	 */
+	@media (max-width: 620px) {
+		.laptop {
+			perspective: 900px;
+		}
+
+		.laptop-lid {
+			aspect-ratio: 3 / 4;
+		}
+
+		.laptop-desktop {
+			padding: var(--s-3);
+		}
+
+		.laptop-base {
+			height: 18px;
+		}
+	}
+
+	/* ── shelf search ────────────────────────────────────────────── */
+
+	.shelf-search {
+		display: flex;
+		align-items: center;
+		gap: var(--s-2);
+		margin-bottom: var(--s-4);
+		padding: var(--s-2) var(--s-3);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: color-mix(in srgb, var(--nori-900) 55%, transparent);
+	}
+
+	/* Focus lands on the input, so the ring belongs to the whole field. */
+	.shelf-search:focus-within {
+		border-color: var(--line);
+		outline: 2px solid var(--accent);
+		outline-offset: 1px;
+	}
+
+	.shelf-search-glyph {
+		flex: 0 0 auto;
+		color: var(--fg-faint);
+	}
+
+	.shelf-search-input {
+		flex: 1;
+		min-width: 0;
+		border: 0;
+		background: transparent;
+		color: var(--fg);
+		font: inherit;
+		font-size: var(--t-sm);
+	}
+
+	.shelf-search-input:focus {
+		/* The field draws the ring, not the input inside it. */
+		outline: none;
+	}
+
+	.shelf-search-input::placeholder {
+		color: var(--fg-faint);
+	}
+
+	.shelf-search-count {
+		flex: 0 0 auto;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--fg-faint);
+	}
+
+	.shelf-results {
+		padding: 0;
+		max-height: none;
+	}
+
+	/* Where a result lives. Only rendered in search results, where it is the
+   difference between a name and an answer. */
+	.window-where {
 		display: block;
-	}
-
-	.doc-aside-link {
-		margin-left: 0;
-		border-left: 0;
-		padding: var(--s-3) var(--s-4);
-		min-height: 44px;
-	}
-
-	.doc-aside-link[data-active="true"] {
-		border-left: 0;
-		background: var(--bg-2);
-		border-radius: var(--r);
-	}
-}
-
-.archive-chip {
-	display: inline-flex;
-	align-items: center;
-	gap: var(--s-2);
-	padding: var(--s-2) var(--s-3);
-	min-height: 36px;
-	border: 1px solid var(--line-soft);
-	border-radius: 999px;
-	background: var(--bg-1);
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	letter-spacing: 0.1em;
-	text-transform: uppercase;
-	color: var(--fg-faint);
-	transition:
-		color 160ms ease,
-		background 160ms ease,
-		border-color 160ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.archive-chip:hover {
-		color: var(--fg);
-		border-color: var(--line);
-	}
-}
-
-.archive-chip.is-active {
-	background: var(--accent);
-	border-color: var(--accent);
-	color: var(--on-accent);
-	font-weight: 600;
-}
-
-.archive-count {
-	opacity: 0.6;
-	font-variant-numeric: tabular-nums;
-}
-
-/*
- * Wider minimum than the package grid: these cards carry a preview, and a
- * component squeezed into 260px is being misrepresented.
- */
-.archive-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
-	gap: var(--s-4);
-}
-
-.archive-card {
-	display: flex;
-	flex-direction: column;
-	border: 1px solid var(--line-soft);
-	border-radius: var(--r-card);
-	background: var(--bg-1);
-	overflow: hidden;
-	transition:
-		border-color 200ms ease,
-		transform 260ms var(--ease-out);
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.archive-card:hover {
-		border-color: var(--line);
-		transform: translateY(-3px);
-	}
-}
-
-/*
- * A fixed-ratio window on the component. The ground colour shows through so a
- * preview with nothing in it reads as empty rather than broken.
- */
-.archive-preview {
-	position: relative;
-	aspect-ratio: 16 / 9;
-	display: grid;
-	place-items: center;
-	background: var(--bg-0);
-	border-bottom: 1px solid var(--line-soft);
-	overflow: hidden;
-}
-
-.archive-frame {
-	width: 100%;
-	height: 100%;
-	border: 0;
-	/* The preview is a picture: the click belongs to the card. */
-	pointer-events: none;
-}
-
-/*
- * Tags are secondary to categories, so they are quieter: square, smaller, and
- * lower contrast. If they looked like the category chips the reader would have
- * two equal-weight controls and no idea which one to use first.
- */
-.archive-tag {
-	display: inline-flex;
-	align-items: center;
-	gap: var(--s-2);
-	padding: var(--s-1) var(--s-2);
-	min-height: 28px;
-	border: 1px solid transparent;
-	border-radius: var(--r);
-	background: var(--bg-2);
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	color: var(--fg-faint);
-	transition:
-		color 160ms ease,
-		border-color 160ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.archive-tag:hover {
-		color: var(--fg);
-		border-color: var(--line);
-	}
-}
-
-.archive-tag.is-active {
-	color: var(--fg);
-	border-color: var(--accent);
-}
-
-/* ── menu ────────────────────────────────────────────────────── */
-
-/*
- * The context menu surface.
- *
- * `position: fixed` because it is placed at a pointer, and a pointer is in
- * viewport coordinates. Anything absolute would be relative to whichever
- * ancestor happened to be positioned, which for a menu that can open from any
- * tile is a different answer every time.
- */
-.menu {
-	position: fixed;
-	z-index: 60;
-	min-width: 13rem;
-	padding: var(--s-1);
-	border: 1px solid var(--line);
-	border-radius: var(--r-lg);
-	background:
-		linear-gradient(to bottom, var(--glass-edge), transparent 40%),
-		color-mix(in srgb, var(--nori-800) 92%, transparent);
-	backdrop-filter: var(--glass-blur);
-	box-shadow: 0 18px 44px color-mix(in srgb, var(--nori-900) 74%, transparent);
-	animation: menu-in 130ms var(--ease-out);
-}
-
-/*
- * Fast, and from the corner it was summoned at. A context menu is the most
- * impatient surface on a page - it opens because somebody is already reaching
- * for the thing inside it.
- */
-@keyframes menu-in {
-	from {
-		opacity: 0;
-		scale: 0.96;
-	}
-}
-
-.menu-item {
-	display: flex;
-	align-items: center;
-	gap: var(--s-3);
-	width: 100%;
-	min-height: 38px;
-	padding: var(--s-2) var(--s-3);
-	border: 0;
-	border-radius: var(--r);
-	background: transparent;
-	color: var(--fg-dim);
-	font: inherit;
-	font-size: var(--t-sm);
-	text-align: left;
-	cursor: pointer;
-}
-
-.menu-item:disabled {
-	color: var(--fg-faint);
-	cursor: default;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.menu-item:not(:disabled):hover {
-		background: var(--bg-2);
-		color: var(--fg);
-	}
-}
-
-/* Focus is how this is driven from a keyboard, so it must be as loud as hover. */
-.menu-item:focus-visible {
-	background: var(--bg-2);
-	color: var(--fg);
-	outline: 2px solid var(--accent);
-	outline-offset: -2px;
-}
-
-/* ── shelf ───────────────────────────────────────────────────── */
-
-/*
- * The shelf and its window, as one unit. The dialog is a child of this rather
- * than a portal, because `showModal()` puts it in the top layer regardless of
- * where it sits in the tree - so there is nothing to gain from moving it and a
- * portal to keep in sync if it were.
- */
-.shelf-root {
-	display: block;
-}
-
-/*
- * A shelf of folders.
- *
- * `auto-fit` with a `minmax` floor rather than a column count: the shelf sits
- * in a section on the home page and in a showcase frame at 320px, and neither
- * should need to be told about the other.
- */
-.shelf {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
-	gap: var(--s-3);
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-.shelf-cell {
-	min-width: 0;
-}
-
-.shelf-face {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: var(--s-2);
-	width: 100%;
-	height: 100%;
-	padding: var(--s-4) var(--s-3) var(--s-5);
-	border: 1px solid transparent;
-	/* Squarer than the rest of the site. A desktop icon is a small square
-	   thing, and the 16px card radius made these read as cards with pictures
-	   on them rather than as icons. */
-	border-radius: var(--r);
-	background: transparent;
-	color: var(--fg-dim);
-	font: inherit;
-	text-align: center;
-	cursor: pointer;
-	transition:
-		background 160ms ease,
-		border-color 160ms ease,
-		transform 220ms var(--ease-out);
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.shelf-face:hover {
-		background:
-			linear-gradient(to bottom, var(--glass-edge), transparent 45%),
-			var(--bg-1);
-		border-color: var(--line-soft);
-		transform: translateY(-2px);
-	}
-}
-
-.shelf-face:focus-visible {
-	background: var(--bg-1);
-	border-color: var(--line-soft);
-}
-
-/* No hover on a touch screen, so the press has to answer for itself. */
-.shelf-face:active {
-	background: var(--bg-2);
-	transform: translateY(0);
-}
-
-.shelf-glyph {
-	position: relative;
-	display: grid;
-	place-items: center;
-	color: var(--fg-faint);
-	transition: color 160ms ease;
-}
-
-/*
- * How many things are inside, on the folder itself.
- *
- * A folder you have to open to discover is empty is a folder that wasted a
- * click, and this is the cheapest possible way to not do that.
- */
-.shelf-count {
-	position: absolute;
-	right: -6px;
-	bottom: 2px;
-	min-width: 18px;
-	padding: 0 4px;
-	border-radius: 999px;
-	background: var(--bg-3);
-	color: var(--fg-dim);
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	line-height: 18px;
-	text-align: center;
-}
-
-.shelf-name {
-	color: var(--fg);
-	font-size: var(--t-sm);
-	font-weight: 500;
-	overflow-wrap: anywhere;
-}
-
-.shelf-note {
-	font-size: var(--t-xs);
-	line-height: 1.4;
-	color: var(--fg-faint);
-}
-
-/*
- * The visible way into the menu.
- *
- * Always present rather than revealed on hover. A control that only exists
- * while a pointer is over it does not exist on a touch screen, and this one is
- * the only route to the menu for anyone who does not right-click.
- */
-.shelf-more,
-.window-more {
-	position: absolute;
-	top: var(--s-2);
-	right: var(--s-2);
-	display: grid;
-	place-items: center;
-	width: 30px;
-	height: 30px;
-	border: 1px solid transparent;
-	border-radius: var(--r);
-	background: transparent;
-	color: var(--fg-faint);
-	cursor: pointer;
-	transition:
-		background 140ms ease,
-		color 140ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.shelf-more:hover,
-	.window-more:hover {
-		background: var(--bg-2);
-		color: var(--fg);
-	}
-}
-
-/* ── window ──────────────────────────────────────────────────── */
-
-/*
- * The dialog.
- *
- * Sized in `min()` against both a viewport unit and a ceiling, so it is a
- * window on a monitor and very nearly the whole screen on a phone without a
- * breakpoint deciding which.
- *
- * No z-index anywhere in here: `showModal()` puts it in the top layer, which
- * is above every stacking context on the page by definition. That is most of
- * the reason for using a real dialog rather than a div.
- */
-.window {
-	width: min(46rem, 100% - var(--s-4) * 2);
-	max-height: min(80dvh, 44rem);
-	padding: 0;
-	border: 1px solid var(--line);
-	border-radius: var(--r-card);
-	background:
-		linear-gradient(to bottom, var(--glass-edge), transparent 30%),
-		color-mix(in srgb, var(--nori-800) 94%, transparent);
-	backdrop-filter: var(--glass-blur);
-	color: var(--fg);
-	box-shadow: 0 40px 90px color-mix(in srgb, var(--nori-900) 80%, transparent);
-	overflow: hidden;
-	animation: window-in 200ms var(--ease-out);
-}
-
-.window::backdrop {
-	background: var(--scrim);
-	animation: window-scrim-in 200ms ease;
-}
-
-@keyframes window-in {
-	from {
-		opacity: 0;
-		scale: 0.97;
-		translate: 0 8px;
-	}
-}
-
-@keyframes window-scrim-in {
-	from {
-		opacity: 0;
-	}
-}
-
-.window-frame {
-	display: flex;
-	flex-direction: column;
-	max-height: inherit;
-}
-
-.window-bar {
-	display: flex;
-	align-items: center;
-	gap: var(--s-3);
-	padding: var(--s-3) var(--s-3) var(--s-3) var(--s-4);
-	border-bottom: 1px solid var(--line-soft);
-	background: color-mix(in srgb, var(--nori-900) 40%, transparent);
-}
-
-.window-path {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 2px;
-	min-width: 0;
-	flex: 1;
-}
-
-.window-crumb {
-	display: inline-flex;
-	align-items: center;
-	gap: 2px;
-	min-width: 0;
-}
-
-.window-sep {
-	color: var(--fg-faint);
-	transform: rotate(-90deg);
-}
-
-.window-crumb-button {
-	padding: var(--s-1) var(--s-2);
-	border: 0;
-	border-radius: var(--r);
-	background: transparent;
-	color: var(--fg-faint);
-	font: inherit;
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	letter-spacing: 0.08em;
-	text-transform: uppercase;
-	cursor: pointer;
-}
-
-/* The last crumb is where you are, so it is not dressed as somewhere to go. */
-.window-crumb-button[aria-current="true"] {
-	color: var(--fg);
-	cursor: default;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.window-crumb-button:not([aria-current="true"]):hover {
-		background: var(--bg-2);
-		color: var(--fg);
-	}
-}
-
-.window-close {
-	display: grid;
-	place-items: center;
-	flex: 0 0 auto;
-	width: 34px;
-	height: 34px;
-	border: 1px solid var(--line-soft);
-	border-radius: var(--r);
-	background: transparent;
-	color: var(--fg-dim);
-	cursor: pointer;
-	transition:
-		background 140ms ease,
-		color 140ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.window-close:hover {
-		background: var(--bg-2);
-		color: var(--fg);
-	}
-}
-
-.window-list {
-	margin: 0;
-	padding: var(--s-2);
-	list-style: none;
-	overflow-y: auto;
-	overscroll-behavior: contain;
-}
-
-.window-row-cell {
-	min-width: 0;
-}
-
-.window-row {
-	position: relative;
-}
-
-.window-face {
-	display: flex;
-	align-items: center;
-	gap: var(--s-3);
-	width: 100%;
-	/* Room on the right for the menu button, which is absolutely placed. */
-	padding: var(--s-3) calc(var(--s-6) + var(--s-2)) var(--s-3) var(--s-3);
-	min-height: 48px;
-	border: 1px solid transparent;
-	border-radius: var(--r-lg);
-	background: transparent;
-	color: var(--fg-dim);
-	font: inherit;
-	text-align: left;
-	cursor: pointer;
-	transition:
-		background 140ms ease,
-		border-color 140ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.window-face:hover {
-		background: var(--bg-2);
-		border-color: var(--line-soft);
-	}
-}
-
-.window-face:focus-visible {
-	background: var(--bg-2);
-	border-color: var(--line-soft);
-}
-
-.window-face:active {
-	background: var(--bg-3);
-}
-
-.window-icon {
-	display: grid;
-	place-items: center;
-	flex: 0 0 auto;
-	width: 32px;
-	height: 32px;
-	border: 1px solid var(--line-soft);
-	border-radius: var(--r);
-	background:
-		linear-gradient(160deg, var(--glass-edge), transparent 60%), var(--bg-3);
-	color: var(--fg-dim);
-}
-
-.window-note {
-	display: block;
-	margin-top: 1px;
-	font-size: var(--t-xs);
-	line-height: 1.45;
-	color: var(--fg-faint);
-}
-
-.window-meta {
-	flex: 0 0 auto;
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	color: var(--fg-faint);
-}
-
-.window-into {
-	flex: 0 0 auto;
-	color: var(--fg-faint);
-	transform: rotate(-90deg);
-}
-
-/*
- * The window's own menu button sits inside a row rather than a tile, so it is
- * centred on the row instead of pinned to a corner.
- */
-.window-more {
-	top: 50%;
-	translate: 0 -50%;
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.menu,
-	.window,
-	.window::backdrop {
-		animation: none;
-	}
-
-	.shelf-face {
-		transition: none;
-	}
-}
-
-@media (max-width: 620px) {
-	/* A phone gets bigger targets and fewer of them per row. */
-	.shelf {
-		grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
-	}
-
-	.window {
-		width: 100%;
-		max-height: 86dvh;
-	}
-}
-
-/* ── folders, in blue ────────────────────────────────────────── */
-
-/*
- * A drawn folder rather than an outlined one.
- *
- * The glyph is stroked paths, and `fill` on the paths in CSS beats the
- * `fill="none"` presentation attribute on the SVG - so the same glyph is a
- * line icon everywhere else and a solid folder here, with no second drawing to
- * keep in step. The stroke stays as the lit edge on top of the fill, which is
- * what gives it a front face and a back.
- */
-.shelf-glyph svg path,
-.window-icon svg path {
-	fill: var(--folder-fill);
-	transition:
-		fill 160ms ease,
-		stroke 160ms ease;
-}
-
-.shelf-glyph,
-.window-icon {
-	color: var(--folder);
-}
-
-@media (hover: hover) and (pointer: fine) {
-	.shelf-face:hover .shelf-glyph,
-	.window-face:hover .window-icon {
+		margin-top: 1px;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
 		color: var(--folder);
 	}
 
-	.shelf-face:hover .shelf-glyph svg path,
-	.window-face:hover .window-icon svg path {
-		fill: color-mix(in srgb, var(--folder) 34%, transparent);
-	}
-}
+	/* ── desk windows ────────────────────────────────────────────── */
 
-/* A file is not a folder, so it does not get the folder's fill or its blue. */
-.window-icon:has(svg path[d^="M6 3h8l4 4v14H6z"]),
-.shelf-glyph:has(svg path[d^="M6 3h8l4 4v14H6z"]) {
-	color: var(--fg-dim);
-}
-
-.window-icon:has(svg path[d^="M6 3h8l4 4v14H6z"]) svg path,
-.shelf-glyph:has(svg path[d^="M6 3h8l4 4v14H6z"]) svg path {
-	fill: color-mix(in srgb, var(--rice) 6%, transparent);
-}
-
-/* ── laptop ──────────────────────────────────────────────────── */
-
-/*
- * The stage carries the perspective, so the lid, the base and the screen all
- * agree about where the viewer is standing. `1400px` is a long lens: the
- * machine should look like it is being looked at, not like it is being
- * photographed with a wide angle from six inches away.
- */
-.laptop {
-	position: relative;
-	width: min(100%, 60rem);
-	margin-inline: auto;
-	perspective: 1400px;
-	perspective-origin: 50% 20%;
-}
-
-/*
- * Open, and staying that way.
- *
- * It used to rotate up from shut as you scrolled to it, which meant the screen
- * was unreadable until the animation finished and unusable while it ran. A
- * frame around real controls should not make you wait to reach them.
- *
- * `-4deg` is a lid leaning very slightly back, which is how an open laptop
- * actually sits. Zero would be a rectangle, and the small tilt is the whole
- * reason the perspective on the stage has anything to do.
- */
-.laptop-lid {
-	position: relative;
-	transform-origin: 50% 100%;
-	transform: rotateX(-4deg);
-	transform-style: preserve-3d;
-	aspect-ratio: 16 / 10.4;
-	border: 1px solid var(--line);
-	border-radius: var(--r-card) var(--r-card) 4px 4px;
-	background: var(--nori-900);
-	box-shadow: 0 1px 0 var(--glass-edge) inset;
-}
-
-.laptop-screen {
-	position: absolute;
-	inset: 8px;
-	display: flex;
-	flex-direction: column;
-	border-radius: var(--r-lg);
-	background: var(--bg-0);
-	overflow: hidden;
 	/*
-	 * Above the back panel, explicitly.
+	 * A window on the desk.
 	 *
-	 * Both are children of a `preserve-3d` lid, and z-order there is decided by
-	 * 3D position rather than by document order - which browsers resolve
-	 * consistently for painting and less consistently for hit-testing. Saying
-	 * it in two ways, with a positive `translateZ` here and `pointer-events:
-	 * none` on the panel, means no engine has to be trusted about it.
+	 * Positioned against `.shelf-root`, which is the desk. Not a modal, not
+	 * portalled: several can be open, they stack by their own `z`, and each one
+	 * covers the screen it belongs to rather than the browser window.
+	 *
+	 * Position rides on two custom properties so a drag can write them directly
+	 * without going through React. Sixty state updates a second would re-render
+	 * a grid of icons on every frame of every drag.
 	 */
-	transform: translateZ(1px);
-}
+	.desk-window {
+		position: absolute;
+		top: 0;
+		left: 0;
+		translate: var(--x, 0) var(--y, 0);
+		display: flex;
+		flex-direction: column;
+		width: min(30rem, calc(100% - var(--s-5)));
+		max-height: min(78%, 30rem);
+		border: 1px solid var(--line);
+		border-radius: var(--r-lg);
+		background:
+			linear-gradient(to bottom, var(--glass-edge), transparent 22%),
+			color-mix(in srgb, var(--nori-800) 96%, transparent);
+		box-shadow: 0 24px 60px color-mix(in srgb, var(--nori-900) 72%, transparent);
+		overflow: hidden;
+		animation: desk-window-in 160ms var(--ease-out);
+	}
 
-.laptop-wallpaper {
-	position: absolute;
-	inset: 0;
-	overflow: hidden;
-	/* Behind the desktop, and never in the way of a click on a folder. */
-	pointer-events: none;
-}
+	@keyframes desk-window-in {
+		from {
+			opacity: 0;
+			scale: 0.98;
+		}
+	}
 
-/*
- * The back of the lid, two pixels behind the screen.
- *
- * With the lid static it is never seen face on, but it is what the bezel's
- * edges are made of at this angle - without it the screen's border is a line
- * rather than the edge of a panel with thickness.
- */
-.laptop-back {
-	position: absolute;
-	inset: 0;
-	border-radius: var(--r-card) var(--r-card) 4px 4px;
-	background: linear-gradient(160deg, var(--nori-700), var(--nori-900));
-	transform: translateZ(-2px);
 	/*
-	 * Decorative, and it must never be clickable.
+	 * While dragging: no transition on anything, and no text selection.
 	 *
-	 * It is `inset: 0` over the whole lid and comes after the screen in the
-	 * DOM, so the only thing keeping it behind is `preserve-3d` honouring its
-	 * `translateZ`. Any ancestor that flattens the 3D context - a filter, an
-	 * overflow, a browser quirk - puts this panel on top of the screen, where
-	 * it swallows every click on every folder and looks completely fine while
-	 * doing it.
+	 * A transition would make the window trail the pointer, and a drag that
+	 * selects the title text as it goes leaves a blue smear behind it.
 	 */
-	pointer-events: none;
-}
-
-.laptop-strip {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: var(--s-3);
-	flex: 0 0 auto;
-	padding: var(--s-2) var(--s-3);
-	border-bottom: 1px solid var(--line-soft);
-	background: color-mix(in srgb, var(--nori-800) 80%, transparent);
-	backdrop-filter: blur(8px);
-}
-
-.laptop-title {
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	color: var(--fg-faint);
-}
-
-/*
- * The desktop scrolls on its own, and takes its own drags.
- *
- * `overscroll-behavior: contain` stops a flick inside the machine from
- * continuing into the page once it hits the end, which on a phone is the
- * difference between a screen you can use and one that throws you down the
- * article every time you reach the bottom of it.
- */
-.laptop-desktop {
-	flex: 1;
-	min-height: 0;
-	padding: var(--s-4);
-	overflow-y: auto;
-	overscroll-behavior: contain;
-	touch-action: pan-y;
-}
-
-/*
- * The base, drawn as two slabs laid back in 3D.
- *
- * `rotateX(72deg)` is a deck seen at a shallow angle. Exactly 90 would be
- * edge-on and invisible; this is the angle at which a keyboard deck reads as a
- * surface receding away from you.
- */
-.laptop-base {
-	position: relative;
-	height: 26px;
-	transform-style: preserve-3d;
-	transform: rotateX(72deg);
-	transform-origin: 50% 0;
-}
-
-.laptop-deck {
-	position: absolute;
-	inset: 0;
-	border: 1px solid var(--line);
-	border-top: 0;
-	border-radius: 0 0 var(--r) var(--r);
-	background: linear-gradient(to bottom, var(--nori-600), var(--nori-800) 70%);
-}
-
-.laptop-pad {
-	position: absolute;
-	left: 50%;
-	top: 30%;
-	width: 22%;
-	height: 42%;
-	translate: -50% 0;
-	border-radius: 3px;
-	background: color-mix(in srgb, var(--nori-900) 60%, transparent);
-}
-
-/*
- * Contact shadow. It is what stops the machine floating, and it is a
- * pseudo-surface rather than a box-shadow so it can be wider than the object
- * and softer at the edges than a shadow is allowed to be.
- */
-.laptop-shadow {
-	position: absolute;
-	left: 50%;
-	bottom: -18px;
-	width: 78%;
-	height: 34px;
-	translate: -50% 0;
-	background: radial-gradient(
-		ellipse at center,
-		color-mix(in srgb, var(--nori-900) 85%, transparent),
-		transparent 70%
-	);
-	filter: blur(6px);
-	pointer-events: none;
-}
-
-/*
- * Small screens get a shallower lens and a shorter machine.
- *
- * At 320px the 16:10 lid is 200px tall, which is not a desktop anyone can use,
- * so the aspect ratio gives way to a taller screen. It stops looking quite so
- * much like a laptop and starts being usable, which is the right way round.
- */
-@media (max-width: 620px) {
-	.laptop {
-		perspective: 900px;
+	.desk-window[data-dragging="true"] {
+		user-select: none;
+		cursor: grabbing;
 	}
 
-	.laptop-lid {
-		aspect-ratio: 3 / 4;
+	.desk-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--s-3);
+		flex: 0 0 auto;
+		/* Comfortably grabbable. A thin title bar is a window people fight. */
+		min-height: 40px;
+		padding: var(--s-2) var(--s-2) var(--s-2) var(--s-4);
+		border-bottom: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--nori-900) 45%, transparent);
+		cursor: grab;
+		/* The bar is a handle, so the browser must not claim the drag for
+		   scrolling or for text selection. */
+		touch-action: none;
 	}
 
-	.laptop-desktop {
+	.desk-title {
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--fg-dim);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.desk-close {
+		display: grid;
+		place-items: center;
+		flex: 0 0 auto;
+		width: 32px;
+		height: 32px;
+		border: 1px solid transparent;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-faint);
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.desk-close:hover {
+			background: var(--bg-3);
+			color: var(--fg);
+		}
+	}
+
+	.desk-body {
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
+		overflow: hidden;
+	}
+
+	/* The desk is the positioning context for its windows, and has to have a
+	   height for a window to be placed against. */
+	.shelf-root {
+		position: relative;
+		min-height: 100%;
+	}
+
+	@media (max-width: 620px) {
+		/*
+		 * On a phone a window fills the desk and stops being draggable in any
+		 * useful sense: there is nowhere to drag it to. It keeps its bar and its
+		 * close button, which is all it needs at that size.
+		 */
+		.desk-window {
+			width: 100%;
+			max-height: 100%;
+			translate: 0 0;
+		}
+	}
+}
+
+@layer blocks {
+	/* ── dock ────────────────────────────────────────────────────── */
+
+	/*
+	 * The strip along the bottom of a screen.
+	 *
+	 * One row that scrolls sideways rather than wrapping: a dock that grows a
+	 * second row moves the desktop above it, and a desktop that resizes because
+	 * you opened a window is a desktop that loses track of your icons.
+	 */
+	.dock {
+		display: flex;
+		align-items: center;
+		gap: var(--s-2);
+		flex: 0 0 auto;
+		padding: var(--s-2);
+		/*
+		 * Recessed, not applied.
+		 *
+		 * A border-top and a lighter fill made this read as a bar laid on top of
+		 * the screen. An inset shadow at the top edge and a fill darker than the
+		 * desktop reads as a channel cut into it - the light falls into the dock
+		 * rather than off the front of it, which is the whole difference between
+		 * a strip and a slot.
+		 *
+		 * No blur either: it sits on the desktop, which is a solid surface, so
+		 * there is nothing behind it worth the readback.
+		 */
+		background: color-mix(in srgb, var(--nori-900) 86%, transparent);
+		box-shadow:
+			inset 0 1px 0 color-mix(in srgb, var(--nori-900) 90%, transparent),
+			inset 0 2px 6px color-mix(in srgb, var(--nori-900) 60%, transparent);
+	}
+
+	.dock-launcher {
+		position: relative;
+		flex: 0 0 auto;
+	}
+
+	.dock-launcher summary {
+		list-style: none;
+		cursor: pointer;
+	}
+
+	.dock-launcher summary::-webkit-details-marker {
+		display: none;
+	}
+
+	/*
+	 * Controls in a recess do not need outlines of their own. The channel is
+	 * already a boundary, and a border inside it is a second one saying the
+	 * same thing.
+	 */
+	.dock-start {
+		display: flex;
+		align-items: center;
+		gap: var(--s-2);
+		min-height: 34px;
+		padding: 0 var(--s-3);
+		border: 0;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-dim);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.dock-start:hover {
+			background: var(--bg-3);
+			color: var(--fg);
+		}
+	}
+
+	.dock-launcher[open] .dock-start {
+		background: var(--bg-3);
+		color: var(--fg);
+	}
+
+	/*
+	 * Opens upward, because the dock is at the bottom. `bottom: 100%` rather
+	 * than a computed offset so the panel stays attached to the button at any
+	 * dock height.
+	 */
+	.dock-panel {
+		position: absolute;
+		bottom: calc(100% + var(--s-2));
+		left: 0;
+		z-index: 40;
+		width: min(24rem, 78vw);
 		padding: var(--s-3);
+		border: 1px solid var(--line);
+		border-radius: var(--r-lg);
+		background: color-mix(in srgb, var(--nori-800) 97%, transparent);
+		box-shadow: 0 -18px 44px
+			color-mix(in srgb, var(--nori-900) 70%, transparent);
+		animation: dock-panel-in 140ms var(--ease-out);
 	}
 
-	.laptop-base {
-		height: 18px;
+	@keyframes dock-panel-in {
+		from {
+			opacity: 0;
+			translate: 0 6px;
+		}
+	}
+
+	.dock-results {
+		margin: 0;
+		padding: 0;
+		max-height: 17rem;
+		overflow-y: auto;
+		list-style: none;
+	}
+
+	.dock-result {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		width: 100%;
+		min-height: 44px;
+		padding: var(--s-2);
+		border: 0;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.dock-result:hover {
+			background: var(--bg-2);
+		}
+	}
+
+	.dock-result:focus-visible {
+		background: var(--bg-2);
+	}
+
+	.dock-tasks {
+		display: flex;
+		align-items: center;
+		gap: var(--s-1);
+		flex: 1;
+		min-width: 0;
+		overflow-x: auto;
+	}
+
+	.dock-task {
+		display: inline-flex;
+		align-items: center;
+		flex: 0 0 auto;
+		border-radius: var(--r);
+		background: color-mix(in srgb, var(--nori-700) 70%, transparent);
+		overflow: hidden;
+	}
+
+	.dock-task-face {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-2);
+		min-height: 32px;
+		padding: 0 var(--s-2) 0 var(--s-3);
+		border: 0;
+		background: transparent;
+		color: var(--fg-faint);
+		font: inherit;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		cursor: pointer;
+	}
+
+	/*
+	 * The front-most window. Marked with the folder blue rather than the accent,
+	 * because it is a container that is showing, not an action to take.
+	 */
+	.dock-task-face[data-active="true"] {
+		color: var(--fg);
+		box-shadow: inset 0 -2px 0 var(--folder);
+	}
+
+	.dock-task-label {
+		max-width: 9rem;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.dock-task-close {
+		display: grid;
+		place-items: center;
+		width: 26px;
+		height: 32px;
+		border: 0;
+		background: transparent;
+		color: var(--fg-faint);
+		cursor: pointer;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.dock-task-close:hover {
+			background: var(--bg-3);
+			color: var(--fg);
+		}
+	}
+
+	.dock-corner {
+		flex: 0 0 auto;
+		padding-inline: var(--s-2);
+	}
+
+	@media (max-width: 620px) {
+		/* The label goes; the mark stays. At this width the row is the budget. */
+		.dock-start-label {
+			display: none;
+		}
+
+		.dock-task-label {
+			max-width: 5rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.dock-panel,
+		.desk-window {
+			animation: none;
+		}
 	}
 }
 
-/* ── shelf search ────────────────────────────────────────────── */
+@layer blocks {
+	/* ── scrollbars ──────────────────────────────────────────────── */
 
-.shelf-search {
-	display: flex;
-	align-items: center;
-	gap: var(--s-2);
-	margin-bottom: var(--s-4);
-	padding: var(--s-2) var(--s-3);
-	border: 1px solid var(--line-soft);
-	border-radius: var(--r-lg);
-	background: color-mix(in srgb, var(--nori-900) 55%, transparent);
-}
+	/*
+	 * A visible track on anything that scrolls inside a frame.
+	 *
+	 * Overlay scrollbars, which most platforms now default to, fade out when
+	 * the pointer is elsewhere. On a page that is fine - the page obviously
+	 * scrolls. Inside a window on a desktop it is not: a folder with more icons
+	 * than fit looks exactly like a folder with that many icons, and the only
+	 * hint otherwise is a scrollbar nobody has summoned yet.
+	 *
+	 * `scrollbar-width: thin` and `scrollbar-color` are the standard properties
+	 * and do the whole job in Firefox and current Chrome. The `::-webkit-`
+	 * rules under them are for Safari, which still wants its own.
+	 */
+	.window-canvas,
+	.dock-results,
+	.laptop-desktop,
+	.nav-sheet {
+		scrollbar-width: thin;
+		scrollbar-color: var(--line) transparent;
+	}
 
-/* Focus lands on the input, so the ring belongs to the whole field. */
-.shelf-search:focus-within {
-	border-color: var(--line);
-	outline: 2px solid var(--accent);
-	outline-offset: 1px;
-}
+	.window-canvas::-webkit-scrollbar,
+	.dock-results::-webkit-scrollbar,
+	.laptop-desktop::-webkit-scrollbar,
+	.nav-sheet::-webkit-scrollbar {
+		width: 10px;
+	}
 
-.shelf-search-glyph {
-	flex: 0 0 auto;
-	color: var(--fg-faint);
-}
+	.window-canvas::-webkit-scrollbar-track,
+	.dock-results::-webkit-scrollbar-track,
+	.laptop-desktop::-webkit-scrollbar-track,
+	.nav-sheet::-webkit-scrollbar-track {
+		background: transparent;
+	}
 
-.shelf-search-input {
-	flex: 1;
-	min-width: 0;
-	border: 0;
-	background: transparent;
-	color: var(--fg);
-	font: inherit;
-	font-size: var(--t-sm);
-}
+	/*
+	 * The thumb is inset by a transparent border rather than being 10px wide.
+	 * `background-clip: content-box` is what makes the border show the track
+	 * through it, which is how a 6px thumb sits in a 10px gutter without the
+	 * gutter needing a colour of its own.
+	 */
+	.window-canvas::-webkit-scrollbar-thumb,
+	.dock-results::-webkit-scrollbar-thumb,
+	.laptop-desktop::-webkit-scrollbar-thumb,
+	.nav-sheet::-webkit-scrollbar-thumb {
+		border: 2px solid transparent;
+		border-radius: 999px;
+		background: var(--line);
+		background-clip: content-box;
+	}
 
-.shelf-search-input:focus {
-	/* The field draws the ring, not the input inside it. */
-	outline: none;
-}
+	@media (hover: hover) and (pointer: fine) {
+		.window-canvas::-webkit-scrollbar-thumb:hover,
+		.dock-results::-webkit-scrollbar-thumb:hover,
+		.laptop-desktop::-webkit-scrollbar-thumb:hover,
+		.nav-sheet::-webkit-scrollbar-thumb:hover {
+			background: var(--fg-faint);
+			background-clip: content-box;
+		}
+	}
 
-.shelf-search-input::placeholder {
-	color: var(--fg-faint);
-}
+	/*
+	 * The window's own scrolling area has to be allowed to be short. Without
+	 * `min-height: 0` a flex child refuses to shrink below its content, so the
+	 * canvas grows past the window instead of scrolling inside it - which is
+	 * the usual reason an overflow that is set does not appear to work.
+	 */
+	.desk-body > .window-frame {
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
+	}
 
-.shelf-search-count {
-	flex: 0 0 auto;
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	color: var(--fg-faint);
-}
-
-.shelf-results {
-	padding: 0;
-	max-height: none;
-}
-
-/* Where a result lives. Only rendered in search results, where it is the
-   difference between a name and an answer. */
-.window-where {
-	display: block;
-	margin-top: 1px;
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	color: var(--folder);
+	.desk-body .window-canvas {
+		flex: 1;
+		min-height: 0;
+	}
 }

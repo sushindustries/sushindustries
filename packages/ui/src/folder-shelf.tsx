@@ -1,13 +1,8 @@
-import {
-	type ReactNode,
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
-import { createPortal } from "react-dom";
+import { type ReactNode, useState } from "react";
 import { ContextMenu, type MenuAction, useContextMenu } from "./context-menu";
+import { DeskWindow } from "./desk-window";
 import { Icon, type IconName } from "./icon";
+import { type DeskApi, useDeskState } from "./use-desk-state";
 
 export interface ShelfEntry {
 	readonly id: string;
@@ -46,6 +41,11 @@ export interface FolderShelfProps {
 	label?: string;
 	/** Show the search field. */
 	searchable?: boolean;
+	/**
+	 * Storage key for the arrangement: which windows are open, where they sit,
+	 * and what has been put away. Omit and the desk is not remembered.
+	 */
+	rememberAs?: string;
 	/** Placeholder on the search field. */
 	searchLabel?: string;
 }
@@ -74,6 +74,31 @@ function flatten(
 		{ entry, path },
 		...flatten(entry.children ?? [], [...path, entry]),
 	]);
+}
+
+/*
+ * A stored path of ids, resolved back to entries.
+ *
+ * Returns null when any step has gone - a component renamed, a package
+ * removed - so a remembered window onto something that no longer exists
+ * quietly does not reopen instead of restoring an empty frame.
+ */
+function resolve(
+	entries: readonly ShelfEntry[],
+	ids: readonly string[],
+): ShelfEntry[] | null {
+	const out: ShelfEntry[] = [];
+	let level = entries;
+
+	for (const id of ids) {
+		const found = level.find((entry) => entry.id === id);
+		if (!found) return null;
+
+		out.push(found);
+		level = found.children ?? [];
+	}
+
+	return out;
 }
 
 function matches(entry: ShelfEntry, query: string): boolean {
@@ -151,57 +176,40 @@ export function FolderShelf({
 	label = "Folders",
 	searchable = false,
 	searchLabel = "Search",
+	rememberAs = "sushindustries.desk",
 }: FolderShelfProps): ReactNode {
-	const dialogRef = useRef<HTMLDialogElement>(null);
-	const [path, setPath] = useState<readonly ShelfEntry[]>([]);
+	const desk = useDeskState(rememberAs);
 	const [query, setQuery] = useState("");
 
-	/*
-	 * The portal waits for the client, and it waits through an effect rather
-	 * than through `typeof document`.
-	 *
-	 * A `typeof document === "undefined"` branch renders nothing on the server
-	 * and a portal on the first client render, which is a hydration mismatch -
-	 * React throws the whole tree away and rebuilds it, and in the window where
-	 * that happens the folders have no working click handlers. That is what
-	 * "the folders do not open" was.
-	 *
-	 * Gating on state means the first client render matches the server's
-	 * exactly, and the portal arrives on the effect afterwards.
-	 */
-	const [mounted, setMounted] = useState(false);
-	useEffect(() => setMounted(true), []);
-
-	const current = path.at(-1);
 	const trimmed = query.trim().toLowerCase();
 
 	/*
 	 * Results replace the shelf rather than opening a window over it. A search
-	 * that produced a modal would need dismissing before you could refine the
-	 * query, which is the wrong shape for something typed a character at a time.
+	 * that produced a window would need dismissing before the query could be
+	 * refined, which is the wrong shape for something typed a character at a
+	 * time.
 	 */
 	const results = trimmed
 		? flatten(entries).filter(({ entry }) => matches(entry, trimmed))
 		: [];
 
-	const close = useCallback(() => setPath([]), []);
-
 	/*
-	 * The dialog is opened and closed from an effect rather than by rendering
-	 * `open`, because `showModal()` is the only thing that puts it in the top
-	 * layer. A `<dialog open>` rendered declaratively is a non-modal box with
-	 * none of the behaviour that made it worth using.
+	 * Stored windows, resolved against the tree as it is now. Anything that no
+	 * longer resolves is dropped rather than repaired: the alternative is a
+	 * window titled after a folder that is not there.
 	 */
-	useEffect(() => {
-		const dialog = dialogRef.current;
-		if (!dialog) return;
+	const open = desk.desk.windows
+		.map((entry) => ({ state: entry, path: resolve(entries, entry.path) }))
+		.filter(
+			(entry): entry is { state: typeof entry.state; path: ShelfEntry[] } =>
+				entry.path !== null && entry.path.length > 0,
+		);
 
-		if (current && !dialog.open) dialog.showModal();
-		if (!current && dialog.open) dialog.close();
-	}, [current]);
+	const shown = entries.filter((entry) => !desk.desk.hidden.includes(entry.id));
 
-	function openEntry(entry: ShelfEntry): void {
-		if (isFolder(entry)) setPath((stack) => [...stack, entry]);
+	function openEntry(entry: ShelfEntry, at: readonly ShelfEntry[] = []): void {
+		if (!isFolder(entry)) return;
+		desk.open([...at.map((step) => step.id), entry.id]);
 	}
 
 	return (
@@ -218,7 +226,7 @@ export function FolderShelf({
 						onChange={(event) => setQuery(event.target.value)}
 					/>
 					{trimmed ? (
-						<span className="shelf-search-count">
+						<span className="mono text-xs fg-faint">
 							{results.length} {results.length === 1 ? "result" : "results"}
 						</span>
 					) : null}
@@ -235,7 +243,7 @@ export function FolderShelf({
 							<WindowRow
 								entry={entry}
 								path={at}
-								onOpen={() => setPath([...at, entry])}
+								onOpen={() => openEntry(entry, at)}
 								actionsFor={actionsFor}
 								renderLink={renderLink}
 								where={at.map((step) => step.label).join(" / ")}
@@ -248,7 +256,7 @@ export function FolderShelf({
 				</ul>
 			) : (
 				<ul className="shelf" aria-label={label}>
-					{entries.map((entry) => (
+					{shown.map((entry) => (
 						<li key={entry.id} className="shelf-cell">
 							<ShelfTile
 								entry={entry}
@@ -262,77 +270,68 @@ export function FolderShelf({
 			)}
 
 			{/*
-			 * Portalled to the body, and this is not optional.
+			 * Windows live here, absolutely positioned inside the desk rather than
+			 * portalled to the body.
 			 *
-			 * `showModal()` promotes a dialog to the top layer, which is supposed
-			 * to free it from ancestor clipping and stacking. It does not free it
-			 * from an ancestor `transform` or `preserve-3d`: those establish a
-			 * containing block, and a modal inside one lands somewhere nobody
-			 * asked for or does not paint at all. This shelf is mounted inside a
-			 * laptop lid that is rotated on every scroll frame, which is about the
-			 * most hostile version of that.
+			 * They were a `<dialog>` opened with `showModal()`, which is the better
+			 * answer for a modal on a page - focus trapping, Escape and top-layer
+			 * stacking, all free. It is the wrong answer for a desktop: a modal
+			 * goes to the top layer by definition, so it covers the browser window
+			 * rather than the screen it belongs to, and only one can be open.
 			 *
-			 * Rendering it at the body sidesteps the whole question.
-			 *
-			 * Gated on mounted state rather than on `typeof document`, because a
-			 * `typeof` branch renders nothing on the server and a portal on the
-			 * first client render - a hydration mismatch, which makes React throw
-			 * the tree away and rebuild it, and in that window the folders have no
-			 * working click handlers.
+			 * Escape and focus are done by hand below. The stacking is the `z` each
+			 * window carries, which is also what makes front-to-back survive a
+			 * reload.
 			 */}
-			{mounted &&
-				createPortal(
-					<dialog
-						ref={dialogRef}
-						className="window"
-						onCancel={close}
-						onClose={close}
-						/*
-						 * Close on backdrop. A click on the backdrop lands on the dialog
-						 * element itself and never on a child, which is the whole trick.
-						 *
-						 * `onMouseDown` rather than `onClick`, so a selection drag that
-						 * starts inside the window and ends outside it does not count as a
-						 * click on the backdrop and close the thing you were reading.
-						 *
-						 * The keyboard equivalent is Escape, which `<dialog>` raises as
-						 * `cancel` above - so this is a pointer shortcut for something that
-						 * already has a key, not a pointer-only affordance.
-						 */
-						onMouseDown={(event) => {
-							if (event.target === dialogRef.current) close();
-						}}
-					>
-						{current ? (
-							<WindowBody
-								path={path}
-								onNavigate={setPath}
-								onOpen={openEntry}
-								onClose={close}
-								actionsFor={actionsFor}
-								renderLink={renderLink}
-							/>
-						) : null}
-					</dialog>,
-					document.body,
-				)}
+			{open.map(({ state, path }) => (
+				<DeskWindow
+					key={state.id}
+					title={path.at(-1)?.label ?? ""}
+					label={`${path.at(-1)?.label} window`}
+					x={state.x}
+					y={state.y}
+					z={state.z}
+					onMove={(x, y) => desk.move(state.id, x, y)}
+					onClose={() => desk.close(state.id)}
+					onRaise={() => desk.raise(state.id)}
+				>
+					<WindowBody
+						path={path}
+						onNavigate={(next) =>
+							desk.navigate(
+								state.id,
+								next.map((step) => step.id),
+							)
+						}
+						onOpen={(entry) => openEntry(entry, path)}
+						actionsFor={actionsFor}
+						renderLink={renderLink}
+					/>
+				</DeskWindow>
+			))}
 		</div>
 	);
 }
+
+/** The desk's own API, for a dock or a menu that needs to reach it. */
+export type { DeskApi };
 
 function ShelfTile({
 	entry,
 	onOpen,
 	actionsFor,
 	renderLink,
+	path = [],
 }: {
 	entry: ShelfEntry;
 	onOpen: () => void;
 	actionsFor: FolderShelfProps["actionsFor"];
 	renderLink: NonNullable<FolderShelfProps["renderLink"]>;
+	/** Where this tile sits, so its menu can say so. */
+	path?: readonly ShelfEntry[];
 }): ReactNode {
 	const menu = useContextMenu();
-	const actions = actionsFor?.(entry, []) ?? [];
+	const actions = actionsFor?.(entry, path) ?? [];
 
 	const face = (
 		<>
@@ -389,14 +388,12 @@ function WindowBody({
 	path,
 	onNavigate,
 	onOpen,
-	onClose,
 	actionsFor,
 	renderLink,
 }: {
 	path: readonly ShelfEntry[];
 	onNavigate: (path: readonly ShelfEntry[]) => void;
 	onOpen: (entry: ShelfEntry) => void;
-	onClose: () => void;
 	actionsFor: FolderShelfProps["actionsFor"];
 	renderLink: NonNullable<FolderShelfProps["renderLink"]>;
 }): ReactNode {
@@ -407,56 +404,62 @@ function WindowBody({
 
 	return (
 		<div className="window-frame">
-			<header className="window-bar">
-				{/*
-				 * A path, not a back button. It says where you are as well as how
-				 * to leave, and at two levels deep a back button says neither.
-				 */}
-				<nav className="window-path" aria-label="Path">
-					{path.map((entry, index) => (
-						<span key={entry.id} className="window-crumb">
-							{index > 0 ? (
-								<Icon name="chevron" size={12} className="window-sep" />
-							) : null}
-							<button
-								type="button"
-								className="window-crumb-button"
-								aria-current={index === path.length - 1 ? "true" : undefined}
-								onClick={() => onNavigate(path.slice(0, index + 1))}
-							>
-								{entry.label}
-							</button>
-						</span>
-					))}
-				</nav>
-
-				<button
-					type="button"
-					className="window-close"
-					aria-label="Close"
-					onClick={onClose}
-				>
-					<Icon name="close" size={16} />
-				</button>
-			</header>
-
-			<ul className="window-list">
-				{contents.map((entry) => (
-					<li key={entry.id} className="window-row-cell">
-						<WindowRow
-							entry={entry}
-							path={path}
-							onOpen={() => onOpen(entry)}
-							actionsFor={actionsFor}
-							renderLink={renderLink}
-						/>
-					</li>
+			{/*
+			 * A path, not a back button. It says where you are as well as how to
+			 * leave, and at two levels deep a back button says neither.
+			 *
+			 * The window's own title bar and close button belong to `DeskWindow`,
+			 * so this is only navigation.
+			 */}
+			<nav className="window-path" aria-label="Path">
+				{path.map((entry, index) => (
+					<span key={entry.id} className="window-crumb">
+						{index > 0 ? (
+							<Icon name="chevron" size={12} className="window-sep" />
+						) : null}
+						<button
+							type="button"
+							className="window-crumb-button"
+							aria-current={index === path.length - 1 ? "true" : undefined}
+							onClick={() => onNavigate(path.slice(0, index + 1))}
+						>
+							{entry.label}
+						</button>
+					</span>
 				))}
-			</ul>
+			</nav>
 
-			{contents.length === 0 ? (
-				<p className="p-6 text-center label">Nothing in here yet</p>
-			) : null}
+			{/*
+			 * Icons on a canvas, not rows in a table.
+			 *
+			 * A window of rows is a file listing, and a file listing is a thing you
+			 * read. Icons are a thing you look at and point to, which is what a
+			 * folder of components should be - and it is the same grid the desktop
+			 * uses, so opening a folder is going deeper into the same place rather
+			 * than arriving at a different kind of screen.
+			 *
+			 * Rows survive for search results, where the answer is "which folder is
+			 * it in" and that is text.
+			 */}
+			<div className="window-canvas">
+				{contents.length === 0 ? (
+					<p className="p-6 text-center label">Nothing in here yet</p>
+				) : (
+					<ul className="shelf">
+						{contents.map((entry) => (
+							<li key={entry.id} className="shelf-cell">
+								<ShelfTile
+									entry={entry}
+									onOpen={() => onOpen(entry)}
+									actionsFor={actionsFor}
+									renderLink={renderLink}
+									path={path}
+								/>
+							</li>
+						))}
+					</ul>
+				)}
+			</div>
 		</div>
 	);
 }

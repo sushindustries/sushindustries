@@ -1,31 +1,131 @@
-import { FolderShelf, Laptop } from "@sushindustries/ui";
+import { Dock, FolderShelf, Laptop, useDeskState } from "@sushindustries/ui";
 import { useNavigate } from "@tanstack/react-router";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useMemo, useState } from "react";
 import { shelfEntries } from "./shelf.catalogue";
 import { shelfActions } from "./shelf-actions";
 
 /*
- * This site's shelf: the component, given this site's tree and this site's
- * actions.
+ * This site's desktop: the components, given this site's tree and actions.
  *
  * The same split as the nav. What is in the folders is `content/shelf.md`, how
- * a folder behaves is `FolderShelf` in `packages/ui`, and what the right-click
- * menu can do is `shelf-actions.ts`. What is left here is the one decision that
- * is genuinely about this page: that the menu should route through TanStack
- * Router rather than reload.
+ * a folder behaves is `FolderShelf`, how a window behaves is `DeskWindow`, and
+ * what the right-click menu can do is `shelf-actions.ts`. What is left here is
+ * the decisions that are genuinely about this page: that the menu routes
+ * through TanStack Router rather than reloading, and that the dock searches
+ * this site's own tree.
+ *
+ * The desk state is held here rather than inside the shelf because two things
+ * need it - the shelf draws the windows, the dock lists them - and the place
+ * where two components meet is the component above both of them.
  */
+const DESK_KEY = "sushindustries.desk";
+
 export function SiteShelf(): ReactNode {
 	const navigate = useNavigate();
 	const [message, setMessage] = useState("");
+	const [query, setQuery] = useState("");
+
+	const entries = useMemo(() => shelfEntries(), []);
+	const desk = useDeskState(DESK_KEY);
+
+	/*
+	 * The launcher searches everything, flattened, and opens folders in a
+	 * window while leaving pages to the router. A launcher that navigated away
+	 * for a folder would close the desktop to show you a directory listing of
+	 * the desktop.
+	 */
+	const results = useMemo(() => {
+		const trimmed = query.trim().toLowerCase();
+		if (!trimmed) return [];
+
+		const flat: Array<{
+			id: string;
+			label: string;
+			description?: string;
+			icon?: "folder" | "file";
+			path: string[];
+			href?: string;
+			isFolder: boolean;
+		}> = [];
+
+		function walk(list: typeof entries, path: string[]): void {
+			for (const entry of list) {
+				const isFolder = Boolean(entry.children?.length);
+
+				flat.push({
+					id: [...path, entry.id].join("/"),
+					label: entry.label,
+					description: entry.description,
+					icon: isFolder ? "folder" : "file",
+					path: [...path, entry.id],
+					href: entry.href,
+					isFolder,
+				});
+
+				if (entry.children) walk(entry.children, [...path, entry.id]);
+			}
+		}
+
+		walk(entries, []);
+
+		return flat
+			.filter((item) =>
+				`${item.label} ${item.description ?? ""}`
+					.toLowerCase()
+					.includes(trimmed),
+			)
+			.slice(0, 12)
+			.map((item) => ({
+				id: item.id,
+				label: item.label,
+				description: item.description,
+				icon: item.icon,
+				onSelect() {
+					if (item.isFolder) desk.open(item.path);
+					else if (item.href) void navigate({ href: item.href });
+					setQuery("");
+				},
+			}));
+	}, [query, entries, desk, navigate]);
+
+	const tasks = desk.desk.windows.map((entry) => ({
+		id: entry.id,
+		label: entry.path.at(-1) ?? "Window",
+		icon: "folder" as const,
+		active: entry.z === desk.desk.top,
+	}));
 
 	return (
 		<>
-			<Laptop title="sushindustries" wallpaper={<span className="desk-glow" />}>
+			<Laptop
+				title="sushindustries"
+				wallpaper={<span className="desk-glow" />}
+				dock={
+					<Dock
+						tasks={tasks}
+						onSelectTask={desk.raise}
+						onCloseTask={desk.close}
+						results={results}
+						query={query}
+						onQuery={setQuery}
+						trailing={
+							desk.desk.windows.length > 0 || desk.desk.hidden.length > 0 ? (
+								<button
+									type="button"
+									className="dock-task-face"
+									onClick={desk.reset}
+								>
+									Reset desk
+								</button>
+							) : null
+						}
+					/>
+				}
+			>
 				<FolderShelf
-					entries={shelfEntries()}
+					entries={entries}
 					label="Everything on this site"
-					searchable
-					searchLabel="Search everything"
+					rememberAs={DESK_KEY}
 					actionsFor={(entry, path) =>
 						shelfActions(entry, path, {
 							navigate: (href) => void navigate({ href }),

@@ -179,6 +179,42 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		preview: "An open laptop with folders on its screen",
 	},
 	{
+		name: "desk-window",
+		title: "Desk Window",
+		description:
+			"A window you can drag, close and stack. Position is written to the element during a drag and to state only on release.",
+		files: ["desk-window.tsx", "icon.tsx"],
+		dependencies: {},
+		category: "layout",
+		subcategory: "Overlays",
+		tags: ["drag", "pointer", "touch", "no-deps"],
+		preview: "Two windows on a desk, one dragged in front of the other",
+	},
+	{
+		name: "dock",
+		title: "Dock",
+		description:
+			"A launcher, what is open, and a corner. Search opens upward and results are the consumer's to compute.",
+		files: ["dock.tsx", "icon.tsx"],
+		dependencies: {},
+		category: "layout",
+		subcategory: "Page structure",
+		tags: ["navigation", "search", "no-js", "no-deps"],
+		preview: "A dock with a launcher open above it",
+	},
+	{
+		name: "use-desk-state",
+		title: "useDeskState",
+		description:
+			"Which windows are open, where they sit and what has been put away, remembered without breaking a server render.",
+		files: ["use-desk-state.ts"],
+		dependencies: {},
+		category: "layout",
+		subcategory: "Overlays",
+		tags: ["state", "storage", "ssr", "no-deps"],
+		preview: "No UI - it remembers where you left things",
+	},
+	{
 		name: "context-menu",
 		title: "Context Menu",
 		description:
@@ -197,14 +233,20 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		name: "folder-shelf",
 		title: "Folder Shelf",
 		description:
-			"A shelf of folders that open into a real <dialog>, drilling down a tree with a path back out.",
-		files: ["folder-shelf.tsx", "context-menu.tsx", "icon.tsx"],
-		dependencies: { "react-dom": "^19.0.0" },
-		registryDependencies: ["context-menu"],
+			"A desktop of folders that open into draggable windows, several at once, remembered between visits.",
+		files: [
+			"folder-shelf.tsx",
+			"context-menu.tsx",
+			"desk-window.tsx",
+			"use-desk-state.ts",
+			"icon.tsx",
+		],
+		dependencies: {},
+		registryDependencies: ["context-menu", "desk-window", "use-desk-state"],
 		category: "layout",
 		subcategory: "Containers",
 		tags: ["dialog", "tree", "touch", "no-deps"],
-		preview: "A row of folders, one open in a window above them",
+		preview: "Folders on a desk with a window open over them",
 	},
 	{
 		name: "card",

@@ -9,6 +9,8 @@ export interface LaptopProps {
 	title?: string;
 	/** Also in the strip, right-aligned. A search field, a clock, a count. */
 	toolbar?: ReactNode;
+	/** Pinned along the bottom of the screen, below the scrolling desktop. */
+	dock?: ReactNode;
 }
 
 /*
@@ -41,6 +43,7 @@ export function Laptop({
 	wallpaper,
 	title,
 	toolbar,
+	dock,
 }: LaptopProps): ReactNode {
 	return (
 		<div className="laptop">
@@ -78,10 +81,18 @@ export function Laptop({
 					 * container with its own overflow is invisible to it and a drag
 					 * inside this desktop scrolls the article behind the laptop.
 					 * Inert for anyone not running one.
+					 *
+					 * It does not trap: the desktop's overscroll chains, so reaching
+					 * the bottom of it carries on down the page. Somebody scrolling
+					 * past should never have to find a margin beside the laptop to
+					 * get out of it.
 					 */}
 					<div className="laptop-desktop" data-lenis-prevent>
 						{children}
 					</div>
+
+					{/* Pinned, so it stays put while the desktop scrolls under it. */}
+					{dock}
 				</div>
 
 				{/* The back of the lid, visible while it is still closing. */}

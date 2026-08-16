@@ -22,7 +22,14 @@ export {
 	useContextMenu,
 } from "./context-menu";
 export { Credit, type CreditProps } from "./credit";
+export { DeskWindow, type DeskWindowProps } from "./desk-window";
 export { DocAside, type DocAsideProps } from "./doc-aside";
+export {
+	Dock,
+	type DockLauncherItem,
+	type DockProps,
+	type DockTask,
+} from "./dock";
 export {
 	FolderShelf,
 	type FolderShelfProps,
@@ -62,6 +69,13 @@ export {
 } from "./showcase";
 export { SmoothScroll } from "./smooth-scroll";
 export { Spacer, type SpacerProps } from "./spacer";
+export {
+	type DeskApi,
+	type DeskState,
+	type DeskWindowState,
+	EMPTY_DESK,
+	useDeskState,
+} from "./use-desk-state";
 export {
 	type ScrollProgressOptions,
 	useScrollProgress,

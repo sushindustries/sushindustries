@@ -6,7 +6,9 @@ import {
 	ContextMenu,
 	Credit,
 	type CreditProps,
+	DeskWindow,
 	DocAside,
+	Dock,
 	FolderShelf,
 	Grid,
 	Laptop,
@@ -619,6 +621,87 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 	<FolderShelf entries={entries} searchable actionsFor={actionsFor} />
 </Laptop>`,
 		language: "tsx",
+	},
+
+	"desk-window": {
+		element: (
+			<div className="relative" style={{ height: 320 }}>
+				<DeskWindow
+					title="One window"
+					x={12}
+					y={12}
+					z={1}
+					onMove={() => {}}
+					onClose={() => {}}
+					onRaise={() => {}}
+				>
+					<p className="p-4 fg-dim m-0 text-sm">
+						Drag the bar. Position is written to the element while you drag and
+						to state only when you let go.
+					</p>
+				</DeskWindow>
+			</div>
+		),
+		poster: <p className="label text-center">A window you can drag</p>,
+		source: `<DeskWindow
+	title="Applications"
+	x={x} y={y} z={z}
+	onMove={(x, y) => desk.move(id, x, y)}
+	onClose={() => desk.close(id)}
+	onRaise={() => desk.raise(id)}
+/>`,
+		language: "tsx",
+	},
+
+	dock: {
+		element: (
+			<Dock
+				tasks={[
+					{ id: "a", label: "Applications", active: true },
+					{ id: "b", label: "Documents" },
+				]}
+				results={[
+					{
+						id: "one",
+						label: "Reveal",
+						description: "Fades and rises on scroll",
+						icon: "file",
+						onSelect() {},
+					},
+				]}
+				query=""
+			/>
+		),
+		poster: <p className="label text-center">A launcher and what is open</p>,
+		source: `<Dock
+	tasks={tasks}
+	onSelectTask={desk.raise}
+	onCloseTask={desk.close}
+	results={results}
+	query={query}
+	onQuery={setQuery}
+/>`,
+		language: "tsx",
+	},
+
+	"use-desk-state": {
+		element: (
+			<p className="fg-dim p-4 max-w-prose">
+				No UI. It holds which windows are open, where they sit and what has been
+				put away, reads storage in an effect so a server render still matches,
+				and treats every storage failure as "the default desk", which is a
+				working desk.
+			</p>
+		),
+		poster: (
+			<p className="label text-center">It remembers where you left things</p>
+		),
+		source: `const desk = useDeskState("my.desk");
+
+desk.open(["applications", "motion"]);
+desk.move(id, x, y);
+desk.raise(id);`,
+		language: "ts",
 	},
 
 	"context-menu": {

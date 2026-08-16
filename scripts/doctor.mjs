@@ -656,14 +656,30 @@ function checkVariantsAreAttributes() {
  * site.
  */
 function checkAtomsUseTokens() {
-	const lines = read("packages/atoms/src/atoms.css").split("\n");
-	let inRoot = false;
+	const css = read("packages/atoms/src/atoms.css");
+	const lines = css.split("\n");
+
+	/*
+	 * The `tokens` layer is the definition site, so literals there are the
+	 * palette rather than a leak of it. Tracked by layer rather than by
+	 * `:root`, because the layer is the thing that says "this is where colours
+	 * are allowed to be written down".
+	 */
+	let inTokens = false;
+	let depth = 0;
 
 	for (const [index, line] of lines.entries()) {
-		if (line.startsWith(":root")) inRoot = true;
-		else if (inRoot && line.startsWith("}")) inRoot = false;
+		if (line.startsWith("@layer tokens {")) {
+			inTokens = true;
+			depth = 0;
+		}
 
-		if (inRoot) continue;
+		if (inTokens) {
+			depth += (line.match(/\{/g) ?? []).length;
+			depth -= (line.match(/\}/g) ?? []).length;
+			if (depth <= 0 && line.includes("}")) inTokens = false;
+			continue;
+		}
 		if (!/#[0-9a-fA-F]{3,8}\b/.test(line)) continue;
 
 		report(
@@ -702,7 +718,7 @@ function checkBlocksAreEarned() {
 	 * allowed to exist, so it is exempt anyway.
 	 */
 	const rules = [
-		...css.matchAll(/^(\.[\w-]+(?:,\s*\.[\w-]+)*)\s*\{([^}]*)\}/gm),
+		...css.matchAll(/^[\t ]*(\.[\w-]+(?:,\s*\.[\w-]+)*)\s*\{([^}]*)\}/gm),
 	];
 
 	/** `padding-inline: var(--s-4)` -> `.px-4`, from the single-property rules. */
