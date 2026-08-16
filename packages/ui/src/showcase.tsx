@@ -78,6 +78,15 @@ export interface ShowcaseProps {
 	height?: number;
 	/** Rendered code block. Passed in so this file needs no highlighter. */
 	renderCode?: (code: string, language: string) => ReactNode;
+	/**
+	 * Renders the StackBlitz embed for the Code tab.
+	 *
+	 * Passed in for the same reason as `renderCode`: this package has no
+	 * business depending on the StackBlitz SDK. The host builds a project
+	 * from the demo's source and hands it to the SDK; this component only
+	 * decides where it goes and when it is visible.
+	 */
+	renderStackblitz?: (code: string, language: string) => ReactNode;
 }
 
 /*
@@ -95,6 +104,7 @@ export interface ShowcaseProps {
  * worth a screenful.
  */
 type View = "compare" | string;
+type Tab = "preview" | "code" | "stackblitz";
 
 function Frame({
 	device,
@@ -149,15 +159,18 @@ export function Showcase({
 	install,
 	height = 420,
 	renderCode,
+	renderStackblitz,
 }: ShowcaseProps): ReactNode {
 	const [view, setView] = useState<View>("desktop");
-	const [tab, setTab] = useState<"preview" | "code">("preview");
+	const [tab, setTab] = useState<Tab>("preview");
 
 	const installEntries = Object.entries(install ?? {});
 	const shown =
 		view === "compare"
 			? SHOWCASE_DEVICES
 			: SHOWCASE_DEVICES.filter((device) => device.id === view);
+
+	const hasStackblitz = Boolean(code && renderStackblitz);
 
 	return (
 		<figure className="showcase">
@@ -179,6 +192,16 @@ export function Showcase({
 							onClick={() => setTab("code")}
 						>
 							Code
+						</button>
+					) : null}
+					{hasStackblitz ? (
+						<button
+							type="button"
+							className="showcase-btn"
+							data-active={tab === "stackblitz"}
+							onClick={() => setTab("stackblitz")}
+						>
+							StackBlitz
 						</button>
 					) : null}
 				</div>
@@ -226,6 +249,18 @@ export function Showcase({
 							fallbackHeight={height}
 						/>
 					))}
+				</div>
+			) : tab === "stackblitz" && hasStackblitz ? (
+				/*
+				 * The StackBlitz embed. A live, editable copy of the demo running
+				 * in a real WebContainer - the reader can change the code and see
+				 * the result without leaving the page.
+				 */
+				<div
+					className="showcase-stackblitz"
+					style={{ height: height + 40 }}
+				>
+					{renderStackblitz?.(code ?? "", language)}
 				</div>
 			) : (
 				<div className="showcase-code">

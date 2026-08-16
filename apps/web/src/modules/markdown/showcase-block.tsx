@@ -8,6 +8,7 @@ import { createHighlightedCodeBlockProps } from "@tanstack/highlight/react";
 import type { ReactNode } from "react";
 import { findRegistryItem } from "../registry/registry.catalogue";
 import { findDemo } from "../showcase/demos";
+import { StackblitzEmbed } from "../showcase/stackblitz-embed";
 
 /*
  * The showcase block.
@@ -21,6 +22,10 @@ import { findDemo } from "../showcase/demos";
  *
  * Install commands are attached automatically for anything in the registry, so
  * "how do I get this" is never a thing an author has to remember to write.
+ *
+ * The StackBlitz tab is wired here rather than in `packages/ui` for the same
+ * reason the code highlighter is: the Showcase component is a layout, not a
+ * rendering pipeline, and the StackBlitz SDK is a host concern.
  */
 export function ShowcaseBlock({ attributes }: MarkdownBlockProps): ReactNode {
 	const id = attributes.demo;
@@ -30,14 +35,18 @@ export function ShowcaseBlock({ attributes }: MarkdownBlockProps): ReactNode {
 	const item = findRegistryItem(id);
 
 	const height = Number(attributes.height);
+	const resolvedHeight = Number.isFinite(height) && height > 0 ? height : 420;
+	const title = attributes.title ?? id;
+	const code = demo?.source;
+	const language = demo?.language ?? "tsx";
 
 	return (
 		<Showcase
 			src={`/preview/${id}?fit=full`}
-			title={attributes.title ?? id}
-			code={demo?.source}
-			language={demo?.language ?? "tsx"}
-			height={Number.isFinite(height) && height > 0 ? height : 420}
+			title={title}
+			code={code}
+			language={language}
+			height={resolvedHeight}
 			install={
 				item
 					? {
@@ -64,6 +73,20 @@ export function ShowcaseBlock({ attributes }: MarkdownBlockProps): ReactNode {
 					/>
 				);
 			}}
+			// The StackBlitz tab: a live, editable copy of the demo. Built from
+			// the same source the Code tab shows, so the reader can change it and
+			// see the result without leaving the page.
+			renderStackblitz={
+				code
+					? (source, lang) => (
+							<StackblitzEmbed
+								title={title}
+								code={source}
+								language={lang}
+							/>
+						)
+					: undefined
+			}
 		/>
 	);
 }

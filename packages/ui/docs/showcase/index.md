@@ -1,6 +1,6 @@
 ---
 title: Showcase
-summary: A component at every width it has to survive, with its source and install commands.
+summary: A component at every width it has to survive, with its source, install commands, and a live StackBlitz editor.
 ---
 
 The frame below is the component this page documents, showing another
@@ -49,11 +49,28 @@ There is no transition on the device toggle. It gets pressed a dozen times
 while reading one page, and on a control used that often an animation reads as
 lag rather than as polish - the state change is the feedback.
 
+## StackBlitz
+
+The **StackBlitz** tab opens a live, editable copy of the demo in a real
+WebContainer. The reader can change the code and see the result without leaving
+the page.
+
+The project is built from the same source the Code tab shows - the demo's
+`source` string becomes `src/Demo.tsx` in a React + TypeScript project that
+imports `@sushindustries/ui` and `@sushindustries/atoms`. So the editable copy
+is the same code the reader was just looking at, not a reconstruction of it.
+
+The StackBlitz SDK is wired in the app layer, not in the Showcase component
+itself, for the same reason the code highlighter is: `packages/ui` has no
+business depending on the StackBlitz SDK. The Showcase component takes a
+`renderStackblitz` render prop and decides where it goes; the host builds the
+project and hands it to the SDK.
+
 ## What else it shows
 
 | Control | Does |
 | --- | --- |
-| Preview / Code | the running component, or the source that produced it |
+| Preview / Code / StackBlitz | the running component, the source, or a live editor |
 | Install rows | the TanStack and shadcn commands, attached automatically |
 
 > [!NOTE] Install commands are not written by hand
