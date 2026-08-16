@@ -218,3 +218,127 @@
 	border: 0;
 	border-top: 1px solid var(--line-soft);
 }
+
+/* ── callouts ────────────────────────────────────────────────── */
+
+/*
+ * `> [!NOTE] Title` blocks. The parser emits GitHub's alert class names, so
+ * these selectors match what it writes rather than something invented here.
+ */
+.prose .markdown-alert {
+	margin-top: var(--s-5);
+	padding: var(--s-4);
+	border-left: 2px solid var(--accent);
+	border-radius: 0 var(--r-lg) var(--r-lg) 0;
+	background: var(--bg-1);
+}
+
+.prose .markdown-alert-title {
+	margin: 0 0 var(--s-2);
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--fg);
+}
+
+.prose .markdown-alert-content > * + * {
+	margin-top: var(--s-3);
+}
+
+.prose .markdown-alert-note {
+	border-left-color: var(--info, #6fb0bd);
+}
+.prose .markdown-alert-tip {
+	border-left-color: var(--wasabi);
+}
+.prose .markdown-alert-warning {
+	border-left-color: var(--tamago);
+}
+.prose .markdown-alert-caution {
+	border-left-color: var(--accent);
+}
+
+/* ── tabs ────────────────────────────────────────────────────── */
+
+/*
+ * CSS-only tabs. A radio group drives the panels through :checked sibling
+ * selectors, so they work before hydration and on a page with no JavaScript
+ * at all — which matters, because on a docs page the tabs are the content.
+ */
+.tabs {
+	margin-top: var(--s-5);
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-lg);
+	overflow: hidden;
+}
+
+.tab-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--s-1);
+	padding: var(--s-2);
+	background: var(--bg-1);
+	border-bottom: 1px solid var(--line-soft);
+}
+
+.tab-label {
+	display: inline-flex;
+	align-items: center;
+	padding: var(--s-1) var(--s-3);
+	border-radius: var(--r);
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--fg-faint);
+	cursor: pointer;
+	transition:
+		color 160ms ease,
+		background 160ms ease;
+}
+
+/* Visually hidden, but still focusable and still the accessible control. */
+.tab-radio {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.tab-label:has(.tab-radio:checked) {
+	background: var(--bg-3);
+	color: var(--fg);
+}
+
+.tab-label:has(.tab-radio:focus-visible) {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+
+.tab-panel {
+	display: none;
+	padding: var(--s-4);
+}
+
+.tab-panel > * {
+	margin-top: 0;
+}
+
+/*
+ * Panel N shows when label N's radio is checked. Written out per index because
+ * CSS cannot count between siblings; five is more tabs than a doc should have.
+ */
+.tab-list:has(.tab-label:nth-of-type(1) .tab-radio:checked)
+~ .tab-panel[data-index="0"],
+.tab-list:has(.tab-label:nth-of-type(2) .tab-radio:checked)
+	~ .tab-panel[data-index="1"],
+.tab-list:has(.tab-label:nth-of-type(3) .tab-radio:checked)
+	~ .tab-panel[data-index="2"],
+.tab-list:has(.tab-label:nth-of-type(4) .tab-radio:checked)
+	~ .tab-panel[data-index="3"],
+.tab-list:has(.tab-label:nth-of-type(5) .tab-radio:checked)
+	~ .tab-panel[data-index="4"] {
+	display: block;
+}

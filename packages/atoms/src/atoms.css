@@ -1,9 +1,8 @@
 /*
  * Design tokens and atomic utilities.
  *
- * Same vocabulary as the vault's `packages/ui/src/atoms.css` — nori ground,
- * rice text, one salmon accent, monospace for structure — retuned for a page
- * that scrolls instead of an app shell that does not.
+ * Nori ground, rice text, one salmon accent, monospace for structure. The
+ * palette is sushi by colour, not by pictogram.
  *
  * Every class does one thing. Components compose them; components do not get
  * their own stylesheets. The few named blocks at the bottom (nav, hero, card,
@@ -399,6 +398,39 @@ svg {
 }
 .pointer {
 	cursor: pointer;
+}
+
+/* ── credits ─────────────────────────────────────────────────── */
+
+/*
+ * Deliberately quieter than `.card`. Work I depend on is listed, not
+ * promoted — if these looked like the package cards, the page would read as
+ * though I wrote them.
+ */
+.credit-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+	gap: var(--s-3);
+}
+
+.credit {
+	display: flex;
+	flex-direction: column;
+	gap: var(--s-1);
+	padding: var(--s-3) var(--s-4);
+	border: 1px solid transparent;
+	border-radius: var(--r-lg);
+	background: var(--bg-1);
+	transition:
+		border-color 200ms ease,
+		background 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.credit:hover {
+		background: var(--bg-2);
+		border-color: var(--line-soft);
+	}
 }
 
 /* ── page rhythm ─────────────────────────────────────────────── */

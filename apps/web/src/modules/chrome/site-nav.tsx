@@ -9,8 +9,8 @@ import type { ReactNode } from "react";
  * links is more interface than the thing it hides.
  */
 const SECTIONS = [
-	{ label: "Tools", href: "/#tools" },
 	{ label: "Packages", href: "/packages" },
+	{ label: "Built on", href: "/#built-on" },
 	{ label: "Socials", href: "/#socials" },
 ] as const;
 

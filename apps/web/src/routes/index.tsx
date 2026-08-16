@@ -1,7 +1,8 @@
-import { Card, Reveal, ScrollSpin, Section } from "@sushindustries/ui";
+import { Credit, Reveal, ScrollSpin, Section } from "@sushindustries/ui";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { PlaceholderMark } from "../modules/chrome/placeholder-mark";
+import { CREDITS } from "../modules/content/credits";
 import { listPackages } from "../modules/content/packages/packages.catalogue";
 import type { PackageSummary } from "../modules/content/packages/packages.schemas";
 
@@ -28,21 +29,7 @@ function Home(): ReactNode {
 				</ScrollSpin>
 			</section>
 
-			<Section id="tools" label="Tools" title="Things you run">
-				<div className="card-grid">
-					<Card title="sushindustries">
-						<p className="m-0 fg-dim text-sm text-pretty">
-							A Claude Code plugin. Vault, docs, stack and pipeline in one
-							install.
-						</p>
-						<code className="code mt-2">
-							claude plugin install sushindustries
-						</code>
-					</Card>
-				</div>
-			</Section>
-
-			<Section id="packages" label="Packages" title="Things you install">
+			<Section id="packages" label="Packages" title="Things I made">
 				<PackageCards packages={packages} />
 
 				<Link to="/packages" className="label mt-6 block">
@@ -50,9 +37,29 @@ function Home(): ReactNode {
 				</Link>
 			</Section>
 
+			<Section id="built-on" label="Built on" title="Things I did not make">
+				<p className="fg-dim max-w-prose text-pretty m-0">
+					This site runs on other people's work. Everything below is theirs, not
+					mine.
+				</p>
+
+				<div className="credit-grid mt-6">
+					{CREDITS.map((credit) => (
+						<Credit key={credit.href} {...credit} />
+					))}
+				</div>
+			</Section>
+
 			<Section id="socials" label="Socials" title="Where to find me">
 				<div className="flex gap-3 wrap">
-					<Card title="GitHub" href="https://github.com/sushindustries" />
+					<a
+						className="card"
+						href="https://github.com/sushindustries"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<h3 className="h3 m-0">GitHub</h3>
+					</a>
 				</div>
 			</Section>
 		</>

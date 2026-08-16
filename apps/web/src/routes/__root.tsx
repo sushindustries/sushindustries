@@ -7,6 +7,7 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { Devtools } from "../modules/chrome/devtools";
 import { SiteFooter } from "../modules/chrome/site-footer";
 import { SiteNav } from "../modules/chrome/site-nav";
 import proseCss from "../styles/prose.css?url";
@@ -53,6 +54,7 @@ function RootDocument({
 				<SiteNav />
 				<main id="main">{children}</main>
 				<SiteFooter />
+				<Devtools />
 				<Scripts />
 			</body>
 		</html>

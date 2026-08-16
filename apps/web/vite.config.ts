@@ -1,3 +1,4 @@
+import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
@@ -21,6 +22,16 @@ export default defineConfig({
 	},
 
 	plugins: [
+		/*
+		 * Devtools must be first — it transforms other plugins' output to inject
+		 * source locations, so anything registered ahead of it is invisible to it.
+		 *
+		 * It also strips the devtools imports from production builds, which is
+		 * the half that matters: the panel is a devDependency and must never
+		 * reach a visitor.
+		 */
+		devtools(),
+
 		// Import protection is on by default and is what keeps
 		// `@sushindustries/db`'s client.server.ts out of the browser bundle, so
 		// there is nothing to configure here yet.

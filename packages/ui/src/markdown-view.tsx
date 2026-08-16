@@ -1,20 +1,35 @@
 import { createHighlightedCodeBlockProps } from "@tanstack/highlight/react";
+import { docsMarkdownExtensions } from "@tanstack/markdown/extensions/docs";
 import { Markdown, type MarkdownComponents } from "@tanstack/markdown/react";
 import { isValidElement, type ReactNode } from "react";
 import { highlighter, resolveLanguage } from "./highlighter";
+import { createBlockDispatcher, type MarkdownBlocks } from "./markdown-blocks";
 
 /*
- * README markdown, rendered.
+ * Markdown, rendered — and the template layer that content files write against.
  *
- * TanStack Markdown parses; TanStack Highlight colours the fences. Both run
- * synchronously, which is what makes this work under SSR with no client
- * JavaScript at all — the highlighted HTML is in the server response, and
- * nothing re-highlights on hydration.
+ * Content on this site is `.md`, not TSX: posts, component docs, package
+ * READMEs. That only works if Markdown can reach a little further than
+ * paragraphs and lists, which is what the docs extensions provide:
  *
- * The parser's trust boundary is the reason this is safe to render at all: it
- * emits a bounded AST rather than passing raw HTML through, so a README cannot
- * inject markup. My own content today, but that will not always be true.
+ *   > [!NOTE] Title          a callout
+ *   <!-- ::start:tabs -->    tabbed sections, split on headings
+ *   <!-- ::end:tabs -->
+ *
+ * Anything beyond that is passed in by the app through `components`, so a page
+ * can map a custom block to a live React component without this package
+ * knowing what that component is.
+ *
+ * TanStack Markdown parses and TanStack Highlight colours the fences, both
+ * synchronously. That is what lets a whole document render during SSR with no
+ * client JavaScript and nothing to re-highlight on hydration.
+ *
+ * The parser's trust boundary is why rendering author content is safe at all:
+ * it emits a bounded AST instead of passing raw HTML through, so a document
+ * cannot inject markup.
  */
+
+const EXTENSIONS = docsMarkdownExtensions();
 
 interface CodeFence {
 	code: string;
@@ -29,10 +44,7 @@ interface CodeFence {
 function readFence(children: ReactNode): CodeFence | undefined {
 	if (!isValidElement(children)) return undefined;
 
-	const props = children.props as {
-		children?: unknown;
-		className?: string;
-	};
+	const props = children.props as { children?: unknown; className?: string };
 
 	if (typeof props.children !== "string") return undefined;
 
@@ -41,7 +53,7 @@ function readFence(children: ReactNode): CodeFence | undefined {
 	return { code: props.children, lang: match?.[1] };
 }
 
-const components = {
+const BASE_COMPONENTS = {
 	pre(props) {
 		const fence = readFence(props.children);
 
@@ -56,13 +68,6 @@ const components = {
 		});
 
 		return (
-			/*
-			 * The markup here is the highlighter's own token renderer output, and
-			 * that renderer escapes the source it was handed. The string never
-			 * contains anything from the Markdown document that the parser did not
-			 * already reduce to a code-fence value, so there is no path from
-			 * document text to live markup.
-			 */
 			<div
 				className={block.className}
 				// biome-ignore lint/security/noDangerouslySetInnerHtml: highlighter output, escaped by renderTokens
@@ -87,12 +92,29 @@ const components = {
 
 export interface MarkdownViewProps {
 	source: string;
+	/**
+	 * Custom `<!-- ::start:name -->` blocks this document may use, keyed by
+	 * name. This is how a Markdown file reaches a live React component without
+	 * this package having to know what that component is.
+	 */
+	blocks?: MarkdownBlocks;
 }
 
-export function MarkdownView({ source }: MarkdownViewProps): ReactNode {
+export function MarkdownView({
+	source,
+	blocks = {},
+}: MarkdownViewProps): ReactNode {
 	return (
 		<div className="prose">
-			<Markdown components={components}>{source}</Markdown>
+			<Markdown
+				extensions={EXTENSIONS}
+				components={{
+					...BASE_COMPONENTS,
+					"md-comment-component": createBlockDispatcher(blocks),
+				}}
+			>
+				{source}
+			</Markdown>
 		</div>
 	);
 }

@@ -4,6 +4,18 @@
  * component ever needs privileged data, it takes it as a prop.
  */
 export { Card, type CardProps } from "./card";
+export { Credit, type CreditProps } from "./credit";
+export {
+	type Frontmatter,
+	parseFrontmatter,
+	readList,
+	readString,
+} from "./frontmatter";
+export {
+	createBlockDispatcher,
+	type MarkdownBlockProps,
+	type MarkdownBlocks,
+} from "./markdown-blocks";
 export { MarkdownView, type MarkdownViewProps } from "./markdown-view";
 export { Reveal, type RevealProps } from "./reveal";
 export { ScrollSpin, type ScrollSpinProps } from "./scroll-spin";
