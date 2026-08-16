@@ -21,9 +21,11 @@ COPY packages/atoms/package.json packages/atoms/
 COPY packages/ui/package.json packages/ui/
 COPY packages/db/package.json packages/db/
 
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
-    pnpm config set store-dir /pnpm/store && \
-    pnpm install --frozen-lockfile
+# No BuildKit cache mount here on purpose. Railway's builder requires cache
+# mount ids to carry its own cache-key prefix (`s/<service-id>-…`), which would
+# hardcode one platform's service id into a Dockerfile that should build
+# anywhere. The manifest-only COPY above is what actually saves the time.
+RUN pnpm install --frozen-lockfile
 
 # ─── build ─────────────────────────────────────────────────────────────
 FROM node:22-alpine AS build
