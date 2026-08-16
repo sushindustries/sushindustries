@@ -9,6 +9,9 @@ export interface DeskWindowState {
 	readonly y: number;
 	/** Higher is nearer the front. */
 	readonly z: number;
+	/** Set once somebody resizes it. Absent means the default size. */
+	readonly w?: number;
+	readonly h?: number;
 }
 
 export interface DeskState {
@@ -33,6 +36,7 @@ export interface DeskApi {
 	open(path: readonly string[]): void;
 	close(id: string): void;
 	move(id: string, x: number, y: number): void;
+	resize(id: string, w: number, h: number): void;
 	raise(id: string): void;
 	navigate(id: string, path: readonly string[]): void;
 	hide(entryId: string): void;
@@ -193,6 +197,11 @@ export function useDeskState(key: string): DeskApi {
 
 		move: useCallback(
 			(id, x, y) => update(id, (entry) => ({ ...entry, x, y })),
+			[update],
+		),
+
+		resize: useCallback(
+			(id, w, h) => update(id, (entry) => ({ ...entry, w, h })),
 			[update],
 		),
 

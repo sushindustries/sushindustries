@@ -56,7 +56,7 @@ export function Dock({
 	results = [],
 	query = "",
 	onQuery,
-	label = "Everything",
+	label = "Search",
 	trailing,
 }: DockProps): ReactNode {
 	const [open, setOpen] = useState(false);
@@ -70,15 +70,26 @@ export function Dock({
 			>
 				<summary className="dock-start" aria-label={label}>
 					{/*
-					 * Four squares. It is the shape everything with a launcher uses,
-					 * which is the point - a launcher nobody recognises is a button
-					 * nobody presses.
+					 * A magnifier, not a grid of squares.
+					 *
+					 * The squares are the launcher shape, and a launcher is a place
+					 * things are kept. This is a search field with results under it,
+					 * and labelling a search box with the icon for a drawer is the
+					 * kind of small lie that makes an interface feel arbitrary.
 					 */}
-					<Icon name="grid" size={17} />
+					<Icon name="search" size={16} />
 					<span className="dock-start-label">{label}</span>
 				</summary>
 
-				<div className="dock-panel">
+				{/*
+				 * The screen behind the palette, dimmed. A pseudo-element would not
+				 * do: it has to sit between the palette and the desktop, and a
+				 * pseudo-element of the launcher is stuck in the dock's stacking
+				 * order at the bottom of the screen.
+				 */}
+				<span className="dock-scrim" />
+
+				<div className="dock-palette">
 					<div className="shelf-search">
 						<Icon name="search" size={15} className="shelf-search-glyph" />
 						<input

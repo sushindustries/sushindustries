@@ -7,8 +7,13 @@ export interface DeskWindowProps {
 	x: number;
 	y: number;
 	z: number;
+	/** Set once resized. Absent uses the CSS default. */
+	w?: number;
+	h?: number;
 	/** Committed on release, not during the drag. */
 	onMove(x: number, y: number): void;
+	/** Committed on release, not during the resize. */
+	onResize?(w: number, h: number): void;
 	onClose(): void;
 	/** Bring to the front. Called on any press inside. */
 	onRaise(): void;
@@ -37,7 +42,10 @@ export function DeskWindow({
 	x,
 	y,
 	z,
+	w,
+	h,
 	onMove,
+	onResize,
 	onClose,
 	onRaise,
 	label,
@@ -50,6 +58,7 @@ export function DeskWindow({
 		top: 0,
 	});
 	const at = useRef({ x, y });
+	const size = useRef({ w: w ?? 0, h: h ?? 0 });
 
 	const onPointerDown = useCallback(
 		(event: React.PointerEvent<HTMLDivElement>) => {
@@ -109,6 +118,72 @@ export function DeskWindow({
 		onMove(at.current.x, at.current.y);
 	}, [onMove]);
 
+	/*
+	 * Resizing is the same three events as dragging, against the other corner.
+	 *
+	 * Not `resize: both` in CSS, which would be one line: a CSS resize handle
+	 * cannot be told about a minimum that depends on the content, cannot be
+	 * clamped to the desk, and - the one that decides it - writes to the
+	 * element's inline size without telling React, so the size is forgotten the
+	 * moment anything re-renders. This writes the same custom properties the
+	 * drag does and commits on release.
+	 */
+	const onResizeDown = useCallback((event: React.PointerEvent<HTMLElement>) => {
+		if (event.button !== 0) return;
+
+		const node = ref.current;
+		if (!node) return;
+
+		event.stopPropagation();
+		event.currentTarget.setPointerCapture(event.pointerId);
+
+		const box = node.getBoundingClientRect();
+		from.current = {
+			x: event.clientX,
+			y: event.clientY,
+			left: box.width,
+			top: box.height,
+		};
+		size.current = { w: box.width, h: box.height };
+		node.dataset.resizing = "true";
+	}, []);
+
+	const onResizeMove = useCallback((event: React.PointerEvent<HTMLElement>) => {
+		const node = ref.current;
+		if (node?.dataset.resizing !== "true") return;
+
+		const parent = node.parentElement;
+
+		const next = {
+			w: Math.max(
+				240,
+				Math.min(
+					parent ? parent.clientWidth - at.current.x : 9999,
+					from.current.left + event.clientX - from.current.x,
+				),
+			),
+			h: Math.max(
+				160,
+				Math.min(
+					parent ? parent.clientHeight - at.current.y : 9999,
+					from.current.top + event.clientY - from.current.y,
+				),
+			),
+		};
+
+		size.current = next;
+		node.style.setProperty("--w", `${next.w}px`);
+		node.style.setProperty("--h", `${next.h}px`);
+	}, []);
+
+	const onResizeUp = useCallback(() => {
+		const node = ref.current;
+		if (node?.dataset.resizing !== "true") return;
+
+		node.dataset.resizing = "false";
+		onResize?.(size.current.w, size.current.h);
+	}, [onResize]);
+
 	return (
 		<section
 			ref={ref}
@@ -118,6 +193,8 @@ export function DeskWindow({
 				{
 					"--x": `${x}px`,
 					"--y": `${y}px`,
+					...(w ? { "--w": `${w}px` } : {}),
+					...(h ? { "--h": `${h}px` } : {}),
 					zIndex: z,
 				} as React.CSSProperties
 			}
@@ -151,6 +228,23 @@ export function DeskWindow({
 			</header>
 
 			<div className="desk-body">{children}</div>
+
+			{/*
+			 * The corner. `aria-hidden` and not focusable, because resizing is a
+			 * pointer refinement of something that already works - the window has a
+			 * usable size without anybody touching this, and a keyboard user is not
+			 * missing a capability, only a nicety.
+			 */}
+			{onResize ? (
+				<span
+					className="desk-resize"
+					aria-hidden="true"
+					onPointerDown={onResizeDown}
+					onPointerMove={onResizeMove}
+					onPointerUp={onResizeUp}
+					onPointerCancel={onResizeUp}
+				/>
+			) : null}
 		</section>
 	);
 }

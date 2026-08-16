@@ -3272,6 +3272,15 @@
 		box-shadow:
 			inset 0 1px 0 color-mix(in srgb, var(--nori-900) 90%, transparent),
 			inset 0 2px 6px color-mix(in srgb, var(--nori-900) 60%, transparent);
+		/*
+		 * A stacking context of its own, above the desktop.
+		 *
+		 * Without it the dock is at the desktop's level and a window dragged
+		 * over it covers it. With it, the dock's own children - including the
+		 * palette, which is centred on the whole screen - are lifted as a group.
+		 */
+		position: relative;
+		z-index: 5;
 	}
 
 	.dock-launcher {
@@ -3325,29 +3334,52 @@
 	}
 
 	/*
-	 * Opens upward, because the dock is at the bottom. `bottom: 100%` rather
-	 * than a computed offset so the panel stays attached to the button at any
-	 * dock height.
+	 * Centred on the screen, not anchored to its button.
+	 *
+	 * A search that opens where the button is puts the results in the corner you
+	 * were already looking away from, and on a narrow screen it opens off the
+	 * edge and has to be clamped. Centred, it lands where the eye goes when you
+	 * decide to search, and it is the same place at every screen size.
+	 *
+	 * Slightly above centre, at 42%: optically centred text sits a little high,
+	 * and a panel that grows downward as results arrive would walk off the
+	 * bottom from a true middle.
 	 */
-	.dock-panel {
+	.dock-palette {
 		position: absolute;
-		bottom: calc(100% + var(--s-2));
-		left: 0;
+		left: 50%;
+		top: 42%;
+		translate: -50% -50%;
 		z-index: 40;
-		width: min(24rem, 78vw);
+		width: min(28rem, calc(100% - var(--s-6)));
 		padding: var(--s-3);
 		border: 1px solid var(--line);
-		border-radius: var(--r-lg);
-		background: color-mix(in srgb, var(--nori-800) 97%, transparent);
-		box-shadow: 0 -18px 44px
-			color-mix(in srgb, var(--nori-900) 70%, transparent);
-		animation: dock-panel-in 140ms var(--ease-out);
+		border-radius: var(--r-card);
+		background: color-mix(in srgb, var(--nori-800) 98%, transparent);
+		box-shadow: 0 30px 70px color-mix(in srgb, var(--nori-900) 80%, transparent);
+		animation: dock-palette-in 140ms var(--ease-out);
 	}
 
-	@keyframes dock-panel-in {
+	/* The screen behind it, dimmed, so the palette is the only thing to answer. */
+	.dock-scrim {
+		position: absolute;
+		inset: 0;
+		z-index: 39;
+		background: color-mix(in srgb, var(--nori-900) 55%, transparent);
+		animation: dock-scrim-in 140ms ease;
+	}
+
+	@keyframes dock-palette-in {
 		from {
 			opacity: 0;
-			translate: 0 6px;
+			scale: 0.98;
+			translate: -50% calc(-50% + 6px);
+		}
+	}
+
+	@keyframes dock-scrim-in {
+		from {
+			opacity: 0;
 		}
 	}
 
@@ -3469,7 +3501,8 @@
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.dock-panel,
+		.dock-palette,
+		.dock-scrim,
 		.desk-window {
 			animation: none;
 		}
@@ -3589,5 +3622,70 @@
 		color: var(--fg-dim);
 		font-variant-numeric: tabular-nums;
 		white-space: nowrap;
+	}
+}
+
+@layer blocks {
+	/*
+	 * Windows take their size from custom properties when they have been
+	 * resized, and fall back to the default otherwise. `var(--w, <default>)` is
+	 * what lets one rule serve both cases without a second class.
+	 */
+	.desk-window {
+		width: var(--w, min(30rem, calc(100% - var(--s-5))));
+		height: var(--h, auto);
+		max-height: var(--h, min(78%, 30rem));
+	}
+
+	.desk-window[data-resizing="true"] {
+		user-select: none;
+	}
+
+	/*
+	 * The resize corner.
+	 *
+	 * Two diagonal lines rather than a filled triangle, which is the shape
+	 * people already read as "drag me" and costs one gradient. It is bigger than
+	 * it looks: 20px is under the 24px minimum for a pointer target, and this
+	 * one is refinement rather than function, but a corner you cannot catch is
+	 * a corner that reads as broken.
+	 */
+	.desk-resize {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		width: 20px;
+		height: 20px;
+		cursor: nwse-resize;
+		touch-action: none;
+		background: repeating-linear-gradient(
+			-45deg,
+			transparent 0 3px,
+			var(--line) 3px 4px
+		);
+		border-bottom-right-radius: var(--r-lg);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.desk-resize:hover {
+			background: repeating-linear-gradient(
+				-45deg,
+				transparent 0 3px,
+				var(--fg-faint) 3px 4px
+			);
+		}
+	}
+
+	/* A page shown inside a window, rather than navigated to. */
+	.window-page {
+		padding: var(--s-4);
+	}
+
+	@media (max-width: 620px) {
+		/* Nowhere to resize to at this width, and the corner would sit under a
+		   thumb that is trying to scroll. */
+		.desk-resize {
+			display: none;
+		}
 	}
 }

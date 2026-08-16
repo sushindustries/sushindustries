@@ -10,6 +10,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { type ReactNode, useMemo, useState } from "react";
 import { shelfEntries } from "./shelf.catalogue";
 import { shelfActions } from "./shelf-actions";
+import { renderShelfPage } from "./shelf-page";
 
 /*
  * This site's desktop: the components, given this site's tree and actions.
@@ -155,6 +156,7 @@ export function SiteShelf(): ReactNode {
 					entries={entries}
 					label="Everything on this site"
 					rememberAs={DESK_KEY}
+					renderEntry={renderShelfPage}
 					actionsFor={(entry, path) =>
 						shelfActions(entry, path, {
 							navigate: (href) => void navigate({ href }),

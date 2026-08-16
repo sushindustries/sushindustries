@@ -91,7 +91,16 @@ export function Laptop({
 						{children}
 					</div>
 
-					{/* Pinned, so it stays put while the desktop scrolls under it. */}
+					{/*
+					 * Pinned, so it stays put while the desktop scrolls under it.
+					 *
+					 * The dock is a direct child of the screen rather than of the
+					 * scrolling desktop, so anything it opens - the search palette
+					 * centres itself on the whole screen - is measured against the
+					 * screen and clipped by the screen, which is the shape somebody
+					 * looking at it expects. Inside the desktop it would be measured
+					 * against a scrolled box and cropped by it.
+					 */}
 					{dock}
 				</div>
 

@@ -30,6 +30,15 @@ export interface FolderShelfProps {
 	 * ever list one kind of thing.
 	 */
 	actionsFor?: (entry: ShelfEntry, path: readonly ShelfEntry[]) => MenuAction[];
+	/**
+	 * Renders a leaf's page, to be shown in a window rather than navigated to.
+	 *
+	 * Return nothing and the leaf stays a link, which is the right default -
+	 * this component has no idea what is at the other end of an href. Return
+	 * something and the desktop stops being a directory of somewhere else and
+	 * becomes the place the content is.
+	 */
+	renderEntry?: (entry: ShelfEntry) => ReactNode;
 	/** Renders the link for an entry that has an href. */
 	renderLink?: (props: {
 		id: string;
@@ -172,6 +181,7 @@ function EntryMenu({
 export function FolderShelf({
 	entries,
 	actionsFor,
+	renderEntry,
 	renderLink = (props) => <a {...props} />,
 	label = "Folders",
 	searchable = false,
@@ -207,8 +217,13 @@ export function FolderShelf({
 
 	const shown = entries.filter((entry) => !desk.desk.hidden.includes(entry.id));
 
+	/*
+	 * A folder opens a window onto its contents; a leaf opens a window onto its
+	 * page, when the consumer can render one. A leaf with no renderer stays a
+	 * link and is handled by the anchor itself, never reaching here.
+	 */
 	function openEntry(entry: ShelfEntry, at: readonly ShelfEntry[] = []): void {
-		if (!isFolder(entry)) return;
+		if (!isFolder(entry) && !renderEntry) return;
 		desk.open([...at.map((step) => step.id), entry.id]);
 	}
 
@@ -263,6 +278,7 @@ export function FolderShelf({
 								onOpen={() => openEntry(entry)}
 								actionsFor={actionsFor}
 								renderLink={renderLink}
+								openable={Boolean(renderEntry)}
 							/>
 						</li>
 					))}
@@ -291,7 +307,10 @@ export function FolderShelf({
 					x={state.x}
 					y={state.y}
 					z={state.z}
+					w={state.w}
+					h={state.h}
 					onMove={(x, y) => desk.move(state.id, x, y)}
+					onResize={(w, h) => desk.resize(state.id, w, h)}
 					onClose={() => desk.close(state.id)}
 					onRaise={() => desk.raise(state.id)}
 				>
@@ -305,6 +324,7 @@ export function FolderShelf({
 						}
 						onOpen={(entry) => openEntry(entry, path)}
 						actionsFor={actionsFor}
+						renderEntry={renderEntry}
 						renderLink={renderLink}
 					/>
 				</DeskWindow>
@@ -322,6 +342,7 @@ function ShelfTile({
 	actionsFor,
 	renderLink,
 	path = [],
+	openable = false,
 }: {
 	entry: ShelfEntry;
 	onOpen: () => void;
@@ -329,6 +350,8 @@ function ShelfTile({
 	renderLink: NonNullable<FolderShelfProps["renderLink"]>;
 	/** Where this tile sits, so its menu can say so. */
 	path?: readonly ShelfEntry[];
+	/** A leaf whose page can be shown in a window rather than navigated to. */
+	openable?: boolean;
 }): ReactNode {
 	const menu = useContextMenu();
 	const actions = actionsFor?.(entry, path) ?? [];
@@ -350,7 +373,7 @@ function ShelfTile({
 
 	return (
 		<div className="relative h-full" {...menu.triggerProps}>
-			{isFolder(entry) ? (
+			{isFolder(entry) || openable ? (
 				<button type="button" className="shelf-face" onClick={onOpen}>
 					{face}
 				</button>
@@ -389,18 +412,21 @@ function WindowBody({
 	onNavigate,
 	onOpen,
 	actionsFor,
+	renderEntry,
 	renderLink,
 }: {
 	path: readonly ShelfEntry[];
 	onNavigate: (path: readonly ShelfEntry[]) => void;
 	onOpen: (entry: ShelfEntry) => void;
 	actionsFor: FolderShelfProps["actionsFor"];
+	renderEntry?: FolderShelfProps["renderEntry"];
 	renderLink: NonNullable<FolderShelfProps["renderLink"]>;
 }): ReactNode {
 	const current = path.at(-1);
 	if (!current) return null;
 
 	const contents = current.children ?? [];
+	const page = isFolder(current) ? null : renderEntry?.(current);
 
 	return (
 		<div className="window-frame">
@@ -442,7 +468,11 @@ function WindowBody({
 			 * it in" and that is text.
 			 */}
 			<div className="window-canvas">
-				{contents.length === 0 ? (
+				{page ? (
+					// A page, read here rather than somewhere else. The desktop stops
+					// being a directory of the site and becomes where the site is.
+					<div className="window-page">{page}</div>
+				) : contents.length === 0 ? (
 					<p className="p-6 text-center label">Nothing in here yet</p>
 				) : (
 					<ul className="shelf">
