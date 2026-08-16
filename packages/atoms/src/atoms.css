@@ -898,7 +898,17 @@ svg {
 	height: 100dvh;
 	padding: calc(var(--s-8) + var(--s-3)) var(--s-4) var(--s-6);
 	overflow-y: auto;
+	/*
+	 * The drawer takes the drag, and the page does not get it.
+	 *
+	 * `overscroll-behavior` stops the scroll chaining onward once the drawer
+	 * hits its end, and `touch-action: pan-y` claims vertical drags for this
+	 * element rather than letting the browser hand them to the page behind.
+	 * Without the pair, a drag inside the menu scrolls the article under it,
+	 * which is the one thing a modal surface must not do.
+	 */
 	overscroll-behavior: contain;
+	touch-action: pan-y;
 	border-left: 1px solid var(--line);
 	/*
 	 * Opaque, and no blur. The drawer sits over a 62% scrim, so whatever a
@@ -919,6 +929,22 @@ svg {
 	from {
 		translate: 100% 0;
 	}
+}
+
+/*
+ * The page stops scrolling while the drawer is open.
+ *
+ * `:has()` reads the `<details>` state from the root, so the lock is the same
+ * CSS-only mechanism as the menu itself - no effect, no state, nothing to
+ * unwind if a component unmounts mid-transition.
+ *
+ * Locking the page is what makes the drawer's own scrolling work at all. With
+ * the page still scrollable underneath, a drag that starts in the menu and
+ * continues past its end moves the article behind it, and a menu that scrolls
+ * the page it is covering does not read as a menu.
+ */
+html:has(.nav-burger[open]) {
+	overflow: hidden;
 }
 
 /*

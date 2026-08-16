@@ -216,7 +216,18 @@ export function NavBar({
 							<span className="nav-burger-bars" />
 						</summary>
 
-						<div className="nav-sheet">
+						{/*
+						 * `data-lenis-prevent` hands scrolling inside the drawer back
+						 * to the browser.
+						 *
+						 * A smooth-scroll driver like Lenis intercepts wheel and touch
+						 * for the whole page and animates the scroll itself. An
+						 * overlay with its own overflow is invisible to it, so a drag
+						 * inside this drawer moved the article behind it instead. Lenis
+						 * reads this attribute and leaves the subtree alone; anyone not
+						 * using Lenis gets an inert data attribute.
+						 */}
+						<div className="nav-sheet" data-lenis-prevent>
 							<p className="nav-sheet-title label m-0">{menuLabel}</p>
 
 							{entries.map((entry) =>

@@ -62,7 +62,7 @@ The drawer takes 420ms, slower than the desktop panel's 220ms. It travels the
 width of the screen, and a full-screen surface that arrives in 200ms reads as a
 page change rather than as something opening.
 
-## Three traps, all found the hard way
+## Four traps, all found the hard way
 
 > [!CAUTION] `backdrop-filter` breaks `position: fixed` beneath it
 > An element with `backdrop-filter` becomes the containing block for every
@@ -80,6 +80,17 @@ page change rather than as something opening.
 > glass from a gradient, which is what was doing the visual work anyway. The
 > drawer is opaque, because it sits over a 62% scrim and was paying for a
 > full-screen readback to composite something already hidden.
+
+> [!CAUTION] A smooth-scroll driver owns the page, including over your overlay
+> Lenis intercepts wheel and touch for the whole document and animates the
+> scroll itself, so a drag inside this drawer moved the article behind it
+> rather than the menu. The drawer carries `data-lenis-prevent`, which Lenis
+> reads as "leave this subtree to the browser". Anyone not using Lenis gets an
+> inert data attribute. Alongside it, `overscroll-behavior: contain` stops the
+> scroll chaining at the end of the list, `touch-action: pan-y` claims vertical
+> drags, and `html:has(.nav-burger[open]) { overflow: hidden }` locks the page
+> outright - the same CSS-only mechanism as the menu, so there is no state to
+> unwind if the component unmounts mid-transition.
 
 > [!CAUTION] `opacity: 0` takes the pseudo-elements with it
 > The burger is three bars: the element's own background, plus `::before` and
