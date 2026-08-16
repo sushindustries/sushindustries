@@ -5,13 +5,14 @@ import type { ReactNode } from "react";
  * Logo left, sections centre, socials right.
  *
  * The centre group is hidden below the narrow breakpoint rather than folded
- * into a burger menu. There are three links; a menu that opens to show three
+ * into a burger menu. There are four links; a menu that opens to show four
  * links is more interface than the thing it hides.
  */
 const SECTIONS = [
+	{ label: "Components", href: "/components" },
 	{ label: "Packages", href: "/packages" },
 	{ label: "Built on", href: "/#built-on" },
-	{ label: "Socials", href: "/#socials" },
+	{ label: "Writing", href: "/posts" },
 ] as const;
 
 export function SiteNav(): ReactNode {

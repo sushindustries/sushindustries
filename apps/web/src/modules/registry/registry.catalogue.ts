@@ -1,0 +1,156 @@
+import { REGISTRY_ITEMS, type RegistryItem } from "@sushindustries/ui/registry";
+
+/*
+ * One source, two installers.
+ *
+ * Every component is published twice: once as a shadcn registry item and once
+ * as a TanStack CLI add-on. Nothing is duplicated to make that work — the
+ * source stays in `packages/ui/src`, and this renders whichever shape was
+ * asked for.
+ *
+ * They are not redundant. shadcn copies files and installs bare dependency
+ * names, resolving whatever npm offers that day. A TanStack add-on writes
+ * `packageAdditions` straight into package.json, so it must state versions —
+ * and it can declare things shadcn cannot.
+ *
+ * Both formats are validated against their real published schemas, not against
+ * a reading of the docs. For TanStack that is `AddOnCompiledSchema` from
+ * `@tanstack/create`: `type` and `phase` are required enums, and `deletedFiles`
+ * is required even though adding a component deletes nothing.
+ */
+
+const SOURCES = import.meta.glob<string>("../../../../../packages/ui/src/*", {
+	eager: true,
+	import: "default",
+	query: "?raw",
+});
+
+/** Where a copied file lands in the consumer's project. */
+function targetPath(file: string): string {
+	return `src/components/sushindustries/${file}`;
+}
+
+function readSource(file: string): string {
+	const key = `../../../../../packages/ui/src/${file}`;
+	return SOURCES[key] ?? "";
+}
+
+function filesFor(item: RegistryItem): Record<string, string> {
+	const out: Record<string, string> = {};
+
+	for (const file of item.files) {
+		const source = readSource(file);
+		if (source) out[targetPath(file)] = source;
+	}
+
+	return out;
+}
+
+export interface ShadcnItem {
+	$schema: string;
+	name: string;
+	type: "registry:component";
+	title: string;
+	description: string;
+	dependencies: string[];
+	registryDependencies: string[];
+	files: Array<{ path: string; content: string; type: "registry:component" }>;
+}
+
+export function toShadcn(item: RegistryItem, origin: string): ShadcnItem {
+	return {
+		$schema: "https://ui.shadcn.com/schema/registry-item.json",
+		name: item.name,
+		type: "registry:component",
+		title: item.title,
+		description: item.description,
+
+		// shadcn resolves versions itself, so these are bare names by design.
+		dependencies: Object.keys(item.dependencies),
+
+		// A registry dependency is a URL so it resolves without our registry
+		// being configured in the consumer's components.json.
+		registryDependencies: (item.registryDependencies ?? []).map(
+			(name) => `${origin}/r/shadcn/${name}.json`,
+		),
+
+		files: Object.entries(filesFor(item)).map(([path, content]) => ({
+			path,
+			content,
+			type: "registry:component",
+		})),
+	};
+}
+
+export interface TanStackAddOn {
+	id: string;
+	name: string;
+	description: string;
+	type: "add-on";
+	phase: "add-on";
+	category: "styling";
+	modes: string[];
+	link: string;
+	packageAdditions: { dependencies?: Record<string, string> };
+	files: Record<string, string>;
+	/** Required by the schema, and always empty: adding a component removes nothing. */
+	deletedFiles: string[];
+	dependsOn?: string[];
+}
+
+export function toTanStackAddOn(
+	item: RegistryItem,
+	origin: string,
+): TanStackAddOn {
+	const addOn: TanStackAddOn = {
+		id: item.name,
+		name: item.title,
+		description: item.description,
+		type: "add-on",
+		phase: "add-on",
+		category: "styling",
+		modes: ["file-router"],
+		link: `${origin}/components/${item.name}`,
+		packageAdditions:
+			Object.keys(item.dependencies).length > 0
+				? { dependencies: { ...item.dependencies } }
+				: {},
+		files: filesFor(item),
+		deletedFiles: [],
+	};
+
+	if (item.registryDependencies?.length) {
+		addOn.dependsOn = [...item.registryDependencies];
+	}
+
+	return addOn;
+}
+
+/** The index `tanstack create --add-ons <url>` and `CTA_REGISTRY` read. */
+export function toRegistryIndex(origin: string): {
+	"add-ons": Array<{
+		name: string;
+		description: string;
+		url: string;
+		modes: string[];
+		framework: string;
+	}>;
+} {
+	return {
+		"add-ons": REGISTRY_ITEMS.map((item) => ({
+			name: item.title,
+			description: item.description,
+			url: `${origin}/r/tanstack/${item.name}.json`,
+			modes: ["file-router"],
+			framework: "react",
+		})),
+	};
+}
+
+export function listRegistry(): readonly RegistryItem[] {
+	return REGISTRY_ITEMS;
+}
+
+export function findRegistryItem(name: string): RegistryItem | undefined {
+	return REGISTRY_ITEMS.find((item) => item.name === name);
+}

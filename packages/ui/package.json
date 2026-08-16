@@ -2,7 +2,7 @@
 	"name": "@sushindustries/ui",
 	"version": "0.1.0",
 	"type": "module",
-	"description": "The components this site is made of. Every one of them is installable on its own — nothing here is site-specific.",
+	"description": "The components this site is made of. Every one of them is installable on its own \u2014 nothing here is site-specific.",
 	"keywords": [
 		"react",
 		"components",
@@ -16,10 +16,13 @@
 		"./scroll-spin": "./src/scroll-spin.tsx",
 		"./card": "./src/card.tsx",
 		"./section": "./src/section.tsx",
-		"./markdown-view": "./src/markdown-view.tsx"
+		"./markdown-view": "./src/markdown-view.tsx",
+		"./registry": "./registry.ts"
 	},
 	"files": [
-		"src"
+		"src",
+		"registry.ts",
+		"docs"
 	],
 	"peerDependencies": {
 		"@sushindustries/atoms": "workspace:*",

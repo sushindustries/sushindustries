@@ -7,6 +7,7 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { QueryProvider } from "../integrations/tanstack-query/provider";
 import { Devtools } from "../modules/chrome/devtools";
 import { SiteFooter } from "../modules/chrome/site-footer";
 import { SiteNav } from "../modules/chrome/site-nav";
@@ -50,11 +51,18 @@ function RootDocument({
 				<HeadContent />
 			</head>
 			<body>
-				<SmoothScroll />
-				<SiteNav />
-				<main id="main">{children}</main>
-				<SiteFooter />
-				<Devtools />
+				{/*
+				 * QueryProvider wraps the page and the devtools together, because
+				 * the Query panel reads the client out of context — outside it,
+				 * the panel renders but shows nothing.
+				 */}
+				<QueryProvider>
+					<SmoothScroll />
+					<SiteNav />
+					<main id="main">{children}</main>
+					<SiteFooter />
+					<Devtools />
+				</QueryProvider>
 				<Scripts />
 			</body>
 		</html>
