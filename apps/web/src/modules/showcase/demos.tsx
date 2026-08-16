@@ -3,7 +3,9 @@ import {
 	Credit,
 	type CreditProps,
 	DocAside,
+	Grid,
 	MarkdownView,
+	NavBar,
 	parseFrontmatter,
 	Reveal,
 	readList,
@@ -12,6 +14,7 @@ import {
 	Section,
 	Showcase,
 	SmoothScroll,
+	Spacer,
 } from "@sushindustries/ui";
 import { lazy, type ReactNode, Suspense } from "react";
 import { PlaceholderMark } from "../chrome/placeholder-mark";
@@ -244,6 +247,91 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 		),
 		poster: <p className="label text-center">An on-page contents rail</p>,
 		source: `<DocAside headings={collectHeadings(markdown)} />`,
+		language: "tsx",
+	},
+
+	grid: {
+		element: (
+			<Grid min="14rem" gap={4}>
+				{["One", "Two", "Three", "Four"].map((label) => (
+					<Card key={label} title={label}>
+						<p className="m-0 fg-dim text-sm">
+							Narrow the frame. The column count follows the width, and no
+							breakpoint decided it.
+						</p>
+					</Card>
+				))}
+			</Grid>
+		),
+		source: `<Grid min="14rem" gap={4}>
+	<Card title="One" />
+	<Card title="Two" />
+	<Card title="Three" />
+	<Card title="Four" />
+</Grid>`,
+		language: "tsx",
+	},
+
+	spacer: {
+		element: (
+			<div>
+				<p className="fg-dim m-0">Something above.</p>
+				<Spacer size={6} label="Then" />
+				<p className="fg-dim m-0">Something below, a measured distance away.</p>
+				<Spacer size={5} rule />
+				<p className="fg-dim m-0">A rule with no label.</p>
+				<Spacer size={5} />
+				<p className="fg-dim m-0">And a plain gap.</p>
+			</div>
+		),
+		source: `<Spacer size={6} label="Then" />
+<Spacer size={5} rule />
+<Spacer size={5} />`,
+		language: "tsx",
+	},
+
+	"nav-bar": {
+		/*
+		 * Its own entries rather than the site's: a demo that renders the live nav
+		 * changes whenever the nav does, and the card stops being a picture of the
+		 * component and starts being a picture of today's menu.
+		 */
+		element: (
+			<NavBar
+				brand={<span className="mono text-sm font-semibold">acme</span>}
+				entries={[
+					{
+						label: "Products",
+						href: "/products",
+						icon: "package",
+						items: [
+							{
+								label: "Motion",
+								href: "/products/motion",
+								icon: "motion",
+								description: "Things that move, and stop when asked not to",
+								badge: "3",
+							},
+							{
+								label: "Layout",
+								href: "/products/layout",
+								icon: "grid",
+								description: "Grids, spacing and page structure",
+								badge: "5",
+							},
+						],
+					},
+					{ label: "Writing", href: "/writing", icon: "note" },
+				]}
+				trailing={<span className="nav-link">GitHub</span>}
+			/>
+		),
+		poster: <p className="label text-center">A header with expanding panels</p>,
+		source: `<NavBar
+	brand={<span className="mono">acme</span>}
+	entries={navEntries()}
+	trailing={<a href="https://github.com/...">GitHub</a>}
+/>`,
 		language: "tsx",
 	},
 

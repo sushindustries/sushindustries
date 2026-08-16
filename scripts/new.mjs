@@ -210,9 +210,47 @@ async function newPackage() {
 	);
 }
 
+/* ── glyph ───────────────────────────────────────────────────────────── */
+
+/*
+ * A row in the glyph table, with the path left empty.
+ *
+ * Deliberately not a placeholder square. A glyph that renders as something is
+ * a glyph nobody notices they never drew, and it ships in a menu looking like
+ * a decision. `pnpm doctor` reports an empty path and refuses to regenerate.
+ */
+async function newGlyph() {
+	const table = "packages/ui/glyphs.md";
+
+	const added = edit(table, (before) => {
+		if (before.includes(`| ${slug} |`)) return before;
+
+		const rows = before.split("\n");
+		const last = rows.findLastIndex((row) => row.startsWith("| "));
+		if (last === -1) return before;
+
+		rows.splice(last + 1, 0, `| ${slug} | \`\` | |`);
+		return rows.join("\n");
+	});
+
+	if (!added) {
+		fail(`"${slug}" is already in ${table}.`);
+	}
+
+	written.push(table);
+	todo.push(`draw \`${slug}\`: one or more paths in a 24x24 box, in ${table}`);
+	todo.push("say why that drawing in the third column");
+	todo.push("run `pnpm doctor --fix` to regenerate packages/ui/src/icon.tsx");
+}
+
 /* ── run ─────────────────────────────────────────────────────────────── */
 
-const kinds = { post: newPost, component: newComponent, package: newPackage };
+const kinds = {
+	post: newPost,
+	component: newComponent,
+	package: newPackage,
+	glyph: newGlyph,
+};
 
 if (!(kind in kinds)) {
 	fail(`No template for "${kind}". One of: ${Object.keys(kinds).join(", ")}.`);

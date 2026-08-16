@@ -25,6 +25,12 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+	GLYPH_OUTPUT,
+	GLYPH_SOURCE,
+	readGlyphs,
+	renderIconComponent,
+} from "./glyphs.mjs";
 import { loadTemplate, writeFrom } from "./templates.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -489,6 +495,78 @@ function checkComponentClassesLiveInAtoms() {
 }
 
 /**
+ * The icon component matches the glyph table it is generated from.
+ *
+ * Two failure modes, both silent without this. A glyph added to the Markdown
+ * and never generated is a name the types do not have. A glyph edited in the
+ * component is a drawing whose stated reason no longer describes it, and the
+ * next regeneration throws the edit away.
+ */
+function checkGlyphsAreGenerated() {
+	const glyphs = readGlyphs();
+
+	const empty = glyphs.filter((glyph) => glyph.paths.length === 0);
+	for (const glyph of empty) {
+		report(
+			"glyphs",
+			GLYPH_SOURCE,
+			`"${glyph.name}" has no path`,
+			"draw it, or drop the row - an empty glyph renders as nothing at all",
+		);
+	}
+
+	if (empty.length > 0) return;
+
+	const expected = renderIconComponent(glyphs);
+	if (read(GLYPH_OUTPUT) === expected) return;
+
+	if (shouldFix) {
+		writeFileSync(join(root, GLYPH_OUTPUT), expected);
+		repaired(`${GLYPH_OUTPUT} from ${GLYPH_SOURCE}`);
+		return;
+	}
+
+	report(
+		"glyphs",
+		GLYPH_OUTPUT,
+		`does not match ${GLYPH_SOURCE}`,
+		"pnpm doctor --fix. Edit the table, never the component",
+	);
+}
+
+/**
+ * Every registry category has a glyph.
+ *
+ * The nav and the archive both show a category with its icon. A category
+ * without one is a hole in a menu of icons, which reads as a bug rather than
+ * as a default.
+ */
+function checkCategoriesHaveIcons() {
+	const source = read("packages/ui/registry.ts");
+	const block = source.match(/REGISTRY_CATEGORIES[\s\S]*?\n\];/)?.[0] ?? "";
+	const names = new Set(readGlyphs().map((glyph) => glyph.name));
+
+	for (const [, id, icon] of block.matchAll(
+		/id:\s*"([^"]+)"[\s\S]*?icon:\s*"([^"]*)"/g,
+	)) {
+		if (names.has(icon)) continue;
+
+		report(
+			"glyphs",
+			"packages/ui/registry.ts",
+			`category "${id}" uses icon "${icon}", which is not in ${GLYPH_SOURCE}`,
+		);
+	}
+
+	for (const [, id] of block.matchAll(/\{\s*id:\s*"([^"]+)",\s*label:/g)) {
+		const entry = block.slice(block.indexOf(`id: "${id}"`));
+		if (entry.slice(0, entry.indexOf("}")).includes("icon:")) continue;
+
+		report("glyphs", "packages/ui/registry.ts", `category "${id}" has no icon`);
+	}
+}
+
+/**
  * Variants are data attributes, never a second class name.
  *
  * `.card` and `.card--compact` means a consumer has to know both names and can
@@ -678,6 +756,8 @@ checkRegistryItemsHaveDemos(registry);
 
 checkContentFrontmatter();
 checkTemplates();
+checkGlyphsAreGenerated();
+checkCategoriesHaveIcons();
 checkComponentClassesLiveInAtoms();
 checkVariantsAreAttributes();
 checkAtomsUseTokens();

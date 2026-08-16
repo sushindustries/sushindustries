@@ -1,4 +1,5 @@
 import type { MarkdownBlocks } from "@sushindustries/ui";
+import { GridBlock, SpacerBlock } from "./layout-blocks";
 import { ShowcaseBlock } from "./showcase-block";
 import { ViewerBlock } from "./viewer-block";
 
@@ -13,4 +14,6 @@ import { ViewerBlock } from "./viewer-block";
 export const BLOCKS: MarkdownBlocks = {
 	showcase: ShowcaseBlock,
 	viewer: ViewerBlock,
+	grid: GridBlock,
+	spacer: SpacerBlock,
 };

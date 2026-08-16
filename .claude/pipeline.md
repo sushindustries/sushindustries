@@ -6,10 +6,10 @@ costing money it did not need to.
 ## The four commands
 
 ```shell
-pnpm new <post|component|package> <slug>   # start it from a template
-pnpm doctor                                # what is missing
-pnpm doctor --fix                          # repair what can be repaired
-pnpm check                                 # doctor, lint, types, build
+pnpm new <post|component|package|glyph> <slug>   # start it from a template
+pnpm doctor                                      # what is missing
+pnpm doctor --fix                                # repair what can be repaired
+pnpm check                                       # doctor, lint, types, build
 ```
 
 `pnpm check` is what `.githooks/pre-push` runs. The hook installs itself: the

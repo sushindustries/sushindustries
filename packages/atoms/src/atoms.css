@@ -509,13 +509,33 @@ svg {
 
 /* ── nav ─────────────────────────────────────────────────────── */
 
+/*
+ * The blur is on a pseudo-element, not on `.nav` itself, and that is load
+ * bearing.
+ *
+ * `backdrop-filter` on an element makes it a containing block for every
+ * `position: fixed` descendant. With it on `.nav`, the mobile drawer inside
+ * this header measured `inset: 0` against the header rather than against the
+ * viewport - so a full-height drawer came out header-height, in the wrong
+ * place, with a scrim that dimmed sixty pixels of the page.
+ *
+ * Moving the filter down one level leaves `.nav` an ordinary element, and the
+ * glass looks identical.
+ */
 .nav {
 	position: sticky;
 	top: 0;
 	z-index: 20;
+	border-bottom: 1px solid var(--line-soft);
+}
+
+.nav::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
 	background: color-mix(in srgb, var(--bg-0) 82%, transparent);
 	backdrop-filter: blur(12px);
-	border-bottom: 1px solid var(--line-soft);
 }
 
 .nav-link {
@@ -536,6 +556,567 @@ svg {
 
 .nav-link[data-active="true"] {
 	color: var(--fg);
+}
+
+.nav-brand {
+	font-family: var(--mono);
+	font-size: var(--t-sm);
+	font-weight: 600;
+	color: var(--fg);
+}
+
+/*
+ * The expanding panels.
+ *
+ * Built on <details>, so `[open]` is the state and there is nothing to
+ * synchronise. The summary marker is removed in two ways because Safari still
+ * wants the WebKit pseudo-element.
+ */
+.nav-menu,
+.nav-burger,
+.nav-group {
+	position: relative;
+}
+
+.nav-menu summary,
+.nav-burger summary,
+.nav-group summary {
+	list-style: none;
+	cursor: pointer;
+}
+
+.nav-menu summary::-webkit-details-marker,
+.nav-burger summary::-webkit-details-marker,
+.nav-group summary::-webkit-details-marker {
+	display: none;
+}
+
+.nav-chevron {
+	color: var(--fg-faint);
+	transition: transform 220ms var(--ease-out);
+}
+
+[open] > summary .nav-chevron {
+	transform: rotate(180deg);
+}
+
+.nav-menu[open] > summary,
+.nav-group[open] > summary {
+	color: var(--fg);
+}
+
+/*
+ * Absolutely positioned, so opening a panel never moves the page under the
+ * pointer that opened it.
+ *
+ * Right-aligned rather than centred on its trigger. Centring reads better on
+ * the middle entry and puts the last one half off-screen, and a panel that has
+ * to be clamped by the viewport is a panel whose left edge moves depending on
+ * which trigger opened it. Anchored to the right, every panel opens in the same
+ * place relative to its trigger.
+ */
+.nav-panel {
+	position: absolute;
+	top: calc(100% + var(--s-3));
+	right: 0;
+	z-index: 21;
+	width: max-content;
+	max-width: min(46rem, calc(100vw - var(--s-6)));
+	padding: var(--s-3);
+	border: 1px solid var(--line);
+	border-radius: var(--r-card);
+	background: color-mix(in srgb, var(--bg-1) 92%, transparent);
+	backdrop-filter: blur(16px) saturate(140%);
+	box-shadow: 0 24px 60px color-mix(in srgb, var(--nori-900) 76%, transparent);
+	transform-origin: top right;
+	animation: nav-panel-in 220ms var(--ease-out);
+}
+
+/*
+ * Soft expansion: it grows into place rather than appearing.
+ *
+ * A scale that starts near 1 and a translate of a few pixels is the whole
+ * effect. Anything larger reads as a zoom, and the panel then has to travel far
+ * enough that the eye follows the movement instead of the content.
+ */
+@keyframes nav-panel-in {
+	from {
+		opacity: 0;
+		scale: 0.97;
+		translate: 0 -6px;
+	}
+}
+
+/*
+ * Two or three columns, worked out from the panel's width rather than declared.
+ *
+ * One column is a list, and a list is what the nav already is - the panel earns
+ * its existence by showing the whole set at once. `auto-fit` means a panel with
+ * two items is two columns wide rather than a tall narrow strip.
+ */
+.nav-panel-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: var(--s-1);
+	padding: 0;
+	list-style: none;
+}
+
+.nav-panel-item {
+	display: flex;
+	align-items: start;
+	gap: var(--s-3);
+	padding: var(--s-3);
+	border: 1px solid transparent;
+	border-radius: var(--r-lg);
+	color: var(--fg-dim);
+	transition:
+		background 160ms ease,
+		border-color 160ms ease;
+}
+
+/*
+ * The icon tile: glass.
+ *
+ * A translucent fill over a blurred backdrop, with a light top edge and a dark
+ * bottom one. The two-tone border is what makes it read as a raised piece of
+ * glass rather than as a flat swatch, and it costs one gradient.
+ */
+.nav-panel-icon {
+	display: grid;
+	place-items: center;
+	flex: 0 0 auto;
+	width: 34px;
+	height: 34px;
+	border: 1px solid color-mix(in srgb, var(--rice) 12%, transparent);
+	border-radius: var(--r-lg);
+	background:
+		linear-gradient(
+			160deg,
+			color-mix(in srgb, var(--rice) 9%, transparent),
+			transparent 60%
+		),
+		color-mix(in srgb, var(--bg-3) 70%, transparent);
+	backdrop-filter: blur(8px);
+	color: var(--fg-dim);
+	transition:
+		color 160ms ease,
+		border-color 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.nav-panel-item:hover {
+		background: var(--bg-2);
+		border-color: var(--line-soft);
+	}
+
+	/* The tile lifts with the row, so the whole item reads as one target. */
+	.nav-panel-item:hover .nav-panel-icon {
+		border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+		color: var(--accent);
+	}
+}
+
+.nav-panel-item:focus-visible {
+	background: var(--bg-2);
+	border-color: var(--line-soft);
+}
+
+.nav-panel-label {
+	color: var(--fg);
+	font-size: var(--t-sm);
+	font-weight: 500;
+}
+
+.nav-panel-badge {
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	color: var(--fg-faint);
+}
+
+.nav-panel-description {
+	display: block;
+	margin-top: 2px;
+	font-size: var(--t-xs);
+	line-height: 1.5;
+	color: var(--fg-faint);
+}
+
+.nav-panel-all {
+	display: block;
+	margin-top: var(--s-2);
+	padding: var(--s-3);
+	border-top: 1px solid var(--line-soft);
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--fg-faint);
+	transition: color 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.nav-panel-all:hover {
+		color: var(--accent);
+	}
+}
+
+/* ── the mobile drawer ───────────────────────────────────────── */
+
+/*
+ * Hidden until the row is. The two are exclusive by construction rather than
+ * by a JavaScript check, so there is no width at which both or neither shows.
+ */
+.nav-burger {
+	display: none;
+}
+
+.nav-burger-toggle {
+	display: grid;
+	place-items: center;
+	width: 38px;
+	height: 38px;
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-lg);
+	background: var(--bg-1);
+	color: var(--fg-dim);
+}
+
+/*
+ * Three bars that become a cross.
+ *
+ * Drawn here rather than taken from the glyph set, because a glyph cannot morph
+ * and the morph is the affordance: it says the same control closes what it
+ * opened.
+ */
+.nav-burger-bars,
+.nav-burger-bars::before,
+.nav-burger-bars::after {
+	display: block;
+	width: 16px;
+	height: 1.5px;
+	border-radius: 2px;
+	background: currentColor;
+	transition:
+		transform 260ms var(--ease-out),
+		opacity 160ms ease;
+}
+
+.nav-burger-bars::before,
+.nav-burger-bars::after {
+	content: "";
+	position: relative;
+}
+
+.nav-burger-bars::before {
+	top: -5px;
+}
+
+.nav-burger-bars::after {
+	top: 3.5px;
+}
+
+.nav-burger[open] .nav-burger-bars {
+	opacity: 0;
+}
+
+.nav-burger[open] .nav-burger-bars::before {
+	opacity: 1;
+	transform: translateY(5px) rotate(45deg);
+}
+
+.nav-burger[open] .nav-burger-bars::after {
+	opacity: 1;
+	transform: translateY(-3.5px) rotate(-45deg);
+}
+
+/*
+ * A drawer, not a dropdown.
+ *
+ * Full height against the right edge, so the menu is somewhere rather than on
+ * top of something. A dropdown of this many entries covers the page it came
+ * from and leaves the reader unsure whether they navigated.
+ *
+ * On a phone it takes the whole screen. A 23rem panel on a 390px device is not
+ * a drawer, it is a panel with a 40px strip of unusable page beside it, and
+ * that strip is a tap target for "close" that nobody can hit reliably. Full
+ * width also means the items get the width they were designed at instead of
+ * being squeezed. The tablet keeps the drawer, where a strip of page is wide
+ * enough to still read as page.
+ *
+ * `100dvh`, not `100vh`: on iOS Safari `vh` is the height with the toolbar
+ * hidden, so a `100vh` drawer runs under the address bar and the last entry is
+ * unreachable.
+ */
+.nav-sheet {
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 30;
+	display: flex;
+	flex-direction: column;
+	gap: var(--s-1);
+	width: min(23rem, 86vw);
+	height: 100dvh;
+	padding: calc(var(--s-8) + var(--s-3)) var(--s-4) var(--s-6);
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	border-left: 1px solid var(--line);
+	background: color-mix(in srgb, var(--bg-1) 97%, transparent);
+	backdrop-filter: blur(20px) saturate(140%);
+	box-shadow: -24px 0 60px color-mix(in srgb, var(--nori-900) 70%, transparent);
+	/*
+	 * Slower than the desktop panel, and deliberately. A drawer travels the
+	 * width of the screen, and a full-screen surface that arrives in 200ms
+	 * reads as a page change rather than as something opening.
+	 */
+	animation: nav-sheet-in 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes nav-sheet-in {
+	from {
+		translate: 100% 0;
+	}
+}
+
+/*
+ * The dimmed page behind it. A pseudo-element on the details rather than a
+ * second node, so nothing in the markup exists only to be a backdrop.
+ */
+.nav-burger[open]::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: 29;
+	background: color-mix(in srgb, var(--nori-900) 62%, transparent);
+	animation: nav-scrim-in 420ms ease;
+}
+
+@keyframes nav-scrim-in {
+	from {
+		opacity: 0;
+	}
+}
+
+/*
+ * Phones: the whole screen.
+ *
+ * The border and the shadow go with the strip of page they were separating it
+ * from. A shadow against a screen edge is a smudge.
+ */
+@media (max-width: 620px) {
+	.nav-sheet {
+		width: 100%;
+		border-left: 0;
+		box-shadow: none;
+	}
+}
+
+/*
+ * Group headers and item rows share one left edge.
+ *
+ * Both use the same horizontal padding, and the nested list adds none. Any
+ * indent on the list would push every icon tile a few pixels right of the
+ * group's own icon, and the drawer would read as two columns that nearly line
+ * up, which is worse than either lining up or clearly not.
+ *
+ * `44px` is the minimum comfortable touch target, and a nav row is the control
+ * most likely to be tapped by a thumb reaching across a screen.
+ */
+.nav-group-summary {
+	min-height: 44px;
+	padding: var(--s-3);
+	border-radius: var(--r-lg);
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--fg-dim);
+	transition: background 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.nav-group-summary:hover {
+		background: var(--bg-2);
+		color: var(--fg);
+	}
+}
+
+/* No hover on a touch screen, so the press itself has to answer. */
+.nav-group-summary:active,
+.nav-sheet .nav-panel-item:active {
+	background: var(--bg-2);
+}
+
+/* The chevron goes to the end of the row; the icon stays with the label. */
+.nav-group-summary .nav-chevron {
+	margin-left: auto;
+}
+
+/* Inside the drawer the panel list is a plain column: the width is not there. */
+.nav-sheet .nav-panel-list {
+	grid-template-columns: minmax(0, 1fr);
+	gap: 2px;
+	padding: 0;
+}
+
+.nav-sheet .nav-panel-item {
+	min-height: 44px;
+	padding: var(--s-3);
+}
+
+/*
+ * The group's own rows are set in from its header by the icon column's width,
+ * so a group reads as containing its items rather than as being followed by
+ * them. One value, used twice, so the two cannot drift.
+ */
+.nav-sheet .nav-panel-list,
+.nav-sheet > .nav-group > .nav-panel-all {
+	margin-left: var(--s-3);
+	border-left: 1px solid var(--line-soft);
+	padding-left: var(--s-2);
+}
+
+.nav-sheet .nav-panel-all {
+	margin-bottom: var(--s-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.nav-panel,
+	.nav-sheet,
+	.nav-burger[open]::before {
+		animation: none;
+	}
+
+	.nav-chevron,
+	.nav-burger-bars,
+	.nav-burger-bars::before,
+	.nav-burger-bars::after {
+		transition: none;
+	}
+}
+
+/*
+ * The switch. One breakpoint, and the two halves are mutually exclusive on
+ * either side of it.
+ */
+@media (max-width: 860px) {
+	.nav-row {
+		display: none;
+	}
+
+	.nav-burger {
+		display: block;
+	}
+}
+
+/* ── grid and spacer ─────────────────────────────────────────── */
+
+/*
+ * `auto-fit` plus `minmax` works the column count out from the space
+ * available, so there is no breakpoint here and no column count to keep in
+ * step with one. A grid inside a sidebar gets it right for the same reason a
+ * grid on a full page does: it is asking about its own width, not the
+ * viewport's.
+ */
+.grid-auto {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(var(--grid-min, 16rem), 1fr));
+}
+
+.grid-auto[data-gap="1"] {
+	gap: var(--s-1);
+}
+.grid-auto[data-gap="2"] {
+	gap: var(--s-2);
+}
+.grid-auto[data-gap="3"] {
+	gap: var(--s-3);
+}
+.grid-auto[data-gap="4"] {
+	gap: var(--s-4);
+}
+.grid-auto[data-gap="5"] {
+	gap: var(--s-5);
+}
+.grid-auto[data-gap="6"] {
+	gap: var(--s-6);
+}
+.grid-auto[data-gap="7"] {
+	gap: var(--s-7);
+}
+
+/*
+ * A fixed count, for content that is genuinely paired. A before and an after
+ * that reflow to one column stop being a comparison, so these hold until the
+ * narrow breakpoint and then give up all at once.
+ */
+.grid-auto[data-columns="2"] {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-auto[data-columns="3"] {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.grid-auto[data-columns="4"] {
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 860px) {
+	.grid-auto[data-columns] {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+.spacer {
+	display: block;
+}
+
+.spacer[data-size="1"] {
+	height: var(--s-1);
+}
+.spacer[data-size="2"] {
+	height: var(--s-2);
+}
+.spacer[data-size="3"] {
+	height: var(--s-3);
+}
+.spacer[data-size="4"] {
+	height: var(--s-4);
+}
+.spacer[data-size="5"] {
+	height: var(--s-5);
+}
+.spacer[data-size="6"] {
+	height: var(--s-6);
+}
+.spacer[data-size="7"] {
+	height: var(--s-7);
+}
+
+/*
+ * The rule sits in the middle of the gap rather than at its edge, so the space
+ * above and below stays symmetric and the spacer keeps its declared height.
+ */
+.spacer[data-rule] {
+	display: flex;
+	align-items: center;
+	gap: var(--s-3);
+}
+
+.spacer[data-rule]::before,
+.spacer[data-rule]::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: var(--line-soft);
+}
+
+.spacer-label {
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--fg-faint);
 }
 
 /* ── hero ────────────────────────────────────────────────────── */

@@ -1,3 +1,5 @@
+import type { IconName } from "./src/icon";
+
 /*
  * What this package publishes, and what each item needs to work.
  *
@@ -17,15 +19,48 @@
  */
 export type RegistryCategory = "motion" | "layout" | "content" | "docs" | "3d";
 
+/*
+ * Every category carries its glyph, because both the nav and the archive show
+ * one. Icon names come from `glyphs.md`; `pnpm doctor` rejects a category whose
+ * icon is not in that table, and a category with no icon at all.
+ */
 export const REGISTRY_CATEGORIES: ReadonlyArray<{
 	id: RegistryCategory;
 	label: string;
+	icon: IconName;
+	/** One line, shown under the label in the nav panel. */
+	blurb: string;
 }> = [
-	{ id: "motion", label: "Motion" },
-	{ id: "layout", label: "Layout" },
-	{ id: "content", label: "Content" },
-	{ id: "docs", label: "Docs" },
-	{ id: "3d", label: "3D" },
+	{
+		id: "motion",
+		label: "Motion",
+		icon: "motion",
+		blurb: "Scroll effects and reveals, all reduced-motion aware",
+	},
+	{
+		id: "layout",
+		label: "Layout",
+		icon: "grid",
+		blurb: "Containers, grids and the spacing between things",
+	},
+	{
+		id: "content",
+		label: "Content",
+		icon: "text",
+		blurb: "Rendering Markdown, and reading what is at the top of it",
+	},
+	{
+		id: "docs",
+		label: "Docs",
+		icon: "book",
+		blurb: "The parts a documentation page is made of",
+	},
+	{
+		id: "3d",
+		label: "3D",
+		icon: "cube",
+		blurb: "A model in a React component, and nothing else to configure",
+	},
 ];
 
 export interface RegistryItem {
@@ -168,6 +203,42 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		subcategory: "Rendering",
 		tags: ["markdown", "highlight", "ssr"],
 		preview: "Markdown with callouts, tabs and highlighted code",
+	},
+	{
+		name: "grid",
+		title: "Grid",
+		description:
+			"A responsive grid with no breakpoints in it. One number decides the column count at every width.",
+		files: ["grid.tsx"],
+		dependencies: {},
+		category: "layout",
+		subcategory: "Page structure",
+		tags: ["grid", "responsive", "no-deps"],
+		preview: "Cards reflowing from four columns to one",
+	},
+	{
+		name: "spacer",
+		title: "Spacer",
+		description:
+			"Vertical space on the scale, optionally with a rule and a label. For Markdown, where there is no markup to hang a margin on.",
+		files: ["spacer.tsx", "grid.tsx"],
+		dependencies: {},
+		category: "layout",
+		subcategory: "Page structure",
+		tags: ["markdown", "spacing", "no-deps"],
+		preview: "A labelled rule holding a gap open",
+	},
+	{
+		name: "nav-bar",
+		title: "Nav Bar",
+		description:
+			"A site header whose panels expand. Built on <details>, so it works before hydration and closes on Escape.",
+		files: ["nav-bar.tsx", "icon.tsx"],
+		dependencies: {},
+		category: "layout",
+		subcategory: "Page structure",
+		tags: ["navigation", "no-js", "responsive"],
+		preview: "A header with a panel of categories open under it",
 	},
 	{
 		name: "frontmatter",

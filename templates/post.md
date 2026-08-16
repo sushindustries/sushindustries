@@ -37,7 +37,28 @@ Any component with a demo can be embedded, at real viewport widths:
 <!-- ::start:showcase demo="card" height="380" -->
 <!-- ::end:showcase -->
 
----
+## Layout
+
+Markdown has no way to say "these go side by side", so there is a block for it.
+Anything can go inside, including other blocks.
+
+<!-- ::start:grid min="16rem" gap="4" -->
+
+The left column. Columns fit as many as will fit at `min` wide and share what is
+left, so this is two across here and one across on a phone without a breakpoint
+deciding it.
+
+The right column. Delete the block and these become two paragraphs, which is the
+correct thing for them to degrade to.
+
+<!-- ::end:grid -->
+
+And a measured gap, with an optional caption on the rule. Use this rather than
+`---`, which is a thematic break and puts a boundary in the outline you probably
+did not mean:
+
+<!-- ::start:spacer size="6" label="Later" -->
+<!-- ::end:spacer -->
 
 Set `draft: false` when it is ready. Drafts are excluded from the index, the
 sitemap and `llms.txt`.

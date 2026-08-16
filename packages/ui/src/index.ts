@@ -22,6 +22,7 @@ export {
 	readList,
 	readString,
 } from "./frontmatter";
+export { Grid, type GridProps, type Space } from "./grid";
 export { collectHeadings, type DocHeading } from "./headings";
 export { highlighter, resolveLanguage } from "./highlighter";
 export { Icon, type IconName, type IconProps } from "./icon";
@@ -31,6 +32,12 @@ export {
 	type MarkdownBlocks,
 } from "./markdown-blocks";
 export { MarkdownView, type MarkdownViewProps } from "./markdown-view";
+export {
+	NavBar,
+	type NavBarProps,
+	type NavEntry,
+	type NavItem,
+} from "./nav-bar";
 export { Reveal, type RevealProps } from "./reveal";
 export { ScrollSpin, type ScrollSpinProps } from "./scroll-spin";
 export { Section, type SectionProps } from "./section";
@@ -41,3 +48,4 @@ export {
 	type ShowcaseProps,
 } from "./showcase";
 export { SmoothScroll } from "./smooth-scroll";
+export { Spacer, type SpacerProps } from "./spacer";

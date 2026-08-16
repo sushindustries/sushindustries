@@ -1,6 +1,26 @@
 import type { ReactNode } from "react";
 
-export type IconName = "cube" | "package" | "note" | "layers";
+/*
+ * Generated from `packages/ui/glyphs.md`. Do not edit by hand.
+ *
+ * The set lives in Markdown because that is where each drawing can carry the
+ * reason for it, and it is generated into a component because a library cannot
+ * read a Markdown file at runtime without stopping being installable.
+ *
+ * Add a glyph with `pnpm new glyph <name>`, then `pnpm doctor --fix`.
+ */
+
+export type IconName =
+	| "cube"
+	| "package"
+	| "note"
+	| "layers"
+	| "motion"
+	| "grid"
+	| "text"
+	| "book"
+	| "rule"
+	| "chevron";
 
 export interface IconProps {
 	name: IconName;
@@ -9,16 +29,8 @@ export interface IconProps {
 	className?: string;
 }
 
-/*
- * A tiny line-icon set, drawn rather than installed.
- *
- * Four glyphs at one stroke weight is a few hundred bytes; an icon package is
- * a dependency, a build step and a tree-shaking question. `currentColor` means
- * they inherit whatever the label beside them is doing, including its hover
- * and focus states, which is the part a sprite sheet gets wrong.
- */
 const PATHS: Record<IconName, ReactNode> = {
-	// An isometric cube - the 3D viewer.
+	// An isometric cube. The 3D viewer.
 	cube: (
 		<>
 			<path d="M12 2.5 21 7v10l-9 4.5L3 17V7z" />
@@ -26,12 +38,14 @@ const PATHS: Record<IconName, ReactNode> = {
 			<path d="M12 11.5v10" />
 		</>
 	),
+	// A taped box seen from above.
 	package: (
 		<>
 			<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z" />
 			<path d="M7.5 5.25 16.5 9.75V18" />
 		</>
 	),
+	// A page with a folded corner and two lines of writing.
 	note: (
 		<>
 			<path d="M5 3h9l5 5v13H5z" />
@@ -39,10 +53,50 @@ const PATHS: Record<IconName, ReactNode> = {
 			<path d="M9 13h6M9 17h4" />
 		</>
 	),
+	// Two stacked plates. Components, which are things on things.
 	layers: (
 		<>
 			<path d="M12 3 3 8l9 5 9-5z" />
 			<path d="M3 13.5 12 18.5l9-5" />
+		</>
+	),
+	// An arc with a leading dot: something travelling, not something spinning.
+	motion: (
+		<>
+			<path d="M3 17c4-9 14-9 18 0" />
+			<path d="M20 14.5a2 2 0 1 1-4 0 2 2 0 0 1 4 0" />
+		</>
+	),
+	// Four cells. Layout, and what the Grid component does.
+	grid: (
+		<>
+			<path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" />
+		</>
+	),
+	// Ragged lines. Prose, which is what content means here.
+	text: (
+		<>
+			<path d="M4 6h16M4 11h12M4 16h14M4 21h8" />
+		</>
+	),
+	// An open book. Docs.
+	book: (
+		<>
+			<path d="M4 4h6a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H4z" />
+			<path d="M20 4h-6a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H20z" />
+		</>
+	),
+	// A gap held open between two rules. The Spacer, drawn as the thing it inserts.
+	rule: (
+		<>
+			<path d="M4 6h16M4 18h16" />
+			<path d="M12 10v4" />
+		</>
+	),
+	// Down. Rotated by CSS wherever it needs to point elsewhere.
+	chevron: (
+		<>
+			<path d="M6 9.5 12 15l6-5.5" />
 		</>
 	),
 };
