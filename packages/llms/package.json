@@ -20,6 +20,7 @@
 		"access": "public"
 	},
 	"scripts": {
+		"build": "tsdown",
 		"typecheck": "tsc --noEmit -p tsconfig.json"
 	}
 }

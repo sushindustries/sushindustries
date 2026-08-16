@@ -17,6 +17,7 @@
 		"drizzle.config.ts"
 	],
 	"scripts": {
+		"build": "tsdown",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
 		"db:studio": "drizzle-kit studio",
