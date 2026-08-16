@@ -16,7 +16,7 @@ export const Route = createFileRoute("/components/")({
 	validateSearch: searchSchema,
 	head: () => ({
 		meta: [
-			{ title: "Components — Sushindustries" },
+			{ title: "Components - Sushindustries" },
 			{
 				name: "description",
 				content:
@@ -100,7 +100,7 @@ function ComponentsPage(): ReactNode {
 					 * than from a resolved path. Handing `Link` a finished
 					 * `/components/reveal` produces an anchor with the correct href
 					 * whose click is intercepted and then fails to match
-					 * `/components/$slug` — the card looks like a link and does
+					 * `/components/$slug` - the card looks like a link and does
 					 * nothing, which is exactly what it was doing.
 					 */
 					renderLink={({ kind, id, href, className, children }) => {

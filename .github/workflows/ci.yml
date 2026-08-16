@@ -6,7 +6,8 @@ on:
   pull_request:
 
 # A second push supersedes the first: nothing is learned from finishing a run
-# for a commit that is already behind.
+# for a commit that is already behind, and every cancelled minute is a minute
+# not paid for.
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
@@ -25,14 +26,29 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      # Turbo's cache, keyed on the lockfile and the commit. A run that changes
+      # only Markdown restores the previous build instead of repeating it.
+      - uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: turbo-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
+          restore-keys: |
+            turbo-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-
+            turbo-${{ runner.os }}-
+
       - run: pnpm install --frozen-lockfile
 
-      - name: Workspaces vs Dockerfile
-        run: node scripts/check-workspaces.mjs
+      # Cheapest first. This reads the directory and nothing else, so a missing
+      # Dockerfile line or a doc with no frontmatter fails in seconds rather
+      # than after a build.
+      - name: Doctor
+        run: pnpm doctor
 
       - name: Format and lint
         run: pnpm exec biome check .
 
+      # `typecheck` depends on `build` in turbo.json, so this produces the
+      # generated route tree and the build below is a cache hit.
       - name: Types
         run: pnpm run typecheck
 
@@ -42,6 +58,15 @@ jobs:
   image:
     name: Docker image
     runs-on: ubuntu-latest
+
+    # Only after the cheap checks pass.
+    #
+    # These two used to run in parallel, which meant a typo in a type annotation
+    # still paid for a full multi-stage image build every time. The image job is
+    # the expensive one; it should only ever run on a commit that has already
+    # earned it.
+    needs: check
+
     steps:
       - uses: actions/checkout@v4
 

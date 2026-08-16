@@ -6,7 +6,7 @@ import { Children, isValidElement, type ReactNode, useId } from "react";
  * `<!-- ::start:name attr="x" -->` blocks come out of the parser as
  * `<md-comment-component data-component="name" data-attributes="{json}">`.
  * This dispatches on that name so a content file can reach a real React
- * component, and an unknown name renders its children instead of throwing —
+ * component, and an unknown name renders its children instead of throwing -
  * a typo in a post should degrade to plain prose, not a 500.
  */
 
@@ -55,7 +55,7 @@ function toStringMap(
  *
  * A radio group drives the panels through CSS `:checked` sibling selectors.
  * A React state version would be three lines shorter and would also mean the
- * tabs do not work until hydration — on a docs page that is the whole content,
+ * tabs do not work until hydration - on a docs page that is the whole content,
  * so this is worth the markup.
  *
  * `useId` gives the group a name that is stable across server and client,

@@ -7,7 +7,7 @@ import { type ReactNode, useState } from "react";
  * `useState(() => new QueryClient())` rather than a module-level singleton:
  * this component renders on the server too, and a shared client there would
  * serve one visitor's cached data to the next request. The initialiser form
- * matters as well — `useState(new QueryClient())` would construct a client on
+ * matters as well - `useState(new QueryClient())` would construct a client on
  * every render and throw the previous one away.
  */
 export function QueryProvider({

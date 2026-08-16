@@ -1,7 +1,7 @@
 /*
  * What this package publishes, and what each item needs to work.
  *
- * The source of truth is still `src/<file>` — this only records the things a
+ * The source of truth is still `src/<file>` - this only records the things a
  * file cannot state about itself: which peer packages it needs at runtime, and
  * what to call it in an installer's list.
  *
@@ -79,7 +79,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		category: "motion",
 		subcategory: "Scroll effects",
 		tags: ["scroll", "lenis"],
-		preview: "Nothing to see — it changes how the page scrolls",
+		preview: "Nothing to see - it changes how the page scrolls",
 	},
 	{
 		name: "scroll-spin",
@@ -134,13 +134,13 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		name: "showcase",
 		title: "Showcase",
 		description:
-			"A component shown at three viewport widths in a real iframe, with its source and install commands.",
+			"A component in a real iframe at every width it has to survive, side by side, with its source and install commands.",
 		files: ["showcase.tsx", "icon.tsx"],
 		dependencies: {},
 		category: "docs",
 		subcategory: "Presentation",
 		tags: ["iframe", "responsive"],
-		preview: "A component shown at three viewport widths",
+		preview: "One component, four real viewports, side by side",
 	},
 	{
 		name: "credit",
@@ -179,6 +179,6 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		category: "content",
 		subcategory: "Parsing",
 		tags: ["markdown", "no-deps"],
-		preview: "No UI — it reads the metadata block off a file",
+		preview: "No UI - it reads the metadata block off a file",
 	},
 ];

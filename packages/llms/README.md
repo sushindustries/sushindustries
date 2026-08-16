@@ -3,7 +3,7 @@
 Generate `llms.txt`, `llms-full.txt`, `robots.txt` and `sitemap.xml` from one
 description of a site.
 
-Strings in, strings out. No framework, no filesystem, no router — the same
+Strings in, strings out. No framework, no filesystem, no router - the same
 description can drive a server route, a build script writing files to disk, or
 a test asserting the output.
 
@@ -60,8 +60,8 @@ renderRobots(site, {
 
 | File | Is | For |
 | --- | --- | --- |
-| `llms.txt` | the map — one line per page | knowing what exists |
-| `llms-full.txt` | the territory — every page inlined | reading it, in one request |
+| `llms.txt` | the map - one line per page | knowing what exists |
+| `llms-full.txt` | the territory - every page inlined | reading it, in one request |
 | `sitemap.xml` | canonical URLs | search crawlers |
 | `robots.txt` | the rules, pointing at the rest | everyone |
 
@@ -76,7 +76,7 @@ Each page is delimited by a `---` rule and introduced by its own frontmatter
 block. That is the difference between a file a human can read and a file a
 program can split.
 
-Headings are ambiguous, because page content contains headings too — a parser
+Headings are ambiguous, because page content contains headings too - a parser
 looking for `##` has no reliable way to know where one document ends and the
 next begins. A rule followed by frontmatter is unambiguous.
 
@@ -109,7 +109,7 @@ Allow: /
 ```
 
 It sits above the user-agent block because it describes the content, not one
-agent's access to it. Omitting it is not the same as declining — it leaves the
+agent's access to it. Omitting it is not the same as declining - it leaves the
 question unanswered, which is how it gets answered for you.
 
 ## `noindex` and `extraPaths`
@@ -117,5 +117,5 @@ question unanswered, which is how it gets answered for you.
 `noindex: true` keeps an entry in the plain-text indexes but out of the
 sitemap. Useful for pages that exist to be embedded rather than found.
 
-`extraPaths` covers URLs with no entry of their own — the home page, section
-listings — so the sitemap is complete without inventing entries for them.
+`extraPaths` covers URLs with no entry of their own - the home page, section
+listings - so the sitemap is complete without inventing entries for them.

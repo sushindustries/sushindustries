@@ -15,11 +15,11 @@ import { lazy, type ReactNode, Suspense } from "react";
  *
  * Three things keep it from wrecking the page it sits in:
  *
- *  - `lazy` — three and R3F are ~600 kB. They are fetched when a document that
+ *  - `lazy` - three and R3F are ~600 kB. They are fetched when a document that
  *    actually uses this block is rendered, and never otherwise.
- *  - `ClientOnly` — three cannot run on a server. Rendering it during SSR is
+ *  - `ClientOnly` - three cannot run on a server. Rendering it during SSR is
  *    not slow, it is a crash.
- *  - a reserved box — the fallback is the same height as the viewer, so the
+ *  - a reserved box - the fallback is the same height as the viewer, so the
  *    prose below it does not jump when the canvas mounts.
  */
 

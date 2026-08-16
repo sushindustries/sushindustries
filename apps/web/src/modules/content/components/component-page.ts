@@ -14,7 +14,7 @@ import {
  *
  * This is the pipeline's load-bearing piece. Adding a component to the registry
  * used to give you a card that linked nowhere, because the doc page only
- * existed if somebody also wrote Markdown for it — so seven of ten cards were
+ * existed if somebody also wrote Markdown for it - so seven of ten cards were
  * dead ends.
  *
  * Now the registry entry alone produces a real page: description, live
@@ -22,7 +22,7 @@ import {
  * generated Home section and adds tabs; it is an enhancement, not a
  * requirement. The generated page is deliberately good enough to ship, because
  * a placeholder nobody is embarrassed by is a placeholder that never gets
- * replaced — and that is the correct outcome for a component whose entire
+ * replaced - and that is the correct outcome for a component whose entire
  * story is "here it is, here is how to install it".
  */
 
@@ -36,7 +36,7 @@ export interface ComponentPage extends ComponentDoc {
  * The generated Home section, as Markdown.
  *
  * Markdown rather than JSX so it goes through exactly the same renderer as a
- * hand-written page — same callouts, same showcase block, same highlighting.
+ * hand-written page - same callouts, same showcase block, same highlighting.
  * A second rendering path would be a second thing to keep in step.
  */
 function generateHome(item: RegistryItem, hasDemo: boolean): string {
@@ -143,7 +143,7 @@ export function findComponentPage(
 	};
 }
 
-/** Every component that has a page — which is now every registry item. */
+/** Every component that has a page - which is now every registry item. */
 export function listComponentPages(): readonly string[] {
 	const slugs = new Set(listRegistry().map((item) => item.name));
 	for (const doc of listComponentDocs()) slugs.add(doc.slug);

@@ -2,7 +2,7 @@ import Lenis from "lenis";
 import { useEffect } from "react";
 
 /*
- * Lenis owns the page scroll. It renders nothing — it exists so the effect has
+ * Lenis owns the page scroll. It renders nothing - it exists so the effect has
  * somewhere to live inside the root document.
  *
  * Mounting in an effect rather than at module scope is deliberate: Lenis

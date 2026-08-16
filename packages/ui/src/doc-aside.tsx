@@ -17,7 +17,7 @@ export interface DocAsideProps {
  *
  * The collapse is a checkbox and a label, not React state. That is the whole
  * design: a contents list is the first thing a reader reaches for on a phone,
- * and one built from state does not work until hydration — on a long document
+ * and one built from state does not work until hydration - on a long document
  * that is exactly when it is least likely to have happened yet. The same
  * markup is a static list on desktop, because CSS hides the control instead of
  * the component rendering something different.
@@ -80,7 +80,7 @@ export function DocAside({
  * Computed from scroll position rather than an IntersectionObserver, for one
  * specific reason: the last heading. An observer with a top-band root margin
  * never fires for it, because a short final section means the page runs out of
- * scroll before that heading ever reaches the band — so the last item in the
+ * scroll before that heading ever reaches the band - so the last item in the
  * list could never highlight, no matter how far you scrolled.
  *
  * Reading positions directly makes that case expressible: at the bottom of the

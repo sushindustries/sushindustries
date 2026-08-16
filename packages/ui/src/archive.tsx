@@ -17,7 +17,7 @@ export interface ArchiveProps {
 	 *
 	 * `kind` and `id` are passed alongside the plain href because a typed
 	 * router needs the route pattern and its params, not a path that has
-	 * already been resolved — handing `Link` a resolved `/components/reveal`
+	 * already been resolved - handing `Link` a resolved `/components/reveal`
 	 * gets an anchor with the right href whose click is intercepted and then
 	 * silently fails to match `/components/$slug`. The href stays for hosts
 	 * that just want an anchor.
@@ -39,7 +39,7 @@ export interface ArchiveProps {
  * Two decisions carry this component:
  *
  * **The preview is a live iframe, lazily loaded.** A grid of identical text
- * cards tells a reader nothing — the point of an archive is recognising the
+ * cards tells a reader nothing - the point of an archive is recognising the
  * thing you half-remember. `loading="lazy"` means only the cards near the
  * viewport ever mount, and `pointer-events: none` means the preview is a
  * picture: clicking anywhere on the card follows the card's link rather than

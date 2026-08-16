@@ -34,7 +34,7 @@ and cached forever. Nothing scans your source, nothing purges, and reading the
 file tells you the whole system.
 
 The trade is real: there is no arbitrary value syntax. If a value is not in the
-scale, you either add it to the scale or you use the scale. That is the point —
+scale, you either add it to the scale or you use the scale. That is the point -
 a short scale is what makes an interface look measured rather than assembled.
 
 ## Tokens

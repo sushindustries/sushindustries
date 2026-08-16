@@ -6,7 +6,7 @@ import { originFrom } from "../modules/registry/registry.server";
 /*
  * Everything is public and indexable except `/preview/*`, which exists only to
  * be loaded inside an iframe. Those pages are a component with no chrome, no
- * heading and no context — indexed, they would compete with the documentation
+ * heading and no context - indexed, they would compete with the documentation
  * page that embeds them and win on nothing.
  *
  * The content signal is set deliberately rather than left out. This is a

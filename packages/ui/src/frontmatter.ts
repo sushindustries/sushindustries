@@ -2,7 +2,7 @@
  * A deliberately small frontmatter reader.
  *
  * TanStack Markdown hands back the frontmatter block as a raw string and stops
- * there, which is the right call — it is a Markdown parser, not a YAML one.
+ * there, which is the right call - it is a Markdown parser, not a YAML one.
  * This covers the subset that content files actually use: `key: value` and
  * inline `[a, b]` lists.
  *

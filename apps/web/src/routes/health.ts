@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 /*
  * Readiness probe. A server route rather than a server function because the
- * caller is Railway, not the app — it wants an HTTP status code and no
+ * caller is Railway, not the app - it wants an HTTP status code and no
  * JavaScript, which is exactly the HTTP-semantics justification server routes
  * are reserved for.
  *

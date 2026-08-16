@@ -18,7 +18,7 @@ import type { ReactNode } from "react";
  * only after someone remembers to register it is a panel nobody opens.
  *
  * Query's panel reads from context, so this has to render inside
- * QueryProvider — see __root.tsx.
+ * QueryProvider - see __root.tsx.
  */
 export function Devtools(): ReactNode {
 	if (!import.meta.env.DEV) return null;

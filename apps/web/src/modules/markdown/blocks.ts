@@ -7,7 +7,7 @@ import { ViewerBlock } from "./viewer-block";
  *
  * One map, passed to every `MarkdownView`, so a block works the same in a post,
  * in a component doc and in a package README. Adding a block here makes it
- * available everywhere at once — which is the point, because a block that only
+ * available everywhere at once - which is the point, because a block that only
  * works on one page is a page, not a block.
  */
 export const BLOCKS: MarkdownBlocks = {

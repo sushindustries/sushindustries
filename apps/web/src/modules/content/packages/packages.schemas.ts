@@ -1,5 +1,5 @@
 /*
- * Client-safe shapes. No filesystem, no driver, no secrets — a route, a card
+ * Client-safe shapes. No filesystem, no driver, no secrets - a route, a card
  * and a loader all import from here.
  */
 

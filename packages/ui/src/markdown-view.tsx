@@ -6,7 +6,7 @@ import { highlighter, resolveLanguage } from "./highlighter";
 import { createBlockDispatcher, type MarkdownBlocks } from "./markdown-blocks";
 
 /*
- * Markdown, rendered — and the template layer that content files write against.
+ * Markdown, rendered - and the template layer that content files write against.
  *
  * Content on this site is `.md`, not TSX: posts, component docs, package
  * READMEs. That only works if Markdown can reach a little further than
@@ -57,7 +57,7 @@ const BASE_COMPONENTS = {
 	pre(props) {
 		const fence = readFence(props.children);
 
-		// Not a language-tagged fence — leave it as the parser emitted it.
+		// Not a language-tagged fence - leave it as the parser emitted it.
 		if (!fence) return <pre className="code-block">{props.children}</pre>;
 
 		const block = createHighlightedCodeBlockProps({

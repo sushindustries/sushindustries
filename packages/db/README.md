@@ -22,7 +22,7 @@ import { getDb } from "@sushindustries/db/client";
 The split is the whole design. `schema` carries types a form or a table needs,
 so a component can import them without pulling a Postgres client into the
 browser bundle. `client.server.ts` carries the connection, and its `.server.ts`
-suffix is in TanStack Start's default client deny list — importing it from
+suffix is in TanStack Start's default client deny list - importing it from
 client-reachable code is a build error, not a code review note.
 
 ## Migrations

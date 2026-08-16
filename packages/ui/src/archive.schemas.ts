@@ -34,14 +34,14 @@ export const archiveItemSchema = z.object({
 	subcategory: z.string().optional(),
 	/**
 	 * Cross-cutting labels. These *are* filterable, so the chip row is built
-	 * from whatever appears here — a tag used once gets a chip used once,
+	 * from whatever appears here - a tag used once gets a chip used once,
 	 * which is the signal that it should not have been a tag.
 	 */
 	tags: z.array(z.string().min(1)).default([]),
 	/** Where the card links to. */
 	href: z.string().min(1),
 	/**
-	 * A live preview URL. Optional because not everything is visual — a
+	 * A live preview URL. Optional because not everything is visual - a
 	 * frontmatter parser has nothing to show, and a card that insists on a
 	 * picture would invent a meaningless one.
 	 */

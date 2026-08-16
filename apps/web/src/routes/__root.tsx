@@ -47,7 +47,7 @@ function RootDocument({
 	children,
 }: Readonly<{ children: ReactNode }>): ReactNode {
 	/*
-	 * `/preview/*` renders inside an iframe — in the showcase frame and in every
+	 * `/preview/*` renders inside an iframe - in the showcase frame and in every
 	 * archive card. It gets no chrome at all.
 	 *
 	 * This is not a cosmetic choice. Site chrome inside a preview means the nav
@@ -88,7 +88,7 @@ function RootDocument({
 			<body>
 				{/*
 				 * QueryProvider wraps the page and the devtools together, because
-				 * the Query panel reads the client out of context — outside it,
+				 * the Query panel reads the client out of context - outside it,
 				 * the panel renders but shows nothing.
 				 */}
 				<QueryProvider>

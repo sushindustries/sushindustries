@@ -1,12 +1,13 @@
 ---
 title: API
+summary: Every prop on ScrollSpin, including what it does under reduced motion.
 ---
 
 ## Props
 
 | Prop | Type | Default | Does |
 | --- | --- | --- | --- |
-| `children` | `ReactNode` | — | Whatever should turn |
+| `children` | `ReactNode` | - | Whatever should turn |
 | `revolutions` | `number` | `2` | Viewport heights per full turn. Higher is slower |
 | `tilt` | `number` | `8` | Degrees of X-axis wobble. `0` for a flat turntable |
 

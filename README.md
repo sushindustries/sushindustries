@@ -2,7 +2,7 @@
 
 My portfolio, and the packages it is built from.
 
-The site is the first consumer of its own component library — every element you
+The site is the first consumer of its own component library - every element you
 can see on it ships in `@sushindustries/ui`, so anything you like on the page is
 something you can install.
 
@@ -44,7 +44,7 @@ It is meant to be reused. The parts worth taking:
   that breaks for you broke for me first.
 - **Docs that cannot drift.** `/packages/<name>` is generated from that
   package's own `package.json` and `README.md` via `import.meta.glob` at build
-  time. Adding a package is creating a directory — there is no index to update
+  time. Adding a package is creating a directory - there is no index to update
   and nothing to keep in sync.
 - **A server boundary you can see.** `packages/db` has two entry points:
   `schema` (types, safe anywhere) and `client.server.ts` (the connection). The
@@ -71,7 +71,7 @@ rendered and code highlighted. Mark it `"private": true` to keep it out.
 ## Deploy
 
 Railway builds the root `Dockerfile` and runs `node .output/server/index.mjs`.
-`/health` is the probe and deliberately checks nothing — a health check that
+`/health` is the probe and deliberately checks nothing - a health check that
 pings the database turns a slow query into a restart loop.
 
 `DATABASE_URL` is the only environment variable, and only the parts that touch

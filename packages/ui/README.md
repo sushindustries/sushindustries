@@ -1,7 +1,7 @@
 # @sushindustries/ui
 
 The components this site is made of. Every element you can see on
-sushindustries.com is in here, and nothing in here is site-specific — the site
+sushindustries.com is in here, and nothing in here is site-specific - the site
 is just the first thing that imports it.
 
 ## Install
@@ -56,7 +56,7 @@ export function Page() {
 
 Every component here checks `prefers-reduced-motion` and stops moving if it is
 set. `Reveal` shows its children immediately rather than leaving them invisible
-— a reveal that never fires is a blank page, which is the worst possible
+- a reveal that never fires is a blank page, which is the worst possible
 failure for an accessibility preference.
 
 `ScrollSpin` and `SmoothScroll` need a browser, so they do their work in an
@@ -66,5 +66,5 @@ which is what keeps them safe under SSR.
 ## Optional peers
 
 `MarkdownView` needs `@tanstack/markdown` and `@tanstack/highlight`;
-`SmoothScroll` needs `lenis`. All three are optional peer dependencies — if you
+`SmoothScroll` needs `lenis`. All three are optional peer dependencies - if you
 only want `Card` and `Section`, you do not install any of them.

@@ -4,11 +4,11 @@
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": [".output/**", "dist/**"],
+			"outputs": [".output/**", "dist/**", "src/routeTree.gen.ts"],
 			"env": ["NODE_ENV"]
 		},
 		"typecheck": {
-			"dependsOn": ["^build"]
+			"dependsOn": ["^build", "build"]
 		},
 		"dev": {
 			"cache": false,

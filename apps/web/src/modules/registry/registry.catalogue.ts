@@ -4,13 +4,13 @@ import { REGISTRY_ITEMS, type RegistryItem } from "@sushindustries/ui/registry";
  * One source, two installers.
  *
  * Every component is published twice: once as a shadcn registry item and once
- * as a TanStack CLI add-on. Nothing is duplicated to make that work — the
+ * as a TanStack CLI add-on. Nothing is duplicated to make that work - the
  * source stays in `packages/ui/src`, and this renders whichever shape was
  * asked for.
  *
  * They are not redundant. shadcn copies files and installs bare dependency
  * names, resolving whatever npm offers that day. A TanStack add-on writes
- * `packageAdditions` straight into package.json, so it must state versions —
+ * `packageAdditions` straight into package.json, so it must state versions -
  * and it can declare things shadcn cannot.
  *
  * Both formats are validated against their real published schemas, not against

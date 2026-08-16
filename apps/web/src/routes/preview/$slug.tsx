@@ -7,7 +7,7 @@ import { findDemo } from "../../modules/showcase/demos";
  * A bare page rendering one demo, and nothing else.
  *
  * This exists to be loaded in an iframe. It deliberately has no nav, no footer
- * and no smooth scroll — the frame is meant to show the component's own
+ * and no smooth scroll - the frame is meant to show the component's own
  * behaviour at a given width, and site chrome inside it would both lie about
  * the layout and steal the scroll.
  *
@@ -16,8 +16,8 @@ import { findDemo } from "../../modules/showcase/demos";
  *   full   the showcase frame. Real size, scrollable, the whole example.
  *   card   a 16:9 archive thumbnail. Centred, clipped, never scrolls.
  *
- * Without the card fit, a demo that is deliberately taller than the viewport —
- * which every scroll effect has to be — renders in a thumbnail as a scrollbar
+ * Without the card fit, a demo that is deliberately taller than the viewport -
+ * which every scroll effect has to be - renders in a thumbnail as a scrollbar
  * and a corner of a component.
  *
  * Flat `$slug.tsx`: dynamic segments must not become route directories.

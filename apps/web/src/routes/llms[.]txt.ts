@@ -7,7 +7,7 @@ import { originFrom } from "../modules/registry/registry.server";
  * The machine-readable page index.
  *
  * A server route because the caller is a crawler or an assistant, which wants
- * a URL and a body and knows nothing about this app's RPC — the HTTP-semantics
+ * a URL and a body and knows nothing about this app's RPC - the HTTP-semantics
  * justification server routes are reserved for.
  *
  * Dots escaped as `[.]` so the router treats `llms.txt` as one segment rather

@@ -12,8 +12,8 @@ export interface DocHeading {
  *
  * This parses the source a second time, which sounds wasteful and is not: the
  * parse is synchronous and runs on the server, where the result is part of the
- * HTML that gets cached. The alternative — threading the parsed document out of
- * the renderer — would make every caller carry an AST it does not otherwise
+ * HTML that gets cached. The alternative - threading the parsed document out of
+ * the renderer - would make every caller carry an AST it does not otherwise
  * want.
  *
  * The same extensions are passed as the renderer uses, because heading

@@ -15,7 +15,7 @@ export interface CreditProps {
  *
  * This exists because a portfolio that lists what it is built with, in the
  * same visual language as what it built, quietly takes credit for both. The
- * author line is not decoration — it is the part that makes the distinction
+ * author line is not decoration - it is the part that makes the distinction
  * legible, so it is required rather than optional.
  */
 export function Credit({ name, by, href, role }: CreditProps): ReactNode {
@@ -25,7 +25,7 @@ export function Credit({ name, by, href, role }: CreditProps): ReactNode {
 			href={href}
 			target="_blank"
 			rel="noopener noreferrer"
-			title={`${name} — ${by}`}
+			title={`${name} - ${by}`}
 		>
 			<span className="flex items-center justify-between gap-3">
 				<span className="font-semibold">{name}</span>

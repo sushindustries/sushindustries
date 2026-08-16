@@ -9,7 +9,7 @@ import type { PackageDoc, PackageSummary } from "./packages.schemas";
  * it to the site; there is no list to maintain and nothing to keep in sync.
  *
  * This is deliberately not a server function. The content is public, static,
- * and identical for every visitor — routing it through RPC would add a network
+ * and identical for every visitor - routing it through RPC would add a network
  * round trip to something the bundler can answer for free.
  */
 

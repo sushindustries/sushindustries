@@ -28,6 +28,15 @@
 	--salmon-deep: #e8734d;
 	--wasabi: #9dbe4a;
 	--tamago: #e8b84b;
+	--tuna: #e0645a;
+	--info: #6fb0bd;
+
+	/*
+	 * Ink on an accent fill. Dark enough to read on salmon, warm enough not to
+	 * look like black dropped on it. Not `--bg-0`: the ground is green-black and
+	 * goes muddy over orange.
+	 */
+	--on-accent: #2a1006;
 
 	--bg-0: var(--nori-900);
 	--bg-1: var(--nori-800);
@@ -74,7 +83,7 @@
 	--container: 1180px;
 
 	/* Breakpoint, as a documented value. Custom properties cannot be used
-	   inside a media query, so this exists to be quoted — the query still
+	   inside a media query, so this exists to be quoted - the query still
 	   writes the number. */
 	--bp-narrow: 860px;
 }
@@ -152,6 +161,9 @@ svg {
 }
 .items-end {
 	align-items: flex-end;
+}
+.items-baseline {
+	align-items: baseline;
 }
 .justify-center {
 	justify-content: center;
@@ -245,6 +257,9 @@ svg {
 }
 .p-6 {
 	padding: var(--s-6);
+}
+.px-3 {
+	padding-inline: var(--s-3);
 }
 .px-4 {
 	padding-inline: var(--s-4);
@@ -421,7 +436,7 @@ svg {
 
 /*
  * Deliberately quieter than `.card`. Work I depend on is listed, not
- * promoted — if these looked like the package cards, the page would read as
+ * promoted - if these looked like the package cards, the page would read as
  * though I wrote them.
  */
 .credit-grid {
@@ -641,4 +656,780 @@ svg {
 	.nav-narrow-hide {
 		display: none;
 	}
+}
+
+/* ── showcase ────────────────────────────────────────────────── */
+
+/*
+ * The component museum frame: a toolbar, a stage, and the install commands
+ * under it. Full-bleed inside prose, because a component shown at 62ch is not
+ * being shown at all.
+ */
+.showcase {
+	margin: var(--s-6) 0 0;
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-card);
+	background: var(--bg-1);
+	overflow: hidden;
+}
+
+.showcase-bar {
+	border-bottom: 1px solid var(--line-soft);
+}
+
+/* fieldset arrives with a border, padding and min-width nobody asked for. */
+.showcase-group {
+	padding: 0;
+	border: 0;
+	min-width: 0;
+}
+
+.showcase-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--s-2);
+	padding: var(--s-1) var(--s-3);
+	border: 1px solid transparent;
+	border-radius: var(--r);
+	background: transparent;
+	color: var(--fg-faint);
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition:
+		color 160ms ease,
+		background 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.showcase-btn:hover {
+		color: var(--fg);
+	}
+}
+
+.showcase-btn[data-active="true"] {
+	background: var(--bg-3);
+	border-color: var(--line-soft);
+	color: var(--fg);
+}
+
+/*
+ * The device toggle.
+ *
+ * No transition in here, unlike the tabs above it. These get pressed a dozen
+ * times while reading one page, and on a control used that often an animation
+ * reads as lag rather than as polish. The state change is the feedback.
+ */
+.showcase-devices {
+	flex: 0 0 auto;
+	gap: 2px;
+	padding: 2px;
+	margin: 0;
+	min-width: 0;
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-lg);
+	background: var(--bg-2);
+}
+
+.showcase-device {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--s-1);
+	padding: var(--s-1) var(--s-2);
+	border: 0;
+	border-radius: var(--r);
+	background: transparent;
+	color: var(--fg-faint);
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.showcase-device:hover {
+		color: var(--fg-dim);
+	}
+}
+
+.showcase-device[data-active="true"] {
+	background: var(--bg-3);
+	color: var(--fg);
+}
+
+.showcase-device:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 1px;
+}
+
+/*
+ * The stage: the page ground behind the frames, so a narrow viewport reads as
+ * a narrow viewport rather than as a broken layout.
+ *
+ * `align-items: start` so a short component does not stretch its frame to
+ * match the tallest one, which would hide the fact that it was short. In
+ * compare the frames are a row that scrolls; with one selected they centre, so
+ * the frame stays where the eye already was when switching out of compare.
+ */
+.showcase-stage {
+	display: flex;
+	align-items: start;
+	justify-content: center;
+	gap: var(--s-4);
+	background: var(--bg-0);
+	padding: var(--s-3);
+}
+
+.showcase-stage[data-view="compare"] {
+	justify-content: start;
+	overflow-x: auto;
+}
+
+.showcase-frame {
+	flex: 0 0 auto;
+	margin: 0;
+	max-width: 100%;
+}
+
+/*
+ * Every frame says which width it is and why that width. A frame with no label
+ * is a screenshot; a labelled one is a claim a reader can check.
+ */
+.showcase-frame-label {
+	padding: 0 var(--s-1) var(--s-2);
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	color: var(--fg-faint);
+}
+
+.showcase-frame-label strong {
+	color: var(--fg-dim);
+	font-weight: 500;
+}
+
+.showcase-frame-note {
+	margin-left: auto;
+	padding-left: var(--s-3);
+}
+
+.showcase-viewport {
+	display: block;
+	width: 100%;
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-lg);
+	background: var(--bg-0);
+}
+
+/* One frame at a time: the width change is worth animating, a row is not. */
+.showcase-stage:not([data-view="compare"]) .showcase-viewport {
+	transition: width 320ms var(--ease-out);
+}
+
+@media (max-width: 860px) {
+	/* The note is the first thing to go when the label runs out of room. */
+	.showcase-frame-note {
+		display: none;
+	}
+}
+
+.showcase-code {
+	max-height: 480px;
+	overflow: auto;
+}
+
+.showcase-code .code-block {
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+}
+
+/*
+ * Installer name, then the command, on a shared column pair.
+ *
+ * `max-content` sizes the first column to the longest label, so "TanStack" and
+ * "shadcn" both end where the longer one does and every command starts at the
+ * same x. Sized per row, the block reads as two unrelated lines rather than as
+ * a table of the same thing twice.
+ */
+.showcase-install {
+	display: grid;
+	grid-template-columns: max-content minmax(0, 1fr);
+	align-items: center;
+	gap: var(--s-2) var(--s-4);
+	border-top: 1px solid var(--line-soft);
+}
+
+@media (max-width: 860px) {
+	/* One column: at this width the label column steals the command's room. */
+	.showcase-install {
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--s-1);
+	}
+
+	.showcase-install > .label {
+		margin-top: var(--s-2);
+	}
+}
+
+/* The preview page inside the iframe: no chrome, just the component. */
+.preview-root {
+	padding: var(--s-5);
+}
+
+/*
+ * Card fit: one centred object, clipped, never scrolling.
+ *
+ * `place-items: center` on a full-viewport grid is what standardises the cards
+ * - every thumbnail presents its component the same way regardless of the
+ * component's own size, so the grid reads as a set rather than as ten
+ * unrelated screenshots.
+ */
+.preview-root.is-card {
+	display: grid;
+	place-items: center;
+	width: 100%;
+	height: 100svh;
+	padding: var(--s-4);
+	overflow: hidden;
+}
+
+.preview-root.is-card > * {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+/* ── prose ───────────────────────────────────────────────────── */
+
+/*
+ * README typography. Scoped to .prose so it can never leak into the
+ * atomic classes - inside here elements are styled by tag, which is exactly
+ * what atomic CSS exists to avoid everywhere else. Markdown is the one place
+ * that trade is correct: the tags come from the author, not from the app.
+ */
+.prose {
+	max-width: 68ch;
+	color: var(--fg-dim);
+}
+
+.prose > * + * {
+	margin-top: var(--s-4);
+}
+
+.prose h1,
+.prose h2,
+.prose h3 {
+	color: var(--fg);
+	letter-spacing: -0.02em;
+	line-height: 1.2;
+	margin-top: var(--s-7);
+}
+
+.prose h1 {
+	font-size: var(--t-h2);
+}
+.prose h2 {
+	font-size: var(--t-h3);
+}
+.prose h3 {
+	font-size: var(--t-lg);
+}
+
+.prose code {
+	font-family: var(--mono);
+	font-size: 0.9em;
+	color: var(--accent);
+}
+
+.prose .code-block {
+	margin-top: var(--s-4);
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-lg);
+	font-family: var(--mono);
+	font-size: var(--t-sm);
+	line-height: 1.7;
+	tab-size: 2;
+}
+
+.prose .code-block code {
+	color: inherit;
+	font-size: inherit;
+}
+
+.prose ul,
+.prose ol {
+	padding-left: var(--s-5);
+}
+
+.prose li + li {
+	margin-top: var(--s-2);
+}
+
+.prose blockquote {
+	margin: var(--s-5) 0;
+	padding-left: var(--s-4);
+	border-left: 2px solid var(--line);
+	color: var(--fg-faint);
+}
+
+.prose table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: var(--t-sm);
+	display: block;
+	overflow-x: auto;
+}
+
+.prose th,
+.prose td {
+	padding: var(--s-2) var(--s-3);
+	border-bottom: 1px solid var(--line-soft);
+	text-align: left;
+}
+
+.prose th {
+	color: var(--fg);
+	font-weight: 600;
+}
+
+.prose hr {
+	border: 0;
+	border-top: 1px solid var(--line-soft);
+}
+
+/* ── callouts ────────────────────────────────────────────────── */
+
+/*
+ * `> [!NOTE] Title` blocks. The parser emits GitHub's alert class names, so
+ * these selectors match what it writes rather than something invented here.
+ */
+.prose .markdown-alert {
+	margin-top: var(--s-5);
+	padding: var(--s-4);
+	border-left: 2px solid var(--accent);
+	border-radius: 0 var(--r-lg) var(--r-lg) 0;
+	background: var(--bg-1);
+}
+
+.prose .markdown-alert-title {
+	margin: 0 0 var(--s-2);
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--fg);
+}
+
+.prose .markdown-alert-content > * + * {
+	margin-top: var(--s-3);
+}
+
+.prose .markdown-alert-note {
+	border-left-color: var(--info);
+}
+.prose .markdown-alert-tip {
+	border-left-color: var(--wasabi);
+}
+.prose .markdown-alert-warning {
+	border-left-color: var(--tamago);
+}
+.prose .markdown-alert-caution {
+	border-left-color: var(--accent);
+}
+
+/* ── tabs ────────────────────────────────────────────────────── */
+
+/*
+ * CSS-only tabs. A radio group drives the panels through :checked sibling
+ * selectors, so they work before hydration and on a page with no JavaScript
+ * at all - which matters, because on a docs page the tabs are the content.
+ */
+.tabs {
+	margin-top: var(--s-5);
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-lg);
+	overflow: hidden;
+}
+
+.tab-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--s-1);
+	padding: var(--s-2);
+	background: var(--bg-1);
+	border-bottom: 1px solid var(--line-soft);
+}
+
+.tab-label {
+	display: inline-flex;
+	align-items: center;
+	padding: var(--s-1) var(--s-3);
+	border-radius: var(--r);
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--fg-faint);
+	cursor: pointer;
+	transition:
+		color 160ms ease,
+		background 160ms ease;
+}
+
+/* Visually hidden, but still focusable and still the accessible control. */
+.tab-radio {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.tab-label:has(.tab-radio:checked) {
+	background: var(--bg-3);
+	color: var(--fg);
+}
+
+.tab-label:has(.tab-radio:focus-visible) {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+
+.tab-panel {
+	display: none;
+	padding: var(--s-4);
+}
+
+.tab-panel > * {
+	margin-top: 0;
+}
+
+/*
+ * Panel N shows when label N's radio is checked. Written out per index because
+ * CSS cannot count between siblings; five is more tabs than a doc should have.
+ */
+.tab-list:has(.tab-label:nth-of-type(1) .tab-radio:checked)
+~ .tab-panel[data-index="0"],
+.tab-list:has(.tab-label:nth-of-type(2) .tab-radio:checked)
+	~ .tab-panel[data-index="1"],
+.tab-list:has(.tab-label:nth-of-type(3) .tab-radio:checked)
+	~ .tab-panel[data-index="2"],
+.tab-list:has(.tab-label:nth-of-type(4) .tab-radio:checked)
+	~ .tab-panel[data-index="3"],
+.tab-list:has(.tab-label:nth-of-type(5) .tab-radio:checked)
+	~ .tab-panel[data-index="4"] {
+	display: block;
+}
+
+/* ── doc layout and aside ────────────────────────────────────── */
+
+/*
+ * Contents on the left, prose on the right. The sidebar column is fixed rather
+ * than fractional so the measure of the prose does not change between a page
+ * with three headings and a page with none.
+ */
+.doc-layout {
+	display: grid;
+	grid-template-columns: 200px minmax(0, 1fr);
+	gap: var(--s-7);
+	align-items: start;
+}
+
+.doc-aside {
+	position: sticky;
+	/* Clears the sticky site nav, which is about 52px tall. */
+	top: 72px;
+	max-height: calc(100svh - 96px);
+	overflow-y: auto;
+	scrollbar-width: none;
+}
+
+.doc-aside::-webkit-scrollbar {
+	display: none;
+}
+
+/* Desktop and tablet: the label is a heading, not a control. */
+.doc-aside-summary {
+	display: block;
+	padding-bottom: var(--s-3);
+}
+
+.doc-aside-chevron {
+	display: none;
+}
+
+.doc-aside-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border-left: 1px solid var(--line-soft);
+}
+
+.doc-aside-link {
+	display: block;
+	padding: var(--s-2) var(--s-3);
+	margin-left: -1px;
+	border-left: 1px solid transparent;
+	font-size: var(--t-sm);
+	line-height: 1.35;
+	color: var(--fg-faint);
+	transition:
+		color 160ms ease,
+		border-color 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.doc-aside-link:hover {
+		color: var(--fg-dim);
+	}
+}
+
+.doc-aside-link[data-active="true"] {
+	color: var(--fg);
+	border-left-color: var(--accent);
+}
+
+/* The toggle only does anything at mobile width. */
+.doc-aside-toggle:focus-visible + .doc-aside-summary {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+	border-radius: var(--r);
+}
+
+/*
+ * Headings are the scroll targets, and the sticky nav would otherwise cover
+ * whichever one you jumped to.
+ */
+.prose h2,
+.prose h3 {
+	scroll-margin-top: 80px;
+}
+
+/* ── tablet ──────────────────────────────────────────────────── */
+
+/* Narrower rail, same behaviour. Below this the rail stops paying for itself. */
+@media (max-width: 1080px) and (min-width: 861px) {
+	.doc-layout {
+		grid-template-columns: 160px minmax(0, 1fr);
+		gap: var(--s-5);
+	}
+}
+
+/* ── mobile ──────────────────────────────────────────────────── */
+
+/*
+ * --bp-narrow: 860px. The rail becomes one collapsed row above the prose.
+ * A phone has no column to spare, and a contents list that pushes the article
+ * down by ten lines is worse than no contents list.
+ */
+@media (max-width: 860px) {
+	.doc-layout {
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--s-4);
+	}
+
+	.doc-aside {
+		position: static;
+		max-height: none;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+	}
+
+	.doc-aside-summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--s-3);
+		padding: var(--s-3) var(--s-4);
+		cursor: pointer;
+		min-height: 44px;
+	}
+
+	.doc-aside-chevron {
+		display: block;
+		color: var(--fg-faint);
+		transform: rotate(90deg);
+		transition: transform 200ms var(--ease-out);
+	}
+
+	.doc-aside-toggle:checked + .doc-aside-summary .doc-aside-chevron {
+		transform: rotate(-90deg);
+	}
+
+	/* Collapsed by default: the article is what the reader came for. */
+	.doc-aside-list {
+		display: none;
+		border-left: 0;
+		border-top: 1px solid var(--line-soft);
+		padding: var(--s-2);
+	}
+
+	.doc-aside-toggle:checked ~ nav .doc-aside-list {
+		display: block;
+	}
+
+	.doc-aside-link {
+		margin-left: 0;
+		border-left: 0;
+		padding: var(--s-3) var(--s-4);
+		min-height: 44px;
+	}
+
+	.doc-aside-link[data-active="true"] {
+		border-left: 0;
+		background: var(--bg-2);
+		border-radius: var(--r);
+	}
+}
+
+/* ── archive ─────────────────────────────────────────────────── */
+
+/*
+ * The root, which owns the vertical rhythm between the filters, the count and
+ * the grid. Setting it here rather than with margins on each child means the
+ * three parts can be reordered without three rules changing.
+ */
+.archive {
+	display: flex;
+	flex-direction: column;
+	gap: var(--s-4);
+}
+
+.archive-filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--s-2);
+}
+
+.archive-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--s-2);
+	padding: var(--s-2) var(--s-3);
+	min-height: 36px;
+	border: 1px solid var(--line-soft);
+	border-radius: 999px;
+	background: var(--bg-1);
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--fg-faint);
+	transition:
+		color 160ms ease,
+		background 160ms ease,
+		border-color 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.archive-chip:hover {
+		color: var(--fg);
+		border-color: var(--line);
+	}
+}
+
+.archive-chip.is-active {
+	background: var(--accent);
+	border-color: var(--accent);
+	color: var(--on-accent);
+	font-weight: 600;
+}
+
+.archive-count {
+	opacity: 0.6;
+	font-variant-numeric: tabular-nums;
+}
+
+/*
+ * Wider minimum than the package grid: these cards carry a preview, and a
+ * component squeezed into 260px is being misrepresented.
+ */
+.archive-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+	gap: var(--s-4);
+}
+
+.archive-card {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-card);
+	background: var(--bg-1);
+	overflow: hidden;
+	transition:
+		border-color 200ms ease,
+		transform 260ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.archive-card:hover {
+		border-color: var(--line);
+		transform: translateY(-3px);
+	}
+}
+
+/*
+ * A fixed-ratio window on the component. The ground colour shows through so a
+ * preview with nothing in it reads as empty rather than broken.
+ */
+.archive-preview {
+	position: relative;
+	aspect-ratio: 16 / 9;
+	display: grid;
+	place-items: center;
+	background: var(--bg-0);
+	border-bottom: 1px solid var(--line-soft);
+	overflow: hidden;
+}
+
+.archive-frame {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	/* The preview is a picture: the click belongs to the card. */
+	pointer-events: none;
+}
+
+.archive-body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--s-2);
+	padding: var(--s-4);
+}
+
+/*
+ * Tags are secondary to categories, so they are quieter: square, smaller, and
+ * lower contrast. If they looked like the category chips the reader would have
+ * two equal-weight controls and no idea which one to use first.
+ */
+.archive-tag {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--s-2);
+	padding: var(--s-1) var(--s-2);
+	min-height: 28px;
+	border: 1px solid transparent;
+	border-radius: var(--r);
+	background: var(--bg-2);
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	color: var(--fg-faint);
+	transition:
+		color 160ms ease,
+		border-color 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.archive-tag:hover {
+		color: var(--fg);
+		border-color: var(--line);
+	}
+}
+
+.archive-tag.is-active {
+	color: var(--fg);
+	border-color: var(--accent);
 }

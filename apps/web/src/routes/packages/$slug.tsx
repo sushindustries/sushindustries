@@ -6,7 +6,7 @@ import { BLOCKS } from "../../modules/markdown/blocks";
 
 /*
  * Kept as a flat route file rather than a `$slug/` directory. Converting a
- * dynamic segment to a route directory breaks matching — the URL starts
+ * dynamic segment to a route directory breaks matching - the URL starts
  * 404ing and the trailing-slash form redirects to the dead one.
  */
 export const Route = createFileRoute("/packages/$slug")({
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/packages/$slug")({
 	},
 	head: ({ loaderData }) => ({
 		meta: [
-			{ title: `${loaderData?.entry.name ?? "Package"} — Sushindustries` },
+			{ title: `${loaderData?.entry.name ?? "Package"} - Sushindustries` },
 			{ name: "description", content: loaderData?.entry.description ?? "" },
 		],
 	}),

@@ -18,7 +18,7 @@ export interface IconProps {
  * and focus states, which is the part a sprite sheet gets wrong.
  */
 const PATHS: Record<IconName, ReactNode> = {
-	// An isometric cube — the 3D viewer.
+	// An isometric cube - the 3D viewer.
 	cube: (
 		<>
 			<path d="M12 2.5 21 7v10l-9 4.5L3 17V7z" />

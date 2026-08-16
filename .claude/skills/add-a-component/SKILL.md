@@ -11,6 +11,28 @@ right once is most of the work.
 Use **kebab-case** for the slug. It is the filename, the URL segment, the
 registry id, the demo id and the preview route, all at once.
 
+## Start with the scaffold
+
+```shell
+pnpm new component my-thing
+```
+
+That writes the source, the docs page, the barrel export and the registry entry
+from `templates/`, then prints what it deliberately left blank. It does not
+invent a description, a category or a demo: a scaffold that fills those with
+placeholder text produces a file that looks finished, and `pnpm doctor` can no
+longer tell the difference.
+
+Then, at any point and as often as you like:
+
+```shell
+pnpm doctor         # what is missing
+pnpm doctor --fix   # repair what can be repaired without inventing prose
+```
+
+The doctor is the list below, checked. Read it rather than remembering this
+file.
+
 ## The pipeline
 
 ```text
@@ -28,7 +50,7 @@ installers, a dependency table, and a live showcase if a demo exists. It also
 puts the card in the archive under the right filter.
 
 Steps 5 and 6 improve that page. They do not create it. This matters because
-the previous arrangement made docs mandatory in practice — seven of ten cards
+the previous arrangement made docs mandatory in practice - seven of ten cards
 linked nowhere because nobody had written Markdown for them yet.
 
 | You wrote | You get |
@@ -57,13 +79,13 @@ Rules that are not negotiable here:
 
 - Emit atomic class names from `@sushindustries/atoms`. Do not ship a
   stylesheet per component.
-- If a value is not in the scale, add it to the scale — there is no arbitrary
+- If a value is not in the scale, add it to the scale - there is no arbitrary
   value syntax and that is the point.
 - Explicit return type, no `any`, `function` declarations.
 - Anything browser-only goes in an effect, so the first server render and the
   first client render are identical.
 - Check `prefers-reduced-motion` in anything that animates, and degrade to the
-  visible, still state — never to the hidden one.
+  visible, still state - never to the hidden one.
 
 ### 2 and 3. Export it
 
@@ -105,7 +127,7 @@ tanstack add https://sushindustries.com/r/tanstack/my-thing.json
 pnpm dlx shadcn@latest add https://sushindustries.com/r/shadcn/my-thing.json
 ```
 
-Nothing else is generated or committed — the routes render the formats on
+Nothing else is generated or committed - the routes render the formats on
 request from `packages/ui/src`, which stays the only copy.
 
 ### 5. The demo
@@ -127,7 +149,7 @@ the documentation page nothing.
 
 ### 6. The docs (optional)
 
-Write these when the generated page is not enough — when there is a decision to
+Write these when the generated page is not enough - when there is a decision to
 explain, a trap to warn about, or an API worth a table.
 
 ```text
@@ -173,7 +195,7 @@ and package READMEs at once.
 mkdir -p packages/my-package
 ```
 
-`package.json` plus `README.md` is the entire requirement — it appears at
+`package.json` plus `README.md` is the entire requirement - it appears at
 `/packages/my-package` on the next build. `"private": true` keeps it off the
 site. If it touches secrets or a database, the connection goes in a
 `.server.ts` file, which Start's default import protection refuses to include
@@ -182,13 +204,18 @@ in a client bundle.
 ## Before you push
 
 ```shell
-pnpm build
-pnpm typecheck
-pnpm exec biome check .
+pnpm check     # doctor, biome, typecheck, build - the same order the hook runs
 ```
+
+This is what `.githooks/pre-push` runs, so a push either passes it or you chose
+`--no-verify`. Cheapest first: the doctor reads the directory, biome reads the
+files, the build is last.
 
 The build is the one that matters: import protection fails a build rather than
 warning, so a broken client/server boundary shows up here and nowhere else.
+`typecheck` depends on `build` in `turbo.json`, because the route tree is
+generated and gitignored - without that order it passes on a stale generated
+file and fails in a clean checkout.
 
 Then check the pages actually render, because a route tree that has gone stale
 in a running dev server will 404 a route that is perfectly correct:

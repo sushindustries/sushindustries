@@ -5,7 +5,7 @@ import type { Post, PostSummary } from "./posts.schemas";
  * Posts, from `content/posts/*.md`.
  *
  * Same build-time approach as the package catalogue: `import.meta.glob` inlines
- * every file, so writing a post is adding a Markdown file and nothing else —
+ * every file, so writing a post is adding a Markdown file and nothing else -
  * no database row, no index entry, no deploy step beyond the one that was
  * already going to happen.
  */

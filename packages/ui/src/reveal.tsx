@@ -10,7 +10,7 @@ export interface RevealProps {
  * Fade-and-rise once, when the element first reaches the viewport.
  *
  * The server and the first client render both emit the hidden state, so
- * hydration matches; the observer then flips it. That ordering matters —
+ * hydration matches; the observer then flips it. That ordering matters -
  * deciding visibility from scroll position during render would differ between
  * server and browser and produce a hydration mismatch on every reload that
  * starts part-way down the page.

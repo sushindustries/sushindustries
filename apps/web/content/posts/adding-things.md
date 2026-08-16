@@ -37,7 +37,7 @@ Body text starts here.
 ```
 
 It appears at `/posts/my-post` on the next build. `draft: true` keeps it off
-the index while you write. There is no index to update — the site globs the
+the index while you write. There is no index to update - the site globs the
 directory, because an index is a thing that drifts.
 
 ## Add a component
@@ -61,7 +61,7 @@ export function MyThing({ title }: MyThingProps): ReactNode {
 }
 ```
 
-Emit atomic class names. Do not write a stylesheet for one component — if a
+Emit atomic class names. Do not write a stylesheet for one component - if a
 value is missing, add it to the scale in `@sushindustries/atoms`.
 
 ### 2. Export it
@@ -81,7 +81,7 @@ touch packages/ui/docs/my-thing.md
 ```
 
 The doc renders at `/components/my-thing`, and the demo block inside it renders
-the real component — not a screenshot of one.
+the real component - not a screenshot of one.
 
 <!-- ::end:tabs -->
 
@@ -99,7 +99,7 @@ It needs exactly two files to appear on the site:
 
 | File | Why |
 | --- | --- |
-| `package.json` | `name`, `version`, `description` — the card |
+| `package.json` | `name`, `version`, `description` - the card |
 | `README.md` | the body of `/packages/my-thing` |
 
 Mark it `"private": true` to keep it off the site. Add it to
@@ -121,7 +121,7 @@ function".
 | Static content, same for everyone | `import.meta.glob` | `*.catalogue.ts` |
 | A webhook, a health probe, `robots.txt` | server route | `routes/*.ts` |
 
-Server routes are for things where the caller is not this app — where HTTP
+Server routes are for things where the caller is not this app - where HTTP
 semantics are the point. Everything else is a server function, because that
 keeps end-to-end types and costs no round trip.
 
@@ -139,7 +139,7 @@ export const createThing = createServerFn({ method: "POST" })
 ```
 
 > [!CAUTION] Two rules that are not style preferences
-> Every mutation validates its input at runtime — a `.validator()` before the
+> Every mutation validates its input at runtime - a `.validator()` before the
 > `.handler()`. And a loader is isomorphic, not server-only: it runs in the
 > browser too, so it must never touch a secret directly.
 

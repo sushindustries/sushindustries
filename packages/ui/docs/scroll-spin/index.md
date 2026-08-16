@@ -4,7 +4,7 @@ summary: Rotates its children with the page scroll.
 ---
 
 Rotates whatever you put inside it as the page scrolls. Drag the viewport
-buttons to see it at three widths — the amount of rotation per screen scrolled
+buttons to see it at three widths - the amount of rotation per screen scrolled
 is the same at every one.
 
 <!-- ::start:showcase demo="scroll-spin" height="460" -->

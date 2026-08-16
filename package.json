@@ -3,15 +3,17 @@
 	"version": "0.1.0",
 	"private": true,
 	"type": "module",
-	"description": "Sushindustries \u2014 the portfolio. A TanStack Start site that showcases what we build.",
+	"description": "Sushindustries. A TanStack Start site, and the packages it is built from.",
 	"engines": {
 		"node": ">=22"
 	},
 	"scripts": {
 		"build": "turbo run build",
-		"check": "node scripts/check-workspaces.mjs && pnpm exec biome check . && pnpm run typecheck && pnpm run build",
-		"check:workspaces": "node scripts/check-workspaces.mjs",
+		"check": "pnpm run doctor && pnpm exec biome check . && pnpm run typecheck && pnpm run build",
 		"dev": "turbo run dev",
+		"doctor": "node scripts/doctor.mjs",
+		"fix": "node scripts/doctor.mjs --fix && pnpm exec biome check --write .",
+		"new": "node scripts/new.mjs",
 		"prepare": "git config core.hooksPath .githooks || true",
 		"start": "pnpm --filter @sushindustries/web start",
 		"typecheck": "turbo run typecheck"

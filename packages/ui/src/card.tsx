@@ -15,7 +15,7 @@ export interface CardProps {
  * A card. Title, optional meta, whatever you put inside it.
  *
  * The heading level is a prop rather than a fixed `h3` because a card's
- * position in the document outline is the page's business, not the card's —
+ * position in the document outline is the page's business, not the card's -
  * and getting it wrong is one of the few styling mistakes a screen reader
  * actually punishes.
  */

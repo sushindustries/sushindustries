@@ -4,7 +4,7 @@ import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 /*
  * The schema is client-safe on purpose.
  *
- * It carries table shapes and column types and nothing else — no connection
+ * It carries table shapes and column types and nothing else - no connection
  * string, no driver. That is what lets a route import the inferred types for a
  * form or a table without dragging a Postgres client into the browser bundle.
  * The client lives in `client.server.ts`, which cannot be imported from the

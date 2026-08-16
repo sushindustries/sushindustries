@@ -7,7 +7,7 @@ export const Route = createFileRoute("/packages/")({
 	component: PackagesPage,
 	head: () => ({
 		meta: [
-			{ title: "Packages — Sushindustries" },
+			{ title: "Packages - Sushindustries" },
 			{
 				name: "description",
 				content: "Everything published from the sushindustries monorepo.",

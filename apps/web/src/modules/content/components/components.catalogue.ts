@@ -10,7 +10,7 @@ import { parseFrontmatter, readString } from "@sushindustries/ui";
  * One file per section, and the tab bar is built from the files that exist. A
  * component with only an `index.md` gets one tab; adding `api.md` adds the API
  * tab and nothing else has to be told about it. That is the whole reason the
- * sections are files rather than headings — a new page is a new file, not an
+ * sections are files rather than headings - a new page is a new file, not an
  * edit to a route.
  */
 

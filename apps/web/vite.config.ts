@@ -7,7 +7,7 @@ import { defineConfig } from "vite";
 /*
  * The whole site is one Start app. `tanstackStart()` owns the router plugin,
  * the SSR entry and the Nitro build, so there is no separate router-plugin
- * entry here — adding one is the usual way to silently turn off code
+ * entry here - adding one is the usual way to silently turn off code
  * splitting, because the two resolve route paths differently.
  *
  * Vite 8 resolves tsconfig `paths` natively, so no vite-tsconfig-paths.
@@ -23,7 +23,7 @@ export default defineConfig({
 
 	plugins: [
 		/*
-		 * Devtools must be first — it transforms other plugins' output to inject
+		 * Devtools must be first - it transforms other plugins' output to inject
 		 * source locations, so anything registered ahead of it is invisible to it.
 		 *
 		 * It also strips the devtools imports from production builds, which is
@@ -39,7 +39,7 @@ export default defineConfig({
 
 		/*
 		 * Nitro turns the fetch handler into a real Node server at
-		 * `.output/server/index.mjs`. Without it the build still succeeds — it
+		 * `.output/server/index.mjs`. Without it the build still succeeds - it
 		 * just emits a handler with nothing to run it, which looks like a working
 		 * build right up until the container starts.
 		 */

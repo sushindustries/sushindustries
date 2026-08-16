@@ -1,12 +1,13 @@
 ---
 title: API
+summary: Every prop on DocAside, and what the collapse does without JavaScript.
 ---
 
 ## Props
 
 | Prop | Type | Default | Does |
 | --- | --- | --- | --- |
-| `headings` | `readonly DocHeading[]` | — | The list to render |
+| `headings` | `readonly DocHeading[]` | - | The list to render |
 | `label` | `string` | `"On this page"` | Heading on desktop, button text on mobile |
 | `minHeadings` | `number` | `2` | Renders nothing below this count |
 

@@ -2,7 +2,7 @@
  * Helpers shared by the registry endpoints.
  *
  * `.server.ts` because these only ever run inside a server route handler.
- * Nothing here is privileged — the registry is public by design — but keeping
+ * Nothing here is privileged - the registry is public by design - but keeping
  * the suffix means the request-shaped code cannot drift into a component by
  * accident.
  */

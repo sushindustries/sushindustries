@@ -16,7 +16,7 @@ import {
  *
  * One JSON document with every file inlined. The CLI fetches a single URL and
  * writes what it finds, so there is nothing to build and nothing else to host
- * — which is why this is a route rather than an artefact.
+ * - which is why this is a route rather than an artefact.
  *
  * Flat `$name.ts`, not a `$name/` directory: converting a dynamic segment to a
  * route directory breaks URL matching.

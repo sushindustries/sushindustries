@@ -4,7 +4,7 @@ summary: An on-page table of contents that is a rail on desktop and a collapsed 
 ---
 
 Every heading in this page's sidebar comes from the Markdown itself. There is
-no list to maintain — write an `h2` and it appears.
+no list to maintain - write an `h2` and it appears.
 
 ## What it does
 
@@ -16,7 +16,7 @@ article down by ten lines is worse than no contents list.
 
 The mobile toggle is a checkbox and a label, not React state. A contents list
 is the first thing a reader reaches for on a phone, and one built from state
-does not work until hydration — which on a long document is exactly when it is
+does not work until hydration - which on a long document is exactly when it is
 least likely to have happened.
 
 The same markup is a plain list on desktop, because CSS hides the control
@@ -32,7 +32,7 @@ short last section means the page runs out of scroll before that heading
 reaches the band, so the last item in the list can never highlight no matter
 how far down you go.
 
-Reading positions directly makes the case expressible — at the bottom of the
+Reading positions directly makes the case expressible - at the bottom of the
 document, the last heading is what you are looking at, whether or not it
 crossed the line.
 
@@ -43,5 +43,5 @@ crossed the line.
 ## Accessibility
 
 The checkbox is `sr-only`, not `display: none`, so it stays focusable and
-announced — only its default appearance is hidden. Links carry
+announced - only its default appearance is hidden. Links carry
 `aria-current="location"` when active, and the mobile targets are 44px tall.

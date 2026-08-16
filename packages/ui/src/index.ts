@@ -1,6 +1,6 @@
 /*
  * The barrel is safe here: everything in this package is client-safe React.
- * There is no `.server.ts` in this package and there must not be one — if a
+ * There is no `.server.ts` in this package and there must not be one - if a
  * component ever needs privileged data, it takes it as a prop.
  */
 export { Archive, type ArchiveProps } from "./archive";
@@ -34,5 +34,10 @@ export { MarkdownView, type MarkdownViewProps } from "./markdown-view";
 export { Reveal, type RevealProps } from "./reveal";
 export { ScrollSpin, type ScrollSpinProps } from "./scroll-spin";
 export { Section, type SectionProps } from "./section";
-export { Showcase, type ShowcaseProps, type Viewport } from "./showcase";
+export {
+	SHOWCASE_DEVICES,
+	Showcase,
+	type ShowcaseDevice,
+	type ShowcaseProps,
+} from "./showcase";
 export { SmoothScroll } from "./smooth-scroll";

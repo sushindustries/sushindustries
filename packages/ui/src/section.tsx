@@ -11,7 +11,7 @@ export interface SectionProps {
 }
 
 /*
- * A page section: kicker, heading, body — with the heading and the body
+ * A page section: kicker, heading, body - with the heading and the body
  * revealing separately so the section resolves top-down rather than arriving
  * as one block.
  *

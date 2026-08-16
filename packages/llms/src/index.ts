@@ -1,14 +1,14 @@
 /*
  * Machine-readable indexes for a site, from one description of it.
  *
- * Strings in, strings out. No framework, no filesystem, no router — which is
+ * Strings in, strings out. No framework, no filesystem, no router - which is
  * what lets the same description drive a server route, a build script writing
  * files to disk, or a test asserting the output.
  *
  * The four surfaces are layered on purpose:
  *
- *   llms.txt        the map — one line per page, with a description
- *   llms-full.txt   the territory — every page's text, inlined
+ *   llms.txt        the map - one line per page, with a description
+ *   llms-full.txt   the territory - every page's text, inlined
  *   sitemap.xml     the canonical URL list, for search crawlers
  *   robots.txt      the rules, pointing at the other three
  *
@@ -44,7 +44,7 @@ export interface SiteDescription {
 	/** A blockquote under the summary: how to read the rest. */
 	readonly framing?: string;
 	readonly sections: readonly SiteSection[];
-	/** Paths with no entry of their own — section indexes, the home page. */
+	/** Paths with no entry of their own - section indexes, the home page. */
 	readonly extraPaths?: readonly string[];
 }
 

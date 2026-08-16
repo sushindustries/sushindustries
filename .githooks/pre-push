@@ -6,21 +6,28 @@
 # expensive one and it is not optional: import protection and workspace
 # resolution only fail at build time, so a push without it is a guess.
 #
+# Order is cheapest first, so the common failure costs seconds. The doctor only
+# reads the directory; biome only reads the files; the build is last.
+#
 # Skip deliberately with `git push --no-verify` when you know what you are
-# doing — a hook you cannot bypass is a hook people delete.
+# doing - a hook you cannot bypass is a hook people delete.
 
 set -e
 
-echo "→ workspaces vs Dockerfile"
-node scripts/check-workspaces.mjs
+echo "-> doctor"
+node scripts/doctor.mjs
 
-echo "→ format and lint"
+echo "-> format and lint"
 pnpm exec biome check .
 
-echo "→ types"
+# `typecheck` depends on `build` in turbo.json, because the route tree is
+# generated and gitignored. Without that order this passes here on a stale
+# generated file and fails in a clean checkout, which is exactly how the last
+# red CI run happened.
+echo "-> types"
 pnpm run typecheck
 
-echo "→ build"
+echo "-> build"
 pnpm run build
 
-echo "✓ ok to push"
+echo "ok to push"

@@ -12,7 +12,7 @@ import { findDemo } from "../../modules/showcase/demos";
  *
  * The tab lives in the URL rather than in state, so a link to the API tab is a
  * link to the API tab. That is the whole reason this is a search param and not
- * `useState` — documentation people cannot link into is documentation people
+ * `useState` - documentation people cannot link into is documentation people
  * quote wrongly.
  *
  * Zod v4 schemas go straight into `validateSearch`; the adapter is only needed
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/components/$slug")({
 	loader: ({ params }) => {
 		/*
 		 * Falls back to a page generated from the registry entry, so every
-		 * component in the archive opens — a card that links nowhere is worse
+		 * component in the archive opens - a card that links nowhere is worse
 		 * than no card.
 		 */
 		const doc = findComponentPage(params.slug, (id) => Boolean(findDemo(id)));
@@ -51,7 +51,7 @@ export const Route = createFileRoute("/components/$slug")({
 	},
 	head: ({ loaderData }) => ({
 		meta: [
-			{ title: `${loaderData?.doc.title ?? "Component"} — Sushindustries` },
+			{ title: `${loaderData?.doc.title ?? "Component"} - Sushindustries` },
 			{ name: "description", content: loaderData?.doc.summary ?? "" },
 		],
 	}),
@@ -62,7 +62,7 @@ function ComponentDocPage(): ReactNode {
 	const { tab } = Route.useSearch();
 
 	// An unknown or absent tab falls back to the first section rather than
-	// rendering nothing — a stale bookmark should show the page, not a blank.
+	// rendering nothing - a stale bookmark should show the page, not a blank.
 	const active =
 		doc.sections.find((section) => section.id === tab) ?? doc.sections[0];
 

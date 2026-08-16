@@ -11,7 +11,7 @@ import { tsx } from "@tanstack/highlight/languages/tsx";
  *
  * Selective registration is the point of this library: only the grammars named
  * here are bundled. The list is the languages this site's READMEs actually
- * use — adding a package that documents itself in Python means adding Python
+ * use - adding a package that documents itself in Python means adding Python
  * here, and noticing that you did.
  *
  * `plaintext` is the fallback so an unknown or missing language on a fence
