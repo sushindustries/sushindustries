@@ -3,6 +3,7 @@ import {
 	type ArchiveCategory,
 	type ArchiveItem,
 	Card,
+	Clock,
 	ContextMenu,
 	Credit,
 	type CreditProps,
@@ -836,6 +837,35 @@ desk.raise(id);`,
 	title="Card"
 	code={source}
 	install={{ shadcn: "pnpm dlx shadcn@latest add .../card.json" }}
+/>`,
+		language: "tsx",
+	},
+
+	clock: {
+		element: (
+			<div className="flex col gap-4">
+				<p className="fg-dim m-0 max-w-prose">
+					Your weekday and your local time, from `Intl` with no locale and no
+					zone passed. Nothing was asked and nothing was sent.
+				</p>
+				<Clock />
+				<Clock
+					options={{
+						weekday: "long",
+						hour: "2-digit",
+						minute: "2-digit",
+						second: "2-digit",
+					}}
+					every={1000}
+				/>
+			</div>
+		),
+		poster: <Clock />,
+		source: `<Clock />
+
+<Clock
+	options={{ weekday: "long", hour: "2-digit", minute: "2-digit" }}
+	every={1000}
 />`,
 		language: "tsx",
 	},

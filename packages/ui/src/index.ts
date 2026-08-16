@@ -14,6 +14,7 @@ export {
 	parseArchive,
 } from "./archive.schemas";
 export { Card, type CardProps } from "./card";
+export { Clock, type ClockProps } from "./clock";
 export {
 	ContextMenu,
 	type ContextMenuProps,

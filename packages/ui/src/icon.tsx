@@ -29,7 +29,9 @@ export type IconName =
 	| "share"
 	| "link"
 	| "close"
-	| "search";
+	| "search"
+	| "linkedin"
+	| "clock";
 
 export interface IconProps {
 	name: IconName;
@@ -171,6 +173,23 @@ const PATHS: Record<IconName, ReactNode> = {
 		<>
 			<path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z" />
 			<path d="M16.2 16.2 21 21" />
+		</>
+	),
+	// The wordmark reduced to its two letters in a square, drawn at this stroke weight rather than pasted in as a logo.
+	linkedin: (
+		<>
+			<path d="M4 4h16v16H4z" />
+			<path d="M8 10.5v6" />
+			<path d="M8 7.6v.1" />
+			<path d="M11.6 16.5v-6" />
+			<path d="M11.6 13.2a2.6 2.6 0 0 1 5.2 0v3.3" />
+		</>
+	),
+	// A face and two hands.
+	clock: (
+		<>
+			<path d="M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16z" />
+			<path d="M12 7.6V12l3 1.8" />
 		</>
 	),
 };

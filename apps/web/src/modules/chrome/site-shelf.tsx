@@ -1,4 +1,11 @@
-import { Dock, FolderShelf, Laptop, useDeskState } from "@sushindustries/ui";
+import {
+	Clock,
+	Dock,
+	FolderShelf,
+	Icon,
+	Laptop,
+	useDeskState,
+} from "@sushindustries/ui";
 import { useNavigate } from "@tanstack/react-router";
 import { type ReactNode, useMemo, useState } from "react";
 import { shelfEntries } from "./shelf.catalogue";
@@ -109,15 +116,37 @@ export function SiteShelf(): ReactNode {
 						query={query}
 						onQuery={setQuery}
 						trailing={
-							desk.desk.windows.length > 0 || desk.desk.hidden.length > 0 ? (
-								<button
-									type="button"
-									className="dock-task-face"
-									onClick={desk.reset}
+							/*
+							 * The corner: a way out, a way to reach me, and the time.
+							 *
+							 * The clock is the reader's own, from `Intl` with no locale
+							 * and no zone passed - so it is local without anybody being
+							 * asked where they are and without a byte going anywhere.
+							 */
+							<span className="flex items-center gap-2">
+								{desk.desk.windows.length > 0 || desk.desk.hidden.length > 0 ? (
+									<button
+										type="button"
+										className="dock-task-face"
+										onClick={desk.reset}
+									>
+										Reset
+									</button>
+								) : null}
+
+								<a
+									className="dock-icon"
+									href="https://www.linkedin.com/in/adamjurek22"
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label="Adam Jurek on LinkedIn"
+									title="LinkedIn"
 								>
-									Reset desk
-								</button>
-							) : null
+									<Icon name="linkedin" size={16} />
+								</a>
+
+								<Clock />
+							</span>
 						}
 					/>
 				}

@@ -7,12 +7,16 @@ summary: The folders on the laptop's desktop. Editing this file changes what is 
 
 Everything on this site, as folders on a desktop.
 
-The names are the ones a machine ships with, and each one holds what its name
-says it holds: Applications are the things you install, Projects are the things
-that are published, Documents are the things that are written, Downloads are
-the files a machine can fetch. Naming them after this site's own vocabulary
-would have been more accurate and less legible, and nobody needs to be taught
-what Documents means.
+The folders are named after what is in them rather than after the furniture of
+a desktop. Applications, Projects, Documents and Downloads read as a machine
+and told you nothing: a folder called Documents in a portfolio is a folder
+whose contents you have to open it to learn. Components, Packages, Writing and
+Machine readable are longer and are answers.
+
+Machine readable is the one worth keeping distinct. `llms.txt`, `sitemap.xml`
+and `robots.txt` are not pages that happen to be files - they are the whole
+surface a crawler or a model sees, and grouping them with downloads would file
+the SEO layer under a verb.
 
 ## Format
 
@@ -39,11 +43,11 @@ a second copy is a folder that opens onto nothing.
 
 ## The shelf
 
-- [Applications](/components) - Things you can install
+- [Components](/components) - Installable, grouped by what they do
   - {components}
-- [Projects](/packages) - Published from this monorepo
+- [Packages](/packages) - Published from this monorepo
   - {packages}
-- [Documents](/posts) - Notes on how this is built
+- [Writing](/posts) - Notes on how this is built
   - {posts}
-- [Downloads](/llms.txt) - What a machine can fetch from here
+- [Machine readable](/llms.txt) - What a crawler or a model reads instead of the pages
   - {files}

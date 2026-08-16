@@ -298,6 +298,18 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		preview: "One component, four real viewports, side by side",
 	},
 	{
+		name: "clock",
+		title: "Clock",
+		description:
+			"The reader's own day and time, in the reader's own zone, without asking anybody for a location.",
+		files: ["clock.tsx"],
+		dependencies: {},
+		category: "content",
+		subcategory: "Rendering",
+		tags: ["intl", "ssr", "no-deps"],
+		preview: "A weekday and a local time, ticking",
+	},
+	{
 		name: "credit",
 		title: "Credit",
 		description:
