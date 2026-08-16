@@ -1,7 +1,8 @@
-import { MarkdownView } from "@sushindustries/ui";
+import { collectHeadings, DocAside, MarkdownView } from "@sushindustries/ui";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { findPackage } from "../../modules/content/packages/packages.catalogue";
+import { BLOCKS } from "../../modules/markdown/blocks";
 
 /*
  * Kept as a flat route file rather than a `$slug/` directory. Converting a
@@ -14,7 +15,7 @@ export const Route = createFileRoute("/packages/$slug")({
 		const entry = findPackage(params.slug);
 		if (!entry) throw notFound();
 
-		return { entry };
+		return { entry, headings: collectHeadings(entry.readme) };
 	},
 	head: ({ loaderData }) => ({
 		meta: [
@@ -25,7 +26,7 @@ export const Route = createFileRoute("/packages/$slug")({
 });
 
 function PackagePage(): ReactNode {
-	const { entry } = Route.useLoaderData();
+	const { entry, headings } = Route.useLoaderData();
 
 	return (
 		<article className="container" style={{ paddingBlock: "var(--s-8)" }}>
@@ -45,7 +46,12 @@ function PackagePage(): ReactNode {
 			</header>
 
 			<div className="mt-7">
-				<MarkdownView source={entry.readme} />
+				<div className="doc-layout">
+					<DocAside headings={headings} />
+					<div className="min-w-0">
+						<MarkdownView source={entry.readme} blocks={BLOCKS} />
+					</div>
+				</div>
 			</div>
 		</article>
 	);

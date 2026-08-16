@@ -1,0 +1,140 @@
+/*
+ * Model viewer.
+ *
+ * Fills its container and has no opinion about how big that is. The commonest
+ * way to get a blank viewer is a parent with no height, which is a bug in the
+ * page rather than here - but it is worth knowing that is what a blank one
+ * usually means.
+ */
+
+.pv-viewer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* The canvas is drawn by WebGL and cannot be selected, but a drag that starts
+     on it should not select the text either side of it. */
+  user-select: none;
+}
+
+/*
+ * Touch behaviour follows the scroll mode, and it has to be declared here
+ * rather than in JavaScript: a `touchAction` set from an event handler arrives
+ * after the browser has already decided what the gesture was.
+ *
+ * `pan-y` means a vertical swipe scrolls the page and a horizontal one is the
+ * viewer's to orbit with. `none` gives every touch to the viewer.
+ */
+.pv-viewer[data-scroll='page'],
+.pv-viewer[data-scroll='modifier'] {
+  touch-action: pan-y;
+}
+
+.pv-viewer[data-scroll='zoom'] {
+  touch-action: none;
+}
+
+/* ------------------------------------------------------------- progress -- */
+
+.pv-progress {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pv-s-3);
+  background: var(--pv-overlay-bg);
+  backdrop-filter: blur(4px);
+  color: var(--pv-fg);
+}
+
+.pv-progress__track {
+  stroke: var(--pv-track);
+}
+
+/*
+ * `stroke-dashoffset` is the one thing here that is neither transform nor
+ * opacity. It is kept because the alternatives are worse: a scaled bar cannot
+ * describe an arc, and re-rendering the ring per frame in React is more work
+ * for the main thread than letting the compositor interpolate one number.
+ * A progress ring also updates a handful of times, not sixty times a second.
+ */
+.pv-progress__bar {
+  stroke: var(--pv-accent);
+  transition: stroke-dashoffset var(--pv-dur-ui) var(--pv-ease-out);
+}
+
+.pv-progress__value {
+  fill: currentColor;
+  font-size: var(--pv-t-md);
+  font-weight: 600;
+  /* So the number does not jitter sideways as it counts up. */
+  font-variant-numeric: tabular-nums;
+}
+
+.pv-progress__label {
+  margin: 0;
+  font-size: var(--pv-t-sm);
+  color: var(--pv-fg-dim);
+}
+
+/* ----------------------------------------------------------------- hint -- */
+
+/*
+ * "Hold ⌘ to zoom", shown only to someone who just tried to.
+ *
+ * Never shown pre-emptively: a label explaining a gesture nobody attempted is
+ * noise on top of the product. It appears on the scroll that did nothing, which
+ * is the one moment the explanation is worth reading, and it leaves on its own.
+ */
+.pv-viewer__hint {
+  position: absolute;
+  left: 50%;
+  bottom: var(--pv-s-4);
+  z-index: 5;
+  padding: var(--pv-s-2) var(--pv-s-3);
+  border-radius: var(--pv-r-pill);
+  background: var(--pv-bg-1);
+  color: var(--pv-fg-dim);
+  font-size: var(--pv-t-sm);
+  white-space: nowrap;
+  box-shadow: var(--pv-shadow);
+  pointer-events: none;
+
+  /*
+   * Out is the resting state, and it is faster than in. The hint arriving is
+   * information; the hint leaving is tidying up, and tidying up should not be
+   * something you wait for.
+   */
+  opacity: 0;
+  transform: translate(-50%, var(--pv-s-2)) scale(0.96);
+  transition:
+    opacity var(--pv-dur-exit) var(--pv-ease-out),
+    transform var(--pv-dur-exit) var(--pv-ease-out);
+}
+
+.pv-viewer__hint[data-visible] {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+  transition-duration: var(--pv-dur-ui);
+}
+
+/* --------------------------------------------------------------- motion -- */
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-progress__bar {
+    transition: none;
+  }
+
+  /* The hint still fades, because the fade is what makes it noticeable at all.
+     Only the movement goes. */
+  .pv-viewer__hint {
+    transform: translate(-50%, 0);
+    transition-property: opacity;
+  }
+
+  .pv-viewer__hint[data-visible] {
+    transform: translate(-50%, 0);
+  }
+}

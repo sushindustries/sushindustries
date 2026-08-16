@@ -1,0 +1,188 @@
+/*
+ * Tokens. Every value an element is allowed to read.
+ *
+ * Each token resolves in three steps, and the order is the whole design:
+ *
+ *   --pv-fg: var(--fg, #1f2933)
+ *            ^^^^^^  ^^^^^^^^^
+ *            |       the literal, used only when nothing above is defined
+ *            the host design system's alias, used when it exists
+ *
+ * So the same stylesheet works three ways without a build step or a config
+ * file. Dropped into a project that already defines `--fg` and `--accent`, it
+ * inherits them and looks native immediately. Dropped into an empty project, it
+ * looks finished on its own. And a consumer who wants to change one thing sets
+ * `--pv-accent` without touching their own `--accent`, so our components move
+ * and theirs do not.
+ *
+ * The alternative - reading `var(--fg)` directly in every rule - is what our
+ * own components do, and it is right for them because they never leave the
+ * repository. A published package that did it would render unstyled in every
+ * project that has not adopted our token names, which is all of them.
+ *
+ * Elements read these. Elements never read a literal, and never reach past an
+ * alias to a raw ramp value. That rule is what makes a component survive a
+ * change of palette instead of becoming a screenshot of one.
+ */
+
+:where(:root) {
+  /* --------------------------------------------------------------- colour -- */
+
+  /* Surfaces, recessed to raised. The canvas sits on bg-0; cards on bg-1. */
+  --pv-bg-0: var(--bg-0, #e9ecef);
+  --pv-bg-1: var(--bg-1, #ffffff);
+  --pv-bg-2: var(--bg-2, #f4f6f8);
+
+  /* Text, in descending emphasis. */
+  --pv-fg: var(--fg, #1f2933);
+  --pv-fg-dim: var(--fg-dim, #566270);
+  --pv-fg-faint: var(--fg-faint, #8a939d);
+
+  /* The one colour that draws the eye. */
+  --pv-accent: var(--accent, #4a90d9);
+  --pv-accent-dim: var(--accent-dim, #3a72ad);
+  --pv-on-accent: #ffffff;
+
+  /* Borders. `soft` is for dividers inside a surface, `line` for its edge. */
+  --pv-line: var(--line, rgba(31, 41, 51, 0.18));
+  --pv-line-soft: var(--line-soft, rgba(31, 41, 51, 0.09));
+
+  /* State. Only ever state - never decoration. */
+  --pv-warn: var(--warn, #b7791f);
+
+  /* -------------------------------------------------------------- spacing -- */
+
+  /*
+   * Short on purpose: every value an element can need, and no value it can
+   * invent. The gaps between them are what make a layout look measured rather
+   * than assembled.
+   */
+  --pv-s-1: var(--s-1, 4px);
+  --pv-s-2: var(--s-2, 8px);
+  --pv-s-3: var(--s-3, 12px);
+  --pv-s-4: var(--s-4, 16px);
+  --pv-s-5: var(--s-5, 24px);
+  --pv-s-6: var(--s-6, 32px);
+  --pv-s-7: var(--s-7, 48px);
+
+  /* ----------------------------------------------------------------- type -- */
+
+  /*
+   * In `rem`, so they follow the reader's browser setting - the one
+   * accessibility control people actually change. A `font-size: 13px` ignores
+   * it, which is why there is no px value anywhere below.
+   */
+  --pv-t-xs: var(--t-xs, 0.6875rem); /* 11px */
+  --pv-t-sm: var(--t-sm, 0.8125rem); /* 13px */
+  --pv-t-md: var(--t-md, 0.9375rem); /* 15px */
+  --pv-t-lg: var(--t-lg, 1.125rem); /* 18px */
+  --pv-t-xl: var(--t-xl, 1.5rem); /* 24px */
+
+  --pv-sans: var(--sans, inherit);
+  --pv-mono: var(
+    --mono,
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    monospace
+  );
+
+  /* ---------------------------------------------------------------- shape -- */
+
+  --pv-r: var(--r, 8px); /* controls */
+  --pv-r-lg: var(--r-lg, 12px); /* panels */
+  --pv-r-card: var(--r-card, 14px); /* the card */
+  --pv-r-pill: 999px; /* pills only; not a system radius */
+
+  /* Only for things that genuinely float. A card on a page does not. */
+  --pv-shadow: var(--shadow, 0 8px 24px -12px rgba(16, 24, 32, 0.4));
+
+  /* --------------------------------------------------------------- motion -- */
+
+  /*
+   * Real curves, not the browser's. The built-in easings are too weak to read
+   * as intentional: `ease-out` at 200ms and `cubic-bezier(0.23, 1, 0.32, 1)` at
+   * 200ms take the same time, and only the second one feels answered.
+   *
+   * `ease-in` appears nowhere on purpose. It delays movement at the exact
+   * moment the user is watching for it, so an interface using it feels slow at
+   * a duration where ease-out feels instant.
+   */
+  --pv-ease-out: var(--ease-out, cubic-bezier(0.23, 1, 0.32, 1));
+  --pv-ease-in-out: var(--ease-in-out, cubic-bezier(0.77, 0, 0.175, 1));
+
+  /*
+   * Durations, banded by what the thing is. Everything interactive stays under
+   * 300ms; past that an interface reads as slow however good the curve is.
+   */
+  --pv-dur-press: 140ms; /* button feedback */
+  --pv-dur-ui: 200ms; /* hovers, swatches, small state changes */
+  --pv-dur-panel: 240ms; /* configurator, disclosure */
+  --pv-dur-modal: 280ms; /* the fullscreen dialog */
+  --pv-dur-exit: 160ms; /* every exit, always shorter than its enter */
+
+  /* ---------------------------------------------------------------- touch -- */
+
+  /*
+   * The smallest a touch target may be. Not a suggestion: a 34px pill is a
+   * control people miss, and they blame the product rather than the pixel.
+   */
+  --pv-tap: var(--tap, 44px);
+
+  /* --------------------------------------------------------------- canvas -- */
+
+  /*
+   * Read by the WebGL renderer through `getComputedStyle`, because a clear
+   * colour has to be a real colour - the renderer cannot resolve `var()`.
+   * That is also why these three carry concrete fallbacks rather than
+   * `transparent`.
+   */
+  --pv-canvas-bg: var(--pv-bg-0);
+  --pv-grid-cell: #8f9aa5;
+  --pv-grid-section: var(--pv-accent);
+
+  /* The scrim over a hero, and the veil over a loading canvas. */
+  --pv-overlay-bg: rgba(233, 236, 239, 0.6);
+  --pv-scrim: rgba(0, 0, 0, 0.45);
+  --pv-track: rgba(31, 41, 51, 0.25);
+}
+
+/*
+ * Dark, by preference and by attribute.
+ *
+ * Only the tokens whose role changes are redefined. Everything built on them
+ * follows, which is the entire reason the aliases exist - a second theme costs
+ * this block and nothing else.
+ */
+@media (prefers-color-scheme: dark) {
+  :where(:root:not([data-pv-theme='light'])) {
+    --pv-bg-0: var(--bg-0, #1c2024);
+    --pv-bg-1: var(--bg-1, #23282d);
+    --pv-bg-2: var(--bg-2, #2b3137);
+    --pv-fg: var(--fg, #e8ecef);
+    --pv-fg-dim: var(--fg-dim, #a8b2bb);
+    --pv-fg-faint: var(--fg-faint, #6f7982);
+    --pv-line: var(--line, rgba(232, 236, 239, 0.18));
+    --pv-line-soft: var(--line-soft, rgba(232, 236, 239, 0.09));
+    --pv-grid-cell: #39414a;
+    --pv-overlay-bg: rgba(20, 23, 26, 0.6);
+    --pv-track: rgba(232, 236, 239, 0.25);
+    --pv-shadow: var(--shadow, 0 8px 24px -12px rgba(0, 0, 0, 0.7));
+  }
+}
+
+:where(:root[data-pv-theme='dark']) {
+  --pv-bg-0: var(--bg-0, #1c2024);
+  --pv-bg-1: var(--bg-1, #23282d);
+  --pv-bg-2: var(--bg-2, #2b3137);
+  --pv-fg: var(--fg, #e8ecef);
+  --pv-fg-dim: var(--fg-dim, #a8b2bb);
+  --pv-fg-faint: var(--fg-faint, #6f7982);
+  --pv-line: var(--line, rgba(232, 236, 239, 0.18));
+  --pv-line-soft: var(--line-soft, rgba(232, 236, 239, 0.09));
+  --pv-grid-cell: #39414a;
+  --pv-overlay-bg: rgba(20, 23, 26, 0.6);
+  --pv-track: rgba(232, 236, 239, 0.25);
+  --pv-shadow: var(--shadow, 0 8px 24px -12px rgba(0, 0, 0, 0.7));
+}

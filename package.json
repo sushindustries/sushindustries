@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"type": "module",
-	"description": "Sushindustries — the portfolio. A TanStack Start site that showcases what we build.",
+	"description": "Sushindustries \u2014 the portfolio. A TanStack Start site that showcases what we build.",
 	"engines": {
 		"node": ">=22"
 	},
@@ -17,6 +17,7 @@
 		"@biomejs/biome": "2.5.8",
 		"@tanstack/cli": "0.70.2",
 		"@types/node": "26.2.0",
+		"tsdown": "0.22.14",
 		"turbo": "2.10.10",
 		"typescript": "5.9.3"
 	},

@@ -1,0 +1,213 @@
+/*
+ * Atoms. The declarations more than one element needs, each extracted once.
+ *
+ * This is the layer that keeps seven elements from growing seven slightly
+ * different focus rings. Everything here is a behaviour rather than a look:
+ * how a control answers a press, how it announces focus, how it behaves under
+ * a thumb. Looks live in the element's own stylesheet, because that is the part
+ * a consumer legitimately wants to change.
+ *
+ * ## The rules
+ *
+ * 1. **A utility exists when two elements need it.** One use is not
+ *    duplication, and a utility invented for a use that has not happened yet is
+ *    a guess that has to be maintained. Every class below is used at least
+ *    twice; when one stops being, it goes.
+ *
+ * 2. **One idea per utility.** `pv-u-press` does press feedback and nothing
+ *    else. Compound utilities cannot be opted out of halfway, which is the
+ *    moment a consumer stops using the layer and copies it instead.
+ *
+ * 3. **Single class selectors only.** Specificity stays at 0,1,0 so one class
+ *    in a consumer's own stylesheet beats it, with no `!important` and no
+ *    ordering games. Nothing here is nested under an element or an id.
+ *
+ * 4. **Tokens, never literals.** No colour, length, duration or curve is
+ *    written out. If a value is not in `tokens.css`, it does not belong here.
+ *
+ * 5. **State is an attribute, not a class.** `[data-selected]`, not
+ *    `.is-selected`. A consumer can then style our state from their own
+ *    stylesheet without importing this file or learning our vocabulary.
+ *
+ * 6. **`pv-u-` prefix, always.** These are generic names - `press`, `surface`,
+ *    `clamp-2` - and generic names collide. The prefix is what makes shipping
+ *    them into somebody else's cascade safe.
+ */
+
+/* ------------------------------------------------------------ interaction -- */
+
+/*
+ * Press feedback.
+ *
+ * The control confirms it heard the press before anything else happens, which
+ * matters most when what happens next is slow: a swatch that swaps a material
+ * takes a frame or two, and without this the button looks broken for exactly
+ * that long.
+ *
+ * `scale` and not `background`, because scale is composited - it skips layout
+ * and paint - and because scaling an element scales its children, so an icon
+ * and its label press together rather than the box pressing around them.
+ */
+.pv-u-press {
+  transition: transform var(--pv-dur-press) var(--pv-ease-out);
+}
+
+.pv-u-press:active {
+  transform: scale(0.97);
+}
+
+/*
+ * Focus, for keyboards only.
+ *
+ * `:focus-visible` rather than `:focus`, so a mouse press does not leave a ring
+ * behind. `outline` rather than `box-shadow`, because outline follows
+ * `border-radius` in every current browser and does not affect layout.
+ */
+.pv-u-focus:focus-visible {
+  outline: 2px solid var(--pv-accent);
+  outline-offset: 2px;
+}
+
+/*
+ * The touch floor.
+ *
+ * Applied only on coarse pointers, so a mouse-driven layout keeps its density
+ * and a thumb-driven one gets targets it can actually hit. Using `min-height`
+ * rather than `height` means a control with two lines of label still grows.
+ */
+@media (pointer: coarse) {
+  .pv-u-tap {
+    min-height: var(--pv-tap);
+    min-width: var(--pv-tap);
+  }
+}
+
+/*
+ * Hover, for devices that have one.
+ *
+ * A touch device fires hover on tap and leaves it applied, so an ungated hover
+ * state stays lit after the finger is gone and reads as a selection that is not
+ * there. Elements put their hover rules inside this query rather than declaring
+ * them bare.
+ *
+ * This is a marker class with no declarations of its own - the query is the
+ * point, and it is written out in each element's stylesheet. Kept here as the
+ * canonical form so seven files write the same one.
+ */
+
+/* ---------------------------------------------------------------- resets -- */
+
+/*
+ * A button that inherits from the page instead of from the user agent.
+ *
+ * Without this every control needs the same five lines, and the one that
+ * forgets `font: inherit` renders in 13px Arial on a page that is nothing of
+ * the sort.
+ */
+.pv-u-control {
+  appearance: none;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------------------- shapes -- */
+
+/*
+ * A raised surface: card, panel, dialog body.
+ *
+ * No shadow. A shadow says "this floats above the page", and a card in a grid
+ * does not float - it sits. Elements that genuinely float add `--pv-shadow`
+ * themselves.
+ */
+.pv-u-surface {
+  background: var(--pv-bg-1);
+  border: 1px solid var(--pv-line);
+  border-radius: var(--pv-r-lg);
+}
+
+/* ------------------------------------------------------------------ text -- */
+
+/*
+ * Fixed line counts.
+ *
+ * A row of cards whose titles wrap to different heights reads as broken, and
+ * the reflexive fix - `white-space: nowrap` - pushes long titles out of the
+ * card instead. Clamping reserves the lines whether or not the text needs them,
+ * so every card in a grid is the same height with no JavaScript measuring
+ * anything.
+ *
+ * `min-height` is the half that is usually missed: without it a one-line title
+ * occupies one line and the grid is ragged again, which is the bug this exists
+ * to prevent.
+ */
+.pv-u-clamp-1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  overflow: hidden;
+  min-height: 1.35em;
+}
+
+.pv-u-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  min-height: 2.7em;
+}
+
+/*
+ * Truncation for a single unbreakable value - a variant name, an id.
+ * Distinct from clamping: this one never wraps at all.
+ */
+.pv-u-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* -------------------------------------------------------------- overflow -- */
+
+/*
+ * A row that scrolls rather than a page that does.
+ *
+ * The failure this prevents is the whole document gaining a horizontal
+ * scrollbar because one row of swatches was wider than a phone. The row
+ * scrolls; the page never does.
+ *
+ * `overscroll-behavior-x: contain` stops a swipe that reaches the end of the
+ * row from becoming a browser back-navigation, which on iOS it otherwise does.
+ */
+.pv-u-scroll-x {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+
+/* ---------------------------------------------------------------- motion -- */
+
+/*
+ * Reduced motion: fewer and gentler, not none.
+ *
+ * The setting means "movement makes me unwell", not "I want no feedback". So
+ * opacity and colour transitions stay - they carry meaning and cause nobody
+ * any trouble - and everything that moves or scales stops. A blanket
+ * `animation: none` also removes the fades that tell people something changed,
+ * which is a worse interface, not a more accessible one.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .pv-u-press {
+    transition: none;
+  }
+
+  .pv-u-press:active {
+    transform: none;
+  }
+}

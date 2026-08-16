@@ -37,7 +37,9 @@
 			"!**/node_modules",
 			"!**/.output",
 			"!**/dist",
-			"!**/routeTree.gen.ts"
+			"!**/routeTree.gen.ts",
+			"!packages/product-viewer",
+			"!packages/react-product-viewer"
 		]
 	}
 }

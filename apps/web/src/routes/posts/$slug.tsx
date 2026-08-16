@@ -1,7 +1,8 @@
-import { MarkdownView } from "@sushindustries/ui";
+import { collectHeadings, DocAside, MarkdownView } from "@sushindustries/ui";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { findPost } from "../../modules/content/posts/posts.catalogue";
+import { BLOCKS } from "../../modules/markdown/blocks";
 
 /*
  * Flat file, not a `$slug/` directory. Converting a dynamic segment to a route
@@ -13,7 +14,7 @@ export const Route = createFileRoute("/posts/$slug")({
 		const post = findPost(params.slug);
 		if (!post || post.draft) throw notFound();
 
-		return { post };
+		return { post, headings: collectHeadings(post.body) };
 	},
 	head: ({ loaderData }) => ({
 		meta: [
@@ -24,7 +25,7 @@ export const Route = createFileRoute("/posts/$slug")({
 });
 
 function PostPage(): ReactNode {
-	const { post } = Route.useLoaderData();
+	const { post, headings } = Route.useLoaderData();
 
 	return (
 		<article className="container" style={{ paddingBlock: "var(--s-8)" }}>
@@ -42,7 +43,12 @@ function PostPage(): ReactNode {
 			</header>
 
 			<div className="mt-7">
-				<MarkdownView source={post.body} />
+				<div className="doc-layout">
+					<DocAside headings={headings} />
+					<div className="min-w-0">
+						<MarkdownView source={post.body} blocks={BLOCKS} />
+					</div>
+				</div>
 			</div>
 		</article>
 	);

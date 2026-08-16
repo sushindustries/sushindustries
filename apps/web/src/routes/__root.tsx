@@ -5,6 +5,7 @@ import {
 	HeadContent,
 	Outlet,
 	Scripts,
+	useRouterState,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { QueryProvider } from "../integrations/tanstack-query/provider";
@@ -45,6 +46,40 @@ function RootComponent(): ReactNode {
 function RootDocument({
 	children,
 }: Readonly<{ children: ReactNode }>): ReactNode {
+	/*
+	 * `/preview/*` renders inside an iframe — in the showcase frame and in every
+	 * archive card. It gets no chrome at all.
+	 *
+	 * This is not a cosmetic choice. Site chrome inside a preview means the nav
+	 * bar appears in the middle of a thumbnail, the devtools launcher mounts
+	 * once per card, and the frame scrolls because the chrome makes it taller
+	 * than the box. All three were visible before this existed.
+	 *
+	 * Read from router state rather than passed down, because the root renders
+	 * above every route and has nothing else to ask. It resolves on the server
+	 * too, so the chrome is absent in the SSR'd HTML rather than removed after
+	 * hydration.
+	 */
+	const pathname = useRouterState({
+		select: (state) => state.location.pathname,
+	});
+
+	const isBare = pathname.startsWith("/preview/");
+
+	if (isBare) {
+		return (
+			<html lang="en">
+				<head>
+					<HeadContent />
+				</head>
+				<body>
+					{children}
+					<Scripts />
+				</body>
+			</html>
+		);
+	}
+
 	return (
 		<html lang="en">
 			<head>

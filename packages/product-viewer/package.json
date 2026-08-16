@@ -1,0 +1,110 @@
+{
+	"name": "@sushindustries/product-viewer",
+	"version": "0.1.0",
+	"description": "Runtime material swapping and geometric zone tinting for a single GLB product. Framework-free.",
+	"author": "Adam Jurek",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sushindustries/product-viewer.git",
+		"directory": "packages/product-viewer"
+	},
+	"homepage": "https://github.com/sushindustries/product-viewer",
+	"keywords": [
+		"3d",
+		"gltf",
+		"glb",
+		"three",
+		"configurator",
+		"material-variants",
+		"khr-materials-variants",
+		"webgl",
+		"tanstack-intent"
+	],
+	"type": "module",
+	"engines": {
+		"node": ">=20.17.0"
+	},
+	"types": "./dist/index.d.mts",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.mts",
+				"default": "./dist/index.mjs"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
+		},
+		"./schema": {
+			"import": {
+				"types": "./dist/schema.d.mts",
+				"default": "./dist/schema.mjs"
+			},
+			"require": {
+				"types": "./dist/schema.d.cts",
+				"default": "./dist/schema.cjs"
+			}
+		},
+		"./swatch": {
+			"import": {
+				"types": "./dist/swatch.d.mts",
+				"default": "./dist/swatch.mjs"
+			},
+			"require": {
+				"types": "./dist/swatch.d.cts",
+				"default": "./dist/swatch.cjs"
+			}
+		},
+		"./zoned-material": {
+			"import": {
+				"types": "./dist/zoned-material.d.mts",
+				"default": "./dist/zoned-material.mjs"
+			},
+			"require": {
+				"types": "./dist/zoned-material.d.cts",
+				"default": "./dist/zoned-material.cjs"
+			}
+		},
+		"./package.json": "./package.json"
+	},
+	"sideEffects": false,
+	"files": [
+		"dist",
+		"src",
+		"skills",
+		"!src/**/*.test.ts"
+	],
+	"scripts": {
+		"build": "tsdown",
+		"test:types": "tsc --noEmit",
+		"test:build": "publint --strict && attw --pack . --profile node16"
+	},
+	"peerDependencies": {
+		"three": ">=0.160.0",
+		"three-custom-shader-material": ">=6",
+		"three-stdlib": ">=2.30.0",
+		"zod": ">=3.23.0 || >=4"
+	},
+	"peerDependenciesMeta": {
+		"three-custom-shader-material": {
+			"optional": true
+		},
+		"zod": {
+			"optional": true
+		}
+	},
+	"devDependencies": {
+		"@types/three": "0.185.4",
+		"three": "0.185.1",
+		"three-custom-shader-material": "6.4.0",
+		"three-stdlib": "2.36.1",
+		"zod": "4.4.3"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
