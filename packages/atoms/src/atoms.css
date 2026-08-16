@@ -98,6 +98,18 @@ html {
 	/* Lenis animates scroll itself; leaving native smooth on fights it. */
 	scroll-behavior: auto;
 	-webkit-text-size-adjust: 100%;
+	/*
+	 * Always reserve the scrollbar's width, whether or not there is one.
+	 *
+	 * Opening the mobile drawer locks the page with `overflow: hidden`, which
+	 * takes the scrollbar away. Without a reserved gutter the document becomes
+	 * about fifteen pixels wider at that instant and every centred thing on the
+	 * page slides sideways - the hero visibly jumps as the menu opens.
+	 *
+	 * It also fixes the quieter version of the same thing: navigating from a
+	 * page that scrolls to one that does not.
+	 */
+	scrollbar-gutter: stable;
 }
 
 body {

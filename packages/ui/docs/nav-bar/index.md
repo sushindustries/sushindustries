@@ -113,11 +113,18 @@ the same place, having changed shape.
 
 Escape also closes it, for free, because it is a `<details>`.
 
-Inside the drawer, group headers and their items share one left edge and both
-rows are at least 44px tall. An indent on the nested list would push every icon
-tile a few pixels right of its group's icon, and the drawer would read as two
-columns that nearly line up, which is worse than either lining up or clearly
-not.
+Nothing on the page moves as it opens. Locking the page removes the scrollbar,
+which makes the document about fifteen pixels wider at that instant, and every
+centred thing slides sideways - on the home page the hero visibly jumps.
+`scrollbar-gutter: stable` on `html` reserves the width whether or not there is
+a scrollbar in it, so the lock changes nothing about the layout.
+
+Inside the drawer, every row starts with a tile on one column, group headers
+included. Items sit behind a rule set in by the tile's width rather than
+indented: indenting would push each item's tile a few pixels right of its
+group's, and the drawer would read as two columns that nearly line up, which is
+worse than either lining up or clearly not. Rows are at least 44px tall, and
+they answer a press with `:active`, since a touch screen has no hover to give.
 
 <!-- ::start:spacer size="6" label="Where it is used" -->
 <!-- ::end:spacer -->
@@ -157,9 +164,13 @@ filters to nothing.
 
 ## The glass
 
-Each item's icon sits on a translucent tile: a light top edge, a dark bottom
-one, and a blurred backdrop. The two-tone border is what makes it read as a
-raised piece of glass rather than a flat swatch, and it costs one gradient.
+Each icon sits on a tile with a light top edge fading into a darker fill. That
+gradient is the whole effect: a lit edge over a solid body is what reads as a
+raised piece of glass, and it costs one `linear-gradient`.
+
+It used to have a `backdrop-filter` as well, which is what crashed the
+renderer. Removing it changed almost nothing about how the tile looks, which is
+the useful part of the story - the filter was never doing the work.
 
 Hovering the row lifts the tile with it - the border warms to the accent and so
 does the glyph - so the whole item reads as one target rather than as a link
