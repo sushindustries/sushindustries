@@ -90,11 +90,11 @@ export function Dock({
 				<span className="dock-scrim" />
 
 				<div className="dock-palette">
-					<div className="shelf-search">
-						<Icon name="search" size={15} className="shelf-search-glyph" />
+					<div className="search-field">
+						<Icon name="search" size={15} className="search-glyph" />
 						<input
 							type="search"
-							className="shelf-search-input"
+							className="search-input"
 							placeholder="Search everything"
 							aria-label="Search everything"
 							value={query}

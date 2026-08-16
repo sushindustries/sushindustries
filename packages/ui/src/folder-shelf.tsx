@@ -1,4 +1,4 @@
-import { type ReactNode, useState } from "react";
+import type { ReactNode } from "react";
 import { ContextMenu, type MenuAction, useContextMenu } from "./context-menu";
 import { DeskWindow } from "./desk-window";
 import { Icon, type IconName } from "./icon";
@@ -48,34 +48,31 @@ export interface FolderShelfProps {
 	}) => ReactNode;
 	/** Announced to screen readers as the name of the shelf. */
 	label?: string;
-	/** Show the search field. */
-	searchable?: boolean;
 	/**
 	 * Storage key for the arrangement: which windows are open, where they sit,
 	 * and what has been put away. Omit and the desk is not remembered.
 	 */
 	rememberAs?: string;
-	/** Placeholder on the search field. */
-	searchLabel?: string;
 }
 
 function isFolder(entry: ShelfEntry): boolean {
 	return Boolean(entry.children && entry.children.length > 0);
 }
 
-/*
+/**
  * Everything in the tree, flattened, with the path that leads to each thing.
  *
- * Search deliberately looks past the folders. Somebody typing into a desktop is
- * looking for a file, not for the drawer it is in, and a search that only
- * matched top-level folders would answer "Applications" to a query for the name
- * of a component inside it.
+ * Exported because search belongs to whatever is doing the searching - on this
+ * site the dock's palette - and every one of them needs this same walk.
  *
- * The path comes back with each result so a match can say where it lives -
- * which is the difference between a result you can trust and a name you have to
- * go and find again.
+ * Search should look past the folders: somebody typing into a desktop is
+ * looking for a file, not for the drawer it is in, and a search that only
+ * matched top-level folders would answer "Components" to a query for the name
+ * of a component inside it. The path comes back with each result so a match can
+ * say where it lives, which is the difference between a result you can trust
+ * and a name you have to go and find again.
  */
-function flatten(
+export function flatten(
 	entries: readonly ShelfEntry[],
 	path: readonly ShelfEntry[] = [],
 ): Array<{ entry: ShelfEntry; path: readonly ShelfEntry[] }> {
@@ -110,9 +107,10 @@ function resolve(
 	return out;
 }
 
-function matches(entry: ShelfEntry, query: string): boolean {
+/** Label and description, case-folded. The whole matching rule. */
+export function matches(entry: ShelfEntry, query: string): boolean {
 	const haystack = `${entry.label} ${entry.description ?? ""}`.toLowerCase();
-	return haystack.includes(query);
+	return haystack.includes(query.trim().toLowerCase());
 }
 
 function glyphFor(entry: ShelfEntry, open = false): IconName {
@@ -184,24 +182,9 @@ export function FolderShelf({
 	renderEntry,
 	renderLink = (props) => <a {...props} />,
 	label = "Folders",
-	searchable = false,
-	searchLabel = "Search",
 	rememberAs = "sushindustries.desk",
 }: FolderShelfProps): ReactNode {
 	const desk = useDeskState(rememberAs);
-	const [query, setQuery] = useState("");
-
-	const trimmed = query.trim().toLowerCase();
-
-	/*
-	 * Results replace the shelf rather than opening a window over it. A search
-	 * that produced a window would need dismissing before the query could be
-	 * refined, which is the wrong shape for something typed a character at a
-	 * time.
-	 */
-	const results = trimmed
-		? flatten(entries).filter(({ entry }) => matches(entry, trimmed))
-		: [];
 
 	/*
 	 * Stored windows, resolved against the tree as it is now. Anything that no
@@ -229,61 +212,19 @@ export function FolderShelf({
 
 	return (
 		<div className="shelf-root">
-			{searchable ? (
-				<div className="shelf-search">
-					<Icon name="search" size={15} className="shelf-search-glyph" />
-					<input
-						type="search"
-						className="shelf-search-input"
-						placeholder={searchLabel}
-						aria-label={searchLabel}
-						value={query}
-						onChange={(event) => setQuery(event.target.value)}
-					/>
-					{trimmed ? (
-						<span className="mono text-xs fg-faint">
-							{results.length} {results.length === 1 ? "result" : "results"}
-						</span>
-					) : null}
-				</div>
-			) : null}
-
-			{trimmed ? (
-				<ul
-					className="window-list shelf-results"
-					aria-label={`${label}, filtered`}
-				>
-					{results.map(({ entry, path: at }) => (
-						<li key={`${at.map((step) => step.id).join("/")}/${entry.id}`}>
-							<WindowRow
-								entry={entry}
-								path={at}
-								onOpen={() => openEntry(entry, at)}
-								actionsFor={actionsFor}
-								renderLink={renderLink}
-								where={at.map((step) => step.label).join(" / ")}
-							/>
-						</li>
-					))}
-					{results.length === 0 ? (
-						<li className="p-6 text-center label">Nothing matches that</li>
-					) : null}
-				</ul>
-			) : (
-				<ul className="shelf" aria-label={label}>
-					{shown.map((entry) => (
-						<li key={entry.id} className="shelf-cell">
-							<ShelfTile
-								entry={entry}
-								onOpen={() => openEntry(entry)}
-								actionsFor={actionsFor}
-								renderLink={renderLink}
-								openable={Boolean(renderEntry)}
-							/>
-						</li>
-					))}
-				</ul>
-			)}
+			<ul className="shelf" aria-label={label}>
+				{shown.map((entry) => (
+					<li key={entry.id} className="shelf-cell">
+						<ShelfTile
+							entry={entry}
+							onOpen={() => openEntry(entry)}
+							actionsFor={actionsFor}
+							renderLink={renderLink}
+							openable={Boolean(renderEntry)}
+						/>
+					</li>
+				))}
+			</ul>
 
 			{/*
 			 * Windows live here, absolutely positioned inside the desk rather than
@@ -490,68 +431,6 @@ function WindowBody({
 					</ul>
 				)}
 			</div>
-		</div>
-	);
-}
-
-function WindowRow({
-	entry,
-	path,
-	onOpen,
-	actionsFor,
-	renderLink,
-	where,
-}: {
-	entry: ShelfEntry;
-	path: readonly ShelfEntry[];
-	onOpen: () => void;
-	actionsFor: FolderShelfProps["actionsFor"];
-	renderLink: NonNullable<FolderShelfProps["renderLink"]>;
-	/** Where this row lives, shown only in search results. */
-	where?: string;
-}): ReactNode {
-	const menu = useContextMenu();
-
-	const face = (
-		<>
-			<span className="window-icon">
-				<Icon name={glyphFor(entry)} size={18} />
-			</span>
-			<span className="min-w-0">
-				<span className="block fg text-sm font-medium">{entry.label}</span>
-				{where ? <span className="window-where">{where}</span> : null}
-				{entry.description ? (
-					<span className="window-note">{entry.description}</span>
-				) : null}
-			</span>
-			{entry.meta ? <span className="window-meta">{entry.meta}</span> : null}
-			{isFolder(entry) ? (
-				<Icon name="chevron" size={13} className="window-into" />
-			) : null}
-		</>
-	);
-
-	return (
-		<div className="window-row" {...menu.triggerProps}>
-			{isFolder(entry) ? (
-				<button type="button" className="window-face" onClick={onOpen}>
-					{face}
-				</button>
-			) : (
-				renderLink({
-					id: entry.id,
-					href: entry.href ?? "#",
-					className: "window-face",
-					children: face,
-				})
-			)}
-
-			<EntryMenu
-				entry={entry}
-				path={path}
-				actionsFor={actionsFor}
-				className="window-more"
-			/>
 		</div>
 	);
 }

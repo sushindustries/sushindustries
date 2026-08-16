@@ -2,8 +2,10 @@ import {
 	Clock,
 	Dock,
 	FolderShelf,
+	flatten,
 	Icon,
 	Laptop,
+	matches,
 	useDeskState,
 } from "@sushindustries/ui";
 import { useNavigate } from "@tanstack/react-router";
@@ -43,57 +45,44 @@ export function SiteShelf(): ReactNode {
 	 * the desktop.
 	 */
 	const results = useMemo(() => {
-		const trimmed = query.trim().toLowerCase();
-		if (!trimmed) return [];
+		if (!query.trim()) return [];
 
-		const flat: Array<{
-			id: string;
-			label: string;
-			description?: string;
-			icon?: "folder" | "file";
-			path: string[];
-			href?: string;
-			isFolder: boolean;
-		}> = [];
-
-		function walk(list: typeof entries, path: string[]): void {
-			for (const entry of list) {
+		/*
+		 * `flatten` is the shelf's own walk, exported. Every result carries the
+		 * path that leads to it, which is what lets a folder be opened in a
+		 * window rather than navigated to - and what lets the result say where
+		 * it lives.
+		 */
+		return flatten(entries)
+			.filter(({ entry }) => matches(entry, query))
+			.slice(0, 12)
+			.map(({ entry, path }) => {
 				const isFolder = Boolean(entry.children?.length);
 
-				flat.push({
-					id: [...path, entry.id].join("/"),
+				return {
+					id: [...path.map((step) => step.id), entry.id].join("/"),
 					label: entry.label,
-					description: entry.description,
-					icon: isFolder ? "folder" : "file",
-					path: [...path, entry.id],
-					href: entry.href,
-					isFolder,
-				});
+					description:
+						path.length > 0
+							? `${path.map((step) => step.label).join(" / ")} - ${entry.description ?? ""}`
+							: entry.description,
+					icon: (isFolder ? "folder" : "file") as "folder" | "file",
+					onSelect() {
+						/*
+						 * A folder opens where it belongs. Navigating away to a
+						 * directory listing of the desktop you are already looking at
+						 * would be a strange answer to a search.
+						 */
+						if (isFolder || renderShelfPage(entry)) {
+							desk.open([...path.map((step) => step.id), entry.id]);
+						} else if (entry.href) {
+							void navigate({ href: entry.href });
+						}
 
-				if (entry.children) walk(entry.children, [...path, entry.id]);
-			}
-		}
-
-		walk(entries, []);
-
-		return flat
-			.filter((item) =>
-				`${item.label} ${item.description ?? ""}`
-					.toLowerCase()
-					.includes(trimmed),
-			)
-			.slice(0, 12)
-			.map((item) => ({
-				id: item.id,
-				label: item.label,
-				description: item.description,
-				icon: item.icon,
-				onSelect() {
-					if (item.isFolder) desk.open(item.path);
-					else if (item.href) void navigate({ href: item.href });
-					setQuery("");
-				},
-			}));
+						setQuery("");
+					},
+				};
+			});
 	}, [query, entries, desk, navigate]);
 
 	const tasks = desk.desk.windows.map((entry) => ({

@@ -613,13 +613,12 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<FolderShelf
 					entries={SHELF_SAMPLE}
 					label="A pantry"
-					searchable
 					actionsFor={sampleActions}
 				/>
 			</Laptop>
 		),
 		source: `<Laptop title="sushindustries" wallpaper={<Wallpaper />}>
-	<FolderShelf entries={entries} searchable actionsFor={actionsFor} />
+	<FolderShelf entries={entries} actionsFor={actionsFor} />
 </Laptop>`,
 		language: "tsx",
 	},

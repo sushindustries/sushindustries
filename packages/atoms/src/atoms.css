@@ -3047,7 +3047,7 @@
 
 	/* ── shelf search ────────────────────────────────────────────── */
 
-	.shelf-search {
+	.search-field {
 		display: flex;
 		align-items: center;
 		gap: var(--s-2);
@@ -3059,18 +3059,18 @@
 	}
 
 	/* Focus lands on the input, so the ring belongs to the whole field. */
-	.shelf-search:focus-within {
+	.search-field:focus-within {
 		border-color: var(--line);
 		outline: 2px solid var(--accent);
 		outline-offset: 1px;
 	}
 
-	.shelf-search-glyph {
+	.search-glyph {
 		flex: 0 0 auto;
 		color: var(--fg-faint);
 	}
 
-	.shelf-search-input {
+	.search-input {
 		flex: 1;
 		min-width: 0;
 		border: 0;
@@ -3080,16 +3080,16 @@
 		font-size: var(--t-sm);
 	}
 
-	.shelf-search-input:focus {
+	.search-input:focus {
 		/* The field draws the ring, not the input inside it. */
 		outline: none;
 	}
 
-	.shelf-search-input::placeholder {
+	.search-input::placeholder {
 		color: var(--fg-faint);
 	}
 
-	.shelf-search-count {
+	.search-count {
 		flex: 0 0 auto;
 		font-family: var(--mono);
 		font-size: var(--t-xs);
@@ -3356,22 +3356,38 @@
 	 * the only thing in a centred box and the thing the box exists for, so it
 	 * gets the room to look like it.
 	 */
-	.dock-palette .shelf-search {
+	.dock-palette .search-field {
+		flex: 0 0 auto;
 		margin-bottom: var(--s-3);
 		padding: var(--s-3);
 	}
 
-	.dock-palette .shelf-search-input {
+	.dock-palette .search-input {
 		font-size: var(--t-md);
 	}
 
+	/*
+	 * A column, bounded on both axes.
+	 *
+	 * It had a width and no height, so a long result list grew the panel past
+	 * the screen it is centred in and the bottom of it was simply gone. Bounded
+	 * by `max-height` with the field fixed and the list flexing, the panel is
+	 * always on the screen and the results scroll inside it.
+	 *
+	 * Both bounds are `min()` against a percentage and a ceiling: it is a panel
+	 * on a monitor and nearly the whole screen on a phone, without a breakpoint
+	 * deciding which.
+	 */
 	.dock-palette {
 		position: absolute;
 		left: 50%;
 		top: 42%;
 		translate: -50% -50%;
 		z-index: 40;
-		width: min(28rem, calc(100% - var(--s-6)));
+		display: flex;
+		flex-direction: column;
+		width: min(30rem, calc(100% - var(--s-6)));
+		max-height: min(72%, 28rem);
 		padding: var(--s-3);
 		border: 1px solid var(--line);
 		border-radius: var(--r-card);
@@ -3403,10 +3419,17 @@
 		}
 	}
 
+	/*
+	 * The list takes what is left. `min-height: 0` is the load-bearing line: a
+	 * flex child refuses to shrink below its content without it, so the list
+	 * would push the panel taller instead of scrolling inside it - which is the
+	 * usual reason an `overflow` that is set does not appear to do anything.
+	 */
 	.dock-results {
+		flex: 1;
+		min-height: 0;
 		margin: 0;
 		padding: 0;
-		max-height: 17rem;
 		overflow-y: auto;
 		list-style: none;
 	}

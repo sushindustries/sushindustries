@@ -34,6 +34,8 @@ export {
 export {
 	FolderShelf,
 	type FolderShelfProps,
+	flatten,
+	matches,
 	type ShelfEntry,
 } from "./folder-shelf";
 export {

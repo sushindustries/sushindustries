@@ -12,8 +12,8 @@ The desktop on the home page is this, fed by a Markdown file.
 
 <!-- ::start:grid min="15rem" gap="4" -->
 
-**`FolderShelf`** is the desktop and the window manager: icons, search, and
-which windows exist.
+**`FolderShelf`** is the desktop and the window manager: the icons, and which
+windows exist.
 
 **`DeskWindow`** is one window - dragging, resizing, closing, stacking.
 
@@ -82,15 +82,28 @@ either, so on this site: components, packages and posts render here because
 their Markdown is on hand, and the machine-readable files stay links because
 the honest way to look at what a crawler fetches is to fetch it.
 
-## Search looks past the folders
+## Search is not in here
 
-Somebody typing into a desktop is looking for a file, not for the drawer it is
-in. So search flattens the whole tree, and every result says which folder it
-came from - which is the difference between a name and an answer.
+It used to be: a field above the icons, filtering the tree.
 
-Results replace the shelf rather than opening a window over it. A search that
-produced a window would need dismissing before the query could be refined,
-which is the wrong shape for something typed a character at a time.
+It came out when the dock grew a search palette, because two search boxes over
+the same tree on the same screen is the duplication this repo keeps deleting
+everywhere else. The dock's is better placed - centred, over a dimmed screen,
+where the eye goes when you decide to search - and one of them had to go.
+
+What is left here is the walk, exported so whoever is doing the searching can
+use it:
+
+```ts
+import { flatten, matches } from "@sushindustries/ui";
+
+flatten(entries).filter(({ entry }) => matches(entry, query));
+```
+
+`flatten` returns each entry with the path that leads to it, so a result can say
+which folder it lives in - the difference between a name and an answer. And it
+deliberately walks past the folders: somebody typing into a desktop is looking
+for a file, not for the drawer it is in.
 
 ## The data
 
