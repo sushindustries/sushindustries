@@ -81,6 +81,30 @@
 	--t-h1: clamp(2.75rem, 1.4rem + 6.4vw, 6.5rem);
 
 	--container: 1180px;
+	/* The gutter the container keeps between itself and the screen edge. */
+	--gutter: var(--s-5);
+
+	/*
+	 * Fluid page rhythm.
+	 *
+	 * The `--s-*` scale above is fixed on purpose: a 12px gap inside a card is
+	 * 12px on every device, because it is spacing between two things that are
+	 * themselves a fixed size. Scaling it with the viewport makes a card look
+	 * puffy on a desktop and cramped on a phone.
+	 *
+	 * The distance between sections is the opposite. It is a proportion of the
+	 * page, and 120px of air above a heading is generous on a laptop and half a
+	 * screen on a phone. So these three are fluid, and they are the only ones.
+	 *
+	 * Each is `clamp(floor, rem + vw, ceiling)`. The middle term carries a rem
+	 * as well as a vw so the value still responds when someone increases their
+	 * browser's font size - a preferred term of pure `vw` ignores that setting
+	 * entirely, which is the usual way a fluid scale becomes an accessibility
+	 * problem.
+	 */
+	--space-block: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+	--space-section: clamp(3rem, 2rem + 5vw, 7.5rem);
+	--space-page: clamp(4rem, 2.5rem + 7.5vw, 11rem);
 
 	/* Breakpoint, as a documented value. Custom properties cannot be used
 	   inside a media query, so this exists to be quoted - the query still
@@ -475,15 +499,48 @@ svg {
 
 /* ── page rhythm ─────────────────────────────────────────────── */
 
+/*
+ * `min()` rather than `max-width` plus padding.
+ *
+ * One declaration says the whole rule: as wide as the content box allows, less
+ * a gutter on each side, and never wider than the measure. There is no second
+ * value to keep in step, and it cannot produce the classic bug where the
+ * padding is inside the max-width and the container is narrower than it claims.
+ *
+ * `100%`, never `100vw`. `vw` includes the scrollbar, so `width: 100vw` on a
+ * page that scrolls is about fifteen pixels wider than the space available and
+ * the whole document gains a horizontal scrollbar.
+ */
 .container {
-	width: 100%;
-	max-width: var(--container);
+	width: min(100% - var(--gutter) * 2, var(--container));
 	margin-inline: auto;
-	padding-inline: var(--s-5);
 }
 
+/*
+ * Opt a subtree into container queries.
+ *
+ * This is the unit that actually matters for a component library. A media
+ * query asks how wide the window is; a component three levels inside a sidebar
+ * does not care, and cannot be correct in both places from one answer. With
+ * `container-type: inline-size` on an ancestor, `cqi` and `@container` ask how
+ * much room this component was given, which is the question it can answer.
+ *
+ * `inline-size` rather than `size`: querying the block axis requires the
+ * container to have a height that does not depend on its content, and almost
+ * nothing on a page does.
+ */
+.cq {
+	container-type: inline-size;
+}
+
+/*
+ * Fluid, so the breakpoint that used to switch this between two fixed values
+ * is gone. The distance between sections is a proportion of the page rather
+ * than a measurement, and a `clamp` says that in one line instead of in two
+ * rules that have to be kept in step.
+ */
 .section {
-	padding-block: var(--s-9);
+	padding-block: var(--space-page);
 	border-top: 1px solid var(--line-soft);
 }
 
@@ -1319,10 +1376,6 @@ svg {
 		max-width: 340px;
 		max-height: none;
 		order: -1;
-	}
-
-	.section {
-		padding-block: var(--s-8);
 	}
 
 	.nav-narrow-hide {
