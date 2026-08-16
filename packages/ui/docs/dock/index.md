@@ -10,39 +10,60 @@ summary: A launcher, what is open, and a corner. Search opens in the middle of t
 
 | Part | Is |
 | --- | --- |
-| The launcher | a pill with a magnifier, opening a search palette |
+| The search control | a pill with a magnifier. It opens a window on the desk |
 | The tasks | one button per open window; pressing one raises it |
 | The corner | whatever the consumer puts there. On this site: a reset, a LinkedIn link and a clock |
 
-## The launcher is a pill, and it opens in the middle
+## Search opens a window, not a panel
 
-A square button that opens a search box is a button. A pill with a magnifier in
-it is a search box nobody has typed in yet - the shape is the promise, and it
-costs a `border-radius`.
+The control is one glyph in a round well. It was a pill with the word Search in
+it, which put a labelled button beside a row of buttons labelled with folder
+names, all competing for the same reading. A magnifier is the one icon that
+needs no label; the word lives in the tooltip and the `aria-label`.
 
-The palette centres on the screen rather than anchoring to the button. Anchored,
-it put the results in the corner you were already looking away from, and on a
-narrow screen it opened off the edge and had to be clamped. Centred, it lands
-where the eye goes when you decide to search, and it is the same place at every
-size.
+Pressing it does not open anything here. It calls `onSearch`, and on a desktop
+that means opening a window - dragged, resized, raised, closed and remembered by
+exactly the same code as a folder, because it is the same thing.
 
-Slightly above centre, at 42%. Optically centred things sit a little high, and a
-panel that grows downward as results arrive would walk off the bottom from a
-true middle.
+That is the third version. The first was a panel above the button, which put the
+results in the corner you were already looking away from and opened off the edge
+on a narrow screen. The second was a palette centred on the screen, which was
+better placed and still a second kind of surface on a desktop that already had
+one - and which arrived with its own bugs about stacking contexts and its own
+missing height bound.
+
+A search window has none of those problems, because none of them are its
+problems. It inherits the answers a window already has.
 
 > [!CAUTION] A stacking context is not a containing block
 > The dock needs to be above the desktop so a dragged window cannot cover it.
-> Doing that with `position: relative; z-index: 5` also made it the containing
-> block for the palette inside it - which then centred itself on a forty-pixel
-> strip and came out squashed against the bottom edge. A flex item takes a
-> `z-index` while staying statically positioned, so `z-index` **alone** lifts
-> the dock without capturing what it contains.
+> Doing that with `position: relative; z-index` also made it the containing
+> block for what it contained - which is how the centred palette ended up
+> centring itself on a forty-pixel strip. A flex item takes a `z-index` while
+> staying statically positioned, so `z-index` **alone** lifts the dock without
+> capturing anything inside it.
 
-## Tasks are buttons, not tabs
+## Tasks toggle
 
 A tab bar implies one of them is showing and the others are not. Here they are
-all on screen at once, stacked, and pressing one raises it. Calling that a tab
-would be a lie about what the press does.
+all on screen at once, stacked.
+
+Pressing one is a toggle, which is the behaviour every taskbar has and almost
+nobody writes down:
+
+| The window is | Pressing its task |
+| --- | --- |
+| minimised | brings it back, and to the front |
+| behind another | brings it to the front |
+| already in front | minimises it |
+
+The third case is the one people find by accident and then use constantly. It
+is also why this is `toggle` in `useDeskState` rather than `raise` - the dock
+does not decide, it presses.
+
+Each task has its own close button, so a window can be dismissed without being
+raised first. Minimised tasks are dimmed rather than hidden: a window that
+vanishes from the dock when minimised is a window somebody has lost.
 
 The row scrolls sideways rather than wrapping. A dock that grows a second row
 moves the desktop above it, and a desktop that resizes because you opened a
@@ -59,19 +80,18 @@ behind it worth a GPU readback. Controls inside it have no borders either - the
 channel is already a boundary, and a border inside it is a second one saying the
 same thing.
 
-## Results are the consumer's
+## It has no state
 
-`results` arrives already filtered. The dock renders a list and calls
-`onSelect`; it does not know what is being searched, which is what lets the same
-component list files on one site and orders on another.
+Every version of this that held its own open flag, its own query and its own
+results grew a second way to do something the desk already did. What is left is
+a row of buttons and three callbacks: raise this, close this, open search.
 
 ## Where this is used
 
 | Where | Doing |
 | --- | --- |
 | The home page laptop | via `Laptop`'s `dock` slot |
-| `site-shelf.tsx` | walks the shelf tree for results, opens folders in a window and routes to pages |
+| `site-shelf.tsx` | opens `SEARCH_PATH` on the desk, and decides what a chosen result does |
 
-It is a child of the screen rather than of the scrolling desktop, so the
-palette is measured against the screen and clipped by the screen. Inside the
-desktop it would be measured against a scrolled box and cut off by it.
+It is a child of the screen rather than of the scrolling desktop, so it stays
+put while the desktop scrolls under it.

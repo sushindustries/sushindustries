@@ -37,6 +37,19 @@ Opening a folder that is already open raises it rather than stacking a second
 identical window on the first. That is what people expect, and it is also what
 stops an impatient double-click producing two windows.
 
+## `toggle` is the taskbar's press
+
+Minimised, it comes back and comes forward. Behind, it comes forward. Already in
+front, it goes away.
+
+That last case is what makes a taskbar a taskbar rather than a list of links,
+and it lives here rather than in the dock because it is a decision about state.
+The dock presses; the desk decides.
+
+A minimised window keeps its position, its size and its place in the stack. It
+is a flag rather than a second list, because it is the same window with
+somewhere else to be.
+
 ## `raise` does nothing when it can
 
 Raising the front-most window returns the same state object, so React does not
@@ -54,6 +67,7 @@ desk.navigate(id, ["components"]);
 desk.move(id, x, y);
 desk.resize(id, w, h);
 desk.raise(id);
+desk.toggle(id);         // what a taskbar press does
 desk.close(id);
 
 desk.hide(entryId);      // take an icon off the desktop

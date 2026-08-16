@@ -2,10 +2,9 @@ import {
 	Clock,
 	Dock,
 	FolderShelf,
-	flatten,
 	Icon,
 	Laptop,
-	matches,
+	SEARCH_PATH,
 	useDeskState,
 } from "@sushindustries/ui";
 import { useNavigate } from "@tanstack/react-router";
@@ -44,53 +43,17 @@ export function SiteShelf(): ReactNode {
 	 * for a folder would close the desktop to show you a directory listing of
 	 * the desktop.
 	 */
-	const results = useMemo(() => {
-		if (!query.trim()) return [];
+	const tasks = desk.desk.windows.map((entry) => {
+		const search = entry.path[0] === SEARCH_PATH[0];
 
-		/*
-		 * `flatten` is the shelf's own walk, exported. Every result carries the
-		 * path that leads to it, which is what lets a folder be opened in a
-		 * window rather than navigated to - and what lets the result say where
-		 * it lives.
-		 */
-		return flatten(entries)
-			.filter(({ entry }) => matches(entry, query))
-			.slice(0, 12)
-			.map(({ entry, path }) => {
-				const isFolder = Boolean(entry.children?.length);
-
-				return {
-					id: [...path.map((step) => step.id), entry.id].join("/"),
-					label: entry.label,
-					description:
-						path.length > 0
-							? `${path.map((step) => step.label).join(" / ")} - ${entry.description ?? ""}`
-							: entry.description,
-					icon: (isFolder ? "folder" : "file") as "folder" | "file",
-					onSelect() {
-						/*
-						 * A folder opens where it belongs. Navigating away to a
-						 * directory listing of the desktop you are already looking at
-						 * would be a strange answer to a search.
-						 */
-						if (isFolder || renderShelfPage(entry)) {
-							desk.open([...path.map((step) => step.id), entry.id]);
-						} else if (entry.href) {
-							void navigate({ href: entry.href });
-						}
-
-						setQuery("");
-					},
-				};
-			});
-	}, [query, entries, desk, navigate]);
-
-	const tasks = desk.desk.windows.map((entry) => ({
-		id: entry.id,
-		label: entry.path.at(-1) ?? "Window",
-		icon: "folder" as const,
-		active: entry.z === desk.desk.top,
-	}));
+		return {
+			id: entry.id,
+			label: search ? "Search" : (entry.path.at(-1) ?? "Window"),
+			icon: (search ? "search" : "folder") as "search" | "folder",
+			active: entry.z === desk.desk.top && !entry.minimised,
+			minimised: entry.minimised,
+		};
+	});
 
 	return (
 		<>
@@ -100,11 +63,9 @@ export function SiteShelf(): ReactNode {
 				dock={
 					<Dock
 						tasks={tasks}
-						onSelectTask={desk.raise}
+						onSelectTask={desk.toggle}
 						onCloseTask={desk.close}
-						results={results}
-						query={query}
-						onQuery={setQuery}
+						onSearch={() => desk.open(SEARCH_PATH)}
 						trailing={
 							/*
 							 * The corner: a way out, a way to reach me, and the time.
@@ -144,8 +105,27 @@ export function SiteShelf(): ReactNode {
 				<FolderShelf
 					entries={entries}
 					label="Everything on this site"
-					rememberAs={DESK_KEY}
+					desk={desk}
 					renderEntry={renderShelfPage}
+					query={query}
+					onQuery={setQuery}
+					onChoose={(entry, path) => {
+						/*
+						 * A folder, or anything whose page this site can render, opens
+						 * on the desk. Everything else follows its link. Navigating
+						 * away to a directory listing of the desktop you are already
+						 * looking at would be a strange answer to a search.
+						 */
+						const isFolder = Boolean(entry.children?.length);
+
+						if (isFolder || renderShelfPage(entry)) {
+							desk.open([...path.map((step) => step.id), entry.id]);
+						} else if (entry.href) {
+							void navigate({ href: entry.href });
+						}
+
+						setQuery("");
+					}}
 					actionsFor={(entry, path) =>
 						shelfActions(entry, path, {
 							navigate: (href) => void navigate({ href }),

@@ -1,4 +1,4 @@
-import { type ReactNode, useState } from "react";
+import type { ReactNode } from "react";
 import { Icon, type IconName } from "./icon";
 
 export interface DockTask {
@@ -7,14 +7,8 @@ export interface DockTask {
 	readonly icon?: IconName;
 	/** Front-most window, drawn as the current one. */
 	readonly active?: boolean;
-}
-
-export interface DockLauncherItem {
-	readonly id: string;
-	readonly label: string;
-	readonly description?: string;
-	readonly icon?: IconName;
-	onSelect(): void;
+	/** Out of the way. Still listed, drawn quieter. */
+	readonly minimised?: boolean;
 }
 
 export interface DockProps {
@@ -22,28 +16,33 @@ export interface DockProps {
 	readonly tasks?: readonly DockTask[];
 	onSelectTask?(id: string): void;
 	onCloseTask?(id: string): void;
-	/** What the launcher offers, already filtered by `query`. */
-	readonly results?: readonly DockLauncherItem[];
-	query?: string;
-	onQuery?(query: string): void;
-	/** Text on the launcher button. */
+	/** Opens search. The consumer decides what that means. */
+	onSearch?(): void;
+	/** Text on the search control. */
 	label?: string;
-	/** Right-hand side. A count, a clock, a reset. */
+	/** Right-hand side. A count, a clock, a link. */
 	trailing?: ReactNode;
 }
 
 /*
- * The strip along the bottom: a launcher, what is open, and a corner.
+ * The strip along the bottom: a search control, what is open, and a corner.
  *
- * The launcher is a `<details>` rather than React state, which is the same
- * choice the nav makes and for the same reason - it opens on click and on
- * Enter, is announced as expandable, and closes on Escape without a line of
- * JavaScript from here. The search field inside it is controlled, because the
- * results are the consumer's to compute.
+ * Search opens a window rather than a panel of its own, and the dock does not
+ * know that - it calls `onSearch` and the desk decides. That is the whole
+ * reason this component has no state left in it.
+ *
+ * It went through a panel above the button and then a palette centred on the
+ * screen, and both were a second kind of surface on a desktop that already had
+ * one. A search window is dragged, resized, raised, closed and remembered by
+ * exactly the same code as a folder, because it is the same thing.
  *
  * Tasks are buttons, not tabs. A tab bar implies one of them is showing and the
- * others are not; here they are all on screen at once, stacked, and pressing
- * one raises it. Calling that a tab would be a lie about what the press does.
+ * others are not; here they are all on screen at once, stacked.
+ *
+ * Pressing one is a toggle, which is the behaviour every taskbar has and nobody
+ * writes down: minimised, it comes back; behind, it comes forward; already in
+ * front, it goes away. The third case is the one people find by accident and
+ * then use constantly.
  *
  * The whole thing is one row that scrolls sideways rather than wrapping. A dock
  * that grows a second row moves the desktop above it, and a desktop that
@@ -53,89 +52,32 @@ export function Dock({
 	tasks = [],
 	onSelectTask,
 	onCloseTask,
-	results = [],
-	query = "",
-	onQuery,
+	onSearch,
 	label = "Search",
 	trailing,
 }: DockProps): ReactNode {
-	const [open, setOpen] = useState(false);
-
 	return (
 		<div className="dock">
-			<details
-				className="dock-launcher"
-				open={open}
-				onToggle={(event) => setOpen(event.currentTarget.open)}
-			>
-				<summary className="dock-start" aria-label={label}>
-					{/*
-					 * A magnifier, not a grid of squares.
-					 *
-					 * The squares are the launcher shape, and a launcher is a place
-					 * things are kept. This is a search field with results under it,
-					 * and labelling a search box with the icon for a drawer is the
-					 * kind of small lie that makes an interface feel arbitrary.
-					 */}
-					<Icon name="search" size={16} />
-					<span className="dock-start-label">{label}</span>
-				</summary>
-
-				{/*
-				 * The screen behind the palette, dimmed. A pseudo-element would not
-				 * do: it has to sit between the palette and the desktop, and a
-				 * pseudo-element of the launcher is stuck in the dock's stacking
-				 * order at the bottom of the screen.
-				 */}
-				<span className="dock-scrim" />
-
-				<div className="dock-palette">
-					<div className="search-field">
-						<Icon name="search" size={15} className="search-glyph" />
-						<input
-							type="search"
-							className="search-input"
-							placeholder="Search everything"
-							aria-label="Search everything"
-							value={query}
-							onChange={(event) => onQuery?.(event.target.value)}
-						/>
-					</div>
-
-					<ul className="dock-results">
-						{results.map((item) => (
-							<li key={item.id}>
-								<button
-									type="button"
-									className="dock-result"
-									onClick={() => {
-										item.onSelect();
-										setOpen(false);
-									}}
-								>
-									<span className="window-icon">
-										<Icon name={item.icon ?? "file"} size={16} />
-									</span>
-									<span className="min-w-0">
-										<span className="block fg text-sm font-medium">
-											{item.label}
-										</span>
-										{item.description ? (
-											<span className="window-note">{item.description}</span>
-										) : null}
-									</span>
-								</button>
-							</li>
-						))}
-
-						{results.length === 0 ? (
-							<li className="p-4 text-center label">
-								{query ? "Nothing matches that" : "Type to search"}
-							</li>
-						) : null}
-					</ul>
-				</div>
-			</details>
+			{onSearch ? (
+				/*
+				 * The glyph alone, in a round well.
+				 *
+				 * It had the word beside it, which made it a button labelled Search
+				 * next to a row of buttons labelled with folder names - one more
+				 * thing competing for the same reading. A magnifier is the one icon
+				 * that needs no label, and the tooltip and `aria-label` carry the
+				 * word for anyone who wants it.
+				 */
+				<button
+					type="button"
+					className="dock-start"
+					onClick={onSearch}
+					aria-label={label}
+					title={label}
+				>
+					<Icon name="search" size={17} />
+				</button>
+			) : null}
 
 			<div className="dock-tasks">
 				{tasks.map((task) => (
@@ -144,6 +86,8 @@ export function Dock({
 							type="button"
 							className="dock-task-face"
 							data-active={task.active}
+							data-minimised={task.minimised}
+							aria-pressed={task.active}
 							onClick={() => onSelectTask?.(task.id)}
 						>
 							<Icon name={task.icon ?? "folder"} size={14} />

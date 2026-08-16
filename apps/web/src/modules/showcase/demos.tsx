@@ -657,29 +657,22 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 		element: (
 			<Dock
 				tasks={[
-					{ id: "a", label: "Applications", active: true },
-					{ id: "b", label: "Documents" },
+					{ id: "a", label: "Components", active: true },
+					{ id: "b", label: "Search", icon: "search" },
 				]}
-				results={[
-					{
-						id: "one",
-						label: "Reveal",
-						description: "Fades and rises on scroll",
-						icon: "file",
-						onSelect() {},
-					},
-				]}
-				query=""
+				onSearch={() => {}}
+				onSelectTask={() => {}}
+				onCloseTask={() => {}}
+				trailing={<Clock />}
 			/>
 		),
-		poster: <p className="label text-center">A launcher and what is open</p>,
+		poster: <p className="label text-center">Search, what is open, a corner</p>,
 		source: `<Dock
 	tasks={tasks}
 	onSelectTask={desk.raise}
 	onCloseTask={desk.close}
-	results={results}
-	query={query}
-	onQuery={setQuery}
+	onSearch={() => desk.open(SEARCH_PATH)}
+	trailing={<Clock />}
 />`,
 		language: "tsx",
 	},

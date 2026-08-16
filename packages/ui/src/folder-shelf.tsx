@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { type ReactNode, useEffect, useRef } from "react";
 import { ContextMenu, type MenuAction, useContextMenu } from "./context-menu";
 import { DeskWindow } from "./desk-window";
 import { Icon, type IconName } from "./icon";
@@ -30,6 +30,11 @@ export interface FolderShelfProps {
 	 * ever list one kind of thing.
 	 */
 	actionsFor?: (entry: ShelfEntry, path: readonly ShelfEntry[]) => MenuAction[];
+	/** Text in the search window's field. Controlled by the consumer. */
+	query?: string;
+	onQuery?: (query: string) => void;
+	/** What a search result does when chosen. */
+	onChoose?: (entry: ShelfEntry, path: readonly ShelfEntry[]) => void;
 	/**
 	 * Renders a leaf's page, to be shown in a window rather than navigated to.
 	 *
@@ -50,9 +55,42 @@ export interface FolderShelfProps {
 	label?: string;
 	/**
 	 * Storage key for the arrangement: which windows are open, where they sit,
-	 * and what has been put away. Omit and the desk is not remembered.
+	 * and what has been put away.
+	 *
+	 * Only used when `desk` is not supplied.
 	 */
 	rememberAs?: string;
+	/**
+	 * An existing desk to render, rather than one of its own.
+	 *
+	 * Supply this whenever something outside also needs to open, close or list
+	 * windows - a dock, most obviously. Two `useDeskState` calls with the same
+	 * storage key are not one desk shared: they are two Reacts states that
+	 * happen to write to the same place, so opening a window through one leaves
+	 * the other still rendering the desk it last knew about.
+	 *
+	 * That is not hypothetical. The dock's search button wrote to the site's
+	 * desk and the shelf kept rendering its own, so pressing search added a
+	 * task to the dock and put no window on screen.
+	 */
+	desk?: DeskApi;
+}
+
+/**
+ * The path a search window occupies.
+ *
+ * A reserved id rather than a separate list of open panels, so search is a
+ * window like any other: dragged, resized, raised, closed and remembered by
+ * exactly the same code. A second mechanism for "a thing on the desk" would be
+ * a second set of bugs, and the one nobody uses is the one that rots.
+ *
+ * The null character cannot appear in a real entry id, which is what makes it
+ * safe as a sentinel rather than merely unlikely.
+ */
+export const SEARCH_PATH: readonly string[] = ["\u0000search"];
+
+function isSearch(path: readonly string[]): boolean {
+	return path[0] === SEARCH_PATH[0];
 }
 
 function isFolder(entry: ShelfEntry): boolean {
@@ -120,49 +158,6 @@ function glyphFor(entry: ShelfEntry, open = false): IconName {
 }
 
 /*
- * One tile on the shelf, and one row inside a window.
- *
- * Both are a button with a glyph, a name and a menu, so they behave the same
- * under right-click, long press and keyboard regardless of which surface they
- * are on. Two components would drift, and the one that drifts is always the
- * one on the surface you look at less.
- */
-function EntryMenu({
-	entry,
-	path,
-	actionsFor,
-	className,
-}: {
-	entry: ShelfEntry;
-	path: readonly ShelfEntry[];
-	actionsFor: FolderShelfProps["actionsFor"];
-	className: string;
-}): ReactNode {
-	const menu = useContextMenu();
-	const actions = actionsFor?.(entry, path) ?? [];
-
-	if (actions.length === 0) return null;
-
-	return (
-		<>
-			<button
-				type="button"
-				className={className}
-				aria-label={`Actions for ${entry.label}`}
-				{...menu.buttonProps}
-			>
-				<Icon name="dots" size={16} />
-			</button>
-			<ContextMenu
-				state={menu}
-				actions={actions}
-				label={`Actions for ${entry.label}`}
-			/>
-		</>
-	);
-}
-
-/*
  * A shelf of folders, and a window that opens on top of it.
  *
  * The window is a real `<dialog>` opened with `showModal()`, which is what
@@ -180,11 +175,21 @@ export function FolderShelf({
 	entries,
 	actionsFor,
 	renderEntry,
+	query = "",
+	onQuery,
+	onChoose,
 	renderLink = (props) => <a {...props} />,
 	label = "Folders",
 	rememberAs = "sushindustries.desk",
+	desk: given,
 }: FolderShelfProps): ReactNode {
-	const desk = useDeskState(rememberAs);
+	/*
+	 * The hook runs either way - hooks cannot be called conditionally - and its
+	 * result is discarded when a desk was supplied. One unused subscription is a
+	 * cheaper price than two code paths.
+	 */
+	const own = useDeskState(rememberAs);
+	const desk = given ?? own;
 
 	/*
 	 * Stored windows, resolved against the tree as it is now. Anything that no
@@ -192,11 +197,27 @@ export function FolderShelf({
 	 * window titled after a folder that is not there.
 	 */
 	const open = desk.desk.windows
-		.map((entry) => ({ state: entry, path: resolve(entries, entry.path) }))
+		// A minimised window is still open - it just is not on the desk. The dock
+		// is where it went, and the dock reads `desk.windows` directly.
+		.filter((entry) => !entry.minimised)
+		.map((entry) => ({
+			state: entry,
+			search: isSearch(entry.path),
+			path: isSearch(entry.path) ? [] : resolve(entries, entry.path),
+		}))
 		.filter(
-			(entry): entry is { state: typeof entry.state; path: ShelfEntry[] } =>
-				entry.path !== null && entry.path.length > 0,
+			(
+				entry,
+			): entry is {
+				state: typeof entry.state;
+				search: boolean;
+				path: ShelfEntry[];
+			} => entry.search || (entry.path !== null && entry.path.length > 0),
 		);
+
+	const results = query.trim()
+		? flatten(entries).filter(({ entry }) => matches(entry, query))
+		: [];
 
 	const shown = entries.filter((entry) => !desk.desk.hidden.includes(entry.id));
 
@@ -240,11 +261,11 @@ export function FolderShelf({
 			 * window carries, which is also what makes front-to-back survive a
 			 * reload.
 			 */}
-			{open.map(({ state, path }) => (
+			{open.map(({ state, path, search }) => (
 				<DeskWindow
 					key={state.id}
-					title={path.at(-1)?.label ?? ""}
-					label={`${path.at(-1)?.label} window`}
+					title={search ? "Search" : (path.at(-1)?.label ?? "")}
+					label={search ? "Search window" : `${path.at(-1)?.label} window`}
 					x={state.x}
 					y={state.y}
 					z={state.z}
@@ -255,19 +276,31 @@ export function FolderShelf({
 					onClose={() => desk.close(state.id)}
 					onRaise={() => desk.raise(state.id)}
 				>
-					<WindowBody
-						path={path}
-						onNavigate={(next) =>
-							desk.navigate(
-								state.id,
-								next.map((step) => step.id),
-							)
-						}
-						onOpen={(entry) => openEntry(entry, path)}
-						actionsFor={actionsFor}
-						renderEntry={renderEntry}
-						renderLink={renderLink}
-					/>
+					{search ? (
+						<SearchBody
+							query={query}
+							onQuery={onQuery}
+							results={results}
+							onChoose={(entry, at) => {
+								onChoose?.(entry, at);
+								desk.close(state.id);
+							}}
+						/>
+					) : (
+						<WindowBody
+							path={path}
+							onNavigate={(next) =>
+								desk.navigate(
+									state.id,
+									next.map((step) => step.id),
+								)
+							}
+							onOpen={(entry) => openEntry(entry, path)}
+							actionsFor={actionsFor}
+							renderEntry={renderEntry}
+							renderLink={renderLink}
+						/>
+					)}
 				</DeskWindow>
 			))}
 		</div>
@@ -344,6 +377,99 @@ function ShelfTile({
 					/>
 				</>
 			) : null}
+		</div>
+	);
+}
+
+/*
+ * The search window's contents: a field and its results.
+ *
+ * Deliberately rows rather than the icon grid a folder gets. A folder is a
+ * place and its contents are things you point at; a result is an answer, and
+ * the useful half of it is which folder it came from - which is text, and text
+ * under an icon in a grid is a caption nobody reads.
+ */
+function SearchBody({
+	query,
+	onQuery,
+	results,
+	onChoose,
+}: {
+	query: string;
+	onQuery?: (query: string) => void;
+	results: ReturnType<typeof flatten>;
+	onChoose: (entry: ShelfEntry, path: readonly ShelfEntry[]) => void;
+}): ReactNode {
+	const fieldRef = useRef<HTMLInputElement>(null);
+
+	/*
+	 * Focus the field when the window appears.
+	 *
+	 * Done in an effect rather than with `autoFocus`, which fires whenever the
+	 * element is inserted - including on a server render and on any remount -
+	 * and cannot be scoped to "the window somebody just asked for". This runs
+	 * once, on the client, when this window mounts.
+	 *
+	 * Taking focus is right here and would be wrong almost anywhere else: the
+	 * window exists because somebody pressed search, and the only reason to
+	 * press search is to type.
+	 */
+	useEffect(() => {
+		fieldRef.current?.focus();
+	}, []);
+
+	return (
+		<div className="window-frame">
+			<div className="search-field">
+				<Icon name="search" size={15} className="search-glyph" />
+				<input
+					type="search"
+					className="search-input"
+					placeholder="Search everything"
+					aria-label="Search everything"
+					ref={fieldRef}
+					value={query}
+					onChange={(event) => onQuery?.(event.target.value)}
+				/>
+				{query.trim() ? (
+					<span className="search-count">{results.length}</span>
+				) : null}
+			</div>
+
+			<ul className="window-canvas search-results">
+				{results.map(({ entry, path }) => (
+					<li key={[...path.map((step) => step.id), entry.id].join("/")}>
+						<button
+							type="button"
+							className="window-face"
+							onClick={() => onChoose(entry, path)}
+						>
+							<span className="window-icon">
+								<Icon name={glyphFor(entry)} size={18} />
+							</span>
+							<span className="min-w-0">
+								<span className="block fg text-sm font-medium">
+									{entry.label}
+								</span>
+								{path.length > 0 ? (
+									<span className="window-where">
+										{path.map((step) => step.label).join(" / ")}
+									</span>
+								) : null}
+								{entry.description ? (
+									<span className="window-note">{entry.description}</span>
+								) : null}
+							</span>
+						</button>
+					</li>
+				))}
+
+				{results.length === 0 ? (
+					<li className="p-6 text-center label">
+						{query.trim() ? "Nothing matches that" : "Type to search"}
+					</li>
+				) : null}
+			</ul>
 		</div>
 	);
 }

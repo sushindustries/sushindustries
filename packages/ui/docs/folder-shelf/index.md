@@ -132,5 +132,14 @@ absent makes it a thing. There is no `kind` field to get wrong.
 | `shelf-actions.ts` | what the right-click menu can do |
 | `shelf-page.tsx` | `renderEntry`: the Markdown lookup |
 
-`rememberAs` is a storage key. Omit it and nothing is remembered, which is the
-right choice for a demo and the wrong one for a desktop.
+`rememberAs` is a storage key, used when the shelf makes its own desk.
+
+> [!CAUTION] Two `useDeskState` calls with one key are not one desk
+> They are two React states that happen to write to the same place. Opening a
+> window through one leaves the other rendering the desk it last knew about -
+> which is exactly what happened when the dock's search button wrote to the
+> site's desk while the shelf kept rendering its own: a task appeared in the
+> dock and no window appeared on screen.
+>
+> Whenever something outside the shelf needs to open, close or list windows,
+> hold the desk above both and pass it in as `desk`.

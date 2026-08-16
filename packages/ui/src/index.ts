@@ -25,17 +25,13 @@ export {
 export { Credit, type CreditProps } from "./credit";
 export { DeskWindow, type DeskWindowProps } from "./desk-window";
 export { DocAside, type DocAsideProps } from "./doc-aside";
-export {
-	Dock,
-	type DockLauncherItem,
-	type DockProps,
-	type DockTask,
-} from "./dock";
+export { Dock, type DockProps, type DockTask } from "./dock";
 export {
 	FolderShelf,
 	type FolderShelfProps,
 	flatten,
 	matches,
+	SEARCH_PATH,
 	type ShelfEntry,
 } from "./folder-shelf";
 export {

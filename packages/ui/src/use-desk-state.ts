@@ -12,6 +12,15 @@ export interface DeskWindowState {
 	/** Set once somebody resizes it. Absent means the default size. */
 	readonly w?: number;
 	readonly h?: number;
+	/**
+	 * Out of the way, but still open.
+	 *
+	 * A minimised window keeps its position, size and place in the stack. It is
+	 * not closed and it is not a different kind of thing - it is the same window
+	 * with somewhere else to be, which is why this is a flag and not a second
+	 * list.
+	 */
+	readonly minimised?: boolean;
 }
 
 export interface DeskState {
@@ -38,6 +47,8 @@ export interface DeskApi {
 	move(id: string, x: number, y: number): void;
 	resize(id: string, w: number, h: number): void;
 	raise(id: string): void;
+	/** Raise it, or minimise it if it is already in front. */
+	toggle(id: string): void;
 	navigate(id: string, path: readonly string[]): void;
 	hide(entryId: string): void;
 	restore(entryId: string): void;
@@ -219,6 +230,45 @@ export function useDeskState(key: string): DeskApi {
 						top,
 						windows: current.windows.map((entry) =>
 							entry.id === id ? { ...entry, z: top } : entry,
+						),
+					};
+
+					try {
+						window.localStorage.setItem(key, JSON.stringify(next));
+					} catch {
+						// As above.
+					}
+
+					return next;
+				});
+			},
+			[key],
+		),
+
+		/*
+		 * The taskbar's press, in one place.
+		 *
+		 * Minimised, it comes back and comes forward. Behind, it comes forward.
+		 * Already in front, it goes away. That third case is the one people
+		 * discover by accident and then rely on, and it is why this is a toggle
+		 * rather than a raise.
+		 */
+		toggle: useCallback(
+			(id) => {
+				setDesk((current) => {
+					const target = current.windows.find((entry) => entry.id === id);
+					if (!target) return current;
+
+					const front = target.z === current.top && !target.minimised;
+					const top = front ? current.top : current.top + 1;
+
+					const next = {
+						...current,
+						top,
+						windows: current.windows.map((entry) =>
+							entry.id === id
+								? { ...entry, minimised: front, z: front ? entry.z : top }
+								: entry,
 						),
 					};
 

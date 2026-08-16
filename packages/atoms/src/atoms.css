@@ -3289,39 +3289,25 @@
 		z-index: 5;
 	}
 
-	.dock-launcher {
-		position: relative;
-		flex: 0 0 auto;
-	}
-
-	.dock-launcher summary {
-		list-style: none;
-		cursor: pointer;
-	}
-
-	.dock-launcher summary::-webkit-details-marker {
-		display: none;
-	}
-
 	/*
-	 * Controls in a recess do not need outlines of their own. The channel is
-	 * already a boundary, and a border inside it is a second one saying the
-	 * same thing.
+	 * A round well for one glyph.
+	 *
+	 * It was a pill with the word Search in it, which put a labelled button
+	 * beside a row of buttons labelled with folder names, all competing for the
+	 * same reading. A magnifier is the one icon that needs no label; the word
+	 * lives in the tooltip and the `aria-label` for anyone who wants it.
 	 */
 	.dock-start {
-		display: flex;
-		align-items: center;
-		gap: var(--s-2);
-		min-height: 34px;
-		padding: 0 var(--s-3);
-		border: 0;
-		border-radius: var(--r);
-		background: transparent;
+		display: grid;
+		place-items: center;
+		flex: 0 0 auto;
+		width: 32px;
+		height: 32px;
+		border: 1px solid var(--line-soft);
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--nori-700) 55%, transparent);
 		color: var(--fg-dim);
-		font-family: var(--mono);
-		font-size: var(--t-xs);
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
+		cursor: pointer;
 		transition:
 			background 140ms ease,
 			color 140ms ease;
@@ -3331,91 +3317,7 @@
 		.dock-start:hover {
 			background: var(--bg-3);
 			color: var(--fg);
-		}
-	}
-
-	.dock-launcher[open] .dock-start {
-		background: var(--bg-3);
-		color: var(--fg);
-	}
-
-	/*
-	 * Centred on the screen, not anchored to its button.
-	 *
-	 * A search that opens where the button is puts the results in the corner you
-	 * were already looking away from, and on a narrow screen it opens off the
-	 * edge and has to be clamped. Centred, it lands where the eye goes when you
-	 * decide to search, and it is the same place at every screen size.
-	 *
-	 * Slightly above centre, at 42%: optically centred text sits a little high,
-	 * and a panel that grows downward as results arrive would walk off the
-	 * bottom from a true middle.
-	 */
-	/*
-	 * The field inside the palette is bigger than the one on the shelf: it is
-	 * the only thing in a centred box and the thing the box exists for, so it
-	 * gets the room to look like it.
-	 */
-	.dock-palette .search-field {
-		flex: 0 0 auto;
-		margin-bottom: var(--s-3);
-		padding: var(--s-3);
-	}
-
-	.dock-palette .search-input {
-		font-size: var(--t-md);
-	}
-
-	/*
-	 * A column, bounded on both axes.
-	 *
-	 * It had a width and no height, so a long result list grew the panel past
-	 * the screen it is centred in and the bottom of it was simply gone. Bounded
-	 * by `max-height` with the field fixed and the list flexing, the panel is
-	 * always on the screen and the results scroll inside it.
-	 *
-	 * Both bounds are `min()` against a percentage and a ceiling: it is a panel
-	 * on a monitor and nearly the whole screen on a phone, without a breakpoint
-	 * deciding which.
-	 */
-	.dock-palette {
-		position: absolute;
-		left: 50%;
-		top: 42%;
-		translate: -50% -50%;
-		z-index: 40;
-		display: flex;
-		flex-direction: column;
-		width: min(30rem, calc(100% - var(--s-6)));
-		max-height: min(72%, 28rem);
-		padding: var(--s-3);
-		border: 1px solid var(--line);
-		border-radius: var(--r-card);
-		background: color-mix(in srgb, var(--nori-800) 98%, transparent);
-		box-shadow: 0 30px 70px color-mix(in srgb, var(--nori-900) 80%, transparent);
-		animation: dock-palette-in 140ms var(--ease-out);
-	}
-
-	/* The screen behind it, dimmed, so the palette is the only thing to answer. */
-	.dock-scrim {
-		position: absolute;
-		inset: 0;
-		z-index: 39;
-		background: color-mix(in srgb, var(--nori-900) 55%, transparent);
-		animation: dock-scrim-in 140ms ease;
-	}
-
-	@keyframes dock-palette-in {
-		from {
-			opacity: 0;
-			scale: 0.98;
-			translate: -50% calc(-50% + 6px);
-		}
-	}
-
-	@keyframes dock-scrim-in {
-		from {
-			opacity: 0;
+			border-color: var(--line);
 		}
 	}
 
@@ -3425,7 +3327,7 @@
 	 * would push the panel taller instead of scrolling inside it - which is the
 	 * usual reason an `overflow` that is set does not appear to do anything.
 	 */
-	.dock-results {
+	.search-results {
 		flex: 1;
 		min-height: 0;
 		margin: 0;
@@ -3434,7 +3336,7 @@
 		list-style: none;
 	}
 
-	.dock-result {
+	.search-result {
 		display: flex;
 		align-items: center;
 		gap: var(--s-3);
@@ -3533,19 +3435,12 @@
 	}
 
 	@media (max-width: 620px) {
-		/* The label goes; the mark stays. At this width the row is the budget. */
-		.dock-start-label {
-			display: none;
-		}
-
 		.dock-task-label {
 			max-width: 5rem;
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.dock-palette,
-		.dock-scrim,
 		.desk-window {
 			animation: none;
 		}
@@ -3569,7 +3464,7 @@
 	 * rules under them are for Safari, which still wants its own.
 	 */
 	.window-canvas,
-	.dock-results,
+	.search-results,
 	.laptop-desktop,
 	.nav-sheet {
 		scrollbar-width: thin;
@@ -3577,14 +3472,14 @@
 	}
 
 	.window-canvas::-webkit-scrollbar,
-	.dock-results::-webkit-scrollbar,
+	.search-results::-webkit-scrollbar,
 	.laptop-desktop::-webkit-scrollbar,
 	.nav-sheet::-webkit-scrollbar {
 		width: 10px;
 	}
 
 	.window-canvas::-webkit-scrollbar-track,
-	.dock-results::-webkit-scrollbar-track,
+	.search-results::-webkit-scrollbar-track,
 	.laptop-desktop::-webkit-scrollbar-track,
 	.nav-sheet::-webkit-scrollbar-track {
 		background: transparent;
@@ -3597,7 +3492,7 @@
 	 * gutter needing a colour of its own.
 	 */
 	.window-canvas::-webkit-scrollbar-thumb,
-	.dock-results::-webkit-scrollbar-thumb,
+	.search-results::-webkit-scrollbar-thumb,
 	.laptop-desktop::-webkit-scrollbar-thumb,
 	.nav-sheet::-webkit-scrollbar-thumb {
 		border: 2px solid transparent;
@@ -3608,7 +3503,7 @@
 
 	@media (hover: hover) and (pointer: fine) {
 		.window-canvas::-webkit-scrollbar-thumb:hover,
-		.dock-results::-webkit-scrollbar-thumb:hover,
+		.search-results::-webkit-scrollbar-thumb:hover,
 		.laptop-desktop::-webkit-scrollbar-thumb:hover,
 		.nav-sheet::-webkit-scrollbar-thumb:hover {
 			background: var(--fg-faint);
@@ -3730,5 +3625,49 @@
 		.desk-resize {
 			display: none;
 		}
+	}
+}
+
+@layer blocks {
+	/*
+	 * The search window's list.
+	 *
+	 * Rows rather than the icon grid a folder gets. A folder is a place and its
+	 * contents are things you point at; a result is an answer, and the useful
+	 * half of it is which folder it came from - which is text, and text under an
+	 * icon in a grid is a caption nobody reads.
+	 */
+	.search-results {
+		flex: 1;
+		min-height: 0;
+		margin: 0;
+		padding: var(--s-2);
+		list-style: none;
+		overflow-y: auto;
+	}
+
+	/* The field sits above the list and does not scroll with it. */
+	.window-frame > .search-field {
+		flex: 0 0 auto;
+		margin: var(--s-3) var(--s-3) 0;
+	}
+}
+
+@layer blocks {
+	/*
+	 * A minimised task.
+	 *
+	 * Quieter, and without the underline that marks the front window - it is
+	 * still open, so it is still listed, but it is not on the desk and should
+	 * not read as if it were. Dimming rather than hiding is the point: a window
+	 * that vanishes from the dock when minimised is a window somebody has lost.
+	 */
+	.dock-task-face[data-minimised="true"] {
+		opacity: 0.55;
+		box-shadow: none;
+	}
+
+	.dock-task-face[data-minimised="true"]:hover {
+		opacity: 1;
 	}
 }
