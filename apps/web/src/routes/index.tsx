@@ -2,6 +2,7 @@ import { Credit, Reveal, Section } from "@sushindustries/ui";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { LogoModel } from "../modules/chrome/logo-model";
+import { SiteShelf } from "../modules/chrome/site-shelf";
 import { CREDITS } from "../modules/content/credits";
 import { listPackages } from "../modules/content/packages/packages.catalogue";
 import type { PackageSummary } from "../modules/content/packages/packages.schemas";
@@ -26,6 +27,16 @@ function Home(): ReactNode {
 
 				<LogoModel />
 			</section>
+
+			<Section id="shelf" label="Everything" title="Open a folder">
+				<p className="fg-dim max-w-prose text-pretty m-0 mb-6">
+					Every page on this site, on a desktop. Scroll and the lid opens. Open
+					a folder to look inside. Right-click anything, or hold it on a touch
+					screen, or press the dots - all three open the same menu.
+				</p>
+
+				<SiteShelf />
+			</Section>
 
 			<Section id="packages" label="Packages" title="Things I made">
 				<PackageCards packages={packages} />

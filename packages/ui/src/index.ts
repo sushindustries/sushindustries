@@ -14,8 +14,20 @@ export {
 	parseArchive,
 } from "./archive.schemas";
 export { Card, type CardProps } from "./card";
+export {
+	ContextMenu,
+	type ContextMenuProps,
+	type ContextMenuState,
+	type MenuAction,
+	useContextMenu,
+} from "./context-menu";
 export { Credit, type CreditProps } from "./credit";
 export { DocAside, type DocAsideProps } from "./doc-aside";
+export {
+	FolderShelf,
+	type FolderShelfProps,
+	type ShelfEntry,
+} from "./folder-shelf";
 export {
 	type Frontmatter,
 	parseFrontmatter,
@@ -26,6 +38,7 @@ export { Grid, type GridProps, type Space } from "./grid";
 export { collectHeadings, type DocHeading } from "./headings";
 export { highlighter, resolveLanguage } from "./highlighter";
 export { Icon, type IconName, type IconProps } from "./icon";
+export { Laptop, type LaptopProps } from "./laptop";
 export {
 	createBlockDispatcher,
 	type MarkdownBlockProps,
@@ -49,6 +62,10 @@ export {
 } from "./showcase";
 export { SmoothScroll } from "./smooth-scroll";
 export { Spacer, type SpacerProps } from "./spacer";
+export {
+	type ScrollProgressOptions,
+	useScrollProgress,
+} from "./use-scroll-progress";
 export {
 	type ScrollTurn,
 	type ScrollTurnOptions,

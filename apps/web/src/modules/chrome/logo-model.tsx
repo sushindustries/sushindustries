@@ -94,7 +94,6 @@ function SpinningViewer({ revolutions, tilt }: LogoModelProps): ReactNode {
 			// implied by ground, and free to be looked at from underneath.
 			groundBound={false}
 			loadingLabel="Loading the mark"
-			className="logo-canvas"
 		/>
 	);
 }

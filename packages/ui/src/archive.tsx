@@ -93,8 +93,8 @@ export function Archive({
 	);
 
 	return (
-		<div className="archive">
-			<nav className="archive-filters" aria-label="Filter by category">
+		<div className="flex col gap-4">
+			<nav className="flex wrap gap-2" aria-label="Filter by category">
 				<ArchiveChip
 					id="all"
 					href={hrefForCategory("all")}
@@ -118,7 +118,10 @@ export function Archive({
 			</nav>
 
 			{hrefForTag && tags.length > 0 ? (
-				<nav className="archive-filters mt-3" aria-label="Filter by tag">
+				<nav
+					className="flex wrap gap-2 items-center mt-3"
+					aria-label="Filter by tag"
+				>
 					{activeTag ? (
 						renderLink({
 							kind: "tag",
@@ -177,7 +180,7 @@ export function Archive({
 										)}
 									</div>
 
-									<div className="archive-body">
+									<div className="flex col gap-2 p-4">
 										<div className="flex items-center justify-between gap-3">
 											<h3 className="h3 m-0 min-w-0 truncate">{item.title}</h3>
 											{item.meta ? (

@@ -3,11 +3,15 @@ import {
 	type ArchiveCategory,
 	type ArchiveItem,
 	Card,
+	ContextMenu,
 	Credit,
 	type CreditProps,
 	DocAside,
+	FolderShelf,
 	Grid,
+	Laptop,
 	MarkdownView,
+	type MenuAction,
 	NavBar,
 	parseFrontmatter,
 	Reveal,
@@ -16,9 +20,12 @@ import {
 	ScrollSpin,
 	type ScrollTurn,
 	Section,
+	type ShelfEntry,
 	Showcase,
 	SmoothScroll,
 	Spacer,
+	useContextMenu,
+	useScrollProgress,
 	useScrollTurn,
 } from "@sushindustries/ui";
 import { lazy, type ReactNode, Suspense, useCallback, useRef } from "react";
@@ -187,6 +194,176 @@ function ScrollTurnReadout(): ReactNode {
 			<div ref={markRef} className="mt-6" style={{ width: 96 }}>
 				<SpinFace />
 			</div>
+		</div>
+	);
+}
+
+const SHELF_SAMPLE: readonly ShelfEntry[] = [
+	{
+		id: "sauces",
+		label: "Sauces",
+		description: "Three of them",
+		href: "#sauces",
+		children: [
+			{
+				id: "hot",
+				label: "Hot",
+				description: "Two kinds",
+				href: "#hot",
+				children: [
+					{
+						id: "chilli",
+						label: "Chilli oil",
+						description: "The one everybody takes",
+						href: "#chilli",
+						meta: "220ml",
+					},
+					{
+						id: "wasabi",
+						label: "Wasabi",
+						description: "Almost never actually wasabi",
+						href: "#wasabi",
+						meta: "40g",
+					},
+				],
+			},
+			{
+				id: "soy",
+				label: "Soy",
+				description: "Dark, light, and the one for dipping",
+				href: "#soy",
+				meta: "3",
+			},
+		],
+	},
+	{
+		id: "rice",
+		label: "Rice",
+		description: "Short grain only",
+		href: "#rice",
+		children: [
+			{
+				id: "sushi-rice",
+				label: "Sushi rice",
+				description: "Seasoned while still warm",
+				href: "#sushi-rice",
+				meta: "2kg",
+			},
+		],
+	},
+	{
+		id: "readme",
+		label: "README.md",
+		description: "Not a folder, so it opens rather than expands",
+		href: "#readme",
+		icon: "file",
+	},
+];
+
+/** Actions that say what they would have done, so the demo has no side effects. */
+function sampleActions(entry: ShelfEntry): MenuAction[] {
+	return [
+		{ id: "open", label: "Open", icon: "folder-open", onSelect() {} },
+		{
+			id: "md",
+			label: "Save as Markdown",
+			icon: "download",
+			hint: ".md",
+			onSelect() {},
+		},
+		{ id: "copy", label: "Copy link", icon: "link", onSelect() {} },
+		{
+			id: "share",
+			label: `Share ${entry.label}`,
+			icon: "share",
+			onSelect() {},
+		},
+	];
+}
+
+/** Progress has no UI either, so the demo is a bar and the number driving it. */
+function ProgressReadout(): ReactNode {
+	const stageRef = useRef<HTMLDivElement>(null);
+	const barRef = useRef<HTMLDivElement>(null);
+	const valueRef = useRef<HTMLSpanElement>(null);
+
+	const show = useCallback((progress: number) => {
+		if (barRef.current) {
+			barRef.current.style.transform = `scaleX(${progress})`;
+		}
+		if (valueRef.current) {
+			valueRef.current.textContent = progress.toFixed(3);
+		}
+	}, []);
+
+	useScrollProgress(stageRef, show);
+
+	return (
+		<div style={{ minHeight: "200vh", paddingTop: "60vh" }}>
+			<div ref={stageRef}>
+				<p className="label">Scroll the frame</p>
+				<div
+					style={{
+						height: 6,
+						marginTop: 12,
+						background: "var(--bg-2)",
+						borderRadius: 999,
+						overflow: "hidden",
+					}}
+				>
+					<div
+						ref={barRef}
+						style={{
+							height: "100%",
+							background: "var(--accent)",
+							transformOrigin: "left",
+							transform: "scaleX(0)",
+						}}
+					/>
+				</div>
+				<p className="mono text-sm mt-3 fg-dim">
+					<span ref={valueRef}>0.000</span> of the way up
+				</p>
+			</div>
+		</div>
+	);
+}
+
+/** The menu on its own, opened from a button so the demo needs no right-click. */
+function MenuDemo(): ReactNode {
+	const menu = useContextMenu();
+
+	return (
+		<div className="flex col items-start gap-4" {...menu.triggerProps}>
+			<p className="fg-dim m-0 max-w-prose">
+				Right-click this area, hold it on a touch screen, or press the button.
+				All three open the same menu, and it answers to arrow keys and Escape.
+			</p>
+
+			<button type="button" className="showcase-btn" {...menu.buttonProps}>
+				Actions
+			</button>
+
+			<ContextMenu
+				state={menu}
+				actions={[
+					{ id: "open", label: "Open", icon: "folder-open", onSelect() {} },
+					{
+						id: "md",
+						label: "Save as Markdown",
+						icon: "download",
+						hint: ".md",
+						onSelect() {},
+					},
+					{ id: "copy", label: "Copy link", icon: "link", onSelect() {} },
+					{
+						id: "share",
+						label: "Share with a friend",
+						icon: "share",
+						onSelect() {},
+					},
+				]}
+			/>
 		</div>
 	);
 }
@@ -414,6 +591,60 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 			</Link>
 		)
 	}
+/>`,
+		language: "tsx",
+	},
+
+	"use-scroll-progress": {
+		element: <ProgressReadout />,
+		poster: <p className="label text-center">0 to 1, as it arrives</p>,
+		source: `useScrollProgress(ref, (progress) => {
+	bar.style.transform = \`scaleX(\${progress})\`;
+});`,
+		language: "tsx",
+	},
+
+	laptop: {
+		element: (
+			<Laptop title="a laptop" wallpaper={<span className="desk-glow" />}>
+				<FolderShelf
+					entries={SHELF_SAMPLE}
+					label="A pantry"
+					searchable
+					actionsFor={sampleActions}
+				/>
+			</Laptop>
+		),
+		source: `<Laptop title="sushindustries" wallpaper={<Wallpaper />}>
+	<FolderShelf entries={entries} searchable actionsFor={actionsFor} />
+</Laptop>`,
+		language: "tsx",
+	},
+
+	"context-menu": {
+		element: <MenuDemo />,
+		poster: <p className="label text-center">Right-click, hold, or press</p>,
+		source: `const menu = useContextMenu();
+
+<div {...menu.triggerProps}>
+	<button {...menu.buttonProps}>Actions</button>
+</div>
+
+<ContextMenu state={menu} actions={actions} />`,
+		language: "tsx",
+	},
+
+	"folder-shelf": {
+		element: (
+			<FolderShelf
+				entries={SHELF_SAMPLE}
+				label="A pantry"
+				actionsFor={sampleActions}
+			/>
+		),
+		source: `<FolderShelf
+	entries={shelfEntries()}
+	actionsFor={(entry, path) => shelfActions(entry, path)}
 />`,
 		language: "tsx",
 	},

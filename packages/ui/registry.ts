@@ -155,6 +155,58 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		preview: "A grid of cards above a row of category filters",
 	},
 	{
+		name: "use-scroll-progress",
+		title: "useScrollProgress",
+		description:
+			"How far one element has travelled up the viewport, 0 to 1, once per frame. Gated by an observer so an off-screen element costs nothing.",
+		files: ["use-scroll-progress.ts"],
+		dependencies: {},
+		category: "motion",
+		subcategory: "Scroll effects",
+		tags: ["scroll", "hook", "observer", "no-deps"],
+		preview: "No UI - it hands you a number between 0 and 1",
+	},
+	{
+		name: "laptop",
+		title: "Laptop",
+		description:
+			"A laptop frame in CSS 3D whose screen is a real scroll container with real controls in it.",
+		files: ["laptop.tsx"],
+		dependencies: {},
+		category: "layout",
+		subcategory: "Scenes",
+		tags: ["3d", "perspective", "no-deps"],
+		preview: "An open laptop with folders on its screen",
+	},
+	{
+		name: "context-menu",
+		title: "Context Menu",
+		description:
+			"One menu, reachable by right-click, by long press, and by a button. Escape and arrow keys included.",
+		files: ["context-menu.tsx", "icon.tsx"],
+		// `react-dom` for `createPortal`. Stated rather than assumed: a React
+		// project is not guaranteed to have react-dom, and this one does not
+		// render without it.
+		dependencies: { "react-dom": "^19.0.0" },
+		category: "layout",
+		subcategory: "Overlays",
+		tags: ["menu", "touch", "keyboard", "no-deps"],
+		preview: "A menu opening at the pointer with four actions in it",
+	},
+	{
+		name: "folder-shelf",
+		title: "Folder Shelf",
+		description:
+			"A shelf of folders that open into a real <dialog>, drilling down a tree with a path back out.",
+		files: ["folder-shelf.tsx", "context-menu.tsx", "icon.tsx"],
+		dependencies: { "react-dom": "^19.0.0" },
+		registryDependencies: ["context-menu"],
+		category: "layout",
+		subcategory: "Containers",
+		tags: ["dialog", "tree", "touch", "no-deps"],
+		preview: "A row of folders, one open in a window above them",
+	},
+	{
 		name: "card",
 		title: "Card",
 		description:

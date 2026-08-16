@@ -488,8 +488,22 @@ function checkContentFrontmatter() {
 function checkComponentClassesLiveInAtoms() {
 	const atoms = read("packages/atoms/src/atoms.css");
 
+	/*
+	 * Utility-shaped names are checked everywhere, not just in the library.
+	 *
+	 * A component's own block classes are its business, and the app is allowed
+	 * site-only blocks like `.desk-glow`. But `mb-6` is a claim that the scale
+	 * has a step called `mb-6`, and when it does not the class silently does
+	 * nothing - which is how the home page lost the gap under its intro
+	 * paragraph, in markup that looked completely correct.
+	 */
+	const utility =
+		/^(m|mt|mb|mx|my|p|px|py|pt|pb|gap|text|w|h|max-w|min-w|z|flex|items|justify|border|rounded|bg|fg)(-[\w.]+)?$/;
+
 	for (const path of trackedFiles()) {
-		if (!path.startsWith("packages/ui/src/")) continue;
+		const inLibrary = path.startsWith("packages/ui/src/");
+		const inApp = path.startsWith("apps/web/src/");
+		if (!inLibrary && !inApp) continue;
 		if (!path.endsWith(".tsx")) continue;
 
 		// Comments quote class names to explain them. Those are not usage.
@@ -507,6 +521,8 @@ function checkComponentClassesLiveInAtoms() {
 
 		const undefined_ = [...used].filter(
 			(name) =>
+				// Outside the library, only utilities are this file's business.
+				(inLibrary || utility.test(name)) &&
 				!atoms.includes(`.${name} `) &&
 				!atoms.includes(`.${name},`) &&
 				!atoms.includes(`.${name}:`) &&
@@ -659,6 +675,99 @@ function checkAtomsUseTokens() {
 	}
 }
 
+/**
+ * Is a named block actually a block, or is it utilities in a trench coat?
+ *
+ * The bargain of atomic CSS is that composition happens in the markup, and the
+ * few named blocks exist because they carry something markup cannot say -
+ * layout that would take six classes and still be wrong at the breakpoint, a
+ * pseudo-element, a state selector, a media query.
+ *
+ * A block whose every declaration already exists as a utility is not carrying
+ * anything. It is the same set of properties written a second time, in a place
+ * where changing the scale no longer reaches it, and it is how a stylesheet
+ * that started atomic ends up with two ways to say `padding: 16px`.
+ *
+ * So: build a map from `property: value` to the utility that provides it, then
+ * report any block that is fully covered by that map. Blocks with a
+ * pseudo-element, a combinator or a state are exempt, because those are exactly
+ * the things markup cannot express.
+ */
+function checkBlocksAreEarned() {
+	const css = read("packages/atoms/src/atoms.css");
+
+	/*
+	 * Rules, flattened. Nested at-rules are skipped rather than parsed: a rule
+	 * inside a media query is responsive, which is one of the reasons a block is
+	 * allowed to exist, so it is exempt anyway.
+	 */
+	const rules = [
+		...css.matchAll(/^(\.[\w-]+(?:,\s*\.[\w-]+)*)\s*\{([^}]*)\}/gm),
+	];
+
+	/** `padding-inline: var(--s-4)` -> `.px-4`, from the single-property rules. */
+	const provided = new Map();
+
+	for (const [, selector, body] of rules) {
+		const declarations = body
+			.split(";")
+			.map((line) => line.trim())
+			.filter((line) => line && !line.startsWith("/*"));
+
+		if (declarations.length !== 1) continue;
+		if (selector.includes(",")) continue;
+
+		/*
+		 * First writer wins. Utilities are declared at the top of the file, and
+		 * plenty of blocks further down also happen to be one declaration long -
+		 * without this, `display: none` resolves to whichever component rule
+		 * came last rather than to `.hidden`.
+		 */
+		if (!provided.has(declarations[0])) {
+			provided.set(declarations[0], selector.trim());
+		}
+	}
+
+	for (const [, selector, body] of rules) {
+		if (selector.includes(",")) continue;
+
+		const name = selector.trim();
+
+		/*
+		 * Exempt if anything else in the file targets this class with more than
+		 * its bare name - a state, a pseudo-element, a combinator, an attribute,
+		 * or a rule inside a media query.
+		 *
+		 * Those are precisely the things markup cannot express, so a block that
+		 * has one is carrying something. `.tab-panel` looks like `.hidden .p-4`
+		 * until you notice a sibling selector turns it back on.
+		 */
+		const elaborated = new RegExp(
+			`\\${name}(?:[:\\[.]|\\s*[>+~]|\\s+\\.)`,
+		).test(css);
+		if (elaborated) continue;
+
+		const declarations = body
+			.split(";")
+			.map((line) => line.replace(/\/\*[\s\S]*?\*\//g, "").trim())
+			.filter(Boolean);
+
+		if (declarations.length < 2) continue;
+
+		const covered = declarations.filter((line) => provided.has(line));
+		if (covered.length !== declarations.length) continue;
+
+		report(
+			"atomic",
+			"packages/atoms/src/atoms.css",
+			`${name} is ${declarations.length} utilities written again`,
+			`compose them in the markup: ${covered
+				.map((line) => provided.get(line))
+				.join(" ")}`,
+		);
+	}
+}
+
 /*
  * House style: no em dashes.
  *
@@ -793,6 +902,7 @@ checkGlyphsAreGenerated();
 checkCategoriesHaveIcons();
 checkComponentClassesLiveInAtoms();
 checkVariantsAreAttributes();
+checkBlocksAreEarned();
 checkAtomsUseTokens();
 checkNoEmDashes();
 

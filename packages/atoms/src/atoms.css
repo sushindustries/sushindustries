@@ -79,6 +79,24 @@
 	--glass-edge: color-mix(in srgb, var(--rice) 9%, transparent);
 	--glass-blur: blur(18px) saturate(130%);
 
+	/*
+	 * The dimming behind a modal. Near-black rather than the page ground,
+	 * because a scrim made of the background colour tints what is behind it
+	 * instead of darkening it, and the point is to take the page away.
+	 */
+	--scrim: color-mix(in srgb, #05080a 58%, transparent);
+
+	/*
+	 * Folders are blue, and that is not decoration.
+	 *
+	 * Every other coloured thing on this site is the salmon accent, so a folder
+	 * being blue is what separates "a thing you open" from "a thing you press".
+	 * Two hues total: one for actions, one for containers.
+	 */
+	--folder: #6ea8d8;
+	--folder-deep: #3f6f9c;
+	--folder-fill: color-mix(in srgb, var(--folder) 22%, transparent);
+
 	/* The sticky header's height, so anything that must clear it can say so. */
 	--nav-height: 66px;
 
@@ -290,6 +308,9 @@ svg {
 .mx-auto {
 	margin-inline: auto;
 }
+.mt-1 {
+	margin-top: var(--s-1);
+}
 .mt-2 {
 	margin-top: var(--s-2);
 }
@@ -307,6 +328,21 @@ svg {
 }
 .mt-7 {
 	margin-top: var(--s-7);
+}
+.mb-2 {
+	margin-bottom: var(--s-2);
+}
+.mb-3 {
+	margin-bottom: var(--s-3);
+}
+.mb-4 {
+	margin-bottom: var(--s-4);
+}
+.mb-5 {
+	margin-bottom: var(--s-5);
+}
+.mb-6 {
+	margin-bottom: var(--s-6);
 }
 .p-3 {
 	padding: var(--s-3);
@@ -574,6 +610,22 @@ svg {
 	border-top: 1px solid var(--line-soft);
 }
 
+/*
+ * Rhythm inside a section, from the same fluid scale as the space around it.
+ *
+ * Owned by the section rather than set as a margin on each child: a heading
+ * that knows how far it sits from the paragraph under it has to be told again
+ * every time it is used somewhere else, and the two answers drift.
+ */
+.section > * + * {
+	margin-top: var(--space-block);
+}
+
+/* The heading group is one thing, so it keeps its own tighter spacing. */
+.section > .label + * {
+	margin-top: var(--s-3);
+}
+
 /* ── scroll reveal ───────────────────────────────────────────── */
 
 [data-reveal] {
@@ -663,13 +715,6 @@ svg {
 }
 
 .nav-link[data-active="true"] {
-	color: var(--fg);
-}
-
-.nav-brand {
-	font-family: var(--mono);
-	font-size: var(--t-sm);
-	font-weight: 600;
 	color: var(--fg);
 }
 
@@ -834,18 +879,6 @@ svg {
 .nav-panel-item:focus-visible {
 	background: var(--bg-2);
 	border-color: var(--line-soft);
-}
-
-.nav-panel-label {
-	color: var(--fg);
-	font-size: var(--t-sm);
-	font-weight: 500;
-}
-
-.nav-panel-badge {
-	font-family: var(--mono);
-	font-size: var(--t-xs);
-	color: var(--fg-faint);
 }
 
 .nav-panel-description {
@@ -1364,24 +1397,6 @@ svg {
 	transform-style: preserve-3d;
 	will-change: transform;
 	color: var(--fg);
-}
-
-/*
- * The GLB in the hero.
- *
- * No background and no radius, because the canvas is transparent: the viewer
- * is mounted with `transparent`, so it clears to an alpha buffer and the page
- * shows through. Any fill or corner here would put back the rectangle that
- * setting exists to remove, and a mark in a hero should not look like it is
- * sitting in a window.
- *
- * Fills the stage rather than insetting like the CSS mark did. A model already
- * has margin baked into how its camera framed it, so a second margin here
- * reads as a small logo in a large empty box.
- */
-.logo-canvas {
-	width: 100%;
-	height: 100%;
 }
 
 /* Holds the stage open before the canvas exists. Not a mark, and not shaped
@@ -2116,25 +2131,6 @@ svg {
 	}
 }
 
-/* ── archive ─────────────────────────────────────────────────── */
-
-/*
- * The root, which owns the vertical rhythm between the filters, the count and
- * the grid. Setting it here rather than with margins on each child means the
- * three parts can be reordered without three rules changing.
- */
-.archive {
-	display: flex;
-	flex-direction: column;
-	gap: var(--s-4);
-}
-
-.archive-filters {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--s-2);
-}
-
 .archive-chip {
 	display: inline-flex;
 	align-items: center;
@@ -2225,13 +2221,6 @@ svg {
 	pointer-events: none;
 }
 
-.archive-body {
-	display: flex;
-	flex-direction: column;
-	gap: var(--s-2);
-	padding: var(--s-4);
-}
-
 /*
  * Tags are secondary to categories, so they are quieter: square, smaller, and
  * lower contrast. If they looked like the category chips the reader would have
@@ -2264,4 +2253,808 @@ svg {
 .archive-tag.is-active {
 	color: var(--fg);
 	border-color: var(--accent);
+}
+
+/* ── menu ────────────────────────────────────────────────────── */
+
+/*
+ * The context menu surface.
+ *
+ * `position: fixed` because it is placed at a pointer, and a pointer is in
+ * viewport coordinates. Anything absolute would be relative to whichever
+ * ancestor happened to be positioned, which for a menu that can open from any
+ * tile is a different answer every time.
+ */
+.menu {
+	position: fixed;
+	z-index: 60;
+	min-width: 13rem;
+	padding: var(--s-1);
+	border: 1px solid var(--line);
+	border-radius: var(--r-lg);
+	background:
+		linear-gradient(to bottom, var(--glass-edge), transparent 40%),
+		color-mix(in srgb, var(--nori-800) 92%, transparent);
+	backdrop-filter: var(--glass-blur);
+	box-shadow: 0 18px 44px color-mix(in srgb, var(--nori-900) 74%, transparent);
+	animation: menu-in 130ms var(--ease-out);
+}
+
+/*
+ * Fast, and from the corner it was summoned at. A context menu is the most
+ * impatient surface on a page - it opens because somebody is already reaching
+ * for the thing inside it.
+ */
+@keyframes menu-in {
+	from {
+		opacity: 0;
+		scale: 0.96;
+	}
+}
+
+.menu-item {
+	display: flex;
+	align-items: center;
+	gap: var(--s-3);
+	width: 100%;
+	min-height: 38px;
+	padding: var(--s-2) var(--s-3);
+	border: 0;
+	border-radius: var(--r);
+	background: transparent;
+	color: var(--fg-dim);
+	font: inherit;
+	font-size: var(--t-sm);
+	text-align: left;
+	cursor: pointer;
+}
+
+.menu-item:disabled {
+	color: var(--fg-faint);
+	cursor: default;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.menu-item:not(:disabled):hover {
+		background: var(--bg-2);
+		color: var(--fg);
+	}
+}
+
+/* Focus is how this is driven from a keyboard, so it must be as loud as hover. */
+.menu-item:focus-visible {
+	background: var(--bg-2);
+	color: var(--fg);
+	outline: 2px solid var(--accent);
+	outline-offset: -2px;
+}
+
+/* ── shelf ───────────────────────────────────────────────────── */
+
+/*
+ * The shelf and its window, as one unit. The dialog is a child of this rather
+ * than a portal, because `showModal()` puts it in the top layer regardless of
+ * where it sits in the tree - so there is nothing to gain from moving it and a
+ * portal to keep in sync if it were.
+ */
+.shelf-root {
+	display: block;
+}
+
+/*
+ * A shelf of folders.
+ *
+ * `auto-fit` with a `minmax` floor rather than a column count: the shelf sits
+ * in a section on the home page and in a showcase frame at 320px, and neither
+ * should need to be told about the other.
+ */
+.shelf {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+	gap: var(--s-3);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.shelf-cell {
+	min-width: 0;
+}
+
+.shelf-face {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--s-2);
+	width: 100%;
+	height: 100%;
+	padding: var(--s-4) var(--s-3) var(--s-5);
+	border: 1px solid transparent;
+	/* Squarer than the rest of the site. A desktop icon is a small square
+	   thing, and the 16px card radius made these read as cards with pictures
+	   on them rather than as icons. */
+	border-radius: var(--r);
+	background: transparent;
+	color: var(--fg-dim);
+	font: inherit;
+	text-align: center;
+	cursor: pointer;
+	transition:
+		background 160ms ease,
+		border-color 160ms ease,
+		transform 220ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.shelf-face:hover {
+		background:
+			linear-gradient(to bottom, var(--glass-edge), transparent 45%),
+			var(--bg-1);
+		border-color: var(--line-soft);
+		transform: translateY(-2px);
+	}
+}
+
+.shelf-face:focus-visible {
+	background: var(--bg-1);
+	border-color: var(--line-soft);
+}
+
+/* No hover on a touch screen, so the press has to answer for itself. */
+.shelf-face:active {
+	background: var(--bg-2);
+	transform: translateY(0);
+}
+
+.shelf-glyph {
+	position: relative;
+	display: grid;
+	place-items: center;
+	color: var(--fg-faint);
+	transition: color 160ms ease;
+}
+
+/*
+ * How many things are inside, on the folder itself.
+ *
+ * A folder you have to open to discover is empty is a folder that wasted a
+ * click, and this is the cheapest possible way to not do that.
+ */
+.shelf-count {
+	position: absolute;
+	right: -6px;
+	bottom: 2px;
+	min-width: 18px;
+	padding: 0 4px;
+	border-radius: 999px;
+	background: var(--bg-3);
+	color: var(--fg-dim);
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	line-height: 18px;
+	text-align: center;
+}
+
+.shelf-name {
+	color: var(--fg);
+	font-size: var(--t-sm);
+	font-weight: 500;
+	overflow-wrap: anywhere;
+}
+
+.shelf-note {
+	font-size: var(--t-xs);
+	line-height: 1.4;
+	color: var(--fg-faint);
+}
+
+/*
+ * The visible way into the menu.
+ *
+ * Always present rather than revealed on hover. A control that only exists
+ * while a pointer is over it does not exist on a touch screen, and this one is
+ * the only route to the menu for anyone who does not right-click.
+ */
+.shelf-more,
+.window-more {
+	position: absolute;
+	top: var(--s-2);
+	right: var(--s-2);
+	display: grid;
+	place-items: center;
+	width: 30px;
+	height: 30px;
+	border: 1px solid transparent;
+	border-radius: var(--r);
+	background: transparent;
+	color: var(--fg-faint);
+	cursor: pointer;
+	transition:
+		background 140ms ease,
+		color 140ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.shelf-more:hover,
+	.window-more:hover {
+		background: var(--bg-2);
+		color: var(--fg);
+	}
+}
+
+/* ── window ──────────────────────────────────────────────────── */
+
+/*
+ * The dialog.
+ *
+ * Sized in `min()` against both a viewport unit and a ceiling, so it is a
+ * window on a monitor and very nearly the whole screen on a phone without a
+ * breakpoint deciding which.
+ *
+ * No z-index anywhere in here: `showModal()` puts it in the top layer, which
+ * is above every stacking context on the page by definition. That is most of
+ * the reason for using a real dialog rather than a div.
+ */
+.window {
+	width: min(46rem, 100% - var(--s-4) * 2);
+	max-height: min(80dvh, 44rem);
+	padding: 0;
+	border: 1px solid var(--line);
+	border-radius: var(--r-card);
+	background:
+		linear-gradient(to bottom, var(--glass-edge), transparent 30%),
+		color-mix(in srgb, var(--nori-800) 94%, transparent);
+	backdrop-filter: var(--glass-blur);
+	color: var(--fg);
+	box-shadow: 0 40px 90px color-mix(in srgb, var(--nori-900) 80%, transparent);
+	overflow: hidden;
+	animation: window-in 200ms var(--ease-out);
+}
+
+.window::backdrop {
+	background: var(--scrim);
+	animation: window-scrim-in 200ms ease;
+}
+
+@keyframes window-in {
+	from {
+		opacity: 0;
+		scale: 0.97;
+		translate: 0 8px;
+	}
+}
+
+@keyframes window-scrim-in {
+	from {
+		opacity: 0;
+	}
+}
+
+.window-frame {
+	display: flex;
+	flex-direction: column;
+	max-height: inherit;
+}
+
+.window-bar {
+	display: flex;
+	align-items: center;
+	gap: var(--s-3);
+	padding: var(--s-3) var(--s-3) var(--s-3) var(--s-4);
+	border-bottom: 1px solid var(--line-soft);
+	background: color-mix(in srgb, var(--nori-900) 40%, transparent);
+}
+
+.window-path {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 2px;
+	min-width: 0;
+	flex: 1;
+}
+
+.window-crumb {
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+	min-width: 0;
+}
+
+.window-sep {
+	color: var(--fg-faint);
+	transform: rotate(-90deg);
+}
+
+.window-crumb-button {
+	padding: var(--s-1) var(--s-2);
+	border: 0;
+	border-radius: var(--r);
+	background: transparent;
+	color: var(--fg-faint);
+	font: inherit;
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+/* The last crumb is where you are, so it is not dressed as somewhere to go. */
+.window-crumb-button[aria-current="true"] {
+	color: var(--fg);
+	cursor: default;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.window-crumb-button:not([aria-current="true"]):hover {
+		background: var(--bg-2);
+		color: var(--fg);
+	}
+}
+
+.window-close {
+	display: grid;
+	place-items: center;
+	flex: 0 0 auto;
+	width: 34px;
+	height: 34px;
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r);
+	background: transparent;
+	color: var(--fg-dim);
+	cursor: pointer;
+	transition:
+		background 140ms ease,
+		color 140ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.window-close:hover {
+		background: var(--bg-2);
+		color: var(--fg);
+	}
+}
+
+.window-list {
+	margin: 0;
+	padding: var(--s-2);
+	list-style: none;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+}
+
+.window-row-cell {
+	min-width: 0;
+}
+
+.window-row {
+	position: relative;
+}
+
+.window-face {
+	display: flex;
+	align-items: center;
+	gap: var(--s-3);
+	width: 100%;
+	/* Room on the right for the menu button, which is absolutely placed. */
+	padding: var(--s-3) calc(var(--s-6) + var(--s-2)) var(--s-3) var(--s-3);
+	min-height: 48px;
+	border: 1px solid transparent;
+	border-radius: var(--r-lg);
+	background: transparent;
+	color: var(--fg-dim);
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
+	transition:
+		background 140ms ease,
+		border-color 140ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.window-face:hover {
+		background: var(--bg-2);
+		border-color: var(--line-soft);
+	}
+}
+
+.window-face:focus-visible {
+	background: var(--bg-2);
+	border-color: var(--line-soft);
+}
+
+.window-face:active {
+	background: var(--bg-3);
+}
+
+.window-icon {
+	display: grid;
+	place-items: center;
+	flex: 0 0 auto;
+	width: 32px;
+	height: 32px;
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r);
+	background:
+		linear-gradient(160deg, var(--glass-edge), transparent 60%), var(--bg-3);
+	color: var(--fg-dim);
+}
+
+.window-note {
+	display: block;
+	margin-top: 1px;
+	font-size: var(--t-xs);
+	line-height: 1.45;
+	color: var(--fg-faint);
+}
+
+.window-meta {
+	flex: 0 0 auto;
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	color: var(--fg-faint);
+}
+
+.window-into {
+	flex: 0 0 auto;
+	color: var(--fg-faint);
+	transform: rotate(-90deg);
+}
+
+/*
+ * The window's own menu button sits inside a row rather than a tile, so it is
+ * centred on the row instead of pinned to a corner.
+ */
+.window-more {
+	top: 50%;
+	translate: 0 -50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.menu,
+	.window,
+	.window::backdrop {
+		animation: none;
+	}
+
+	.shelf-face {
+		transition: none;
+	}
+}
+
+@media (max-width: 620px) {
+	/* A phone gets bigger targets and fewer of them per row. */
+	.shelf {
+		grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+	}
+
+	.window {
+		width: 100%;
+		max-height: 86dvh;
+	}
+}
+
+/* ── folders, in blue ────────────────────────────────────────── */
+
+/*
+ * A drawn folder rather than an outlined one.
+ *
+ * The glyph is stroked paths, and `fill` on the paths in CSS beats the
+ * `fill="none"` presentation attribute on the SVG - so the same glyph is a
+ * line icon everywhere else and a solid folder here, with no second drawing to
+ * keep in step. The stroke stays as the lit edge on top of the fill, which is
+ * what gives it a front face and a back.
+ */
+.shelf-glyph svg path,
+.window-icon svg path {
+	fill: var(--folder-fill);
+	transition:
+		fill 160ms ease,
+		stroke 160ms ease;
+}
+
+.shelf-glyph,
+.window-icon {
+	color: var(--folder);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.shelf-face:hover .shelf-glyph,
+	.window-face:hover .window-icon {
+		color: var(--folder);
+	}
+
+	.shelf-face:hover .shelf-glyph svg path,
+	.window-face:hover .window-icon svg path {
+		fill: color-mix(in srgb, var(--folder) 34%, transparent);
+	}
+}
+
+/* A file is not a folder, so it does not get the folder's fill or its blue. */
+.window-icon:has(svg path[d^="M6 3h8l4 4v14H6z"]),
+.shelf-glyph:has(svg path[d^="M6 3h8l4 4v14H6z"]) {
+	color: var(--fg-dim);
+}
+
+.window-icon:has(svg path[d^="M6 3h8l4 4v14H6z"]) svg path,
+.shelf-glyph:has(svg path[d^="M6 3h8l4 4v14H6z"]) svg path {
+	fill: color-mix(in srgb, var(--rice) 6%, transparent);
+}
+
+/* ── laptop ──────────────────────────────────────────────────── */
+
+/*
+ * The stage carries the perspective, so the lid, the base and the screen all
+ * agree about where the viewer is standing. `1400px` is a long lens: the
+ * machine should look like it is being looked at, not like it is being
+ * photographed with a wide angle from six inches away.
+ */
+.laptop {
+	position: relative;
+	width: min(100%, 60rem);
+	margin-inline: auto;
+	perspective: 1400px;
+	perspective-origin: 50% 20%;
+}
+
+/*
+ * Open, and staying that way.
+ *
+ * It used to rotate up from shut as you scrolled to it, which meant the screen
+ * was unreadable until the animation finished and unusable while it ran. A
+ * frame around real controls should not make you wait to reach them.
+ *
+ * `-4deg` is a lid leaning very slightly back, which is how an open laptop
+ * actually sits. Zero would be a rectangle, and the small tilt is the whole
+ * reason the perspective on the stage has anything to do.
+ */
+.laptop-lid {
+	position: relative;
+	transform-origin: 50% 100%;
+	transform: rotateX(-4deg);
+	transform-style: preserve-3d;
+	aspect-ratio: 16 / 10.4;
+	border: 1px solid var(--line);
+	border-radius: var(--r-card) var(--r-card) 4px 4px;
+	background: var(--nori-900);
+	box-shadow: 0 1px 0 var(--glass-edge) inset;
+}
+
+.laptop-screen {
+	position: absolute;
+	inset: 8px;
+	display: flex;
+	flex-direction: column;
+	border-radius: var(--r-lg);
+	background: var(--bg-0);
+	overflow: hidden;
+	/*
+	 * Above the back panel, explicitly.
+	 *
+	 * Both are children of a `preserve-3d` lid, and z-order there is decided by
+	 * 3D position rather than by document order - which browsers resolve
+	 * consistently for painting and less consistently for hit-testing. Saying
+	 * it in two ways, with a positive `translateZ` here and `pointer-events:
+	 * none` on the panel, means no engine has to be trusted about it.
+	 */
+	transform: translateZ(1px);
+}
+
+.laptop-wallpaper {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	/* Behind the desktop, and never in the way of a click on a folder. */
+	pointer-events: none;
+}
+
+/*
+ * The back of the lid, two pixels behind the screen.
+ *
+ * With the lid static it is never seen face on, but it is what the bezel's
+ * edges are made of at this angle - without it the screen's border is a line
+ * rather than the edge of a panel with thickness.
+ */
+.laptop-back {
+	position: absolute;
+	inset: 0;
+	border-radius: var(--r-card) var(--r-card) 4px 4px;
+	background: linear-gradient(160deg, var(--nori-700), var(--nori-900));
+	transform: translateZ(-2px);
+	/*
+	 * Decorative, and it must never be clickable.
+	 *
+	 * It is `inset: 0` over the whole lid and comes after the screen in the
+	 * DOM, so the only thing keeping it behind is `preserve-3d` honouring its
+	 * `translateZ`. Any ancestor that flattens the 3D context - a filter, an
+	 * overflow, a browser quirk - puts this panel on top of the screen, where
+	 * it swallows every click on every folder and looks completely fine while
+	 * doing it.
+	 */
+	pointer-events: none;
+}
+
+.laptop-strip {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--s-3);
+	flex: 0 0 auto;
+	padding: var(--s-2) var(--s-3);
+	border-bottom: 1px solid var(--line-soft);
+	background: color-mix(in srgb, var(--nori-800) 80%, transparent);
+	backdrop-filter: blur(8px);
+}
+
+.laptop-title {
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--fg-faint);
+}
+
+/*
+ * The desktop scrolls on its own, and takes its own drags.
+ *
+ * `overscroll-behavior: contain` stops a flick inside the machine from
+ * continuing into the page once it hits the end, which on a phone is the
+ * difference between a screen you can use and one that throws you down the
+ * article every time you reach the bottom of it.
+ */
+.laptop-desktop {
+	flex: 1;
+	min-height: 0;
+	padding: var(--s-4);
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	touch-action: pan-y;
+}
+
+/*
+ * The base, drawn as two slabs laid back in 3D.
+ *
+ * `rotateX(72deg)` is a deck seen at a shallow angle. Exactly 90 would be
+ * edge-on and invisible; this is the angle at which a keyboard deck reads as a
+ * surface receding away from you.
+ */
+.laptop-base {
+	position: relative;
+	height: 26px;
+	transform-style: preserve-3d;
+	transform: rotateX(72deg);
+	transform-origin: 50% 0;
+}
+
+.laptop-deck {
+	position: absolute;
+	inset: 0;
+	border: 1px solid var(--line);
+	border-top: 0;
+	border-radius: 0 0 var(--r) var(--r);
+	background: linear-gradient(to bottom, var(--nori-600), var(--nori-800) 70%);
+}
+
+.laptop-pad {
+	position: absolute;
+	left: 50%;
+	top: 30%;
+	width: 22%;
+	height: 42%;
+	translate: -50% 0;
+	border-radius: 3px;
+	background: color-mix(in srgb, var(--nori-900) 60%, transparent);
+}
+
+/*
+ * Contact shadow. It is what stops the machine floating, and it is a
+ * pseudo-surface rather than a box-shadow so it can be wider than the object
+ * and softer at the edges than a shadow is allowed to be.
+ */
+.laptop-shadow {
+	position: absolute;
+	left: 50%;
+	bottom: -18px;
+	width: 78%;
+	height: 34px;
+	translate: -50% 0;
+	background: radial-gradient(
+		ellipse at center,
+		color-mix(in srgb, var(--nori-900) 85%, transparent),
+		transparent 70%
+	);
+	filter: blur(6px);
+	pointer-events: none;
+}
+
+/*
+ * Small screens get a shallower lens and a shorter machine.
+ *
+ * At 320px the 16:10 lid is 200px tall, which is not a desktop anyone can use,
+ * so the aspect ratio gives way to a taller screen. It stops looking quite so
+ * much like a laptop and starts being usable, which is the right way round.
+ */
+@media (max-width: 620px) {
+	.laptop {
+		perspective: 900px;
+	}
+
+	.laptop-lid {
+		aspect-ratio: 3 / 4;
+	}
+
+	.laptop-desktop {
+		padding: var(--s-3);
+	}
+
+	.laptop-base {
+		height: 18px;
+	}
+}
+
+/* ── shelf search ────────────────────────────────────────────── */
+
+.shelf-search {
+	display: flex;
+	align-items: center;
+	gap: var(--s-2);
+	margin-bottom: var(--s-4);
+	padding: var(--s-2) var(--s-3);
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-lg);
+	background: color-mix(in srgb, var(--nori-900) 55%, transparent);
+}
+
+/* Focus lands on the input, so the ring belongs to the whole field. */
+.shelf-search:focus-within {
+	border-color: var(--line);
+	outline: 2px solid var(--accent);
+	outline-offset: 1px;
+}
+
+.shelf-search-glyph {
+	flex: 0 0 auto;
+	color: var(--fg-faint);
+}
+
+.shelf-search-input {
+	flex: 1;
+	min-width: 0;
+	border: 0;
+	background: transparent;
+	color: var(--fg);
+	font: inherit;
+	font-size: var(--t-sm);
+}
+
+.shelf-search-input:focus {
+	/* The field draws the ring, not the input inside it. */
+	outline: none;
+}
+
+.shelf-search-input::placeholder {
+	color: var(--fg-faint);
+}
+
+.shelf-search-count {
+	flex: 0 0 auto;
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	color: var(--fg-faint);
+}
+
+.shelf-results {
+	padding: 0;
+	max-height: none;
+}
+
+/* Where a result lives. Only rendered in search results, where it is the
+   difference between a name and an answer. */
+.window-where {
+	display: block;
+	margin-top: 1px;
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	color: var(--folder);
 }

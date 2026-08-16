@@ -194,3 +194,39 @@
 	color: var(--fg);
 	border-bottom-color: var(--accent);
 }
+
+/* ── desktop wallpaper ───────────────────────────────────────── */
+
+/*
+ * The laptop's wallpaper, on this site.
+ *
+ * Two soft lights rather than an image: an image is a request, a decode and a
+ * decision about resolution, and this is behind a folder grid at a size nobody
+ * looks at directly. A gradient is none of those things and reads as the same
+ * amount of depth.
+ *
+ * It lives in the app rather than in atoms because it is this site's wallpaper.
+ * `Laptop` takes whatever it is given, which is the reusable half.
+ */
+.desk-glow {
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(
+			ellipse 70% 55% at 28% 18%,
+			color-mix(in srgb, var(--folder) 16%, transparent),
+			transparent 70%
+		),
+		radial-gradient(
+			ellipse 60% 50% at 78% 82%,
+			color-mix(in srgb, var(--accent) 12%, transparent),
+			transparent 70%
+		),
+		linear-gradient(160deg, var(--nori-800), var(--nori-900));
+}
+
+/* The status line under the laptop. Empty until an action says something. */
+.shelf-status {
+	min-height: 1.2em;
+	color: var(--fg-faint);
+}

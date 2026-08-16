@@ -113,10 +113,12 @@ function PanelItems({
 									</span>
 								) : null}
 								<span className="min-w-0">
-									<span className="nav-panel-label flex items-baseline gap-2">
+									<span className="fg text-sm font-medium flex items-baseline gap-2">
 										{item.label}
 										{item.badge ? (
-											<span className="nav-panel-badge">{item.badge}</span>
+											<span className="mono text-xs fg-faint">
+												{item.badge}
+											</span>
 										) : null}
 									</span>
 									{item.description ? (
@@ -176,7 +178,8 @@ export function NavBar({
 			<nav className="container flex items-center justify-between gap-4 py-3">
 				{renderLink({
 					href: brandHref,
-					className: "nav-brand flex items-center gap-3 shrink-0",
+					className:
+						"mono text-sm font-semibold fg flex items-center gap-3 shrink-0",
 					children: brand,
 				})}
 

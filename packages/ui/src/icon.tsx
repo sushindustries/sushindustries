@@ -20,7 +20,16 @@ export type IconName =
 	| "text"
 	| "book"
 	| "rule"
-	| "chevron";
+	| "chevron"
+	| "folder"
+	| "folder-open"
+	| "file"
+	| "dots"
+	| "download"
+	| "share"
+	| "link"
+	| "close"
+	| "search";
 
 export interface IconProps {
 	name: IconName;
@@ -97,6 +106,71 @@ const PATHS: Record<IconName, ReactNode> = {
 	chevron: (
 		<>
 			<path d="M6 9.5 12 15l6-5.5" />
+		</>
+	),
+	// A tab and a body. The one shape everyone already reads as "things are in here".
+	folder: (
+		<>
+			<path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h4l2 2.5h9A1.5 1.5 0 0 1 21 9v8.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z" />
+		</>
+	),
+	// The same folder with its front leaning away. Open, without a second metaphor.
+	"folder-open": (
+		<>
+			<path d="M3 7a1.5 1.5 0 0 1 1.5-1.5h4L11 8h8A1.5 1.5 0 0 1 20.5 9.5v1" />
+			<path d="M3 17.2 5.4 11a1.5 1.5 0 0 1 1.4-1h14.1a1 1 0 0 1 .95 1.3L19.8 18a1.5 1.5 0 0 1-1.4 1H4.5A1.5 1.5 0 0 1 3 17.5z" />
+		</>
+	),
+	// A page with a folded corner and two lines. A thing, not a container.
+	file: (
+		<>
+			<path d="M6 3h8l4 4v14H6z" />
+			<path d="M14 3v4h4" />
+			<path d="M9 12h6M9 16h4" />
+		</>
+	),
+	// Three dots. The menu you can reach without a right mouse button.
+	dots: (
+		<>
+			<path d="M12 5.5a1 1 0 1 0 0-.01" />
+			<path d="M12 12.5a1 1 0 1 0 0-.01" />
+			<path d="M12 19.5a1 1 0 1 0 0-.01" />
+		</>
+	),
+	// An arrow into a tray. Down means onto your machine.
+	download: (
+		<>
+			<path d="M12 3v11" />
+			<path d="M7.5 10 12 14.5 16.5 10" />
+			<path d="M4 17.5v2A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5v-2" />
+		</>
+	),
+	// The download arrow, reversed. Up means away from here.
+	share: (
+		<>
+			<path d="M12 16V4" />
+			<path d="M7.5 8.5 12 4l4.5 4.5" />
+			<path d="M4 15v4.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V15" />
+		</>
+	),
+	// Two links of a chain.
+	link: (
+		<>
+			<path d="M10 13.5a3.5 3.5 0 0 0 5 0l3-3a3.54 3.54 0 0 0-5-5l-1.2 1.2" />
+			<path d="M14 10.5a3.5 3.5 0 0 0-5 0l-3 3a3.54 3.54 0 0 0 5 5l1.2-1.2" />
+		</>
+	),
+	// A cross. Nothing else means close.
+	close: (
+		<>
+			<path d="M6 6l12 12M18 6 6 18" />
+		</>
+	),
+	// A lens and a handle.
+	search: (
+		<>
+			<path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z" />
+			<path d="M16.2 16.2 21 21" />
 		</>
 	),
 };
