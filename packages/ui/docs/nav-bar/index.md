@@ -62,6 +62,8 @@ The drawer takes 420ms, slower than the desktop panel's 220ms. It travels the
 width of the screen, and a full-screen surface that arrives in 200ms reads as a
 page change rather than as something opening.
 
+## Three traps, all found the hard way
+
 > [!CAUTION] `backdrop-filter` breaks `position: fixed` beneath it
 > An element with `backdrop-filter` becomes the containing block for every
 > fixed-position descendant. With the blur on the header itself, this drawer
@@ -70,6 +72,35 @@ page change rather than as something opening.
 > and nothing else. The fix is one line - put the blur on a pseudo-element of
 > the header instead. It looks identical and the header stops being a
 > containing block.
+
+> [!CAUTION] One blur per surface
+> The icon tiles had `backdrop-filter` too. Eighteen of them, inside a panel
+> that was blurred, inside a header that was blurred, is three GPU readbacks
+> per frame per layer, and it crashed the renderer. The tiles now get their
+> glass from a gradient, which is what was doing the visual work anyway. The
+> drawer is opaque, because it sits over a 62% scrim and was paying for a
+> full-screen readback to composite something already hidden.
+
+> [!CAUTION] `opacity: 0` takes the pseudo-elements with it
+> The burger is three bars: the element's own background, plus `::before` and
+> `::after`. Hiding the middle one with `opacity: 0` grouped all three, and
+> `opacity: 1` on a pseudo-element cannot escape its parent's opacity - so
+> pressing the burger hid the whole icon and the full-screen drawer opened
+> with no visible way out. `background: transparent` clears only the middle
+> bar, because only the parent's own background draws it.
+
+## Closing it
+
+While the drawer is open, the toggle becomes `position: fixed` above the sheet
+and the bars cross into an X.
+
+That is deliberate rather than a second close button. The drawer covers the
+header the toggle lives in, so the toggle has to be lifted out or there is no
+exit at all - and lifting the same control is better than adding another,
+because the thing that closes the menu is visibly the thing that opened it, in
+the same place, having changed shape.
+
+Escape also closes it, for free, because it is a `<details>`.
 
 Inside the drawer, group headers and their items share one left edge and both
 rows are at least 44px tall. An indent on the nested list would push every icon

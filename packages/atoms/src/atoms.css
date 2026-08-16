@@ -676,11 +676,16 @@ svg {
 }
 
 /*
- * The icon tile: glass.
+ * The icon tile: glass, made of a gradient rather than of a filter.
  *
- * A translucent fill over a blurred backdrop, with a light top edge and a dark
- * bottom one. The two-tone border is what makes it read as a raised piece of
- * glass rather than as a flat swatch, and it costs one gradient.
+ * A light top edge over a darker fill is what actually reads as a raised piece
+ * of glass. `backdrop-filter` on a 34px tile adds almost nothing to that, and
+ * it is not free: each one becomes its own backdrop root, and eighteen of them
+ * inside a panel that is itself blurred inside a header that is also blurred
+ * crashed the renderer outright.
+ *
+ * One blur per surface is the rule that came out of it. A blur inside a blur
+ * inside a blur is not a design decision, it is three GPU readbacks per frame.
  */
 .nav-panel-icon {
 	display: grid;
@@ -693,11 +698,10 @@ svg {
 	background:
 		linear-gradient(
 			160deg,
-			color-mix(in srgb, var(--rice) 9%, transparent),
-			transparent 60%
+			color-mix(in srgb, var(--rice) 10%, transparent),
+			transparent 62%
 		),
-		color-mix(in srgb, var(--bg-3) 70%, transparent);
-	backdrop-filter: blur(8px);
+		var(--bg-3);
 	color: var(--fg-dim);
 	transition:
 		color 160ms ease,
@@ -774,12 +778,31 @@ svg {
 .nav-burger-toggle {
 	display: grid;
 	place-items: center;
-	width: 38px;
-	height: 38px;
+	width: 42px;
+	height: 42px;
 	border: 1px solid var(--line-soft);
 	border-radius: var(--r-lg);
 	background: var(--bg-1);
 	color: var(--fg-dim);
+}
+
+/*
+ * While open, the toggle floats above the drawer.
+ *
+ * It has to. The drawer is fixed and full-screen on a phone, so it covers the
+ * header the toggle lives in - and a full-screen menu whose only close control
+ * is underneath it has no exit at all. Lifting the same control above the sheet
+ * is better than adding a second one: the thing that closes the menu is
+ * visibly the thing that opened it, in the same place, having turned into an X.
+ */
+.nav-burger[open] .nav-burger-toggle {
+	position: fixed;
+	top: var(--s-3);
+	right: var(--s-4);
+	z-index: 31;
+	border-color: var(--line);
+	background: var(--bg-2);
+	color: var(--fg);
 }
 
 /*
@@ -799,7 +822,7 @@ svg {
 	background: currentColor;
 	transition:
 		transform 260ms var(--ease-out),
-		opacity 160ms ease;
+		background 160ms ease;
 }
 
 .nav-burger-bars::before,
@@ -816,18 +839,33 @@ svg {
 	top: 3.5px;
 }
 
+/*
+ * Open: the middle bar goes, the outer two cross.
+ *
+ * `background: transparent` on the middle bar, not `opacity: 0`. Opacity on an
+ * element groups it with its pseudo-elements, and nothing inside can opt back
+ * in - `opacity: 1` on a child cannot escape a parent's `opacity: 0`. Written
+ * that way the press hid all three bars, so the full-screen drawer opened with
+ * no visible way out of it.
+ *
+ * Only the parent's own background draws the middle bar, so clearing it leaves
+ * the other two untouched.
+ */
 .nav-burger[open] .nav-burger-bars {
-	opacity: 0;
+	background: transparent;
 }
 
+/*
+ * Both bars translate to the centre line, then rotate about it. The offsets are
+ * the negatives of the `top` values above: 5px up for one, 5px down for the
+ * other, so the cross meets rather than nearly meeting.
+ */
 .nav-burger[open] .nav-burger-bars::before {
-	opacity: 1;
 	transform: translateY(5px) rotate(45deg);
 }
 
 .nav-burger[open] .nav-burger-bars::after {
-	opacity: 1;
-	transform: translateY(-3.5px) rotate(-45deg);
+	transform: translateY(-5px) rotate(-45deg);
 }
 
 /*
@@ -862,8 +900,12 @@ svg {
 	overflow-y: auto;
 	overscroll-behavior: contain;
 	border-left: 1px solid var(--line);
-	background: color-mix(in srgb, var(--bg-1) 97%, transparent);
-	backdrop-filter: blur(20px) saturate(140%);
+	/*
+	 * Opaque, and no blur. The drawer sits over a 62% scrim, so whatever a
+	 * backdrop-filter would have blurred is already hidden - it was paying for
+	 * a full-screen GPU readback every frame to composite something invisible.
+	 */
+	background: var(--bg-1);
 	box-shadow: -24px 0 60px color-mix(in srgb, var(--nori-900) 70%, transparent);
 	/*
 	 * Slower than the desktop panel, and deliberately. A drawer travels the
@@ -923,9 +965,15 @@ svg {
  * `44px` is the minimum comfortable touch target, and a nav row is the control
  * most likely to be tapped by a thumb reaching across a screen.
  */
+/* The drawer's own heading, so the sheet does not start mid-list. */
+.nav-sheet-title {
+	padding: 0 var(--s-3) var(--s-3);
+	border-bottom: 1px solid var(--line-soft);
+}
+
 .nav-group-summary {
 	min-height: 44px;
-	padding: var(--s-3);
+	padding: var(--s-2) var(--s-3);
 	border-radius: var(--r-lg);
 	font-family: var(--mono);
 	font-size: var(--t-xs);
@@ -966,15 +1014,24 @@ svg {
 }
 
 /*
- * The group's own rows are set in from its header by the icon column's width,
- * so a group reads as containing its items rather than as being followed by
- * them. One value, used twice, so the two cannot drift.
+ * Items sit under their group, on the same left edge.
+ *
+ * Every row in the drawer starts with a 34px tile, group headers included, so
+ * the tiles form one column down the sheet. A rule set in behind them is what
+ * says the items belong to the group above; indenting them instead would break
+ * that column and the drawer would read as two lists that nearly line up.
  */
 .nav-sheet .nav-panel-list,
 .nav-sheet > .nav-group > .nav-panel-all {
-	margin-left: var(--s-3);
+	margin-left: calc(var(--s-3) + 17px);
 	border-left: 1px solid var(--line-soft);
-	padding-left: var(--s-2);
+	padding-left: var(--s-3);
+}
+
+/* The nested tiles are smaller: they are inside a rule, not starting one. */
+.nav-sheet .nav-panel-item .nav-panel-icon {
+	width: 28px;
+	height: 28px;
 }
 
 .nav-sheet .nav-panel-all {

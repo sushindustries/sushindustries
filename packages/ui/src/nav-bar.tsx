@@ -72,6 +72,25 @@ function closeOnLeave(event: React.FocusEvent<HTMLDetailsElement>): void {
 	event.currentTarget.removeAttribute("open");
 }
 
+/*
+ * A group's own icon, on the same tile its items use.
+ *
+ * In the drawer every row is one column of tiles down the left edge. A group
+ * header with a bare 14px glyph beside rows with 34px tiles reads as two
+ * different lists rather than as a heading over its items - and at that size,
+ * against uppercase mono, the glyph is close to invisible.
+ *
+ * An entry with no icon still gets the tile, empty, so the labels stay on one
+ * vertical line. A ragged left edge is more noticeable than a blank square.
+ */
+function GroupIcon({ icon }: { icon?: IconName }): ReactNode {
+	return (
+		<span className="nav-panel-icon" aria-hidden="true">
+			{icon ? <Icon name={icon} size={16} /> : null}
+		</span>
+	);
+}
+
 function PanelItems({
 	items,
 	renderLink,
@@ -198,11 +217,13 @@ export function NavBar({
 						</summary>
 
 						<div className="nav-sheet">
+							<p className="nav-sheet-title label m-0">{menuLabel}</p>
+
 							{entries.map((entry) =>
 								entry.items && entry.items.length > 0 ? (
 									<details className="nav-group" key={entry.href}>
-										<summary className="nav-group-summary flex items-center gap-2">
-											{entry.icon ? <Icon name={entry.icon} size={14} /> : null}
+										<summary className="nav-group-summary flex items-center gap-3">
+											<GroupIcon icon={entry.icon} />
 											{entry.label}
 											<Icon name="chevron" size={13} className="nav-chevron" />
 										</summary>
@@ -219,12 +240,10 @@ export function NavBar({
 									<span key={entry.href}>
 										{renderLink({
 											href: entry.href,
-											className: "nav-group-summary flex items-center gap-2",
+											className: "nav-group-summary flex items-center gap-3",
 											children: (
 												<>
-													{entry.icon ? (
-														<Icon name={entry.icon} size={14} />
-													) : null}
+													<GroupIcon icon={entry.icon} />
 													{entry.label}
 												</>
 											),
