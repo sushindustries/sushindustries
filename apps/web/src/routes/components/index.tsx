@@ -96,14 +96,50 @@ function ComponentsPage(): ReactNode {
 						return query ? `/components?${query}` : "/components";
 					}}
 					/*
-					 * Router-aware links, so filtering and navigation are client-side
-					 * and preloaded on intent rather than full page loads.
+					 * Typed links, built from the route pattern and its params rather
+					 * than from a resolved path. Handing `Link` a finished
+					 * `/components/reveal` produces an anchor with the correct href
+					 * whose click is intercepted and then fails to match
+					 * `/components/$slug` — the card looks like a link and does
+					 * nothing, which is exactly what it was doing.
 					 */
-					renderLink={({ href, className, children }) => (
-						<Link key={href} to={href} className={className}>
-							{children}
-						</Link>
-					)}
+					renderLink={({ kind, id, href, className, children }) => {
+						if (kind === "item") {
+							return (
+								<Link
+									key={href}
+									to="/components/$slug"
+									params={{ slug: id }}
+									className={className}
+								>
+									{children}
+								</Link>
+							);
+						}
+
+						// Category and tag both land on this route; only the search
+						// differs, and search is an object, never part of `to`.
+						const search =
+							kind === "category"
+								? id === "all"
+									? {}
+									: { category: id }
+								: {
+										...(category ? { category } : {}),
+										...(id ? { tag: id } : {}),
+									};
+
+						return (
+							<Link
+								key={href}
+								to="/components"
+								search={search}
+								className={className}
+							>
+								{children}
+							</Link>
+						);
+					}}
 				/>
 			</div>
 		</section>

@@ -41,6 +41,9 @@ importers:
       '@sushindustries/atoms':
         specifier: workspace:*
         version: link:../../packages/atoms
+      '@sushindustries/llms':
+        specifier: workspace:*
+        version: link:../../packages/llms
       '@sushindustries/product-viewer':
         specifier: workspace:*
         version: link:../../packages/product-viewer
@@ -141,6 +144,8 @@ importers:
       drizzle-kit:
         specifier: 0.31.10
         version: 0.31.10
+
+  packages/llms: {}
 
   packages/product-viewer:
     devDependencies:

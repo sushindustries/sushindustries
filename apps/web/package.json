@@ -14,6 +14,7 @@
 		"@react-three/drei": "10.7.8",
 		"@react-three/fiber": "9.7.0",
 		"@sushindustries/atoms": "workspace:*",
+		"@sushindustries/llms": "workspace:*",
 		"@sushindustries/product-viewer": "workspace:*",
 		"@sushindustries/react-product-viewer": "workspace:*",
 		"@sushindustries/ui": "workspace:*",
