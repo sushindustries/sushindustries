@@ -1,0 +1,23 @@
+{
+	"name": "sushindustries",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Sushindustries — the portfolio. A TanStack Start site that showcases what we build.",
+	"engines": {
+		"node": ">=22"
+	},
+	"scripts": {
+		"dev": "turbo run dev",
+		"build": "turbo run build",
+		"start": "pnpm --filter @sushindustries/web start",
+		"typecheck": "turbo run typecheck"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.8",
+		"@types/node": "26.2.0",
+		"turbo": "2.10.10",
+		"typescript": "5.9.3"
+	},
+	"packageManager": "pnpm@11.21.0"
+}

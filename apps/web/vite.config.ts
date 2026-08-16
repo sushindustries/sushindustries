@@ -1,0 +1,39 @@
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import viteReact from "@vitejs/plugin-react";
+import { nitro } from "nitro/vite";
+import { defineConfig } from "vite";
+
+/*
+ * The whole site is one Start app. `tanstackStart()` owns the router plugin,
+ * the SSR entry and the Nitro build, so there is no separate router-plugin
+ * entry here — adding one is the usual way to silently turn off code
+ * splitting, because the two resolve route paths differently.
+ *
+ * Vite 8 resolves tsconfig `paths` natively, so no vite-tsconfig-paths.
+ */
+export default defineConfig({
+	server: {
+		port: 3000,
+	},
+
+	resolve: {
+		tsconfigPaths: true,
+	},
+
+	plugins: [
+		// Import protection is on by default and is what keeps
+		// `@sushindustries/db`'s client.server.ts out of the browser bundle, so
+		// there is nothing to configure here yet.
+		tanstackStart(),
+
+		/*
+		 * Nitro turns the fetch handler into a real Node server at
+		 * `.output/server/index.mjs`. Without it the build still succeeds — it
+		 * just emits a handler with nothing to run it, which looks like a working
+		 * build right up until the container starts.
+		 */
+		nitro(),
+
+		viteReact(),
+	],
+});

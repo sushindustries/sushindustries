@@ -1,0 +1,32 @@
+{
+	"name": "@sushindustries/web",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "The portfolio site. TanStack Start, server-rendered, deployed to Railway.",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"start": "node .output/server/index.mjs",
+		"typecheck": "tsc --noEmit -p tsconfig.json"
+	},
+	"dependencies": {
+		"@sushindustries/atoms": "workspace:*",
+		"@sushindustries/ui": "workspace:*",
+		"@tanstack/highlight": "^0.0.10",
+		"@tanstack/markdown": "^0.0.13",
+		"@tanstack/react-router": "1.170.29",
+		"@tanstack/react-start": "1.168.46",
+		"lenis": "1.3.26",
+		"react": "19.2.8",
+		"react-dom": "19.2.8",
+		"zod": "^4.4.3"
+	},
+	"devDependencies": {
+		"@types/react": "19.2.18",
+		"@types/react-dom": "19.2.4",
+		"@vitejs/plugin-react": "6.0.5",
+		"nitro": "3.0.260610-beta",
+		"vite": "8.2.1"
+	}
+}

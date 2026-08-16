@@ -1,0 +1,595 @@
+/*
+ * Design tokens and atomic utilities.
+ *
+ * Same vocabulary as the vault's `packages/ui/src/atoms.css` — nori ground,
+ * rice text, one salmon accent, monospace for structure — retuned for a page
+ * that scrolls instead of an app shell that does not.
+ *
+ * Every class does one thing. Components compose them; components do not get
+ * their own stylesheets. The few named blocks at the bottom (nav, hero, card,
+ * prose) exist because they carry layout that would take six atoms to say and
+ * would still be wrong at the breakpoint.
+ */
+
+:root {
+	/* Ground and surfaces: green-black, never neutral grey. */
+	--nori-900: #080d10;
+	--nori-800: #0d151a;
+	--nori-700: #121c22;
+	--nori-600: #18242b;
+	--line: #22323b;
+	--line-soft: #1a272f;
+
+	/* Text: warm off-white, so the surface reads as lacquer rather than LCD. */
+	--rice: #ece7dc;
+	--rice-dim: #8e9a97;
+	--rice-faint: #5d6b6c;
+
+	--salmon: #ff9270;
+	--salmon-deep: #e8734d;
+	--wasabi: #9dbe4a;
+	--tamago: #e8b84b;
+
+	--bg-0: var(--nori-900);
+	--bg-1: var(--nori-800);
+	--bg-2: var(--nori-700);
+	--bg-3: var(--nori-600);
+	--fg: var(--rice);
+	--fg-dim: var(--rice-dim);
+	--fg-faint: var(--rice-faint);
+	--accent: var(--salmon);
+	--accent-dim: var(--salmon-deep);
+
+	--r: 6px;
+	--r-lg: 10px;
+	--r-card: 16px;
+
+	--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+	--mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+	--sans: ui-sans-serif, -apple-system, "SF Pro Text", system-ui, sans-serif;
+
+	/* Spacing. A short scale on purpose: every value a section can need, and no
+	   value it can pick arbitrarily. */
+	--s-1: 4px;
+	--s-2: 8px;
+	--s-3: 12px;
+	--s-4: 16px;
+	--s-5: 24px;
+	--s-6: 32px;
+	--s-7: 48px;
+	--s-8: 72px;
+	--s-9: 120px;
+
+	/* Type. Body sizes are rem so they follow the reader's browser setting.
+	   Headings are clamped so one scale covers phone through desktop without a
+	   media query per heading. */
+	--t-xs: 0.6875rem;
+	--t-sm: 0.8125rem;
+	--t-md: 0.9375rem;
+	--t-lg: 1.0625rem;
+	--t-h3: clamp(1.0625rem, 0.9rem + 0.7vw, 1.375rem);
+	--t-h2: clamp(1.5rem, 1.1rem + 1.9vw, 2.5rem);
+	--t-h1: clamp(2.75rem, 1.4rem + 6.4vw, 6.5rem);
+
+	--container: 1180px;
+
+	/* Breakpoint, as a documented value. Custom properties cannot be used
+	   inside a media query, so this exists to be quoted — the query still
+	   writes the number. */
+	--bp-narrow: 860px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	/* Lenis animates scroll itself; leaving native smooth on fights it. */
+	scroll-behavior: auto;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background: var(--bg-0);
+	color: var(--fg);
+	font: var(--t-md) / 1.6 var(--sans);
+	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+p,
+figure {
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+img,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+/* layout */
+.flex {
+	display: flex;
+}
+.grid {
+	display: grid;
+}
+.block {
+	display: block;
+}
+.hidden {
+	display: none;
+}
+.col {
+	flex-direction: column;
+}
+.wrap {
+	flex-wrap: wrap;
+}
+.items-center {
+	align-items: center;
+}
+.items-start {
+	align-items: flex-start;
+}
+.items-end {
+	align-items: flex-end;
+}
+.justify-center {
+	justify-content: center;
+}
+.justify-between {
+	justify-content: space-between;
+}
+.flex-1 {
+	flex: 1;
+}
+.shrink-0 {
+	flex-shrink: 0;
+}
+.min-w-0 {
+	min-width: 0;
+}
+.relative {
+	position: relative;
+}
+.absolute {
+	position: absolute;
+}
+.sticky {
+	position: sticky;
+}
+.inset-0 {
+	inset: 0;
+}
+.z-1 {
+	z-index: 1;
+}
+.z-nav {
+	z-index: 20;
+}
+
+.gap-1 {
+	gap: var(--s-1);
+}
+.gap-2 {
+	gap: var(--s-2);
+}
+.gap-3 {
+	gap: var(--s-3);
+}
+.gap-4 {
+	gap: var(--s-4);
+}
+.gap-5 {
+	gap: var(--s-5);
+}
+.gap-6 {
+	gap: var(--s-6);
+}
+.gap-7 {
+	gap: var(--s-7);
+}
+
+/* spacing */
+.m-0 {
+	margin: 0;
+}
+.mx-auto {
+	margin-inline: auto;
+}
+.mt-2 {
+	margin-top: var(--s-2);
+}
+.mt-3 {
+	margin-top: var(--s-3);
+}
+.mt-4 {
+	margin-top: var(--s-4);
+}
+.mt-5 {
+	margin-top: var(--s-5);
+}
+.mt-6 {
+	margin-top: var(--s-6);
+}
+.mt-7 {
+	margin-top: var(--s-7);
+}
+.p-3 {
+	padding: var(--s-3);
+}
+.p-4 {
+	padding: var(--s-4);
+}
+.p-5 {
+	padding: var(--s-5);
+}
+.p-6 {
+	padding: var(--s-6);
+}
+.px-4 {
+	padding-inline: var(--s-4);
+}
+.px-5 {
+	padding-inline: var(--s-5);
+}
+.py-2 {
+	padding-block: var(--s-2);
+}
+.py-3 {
+	padding-block: var(--s-3);
+}
+
+/* sizing */
+.w-full {
+	width: 100%;
+}
+.h-full {
+	height: 100%;
+}
+.max-w-prose {
+	max-width: 62ch;
+}
+.max-w-sm {
+	max-width: 460px;
+}
+
+/* type */
+.text-xs {
+	font-size: var(--t-xs);
+}
+.text-sm {
+	font-size: var(--t-sm);
+}
+.text-md {
+	font-size: var(--t-md);
+}
+.text-lg {
+	font-size: var(--t-lg);
+}
+.font-medium {
+	font-weight: 500;
+}
+.font-semibold {
+	font-weight: 600;
+}
+.mono {
+	font-family: var(--mono);
+}
+.uppercase {
+	text-transform: uppercase;
+}
+.text-center {
+	text-align: center;
+}
+.text-balance {
+	text-wrap: balance;
+}
+.text-pretty {
+	text-wrap: pretty;
+}
+.leading-tight {
+	line-height: 1.15;
+}
+
+.h1 {
+	font-size: var(--t-h1);
+	line-height: 0.92;
+	letter-spacing: -0.04em;
+	font-weight: 600;
+}
+
+.h2 {
+	font-size: var(--t-h2);
+	line-height: 1.08;
+	letter-spacing: -0.025em;
+	font-weight: 600;
+}
+
+.h3 {
+	font-size: var(--t-h3);
+	line-height: 1.25;
+	letter-spacing: -0.012em;
+	font-weight: 600;
+}
+
+/*
+ * Structural labels are monospace, uppercase and letter-spaced. This is the
+ * one type gesture the site repeats, and it is what separates a section from
+ * the section above it without drawing a line.
+ */
+.label {
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--fg-faint);
+}
+
+.truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* colour */
+.fg {
+	color: var(--fg);
+}
+.fg-dim {
+	color: var(--fg-dim);
+}
+.fg-faint {
+	color: var(--fg-faint);
+}
+.fg-accent {
+	color: var(--accent);
+}
+
+/* surface */
+.bg-1 {
+	background: var(--bg-1);
+}
+.bg-2 {
+	background: var(--bg-2);
+}
+.border {
+	border: 1px solid var(--line);
+}
+.border-t {
+	border-top: 1px solid var(--line-soft);
+}
+.border-b {
+	border-bottom: 1px solid var(--line-soft);
+}
+.rounded {
+	border-radius: var(--r);
+}
+.rounded-lg {
+	border-radius: var(--r-lg);
+}
+.rounded-xl {
+	border-radius: var(--r-card);
+}
+.rounded-full {
+	border-radius: 999px;
+}
+.overflow-hidden {
+	overflow: hidden;
+}
+.pointer {
+	cursor: pointer;
+}
+
+/* ── page rhythm ─────────────────────────────────────────────── */
+
+.container {
+	width: 100%;
+	max-width: var(--container);
+	margin-inline: auto;
+	padding-inline: var(--s-5);
+}
+
+.section {
+	padding-block: var(--s-9);
+	border-top: 1px solid var(--line-soft);
+}
+
+/* ── scroll reveal ───────────────────────────────────────────── */
+
+[data-reveal] {
+	transition:
+		opacity 700ms var(--ease-out),
+		transform 700ms var(--ease-out);
+}
+
+[data-reveal="out"] {
+	opacity: 0;
+	transform: translateY(18px);
+}
+
+[data-reveal="in"] {
+	opacity: 1;
+	transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-reveal] {
+		transition: none;
+	}
+	[data-reveal="out"] {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* ── nav ─────────────────────────────────────────────────────── */
+
+.nav {
+	position: sticky;
+	top: 0;
+	z-index: 20;
+	background: color-mix(in srgb, var(--bg-0) 82%, transparent);
+	backdrop-filter: blur(12px);
+	border-bottom: 1px solid var(--line-soft);
+}
+
+.nav-link {
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--fg-faint);
+	padding: var(--s-2);
+	transition: color 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.nav-link:hover {
+		color: var(--fg);
+	}
+}
+
+.nav-link[data-active="true"] {
+	color: var(--fg);
+}
+
+/* ── hero ────────────────────────────────────────────────────── */
+
+.hero {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	gap: var(--s-7);
+	min-height: min(88svh, 780px);
+	padding-block: var(--s-8);
+}
+
+/*
+ * The logo stage is square and never taller than the viewport, so the mark
+ * stays whole on a short laptop window as well as a tall phone.
+ */
+.logo-stage {
+	aspect-ratio: 1;
+	width: 100%;
+	max-height: 68svh;
+	margin-inline: auto;
+	display: grid;
+	place-items: center;
+	perspective: 1100px;
+}
+
+.logo-spin {
+	width: 82%;
+	transform-style: preserve-3d;
+	will-change: transform;
+	color: var(--fg);
+}
+
+/* ── cards ───────────────────────────────────────────────────── */
+
+.card-grid {
+	display: grid;
+	grid-template-columns: repeat(
+			auto-fit,
+			minmax(clamp(260px, 30vw, 320px), 1fr)
+		);
+	gap: var(--s-4);
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	gap: var(--s-3);
+	padding: var(--s-5);
+	background: var(--bg-1);
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-card);
+	transition:
+		border-color 200ms ease,
+		background 200ms ease,
+		transform 260ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.card:hover {
+		background: var(--bg-2);
+		border-color: var(--line);
+		transform: translateY(-3px);
+	}
+}
+
+/* ── code ────────────────────────────────────────────────────── */
+
+.code {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--s-4);
+	padding: var(--s-3) var(--s-4);
+	background: var(--bg-1);
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-lg);
+	font-family: var(--mono);
+	font-size: var(--t-sm);
+	overflow-x: auto;
+}
+
+.code-block {
+	margin: 0;
+	padding: var(--s-4);
+	background: var(--bg-1);
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-lg);
+	font-family: var(--mono);
+	font-size: var(--t-sm);
+	line-height: 1.7;
+	overflow-x: auto;
+	tab-size: 2;
+}
+
+/* ── responsive ──────────────────────────────────────────────── */
+
+/* --bp-narrow: 860px. Below it the two-column hero stacks, mark first. */
+@media (max-width: 860px) {
+	.hero {
+		grid-template-columns: 1fr;
+		gap: var(--s-6);
+		min-height: 0;
+		padding-block: var(--s-7);
+	}
+
+	.logo-stage {
+		max-width: 340px;
+		max-height: none;
+		order: -1;
+	}
+
+	.section {
+		padding-block: var(--s-8);
+	}
+
+	.nav-narrow-hide {
+		display: none;
+	}
+}

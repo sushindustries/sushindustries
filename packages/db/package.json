@@ -1,0 +1,32 @@
+{
+	"name": "@sushindustries/db",
+	"version": "0.1.0",
+	"type": "module",
+	"description": "The schema and the client. Drizzle over Postgres, with the connection kept server-side by construction.",
+	"keywords": [
+		"drizzle",
+		"postgres",
+		"schema"
+	],
+	"exports": {
+		"./schema": "./src/schema.ts",
+		"./client": "./src/client.server.ts"
+	},
+	"files": [
+		"src",
+		"drizzle.config.ts"
+	],
+	"scripts": {
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:studio": "drizzle-kit studio",
+		"typecheck": "tsc --noEmit -p tsconfig.json"
+	},
+	"dependencies": {
+		"drizzle-orm": "0.45.2",
+		"postgres": "3.4.9"
+	},
+	"devDependencies": {
+		"drizzle-kit": "0.31.10"
+	}
+}

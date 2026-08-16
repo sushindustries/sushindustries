@@ -1,0 +1,220 @@
+/*
+ * Code highlighting theme and long-form prose.
+ *
+ * The token colours below were generated with @tanstack/highlight's
+ * createThemeRule / createThemeBaseCss, but the values are var() references
+ * into the site's own palette rather than a vendored theme — so code blocks follow
+ * the same tokens as everything else, and changing --accent changes them.
+ *
+ * Regenerate with: pnpm --filter @sushindustries/web theme
+ */
+
+:root {
+	--th-background: var(--bg-1);
+	--th-token: var(--fg);
+	--th-attr: var(--wasabi);
+	--th-code-inline: var(--accent);
+	--th-command: var(--fg);
+	--th-comment: var(--fg-faint);
+	--th-deleted: var(--tuna, #e0645a);
+	--th-function: var(--tamago);
+	--th-heading: var(--accent);
+	--th-inserted: var(--wasabi);
+	--th-keyword: var(--accent);
+	--th-link: var(--accent);
+	--th-literal: var(--wasabi);
+	--th-meta: var(--fg-faint);
+	--th-number: var(--wasabi);
+	--th-operator: var(--fg-dim);
+	--th-property: var(--tamago);
+	--th-selector: var(--tamago);
+	--th-string: var(--wasabi);
+	--th-tag: var(--accent);
+	--th-type: var(--tamago);
+	--th-variable: var(--fg);
+}
+.code-block {
+	overflow-x: auto;
+	padding: 1rem;
+	background: var(--th-background);
+	color: var(--th-token);
+}
+
+.th-token {
+	color: var(--th-token);
+}
+.th-keyword {
+	color: var(--th-keyword);
+}
+.th-string {
+	color: var(--th-string);
+}
+.th-comment {
+	color: var(--th-comment);
+}
+.th-function {
+	color: var(--th-function);
+}
+.th-type {
+	color: var(--th-type);
+}
+.th-property {
+	color: var(--th-property);
+}
+.th-tag {
+	color: var(--th-tag);
+}
+.th-attr {
+	color: var(--th-attr);
+}
+.th-literal {
+	color: var(--th-literal);
+}
+.th-number {
+	color: var(--th-number);
+}
+.th-variable {
+	color: var(--th-variable);
+}
+.th-operator {
+	color: var(--th-operator);
+}
+.th-inserted {
+	color: var(--th-inserted);
+}
+.th-deleted {
+	color: var(--th-deleted);
+}
+.th-meta {
+	color: var(--th-meta);
+}
+.th-heading {
+	color: var(--th-heading);
+}
+.th-link {
+	color: var(--th-link);
+}
+.th-code-inline {
+	color: var(--th-code-inline);
+}
+.th-selector {
+	color: var(--th-selector);
+}
+.th-command {
+	color: var(--th-command);
+}
+.th-line {
+	display: inline-block;
+	min-width: 100%;
+	width: max-content;
+}
+.th-code--line-numbers code {
+	counter-reset: th-line;
+}
+.th-code--line-numbers .th-line::before {
+	display: inline-block;
+	width: 2.5em;
+	padding-right: 1em;
+	color: var(--th-comment);
+	content: attr(data-line);
+	text-align: right;
+	user-select: none;
+}
+
+/* ── prose ───────────────────────────────────────────────────── */
+
+/*
+ * README typography. Scoped to .prose so it can never leak into the
+ * atomic classes — inside here elements are styled by tag, which is exactly
+ * what atomic CSS exists to avoid everywhere else. Markdown is the one place
+ * that trade is correct: the tags come from the author, not from the app.
+ */
+.prose {
+	max-width: 68ch;
+	color: var(--fg-dim);
+}
+
+.prose > * + * {
+	margin-top: var(--s-4);
+}
+
+.prose h1,
+.prose h2,
+.prose h3 {
+	color: var(--fg);
+	letter-spacing: -0.02em;
+	line-height: 1.2;
+	margin-top: var(--s-7);
+}
+
+.prose h1 {
+	font-size: var(--t-h2);
+}
+.prose h2 {
+	font-size: var(--t-h3);
+}
+.prose h3 {
+	font-size: var(--t-lg);
+}
+
+.prose code {
+	font-family: var(--mono);
+	font-size: 0.9em;
+	color: var(--accent);
+}
+
+.prose .code-block {
+	margin-top: var(--s-4);
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-lg);
+	font-family: var(--mono);
+	font-size: var(--t-sm);
+	line-height: 1.7;
+	tab-size: 2;
+}
+
+.prose .code-block code {
+	color: inherit;
+	font-size: inherit;
+}
+
+.prose ul,
+.prose ol {
+	padding-left: var(--s-5);
+}
+
+.prose li + li {
+	margin-top: var(--s-2);
+}
+
+.prose blockquote {
+	margin: var(--s-5) 0;
+	padding-left: var(--s-4);
+	border-left: 2px solid var(--line);
+	color: var(--fg-faint);
+}
+
+.prose table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: var(--t-sm);
+	display: block;
+	overflow-x: auto;
+}
+
+.prose th,
+.prose td {
+	padding: var(--s-2) var(--s-3);
+	border-bottom: 1px solid var(--line-soft);
+	text-align: left;
+}
+
+.prose th {
+	color: var(--fg);
+	font-weight: 600;
+}
+
+.prose hr {
+	border: 0;
+	border-top: 1px solid var(--line-soft);
+}
