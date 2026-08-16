@@ -337,6 +337,38 @@ function checkRegistryDependenciesResolve(items) {
 	}
 }
 
+/**
+ * Everything the package exports is in the registry.
+ *
+ * The other direction is already checked: a registry item must be exported.
+ * This is the one that actually goes wrong, because adding a file and an export
+ * is the natural end of writing a component, and the registry entry is the step
+ * that only matters to somebody else. Skip it and the thing exists, works, is
+ * importable, and cannot be installed or found - it is in the library without
+ * being in the catalogue.
+ *
+ * `useScrollTurn` shipped exactly that way and nothing noticed.
+ */
+function checkExportsAreRegistered(items) {
+	const registered = new Set(items.flatMap((item) => item.files));
+	const barrel = read("packages/ui/src/index.ts");
+
+	for (const [, path] of barrel.matchAll(/from "\.\/([\w-]+)"/g)) {
+		const file = ["tsx", "ts"].find((extension) =>
+			exists(`packages/ui/src/${path}.${extension}`),
+		);
+		if (!file) continue;
+		if (registered.has(`${path}.${file}`)) continue;
+
+		report(
+			"registry",
+			`packages/ui/src/${path}.${file}`,
+			"is exported but in no registry item, so it cannot be installed or found",
+			"add it to packages/ui/registry.ts, or list it in the `files` of the item it belongs to",
+		);
+	}
+}
+
 /** A file people install has to be importable from the package too. */
 function checkRegistryFilesAreExported(items) {
 	const barrel = read("packages/ui/src/index.ts");
@@ -751,6 +783,7 @@ checkGeneratedFilesAreOrdered();
 checkRegistryFilesExist(registry);
 checkRegistryDependenciesResolve(registry);
 checkRegistryFilesAreExported(registry);
+checkExportsAreRegistered(registry);
 await checkRegistryItemsHaveDocs(registry);
 checkRegistryItemsHaveDemos(registry);
 

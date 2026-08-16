@@ -11,13 +11,21 @@
  */
 
 :root {
-	/* Ground and surfaces: green-black, never neutral grey. */
-	--nori-900: #080d10;
-	--nori-800: #0d151a;
-	--nori-700: #121c22;
-	--nori-600: #18242b;
-	--line: #22323b;
-	--line-soft: #1a272f;
+	/*
+	 * Ground and surfaces: cool grey with a green cast left in it.
+	 *
+	 * Not neutral grey - a truly neutral dark reads as switched-off rather than
+	 * as a material, and the salmon accent goes muddy on it. These are within a
+	 * few points of neutral on the blue-green side, which is enough to make a
+	 * frosted panel over them look like glass over slate rather than like a
+	 * grey box on a black one.
+	 */
+	--nori-900: #0e1214;
+	--nori-800: #14191c;
+	--nori-700: #1b2125;
+	--nori-600: #232a2f;
+	--line: #313a40;
+	--line-soft: #242c31;
 
 	/* Text: warm off-white, so the surface reads as lacquer rather than LCD. */
 	--rice: #ece7dc;
@@ -51,6 +59,28 @@
 	--r: 6px;
 	--r-lg: 10px;
 	--r-card: 16px;
+
+	/*
+	 * Frosted glass, as three values rather than as a look copied per rule.
+	 *
+	 * `--glass` is a translucent fill; `--glass-edge` is the lit top edge that
+	 * does most of the work; `--glass-blur` is the filter. They are separate
+	 * because the fill and the edge belong on every glass surface and the blur
+	 * does not: see the rule below.
+	 *
+	 * ONE BLUR PER SURFACE. A `backdrop-filter` makes its element a backdrop
+	 * root and forces a GPU readback, so blurs nested inside blurs multiply.
+	 * Eighteen blurred icon tiles inside a blurred panel inside a blurred
+	 * header crashed the renderer outright. Glass on overlays - the header, a
+	 * menu panel, the drawer - and fill-plus-edge without the filter on
+	 * everything that is merely a surface, like a card.
+	 */
+	--glass: color-mix(in srgb, var(--nori-700) 62%, transparent);
+	--glass-edge: color-mix(in srgb, var(--rice) 9%, transparent);
+	--glass-blur: blur(18px) saturate(130%);
+
+	/* The sticky header's height, so anything that must clear it can say so. */
+	--nav-height: 66px;
 
 	--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 
@@ -594,13 +624,26 @@ svg {
 	border-bottom: 1px solid var(--line-soft);
 }
 
+/*
+ * Frosted, not tinted.
+ *
+ * At 82% opacity this was a dark bar with a slight blur behind it, and
+ * anything scrolling under it - the hero's model especially - disappeared at
+ * the boundary rather than passing behind it. Glass is the opposite: a light
+ * fill and a strong blur, so what goes under it stays visible and goes soft.
+ *
+ * The gradient is a lit top edge fading out. That single highlight is what
+ * separates "translucent panel" from "sheet of glass", and it costs nothing.
+ */
 .nav::before {
 	content: "";
 	position: absolute;
 	inset: 0;
 	z-index: -1;
-	background: color-mix(in srgb, var(--bg-0) 82%, transparent);
-	backdrop-filter: blur(12px);
+	background:
+		linear-gradient(to bottom, var(--glass-edge), transparent 55%),
+		color-mix(in srgb, var(--nori-900) 55%, transparent);
+	backdrop-filter: var(--glass-blur);
 }
 
 .nav-link {
@@ -690,8 +733,10 @@ svg {
 	padding: var(--s-3);
 	border: 1px solid var(--line);
 	border-radius: var(--r-card);
-	background: color-mix(in srgb, var(--bg-1) 92%, transparent);
-	backdrop-filter: blur(16px) saturate(140%);
+	background:
+		linear-gradient(to bottom, var(--glass-edge), transparent 40%),
+		color-mix(in srgb, var(--nori-800) 88%, transparent);
+	backdrop-filter: var(--glass-blur);
 	box-shadow: 0 24px 60px color-mix(in srgb, var(--nori-900) 76%, transparent);
 	transform-origin: top right;
 	animation: nav-panel-in 220ms var(--ease-out);
@@ -1269,26 +1314,48 @@ svg {
 
 /* ── hero ────────────────────────────────────────────────────── */
 
+/*
+ * `--nav-height` is the sticky header's own height, declared once so anything
+ * that has to clear it can say so rather than guess. The header is a 42px
+ * control in `var(--s-3)` of padding.
+ */
 .hero {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	align-items: center;
 	gap: var(--s-7);
 	min-height: min(88svh, 780px);
-	padding-block: var(--s-8);
+	/*
+	 * Top padding clears the sticky header. Without it the hero starts at the
+	 * top of the document, the header sits on top of it, and the tallest thing
+	 * in the hero - the model - is cut off by a bar it never knew about.
+	 */
+	padding-block: calc(var(--nav-height) + var(--s-6)) var(--s-8);
 }
 
 /*
- * The logo stage is square and never taller than the viewport, so the mark
- * stays whole on a short laptop window as well as a tall phone.
+ * The stage the mark occupies.
+ *
+ * Square, centred, and bounded on both axes. `min()` against a viewport unit
+ * and a fixed ceiling is what keeps it whole: on a short laptop window the
+ * height wins, on a wide monitor the ceiling does, and it never grows to fill
+ * a column just because the column is there.
+ *
+ * It was previously bounded only by height, so on a wide screen the model grew
+ * to half the page and ran under the header.
  */
 .logo-stage {
 	aspect-ratio: 1;
-	width: 100%;
-	max-height: 68svh;
+	width: min(100%, 62svh, 460px);
 	margin-inline: auto;
 	display: grid;
 	place-items: center;
+	/*
+	 * The 3D of the CSS spin. `perspective` on the stage rather than on the
+	 * spinning element means the vanishing point is the middle of the stage, so
+	 * the mark turns about the centre of the space it is in rather than about
+	 * its own centre, which is what makes it read as an object in a box.
+	 */
 	perspective: 1100px;
 }
 
@@ -1297,6 +1364,33 @@ svg {
 	transform-style: preserve-3d;
 	will-change: transform;
 	color: var(--fg);
+}
+
+/*
+ * The GLB in the hero.
+ *
+ * No background and no radius, because the canvas is transparent: the viewer
+ * is mounted with `transparent`, so it clears to an alpha buffer and the page
+ * shows through. Any fill or corner here would put back the rectangle that
+ * setting exists to remove, and a mark in a hero should not look like it is
+ * sitting in a window.
+ *
+ * Fills the stage rather than insetting like the CSS mark did. A model already
+ * has margin baked into how its camera framed it, so a second margin here
+ * reads as a small logo in a large empty box.
+ */
+.logo-canvas {
+	width: 100%;
+	height: 100%;
+}
+
+/* Holds the stage open before the canvas exists. Not a mark, and not shaped
+   like one - just the space, so the arrival is a material change. */
+.logo-placeholder {
+	display: grid;
+	place-items: center;
+	width: 100%;
+	height: 100%;
 }
 
 /* ── cards ───────────────────────────────────────────────────── */
@@ -1310,12 +1404,25 @@ svg {
 	gap: var(--s-4);
 }
 
+/*
+ * Glass by fill and edge, and no `backdrop-filter`.
+ *
+ * A card is a surface on the page, not an overlay above it, so there is
+ * nothing behind it worth blurring - and there are a dozen of them in a grid.
+ * A dozen backdrop roots is a dozen GPU readbacks a frame, which is the cost
+ * that crashed the renderer when it was tried on the nav's icon tiles.
+ *
+ * The lit top edge is what carries the material. It is the same gradient the
+ * header uses, at a lower strength, so a card and the nav read as the same
+ * substance at different thicknesses.
+ */
 .card {
 	display: flex;
 	flex-direction: column;
 	gap: var(--s-3);
 	padding: var(--s-5);
-	background: var(--bg-1);
+	background:
+		linear-gradient(to bottom, var(--glass-edge), transparent 42%), var(--bg-1);
 	border: 1px solid var(--line-soft);
 	border-radius: var(--r-card);
 	transition:

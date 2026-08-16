@@ -49,3 +49,8 @@ export {
 } from "./showcase";
 export { SmoothScroll } from "./smooth-scroll";
 export { Spacer, type SpacerProps } from "./spacer";
+export {
+	type ScrollTurn,
+	type ScrollTurnOptions,
+	useScrollTurn,
+} from "./use-scroll-turn";

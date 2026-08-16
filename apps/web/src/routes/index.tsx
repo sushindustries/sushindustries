@@ -1,7 +1,7 @@
-import { Credit, Reveal, ScrollSpin, Section } from "@sushindustries/ui";
+import { Credit, Reveal, Section } from "@sushindustries/ui";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { PlaceholderMark } from "../modules/chrome/placeholder-mark";
+import { LogoModel } from "../modules/chrome/logo-model";
 import { CREDITS } from "../modules/content/credits";
 import { listPackages } from "../modules/content/packages/packages.catalogue";
 import type { PackageSummary } from "../modules/content/packages/packages.schemas";
@@ -24,9 +24,7 @@ function Home(): ReactNode {
 					</p>
 				</div>
 
-				<ScrollSpin>
-					<PlaceholderMark />
-				</ScrollSpin>
+				<LogoModel />
 			</section>
 
 			<Section id="packages" label="Packages" title="Things I made">

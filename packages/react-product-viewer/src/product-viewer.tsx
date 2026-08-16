@@ -2,6 +2,7 @@ import { ContactShadows, Grid, OrbitControls } from '@react-three/drei'
 import { Canvas, useThree } from '@react-three/fiber'
 import { Suspense, useEffect, useRef, useState } from 'react'
 import { PMREMGenerator } from 'three'
+import type { Group } from 'three'
 import { RoomEnvironment } from 'three-stdlib'
 import type { GLTF } from 'three-stdlib'
 import type { ReactElement, ReactNode, RefObject } from 'react'
@@ -144,6 +145,19 @@ export interface ProductViewerProps<S extends ZoneScheme = ZoneScheme> {
   zoneScheme?: S
   /** Per-zone colour multipliers, for single-mesh models. */
   zoneTints?: ZoneTints<S>
+  /**
+   * Draw on the page rather than on a canvas.
+   *
+   * The default clears to `--pv-canvas-bg`, which is right for a product on a
+   * card: the model needs a ground to sit on and a rectangle is honest about
+   * where the viewer ends. It is wrong for a mark in a hero, where the
+   * rectangle is the only thing announcing that a canvas is there at all.
+   *
+   * Transparent means an alpha drawing buffer and no background node, so what
+   * shows through is the page. Costs a little more to composite, which is why
+   * it is a choice rather than the default.
+   */
+  transparent?: boolean
   /** Replaces the procedural room lighting. Pass a component, not a value. */
   environment?: ReactNode
   /** A one-unit grid on the floor. Only meaningful with `realLength` set. */
@@ -155,6 +169,19 @@ export interface ProductViewerProps<S extends ZoneScheme = ZoneScheme> {
   groundBound?: boolean
   /** Set to capture the current frame as a PNG data URL. */
   snapshotRef?: RefObject<(() => string) | null>
+  /**
+   * The group holding the model, so something outside can move it.
+   *
+   * A ref rather than a `rotation` prop on purpose. Anything driving this is
+   * doing so per frame - a scroll position, a pointer, a clock - and a prop
+   * would re-render the whole viewer sixty times a second to change a number
+   * that React does not need to know about. Write to
+   * `ref.current.rotation.y` instead and the render loop picks it up.
+   *
+   * OrbitControls still owns the camera, so turning the model this way and
+   * dragging to look at it compose rather than fight.
+   */
+  modelRef?: RefObject<Group | null>
   loadingLabel?: string
   /** Replaces the default progress overlay entirely. */
   loadingOverlay?: LoadingOverlayRenderer
@@ -170,10 +197,12 @@ export function ProductViewer<S extends ZoneScheme = ZoneScheme>({
   variants,
   zoneScheme,
   zoneTints,
+  transparent = false,
   environment,
   grid = false,
   groundBound = true,
   snapshotRef,
+  modelRef,
   loadingLabel = 'Loading model…',
   loadingOverlay = DefaultLoadingOverlay,
   className,
@@ -238,9 +267,10 @@ export function ProductViewer<S extends ZoneScheme = ZoneScheme>({
           // and the snapshot comes back blank. It costs a buffer copy, so only
           // when a snapshot is actually wanted.
           preserveDrawingBuffer: Boolean(snapshotRef),
+          alpha: transparent,
         }}
       >
-        <color attach="background" args={[background]} />
+        {transparent ? null : <color attach="background" args={[background]} />}
         {environment ?? <DefaultEnvironment />}
         {snapshotRef ? <SnapshotCapture snapshotRef={snapshotRef} /> : null}
 
@@ -251,21 +281,31 @@ export function ProductViewer<S extends ZoneScheme = ZoneScheme>({
         />
 
         <Suspense fallback={null}>
-          <ProductModel
-            model={model}
-            gltf={gltf}
-            variants={variants}
-            zoneScheme={zoneScheme}
-            zoneTints={zoneTints}
-          />
+          {/*
+            Always wrapped in a group, whether or not anyone asked for the ref.
+            A group with no transform costs one matrix multiply and keeps the
+            scene graph the same shape in both cases, which is worth more than
+            the multiply.
+          */}
+          <group ref={modelRef}>
+            <ProductModel
+              model={model}
+              gltf={gltf}
+              variants={variants}
+              zoneScheme={zoneScheme}
+              zoneTints={zoneTints}
+            />
+          </group>
           <ContactShadows
             opacity={0.35}
             scale={size * 3.5}
             blur={2.4}
             far={size * 1.2}
-            // Baked once. A shadow recomputed every frame for a model that never
-            // moves is the cheapest thing here to delete.
-            frames={1}
+            // Baked once for a model that never moves, which is the cheapest
+            // thing here to delete - but a model somebody is driving through
+            // `modelRef` does move, and a shadow frozen on frame one under a
+            // turning object is more obviously wrong than no shadow at all.
+            frames={modelRef ? Infinity : 1}
           />
           {children}
         </Suspense>

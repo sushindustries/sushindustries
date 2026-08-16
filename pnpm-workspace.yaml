@@ -17,3 +17,15 @@ allowBuilds:
 # the alert is real and the fix is one line.
 overrides:
   esbuild@<0.25.0: ">=0.25.0"
+
+  # One React, for the whole workspace.
+  #
+  # The viewer package pins react 19.2.0 for its own tests; the app runs 19.2.8.
+  # pnpm installed both and linked @react-three/fiber against 19.2.0, so the
+  # canvas called hooks from a different React than the one rendering it, and
+  # every render died on "Cannot read properties of null (reading 'useMemo')" -
+  # React's least helpful phrasing of "there are two of me".
+  #
+  # A peer range cannot fix this; only one copy on disk can.
+  react: 19.2.8
+  react-dom: 19.2.8

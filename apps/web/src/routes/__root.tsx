@@ -1,4 +1,5 @@
 import atomsCss from "@sushindustries/atoms/atoms.css?url";
+import viewerCss from "@sushindustries/react-product-viewer/styles.css?url";
 import { SmoothScroll } from "@sushindustries/ui";
 import {
 	createRootRoute,
@@ -30,6 +31,15 @@ export const Route = createRootRoute({
 		links: [
 			{ rel: "stylesheet", href: atomsCss },
 			{ rel: "stylesheet", href: proseCss },
+			/*
+			 * The viewer ships its own stylesheet and nothing was importing it,
+			 * so `.pv-viewer` had no size and every canvas on the site collapsed
+			 * to nothing. It is small and it is needed on the home page, so it is
+			 * linked here rather than imported inside the lazy island - a
+			 * stylesheet that arrives with the 600 kB chunk arrives after the
+			 * canvas it is meant to size.
+			 */
+			{ rel: "stylesheet", href: viewerCss },
 		],
 	}),
 	component: RootComponent,

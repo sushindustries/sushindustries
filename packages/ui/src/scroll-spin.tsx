@@ -1,4 +1,5 @@
-import { type ReactNode, useEffect, useRef } from "react";
+import { type ReactNode, useCallback, useRef } from "react";
+import { type ScrollTurn, useScrollTurn } from "./use-scroll-turn";
 
 export interface ScrollSpinProps {
 	/** Whatever should turn. A logo, a mark, an image, a diagram. */
@@ -16,15 +17,17 @@ export interface ScrollSpinProps {
 /*
  * Rotates its children with the page scroll.
  *
- * The transform is written straight onto the node inside a rAF callback rather
- * than held in React state. At 60fps a state-driven version re-renders the
- * subtree on every frame of every scroll, which is the one thing guaranteed to
- * make a light page feel heavy.
+ * The scroll-to-angle part is `useScrollTurn`, which is separate because the
+ * same measurement drives two very different things: this writes a CSS
+ * transform, and the site's hero writes a three.js object's rotation. A CSS
+ * `rotateY` on a canvas would spin the rendered image like a photograph rather
+ * than turning the model, so the 3D version has to reach into the scene - but
+ * both should agree on how far a screenful of scrolling turns something.
  *
- * A plain passive scroll listener is used rather than a Lenis subscription, so
- * this works with or without smooth scrolling: if Lenis is mounted it is
- * already driving the native scroll position, and `scrollY` is the smoothed
- * value either way.
+ * The transform is written straight onto the node rather than held in React
+ * state. At 60fps a state-driven version re-renders the subtree on every frame
+ * of every scroll, which is the one thing guaranteed to make a light page feel
+ * heavy.
  *
  * Anyone who reduces motion gets a still image.
  */
@@ -35,39 +38,14 @@ export function ScrollSpin({
 }: ScrollSpinProps): ReactNode {
 	const ref = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
+	const apply = useCallback(({ turn, wobble }: ScrollTurn) => {
 		const node = ref.current;
 		if (!node) return;
 
-		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+		node.style.transform = `rotateX(${wobble}deg) rotateY(${turn * 360}deg)`;
+	}, []);
 
-		let frame = 0;
-
-		function apply(): void {
-			frame = 0;
-			if (!node) return;
-
-			const turn = window.scrollY / (window.innerHeight * revolutions);
-			const wobble = Math.sin(turn * Math.PI * 2) * tilt;
-
-			node.style.transform = `rotateX(${wobble}deg) rotateY(${turn * 360}deg)`;
-		}
-
-		function onScroll(): void {
-			if (frame) return;
-			frame = requestAnimationFrame(apply);
-		}
-
-		apply();
-		window.addEventListener("scroll", onScroll, { passive: true });
-		window.addEventListener("resize", onScroll, { passive: true });
-
-		return () => {
-			if (frame) cancelAnimationFrame(frame);
-			window.removeEventListener("scroll", onScroll);
-			window.removeEventListener("resize", onScroll);
-		};
-	}, [revolutions, tilt]);
+	useScrollTurn(apply, { revolutions, tilt });
 
 	return (
 		<div className="logo-stage">

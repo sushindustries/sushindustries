@@ -1,4 +1,7 @@
 import {
+	Archive,
+	type ArchiveCategory,
+	type ArchiveItem,
 	Card,
 	Credit,
 	type CreditProps,
@@ -11,13 +14,14 @@ import {
 	readList,
 	readString,
 	ScrollSpin,
+	type ScrollTurn,
 	Section,
 	Showcase,
 	SmoothScroll,
 	Spacer,
+	useScrollTurn,
 } from "@sushindustries/ui";
-import { lazy, type ReactNode, Suspense } from "react";
-import { PlaceholderMark } from "../chrome/placeholder-mark";
+import { lazy, type ReactNode, Suspense, useCallback, useRef } from "react";
 
 /*
  * The live examples, one per showcase id.
@@ -79,6 +83,114 @@ tags: [tanstack, css]
 draft: false
 ---`;
 
+const ARCHIVE_CATEGORIES: readonly ArchiveCategory[] = [
+	{ id: "motion", label: "Motion" },
+	{ id: "layout", label: "Layout" },
+];
+
+const ARCHIVE_ITEMS: readonly ArchiveItem[] = [
+	{
+		id: "reveal",
+		title: "Reveal",
+		description: "Fades and rises its children the first time they are seen.",
+		category: "motion",
+		subcategory: "Scroll effects",
+		tags: ["scroll", "no-deps"],
+		href: "#reveal",
+		preview: "A card fading into place",
+	},
+	{
+		id: "scroll-spin",
+		title: "Scroll Spin",
+		description: "Turns its children with the page scroll.",
+		category: "motion",
+		subcategory: "Scroll effects",
+		tags: ["scroll", "transform"],
+		href: "#scroll-spin",
+		preview: "A mark turning as the page moves",
+	},
+	{
+		id: "grid",
+		title: "Grid",
+		description: "A responsive grid with no breakpoints in it.",
+		category: "layout",
+		subcategory: "Page structure",
+		tags: ["grid", "no-deps"],
+		href: "#grid",
+		meta: "v0.1.0",
+		preview: "Cards reflowing from four columns to one",
+	},
+	{
+		id: "spacer",
+		title: "Spacer",
+		description: "Vertical space on the scale, with an optional rule.",
+		category: "layout",
+		subcategory: "Page structure",
+		tags: ["markdown", "no-deps"],
+		href: "#spacer",
+		preview: "A labelled rule holding a gap open",
+	},
+];
+
+/**
+ * Something with an obvious front and back, for the rotation demos.
+ *
+ * Deliberately not a mark of any kind. A logo turning edge-on is unreadable at
+ * exactly the moment the rotation is most visible, and a demo subject that is
+ * also a brand claim has to be right about two things instead of one.
+ */
+function SpinFace(): ReactNode {
+	return (
+		<div className="spin-face">
+			<span className="mono">front</span>
+		</div>
+	);
+}
+
+/**
+ * The hook has no UI at all, so the demo is its output.
+ *
+ * Printing the numbers is more honest than animating something: an animation
+ * would show what `ScrollSpin` does, and `ScrollSpin` already has a page. What
+ * this hands you is two floats per frame, so that is what the frame shows.
+ */
+function ScrollTurnReadout(): ReactNode {
+	const turnRef = useRef<HTMLSpanElement>(null);
+	const wobbleRef = useRef<HTMLSpanElement>(null);
+	const markRef = useRef<HTMLDivElement>(null);
+
+	const show = useCallback(({ turn, wobble }: ScrollTurn) => {
+		if (turnRef.current) turnRef.current.textContent = turn.toFixed(3);
+		if (wobbleRef.current) wobbleRef.current.textContent = wobble.toFixed(1);
+		if (markRef.current) {
+			markRef.current.style.transform = `rotate(${turn * 360}deg)`;
+		}
+	}, []);
+
+	useScrollTurn(show);
+
+	return (
+		<div style={{ minHeight: "200vh" }}>
+			<p className="label">Scroll the frame</p>
+
+			<dl className="mt-4 text-sm mono">
+				<dt className="fg-faint">turn</dt>
+				<dd className="m-0 mt-1">
+					<span ref={turnRef}>0.000</span> revolutions
+				</dd>
+				<dt className="fg-faint mt-3">wobble</dt>
+				<dd className="m-0 mt-1">
+					<span ref={wobbleRef}>0.0</span> degrees
+				</dd>
+			</dl>
+
+			<div ref={markRef} className="mt-6" style={{ width: 96 }}>
+				<SpinFace />
+			</div>
+		</div>
+	);
+}
+
 /** Frontmatter has no UI, so the demo is the parse, shown as input and output. */
 function FrontmatterDemo(): ReactNode {
 	const meta = parseFrontmatter(
@@ -123,11 +235,20 @@ export interface Demo {
 
 export const DEMOS: Readonly<Record<string, Demo>> = {
 	"scroll-spin": {
-		poster: <PlaceholderMark />,
+		/*
+		 * A plain square, not a logo.
+		 *
+		 * The demo used to spin an SVG captioned "Sushindustries" that was not the
+		 * Sushindustries logo, which is a worse thing to ship than no mark at all.
+		 * The home page turns the real GLB; this page is about the rotation, and
+		 * an unmarked face shows the rotation better than a logo would anyway -
+		 * you can see which side you are looking at.
+		 */
+		poster: <SpinFace />,
 		element: (
 			<div style={{ minHeight: "160vh", paddingBlock: "10vh" }}>
 				<ScrollSpin revolutions={1.5} tilt={10}>
-					<PlaceholderMark />
+					<SpinFace />
 				</ScrollSpin>
 				<p className="label text-center mt-6">Scroll the frame</p>
 			</div>
@@ -247,6 +368,53 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 		),
 		poster: <p className="label text-center">An on-page contents rail</p>,
 		source: `<DocAside headings={collectHeadings(markdown)} />`,
+		language: "tsx",
+	},
+
+	"use-scroll-turn": {
+		element: <ScrollTurnReadout />,
+		poster: <p className="label text-center">An angle, every frame</p>,
+		source: `useScrollTurn(({ turn, wobble }) => {
+	node.style.transform = \`rotateY(\${turn * 360}deg)\`;
+});`,
+		language: "tsx",
+	},
+
+	archive: {
+		/*
+		 * Fixtures, not this site's real registry. A demo that lists the live
+		 * catalogue changes every time a component is added, so the card stops
+		 * being a picture of the Archive and becomes a picture of today's index.
+		 */
+		element: (
+			<Archive
+				categories={ARCHIVE_CATEGORIES}
+				items={ARCHIVE_ITEMS}
+				hrefForCategory={(id) => `#${id}`}
+				hrefForTag={(tag) => (tag ? `#${tag}` : "#all")}
+				renderLink={({ href, className, children }) => (
+					<a href={href} className={className}>
+						{children}
+					</a>
+				)}
+			/>
+		),
+		source: `<Archive
+	categories={categories}
+	items={items}
+	hrefForCategory={(id) => \`/components?category=\${id}\`}
+	renderLink={({ kind, id, className, children }) =>
+		kind === "item" ? (
+			<Link to="/components/$slug" params={{ slug: id }} className={className}>
+				{children}
+			</Link>
+		) : (
+			<Link to="/components" search={{ category: id }} className={className}>
+				{children}
+			</Link>
+		)
+	}
+/>`,
 		language: "tsx",
 	},
 
