@@ -3273,13 +3273,19 @@
 			inset 0 1px 0 color-mix(in srgb, var(--nori-900) 90%, transparent),
 			inset 0 2px 6px color-mix(in srgb, var(--nori-900) 60%, transparent);
 		/*
-		 * A stacking context of its own, above the desktop.
+		 * Above the desktop, without becoming a containing block.
 		 *
-		 * Without it the dock is at the desktop's level and a window dragged
-		 * over it covers it. With it, the dock's own children - including the
-		 * palette, which is centred on the whole screen - are lifted as a group.
+		 * `z-index` alone, and no `position`. A flex item takes a z-index while
+		 * still being statically positioned, which is exactly what is wanted
+		 * here: the dock lifts above the desktop so a dragged window cannot
+		 * cover it, and it does *not* become the containing block for the search
+		 * palette inside it.
+		 *
+		 * With `position: relative` the palette centred itself on this strip -
+		 * about forty pixels tall - instead of on the screen, and came out
+		 * squashed against the bottom edge. That is what "the search box does
+		 * not render properly" was.
 		 */
-		position: relative;
 		z-index: 5;
 	}
 
@@ -3345,6 +3351,20 @@
 	 * and a panel that grows downward as results arrive would walk off the
 	 * bottom from a true middle.
 	 */
+	/*
+	 * The field inside the palette is bigger than the one on the shelf: it is
+	 * the only thing in a centred box and the thing the box exists for, so it
+	 * gets the room to look like it.
+	 */
+	.dock-palette .shelf-search {
+		margin-bottom: var(--s-3);
+		padding: var(--s-3);
+	}
+
+	.dock-palette .shelf-search-input {
+		font-size: var(--t-md);
+	}
+
 	.dock-palette {
 		position: absolute;
 		left: 50%;

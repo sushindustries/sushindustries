@@ -54,8 +54,6 @@ export function Clock({
 	 */
 	const shape = JSON.stringify(options);
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: `shape` is the
-	// stable form of `options`, which is the actual dependency.
 	useEffect(() => {
 		const format = new Intl.DateTimeFormat(undefined, JSON.parse(shape));
 

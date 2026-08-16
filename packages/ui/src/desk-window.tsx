@@ -81,7 +81,7 @@ export function DeskWindow({
 	const onPointerMove = useCallback(
 		(event: React.PointerEvent<HTMLDivElement>) => {
 			const node = ref.current;
-			if (!node || node.dataset.dragging !== "true") return;
+			if (node?.dataset.dragging !== "true") return;
 
 			/*
 			 * Clamped so a window cannot be dragged out of the screen it lives in.
@@ -112,7 +112,7 @@ export function DeskWindow({
 
 	const onPointerUp = useCallback(() => {
 		const node = ref.current;
-		if (!node || node.dataset.dragging !== "true") return;
+		if (node?.dataset.dragging !== "true") return;
 
 		node.dataset.dragging = "false";
 		onMove(at.current.x, at.current.y);
