@@ -32,6 +32,10 @@ export const Route = createFileRoute("/components/")({
 			category: item.category,
 			subcategory: item.subcategory,
 			tags: [...(item.tags ?? [])],
+			// Names only. A version on a card goes stale between releases and
+			// nobody reads it; what a reader scanning the grid wants to know is
+			// whether installing this drags anything in, and if so what.
+			dependencies: Object.keys(item.dependencies),
 			preview: item.preview,
 			// Every registry item has a page now: hand-written when one exists,
 			// generated from this entry when it does not.
@@ -103,7 +107,14 @@ function ComponentsPage(): ReactNode {
 					 * `/components/$slug` - the card looks like a link and does
 					 * nothing, which is exactly what it was doing.
 					 */
-					renderLink={({ kind, id, href, className, children }) => {
+					renderLink={({
+						kind,
+						id,
+						href,
+						className,
+						children,
+						"data-tone": tone,
+					}) => {
 						if (kind === "item") {
 							return (
 								<Link
@@ -111,6 +122,7 @@ function ComponentsPage(): ReactNode {
 									to="/components/$slug"
 									params={{ slug: id }}
 									className={className}
+									data-tone={tone}
 								>
 									{children}
 								</Link>

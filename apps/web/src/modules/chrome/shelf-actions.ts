@@ -74,6 +74,25 @@ async function copy(text: string): Promise<boolean> {
 export interface ShelfActionOptions {
 	/** Navigates, so an "Open" that respects the router is possible. */
 	navigate?: (href: string) => void;
+	/**
+	 * Opens the entry wherever it belongs, instead of navigating to its href.
+	 *
+	 * Supplied, this *is* Open. The menu has no business deciding whether a
+	 * thing becomes a window on a desktop or a page in the address bar - that is
+	 * the same decision the host already makes when somebody double-clicks, and
+	 * having it in two places is how the two came apart: Open navigated to
+	 * `/assistant`, which is an id for a window and not a route, and produced a
+	 * 404 for an icon that opens perfectly well by clicking it.
+	 */
+	onOpen?: (entry: ShelfEntry, path: readonly ShelfEntry[]) => void;
+	/**
+	 * Whether this entry's href is a URL somebody else could open.
+	 *
+	 * Defaults to "it has one". A desktop can have entries whose href is an
+	 * internal id, and Copy link and Share are actively harmful for those -
+	 * they hand somebody a link that 404s, which is worse than not offering it.
+	 */
+	linkable?: (entry: ShelfEntry) => boolean;
 	/** Told what happened, so the page can say so. */
 	onResult?: (message: string) => void;
 }
@@ -81,21 +100,23 @@ export interface ShelfActionOptions {
 export function shelfActions(
 	entry: ShelfEntry,
 	path: readonly ShelfEntry[],
-	{ navigate, onResult }: ShelfActionOptions = {},
+	{ navigate, onOpen, linkable, onResult }: ShelfActionOptions = {},
 ): MenuAction[] {
 	const href = entry.href;
 	const isFolder = Boolean(entry.children?.length);
+	const canLink = linkable ? linkable(entry) : Boolean(href);
 
 	const actions: MenuAction[] = [];
 
-	if (href) {
+	if (onOpen || href) {
 		actions.push({
 			id: "open",
-			label: isFolder ? "Open the page" : "Open",
+			label: isFolder ? "Open" : "Open",
 			icon: isFolder ? "folder-open" : "file",
 			onSelect() {
-				if (navigate) navigate(href);
-				else window.location.assign(href);
+				if (onOpen) onOpen(entry, path);
+				else if (href && navigate) navigate(href);
+				else if (href) window.location.assign(href);
 			},
 		});
 	}
@@ -115,7 +136,7 @@ export function shelfActions(
 		},
 	});
 
-	if (href) {
+	if (href && canLink) {
 		actions.push({
 			id: "copy",
 			label: "Copy link",

@@ -27,3 +27,18 @@ export const packageStats = pgTable("package_stats", {
 
 export type PackageStat = typeof packageStats.$inferSelect;
 export type NewPackageStat = typeof packageStats.$inferInsert;
+
+/*
+ * The query builders, re-exported.
+ *
+ * So that a consumer needs one dependency rather than two. Importing
+ * `drizzle-orm` directly in the app would mean a second copy of the version
+ * pinned here, and the way that goes wrong is not a missing module - it is two
+ * `eq` functions that build subtly different SQL against one schema, which
+ * looks like a query bug and is a dependency bug.
+ *
+ * Client-safe, like the rest of this file: these are pure builders that produce
+ * an object describing a query. Nothing here opens a connection - that is
+ * `client.server.ts`, which cannot be imported from a browser at all.
+ */
+export { and, asc, desc, eq, or, sql } from "drizzle-orm";

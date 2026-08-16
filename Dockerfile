@@ -35,7 +35,8 @@ COPY packages/react-product-viewer/package.json packages/react-product-viewer/
 # No BuildKit cache mount here on purpose. Railway's builder requires cache
 # mount ids to carry its own cache-key prefix (`s/<service-id>-…`), which would
 # hardcode one platform's service id into a Dockerfile that should build
-# anywhere. The manifest-only COPY above is what actually saves the time.
+# anywhere. The manifest-only COPY above is what actually saves the time.COPY packages/assistant/package.json packages/assistant/
+
 RUN pnpm install --frozen-lockfile
 
 # ─── build ─────────────────────────────────────────────────────────────

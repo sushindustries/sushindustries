@@ -1,5 +1,7 @@
 import { NavBar } from "@sushindustries/ui";
 import type { ReactNode } from "react";
+import { SiteTheme } from "../theme/site-theme";
+import type { Theme } from "../theme/theme.schemas";
 import { navEntries } from "./nav.catalogue";
 
 /*
@@ -15,20 +17,29 @@ import { navEntries } from "./nav.catalogue";
  * navigation in one list is how a nav ends up with links that work from some
  * pages and not others.
  */
-export function SiteNav(): ReactNode {
+export interface SiteNavProps {
+	/** What the server rendered, handed down so the toggle starts in step. */
+	readonly theme: Theme;
+}
+
+export function SiteNav({ theme }: SiteNavProps): ReactNode {
 	return (
 		<NavBar
 			brand={<span className="mono text-sm font-semibold">sushindustries</span>}
 			entries={navEntries()}
 			trailing={
-				<a
-					href="https://github.com/sushindustries"
-					className="nav-link"
-					target="_blank"
-					rel="noreferrer"
-				>
-					GitHub
-				</a>
+				<span className="flex items-center gap-3">
+					<a
+						href="https://github.com/sushindustries"
+						className="nav-link"
+						target="_blank"
+						rel="noreferrer"
+					>
+						GitHub
+					</a>
+
+					<SiteTheme initial={theme} />
+				</span>
 			}
 		/>
 	);

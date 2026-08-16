@@ -36,6 +36,21 @@ gets the file glyph, which is right almost always. On this desktop every
 top-level entry leaves it off on purpose, because a desktop where every icon is
 different is not a desktop, it is a toolbar.
 
+Assistant is the one entry with no children and no page of its own. It opens
+straight into a chat window on the desktop, because a chat panel on a page you
+navigate to is a page, and this one is an application on a machine.
+
+It is also the one icon that is not a glyph. `art` on a shelf entry replaces
+the glyph with whatever the consumer hands it, and here that is the logo GLB
+turning on a clock at icon size. Once, deliberately: a desktop where every icon
+is bespoke is a gallery, and the reason a folder is recognisable is that it
+looks like the folder beside it. The live one earns its exception by being the
+thing that is not a folder.
+
+The `sushi` glyph is still declared and still does work - it is what renders
+before the model arrives, in a search result, and for anybody who asked for
+reduced motion.
+
 `{components}`, `{packages}`, `{posts}` and `{files}` are expanded by the
 catalogue from the registry, the workspace and the routes. Writing them out
 here would be a second copy of a list, and the first thing that goes wrong with
@@ -51,3 +66,4 @@ a second copy is a folder that opens onto nothing.
   - {posts}
 - [Machine readable](/llms.txt) - What a crawler or a model reads instead of the pages
   - {files}
+- [Assistant](/assistant) `sushi` - Ask about any of this, and get Markdown back

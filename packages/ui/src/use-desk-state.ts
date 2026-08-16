@@ -23,15 +23,47 @@ export interface DeskWindowState {
 	readonly minimised?: boolean;
 }
 
+/**
+ * Which cell of the desktop an icon has been put on, zero-based.
+ *
+ * A cell rather than a coordinate, because the two things anybody wants from a
+ * placed icon are both properties of a grid and neither is a property of a
+ * point: it stays inside the desk, and it never lands on top of another icon.
+ *
+ * Pixels were tried first and are wrong twice over - a position taken on a
+ * 60rem laptop screen is off the edge of a 22rem phone, and nothing stops two
+ * icons occupying the same pixels. Percentages fix the first and not the
+ * second. Cells fix both, and `arrange` is what keeps them honest when the
+ * column count changes underneath a stored arrangement.
+ */
+export interface DeskIconState {
+	readonly col: number;
+	readonly row: number;
+}
+
 export interface DeskState {
 	readonly windows: readonly DeskWindowState[];
 	/** Icons the reader has taken off the desktop, by entry id. */
 	readonly hidden: readonly string[];
+	/**
+	 * Icons that have been dragged somewhere, by entry id.
+	 *
+	 * Only the ones that were moved. An icon nobody has touched is not in here
+	 * and stays in the grid, which is what keeps the default arrangement
+	 * responsive: the grid reflows for a narrow screen, and only the icons
+	 * somebody deliberately placed are pinned where they were put.
+	 */
+	readonly icons: Readonly<Record<string, DeskIconState>>;
 	/** The next z to hand out. Stored so front-to-back survives a reload. */
 	readonly top: number;
 }
 
-export const EMPTY_DESK: DeskState = { windows: [], hidden: [], top: 1 };
+export const EMPTY_DESK: DeskState = {
+	windows: [],
+	hidden: [],
+	icons: {},
+	top: 1,
+};
 
 export interface DeskApi {
 	readonly desk: DeskState;
@@ -52,6 +84,10 @@ export interface DeskApi {
 	navigate(id: string, path: readonly string[]): void;
 	hide(entryId: string): void;
 	restore(entryId: string): void;
+	/** Pin an icon on a cell of the desktop. */
+	place(entryId: string, col: number, row: number): void;
+	/** Put every placed icon back in the grid. */
+	tidy(): void;
 	reset(): void;
 }
 
@@ -92,38 +128,49 @@ export function useDeskState(key: string): DeskApi {
 		setReady(true);
 	}, [key]);
 
-	const commit = useCallback(
+	/*
+	 * Every change goes through here, and a failure to store one is silent.
+	 *
+	 * Storage can be full, disabled, or refused outright by a private window.
+	 * None of those are worth telling anybody about: the change still applies to
+	 * this visit, and the only thing lost is that it will not be there tomorrow.
+	 */
+	const save = useCallback(
 		(next: DeskState) => {
-			setDesk(next);
 			try {
 				window.localStorage.setItem(key, JSON.stringify(next));
 			} catch {
 				// It still applies for this visit.
 			}
+
+			return next;
 		},
 		[key],
 	);
 
-	const update = useCallback(
-		(id: string, change: (window: DeskWindowState) => DeskWindowState) => {
+	/** Read the current desk, produce the next, store it. */
+	const edit = useCallback(
+		(change: (current: DeskState) => DeskState) => {
 			setDesk((current) => {
-				const next = {
-					...current,
-					windows: current.windows.map((entry) =>
-						entry.id === id ? change(entry) : entry,
-					),
-				};
-
-				try {
-					window.localStorage.setItem(key, JSON.stringify(next));
-				} catch {
-					// As above.
-				}
-
-				return next;
+				const next = change(current);
+				return next === current ? current : save(next);
 			});
 		},
-		[key],
+		[save],
+	);
+
+	const commit = useCallback((next: DeskState) => setDesk(save(next)), [save]);
+
+	const update = useCallback(
+		(id: string, change: (window: DeskWindowState) => DeskWindowState) => {
+			edit((current) => ({
+				...current,
+				windows: current.windows.map((entry) =>
+					entry.id === id ? change(entry) : entry,
+				),
+			}));
+		},
+		[edit],
 	);
 
 	return {
@@ -132,7 +179,7 @@ export function useDeskState(key: string): DeskApi {
 
 		open: useCallback(
 			(path) => {
-				setDesk((current) => {
+				edit((current) => {
 					/*
 					 * One window per folder. Opening a folder that is already open
 					 * raises it instead of stacking a second identical window on top
@@ -174,36 +221,19 @@ export function useDeskState(key: string): DeskApi {
 								],
 							};
 
-					try {
-						window.localStorage.setItem(key, JSON.stringify(next));
-					} catch {
-						// As above.
-					}
-
 					return next;
 				});
 			},
-			[key],
+			[edit],
 		),
 
 		close: useCallback(
-			(id) => {
-				setDesk((current) => {
-					const next = {
-						...current,
-						windows: current.windows.filter((entry) => entry.id !== id),
-					};
-
-					try {
-						window.localStorage.setItem(key, JSON.stringify(next));
-					} catch {
-						// As above.
-					}
-
-					return next;
-				});
-			},
-			[key],
+			(id) =>
+				edit((current) => ({
+					...current,
+					windows: current.windows.filter((entry) => entry.id !== id),
+				})),
+			[edit],
 		),
 
 		move: useCallback(
@@ -217,32 +247,24 @@ export function useDeskState(key: string): DeskApi {
 		),
 
 		raise: useCallback(
-			(id) => {
-				setDesk((current) => {
+			(id) =>
+				edit((current) => {
 					const target = current.windows.find((entry) => entry.id === id);
-					// Already in front: doing nothing avoids a render and stops the
-					// z counter climbing forever on repeated clicks.
+					// Already in front: returning the same object avoids a render and
+					// stops the z counter climbing forever on repeated clicks.
 					if (!target || target.z === current.top) return current;
 
 					const top = current.top + 1;
-					const next = {
+
+					return {
 						...current,
 						top,
 						windows: current.windows.map((entry) =>
 							entry.id === id ? { ...entry, z: top } : entry,
 						),
 					};
-
-					try {
-						window.localStorage.setItem(key, JSON.stringify(next));
-					} catch {
-						// As above.
-					}
-
-					return next;
-				});
-			},
-			[key],
+				}),
+			[edit],
 		),
 
 		/*
@@ -254,15 +276,15 @@ export function useDeskState(key: string): DeskApi {
 		 * rather than a raise.
 		 */
 		toggle: useCallback(
-			(id) => {
-				setDesk((current) => {
+			(id) =>
+				edit((current) => {
 					const target = current.windows.find((entry) => entry.id === id);
 					if (!target) return current;
 
 					const front = target.z === current.top && !target.minimised;
 					const top = front ? current.top : current.top + 1;
 
-					const next = {
+					return {
 						...current,
 						top,
 						windows: current.windows.map((entry) =>
@@ -271,17 +293,8 @@ export function useDeskState(key: string): DeskApi {
 								: entry,
 						),
 					};
-
-					try {
-						window.localStorage.setItem(key, JSON.stringify(next));
-					} catch {
-						// As above.
-					}
-
-					return next;
-				});
-			},
-			[key],
+				}),
+			[edit],
 		),
 
 		navigate: useCallback(
@@ -290,21 +303,63 @@ export function useDeskState(key: string): DeskApi {
 		),
 
 		hide: useCallback(
-			(entryId) => {
-				if (desk.hidden.includes(entryId)) return;
-				commit({ ...desk, hidden: [...desk.hidden, entryId] });
-			},
-			[desk, commit],
+			(entryId) =>
+				edit((current) =>
+					current.hidden.includes(entryId)
+						? current
+						: { ...current, hidden: [...current.hidden, entryId] },
+				),
+			[edit],
 		),
 
 		restore: useCallback(
-			(entryId) => {
-				commit({
-					...desk,
-					hidden: desk.hidden.filter((entry) => entry !== entryId),
-				});
-			},
-			[desk, commit],
+			(entryId) =>
+				edit((current) => ({
+					...current,
+					hidden: current.hidden.filter((entry) => entry !== entryId),
+				})),
+			[edit],
+		),
+
+		/*
+		 * Where an icon was put, in percent of the desktop.
+		 *
+		 * Clamped here rather than at the call site, because this is the boundary
+		 * a bad number would get stored past. An icon at 140% is an icon nobody
+		 * can reach and no amount of resizing brings back - only Tidy up would,
+		 * and somebody has to know that exists.
+		 */
+		/*
+		 * Where an icon was dropped, as a cell.
+		 *
+		 * Stored exactly as given and not clamped here, because "inside the desk"
+		 * is a question about a desk this hook cannot see - the column count comes
+		 * from the machine, and the machine changes. `arrange` answers it at render
+		 * time against the desk that actually exists, which is also the only place
+		 * that can know two icons have collided.
+		 */
+		place: useCallback(
+			(entryId, col, row) =>
+				edit((current) => ({
+					...current,
+					icons: {
+						...current.icons,
+						[entryId]: { col: Math.max(0, col), row: Math.max(0, row) },
+					},
+				})),
+			[edit],
+		),
+
+		/*
+		 * Every icon back into the grid.
+		 *
+		 * Deliberately not part of `reset`: this is about the arrangement, and
+		 * somebody who has spent a minute placing icons and wants them lined up
+		 * again should not also lose the windows they have open.
+		 */
+		tidy: useCallback(
+			() => edit((current) => ({ ...current, icons: {} })),
+			[edit],
 		),
 
 		reset: useCallback(() => commit(EMPTY_DESK), [commit]),

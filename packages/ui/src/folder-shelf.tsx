@@ -2,7 +2,96 @@ import { type ReactNode, useEffect, useRef } from "react";
 import { ContextMenu, type MenuAction, useContextMenu } from "./context-menu";
 import { DeskWindow } from "./desk-window";
 import { Icon, type IconName } from "./icon";
-import { type DeskApi, useDeskState } from "./use-desk-state";
+import {
+	type DeskApi,
+	type DeskIconState,
+	useDeskState,
+} from "./use-desk-state";
+import { useDragPlace } from "./use-drag-place";
+
+/** `useDragPlace` needs a callback; `enabled: false` means it is never called. */
+function noop(): void {}
+
+/*
+ * Both handler sets, run in order.
+ *
+ * The context menu and the drag both want `onPointerDown`, `onPointerMove`,
+ * `onPointerUp` and `onPointerCancel` on the same element, and spreading one
+ * after the other silently keeps only the last - which is how the long-press
+ * menu stopped existing on touch while right-click carried on working and
+ * nothing looked wrong.
+ *
+ * Written out rather than merged by a loop: there are four of them, they are
+ * all the same shape, and a generic merge would have to lie about the types.
+ */
+function bothPointers<T extends React.PointerEvent<HTMLElement>>(
+	first: (event: T) => void,
+	second: (event: T) => void,
+): (event: T) => void {
+	return (event) => {
+		first(event);
+		second(event);
+	};
+}
+
+/**
+ * Stored cells resolved against the desk that actually exists.
+ *
+ * Two things go wrong between storing a cell and drawing it, and both of them
+ * go wrong silently.
+ *
+ * **The column count changes.** An arrangement made on a laptop has icons in
+ * column six, and a phone has three columns. Left alone they would be placed
+ * outside the grid, where CSS puts them in an implicit column that nothing else
+ * knows about and the desk quietly grows a horizontal scrollbar.
+ *
+ * **Two icons want one cell.** Which cannot be prevented at drop time either,
+ * because the collision may not exist until the column count changes and folds
+ * two of them together. Grid would draw both, overlapping, and the one
+ * underneath becomes unclickable.
+ *
+ * So: walk the placed icons in a stable order, clamp each into range, and give
+ * a displaced one the next free cell reading order-wise. Stable order matters -
+ * resolving in `Object.keys` order would rearrange somebody's desk differently
+ * on a reload for no reason they could see.
+ *
+ * Icons nobody has placed are deliberately absent from the result. They are
+ * left to the grid's own auto-placement, which already skips cells taken by
+ * explicitly placed items - so the default arrangement stays responsive and
+ * this function stays small.
+ */
+export function arrange(
+	entries: readonly ShelfEntry[],
+	icons: Readonly<Record<string, DeskIconState>>,
+	columns: number,
+): Map<string, DeskIconState> {
+	const out = new Map<string, DeskIconState>();
+	const taken = new Set<string>();
+	const width = Math.max(1, columns);
+
+	for (const entry of entries) {
+		const wanted = icons[entry.id];
+		if (!wanted) continue;
+
+		let col = Math.min(width - 1, Math.max(0, wanted.col));
+		let row = Math.max(0, wanted.row);
+
+		// The next free cell in reading order. Bounded by construction: each pass
+		// advances, and rows are unbounded downward, so it always terminates.
+		while (taken.has(`${col},${row}`)) {
+			col += 1;
+			if (col >= width) {
+				col = 0;
+				row += 1;
+			}
+		}
+
+		taken.add(`${col},${row}`);
+		out.set(entry.id, { col, row });
+	}
+
+	return out;
+}
 
 export interface ShelfEntry {
 	readonly id: string;
@@ -15,6 +104,19 @@ export interface ShelfEntry {
 	readonly meta?: string;
 	/** Overrides the default folder or file glyph. */
 	readonly icon?: IconName;
+	/**
+	 * Drawn instead of the glyph.
+	 *
+	 * For the one icon in a set that earns it - a live mark, a preview, a
+	 * thumbnail. A `ReactNode` rather than an image URL because whatever goes in
+	 * here is the consumer's, and the shelf has no business knowing whether it
+	 * is an `<img>` or a WebGL canvas.
+	 *
+	 * Use it once. A desktop where every icon is bespoke is not a desktop, it is
+	 * a gallery, and the reason a folder is recognisable is that it looks like
+	 * the folder next to it.
+	 */
+	readonly art?: ReactNode;
 	/** Present and non-empty makes it a folder. Absent makes it a thing. */
 	readonly children?: readonly ShelfEntry[];
 }
@@ -74,6 +176,18 @@ export interface FolderShelfProps {
 	 * task to the dock and put no window on screen.
 	 */
 	desk?: DeskApi;
+	/**
+	 * How many cells across the desktop is.
+	 *
+	 * Passed rather than measured, so the server and the client agree about the
+	 * arrangement on the first paint. On this site it comes from `devices.md`
+	 * via `useDeviceKind`, which is the same table the stylesheet's
+	 * `--device-columns` is compiled from.
+	 *
+	 * Only the top-level shelf uses it. Icons inside a window are never placed,
+	 * so a window never needs to know.
+	 */
+	columns?: number;
 }
 
 /**
@@ -182,6 +296,7 @@ export function FolderShelf({
 	label = "Folders",
 	rememberAs = "sushindustries.desk",
 	desk: given,
+	columns = 4,
 }: FolderShelfProps): ReactNode {
 	/*
 	 * The hook runs either way - hooks cannot be called conditionally - and its
@@ -222,6 +337,20 @@ export function FolderShelf({
 	const shown = entries.filter((entry) => !desk.desk.hidden.includes(entry.id));
 
 	/*
+	 * How many cells across the desk is, read from the machine.
+	 *
+	 * The stylesheet sets `--device-columns` per machine from `devices.md`, and
+	 * this is the same number as a value - needed because snapping a drop to a
+	 * cell is arithmetic, and because `arrange` cannot clamp a column into a
+	 * grid whose width it does not know.
+	 *
+	 * `columns` is a prop rather than a measurement so that the server renders
+	 * the same desk the client does. Measuring would mean a first paint with no
+	 * arrangement at all.
+	 */
+	const placed = arrange(shown, desk.desk.icons, columns);
+
+	/*
 	 * A folder opens a window onto its contents; a leaf opens a window onto its
 	 * page, when the consumer can render one. A leaf with no renderer stays a
 	 * link and is handled by the anchor itself, never reaching here.
@@ -233,18 +362,52 @@ export function FolderShelf({
 
 	return (
 		<div className="shelf-root">
+			{/*
+			 * The desktop's own grid, which icons can be dragged out of.
+			 *
+			 * An icon nobody has moved stays in the grid and reflows with it, so the
+			 * default arrangement is still responsive and still has a column count
+			 * per machine. An icon somebody has placed is taken out of flow and
+			 * pinned where it was put - which is how a real desktop behaves, and it
+			 * means the grid closes up behind it rather than keeping a hole.
+			 */}
 			<ul className="shelf" aria-label={label}>
-				{shown.map((entry) => (
-					<li key={entry.id} className="shelf-cell">
-						<ShelfTile
-							entry={entry}
-							onOpen={() => openEntry(entry)}
-							actionsFor={actionsFor}
-							renderLink={renderLink}
-							openable={Boolean(renderEntry)}
-						/>
-					</li>
-				))}
+				{shown.map((entry) => {
+					const cell = placed.get(entry.id);
+
+					return (
+						<li
+							key={entry.id}
+							className="shelf-cell"
+							data-placed={cell ? "true" : undefined}
+							style={
+								cell
+									? /*
+										 * Grid lines are one-based, cells here are zero-based, and
+										 * the icon stays a grid item either way. That is the whole
+										 * reason this works: an item placed on a line cannot leave
+										 * the grid, and the grid will not auto-place anything else
+										 * on a cell that is explicitly claimed.
+										 */
+										({
+											gridColumn: cell.col + 1,
+											gridRow: cell.row + 1,
+										} as React.CSSProperties)
+									: undefined
+							}
+						>
+							<ShelfTile
+								entry={entry}
+								onOpen={() => openEntry(entry)}
+								actionsFor={actionsFor}
+								renderLink={renderLink}
+								openable={Boolean(renderEntry)}
+								onPlace={(col, row) => desk.place(entry.id, col, row)}
+								columns={columns}
+							/>
+						</li>
+					);
+				})}
 			</ul>
 
 			{/*
@@ -317,6 +480,8 @@ function ShelfTile({
 	renderLink,
 	path = [],
 	openable = false,
+	onPlace,
+	columns = 4,
 }: {
 	entry: ShelfEntry;
 	onOpen: () => void;
@@ -326,16 +491,72 @@ function ShelfTile({
 	path?: readonly ShelfEntry[];
 	/** A leaf whose page can be shown in a window rather than navigated to. */
 	openable?: boolean;
+	/** Given, the tile can be dragged and this is the cell it landed on. */
+	onPlace?: (col: number, row: number) => void;
+	/** How many cells across the grid it is in is, for snapping a drop. */
+	columns?: number;
 }): ReactNode {
 	const menu = useContextMenu();
 	const actions = actionsFor?.(entry, path) ?? [];
 
+	/*
+	 * Only the desktop passes `onPlace`, so only the desktop's icons drag.
+	 *
+	 * Inside a window they stay a grid on purpose: a window is a box somebody
+	 * resizes by hand, and icons pinned by percentage inside one would slide
+	 * around every time its corner was pulled. Free placement is a property of
+	 * a desktop, not of a folder listing.
+	 */
+	const drag = useDragPlace({
+		onPlace: onPlace ?? noop,
+		columns,
+		enabled: Boolean(onPlace),
+	});
+
+	/*
+	 * The menu's handlers and the drag's, composed rather than stacked.
+	 *
+	 * Both want `onPointerDown`, `onPointerMove`, `onPointerUp` and
+	 * `onPointerCancel` on this element. Spreading one after the other keeps
+	 * only the last, silently, which is how the long-press menu stopped existing
+	 * on touch while right-click carried on working and nothing looked wrong.
+	 */
+	const tile = {
+		onContextMenu: menu.triggerProps.onContextMenu,
+		onPointerDown: bothPointers(
+			menu.triggerProps.onPointerDown,
+			drag.handleProps.onPointerDown,
+		),
+		onPointerMove: bothPointers(
+			menu.triggerProps.onPointerMove,
+			drag.handleProps.onPointerMove,
+		),
+		onPointerUp: bothPointers(
+			menu.triggerProps.onPointerUp,
+			drag.handleProps.onPointerUp,
+		),
+		onPointerCancel: bothPointers(
+			menu.triggerProps.onPointerCancel,
+			drag.handleProps.onPointerCancel,
+		),
+		onClickCapture: drag.handleProps.onClickCapture,
+	};
+
 	const face = (
 		<>
 			<span className="shelf-glyph">
-				<Icon name={glyphFor(entry)} size={40} />
-				{entry.children ? (
-					<span className="shelf-count">{entry.children.length}</span>
+				{entry.art ?? <Icon name={glyphFor(entry)} size={40} />}
+				{/*
+				 * `isFolder`, not `entry.children`.
+				 *
+				 * An empty array is truthy, and the Markdown parser gives every
+				 * entry a `children: []` whether or not it has any - so every leaf
+				 * on the desktop wore a badge reading `0`. The type already has one
+				 * answer for "is this a folder" and this is it; asking the question
+				 * a second way is how the two came apart.
+				 */}
+				{isFolder(entry) ? (
+					<span className="shelf-count">{entry.children?.length}</span>
 				) : null}
 			</span>
 			<span className="shelf-name">{entry.label}</span>
@@ -346,7 +567,11 @@ function ShelfTile({
 	);
 
 	return (
-		<div className="relative h-full" {...menu.triggerProps}>
+		<div
+			className="shelf-tile"
+			data-art={entry.art ? "true" : undefined}
+			{...tile}
+		>
 			{isFolder(entry) || openable ? (
 				<button type="button" className="shelf-face" onClick={onOpen}>
 					{face}

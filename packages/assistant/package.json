@@ -1,0 +1,32 @@
+{
+	"name": "@sushindustries/assistant",
+	"version": "0.1.0",
+	"type": "module",
+	"description": "A chat panel that streams Markdown, told which machine it is running on. TanStack AI on the wire, Groq behind it, and its whole personality in a Markdown file.",
+	"keywords": [
+		"ai",
+		"chat",
+		"streaming",
+		"markdown",
+		"tanstack"
+	],
+	"exports": {
+		".": "./src/index.ts",
+		"./persona": "./persona.md"
+	},
+	"files": [
+		"src",
+		"persona.md"
+	],
+	"peerDependencies": {
+		"@sushindustries/atoms": "workspace:*",
+		"react": "^19.0.0"
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit -p tsconfig.json"
+	},
+	"devDependencies": {
+		"@types/react": "19.2.18",
+		"react": "^19.2.8"
+	}
+}

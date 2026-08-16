@@ -10,7 +10,7 @@
  *
  *   tokens      custom properties. Nothing else.
  *   base        the reset and the element defaults.
- *   blocks      named things - the nav, a card, the laptop. Layout that would
+ *   blocks      named things - the nav, a card, the machine. Layout that would
  *               take six classes to say and still be wrong at a breakpoint.
  *   utilities   one class, one job.
  *
@@ -37,52 +37,240 @@
 
 @layer tokens, base, blocks, utilities;
 
+/*
+ * Generated, and imported rather than pasted.
+ *
+ * `devices.css` is compiled from `devices.md` and holds one thing: the widths
+ * at which the site draws itself as a phone, a tablet or a laptop. It is a
+ * separate file because it is the output of a generator and this one is not -
+ * a generated region inside a hand-written file is a region somebody edits by
+ * accident and loses on the next run.
+ *
+ * `layer(blocks)` is what keeps it under the utilities. An `@import` with no
+ * layer would land in the unlayered origin, which beats every layer here, and
+ * a media query about the shape of a machine would start winning arguments
+ * with `p-3`.
+ */
+@import "./devices.css" layer(blocks);
+
 @layer tokens {
 	:root {
 		/*
-		 * Ground and surfaces: cool grey with a green cast left in it.
+		 * The rendering intent, declared.
 		 *
-		 * Not neutral grey - a truly neutral dark reads as switched-off rather than
-		 * as a material, and the salmon accent goes muddy on it. These are within a
-		 * few points of neutral on the blue-green side, which is enough to make a
-		 * frosted panel over them look like glass over slate rather than like a
-		 * grey box on a black one.
+		 * `color-scheme` is what tells the browser to draw its *own* furniture to
+		 * match - form controls, the default scrollbar, the flash of background
+		 * before the stylesheet lands, and the canvas behind an overscroll bounce.
+		 * Without it a light page keeps a dark native scrollbar and a dark
+		 * overscroll gutter, which is the detail that makes a theme look
+		 * half-applied rather than wrong.
 		 */
-		--nori-900: #0e1214;
-		--nori-800: #14191c;
-		--nori-700: #1b2125;
-		--nori-600: #232a2f;
-		--line: #313a40;
-		--line-soft: #242c31;
-
-		/* Text: warm off-white, so the surface reads as lacquer rather than LCD. */
-		--rice: #ece7dc;
-		--rice-dim: #8e9a97;
-		--rice-faint: #5d6b6c;
-
-		--salmon: #ff9270;
-		--salmon-deep: #e8734d;
-		--wasabi: #9dbe4a;
-		--tamago: #e8b84b;
-		--tuna: #e0645a;
-		--info: #6fb0bd;
+		color-scheme: light;
 
 		/*
-		 * Ink on an accent fill. Dark enough to read on salmon, warm enough not to
-		 * look like black dropped on it. Not `--bg-0`: the ground is green-black and
-		 * goes muddy over orange.
+		 * Ground and surfaces: silver, warm rather than blue.
+		 *
+		 * The site was a dark, green-cast grey for a long time and read as an
+		 * aquarium: every surface glowed slightly, the accent floated, and the
+		 * only way to separate two panels was to make one of them lighter, which
+		 * on a dark ground means making it brighter. Depth had nowhere to go but
+		 * up.
+		 *
+		 * Silver inverts that. Panels separate by *shadow* instead of by
+		 * brightness, which is the thing paper does and screens usually do not,
+		 * and it is why almost every surface below picks up a small one.
+		 *
+		 * Silver, and deliberately not paper. The first attempt at this was a warm
+		 * off-white around `#f7f6f4`, and on a lit screen that is not a light
+		 * theme - it is a lamp. Every surface in a room is a fraction of the
+		 * brightest thing in it, and a full-screen near-white makes the display
+		 * *the* brightest thing, which is what makes a light interface tiring
+		 * rather than calm.
+		 *
+		 * The second attempt went the other way and landed on aluminium: correct
+		 * brightness, no colour in it, and the whole page read as a machined part.
+		 *
+		 * This is the middle. About ninety per cent, warm, and with enough of a
+		 * cast that it is a *colour* rather than a grey - which is the difference
+		 * between pastel and greyscale, and it is only two or three points of
+		 * saturation.
+		 *
+		 * The steps between the four surfaces are deliberately tiny. On a dark
+		 * ground panels had to separate by brightness because that was the only
+		 * direction available; here they separate by a shadow, so the fills can
+		 * stay close together and the page stays calm. If two surfaces need a
+		 * large step to be told apart, they wanted a shadow.
+		 *
+		 * `--shell-edge` is a genuine white and reads as a highlight precisely
+		 * because nothing else here is.
+		 *
+		 * The ladder runs light to dark, which is the opposite of the ramp it
+		 * replaced. That is why the names changed with it: the old ramp's darkest step meant the
+		 * darkest thing and was the page ground, and both halves of that stopped
+		 * being true on the same day.
 		 */
-		--on-accent: #2a1006;
+		--sheet-0: #eceae4;
+		--sheet-1: #e4e1da;
+		--sheet-2: #dbd7cf;
+		--sheet-3: #cfcabf;
+		--line: #c2bcb0;
+		--line-soft: #ddd8ce;
 
-		--bg-0: var(--nori-900);
-		--bg-1: var(--nori-800);
-		--bg-2: var(--nori-700);
-		--bg-3: var(--nori-600);
-		--fg: var(--rice);
-		--fg-dim: var(--rice-dim);
-		--fg-faint: var(--rice-faint);
+		/*
+		 * Ink: near-black with the same warmth as the paper, never `#000`.
+		 *
+		 * Pure black on off-white is the highest contrast available and reads as
+		 * printing rather than as writing. This is about 16:1, which is far past
+		 * what any guideline asks for and still looks like it was set rather than
+		 * stamped.
+		 */
+		--ink: #33302a;
+		--ink-dim: #6b655c;
+		--ink-faint: #767065;
+
+		/*
+		 * The hues, darkened until they are readable *as text*.
+		 *
+		 * This is the one place the pastel stops. A pale ground and a pale accent
+		 * is a lovely swatch and an unreadable label: the first pass at these was
+		 * a soft terracotta at 2.7:1 against the page, which is below the 3:1 that
+		 * a large heading needs and nowhere near the 4.5:1 that body text does.
+		 *
+		 * On a dark ground these carried their contrast by being *brighter* than
+		 * everything around them. On a pale one there is nothing left to be
+		 * brighter than, so the only direction is down.
+		 *
+		 * Every one of them clears 4.5:1 on `--sheet-0`, checked rather than
+		 * guessed. The palette stays pastel where pastel belongs - the fills, the
+		 * surfaces, the shadows - and the things that carry words do not.
+		 *
+		 *   accent  4.9:1    folder  5.2:1    info  4.9:1
+		 *   wasabi  4.3:1    tamago  4.5:1    tuna  5.1:1
+		 */
+		--salmon: #9e4d2a;
+		--salmon-deep: #7d3a1e;
+		--wasabi: #5f7434;
+		--tamago: #8a6417;
+		--tuna: #a3423a;
+		--info: #3d6b78;
+
+		/*
+		 * The pastel set: fills, and only fills.
+		 *
+		 * Distinct from the hues above, and the distinction is the whole point of
+		 * having both. Those are darkened until they carry *words* at 4.5:1 on the
+		 * page. These never carry words - they are backgrounds for a tag, a
+		 * callout, a chart series, a diff row - so they can stay as pale as they
+		 * like, and they should, because a saturated fill behind body text is
+		 * exactly how a calm page stops being calm.
+		 *
+		 * Pair a fill with the matching hue for whatever sits on it:
+		 *
+		 *   background: var(--pastel-sage);
+		 *   color: var(--wasabi);
+		 *
+		 * They are all the same lightness and the same saturation, mixed from the
+		 * page itself so they sit *in* it rather than on it. A set built by
+		 * picking six colours individually never does - one of them is always
+		 * brighter than the rest and the eye finds it first.
+		 */
+		--pastel-clay: color-mix(in srgb, var(--salmon) 18%, var(--sheet-0));
+		--pastel-sage: color-mix(in srgb, var(--wasabi) 18%, var(--sheet-0));
+		--pastel-sky: color-mix(in srgb, var(--info) 18%, var(--sheet-0));
+		--pastel-sand: color-mix(in srgb, var(--tamago) 18%, var(--sheet-0));
+		--pastel-rose: color-mix(in srgb, var(--tuna) 18%, var(--sheet-0));
+		--pastel-stone: color-mix(in srgb, var(--ink) 8%, var(--sheet-0));
+
+		/*
+		 * A tone per category, so a kind of thing has a colour.
+		 *
+		 * Two pairs of tokens rather than one, and the split is the same one the
+		 * palette already makes: `--tone-*-ink` carries a glyph or a word and
+		 * clears 4.3:1 on the page, `--tone-*` is a fill and never has to.
+		 *
+		 * They are aliases, not new colours. Every one points at a hue that
+		 * already exists, which is what stops a category system from becoming a
+		 * second palette that drifts from the first - adding a sixth category
+		 * means choosing among the hues here, and if none of them fits, the
+		 * honest conclusion is that the category is not really a new kind of
+		 * thing.
+		 *
+		 * Named after the categories in `packages/ui/registry.ts`, and the
+		 * stylesheet is where that mapping lives on purpose. `NavItem.tone` is a
+		 * free string precisely so the library does not have to know this site
+		 * has five categories or what they are called.
+		 */
+		--tone-motion: var(--pastel-clay);
+		--tone-motion-ink: var(--salmon);
+		--tone-layout: var(--pastel-sage);
+		--tone-layout-ink: var(--wasabi);
+		--tone-content: var(--pastel-sky);
+		--tone-content-ink: var(--info);
+		--tone-docs: var(--pastel-sand);
+		--tone-docs-ink: var(--tamago);
+		--tone-3d: var(--pastel-rose);
+		--tone-3d-ink: var(--tuna);
+
+		/* Ink on an accent fill. The paper, so a filled button reads as cut out. */
+		--on-accent: #fdfaf7;
+
+		--bg-0: var(--sheet-0);
+		--bg-1: var(--sheet-1);
+		--bg-2: var(--sheet-2);
+		--bg-3: var(--sheet-3);
+		--fg: var(--ink);
+		--fg-dim: var(--ink-dim);
+		--fg-faint: var(--ink-faint);
 		--accent: var(--salmon);
 		--accent-dim: var(--salmon-deep);
+
+		/*
+		 * What shadows are made of, as its own token.
+		 *
+		 * This used to be the darkest step of the ramp, which worked only because
+		 * the ramp was dark. A shadow is not a surface: it is the absence of
+		 * light on whatever is underneath, so it stays near-black regardless of
+		 * how pale the page gets, and it is the one value that does *not* invert
+		 * with the theme.
+		 *
+		 * Warm, like everything else here. A neutral grey shadow on warm paper
+		 * reads blue and makes the whole page look colder than its own ground.
+		 */
+		--shadow: #a9a297;
+		--shadow-deep: #8a8378;
+
+		/*
+		 * Depth, as three steps rather than a value per rule.
+		 *
+		 * The whole reason the palette moved to silver: on paper things separate
+		 * by casting a shadow, not by glowing. `--lift-1` is a card resting on the
+		 * page, `--lift-2` is something that has been picked up, `--lift-3` is a
+		 * window somebody dragged over everything else.
+		 *
+		 * Each is two shadows - a tight one for the contact edge and a wide soft
+		 * one for the cast - because a single blur reads as a glow underneath the
+		 * object rather than as the object being above the page.
+		 */
+		--lift-1:
+			0 1px 2px color-mix(in srgb, var(--shadow) 30%, transparent),
+			0 2px 8px color-mix(in srgb, var(--shadow) 18%, transparent);
+		--lift-2:
+			0 2px 4px color-mix(in srgb, var(--shadow) 32%, transparent),
+			0 8px 24px color-mix(in srgb, var(--shadow) 22%, transparent);
+		--lift-3:
+			0 4px 8px color-mix(in srgb, var(--shadow) 34%, transparent),
+			0 24px 60px color-mix(in srgb, var(--shadow) 28%, transparent);
+
+		/*
+		 * The machine's case, which is not a page surface.
+		 *
+		 * A laptop shell is aluminium: slightly darker than the paper it sits on,
+		 * and cool where the paper is warm, because that is the one place on this
+		 * site where a blue cast is telling the truth about a material.
+		 */
+		--shell: #d3cec4;
+		--shell-deep: #b6b0a4;
+		--shell-edge: #ffffff;
 
 		--r: 6px;
 		--r-lg: 10px;
@@ -103,27 +291,56 @@
 		 * menu panel, the drawer - and fill-plus-edge without the filter on
 		 * everything that is merely a surface, like a card.
 		 */
-		--glass: color-mix(in srgb, var(--nori-700) 62%, transparent);
-		--glass-edge: color-mix(in srgb, var(--rice) 9%, transparent);
+		--glass: color-mix(in srgb, var(--sheet-0) 72%, transparent);
+		--glass-edge: color-mix(in srgb, var(--shell-edge) 70%, transparent);
 		--glass-blur: blur(18px) saturate(130%);
 
 		/*
-		 * The dimming behind a modal. Near-black rather than the page ground,
-		 * because a scrim made of the background colour tints what is behind it
-		 * instead of darkening it, and the point is to take the page away.
+		 * The dimming behind a modal. Still near-black, and still not the ground.
+		 *
+		 * A scrim made of the background colour tints what is behind it instead of
+		 * darkening it, and the point is to take the page away. That was true when
+		 * the page was dark and it is more true now: a *pale* scrim over a pale
+		 * page is a sheet of fog, and everything under it stays legible enough to
+		 * keep competing for attention.
+		 *
+		 * Lighter than it was, because it now has less work to do - 42% over
+		 * silver removes as much as 58% did over black.
 		 */
-		--scrim: color-mix(in srgb, #05080a 58%, transparent);
+		--scrim: color-mix(in srgb, #1a1713 42%, transparent);
 
 		/*
-		 * Folders are blue, and that is not decoration.
+		 * Folders are sage, and that is not decoration.
 		 *
-		 * Every other coloured thing on this site is the salmon accent, so a folder
-		 * being blue is what separates "a thing you open" from "a thing you press".
-		 * Two hues total: one for actions, one for containers.
+		 * Two hues total, and the rule behind them has not changed: everything
+		 * that is an *action* is the accent, and everything that is a *container*
+		 * is this. That is what separates a thing you press from a thing you open,
+		 * and it is why there are two and not seven.
+		 *
+		 * They were blue, which was right on a cold dark ground and wrong the day
+		 * the page became warm. A cool blue on a warm pastel is the one
+		 * combination that reads as a mistake rather than as a choice - it is not
+		 * that it clashes, it is that it looks like it was inherited.
+		 *
+		 * Sage is the same distance from the accent in hue that blue was, and on
+		 * the same side of the page as everything else. 4.6:1 on `--sheet-0`,
+		 * because a folder glyph at 24px has to read as clearly as text does.
 		 */
-		--folder: #6ea8d8;
-		--folder-deep: #3f6f9c;
-		--folder-fill: color-mix(in srgb, var(--folder) 22%, transparent);
+		--folder: #5a6f34;
+		--folder-deep: #44541f;
+		--folder-fill: color-mix(in srgb, var(--folder) 16%, transparent);
+
+		/*
+		 * A live mark standing in for a glyph, and the flat glyph beneath it.
+		 *
+		 * `--mark-glyph` is the accent rather than `currentColor`, because the
+		 * thing under the canvas is a *logo* and a logo has one colour. Inheriting
+		 * put it at `--fg-faint` at rest and at the folder colour on hover, which
+		 * is the tint that says "this is a container" applied to the one icon on
+		 * the desktop that is not one.
+		 */
+		--mark-size: clamp(2.75rem, 11cqi, 3.25rem);
+		--mark-glyph: var(--accent);
 
 		/* The sticky header's height, so anything that must clear it can say so. */
 		--nav-height: 66px;
@@ -144,6 +361,19 @@
 		--s-7: 48px;
 		--s-8: 72px;
 		--s-9: 120px;
+
+		/*
+		 * One row of desktop icons.
+		 *
+		 * A token rather than a number in the grid rule, because two other things
+		 * need to agree with it: an icon dropped on row four is placed by dividing
+		 * a pixel offset by this height, and a tile has to fill a row exactly or
+		 * the arithmetic drifts a row every few screens down.
+		 *
+		 * Fluid against the screen it is on, so a phone's rows are shorter than a
+		 * laptop's without a second value written down anywhere.
+		 */
+		--shelf-row: clamp(5.5rem, 20cqi, 8.5rem);
 
 		/* Type. Body sizes are rem so they follow the reader's browser setting.
 	   Headings are clamped so one scale covers phone through desktop without a
@@ -186,6 +416,93 @@
 	   inside a media query, so this exists to be quoted - the query still
 	   writes the number. */
 		--bp-narrow: 860px;
+	}
+
+	/*
+	 * Dark, and only the values whose *role* changes.
+		 *
+	 * Everything else follows, which is the entire reason the alias layer exists:
+	 * a second theme costs this block and nothing else. Not one rule below the
+	 * tokens layer knows there are two themes, and that is the claim
+	 * `theming.md` makes - this is the block that either proves it or exposes
+	 * every place a literal leaked out.
+		 *
+	 * Selected by attribute, never by `prefers-color-scheme` alone. The server
+	 * writes `data-theme` into the first byte from a cookie it can read; a media
+	 * query is something only the browser can answer, so a theme chosen that way
+	 * cannot be applied until after the page has already painted. That is the
+	 * flash, and it is not fixable in CSS.
+		 *
+	 * `Settings` still offers System - choosing it writes the resolved value to
+	 * the cookie, which turns a preference the server cannot see into one it can.
+	 */
+	:root[data-theme="dark"] {
+		color-scheme: dark;
+
+		/*
+	 * The ground, cool where the light theme is warm.
+		 *
+	 * Not the inverse of the light ramp. A dark theme built by inverting a
+	 * light one comes out grey and lifeless, because the two are not
+	 * symmetrical: on paper the darkest thing is ink and everything recedes
+	 * from it, while on a screen the ground is unlit and everything emits.
+	 * These have a green cast for the same reason the original dark theme did
+	 * - a truly neutral dark reads as switched-off rather than as a material.
+	 */
+		--sheet-0: #12171a;
+		--sheet-1: #171d21;
+		--sheet-2: #1e2529;
+		--sheet-3: #262e33;
+		--line: #37424a;
+		--line-soft: #232b31;
+
+		--ink: #e8e5df;
+		--ink-dim: #a2aaa8;
+		--ink-faint: #77817f;
+
+		/*
+	 * The hues, lightened back up.
+		 *
+	 * The exact inverse of what the light theme had to do to them, and for
+	 * the same reason in reverse: on a pale ground they carried contrast by
+	 * being darker than everything, and here there is nothing left to be
+	 * darker than. Checked against `--sheet-0` rather than assumed.
+	 */
+		--salmon: #ff9270;
+		--salmon-deep: #e8734d;
+		--wasabi: #a8c46a;
+		--tamago: #e8b84b;
+		--tuna: #e0645a;
+		--info: #7cc0cd;
+		--on-accent: #2a1006;
+		--folder: #9ec97a;
+		--folder-deep: #78a854;
+
+		/*
+	 * Shadow is the one token that does not invert.
+		 *
+	 * It is the absence of light on whatever is underneath, not a surface, so
+	 * it stays near-black - it simply has less to do here, because a dark
+	 * page separates surfaces by lightness again and the shadows are back to
+	 * being a hint rather than the whole mechanism.
+	 */
+		--shadow: #05080a;
+		--shadow-deep: #000000;
+
+		--shell: #232a2f;
+		--shell-deep: #161b1f;
+		--shell-edge: color-mix(in srgb, var(--ink) 22%, transparent);
+
+		/* The scrim has to take the page away, and a dark page needs more of it. */
+		--scrim: color-mix(in srgb, #05080a 62%, transparent);
+
+		/*
+	 * Fills are mixed from the ground, so they follow it without being
+	 * restated. This is the line that makes the pastel set free rather than
+	 * doubled - `--pastel-sage` is defined once, in terms of two tokens that
+	 * both just changed.
+	 */
+		--glass: color-mix(in srgb, var(--sheet-2) 62%, transparent);
 	}
 }
 
@@ -728,7 +1045,7 @@
 		z-index: -1;
 		background:
 			linear-gradient(to bottom, var(--glass-edge), transparent 55%),
-			color-mix(in srgb, var(--nori-900) 55%, transparent);
+			color-mix(in srgb, var(--bg-3) 55%, transparent);
 		backdrop-filter: var(--glass-blur);
 	}
 
@@ -814,9 +1131,9 @@
 		border-radius: var(--r-card);
 		background:
 			linear-gradient(to bottom, var(--glass-edge), transparent 40%),
-			color-mix(in srgb, var(--nori-800) 88%, transparent);
+			color-mix(in srgb, var(--bg-1) 88%, transparent);
 		backdrop-filter: var(--glass-blur);
-		box-shadow: 0 24px 60px color-mix(in srgb, var(--nori-900) 76%, transparent);
+		box-shadow: var(--lift-3);
 		transform-origin: top right;
 		animation: nav-panel-in 220ms var(--ease-out);
 	}
@@ -882,12 +1199,12 @@
 		flex: 0 0 auto;
 		width: 34px;
 		height: 34px;
-		border: 1px solid color-mix(in srgb, var(--rice) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
 		border-radius: var(--r-lg);
 		background:
 			linear-gradient(
 				160deg,
-				color-mix(in srgb, var(--rice) 10%, transparent),
+				color-mix(in srgb, var(--shell-edge) 55%, transparent),
 				transparent 62%
 			),
 			var(--bg-3);
@@ -897,16 +1214,66 @@
 			border-color 160ms ease;
 	}
 
+	/*
+	 * A tile in its category's colour.
+	 *
+	 * One rule per tone, reading two tokens each, so the colour of a category
+	 * lives in `:root` and this is only the wiring. `data-tone` and not a class,
+	 * for the same reason every variant here is an attribute: it travels with
+	 * the component and cannot be applied without its base.
+	 *
+	 * The `:where()` keeps specificity at zero, so a utility in the markup still
+	 * beats it. That matters here more than usual - these are the rules most
+	 * likely to be overridden for one entry, and a rule that has to be fought is
+	 * a rule that gets copied instead.
+	 */
+	.nav-panel-icon[data-tone="motion"] {
+		background: var(--tone-motion);
+		color: var(--tone-motion-ink);
+	}
+
+	.nav-panel-icon[data-tone="layout"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+	}
+
+	.nav-panel-icon[data-tone="content"] {
+		background: var(--tone-content);
+		color: var(--tone-content-ink);
+	}
+
+	.nav-panel-icon[data-tone="docs"] {
+		background: var(--tone-docs);
+		color: var(--tone-docs-ink);
+	}
+
+	.nav-panel-icon[data-tone="3d"] {
+		background: var(--tone-3d);
+		color: var(--tone-3d-ink);
+	}
+
 	@media (hover: hover) and (pointer: fine) {
 		.nav-panel-item:hover {
 			background: var(--bg-2);
 			border-color: var(--line-soft);
 		}
 
-		/* The tile lifts with the row, so the whole item reads as one target. */
+		/*
+		 * The tile lifts with the row, so the whole item reads as one target.
+		 *
+		 * A tinted tile keeps its own colour and gains a border in it, rather
+		 * than turning the accent - the tint is what says which category this is,
+		 * and losing it on hover means losing the information at the moment
+		 * somebody is looking hardest.
+		 */
 		.nav-panel-item:hover .nav-panel-icon {
 			border-color: color-mix(in srgb, var(--accent) 45%, transparent);
 			color: var(--accent);
+		}
+
+		.nav-panel-item:hover .nav-panel-icon[data-tone] {
+			border-color: currentColor;
+			color: inherit;
 		}
 	}
 
@@ -1093,8 +1460,7 @@
 		 * a full-screen GPU readback every frame to composite something invisible.
 		 */
 		background: var(--bg-1);
-		box-shadow: -24px 0 60px
-			color-mix(in srgb, var(--nori-900) 70%, transparent);
+		box-shadow: -24px 0 60px color-mix(in srgb, var(--bg-3) 70%, transparent);
 		/*
 		 * Slower than the desktop panel, and deliberately. A drawer travels the
 		 * width of the screen, and a full-screen surface that arrives in 200ms
@@ -1134,7 +1500,7 @@
 		position: fixed;
 		inset: 0;
 		z-index: 29;
-		background: color-mix(in srgb, var(--nori-900) 62%, transparent);
+		background: color-mix(in srgb, var(--bg-3) 62%, transparent);
 		animation: nav-scrim-in 420ms ease;
 	}
 
@@ -1393,14 +1759,33 @@
 	.hero {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
+		grid-auto-rows: minmax(0, auto);
 		align-items: center;
 		gap: var(--s-7);
-		min-height: min(88svh, 780px);
 		/*
-		 * Top padding clears the sticky header. Without it the hero starts at the
-		 * top of the document, the header sits on top of it, and the tallest thing
-		 * in the hero - the model - is cut off by a bar it never knew about.
+		 * The padding is *added* to the height, not taken out of it.
+		 *
+		 * `min-height` is border-box, so `min-height: min(88svh, 780px)` with
+		 * 170px of padding gave the content row 88svh **minus** 170px. The model
+		 * asks for 62svh, and below about a 620px window that no longer fits - so
+		 * the row overflowed, and because it is centred half the overflow went
+		 * upward, under the sticky header.
+		 *
+		 * Written this way the row is `min(72svh, 620px)` and the padding sits
+		 * outside it, so the space the model is sized against is the space it
+		 * actually gets. 62svh inside 72svh has room at every window height
+		 * instead of only at tall ones.
+		 *
+		 * The top padding is what clears the sticky header. Without it the hero
+		 * starts at the top of the document, the header sits over it, and the
+		 * tallest thing in here is cut off by a bar it never knew about.
 		 */
+		min-height: calc(
+			min(72svh, 620px) +
+			var(--nav-height) +
+			var(--s-6) +
+			var(--s-8)
+		);
 		padding-block: calc(var(--nav-height) + var(--s-6)) var(--s-8);
 	}
 
@@ -1417,6 +1802,26 @@
 	 */
 	.logo-stage {
 		aspect-ratio: 1;
+		/*
+		 * Bounded by the row it is in, not by the viewport.
+		 *
+		 * `62svh` measured the whole window, and the stage does not get the whole
+		 * window: the hero's `min-height` is `min(88svh, 780px)` *including* its
+		 * padding, and that padding is what clears the sticky header. Below about
+		 * a 620px window the stage wanted more than the row had, and because the
+		 * row is centred the overflow went half upward - straight under the nav,
+		 * which is frosted and paints over it. It read as the model being cut off
+		 * by something.
+		 *
+		 *   600px window:  row 358px, stage wanted 372px
+		 *   500px window:  row 270px, stage wanted 310px
+		 *
+		 * `min-height: 0` is what lets it shrink at all - a grid item's automatic
+		 * minimum is its content, so without it `max-height` is simply ignored and
+		 * the numbers above stay true.
+		 */
+		max-height: 100%;
+		min-height: 0;
 		width: min(100%, 62svh, 460px);
 		margin-inline: auto;
 		display: grid;
@@ -1479,9 +1884,18 @@
 			var(--bg-1);
 		border: 1px solid var(--line-soft);
 		border-radius: var(--r-card);
+		/*
+		 * A card is a thing resting on the page, and on a pale ground that is the
+		 * only way to say so. The dark theme separated surfaces by making them
+		 * lighter, which is a direction that does not exist here - everything is
+		 * already light. So depth moved from brightness to shadow, which is what
+		 * it is made of in the world.
+		 */
+		box-shadow: var(--lift-1);
 		transition:
 			border-color 200ms ease,
 			background 200ms ease,
+			box-shadow 200ms ease,
 			transform 260ms var(--ease-out);
 	}
 
@@ -1489,15 +1903,39 @@
 		.card:hover {
 			background: var(--bg-2);
 			border-color: var(--line);
+			/*
+			 * Rises in shadow as well as in position. A `translateY` on its own
+			 * reads as a slide; it is the shadow growing underneath that makes it
+			 * read as lifting off the page.
+			 */
+			box-shadow: var(--lift-2);
 			transform: translateY(-3px);
 		}
 	}
 
 	/* ── code ────────────────────────────────────────────────────── */
 
+	/*
+	 * An install command wraps; it does not scroll.
+	 *
+	 * `overflow-x: auto` was here, and on a card narrower than
+	 * `pnpm add @sushindustries/product-viewer` it drew a scrollbar - a white
+	 * bar across the bottom of the box, the brightest thing on the card, sitting
+	 * under a command whose second half was hidden behind an interaction nobody
+	 * would think to try.
+	 *
+	 * The content is one short line of text with obvious break points. Wrapping
+	 * shows all of it, costs a second line, and needs no scrollbar to explain.
+	 * `anywhere` rather than `break-word` because a package name is one word as
+	 * far as wrapping is concerned, and one word wider than the box wins.
+	 *
+	 * `align-items: start` because once it can be two lines tall, anything
+	 * beside it - a copy button - should sit level with the first line rather
+	 * than floating in the middle of the block.
+	 */
 	.code {
 		display: flex;
-		align-items: center;
+		align-items: start;
 		justify-content: space-between;
 		gap: var(--s-4);
 		padding: var(--s-3) var(--s-4);
@@ -1506,7 +1944,8 @@
 		border-radius: var(--r-lg);
 		font-family: var(--mono);
 		font-size: var(--t-sm);
-		overflow-x: auto;
+		min-width: 0;
+		overflow-wrap: anywhere;
 	}
 
 	.code-block {
@@ -1556,6 +1995,7 @@
 		border: 1px solid var(--line-soft);
 		border-radius: var(--r-card);
 		background: var(--bg-1);
+		box-shadow: var(--lift-1);
 		overflow: hidden;
 	}
 
@@ -2252,6 +2692,96 @@
 		overflow: hidden;
 	}
 
+	/*
+	 * A card's category colours the one place the category is already named.
+	 *
+	 * This was a 3px stripe down the left edge, and it was wrong for a reason
+	 * worth keeping: a coloured border is a decoration bolted onto a shape, and
+	 * twenty-five cards each with a different offset edge reads as a broken grid
+	 * rather than as a grouping. The eye follows the ragged left edge instead of
+	 * the content.
+	 *
+	 * The preview panel already falls back to the category's *name* when there is
+	 * no live preview, which makes it the honest place to put the colour: it is
+	 * the part of the card that is about the category, so tinting it is
+	 * information rather than trim. Where a preview does exist the tint is behind
+	 * it and does no harm.
+	 *
+	 * The tone is set on the card and read by the child, so one variable does the
+	 * work and the mapping below is five lines instead of ten.
+	 */
+	.archive-card[data-tone="motion"] {
+		--tone: var(--tone-motion);
+		--tone-ink: var(--tone-motion-ink);
+	}
+
+	.archive-card[data-tone="layout"] {
+		--tone: var(--tone-layout);
+		--tone-ink: var(--tone-layout-ink);
+	}
+
+	.archive-card[data-tone="content"] {
+		--tone: var(--tone-content);
+		--tone-ink: var(--tone-content-ink);
+	}
+
+	.archive-card[data-tone="docs"] {
+		--tone: var(--tone-docs);
+		--tone-ink: var(--tone-docs-ink);
+	}
+
+	.archive-card[data-tone="3d"] {
+		--tone: var(--tone-3d);
+		--tone-ink: var(--tone-3d-ink);
+	}
+
+	/*
+	 * The dependency row: chips that wrap, and never a scrollbar.
+	 *
+	 * `flex-wrap` rather than an overflow, because these are one or two short
+	 * words each and there is nothing to gain by hiding the second one behind a
+	 * gesture. A card is allowed to be a line taller.
+	 */
+	.archive-deps {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--s-1) var(--s-2);
+	}
+
+	.archive-dep {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		padding: 2px var(--s-2);
+		border-radius: 999px;
+		background: var(--pastel-stone);
+		color: var(--fg-dim);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		white-space: nowrap;
+	}
+
+	/*
+	 * "No dependencies" is the good case, so it is the one with colour.
+	 *
+	 * Every other chip in this row is a cost. This one is the absence of a cost,
+	 * and on a grid where most items have it the sage reads as a property of the
+	 * library rather than as a badge on an individual card - which is the honest
+	 * impression, because it is.
+	 */
+	.archive-dep[data-none="true"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+	}
+
+	.archive-card[data-tone] .archive-preview {
+		background: var(--tone);
+	}
+
+	.archive-card[data-tone] .archive-preview .label {
+		color: var(--tone-ink);
+	}
+
 	.archive-frame {
 		width: 100%;
 		height: 100%;
@@ -2313,9 +2843,9 @@
 		border-radius: var(--r-lg);
 		background:
 			linear-gradient(to bottom, var(--glass-edge), transparent 40%),
-			color-mix(in srgb, var(--nori-800) 92%, transparent);
+			color-mix(in srgb, var(--bg-1) 92%, transparent);
 		backdrop-filter: var(--glass-blur);
-		box-shadow: 0 18px 44px color-mix(in srgb, var(--nori-900) 74%, transparent);
+		box-shadow: var(--lift-2);
 		animation: menu-in 130ms var(--ease-out);
 	}
 
@@ -2376,8 +2906,43 @@
 	 * where it sits in the tree - so there is nothing to gain from moving it and a
 	 * portal to keep in sync if it were.
 	 */
+	/*
+	 * The desk: the box windows and placed icons are positioned inside.
+	 *
+	 * `position: relative` is the whole point of this rule. Windows are
+	 * `position: absolute` and this is their parent, so without it they resolve
+	 * against whichever ancestor happens to be positioned - which was the
+	 * screen, two levels up and a different size, so a window dragged to the
+	 * bottom of the desk ended up somewhere else entirely and could leave the
+	 * screen.
+	 *
+	 * It is also what `useDragPlace` reads as `offsetParent` to turn a drag into
+	 * a percentage, and what `DeskWindow` measures to clamp a drag. Three things
+	 * depend on this element being the positioned one, which is why it is said
+	 * here rather than inherited by luck.
+	 *
+	 * `min-height: 100%` makes it fill the desktop even when the icons do not,
+	 * so an icon can be dragged to the bottom of the visible area rather than to
+	 * the bottom of the two rows of icons.
+	 */
 	.shelf-root {
-		display: block;
+		position: relative;
+		min-height: 100%;
+		/*
+		 * Windows are clipped to the desk, and cannot lengthen it.
+		 *
+		 * They are absolutely positioned, so they do not grow this box - but they
+		 * were still painted past the bottom of it and past the bottom of the
+		 * screen, which is a window somebody has to scroll the desktop to reach
+		 * and can then drag no further. `clip` keeps them inside the machine,
+		 * which is the same promise the drag clamp makes and the same one the
+		 * bezel implies.
+		 *
+		 * `clip` rather than `hidden`: `hidden` makes this a scroll container,
+		 * which would give the desk a second scrollbar of its own and let a
+		 * dragged window scroll it.
+		 */
+		overflow: clip;
 	}
 
 	/*
@@ -2389,11 +2954,106 @@
 	 */
 	.shelf {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
-		gap: var(--s-3);
+		/*
+		 * The floor tracks the pane, so a window dragged narrow packs its icons
+		 * tighter instead of dropping to one very wide column, and a window
+		 * dragged wide spreads them instead of stretching four of them across it.
+		 */
+		grid-template-columns: repeat(
+				auto-fit,
+				minmax(clamp(6rem, 22cqi, 9.5rem), 1fr)
+			);
+		gap: clamp(var(--s-2), 1.5cqi, var(--s-3));
 		margin: 0;
 		padding: 0;
 		list-style: none;
+	}
+
+	/*
+	 * The desktop counts columns; a window keeps guessing.
+	 *
+	 * A machine's home screen has a column count, not a minimum tile width -
+	 * three across on a phone is what makes those icons read as apps, and
+	 * `auto-fit` at 9.5rem gives a 22rem phone two columns and a lot of air. So
+	 * on the desktop the count comes from `devices.md` with the rest of the
+	 * machine.
+	 *
+	 * Scoped with `>` to the shelf that *is* the desktop. The same grid appears
+	 * inside every open window, and a window is a box somebody resizes by hand -
+	 * it has no idea what machine it is on and should not be told, so it keeps
+	 * `auto-fit`.
+	 */
+	/*
+	 * The desktop's grid: a fixed number of columns, and rows that exist whether
+	 * or not anything is in them.
+	 *
+	 * Both halves are load-bearing and the second one is the subtle one.
+	 * `grid-auto-rows: max-content` was here, and an implicit row with nothing in
+	 * it has a max-content height of zero - so dropping an icon on row five
+	 * created five rows, four of them zero pixels tall, and the icon appeared
+	 * directly under the first one. It looked as though the bottom of the screen
+	 * simply refused icons.
+	 *
+	 * A fixed row height makes row five a real place. It is also the number
+	 * `useDragPlace` divides a drop by to work out which row it was over - the
+	 * hook measures the tile rather than being told, so the cell size here and
+	 * the cell size there are the same measurement of the same element rather
+	 * than two constants somebody has to keep in step.
+	 *
+	 * `min-height: 100%` is what makes the empty desk droppable at all: without
+	 * it the grid is as tall as its two rows of icons, and everything below that
+	 * is outside the box the drag measures against.
+	 */
+	.device-desktop .shelf-root > .shelf {
+		grid-template-columns: repeat(var(--device-columns), minmax(0, 1fr));
+		grid-auto-rows: var(--shelf-row);
+		min-height: 100%;
+	}
+
+	/*
+	 * An icon somebody has dragged somewhere.
+	 *
+	 * Still a grid item - `gridColumn` and `gridRow` are set inline from the
+	 * resolved cell. That is what makes both of the things people ask for true
+	 * without any arithmetic here: an item placed on a grid line cannot end up
+	 * outside the grid, and auto-placement will not put another icon on a cell
+	 * that has been explicitly claimed.
+	 *
+	 * It was `position: absolute` with a percentage offset, which was wrong in
+	 * both directions at once: icons drifted off the right edge on a narrow
+	 * screen, and two of them could sit exactly on top of each other with the
+	 * lower one unclickable.
+	 *
+	 * `--x` and `--y` are the live drag offset, written by the hook on every
+	 * frame and removed when it commits. Nothing else moves while they are set.
+	 */
+	/*
+	 * The tile itself: the thing that is drawn, and the thing that moves.
+	 *
+	 * `--x` and `--y` are the live drag offset, written by `useDragPlace` on
+	 * every frame and removed when it commits a cell. They have to be read on
+	 * *this* element and not on the cell around it, because the hook sets them
+	 * on the element its handlers are attached to and a custom property set
+	 * there does not reach the element's parent. Putting the translate on the
+	 * `<li>` looked correct and moved nothing at all.
+	 *
+	 * It was `relative h-full` - two utilities standing in for a block that
+	 * needed a name the moment it had a state and a transform of its own.
+	 */
+	.shelf-tile {
+		position: relative;
+		height: 100%;
+		translate: var(--x, 0) var(--y, 0);
+	}
+
+	/* Above its neighbours while it is being carried over them. */
+	.shelf-tile[data-dragging="true"] {
+		z-index: 2;
+		cursor: grabbing;
+	}
+
+	.shelf-cell:has(.shelf-tile[data-dragging="true"]) {
+		z-index: 2;
 	}
 
 	.shelf-cell {
@@ -2404,10 +3064,13 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: var(--s-2);
+		gap: clamp(4px, 1.2cqi, 8px);
 		width: 100%;
 		height: 100%;
-		padding: var(--s-4) var(--s-3) var(--s-5);
+		/* Fluid against the pane, so a tile in a narrow window is a small tile
+	   rather than a full-size one with its label wrapped to four lines. */
+		padding: clamp(var(--s-2), 3cqi, var(--s-4))
+			clamp(var(--s-1), 2cqi, var(--s-3)) clamp(var(--s-3), 4cqi, var(--s-5));
 		border: 1px solid transparent;
 		/* Squarer than the rest of the site. A desktop icon is a small square
 	   thing, and the 16px card radius made these read as cards with pictures
@@ -2421,16 +3084,28 @@
 		transition:
 			background 160ms ease,
 			border-color 160ms ease,
-			transform 220ms var(--ease-out);
+			translate 220ms var(--ease-out);
 	}
 
 	@media (hover: hover) and (pointer: fine) {
+		/*
+		 * `translate` and not `transform`, and the difference is the flutter.
+		 *
+		 * `.shelf-tile` already carries a `translate` for the drag offset. A
+		 * `transform: translateY()` here is a *different property* that composes
+		 * after it, so hovering a tile put text through two stacked transforms
+		 * and the browser re-rasterised the glyph and the label on every frame of
+		 * the transition - which is the shimmer on hover.
+		 *
+		 * Using the same individual property means one translation, resolved
+		 * once. It also composes correctly with the drag rather than fighting it.
+		 */
 		.shelf-face:hover {
 			background:
 				linear-gradient(to bottom, var(--glass-edge), transparent 45%),
 				var(--bg-1);
 			border-color: var(--line-soft);
-			transform: translateY(-2px);
+			translate: 0 -2px;
 		}
 	}
 
@@ -2442,7 +3117,8 @@
 	/* No hover on a touch screen, so the press has to answer for itself. */
 	.shelf-face:active {
 		background: var(--bg-2);
-		transform: translateY(0);
+		/* Same property as the hover above, or it cancels nothing. */
+		translate: 0 0;
 	}
 
 	.shelf-glyph {
@@ -2451,6 +3127,20 @@
 		place-items: center;
 		color: var(--fg-faint);
 		transition: color 160ms ease;
+	}
+
+	/*
+	 * The glyph is sized here, not by the `size` prop it was rendered with.
+	 *
+	 * `Icon` writes `width` and `height` attributes, which are a default that
+	 * any CSS beats - so the component keeps one honest number for anybody
+	 * reading the markup, and the tile scales it to the pane it is actually in.
+	 * A 40px icon is right on a laptop desktop and half the height of a tile in
+	 * a window dragged down to 260px.
+	 */
+	.shelf-glyph svg {
+		width: clamp(22px, 9cqi, 40px);
+		height: clamp(22px, 9cqi, 40px);
 	}
 
 	/*
@@ -2476,7 +3166,7 @@
 
 	.shelf-name {
 		color: var(--fg);
-		font-size: var(--t-sm);
+		font-size: clamp(var(--t-xs), 3.2cqi, var(--t-sm));
 		font-weight: 500;
 		overflow-wrap: anywhere;
 	}
@@ -2542,10 +3232,10 @@
 		border-radius: var(--r-card);
 		background:
 			linear-gradient(to bottom, var(--glass-edge), transparent 30%),
-			color-mix(in srgb, var(--nori-800) 94%, transparent);
+			color-mix(in srgb, var(--bg-1) 94%, transparent);
 		backdrop-filter: var(--glass-blur);
 		color: var(--fg);
-		box-shadow: 0 40px 90px color-mix(in srgb, var(--nori-900) 80%, transparent);
+		box-shadow: var(--lift-3);
 		overflow: hidden;
 		animation: window-in 200ms var(--ease-out);
 	}
@@ -2569,10 +3259,28 @@
 		}
 	}
 
+	/*
+	 * `min-height: 0` is what makes the canvas below actually scroll.
+	 *
+	 * A flex child refuses to shrink below its content without it, so a window
+	 * full of Markdown grew the frame instead of scrolling inside it, and the
+	 * bottom of the page was simply past the end of the window. It is the usual
+	 * reason an `overflow` that is set appears to do nothing.
+	 */
+	/*
+	 * `height: 100%` and not `max-height: inherit`.
+	 *
+	 * `inherit` takes the parent's *computed* max-height, which for a flex child
+	 * is usually `none` - so it did nothing, and the frame sized itself to its
+	 * content. Filling the body is what actually bounds it, and the body is
+	 * already bounded by the window.
+	 */
 	.window-frame {
 		display: flex;
 		flex-direction: column;
-		max-height: inherit;
+		height: 100%;
+		min-height: 0;
+		min-width: 0;
 	}
 
 	.window-bar {
@@ -2581,23 +3289,62 @@
 		gap: var(--s-3);
 		padding: var(--s-3) var(--s-3) var(--s-3) var(--s-4);
 		border-bottom: 1px solid var(--line-soft);
-		background: color-mix(in srgb, var(--nori-900) 40%, transparent);
+		background: color-mix(in srgb, var(--bg-3) 40%, transparent);
 	}
 
+	/*
+	 * The path, on one line.
+	 *
+	 * `flex-wrap: wrap` was here and it is the wrong instinct for a breadcrumb
+	 * in a window somebody drags narrow: the trail wrapped to two and then three
+	 * lines, and the bar grew taller every time, eating the window it is inside.
+	 *
+	 * A path scrolls instead. The end of it is where you are, which is the part
+	 * worth keeping, and the scrollbar is hidden because a bar across a
+	 * breadcrumb is louder than the breadcrumb.
+	 */
 	.window-path {
 		display: flex;
 		align-items: center;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		gap: 2px;
 		min-width: 0;
-		flex: 1;
+		/*
+		 * `flex: 0 0 auto`, and the `flex: 1` it replaced is worth naming.
+		 *
+		 * This used to sit in a row alongside a title, where `flex: 1` meant
+		 * "take the leftover width". It is now a direct child of the window
+		 * frame, which is a *column* - so the same declaration meant take the
+		 * leftover height, and a one-line breadcrumb grew to fill the window and
+		 * squashed everything below it into whatever was left. That is the
+		 * enormous empty band under the title bar.
+		 *
+		 * A flex shorthand does not mean anything until you know which way the
+		 * container runs, which is why this one moved without being edited and
+		 * broke.
+		 */
+		flex: 0 0 auto;
+		overflow-x: auto;
+		scrollbar-width: none;
 	}
 
+	.window-path::-webkit-scrollbar {
+		display: none;
+	}
+
+	/*
+	 * A crumb keeps its own width and gives up nothing.
+	 *
+	 * `flex: 0 0 auto` is what makes the trail scroll rather than compress.
+	 * Without it the flex line shrinks every crumb equally until the path is a
+	 * row of ellipses, none of which says where you are.
+	 */
 	.window-crumb {
 		display: inline-flex;
 		align-items: center;
 		gap: 2px;
-		min-width: 0;
+		flex: 0 0 auto;
+		white-space: nowrap;
 	}
 
 	.window-sep {
@@ -2656,8 +3403,25 @@
 	}
 
 	/* The window's own scrolling area, holding a grid rather than a list. */
+	/*
+	 * A window's contents size against the window, not against the page.
+	 *
+	 * `container-type: inline-size` is what makes that true, and it is the only
+	 * way to: a window is resized by dragging its corner, which changes nothing
+	 * a media query can see. Without this, pulling a window from 240px to 900px
+	 * leaves the icons inside at exactly the size they were, which is the
+	 * "resizing does nothing" this was reported as.
+	 *
+	 * `inline-size` rather than `size`, because the height here is content-driven
+	 * and `size` containment would require it to be declared.
+	 */
 	.window-canvas {
-		padding: var(--s-3);
+		container-type: inline-size;
+		container-name: pane;
+		flex: 1;
+		min-height: 0;
+		min-width: 0;
+		padding: clamp(var(--s-2), 2.5cqi, var(--s-4));
 		overflow-y: auto;
 		overscroll-behavior: contain;
 	}
@@ -2811,6 +3575,19 @@
 			color: var(--folder);
 		}
 
+		/*
+		 * An icon that is art keeps its own colour on hover.
+		 *
+		 * The folder colour means "a thing you open", and it is applied to the
+		 * glyph because for every other tile the glyph *is* a folder. The
+		 * assistant's is a logo, and a logo tinted sage on hover does not read as
+		 * a state - it reads as the wrong colour.
+		 */
+		.shelf-tile[data-art="true"] .shelf-glyph,
+		.shelf-face:hover .shelf-tile[data-art="true"] .shelf-glyph {
+			color: inherit;
+		}
+
 		.shelf-face:hover .shelf-glyph svg path,
 		.window-face:hover .window-icon svg path {
 			fill: color-mix(in srgb, var(--folder) 34%, transparent);
@@ -2825,69 +3602,119 @@
 
 	.window-icon:has(svg path[d^="M6 3h8l4 4v14H6z"]) svg path,
 	.shelf-glyph:has(svg path[d^="M6 3h8l4 4v14H6z"]) svg path {
-		fill: color-mix(in srgb, var(--rice) 6%, transparent);
+		fill: color-mix(in srgb, var(--ink) 8%, transparent);
 	}
 
-	/* ── laptop ──────────────────────────────────────────────────── */
+	/* ── device ──────────────────────────────────────────────────── */
 
 	/*
-	 * The stage carries the perspective, so the lid, the base and the screen all
-	 * agree about where the viewer is standing. `1400px` is a long lens: the
-	 * machine should look like it is being looked at, not like it is being
-	 * photographed with a wide angle from six inches away.
-	 */
-	.laptop {
+		 * One machine, drawn three ways.
+		 *
+		 * Every number that differs between a phone, a tablet and a laptop is a
+		 * custom property set in `devices.css`, which is generated from
+		 * `devices.md`. Nothing below asks how wide the window is - it reads
+		 * `--device-*` and draws. That split is the point: the shape of the machine
+		 * is a decision, written down once in a table, and this is only the drawing.
+		 *
+		 * The stage carries the perspective, so the body, the base and the screen
+		 * all agree about where the viewer is standing. Put it on the body and the
+		 * body gets its own vanishing point, and the deck stops agreeing with it.
+		 */
+	.device {
 		position: relative;
-		width: min(100%, 60rem);
+		width: min(100%, var(--device-width, 60rem));
 		margin-inline: auto;
-		perspective: 1400px;
+		perspective: var(--device-lens);
 		perspective-origin: 50% 20%;
 	}
 
 	/*
-	 * Open, and staying that way.
-	 *
-	 * It used to rotate up from shut as you scrolled to it, which meant the screen
-	 * was unreadable until the animation finished and unusable while it ran. A
-	 * frame around real controls should not make you wait to reach them.
-	 *
-	 * `-4deg` is a lid leaning very slightly back, which is how an open laptop
-	 * actually sits. Zero would be a rectangle, and the small tilt is the whole
-	 * reason the perspective on the stage has anything to do.
-	 */
-	.laptop-lid {
+		 * The screen half: a lid, a slab, a handset. Whichever it is, it is this.
+		 *
+		 * `transform-style: preserve-3d` keeps the screen inside it in the same 3D
+		 * space rather than flattening it to a picture, and the tilt is the only
+		 * reason the perspective on the stage has anything to do. Zero would be an
+		 * ordinary rectangle and the whole stage would be dead weight.
+		 */
+	.device-body {
 		position: relative;
 		transform-origin: 50% 100%;
-		transform: rotateX(-4deg);
+		transform: rotateX(var(--device-tilt));
 		transform-style: preserve-3d;
-		aspect-ratio: 16 / 10.4;
+		aspect-ratio: var(--device-aspect);
 		border: 1px solid var(--line);
-		border-radius: var(--r-card) var(--r-card) 4px 4px;
-		background: var(--nori-900);
-		box-shadow: 0 1px 0 var(--glass-edge) inset;
+		border-radius: var(--device-corner);
+		/*
+		 * The case, one clear step darker than the page.
+		 *
+		 * It was `--bg-3`, which on a pale palette is barely a step at all, and
+		 * the whole machine dissolved into the page behind it - most obviously
+		 * once a window was open, when the only thing left holding the shape was
+		 * a one-pixel border.
+		 *
+		 * `--shell` is a different material from the page rather than another
+		 * step on the same ladder, which is the honest description: this is an
+		 * object sitting on the page, not a panel of it.
+		 */
+		background: linear-gradient(170deg, var(--shell), var(--shell-deep));
+		box-shadow:
+			0 1px 0 var(--glass-edge) inset,
+			var(--lift-3);
 	}
 
-	.laptop-screen {
+	/*
+	 * The screen, and the edge that stops things leaving it.
+	 *
+	 * `overflow: hidden` is not decoration here. Everything inside is positioned
+	 * against the desk - windows, dragged icons, the dock - and every one of
+	 * them is clamped by JavaScript that measures a box. A rounding error, a
+	 * scrollbar gutter, or a machine whose case is rounder than its screen puts
+	 * a pixel or two the other side of that box, and without a clip the case
+	 * simply is not there: on the tablet the right-hand edge had no border at
+	 * all and an icon could be thrown clean out of the machine.
+	 *
+	 * The radius is what makes it visible. A clip on a square box inside a
+	 * rounded case leaves the corners uncovered, which is the bit that reads as
+	 * a missing border rather than as a clipping bug.
+	 */
+	.device-screen {
 		position: absolute;
-		inset: 8px;
+		inset: var(--device-bezel);
 		display: flex;
 		flex-direction: column;
-		border-radius: var(--r-lg);
+		/*
+			 * Inside a rounded body, so its own corners are the body's less the
+			 * bezel. A screen with the same radius as the case it sits in has visibly
+			 * thicker corners than edges, which is the tell that it was drawn rather
+			 * than assembled.
+			 */
+		border-radius: calc(var(--device-corner) - var(--device-bezel));
 		background: var(--bg-0);
+		/*
+		 * Sunk into the case rather than laid on it.
+		 *
+		 * An inset shadow at the top edge is what a screen behind a bezel looks
+		 * like: light falls *into* it. Without it the screen and the case are two
+		 * flat rectangles of slightly different colour, which on a pale palette
+		 * is almost nothing at all.
+		 */
+		box-shadow:
+			inset 0 1px 3px color-mix(in srgb, var(--shadow-deep) 40%, transparent),
+			inset 0 0 0 1px color-mix(in srgb, var(--shadow) 25%, transparent);
 		overflow: hidden;
 		/*
-		 * Above the back panel, explicitly.
-		 *
-		 * Both are children of a `preserve-3d` lid, and z-order there is decided by
-		 * 3D position rather than by document order - which browsers resolve
-		 * consistently for painting and less consistently for hit-testing. Saying
-		 * it in two ways, with a positive `translateZ` here and `pointer-events:
-		 * none` on the panel, means no engine has to be trusted about it.
-		 */
+			 * Above the back panel, explicitly.
+			 *
+			 * Both are children of a `preserve-3d` body, and z-order there is decided
+			 * by 3D position rather than by document order - which browsers resolve
+			 * consistently for painting and less consistently for hit-testing. Saying
+			 * it in two ways, with a positive `translateZ` here and `pointer-events:
+			 * none` on the panel, means no engine has to be trusted about it.
+			 */
 		transform: translateZ(1px);
 	}
 
-	.laptop-wallpaper {
+	.device-wallpaper {
 		position: absolute;
 		inset: 0;
 		overflow: hidden;
@@ -2896,78 +3723,99 @@
 	}
 
 	/*
-	 * The back of the lid, two pixels behind the screen.
-	 *
-	 * With the lid static it is never seen face on, but it is what the bezel's
-	 * edges are made of at this angle - without it the screen's border is a line
-	 * rather than the edge of a panel with thickness.
-	 */
-	.laptop-back {
+		 * The back of the case, two pixels behind the screen.
+		 *
+		 * It is never seen face on, but it is what the bezel's edges are made of at
+		 * this angle - without it the screen's border is a line rather than the edge
+		 * of a panel with thickness.
+		 */
+	.device-back {
 		position: absolute;
 		inset: 0;
-		border-radius: var(--r-card) var(--r-card) 4px 4px;
-		background: linear-gradient(160deg, var(--nori-700), var(--nori-900));
+		border-radius: var(--device-corner);
+		background: linear-gradient(160deg, var(--shell), var(--shell-deep));
 		transform: translateZ(-2px);
 		/*
-		 * Decorative, and it must never be clickable.
-		 *
-		 * It is `inset: 0` over the whole lid and comes after the screen in the
-		 * DOM, so the only thing keeping it behind is `preserve-3d` honouring its
-		 * `translateZ`. Any ancestor that flattens the 3D context - a filter, an
-		 * overflow, a browser quirk - puts this panel on top of the screen, where
-		 * it swallows every click on every folder and looks completely fine while
-		 * doing it.
-		 */
+			 * Decorative, and it must never be clickable.
+			 *
+			 * It is `inset: 0` over the whole body and comes after the screen in the
+			 * DOM, so the only thing keeping it behind is `preserve-3d` honouring its
+			 * `translateZ`. Any ancestor that flattens the 3D context - a filter, an
+			 * overflow, a browser quirk - puts this panel on top of the screen, where
+			 * it swallows every click on every folder and looks completely fine while
+			 * doing it.
+			 */
 		pointer-events: none;
 	}
 
-	.laptop-strip {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: var(--s-3);
-		flex: 0 0 auto;
-		padding: var(--s-2) var(--s-3);
-		border-bottom: 1px solid var(--line-soft);
-		background: color-mix(in srgb, var(--nori-800) 80%, transparent);
-		backdrop-filter: blur(8px);
-	}
-
-	.laptop-title {
-		font-family: var(--mono);
-		font-size: var(--t-xs);
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--fg-faint);
-	}
-
 	/*
-	 * The desktop scrolls on its own, and lets go at the end.
-	 */
-	.laptop-desktop {
-		flex: 1;
-		min-height: 0;
-		padding: var(--s-4);
-		overflow-y: auto;
-		/*
-		 * Chains, deliberately. `overscroll-behavior: contain` was here and it
-		 * trapped people: scroll reaches the bottom of the desktop and the page
-		 * stops moving, so the only way past the laptop is to find a margin
-		 * beside it. Containment is right for a modal somebody chose to open and
-		 * wrong for a panel sitting in the middle of an article they are reading
-		 * through.
+		 * One dot, not a notch.
+		 *
+		 * A notch is a specific vendor's specific phone, and drawing it here would
+		 * make this a picture of that phone rather than a machine. A camera dot is
+		 * what every handheld has had for fifteen years.
 		 */
-		touch-action: pan-y;
+	.device-camera {
+		display: var(--device-camera);
+		position: absolute;
+		left: 50%;
+		top: calc(var(--device-bezel) / 2);
+		width: 5px;
+		height: 5px;
+		translate: -50% -50%;
+		border-radius: 999px;
+		background: var(--shell-deep);
+		transform: translateZ(2px);
+		pointer-events: none;
 	}
 
 	/*
-	 * The base, drawn as two slabs laid back in 3D.
-	 *
-	 * `rotateX(72deg)` is a deck seen at a shallow angle. Exactly 90 would be
-	 * edge-on and invisible; this is the angle at which a keyboard deck reads as a
-	 * surface receding away from you.
-	 */
-	.laptop-base {
+		 * The home indicator: the other half of what says "no keyboard".
+		 *
+		 * Over the screen rather than under it, because that is where it is on a
+		 * handset - and the dock inside the screen leaves room for it.
+		 */
+	.device-bar {
+		display: var(--device-bar);
+		position: absolute;
+		left: 50%;
+		bottom: calc(var(--device-bezel) + var(--s-2));
+		width: 34%;
+		height: 4px;
+		translate: -50% 0;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--ink) 22%, transparent);
+		transform: translateZ(2px);
+		pointer-events: none;
+	}
+
+	/* The seam where a lid meets a deck. On a slab there is nothing to seam. */
+	.device-hinge {
+		display: var(--device-hinge);
+		position: absolute;
+		left: 12%;
+		right: 12%;
+		bottom: -1px;
+		height: 2px;
+		border-radius: 999px;
+		background: linear-gradient(
+			to right,
+			transparent,
+			var(--shell),
+			transparent
+		);
+		pointer-events: none;
+	}
+
+	/*
+		 * The keyboard half, drawn as two slabs laid back in 3D.
+		 *
+		 * `rotateX(72deg)` is a deck seen at a shallow angle. Exactly 90 would be
+		 * edge-on and invisible; this is the angle at which a keyboard deck reads as
+		 * a surface receding away from you.
+		 */
+	.device-base {
+		display: var(--device-deck);
 		position: relative;
 		height: 26px;
 		transform-style: preserve-3d;
@@ -2975,20 +3823,16 @@
 		transform-origin: 50% 0;
 	}
 
-	.laptop-deck {
+	.device-deck {
 		position: absolute;
 		inset: 0;
 		border: 1px solid var(--line);
 		border-top: 0;
 		border-radius: 0 0 var(--r) var(--r);
-		background: linear-gradient(
-			to bottom,
-			var(--nori-600),
-			var(--nori-800) 70%
-		);
+		background: linear-gradient(to bottom, var(--shell), var(--shell-deep) 70%);
 	}
 
-	.laptop-pad {
+	.device-pad {
 		position: absolute;
 		left: 50%;
 		top: 30%;
@@ -2996,15 +3840,15 @@
 		height: 42%;
 		translate: -50% 0;
 		border-radius: 3px;
-		background: color-mix(in srgb, var(--nori-900) 60%, transparent);
+		background: color-mix(in srgb, var(--bg-3) 60%, transparent);
 	}
 
 	/*
-	 * Contact shadow. It is what stops the machine floating, and it is a
-	 * pseudo-surface rather than a box-shadow so it can be wider than the object
-	 * and softer at the edges than a shadow is allowed to be.
-	 */
-	.laptop-shadow {
+		 * Contact shadow. It is what stops the machine floating, and it is a
+		 * pseudo-surface rather than a box-shadow so it can be wider than the object
+		 * and softer at the edges than a shadow is allowed to be.
+		 */
+	.device-shadow {
 		position: absolute;
 		left: 50%;
 		bottom: -18px;
@@ -3013,36 +3857,119 @@
 		translate: -50% 0;
 		background: radial-gradient(
 			ellipse at center,
-			color-mix(in srgb, var(--nori-900) 85%, transparent),
+			color-mix(in srgb, var(--shadow-deep) 45%, transparent),
 			transparent 70%
 		);
 		filter: blur(6px);
 		pointer-events: none;
 	}
 
+	/* ── the screen's furniture ──────────────────────────────────── */
+
 	/*
-	 * Small screens get a shallower lens and a shorter machine.
+	 * Three columns, so the name is centred on the screen and not on what is
+	 * left over beside the toolbar.
 	 *
-	 * At 320px the 16:10 lid is 200px tall, which is not a desktop anyone can use,
-	 * so the aspect ratio gives way to a taller screen. It stops looking quite so
-	 * much like a laptop and starts being usable, which is the right way round.
+	 * `space-between` was here and it put the title hard against the left edge,
+	 * which is a title bar for a window rather than the name of a machine. A
+	 * grid of `1fr auto 1fr` centres the middle column against the screen
+	 * whatever is in the outer two - including nothing, which is the case on
+	 * this site today and would have made a flex `center` look correct right up
+	 * until the first toolbar was added.
 	 */
-	@media (max-width: 620px) {
-		.laptop {
-			perspective: 900px;
-		}
+	.device-strip {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+		gap: var(--s-3);
+		flex: 0 0 auto;
+		padding: var(--s-2) var(--s-3);
+		border-bottom: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--bg-1) 80%, transparent);
+		backdrop-filter: blur(8px);
+	}
 
-		.laptop-lid {
-			aspect-ratio: 3 / 4;
-		}
+	.device-title {
+		grid-column: 2;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+		text-align: center;
+	}
 
-		.laptop-desktop {
-			padding: var(--s-3);
-		}
+	/* Always the third column, so it stays put when there is no title. */
+	.device-tools {
+		grid-column: 3;
+		justify-self: end;
+		display: flex;
+		align-items: center;
+		gap: var(--s-2);
+		min-width: 0;
+	}
 
-		.laptop-base {
-			height: 18px;
-		}
+	/*
+		 * The desktop scrolls on its own, and lets go at the end.
+		 */
+	.device-desktop {
+		container-type: inline-size;
+		container-name: pane;
+		flex: 1;
+		min-height: 0;
+		/*
+		 * The gutter is always there, whether or not anything is scrolling.
+		 *
+		 * This is the fix for the flicker when a window opens, and the loop is
+		 * worth naming because it is invisible in a diff. A window is tall enough
+		 * to need a scrollbar; the scrollbar takes ten pixels of width; the icon
+		 * grid is `auto-fit`, so ten fewer pixels reflows it into fewer columns;
+		 * fewer columns is shorter; shorter no longer needs a scrollbar. Repeat,
+		 * about sixty times a second.
+		 *
+		 * Reserving the space means the width never changes, so there is nothing
+		 * to oscillate between.
+		 */
+		scrollbar-gutter: stable;
+
+		/* Between 12px and 20px, tracking the screen rather than the window. */
+		padding: clamp(var(--s-3), 3cqi, var(--s-4));
+		overflow-y: auto;
+		/*
+		 * Room under the last row of icons for the dock to sit over.
+		 *
+		 * The dock is pinned and the desktop scrolls beneath it, so without this
+		 * the bottom row can only ever be read through it. `--device-floor` is
+		 * the home indicator's share, which is zero on a laptop.
+		 */
+		padding-bottom: calc(var(--s-4) + var(--device-floor));
+		/*
+			 * Chains, deliberately. `overscroll-behavior: contain` was here and it
+			 * trapped people: scroll reaches the bottom of the desktop and the page
+			 * stops moving, so the only way past the machine is to find a margin
+			 * beside it. Containment is right for a modal somebody chose to open and
+			 * wrong for a panel sitting in the middle of an article they are reading
+			 * through.
+			 */
+		touch-action: pan-y;
+	}
+
+	/*
+	 * Everything inside asks the screen how wide it is, not the window.
+	 *
+	 * This is the difference between the machine being a frame and being a costume.
+	 * A tablet chosen in Settings on a wide monitor is 40rem of screen inside a
+	 * 1600px window, and a window-width query would give it a laptop's spacing -
+	 * the exact thing the choice was meant to avoid. `container-type: inline-size`
+	 * makes `cqi` mean one percent of this screen, so the spacing inside is right
+	 * in all three machines and in the showcase, where all three are on one page.
+	 *
+	 * It is declared here rather than on the rule above because it is a statement
+	 * about what the screen is *for*, not about how it is drawn.
+	 */
+	.device-screen {
+		container-type: inline-size;
+		container-name: screen;
 	}
 
 	/* ── shelf search ────────────────────────────────────────────── */
@@ -3055,7 +3982,7 @@
 		padding: var(--s-2) var(--s-3);
 		border: 1px solid var(--line-soft);
 		border-radius: var(--r-lg);
-		background: color-mix(in srgb, var(--nori-900) 55%, transparent);
+		background: color-mix(in srgb, var(--bg-3) 55%, transparent);
 	}
 
 	/* Focus lands on the input, so the ring belongs to the whole field. */
@@ -3137,16 +4064,27 @@
 		border-radius: var(--r-lg);
 		background:
 			linear-gradient(to bottom, var(--glass-edge), transparent 22%),
-			color-mix(in srgb, var(--nori-800) 96%, transparent);
-		box-shadow: 0 24px 60px color-mix(in srgb, var(--nori-900) 72%, transparent);
+			color-mix(in srgb, var(--bg-1) 96%, transparent);
+		box-shadow: var(--lift-3);
 		overflow: hidden;
 		animation: desk-window-in 160ms var(--ease-out);
 	}
 
+	/*
+	 * Opacity and a nudge, never a scale.
+	 *
+	 * `scale: 0.98` was here and it is the reason text shivered as a window
+	 * opened: scaling an element re-rasterises every glyph inside it on every
+	 * frame, and at 98% the type is landing between pixels for the whole
+	 * animation. Two per cent is not enough scale for anybody to notice and is
+	 * more than enough to make the text look wet.
+	 *
+	 * A four-pixel rise reads as the same arrival and leaves the type alone.
+	 */
 	@keyframes desk-window-in {
 		from {
 			opacity: 0;
-			scale: 0.98;
+			translate: 0 4px;
 		}
 	}
 
@@ -3171,7 +4109,7 @@
 		min-height: 40px;
 		padding: var(--s-2) var(--s-2) var(--s-2) var(--s-4);
 		border-bottom: 1px solid var(--line-soft);
-		background: color-mix(in srgb, var(--nori-900) 45%, transparent);
+		background: color-mix(in srgb, var(--bg-3) 45%, transparent);
 		cursor: grab;
 		/* The bar is a handle, so the browser must not claim the drag for
 		   scrolling or for text selection. */
@@ -3212,10 +4150,21 @@
 		}
 	}
 
+	/*
+	 * The body takes what the title bar leaves, and never more.
+	 *
+	 * `flex: 1` with `min-height: 0` is the pair that makes a resized window
+	 * work at all. Without `flex: 1` the body is its content's height and the
+	 * window's own height is ignored; without `min-height: 0` the body refuses
+	 * to shrink below its content, so dragging the corner up cuts the bottom off
+	 * instead of scrolling it. Both had to be here and only one was.
+	 */
 	.desk-body {
 		display: flex;
 		flex-direction: column;
+		flex: 1;
 		min-height: 0;
+		min-width: 0;
 		overflow: hidden;
 	}
 
@@ -3224,6 +4173,21 @@
 	.shelf-root {
 		position: relative;
 		min-height: 100%;
+		/*
+		 * Windows are clipped to the desk, and cannot lengthen it.
+		 *
+		 * They are absolutely positioned, so they do not grow this box - but they
+		 * were still painted past the bottom of it and past the bottom of the
+		 * screen, which is a window somebody has to scroll the desktop to reach
+		 * and can then drag no further. `clip` keeps them inside the machine,
+		 * which is the same promise the drag clamp makes and the same one the
+		 * bezel implies.
+		 *
+		 * `clip` rather than `hidden`: `hidden` makes this a scroll container,
+		 * which would give the desk a second scrollbar of its own and let a
+		 * dragged window scroll it.
+		 */
+		overflow: clip;
 	}
 
 	@media (max-width: 620px) {
@@ -3253,9 +4217,24 @@
 	.dock {
 		display: flex;
 		align-items: center;
-		gap: var(--s-2);
+		/*
+		 * Fluid, against the screen rather than the window.
+		 *
+		 * A fixed 8px of padding is a comfortable slot on a 60rem laptop screen
+		 * and half the height of a phone's dock. `cqi` is one percent of the
+		 * screen this dock is pinned to, so the slot keeps its proportions in all
+		 * three machines - and in a showcase frame, where all three are on the
+		 * page at once and a window-width query would give them identical docks.
+		 */
+		gap: clamp(4px, 1.2cqi, 8px);
 		flex: 0 0 auto;
-		padding: var(--s-2);
+		padding: clamp(5px, 1.4cqi, 9px);
+		/*
+		 * Lifted clear of the home indicator, which is drawn over the bottom of
+		 * the screen on a phone and a tablet and is nothing on a laptop. Without
+		 * it the bar crosses the dock's own buttons.
+		 */
+		padding-bottom: calc(clamp(5px, 1.4cqi, 9px) + var(--device-floor));
 		/*
 		 * Recessed, not applied.
 		 *
@@ -3268,10 +4247,10 @@
 		 * No blur either: it sits on the desktop, which is a solid surface, so
 		 * there is nothing behind it worth the readback.
 		 */
-		background: color-mix(in srgb, var(--nori-900) 86%, transparent);
+		background: color-mix(in srgb, var(--bg-3) 86%, transparent);
 		box-shadow:
-			inset 0 1px 0 color-mix(in srgb, var(--nori-900) 90%, transparent),
-			inset 0 2px 6px color-mix(in srgb, var(--nori-900) 60%, transparent);
+			inset 0 1px 0 color-mix(in srgb, var(--bg-3) 90%, transparent),
+			inset 0 2px 6px color-mix(in srgb, var(--bg-3) 60%, transparent);
 		/*
 		 * Above the desktop, without becoming a containing block.
 		 *
@@ -3301,11 +4280,25 @@
 		display: grid;
 		place-items: center;
 		flex: 0 0 auto;
-		width: 32px;
-		height: 32px;
-		border: 1px solid var(--line-soft);
+		/* Square, and sized with the dock around it rather than against it. */
+		width: clamp(28px, 6cqi, 34px);
+		height: clamp(28px, 6cqi, 34px);
+		/*
+		 * No outline, and no fill until it is pointed at.
+		 *
+		 * The dock is a channel cut into the screen, and a bordered pill sitting
+		 * in it is a button that has been placed there rather than a control that
+		 * belongs to it. A ring drawn around a glyph also competes with the glyph:
+		 * a magnifier already reads as one shape, and putting a circle round it
+		 * makes two.
+		 *
+		 * The well arrives on hover, where it is doing something - saying which of
+		 * several things the pointer is on - rather than sitting there declaring
+		 * that this is a button, which the shape of a magnifier had already said.
+		 */
+		border: 0;
 		border-radius: 999px;
-		background: color-mix(in srgb, var(--nori-700) 55%, transparent);
+		background: transparent;
 		color: var(--fg-dim);
 		cursor: pointer;
 		transition:
@@ -3315,9 +4308,8 @@
 
 	@media (hover: hover) and (pointer: fine) {
 		.dock-start:hover {
-			background: var(--bg-3);
+			background: color-mix(in srgb, var(--ink) 8%, transparent);
 			color: var(--fg);
-			border-color: var(--line);
 		}
 	}
 
@@ -3362,6 +4354,21 @@
 		background: var(--bg-2);
 	}
 
+	/*
+	 * Scrolls when there are more windows than room, and shows nothing for it.
+	 *
+	 * A scrollbar in a dock is a scrollbar across the bottom of somebody's
+	 * screen: it appears the moment a third folder is opened, it is the only
+	 * white thing in the whole machine, and it moves. The row is a handful of
+	 * chips that can be dragged sideways, which is what every dock does, and a
+	 * bar is not how anybody was going to discover that.
+	 *
+	 * `scrollbar-width: none` covers Firefox and modern WebKit; the
+	 * pseudo-element covers the rest. Both are needed and neither is enough.
+	 * Nothing is trapped by this - the row still scrolls by wheel, by drag and
+	 * by keyboard, and every chip in it is a real focusable button, so tabbing
+	 * scrolls it into view.
+	 */
 	.dock-tasks {
 		display: flex;
 		align-items: center;
@@ -3369,6 +4376,12 @@
 		flex: 1;
 		min-width: 0;
 		overflow-x: auto;
+		scrollbar-width: none;
+		overscroll-behavior-x: contain;
+	}
+
+	.dock-tasks::-webkit-scrollbar {
+		display: none;
 	}
 
 	.dock-task {
@@ -3376,7 +4389,7 @@
 		align-items: center;
 		flex: 0 0 auto;
 		border-radius: var(--r);
-		background: color-mix(in srgb, var(--nori-700) 70%, transparent);
+		background: color-mix(in srgb, var(--bg-2) 70%, transparent);
 		overflow: hidden;
 	}
 
@@ -3384,7 +4397,8 @@
 		display: inline-flex;
 		align-items: center;
 		gap: var(--s-2);
-		min-height: 32px;
+		/* The same clamp as the launcher, so the row has one height. */
+		min-height: clamp(28px, 6cqi, 34px);
 		padding: 0 var(--s-2) 0 var(--s-3);
 		border: 0;
 		background: transparent;
@@ -3404,8 +4418,15 @@
 		box-shadow: inset 0 -2px 0 var(--folder);
 	}
 
+	/*
+	 * Fluid against the screen, which is what replaced a `max-width: 620px`
+	 * query here. That query asked how wide the browser window was, and the
+	 * answer has nothing to do with how much room this dock has: the phone
+	 * drawn on a wide monitor got the laptop's label width inside a 22rem
+	 * screen, and every chip overflowed.
+	 */
 	.dock-task-label {
-		max-width: 9rem;
+		max-width: clamp(4rem, 18cqi, 9rem);
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -3414,8 +4435,8 @@
 	.dock-task-close {
 		display: grid;
 		place-items: center;
-		width: 26px;
-		height: 32px;
+		width: clamp(22px, 5cqi, 28px);
+		height: clamp(28px, 6cqi, 34px);
 		border: 0;
 		background: transparent;
 		color: var(--fg-faint);
@@ -3434,15 +4455,623 @@
 		padding-inline: var(--s-2);
 	}
 
-	@media (max-width: 620px) {
-		.dock-task-label {
-			max-width: 5rem;
+	@media (prefers-reduced-motion: reduce) {
+		.desk-window {
+			animation: none;
+		}
+	}
+}
+
+@layer blocks {
+	/* ── terminal ─────────────────────────────────────── */
+
+	/*
+	 * The assistant, drawn as a terminal.
+	 *
+	 * Two columns where there is room for two, one where there is not, and
+	 * `100%` of whatever box it was handed. It lives inside a window somebody
+	 * drags the corner of, so a panel with an opinion about its own height would
+	 * either overflow the window or leave a gap beneath itself.
+	 */
+	.term {
+		display: flex;
+		height: 100%;
+		min-height: 0;
+		background: var(--bg-3);
+		font-family: var(--mono);
+	}
+
+	/*
+	 * The history, and the rule that decides whether it exists.
+	 *
+	 * A container query, not a media query. This is inside a window that is
+	 * resized by dragging a corner, which changes nothing `@media` can see - so
+	 * the sidebar has to be a question about the panel and not about the browser.
+	 * Below 30rem of panel there is no room for a list of titles beside a column
+	 * of answers, and the answers are what somebody opened this for.
+	 */
+	.term-aside {
+		display: none;
+		flex-direction: column;
+		flex: 0 0 13rem;
+		min-height: 0;
+		border-right: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--bg-3) 60%, transparent);
+	}
+
+	@container pane (min-width: 30rem) {
+		.term[data-aside="true"] .term-aside {
+			display: flex;
+		}
+	}
+
+	.term-aside-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--s-2);
+		flex: 0 0 auto;
+		padding: var(--s-3);
+		border-bottom: 1px solid var(--line-soft);
+	}
+
+	.term-aside-title {
+		font-size: var(--t-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+	}
+
+	.term-new {
+		padding: 2px var(--s-2);
+		border: 1px solid var(--line);
+		border-radius: var(--r-sm);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		font-size: var(--t-xs);
+		cursor: pointer;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.term-new:hover {
+			border-color: var(--accent);
+			color: var(--accent);
+		}
+	}
+
+	.term-threads {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-height: 0;
+		margin: 0;
+		padding: var(--s-2);
+		list-style: none;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+	}
+
+	.term-empty {
+		padding: var(--s-2);
+		color: var(--fg-faint);
+		font-size: var(--t-xs);
+	}
+
+	/*
+	 * A title that is one line, always.
+	 *
+	 * These are the first thing somebody asked, so they are sentences of any
+	 * length. Wrapping them turns a list of chats into a wall of prose and makes
+	 * the row heights uneven, which is what makes a list hard to scan.
+	 */
+	.term-thread-face {
+		flex: 1;
+		min-width: 0;
+		padding: var(--s-2);
+		border: 0;
+		border-radius: var(--r-sm);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		font-size: var(--t-xs);
+		text-align: left;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		cursor: pointer;
+	}
+
+	.term-thread-face[data-active="true"] {
+		background: var(--bg-2);
+		color: var(--fg);
+		box-shadow: inset 2px 0 0 var(--accent);
+	}
+
+	.term-thread-drop {
+		flex: 0 0 auto;
+		width: 22px;
+		border: 0;
+		background: transparent;
+		color: var(--fg-faint);
+		font: inherit;
+		cursor: pointer;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.term-thread-face:hover {
+			background: var(--bg-2);
+			color: var(--fg);
+		}
+
+		.term-thread-drop:hover {
+			color: var(--accent);
+		}
+	}
+
+	/* The log and the composer, in that order and no other. */
+	.term-main {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-width: 0;
+		min-height: 0;
+	}
+
+	/*
+	 * `min-height: 0` is the line that makes this scroll.
+	 *
+	 * A flex child will not shrink below its content without it, so a long
+	 * transcript pushes the composer off the bottom of the window instead of
+	 * scrolling inside this box. It is the usual reason an `overflow` that is
+	 * set appears to do nothing, and it is now the fourth place in this
+	 * stylesheet where that was the answer.
+	 */
+	.term-log {
+		display: flex;
+		flex-direction: column;
+		gap: clamp(var(--s-3), 3cqi, var(--s-4));
+		flex: 1;
+		min-height: 0;
+		padding: clamp(var(--s-3), 3cqi, var(--s-4));
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		touch-action: pan-y;
+	}
+
+	/* ── the banner ───────────────────────────────────── */
+
+	.term-banner {
+		display: flex;
+		align-items: center;
+		gap: var(--s-2);
+		flex: 0 0 auto;
+		margin: 0;
+		font-size: var(--t-xs);
+		letter-spacing: 0.22em;
+		text-transform: lowercase;
+		user-select: none;
+	}
+
+	/*
+	 * The slashes are punctuation and the name is the subject, so they are
+	 * different colours and that is the entire reason they are separate
+	 * elements. Written as one string they could only ever be one colour, and
+	 * the banner would read as a heading that happens to have slashes in it.
+	 */
+	.term-slash {
+		color: var(--fg-faint);
+	}
+
+	.term-mark {
+		color: var(--accent);
+	}
+
+	.term-greeting {
+		margin: 0;
+		color: var(--fg-faint);
+		font-size: var(--t-xs);
+		line-height: 1.6;
+		text-wrap: pretty;
+	}
+
+	/* ── one turn ─────────────────────────────────────── */
+
+	/*
+	 * A sigil in a fixed gutter, and the answer beside it.
+	 *
+	 * `auto 1fr` rather than a flex row, so every sigil lands on the same
+	 * vertical line however wide the panel is. A ragged left edge is what makes
+	 * a log stop looking like output.
+	 */
+	.term-turn {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: var(--s-3);
+		min-width: 0;
+	}
+
+	.term-sigil {
+		color: var(--fg-faint);
+		font-size: var(--t-sm);
+		line-height: 1.6;
+		user-select: none;
+	}
+
+	.term-turn[data-role="assistant"] .term-sigil {
+		color: var(--accent);
+	}
+
+	/*
+	 * The same containment as a page in a window, for the same reason: the model
+	 * writes fences and tables, and neither reflows. Each scrolls inside its own
+	 * box rather than widening the panel around it.
+	 */
+	.term-body {
+		min-width: 0;
+		font-size: clamp(var(--t-xs), 3.2cqi, var(--t-sm));
+		line-height: 1.6;
+	}
+
+	.term-body pre,
+	.term-body table {
+		display: block;
+		max-width: 100%;
+		overflow-x: auto;
+	}
+
+	.term-body a,
+	.term-body code {
+		overflow-wrap: anywhere;
+	}
+
+	.term-plain {
+		margin: 0;
+		white-space: pre-wrap;
+	}
+
+	.term-caret {
+		width: 8px;
+		height: 1em;
+		margin: 0;
+		background: var(--accent);
+		animation: term-blink 1s steps(2, start) infinite;
+	}
+
+	@keyframes term-blink {
+		50% {
+			opacity: 0;
+		}
+	}
+
+	/* ── the composer ─────────────────────────────────── */
+
+	/*
+	 * Pinned to the bottom, outside the scrolling log.
+	 *
+	 * `flex: 0 0 auto` on a sibling of the log is what pins it: the log takes
+	 * everything left over and this keeps its own height at every window size.
+	 * Inside the log it would scroll away with the transcript, which is the
+	 * difference between an interface and a thing that used to be there.
+	 *
+	 * `align-items: flex-end` so the prompt and the button stay level with the
+	 * *last* line of a field that has grown, rather than floating in the middle
+	 * of it.
+	 */
+	.term-form {
+		display: flex;
+		align-items: flex-end;
+		gap: var(--s-2);
+		flex: 0 0 auto;
+		padding: clamp(var(--s-2), 2.5cqi, var(--s-3));
+		border-top: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--bg-3) 55%, transparent);
+	}
+
+	.term-prompt {
+		flex: 0 0 auto;
+		padding-bottom: 6px;
+		color: var(--accent);
+		font-size: var(--t-sm);
+		user-select: none;
+	}
+
+	/*
+	 * The field has no box of its own.
+	 *
+	 * A bordered input inside a bordered composer inside a bordered window is
+	 * three frames around one line of text. The prompt beside it already says
+	 * where to type, which is how it works in the thing this is imitating.
+	 *
+	 * Its height is set inline by the component from `scrollHeight`, so this
+	 * rule's job is the ceiling - without one a pasted paragraph pushes the
+	 * transcript off the top of the window.
+	 */
+	.term-field {
+		flex: 1;
+		min-width: 0;
+		max-height: 7lh;
+		padding: var(--s-2) 0;
+		border: 0;
+		background: transparent;
+		color: var(--fg);
+		font: inherit;
+		font-size: var(--t-sm);
+		line-height: 1.5;
+		resize: none;
+	}
+
+	.term-field:focus-visible {
+		outline: 0;
+	}
+
+	.term-field::placeholder {
+		color: var(--fg-faint);
+	}
+
+	/*
+	 * Outlined, in the accent, and filled by nothing.
+	 *
+	 * A solid orange button is the brightest thing on the screen and this panel
+	 * is a dark log - it would pull the eye away from the answer, which is the
+	 * only thing here worth looking at. An outline in the same colour is exactly
+	 * as findable and does not compete: it reads as the terminal's own control
+	 * rather than as a call to action pasted onto one.
+	 *
+	 * It fills on hover, which is where a fill is doing work.
+	 */
+	.term-send {
+		flex: 0 0 auto;
+		min-height: 32px;
+		padding-inline: var(--s-3);
+		border: 1px solid var(--accent);
+		border-radius: var(--r-sm);
+		background: transparent;
+		color: var(--accent);
+		font: inherit;
+		font-size: var(--t-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.term-send:hover:not(:disabled) {
+			background: var(--accent);
+			color: var(--on-accent);
+		}
+	}
+
+	.term-send:disabled {
+		border-color: var(--line);
+		color: var(--fg-faint);
+		cursor: default;
+	}
+
+	/*
+	 * An application fills its window; a document is padded inside one.
+	 *
+	 * `:has()` is the honest way to say that. The canvas cannot know what it was
+	 * given, and adding a prop to say so would push a layout decision up through
+	 * three components to be answered by the thing that looked it up.
+	 */
+	/*
+	 * An application opens bigger than a folder does.
+	 *
+	 * A window sized for a grid of eight icons is a cramped terminal, and the
+	 * defaults here are the ones somebody gets before they have ever dragged a
+	 * corner - which for most readers is every time. `var(--w, ...)` keeps a
+	 * size they *have* chosen winning, so this is a better default rather than
+	 * an override.
+	 */
+	.desk-window:has(.term) {
+		width: min(var(--w, 44rem), 100%);
+		height: var(--h, min(82%, 30rem));
+		max-height: min(var(--h, min(82%, 30rem)), 100%);
+	}
+
+	.window-canvas:has(.term) {
+		display: flex;
+		padding: 0;
+		overflow: hidden;
+	}
+
+	.window-page:has(.term) {
+		display: flex;
+		flex: 1;
+		min-height: 0;
+		min-width: 0;
+		padding: 0;
+	}
+
+	/*
+	 * Filling is done with `flex`, never with `height: 100%`.
+	 *
+	 * A percentage height resolves against an ancestor's height, and every
+	 * ancestor here is a flex item whose height comes from `flex: 1` - which
+	 * browsers treat as definite inconsistently enough that the terminal
+	 * collapsed to the height of its own contents and sat at the bottom of a
+	 * mostly empty window. `flex: 1` asks for the leftover space instead, which
+	 * needs no ancestor to have committed to a height at all.
+	 */
+	.window-page:has(.term) .term {
+		flex: 1;
+		height: auto;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.term-caret,
+		.term-send {
+			animation: none;
+			transition: none;
+		}
+	}
+}
+
+@layer blocks {
+	/* ── boot ─────────────────────────────────────────── */
+
+	/*
+	 * A machine booting, drawn inside whatever box it was given.
+	 *
+	 * It fills its parent rather than the viewport, because on this site it
+	 * boots a *screen* - the thing loading is the desktop inside a device, not
+	 * the page around it. A loader that covered the browser window would hide
+	 * the article somebody is already reading in order to announce that a
+	 * decoration further down is not ready.
+	 */
+	.boot {
+		position: absolute;
+		inset: 0;
+		z-index: 6;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: clamp(var(--s-3), 3cqi, var(--s-5));
+		background: var(--bg-0);
+		animation: boot-out 260ms var(--ease-out) 1.4s forwards;
+	}
+
+	/*
+	 * Where the mark goes. A square, so a canvas inside it has an aspect ratio
+	 * to work with before it has decided anything about the model in it.
+	 */
+	.boot-stage {
+		width: clamp(5rem, 22cqi, 9rem);
+		aspect-ratio: 1;
+	}
+
+	/*
+	 * `tabular-nums` is the whole rule.
+	 *
+	 * Proportional digits make 1 narrower than 8, so a counter running from 000
+	 * to 100 shifts sideways on almost every frame. It is the single most
+	 * noticeable thing about a number that lacks it, and nobody can say what is
+	 * wrong - only that it looks cheap.
+	 */
+	.boot-count {
+		margin: 0;
+		font-family: var(--mono);
+		font-size: clamp(var(--t-sm), 5cqi, var(--t-lg));
+		font-variant-numeric: tabular-nums;
+		letter-spacing: 0.24em;
+		color: var(--accent);
+	}
+
+	.boot-rail {
+		width: clamp(8rem, 44cqi, 18rem);
+		height: 2px;
+		border-radius: 999px;
+		background: var(--bg-3);
+		overflow: hidden;
+	}
+
+	/*
+	 * `scaleX` from the left, not `width`.
+	 *
+	 * A transform composites on its own layer; a width relays out the rail and
+	 * everything after it on every frame. At sixty frames a second that is the
+	 * difference between a loader that costs nothing and a loader that competes
+	 * with the WebGL context starting up two elements away - which is precisely
+	 * what it is covering for.
+	 */
+	.boot-fill {
+		width: 100%;
+		height: 100%;
+		transform-origin: left;
+		background: var(--accent);
+		transition: transform 180ms linear;
+	}
+
+	@keyframes boot-out {
+		to {
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+
+	/*
+	 * Reduced motion keeps the loader and drops the flourish.
+	 *
+	 * Removing it entirely would be worse than useless: somebody who asked for
+	 * less motion still needs to know something is happening, and a blank screen
+	 * with no explanation is not less motion, it is less information.
+	 */
+	@media (prefers-reduced-motion: reduce) {
+		.boot {
+			animation: none;
+		}
+
+		.boot-fill {
+			transition: none;
+		}
+	}
+}
+
+@layer blocks {
+	/* ── theme toggle ─────────────────────────────────── */
+
+	/*
+	 * A segmented control: one well, one lit option.
+	 *
+	 * Recessed rather than raised, like the dock, because it is a place you put
+	 * a choice into rather than a thing that sits on the page. The inset edge is
+	 * what makes a row of three buttons read as one control instead of three.
+	 */
+	.theme-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 2px;
+		padding: 2px;
+		border: 1px solid var(--line-soft);
+		border-radius: 999px;
+		background: var(--bg-2);
+		box-shadow: inset 0 1px 2px
+			color-mix(in srgb, var(--shadow) 22%, transparent);
+	}
+
+	.theme-toggle-option {
+		display: grid;
+		place-items: center;
+		width: 28px;
+		height: 28px;
+		border: 0;
+		border-radius: 999px;
+		background: transparent;
+		color: var(--fg-faint);
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	/*
+	 * `aria-checked` is the selector, not a `data-active` beside it.
+	 *
+	 * The attribute that tells a screen reader which option is chosen is the
+	 * same attribute that draws it, so the two cannot disagree. A separate
+	 * `data-` flag is a second source of truth for one fact, and the way it
+	 * fails is that the control looks right and announces the wrong option.
+	 */
+	.theme-toggle-option[aria-checked="true"] {
+		background: var(--bg-0);
+		color: var(--accent);
+		box-shadow: var(--lift-1);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.theme-toggle-option:hover {
+			color: var(--fg);
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.desk-window {
-			animation: none;
+		.theme-toggle-option {
+			transition: none;
 		}
 	}
 }
@@ -3465,7 +5094,7 @@
 	 */
 	.window-canvas,
 	.search-results,
-	.laptop-desktop,
+	.device-desktop,
 	.nav-sheet {
 		scrollbar-width: thin;
 		scrollbar-color: var(--line) transparent;
@@ -3473,14 +5102,14 @@
 
 	.window-canvas::-webkit-scrollbar,
 	.search-results::-webkit-scrollbar,
-	.laptop-desktop::-webkit-scrollbar,
+	.device-desktop::-webkit-scrollbar,
 	.nav-sheet::-webkit-scrollbar {
 		width: 10px;
 	}
 
 	.window-canvas::-webkit-scrollbar-track,
 	.search-results::-webkit-scrollbar-track,
-	.laptop-desktop::-webkit-scrollbar-track,
+	.device-desktop::-webkit-scrollbar-track,
 	.nav-sheet::-webkit-scrollbar-track {
 		background: transparent;
 	}
@@ -3493,7 +5122,7 @@
 	 */
 	.window-canvas::-webkit-scrollbar-thumb,
 	.search-results::-webkit-scrollbar-thumb,
-	.laptop-desktop::-webkit-scrollbar-thumb,
+	.device-desktop::-webkit-scrollbar-thumb,
 	.nav-sheet::-webkit-scrollbar-thumb {
 		border: 2px solid transparent;
 		border-radius: 999px;
@@ -3504,7 +5133,7 @@
 	@media (hover: hover) and (pointer: fine) {
 		.window-canvas::-webkit-scrollbar-thumb:hover,
 		.search-results::-webkit-scrollbar-thumb:hover,
-		.laptop-desktop::-webkit-scrollbar-thumb:hover,
+		.device-desktop::-webkit-scrollbar-thumb:hover,
 		.nav-sheet::-webkit-scrollbar-thumb:hover {
 			background: var(--fg-faint);
 			background-clip: content-box;
@@ -3517,14 +5146,14 @@
 	 * canvas grows past the window instead of scrolling inside it - which is
 	 * the usual reason an overflow that is set does not appear to work.
 	 */
+	/*
+	 * `.window-canvas` states its own `flex: 1; min-height: 0` now, so the
+	 * descendant override that used to be here is gone. Two rules saying the
+	 * same thing about the same element is one rule and one place it is wrong.
+	 */
 	.desk-body > .window-frame {
 		display: flex;
 		flex-direction: column;
-		min-height: 0;
-	}
-
-	.desk-body .window-canvas {
-		flex: 1;
 		min-height: 0;
 	}
 }
@@ -3569,10 +5198,45 @@
 	 * resized, and fall back to the default otherwise. `var(--w, <default>)` is
 	 * what lets one rule serve both cases without a second class.
 	 */
+	/*
+	 * A resized window, bounded by the desk it is on.
+	 *
+	 * `--w` and `--h` are pixels, committed when somebody let go of the corner,
+	 * and pixels do not survive a change of machine: a window sized on a 60rem
+	 * laptop screen is wider than the whole of a 22rem phone, and it hung off
+	 * both edges with no way to reach the corner and drag it back.
+	 *
+	 * `min()` against 100% is what makes the stored size a *wish*. It is honoured
+	 * wherever there is room and quietly ignored where there is not, which is the
+	 * right relationship between a remembered preference and a smaller screen.
+	 */
 	.desk-window {
-		width: var(--w, min(30rem, calc(100% - var(--s-5))));
+		width: min(var(--w, min(30rem, calc(100% - var(--s-5)))), 100%);
+		/*
+		 * `min()` on the height as well as the max-height.
+		 *
+		 * They have to agree. Clamping only the max-height left `height` at the
+		 * stored pixel value, so a window sized on a laptop and reopened on a
+		 * phone was told to be 500px tall and allowed to be 300 - and a flex
+		 * column whose height and max-height disagree lays its children out
+		 * against the height and then paints them inside the max, which is
+		 * exactly the "everything is cut off" this produced.
+		 */
+		/*
+		 * `--h` is a length or it is nothing, and the two cases are separate
+		 * declarations on purpose.
+		 *
+		 * This was one line, `min(var(--h, auto), 100%)`, and `auto` is not a
+		 * length - so on every window nobody had resized the whole declaration
+		 * was invalid, dropped, and the height fell back to the initial value
+		 * with no warning anywhere. Written as a fallback of `auto` on its own it
+		 * is valid in both cases, and the clamp below still bounds it.
+		 */
 		height: var(--h, auto);
-		max-height: var(--h, min(78%, 30rem));
+		max-height: min(var(--h, min(78%, 30rem)), 100%);
+		/* Never smaller than its own title bar plus something to look at. */
+		min-width: min(15rem, 100%);
+		min-height: 10rem;
 	}
 
 	.desk-window[data-resizing="true"] {
@@ -3615,8 +5279,46 @@
 	}
 
 	/* A page shown inside a window, rather than navigated to. */
+	/*
+	 * A page, inside a box roughly a third the width it was written for.
+	 *
+	 * Prose reflows; four things do not, and every one of them pushed the window
+	 * wider than the screen rather than scrolling: a code block, a table, a long
+	 * URL, and an image with an intrinsic size. Each gets the same treatment -
+	 * scroll inside its own box, or wrap.
+	 *
+	 * `min-width: 0` on the page itself is what allows any of it to work. A grid
+	 * or flex child's automatic minimum size is its content, so without this the
+	 * page is as wide as its widest table no matter what the rules below say.
+	 */
 	.window-page {
-		padding: var(--s-4);
+		min-width: 0;
+		padding: clamp(var(--s-2), 3cqi, var(--s-4));
+		font-size: clamp(var(--t-xs), 3.4cqi, var(--t-sm));
+	}
+
+	.window-page pre,
+	.window-page table {
+		display: block;
+		max-width: 100%;
+		overflow-x: auto;
+	}
+
+	.window-page img,
+	.window-page svg,
+	.window-page video {
+		max-width: 100%;
+		height: auto;
+	}
+
+	/*
+	 * A URL is one word as far as wrapping is concerned, and one word wider than
+	 * the box wins. `anywhere` rather than `break-word` because it is allowed to
+	 * affect the intrinsic minimum width, which is the half that matters here.
+	 */
+	.window-page a,
+	.window-page code {
+		overflow-wrap: anywhere;
 	}
 
 	@media (max-width: 620px) {

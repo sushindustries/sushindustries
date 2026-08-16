@@ -43,6 +43,11 @@ Multiple paths per glyph go in separate backticks in the same cell.
 | link | `M10 13.5a3.5 3.5 0 0 0 5 0l3-3a3.54 3.54 0 0 0-5-5l-1.2 1.2` `M14 10.5a3.5 3.5 0 0 0-5 0l-3 3a3.54 3.54 0 0 0 5 5l1.2-1.2` | Two links of a chain. |
 | close | `M6 6l12 12M18 6 6 18` | A cross. Nothing else means close. |
 | search | `M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z` `M16.2 16.2 21 21` | A lens and a handle. |
+| sushi | `M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z` `M12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z` `M12 10.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z` `M3.2 12h1.6` `M19.2 12h1.6` `M12 3.2v1.6` `M12 19.2v1.6` | A maki roll seen end on, which is the only angle at which a roll is legible at 24px: nori, rice, filling, three concentric circles. The four ticks are the tell - they are register marks rather than decoration, and they are what stops it reading as a record, a target or a loading spinner. |
+| sun | `M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z` `M12 2.5v2` `M12 19.5v2` `M4.2 4.2l1.4 1.4` `M18.4 18.4l1.4 1.4` `M2.5 12h2` `M19.5 12h2` `M4.2 19.8l1.4-1.4` `M18.4 5.6l1.4-1.4` | A disc and eight rays. Eight rather than four, because four reads as a compass; and the rays are detached from the disc so the whole thing still resolves at 15px. |
+| moon | `M20 14.5A8.5 8.5 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z` | One crescent, cut by an offset circle rather than drawn as a shape. A moon with stars beside it is three marks fighting for the same 15 pixels. |
+| contrast | `M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z` `M12 3v18a9 9 0 0 0 0-18z` | A circle half filled: the standard mark for "follow the system", and the only one of the three that means a rule rather than a state. |
+| chat | `M4 5h16v11H9l-5 4z` | One speech bubble with a tail, and no second bubble behind it. Two bubbles say conversation and are half the size each at 24px, where the tail is the only part that still reads. |
 | linkedin | `M4 4h16v16H4z` `M8 10.5v6` `M8 7.6v.1` `M11.6 16.5v-6` `M11.6 13.2a2.6 2.6 0 0 1 5.2 0v3.3` | The wordmark reduced to its two letters in a square, drawn at this stroke weight rather than pasted in as a logo. |
 | clock | `M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16z` `M12 7.6V12l3 1.8` | A face and two hands. |
 

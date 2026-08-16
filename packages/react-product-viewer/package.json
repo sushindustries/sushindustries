@@ -60,6 +60,16 @@
 				"default": "./dist/router.cjs"
 			}
 		},
+		"./model-mark": {
+			"import": {
+				"types": "./dist/elements/model-mark/index.d.mts",
+				"default": "./dist/elements/model-mark/index.mjs"
+			},
+			"require": {
+				"types": "./dist/elements/model-mark/index.d.cts",
+				"default": "./dist/elements/model-mark/index.cjs"
+			}
+		},
 		"./styles.css": "./src/styles.css",
 		"./package.json": "./package.json"
 	},

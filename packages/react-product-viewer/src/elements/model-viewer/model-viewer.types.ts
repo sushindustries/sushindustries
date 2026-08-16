@@ -5,6 +5,7 @@ import type {
 } from "@sushindustries/product-viewer";
 import type { GLTF } from "three-stdlib";
 import type { ReactNode, RefObject } from "react";
+import type { Group } from "three";
 import type { LoadingOverlayRenderer } from "../../loading-overlay";
 
 /**
@@ -52,6 +53,81 @@ export interface ModelViewerProps<S extends ZoneScheme = ZoneScheme> {
 
 	/** Per-zone colour multipliers, for single-mesh models. */
 	zoneTints?: ZoneTints<S>;
+
+	/**
+	 * No background node and an alpha drawing buffer, so the page shows through.
+	 *
+	 * The default clears to `--pv-canvas-bg`, which is right for a product on a
+	 * card: the model needs a ground to sit on and a rectangle is honest about
+	 * where the viewer ends. It is wrong for a mark in a hero, where that
+	 * rectangle is the only thing announcing a canvas is there at all.
+	 *
+	 * It also withholds the loading scrim, which is the same rectangle arriving
+	 * a second time while the model loads.
+	 */
+	transparent?: boolean;
+
+	/**
+	 * The group holding the model, so something outside can move it.
+	 *
+	 * A ref rather than a `rotation` prop on purpose. Anything driving this is
+	 * doing so per frame - a scroll position, a pointer, a clock - and a prop
+	 * would re-render the whole viewer sixty times a second to change a number
+	 * React does not need to know about. Write to `ref.current.rotation.y` and
+	 * the render loop picks it up.
+	 *
+	 * Orbit controls still own the camera, so turning the model this way and
+	 * dragging to look at it compose rather than fight.
+	 */
+	modelRef?: RefObject<Group | null>;
+
+	/**
+	 * Orbit controls, and the click underneath them. @default true
+	 *
+	 * On by default: a product is a thing people turn over. Off makes this a
+	 * picture that happens to be lit in real time, which is what it has to be
+	 * anywhere the canvas sits inside something else that is clickable - a
+	 * button, a link, a desktop icon. Orbit controls attach a pointerdown
+	 * listener to the canvas, so a viewer inside a button is a button that
+	 * cannot be pressed, and nothing about the markup says why.
+	 */
+	controls?: boolean;
+
+	/**
+	 * The contact shadow under the model. @default true
+	 *
+	 * Worth turning off below roughly a hundred pixels: it is a second render
+	 * target, it is re-baked every frame when `modelRef` is set, and at icon
+	 * size the whole shadow is about four pixels of grey.
+	 */
+	shadows?: boolean;
+
+	/**
+	 * Frame the camera to the model rather than to a fixed position.
+	 *
+	 * The default camera is placed for a landscape canvas, and `fov` is
+	 * *vertical* - so on a square canvas the horizontal field of view is much
+	 * narrower and the same model overflows the frame. That is not a wrong
+	 * camera, it is a camera with an aspect ratio baked into it.
+	 *
+	 * Turn this on anywhere the shape of the box is not known in advance: a
+	 * square icon, a card that reflows, a panel somebody resizes.
+	 */
+	fit?: boolean;
+
+	/**
+	 * Where the origin sits inside the model, and what a rotation turns around.
+	 * @default "base"
+	 *
+	 * `base` rests it on y=0 so contact shadows and the grid land where the
+	 * object meets the ground. `center` puts the origin at the middle of the
+	 * bounding box.
+	 *
+	 * Anything driving `modelRef` wants `center`: with the base on y=0 the mass
+	 * sits entirely above the axis, so a Y rotation swings the object around the
+	 * origin like a fairground ride instead of turning it on the spot.
+	 */
+	pivot?: "base" | "center";
 
 	/**
 	 * What the wheel does. @default "zoom"

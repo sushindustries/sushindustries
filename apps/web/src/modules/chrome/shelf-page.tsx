@@ -1,5 +1,6 @@
 import { MarkdownView, type ShelfEntry } from "@sushindustries/ui";
 import type { ReactNode } from "react";
+import { SiteAssistant } from "../assistant/site-assistant";
 import { findComponentPage } from "../content/components/component-page";
 import { findPackage } from "../content/packages/packages.catalogue";
 import { findPost } from "../content/posts/posts.catalogue";
@@ -30,9 +31,38 @@ function slugFrom(href: string, prefix: string): string | null {
 	return rest.length > 0 ? rest : null;
 }
 
+/**
+ * Entries that exist on the desktop and nowhere else.
+ *
+ * `/assistant` is an id for a window, not a route - nothing serves it, and
+ * nothing should: a chat panel on a page you navigate to is a page with a chat
+ * panel on it, and this one is an application running on a machine.
+ *
+ * It has to be written down because three things ask the same question and
+ * would otherwise each answer it differently: the right-click Open, which
+ * navigated and produced a 404; Copy link and Share, which would have handed
+ * somebody a URL that 404s for them too; and the desktop itself.
+ */
+const DESK_ONLY: readonly string[] = ["/assistant"];
+
+export function isDeskOnly(entry: ShelfEntry): boolean {
+	return Boolean(entry.href && DESK_ONLY.includes(entry.href));
+}
+
 export function renderShelfPage(entry: ShelfEntry): ReactNode {
 	const href = entry.href;
 	if (!href) return null;
+
+	/*
+	 * The assistant is an application, not a page.
+	 *
+	 * It is the one entry here whose window is a live component rather than a
+	 * lookup, and the only one with no route behind it: `/assistant` is an id
+	 * for the desktop and nothing serves it. A chat panel on a page you navigate
+	 * to is a page with a chat panel on it; this one is a thing running on a
+	 * machine, which is the whole reason it is here.
+	 */
+	if (href === DESK_ONLY[0]) return <SiteAssistant />;
 
 	const component = slugFrom(href, "/components/");
 	if (component) {

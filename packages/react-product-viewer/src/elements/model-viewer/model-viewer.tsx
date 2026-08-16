@@ -1,4 +1,4 @@
-import { ContactShadows, Grid, OrbitControls } from "@react-three/drei";
+import { Bounds, ContactShadows, Grid, OrbitControls } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { PMREMGenerator } from "three";
@@ -8,7 +8,7 @@ import { DefaultLoadingOverlay, LoadingOverlay } from "../../loading-overlay";
 import { useScrollMode } from "./use-scroll-mode";
 import type { ModelViewerProps } from "./model-viewer.types";
 import type { ZoneScheme } from "@sushindustries/product-viewer";
-import type { ReactElement, RefObject } from "react";
+import type { ReactElement, ReactNode, RefObject } from "react";
 
 /**
  * The canvas, and nothing else.
@@ -59,6 +59,34 @@ function useToken(
 	}, [host, name]);
 
 	return value;
+}
+
+/**
+ * `Bounds`, or nothing at all.
+ *
+ * A component rather than a ternary at the call site, because `Bounds` mounts a
+ * camera controller: putting it behind `fit ? <Bounds>…</Bounds> : <>…</>` would
+ * remount the whole model subtree whenever `fit` changed, discarding the GLB's
+ * materials and re-uploading its textures to the GPU.
+ *
+ * `clip` is deliberately off. It moves the near and far planes onto the object,
+ * and a model being turned through `modelRef` sweeps outside the box that was
+ * measured on mount - so its far corner would clip away mid-rotation.
+ */
+function Fitted({
+	fit,
+	children,
+}: {
+	fit: boolean;
+	children: ReactNode;
+}): ReactElement {
+	if (!fit) return <>{children}</>;
+
+	return (
+		<Bounds fit observe margin={1.1}>
+			{children}
+		</Bounds>
+	);
 }
 
 /** Procedural environment lighting. No HDRI fetch, no CDN dependency. */
@@ -130,10 +158,16 @@ export function ModelViewer<S extends ZoneScheme = ZoneScheme>({
 	zoneScheme,
 	zoneTints,
 	scroll = "zoom",
+	transparent = false,
 	environment,
 	grid = false,
 	groundBound = true,
 	snapshotRef,
+	modelRef,
+	controls = true,
+	shadows = true,
+	fit = false,
+	pivot = "base",
 	loadingLabel = "Loading model…",
 	loadingOverlay = DefaultLoadingOverlay,
 	scrollHint = "Hold ⌘ or Ctrl to zoom",
@@ -188,6 +222,14 @@ export function ModelViewer<S extends ZoneScheme = ZoneScheme>({
 			// would be actively wrong.
 			{...(preventSmoothScroll ? { "data-lenis-prevent": "" } : {})}
 			className={["pv-viewer", className].filter(Boolean).join(" ")}
+			// Without controls there is nothing here to point at, so every pointer
+			// event belongs to whatever this is sitting inside. A canvas that eats
+			// the click of the button around it is the failure this prevents.
+			data-controls={controls ? "true" : "false"}
+			// The loading scrim reads this. A transparent viewer is drawn *on the
+			// page*, and a scrim is precisely the rectangle that arrangement
+			// exists to avoid - so it must not paint one while the model arrives.
+			data-transparent={transparent ? "true" : "false"}
 		>
 			<Canvas
 				frameloop={visible ? "always" : "never"}
@@ -205,9 +247,12 @@ export function ModelViewer<S extends ZoneScheme = ZoneScheme>({
 					// and the snapshot comes back blank. It costs a buffer copy, so only
 					// when a snapshot is actually wanted.
 					preserveDrawingBuffer: Boolean(snapshotRef),
+					alpha: transparent,
 				}}
 			>
-				<color attach="background" args={[background]} />
+				{transparent ? null : (
+					<color attach="background" args={[background]} />
+				)}
 				{environment ?? <DefaultEnvironment />}
 				{snapshotRef ? <SnapshotCapture snapshotRef={snapshotRef} /> : null}
 
@@ -218,22 +263,39 @@ export function ModelViewer<S extends ZoneScheme = ZoneScheme>({
 				/>
 
 				<Suspense fallback={null}>
-					<ProductModel
-						model={model}
-						gltf={gltf}
-						variants={variants}
-						zoneScheme={zoneScheme}
-						zoneTints={zoneTints}
-					/>
-					<ContactShadows
-						opacity={0.35}
-						scale={size * 3.5}
-						blur={2.4}
-						far={size * 1.2}
-						// Baked once. A shadow recomputed every frame for a model that never
-						// moves is the cheapest thing here to delete.
-						frames={1}
-					/>
+					{/*
+						Always wrapped in a group, whether or not anyone asked for the
+						ref. A group with no transform costs one matrix multiply and
+						keeps the scene graph the same shape in both cases, which is
+						worth more than the multiply.
+					*/}
+					<Fitted fit={fit}>
+						<group ref={modelRef}>
+							<ProductModel
+								model={model}
+								gltf={gltf}
+								variants={variants}
+								zoneScheme={zoneScheme}
+								zoneTints={zoneTints}
+								pivot={pivot}
+							/>
+						</group>
+					</Fitted>
+
+					{shadows ? (
+						<ContactShadows
+							opacity={0.35}
+							scale={size * 3.5}
+							blur={2.4}
+							far={size * 1.2}
+							// Baked once for a model that never moves, which is the
+							// cheapest thing here to delete - but a model somebody is
+							// driving through `modelRef` does move, and a shadow frozen on
+							// frame one under a turning object is more obviously wrong
+							// than no shadow at all.
+							frames={modelRef ? Infinity : 1}
+						/>
+					) : null}
 					{children}
 				</Suspense>
 
@@ -252,18 +314,20 @@ export function ModelViewer<S extends ZoneScheme = ZoneScheme>({
 					/>
 				) : null}
 
-				<OrbitControls
-					makeDefault
-					target={[0, size * 0.22, 0]}
-					enablePan={false}
-					enableZoom={enableZoom}
-					minPolarAngle={groundBound ? 0.15 : 0}
-					maxPolarAngle={groundBound ? Math.PI / 2 - 0.05 : Math.PI}
-					minDistance={size * 0.45}
-					maxDistance={size * 3}
-					enableDamping
-					dampingFactor={0.08}
-				/>
+				{controls ? (
+					<OrbitControls
+						makeDefault
+						target={[0, size * 0.22, 0]}
+						enablePan={false}
+						enableZoom={enableZoom}
+						minPolarAngle={groundBound ? 0.15 : 0}
+						maxPolarAngle={groundBound ? Math.PI / 2 - 0.05 : Math.PI}
+						minDistance={size * 0.45}
+						maxDistance={size * 3}
+						enableDamping
+						dampingFactor={0.08}
+					/>
+				) : null}
 			</Canvas>
 
 			{/*

@@ -33,6 +33,23 @@
   touch-action: none;
 }
 
+/*
+ * With controls off, the canvas is a picture and pointers pass through it.
+ *
+ * There is nothing here to point at - no orbit, no zoom, no drag - so every
+ * event belongs to whatever this is sitting inside. Without this a viewer
+ * placed in a button is a button that cannot be pressed: the canvas is on top,
+ * it takes the pointerdown, and the click never reaches the control. Nothing
+ * in the markup explains it and the button looks completely fine.
+ *
+ * `touch-action: auto` for the same reason - a decorative canvas must not stop
+ * the page scrolling under a thumb.
+ */
+.pv-viewer[data-controls='false'] {
+  pointer-events: none;
+  touch-action: auto;
+}
+
 /* ------------------------------------------------------------- progress -- */
 
 .pv-progress {
@@ -47,6 +64,25 @@
   background: var(--pv-overlay-bg);
   backdrop-filter: blur(4px);
   color: var(--pv-fg);
+}
+
+/*
+ * A transparent viewer gets no scrim.
+ *
+ * The scrim exists so a spinner stays legible over an unknown model on a solid
+ * canvas, and it is right there. But `transparent` means the viewer has no
+ * canvas colour and is drawn straight onto the page - it is the mode you pick
+ * so that *no rectangle announces the canvas* - and a translucent panel with a
+ * 4px backdrop blur is exactly such a rectangle. It appears while the model
+ * loads, greys out whatever is behind it, and vanishes, which reads as a bug in
+ * the page rather than as progress.
+ *
+ * The ring stays. Something has to say the model is coming, and a ring drawn in
+ * `currentColor` inherits a contrast the page has already established.
+ */
+.pv-viewer[data-transparent='true'] .pv-progress {
+  background: transparent;
+  backdrop-filter: none;
 }
 
 .pv-progress__track {

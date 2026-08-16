@@ -2,17 +2,18 @@ import {
 	Archive,
 	type ArchiveCategory,
 	type ArchiveItem,
+	BootLoader,
 	Card,
 	Clock,
 	ContextMenu,
 	Credit,
 	type CreditProps,
 	DeskWindow,
+	Device,
 	DocAside,
 	Dock,
 	FolderShelf,
 	Grid,
-	Laptop,
 	MarkdownView,
 	type MenuAction,
 	NavBar,
@@ -27,11 +28,21 @@ import {
 	Showcase,
 	SmoothScroll,
 	Spacer,
+	ThemeToggle,
 	useContextMenu,
+	useDeviceKind,
 	useScrollProgress,
 	useScrollTurn,
 } from "@sushindustries/ui";
-import { lazy, type ReactNode, Suspense, useCallback, useRef } from "react";
+import {
+	lazy,
+	type ReactNode,
+	Suspense,
+	useCallback,
+	useRef,
+	useState,
+} from "react";
+import { LOGO_MODEL } from "../chrome/logo";
 
 /*
  * The live examples, one per showcase id.
@@ -105,6 +116,7 @@ const ARCHIVE_ITEMS: readonly ArchiveItem[] = [
 		description: "Fades and rises its children the first time they are seen.",
 		category: "motion",
 		subcategory: "Scroll effects",
+		dependencies: [],
 		tags: ["scroll", "no-deps"],
 		href: "#reveal",
 		preview: "A card fading into place",
@@ -115,6 +127,7 @@ const ARCHIVE_ITEMS: readonly ArchiveItem[] = [
 		description: "Turns its children with the page scroll.",
 		category: "motion",
 		subcategory: "Scroll effects",
+		dependencies: ["three"],
 		tags: ["scroll", "transform"],
 		href: "#scroll-spin",
 		preview: "A mark turning as the page moves",
@@ -125,6 +138,7 @@ const ARCHIVE_ITEMS: readonly ArchiveItem[] = [
 		description: "A responsive grid with no breakpoints in it.",
 		category: "layout",
 		subcategory: "Page structure",
+		dependencies: [],
 		tags: ["grid", "no-deps"],
 		href: "#grid",
 		meta: "v0.1.0",
@@ -136,6 +150,7 @@ const ARCHIVE_ITEMS: readonly ArchiveItem[] = [
 		description: "Vertical space on the scale, with an optional rule.",
 		category: "layout",
 		subcategory: "Page structure",
+		dependencies: [],
 		tags: ["markdown", "no-deps"],
 		href: "#spacer",
 		preview: "A labelled rule holding a gap open",
@@ -282,6 +297,51 @@ function sampleActions(entry: ShelfEntry): MenuAction[] {
 			onSelect() {},
 		},
 	];
+}
+
+/**
+ * The hook names the machine, so the demo prints the name.
+ *
+ * It is worth watching this one resize: it says "measuring" for exactly one
+ * frame and then never lies again, which is the whole argument for it
+ * returning `null` rather than guessing "laptop" on the server.
+ */
+function DeviceReadout(): ReactNode {
+	const kind = useDeviceKind();
+
+	return (
+		<div className="p-6 text-center">
+			<p className="label">This window is currently a</p>
+			<p className="mono text-lg mt-2">{kind ?? "measuring"}</p>
+			<p className="label mt-4">Resize the frame and it changes</p>
+		</div>
+	);
+}
+
+/**
+ * The toggle keeps no state, so the demo is the state it does not keep.
+ *
+ * Deliberately not wired to the real theme: a demo that repainted the whole
+ * documentation page every time somebody poked it would be a demo nobody could
+ * poke twice.
+ */
+function ThemeToggleDemo(): ReactNode {
+	const [theme, setTheme] = useState("light");
+
+	return (
+		<div className="p-6 flex col items-center gap-4">
+			<ThemeToggle
+				options={[
+					{ id: "light", label: "Light", icon: "sun" },
+					{ id: "dark", label: "Dark", icon: "moon" },
+					{ id: "system", label: "System", icon: "contrast" },
+				]}
+				value={theme}
+				onChange={setTheme}
+			/>
+			<p className="label m-0">{theme}</p>
+		</div>
+	);
 }
 
 /** Progress has no UI either, so the demo is a bar and the number driving it. */
@@ -607,19 +667,72 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 		language: "tsx",
 	},
 
-	laptop: {
+	"theme-toggle": {
+		element: <ThemeToggleDemo />,
+		poster: <p className="label text-center">three states, one tab stop</p>,
+		source: `// It reports the id and stores nothing. A cookie, a server
+// function or an account setting are four different answers,
+// and a component that picked one would be wrong in three
+// codebases out of four.
+<ThemeToggle
+	options={[
+		{ id: "light", label: "Light", icon: "sun" },
+		{ id: "dark", label: "Dark", icon: "moon" },
+		{ id: "system", label: "System", icon: "contrast" },
+	]}
+	value={theme}
+	onChange={setTheme}
+/>`,
+		language: "tsx",
+	},
+
+	"boot-loader": {
 		element: (
-			<Laptop title="a laptop" wallpaper={<span className="desk-glow" />}>
+			<div className="relative" style={{ height: 300 }}>
+				<BootLoader duration={2400} label="Loading the demo">
+					<div className="spin-face">
+						<span className="mono">boot</span>
+					</div>
+				</BootLoader>
+			</div>
+		),
+		source: `// \`ready\` is what stops it lying: the count eases to 90 on a
+// timer and waits there until the thing it covers has arrived.
+<BootLoader ready={modelLoaded} onDone={reveal}>
+	<SpinningMark />
+</BootLoader>`,
+		language: "tsx",
+	},
+
+	device: {
+		element: (
+			<Device title="a machine" wallpaper={<span className="desk-glow" />}>
 				<FolderShelf
 					entries={SHELF_SAMPLE}
 					label="A pantry"
 					actionsFor={sampleActions}
 				/>
-			</Laptop>
+			</Device>
 		),
-		source: `<Laptop title="sushindustries" wallpaper={<Wallpaper />}>
+		source: `// The machine follows the window: a phone, a tablet from 720px,
+// a laptop from 1080px. Nothing here measures anything.
+<Device title="sushindustries" wallpaper={<Wallpaper />}>
 	<FolderShelf entries={entries} actionsFor={actionsFor} />
-</Laptop>`,
+</Device>
+
+// Or say which one, and the width stops having an opinion.
+<Device kind="tablet">{...}</Device>`,
+		language: "tsx",
+	},
+
+	"use-device-kind": {
+		element: <DeviceReadout />,
+		poster: <p className="label text-center">the machine, named</p>,
+		source: `const kind = useDeviceKind();
+
+// null until mounted, on purpose: the server cannot know, and a
+// default would be a claim it cannot support.
+<p>{kind ?? "measuring"}</p>`,
 		language: "tsx",
 	},
 
@@ -906,10 +1019,7 @@ readList(meta, "tags");      // ["tanstack", "css"]`,
 			<Suspense
 				fallback={<p className="label text-center">Loading the mark</p>}
 			>
-				<ProductViewer
-					model={{ url: "/models/logo.glb", realLength: 1 }}
-					loadingLabel="Loading the mark"
-				/>
+				<ProductViewer model={LOGO_MODEL} loadingLabel="Loading the mark" />
 			</Suspense>
 		),
 		source: `const ProductViewer = lazy(
@@ -917,7 +1027,7 @@ readList(meta, "tags");      // ["tanstack", "css"]`,
 );
 
 <Suspense fallback={null}>
-	<ProductViewer model={{ url: "/models/logo.glb", realLength: 1 }} />
+	<ProductViewer model={LOGO_MODEL} />
 </Suspense>`,
 		language: "tsx",
 	},

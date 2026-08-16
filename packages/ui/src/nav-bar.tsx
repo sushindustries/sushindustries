@@ -9,6 +9,18 @@ export interface NavItem {
 	readonly description?: string;
 	/** A count, shown right-aligned. Nothing renders when it is absent. */
 	readonly badge?: string;
+	/**
+	 * Which colour this entry belongs to, as a name the stylesheet resolves.
+	 *
+	 * A free string rather than a union, because the set of tones is the
+	 * consumer's - a component library has no business knowing that this site
+	 * has five categories and what they are called. The stylesheet decides what
+	 * `motion` looks like; this only carries the word.
+	 *
+	 * Absent, the icon takes the default surface, which is what an entry with no
+	 * category should look like.
+	 */
+	readonly tone?: string;
 }
 
 export interface NavEntry {
@@ -108,7 +120,17 @@ function PanelItems({
 						children: (
 							<>
 								{item.icon ? (
-									<span className="nav-panel-icon">
+									/*
+									 * `data-tone` carries the entry's identity into CSS.
+									 *
+									 * A variant as an attribute rather than a second class,
+									 * for the reason every variant here is: it travels with
+									 * the component, cannot be applied without its base, and
+									 * is visible in the props instead of in a stylesheet
+									 * somebody has to go and find. The stylesheet decides
+									 * what each tone looks like; this only says which one.
+									 */
+									<span className="nav-panel-icon" data-tone={item.tone}>
 										<Icon name={item.icon} size={16} />
 									</span>
 								) : null}

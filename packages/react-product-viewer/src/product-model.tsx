@@ -42,6 +42,21 @@ export interface ProductModelProps<S extends ZoneScheme = ZoneScheme> {
   /** GLB variant names to apply, in order. Later entries win on conflict. */
   variants?: readonly string[]
   /**
+   * Where the origin sits inside the object, and therefore what anything
+   * turning it turns it around.
+   *
+   * | Value | Origin | For |
+   * | --- | --- | --- |
+   * | `base` | centred in X and Z, resting on y=0 | a product. Contact shadows and the grid land where it meets the ground |
+   * | `center` | the middle of the bounding box | anything that rotates. Nothing to rest on, and nothing to swing around |
+   *
+   * The difference only shows up once something is turning the model. With the
+   * base on y=0 the whole mass sits above the axis, so a Y rotation swings it
+   * around the origin like a fairground ride rather than turning it on the
+   * spot - which reads as the model orbiting rather than spinning.
+   */
+  pivot?: 'base' | 'center'
+  /**
    * The zones `zoneTints` is keyed by.
    *
    * Required alongside `zoneTints` and meaningless without it. `wallRoofZones`
@@ -82,6 +97,7 @@ function ProductModelView<S extends ZoneScheme = ZoneScheme>({
   variants,
   zoneScheme,
   zoneTints,
+  pivot = 'base',
 }: ProductModelProps<S> & { gltf: GLTF }): ReactElement {
   const invalidate = useThree((state) => state.invalidate)
   const zonedRef = useRef<ZonedMaterial[]>([])
@@ -125,13 +141,29 @@ function ProductModelView<S extends ZoneScheme = ZoneScheme>({
     const horizontal = Math.max(size.x, size.z) || 1
     const longest = Math.max(size.x, size.y, size.z) || 1
     const s = model.realLength ? model.realLength / horizontal : 2 / longest
+    /*
+     * Where the origin sits inside the object, which is also what anything
+     * turning it will turn it *around*.
+     *
+     * `base` centres X and Z and rests the object on y=0, so contact shadows
+     * and the grid land where it actually meets the ground. That is right for a
+     * product and it is the default.
+     *
+     * `center` puts the origin at the middle of the bounding box. It matters
+     * the moment something rotates the model: with the base at y=0 the mass is
+     * entirely above the axis, so a Y rotation swings it around the origin like
+     * a fairground ride instead of turning it on the spot. There is no ground
+     * under an icon for the base to rest on, so there is nothing to trade away.
+     */
     return {
       scale: s,
-      // Centred in X and Z, sitting on y=0 rather than centred in Y, so contact
-      // shadows and the grid land where the object actually meets the ground.
-      position: [-center.x * s, -box.min.y * s, -center.z * s] as const,
+      position: [
+        -center.x * s,
+        (pivot === 'center' ? -center.y : -box.min.y) * s,
+        -center.z * s,
+      ] as const,
     }
-  }, [scene, model.realLength])
+  }, [scene, model.realLength, pivot])
 
   const zoned = Boolean(zoneTints && zoneScheme)
 

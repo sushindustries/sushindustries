@@ -26,6 +26,15 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
+	DEVICE_CSS,
+	DEVICE_SOURCE,
+	DEVICE_TYPES,
+	devicesProblems,
+	readDevices,
+	renderDevicesCss,
+	renderDeviceTypes,
+} from "./devices.mjs";
+import {
 	GLYPH_OUTPUT,
 	GLYPH_SOURCE,
 	readGlyphs,
@@ -583,6 +592,215 @@ function checkGlyphsAreGenerated() {
 }
 
 /**
+ * The stylesheet and the type module both match the device table.
+ *
+ * Two outputs from one source, in two languages that cannot read each other: a
+ * media query needs a literal `min-width`, and the client needs the same
+ * numbers to say which machine it is running on. Generated, they agree by
+ * construction. Written twice, they agreed by luck, and the way that breaks is
+ * silent - a breakpoint moves in the stylesheet, and the assistant carries on
+ * confidently telling a model it is on a laptop.
+ */
+/**
+ * Every skill parses, and every skill is bound to a handler.
+ *
+ * A malformed skill does not throw at build time. It becomes a tool with a
+ * missing description, or a parameter the model has nothing to fill from, and
+ * it fails at the one moment nobody is watching - when somebody asks a
+ * question and the answer is quietly worse.
+ *
+ * The binding half is the one that actually goes wrong. Writing the Markdown is
+ * the fun part and wiring the handler is the chore, so a skill declared and
+ * never bound is the natural end of a half-finished afternoon. It is silently
+ * dropped at runtime, so the model simply never gets the capability and nothing
+ * anywhere says why.
+ */
+/**
+ * Every docs file lands on a page.
+ *
+ * Component docs are `packages/<pkg>/docs/<slug>/<section>.md`, and `<section>`
+ * is a closed set - `index`, `get-started`, `guides`, `api`, `examples`. A file
+ * named anything else is not an error anywhere: the catalogue filters it out,
+ * the build passes, and the page renders without it.
+ *
+ * That happened. `model-mark.md` was written, committed, and rendered nowhere,
+ * and the only symptom was a documentation page that quietly did not mention a
+ * component. A doc nobody can reach is worse than no doc, because it stops
+ * anybody writing the one that would have been read.
+ */
+function checkDocSectionsAreReal() {
+	const source = read(
+		"apps/web/src/modules/content/components/components.catalogue.ts",
+	);
+	const block = source.match(/SECTION_ORDER = \[([\s\S]*?)\]/)?.[1] ?? "";
+	const allowed = [...block.matchAll(/"([\w-]+)"/g)].map(([, id]) => id);
+
+	if (allowed.length === 0) return;
+
+	for (const path of trackedFiles()) {
+		const match = /^packages\/[^/]+\/docs\/[^/]+\/([\w-]+)\.md$/.exec(path);
+		if (!match) continue;
+		if (allowed.includes(match[1])) continue;
+
+		report(
+			"docs",
+			path,
+			`"${match[1]}" is not a section, so this file renders on no page at all`,
+			`rename it to one of ${allowed.join(", ")}, or give it its own docs/<slug>/index.md`,
+		);
+	}
+}
+
+function checkSkills() {
+	const dir = "packages/assistant/skills";
+	if (!exists(dir)) return;
+
+	const files = readdirSync(join(root, dir)).filter(
+		(name) => name.endsWith(".md") && name !== "README.md",
+	);
+
+	const declared = [];
+
+	for (const file of files) {
+		const source = read(`${dir}/${file}`);
+		const name = source.match(/^name:\s*(.+)$/m)?.[1]?.trim();
+		const summary = source.match(/^summary:\s*(.+)$/m)?.[1]?.trim();
+
+		if (!name) {
+			report("skills", `${dir}/${file}`, "no `name:` in its frontmatter");
+			continue;
+		}
+
+		if (!summary) {
+			report(
+				"skills",
+				`${dir}/${file}`,
+				"no `summary:` - it is the sentence the model reads when deciding whether to call this",
+			);
+		}
+
+		if (!/^[a-z][a-z0-9_]*$/.test(name)) {
+			report(
+				"skills",
+				`${dir}/${file}`,
+				`"${name}" is not snake_case, which is what every provider's schema expects`,
+			);
+		}
+
+		if (!/^##\s+Parameters\s*$/m.test(source)) {
+			report(
+				"skills",
+				`${dir}/${file}`,
+				"no `## Parameters` table, so it is a tool that takes nothing",
+				"write the table, or say so in the notes if it really takes no arguments",
+			);
+		}
+
+		declared.push(name);
+	}
+
+	/*
+	 * Bound to a handler, checked by reading the map rather than by running it.
+	 * The site's module imports the whole content catalogue, which is not
+	 * something a structural check should be paying for.
+	 */
+	const bindings = "apps/web/src/modules/assistant/skills.server.ts";
+	if (!exists(bindings)) return;
+
+	const source = read(bindings);
+	const bound = new Set(
+		[...source.matchAll(/^\t(?:async )?([a-z][a-z0-9_]*)\(/gm)].map(
+			([, name]) => name,
+		),
+	);
+
+	for (const name of declared) {
+		if (bound.has(name)) continue;
+
+		report(
+			"skills",
+			bindings,
+			`"${name}" is declared in ${dir} and bound to nothing, so it is silently dropped and the model never gets it`,
+		);
+	}
+
+	for (const name of bound) {
+		if (declared.includes(name)) continue;
+
+		report(
+			"skills",
+			bindings,
+			`"${name}" is bound but has no file in ${dir}, so it is a handler nothing can call`,
+		);
+	}
+}
+
+/**
+ * Every registry item is reachable over MCP.
+ *
+ * The registry is what an installer reads and `/r/registry.json` is where it
+ * reads it from, which is also what makes this library usable by an assistant:
+ * an item with a stable `name` and a description is a thing a model can look up
+ * and install by id. An item missing either is in the library and not in the
+ * catalogue - importable by somebody who already knows it exists, and invisible
+ * to everybody else.
+ *
+ * So this asserts the two fields an id has to have to be one.
+ */
+function checkRegistryItemsAreAddressable(items) {
+	for (const item of items) {
+		if (!/^[a-z][a-z0-9-]*$/.test(item.name)) {
+			report(
+				"mcp",
+				"packages/ui/registry.ts",
+				`"${item.name}" is not a kebab-case id, so it cannot be a URL segment or an install target`,
+			);
+		}
+
+		if (item.title === item.name) {
+			report(
+				"mcp",
+				"packages/ui/registry.ts",
+				`"${item.name}" has no title of its own, so every listing shows it twice`,
+			);
+		}
+	}
+}
+
+function checkDevicesAreGenerated() {
+	const devices = readDevices();
+	const problems = devicesProblems(devices);
+
+	for (const problem of problems) {
+		report("devices", DEVICE_SOURCE, problem);
+	}
+
+	if (problems.length > 0) return;
+
+	const outputs = [
+		[DEVICE_CSS, renderDevicesCss(devices)],
+		[DEVICE_TYPES, renderDeviceTypes(devices)],
+	];
+
+	for (const [path, expected] of outputs) {
+		if (exists(path) && read(path) === expected) continue;
+
+		if (shouldFix) {
+			writeFileSync(join(root, path), expected);
+			repaired(`${path} from ${DEVICE_SOURCE}`);
+			continue;
+		}
+
+		report(
+			"devices",
+			path,
+			`does not match ${DEVICE_SOURCE}`,
+			"pnpm doctor --fix. Edit the table, never the output",
+		);
+	}
+}
+
+/**
  * Every registry category has a glyph.
  *
  * The nav and the archive both show a category with its icon. A category
@@ -915,6 +1133,10 @@ checkRegistryItemsHaveDemos(registry);
 checkContentFrontmatter();
 checkTemplates();
 checkGlyphsAreGenerated();
+checkDevicesAreGenerated();
+checkSkills();
+checkDocSectionsAreReal();
+checkRegistryItemsAreAddressable(registry);
 checkCategoriesHaveIcons();
 checkComponentClassesLiveInAtoms();
 checkVariantsAreAttributes();

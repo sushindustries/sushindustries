@@ -9,6 +9,7 @@ import {
 	useState,
 } from "react";
 import type { Group } from "three";
+import { LOGO_MODEL } from "./logo";
 
 /*
  * What the stage holds before the canvas exists.
@@ -84,7 +85,7 @@ function SpinningViewer({ revolutions, tilt }: LogoModelProps): ReactNode {
 
 	return (
 		<ProductViewer
-			model={{ url: "/models/logo.glb", realLength: 1 }}
+			model={LOGO_MODEL}
 			modelRef={modelRef}
 			// Drawn on the page, not on a canvas. A hero mark with a rectangle
 			// behind it announces that there is a canvas there, which is the one

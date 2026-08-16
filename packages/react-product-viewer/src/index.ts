@@ -15,9 +15,46 @@
  * because three and R3F are ~600 kB that cannot run on a server.
  */
 
-export { ProductViewer, default } from './product-viewer'
-export type { ProductViewerProps } from './product-viewer'
+/*
+ * `ModelViewer` is the canvas, and there is exactly one of it.
+ *
+ * It used to be `ProductViewer` in `src/product-viewer.tsx`, with a second,
+ * partial copy in `elements/model-viewer/` that was being split out to sit
+ * beside its own stylesheet, types and stories. Both were real and both were
+ * maintained, and they drifted precisely as far as you would expect: `modelRef`,
+ * `fit`, `controls`, `shadows` and `pivot` existed only in one, `scroll` and its
+ * hint only in the other, and `ModelCard` used one while everything else used
+ * the other.
+ *
+ * Two implementations of one component is not a refactor in progress, it is a
+ * bug with a schedule - a fix to the canvas landed in whichever file the person
+ * happened to open. The element won, the old file is gone, and the names below
+ * are aliases so no consumer had to be rewritten to pay for an internal tidy.
+ */
+export { ModelViewer, ModelViewer as ProductViewer, default } from './elements/model-viewer/model-viewer'
+export type {
+  ModelViewerProps,
+  ModelViewerProps as ProductViewerProps,
+  ModelViewerScroll,
+} from './elements/model-viewer/model-viewer.types'
 export { ProductModel } from './product-model'
+/*
+ * `ModelMark` is deliberately NOT re-exported here.
+ *
+ * It lazily imports the viewer from inside itself so that a page which only
+ * names a mark ships no three until one becomes live. Re-exporting it from this
+ * entry would defeat that entirely - this file imports the viewer statically,
+ * so anything reachable from here already has it in its graph, and the bundler
+ * says so out loud:
+ *
+ *   [INEFFECTIVE_DYNAMIC_IMPORT] src/product-viewer.tsx is dynamically imported
+ *   by src/elements/model-mark/model-mark.tsx but also statically imported by
+ *   src/index.ts
+ *
+ * It has its own entry instead:
+ *
+ *   import { ModelMark } from '@sushindustries/react-product-viewer/model-mark'
+ */
 export type { ProductModelProps } from './product-model'
 export { DefaultLoadingOverlay } from './loading-overlay'
 export type {

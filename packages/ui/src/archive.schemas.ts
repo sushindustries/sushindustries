@@ -38,6 +38,20 @@ export const archiveItemSchema = z.object({
 	 * which is the signal that it should not have been a tag.
 	 */
 	tags: z.array(z.string().min(1)).default([]),
+	/**
+	 * The runtime packages this item needs, by name.
+	 *
+	 * Names only, never versions. A version on a card is a number that goes
+	 * stale between releases and that nobody reads anyway - what somebody
+	 * scanning a grid wants to know is *whether* installing this drags anything
+	 * in, and if so what.
+	 *
+	 * An empty list is meaningful and is rendered, not skipped: "no
+	 * dependencies" is the single most useful thing a component can say about
+	 * itself here, and it is invisible if the absence of chips is how it is
+	 * expressed.
+	 */
+	dependencies: z.array(z.string().min(1)).default([]),
 	/** Where the card links to. */
 	href: z.string().min(1),
 	/**

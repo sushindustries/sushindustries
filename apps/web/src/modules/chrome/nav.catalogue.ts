@@ -50,6 +50,8 @@ function categoryItems(): NavItem[] {
 			label: category.label,
 			href: `/components?category=${category.id}`,
 			icon: category.icon,
+			// The category *is* the tone. One word, resolved by the stylesheet.
+			tone: category.id,
 			description: category.blurb,
 			badge: String(countIn(category.id)),
 		}),

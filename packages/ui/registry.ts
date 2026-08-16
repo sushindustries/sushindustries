@@ -167,16 +167,29 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		preview: "No UI - it hands you a number between 0 and 1",
 	},
 	{
-		name: "laptop",
-		title: "Laptop",
+		name: "device",
+		title: "Device",
 		description:
-			"A laptop frame in CSS 3D whose screen is a real scroll container with real controls in it.",
-		files: ["laptop.tsx"],
+			"A phone, a tablet or a laptop in CSS 3D, chosen by the stylesheet rather than by JavaScript, whose screen is a real scroll container with real controls in it.",
+		files: ["device.tsx", "device-kinds.ts"],
 		dependencies: {},
 		category: "layout",
 		subcategory: "Scenes",
-		tags: ["3d", "perspective", "no-deps"],
-		preview: "An open laptop with folders on its screen",
+		tags: ["3d", "perspective", "responsive", "no-js", "no-deps"],
+		preview: "The same screen drawn as all three machines",
+	},
+	{
+		name: "use-device-kind",
+		title: "useDeviceKind",
+		description:
+			"Which machine the stylesheet is currently drawing, as a value. Null until mounted, on purpose - a default would be a claim the server cannot support.",
+		files: ["use-device-kind.ts", "device-kinds.ts"],
+		dependencies: {},
+		registryDependencies: ["device"],
+		category: "layout",
+		subcategory: "Scenes",
+		tags: ["responsive", "media-query", "ssr", "no-deps"],
+		preview: "No UI - it names the machine you are looking at",
 	},
 	{
 		name: "desk-window",
@@ -247,6 +260,18 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		subcategory: "Containers",
 		tags: ["dialog", "tree", "touch", "no-deps"],
 		preview: "Folders on a desk with a window open over them",
+	},
+	{
+		name: "boot-loader",
+		title: "Boot Loader",
+		description:
+			"A count to a hundred that stalls at ninety until what it is covering has actually arrived. Fills its parent, not the viewport.",
+		files: ["boot-loader.tsx"],
+		dependencies: {},
+		category: "motion",
+		subcategory: "Scroll effects",
+		tags: ["loading", "raf", "a11y", "no-deps"],
+		preview: "A mark, a number climbing, and a rule filling",
 	},
 	{
 		name: "card",
@@ -347,6 +372,18 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		subcategory: "Page structure",
 		tags: ["grid", "responsive", "no-deps"],
 		preview: "Cards reflowing from four columns to one",
+	},
+	{
+		name: "theme-toggle",
+		title: "Theme Toggle",
+		description:
+			"A segmented control that reports which option was pressed and knows nothing about themes. Roving focus, and `aria-checked` is the selector that draws it.",
+		files: ["theme-toggle.tsx", "icon.tsx"],
+		dependencies: {},
+		category: "layout",
+		subcategory: "Page structure",
+		tags: ["a11y", "keyboard", "ssr", "no-deps"],
+		preview: "Three icons in a well, one lit",
 	},
 	{
 		name: "spacer",

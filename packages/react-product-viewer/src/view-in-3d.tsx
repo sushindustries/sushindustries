@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { useViewIn3D } from './use-view-in-3d'
 import type { UseViewIn3DResult } from './use-view-in-3d'
-import type { ProductViewerProps } from './product-viewer'
+import type { ModelViewerProps } from './elements/model-viewer/model-viewer.types'
 import type { ReactElement, ReactNode } from 'react'
 import type { ZoneScheme } from '@sushindustries/product-viewer'
 
@@ -29,14 +29,14 @@ import type { ZoneScheme } from '@sushindustries/product-viewer'
 // Imported here, not by the consumer, so the code split happens whether or not
 // they remember to do it. `ssr: false` on the route is still required - this
 // defers the fetch, it does not make three run on a server.
-const ProductViewer = lazy(async () => {
-  const module = await import('./product-viewer')
-  return { default: module.ProductViewer }
+const ModelViewer = lazy(async () => {
+  const module = await import('./elements/model-viewer/model-viewer')
+  return { default: module.ModelViewer }
 })
 
 export interface ViewIn3DProps<
   S extends ZoneScheme = ZoneScheme,
-> extends ProductViewerProps<S> {
+> extends ModelViewerProps<S> {
   /** Button text. @default "View in 3D" */
   label?: ReactNode
   /** Dialog heading, also its accessible name. */
@@ -122,7 +122,7 @@ export function ViewIn3D<S extends ZoneScheme = ZoneScheme>({
           <div className="pv-dialog__body">
             <div className="pv-dialog__stage">
               <Suspense fallback={null}>
-                <ProductViewer {...(viewer as ProductViewerProps<S>)} />
+                <ModelViewer {...(viewer as ModelViewerProps<S>)} />
               </Suspense>
             </div>
             {panel ? <aside className="pv-dialog__panel">{panel}</aside> : null}

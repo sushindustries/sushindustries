@@ -30,6 +30,11 @@ export type IconName =
 	| "link"
 	| "close"
 	| "search"
+	| "sushi"
+	| "sun"
+	| "moon"
+	| "contrast"
+	| "chat"
 	| "linkedin"
 	| "clock";
 
@@ -173,6 +178,51 @@ const PATHS: Record<IconName, ReactNode> = {
 		<>
 			<path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z" />
 			<path d="M16.2 16.2 21 21" />
+		</>
+	),
+	// A maki roll seen end on, which is the only angle at which a roll is legible at 24px: nori, rice, filling, three concentric circles. The four ticks are the tell - they are register marks rather than decoration, and they are what stops it reading as a record, a target or a loading spinner.
+	sushi: (
+		<>
+			<path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z" />
+			<path d="M12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z" />
+			<path d="M12 10.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+			<path d="M3.2 12h1.6" />
+			<path d="M19.2 12h1.6" />
+			<path d="M12 3.2v1.6" />
+			<path d="M12 19.2v1.6" />
+		</>
+	),
+	// A disc and eight rays. Eight rather than four, because four reads as a compass; and the rays are detached from the disc so the whole thing still resolves at 15px.
+	sun: (
+		<>
+			<path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
+			<path d="M12 2.5v2" />
+			<path d="M12 19.5v2" />
+			<path d="M4.2 4.2l1.4 1.4" />
+			<path d="M18.4 18.4l1.4 1.4" />
+			<path d="M2.5 12h2" />
+			<path d="M19.5 12h2" />
+			<path d="M4.2 19.8l1.4-1.4" />
+			<path d="M18.4 5.6l1.4-1.4" />
+		</>
+	),
+	// One crescent, cut by an offset circle rather than drawn as a shape. A moon with stars beside it is three marks fighting for the same 15 pixels.
+	moon: (
+		<>
+			<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" />
+		</>
+	),
+	// A circle half filled: the standard mark for "follow the system", and the only one of the three that means a rule rather than a state.
+	contrast: (
+		<>
+			<path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z" />
+			<path d="M12 3v18a9 9 0 0 0 0-18z" />
+		</>
+	),
+	// One speech bubble with a tail, and no second bubble behind it. Two bubbles say conversation and are half the size each at 24px, where the tail is the only part that still reads.
+	chat: (
+		<>
+			<path d="M4 5h16v11H9l-5 4z" />
 		</>
 	),
 	// The wordmark reduced to its two letters in a square, drawn at this stroke weight rather than pasted in as a logo.

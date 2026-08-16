@@ -13,6 +13,7 @@ export {
 	archiveSchema,
 	parseArchive,
 } from "./archive.schemas";
+export { BootLoader, type BootLoaderProps } from "./boot-loader";
 export { Card, type CardProps } from "./card";
 export { Clock, type ClockProps } from "./clock";
 export {
@@ -24,6 +25,15 @@ export {
 } from "./context-menu";
 export { Credit, type CreditProps } from "./credit";
 export { DeskWindow, type DeskWindowProps } from "./desk-window";
+export { Device, type DeviceProps } from "./device";
+export {
+	DEVICE_KINDS,
+	DEVICES,
+	type DeviceKind,
+	type DeviceProfile,
+	deviceKindFor,
+	deviceQuery,
+} from "./device-kinds";
 export { DocAside, type DocAsideProps } from "./doc-aside";
 export { Dock, type DockProps, type DockTask } from "./dock";
 export {
@@ -44,7 +54,6 @@ export { Grid, type GridProps, type Space } from "./grid";
 export { collectHeadings, type DocHeading } from "./headings";
 export { highlighter, resolveLanguage } from "./highlighter";
 export { Icon, type IconName, type IconProps } from "./icon";
-export { Laptop, type LaptopProps } from "./laptop";
 export {
 	createBlockDispatcher,
 	type MarkdownBlockProps,
@@ -69,12 +78,18 @@ export {
 export { SmoothScroll } from "./smooth-scroll";
 export { Spacer, type SpacerProps } from "./spacer";
 export {
+	type ThemeOption,
+	ThemeToggle,
+	type ThemeToggleProps,
+} from "./theme-toggle";
+export {
 	type DeskApi,
 	type DeskState,
 	type DeskWindowState,
 	EMPTY_DESK,
 	useDeskState,
 } from "./use-desk-state";
+export { useDeviceKind } from "./use-device-kind";
 export {
 	type ScrollProgressOptions,
 	useScrollProgress,

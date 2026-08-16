@@ -13,9 +13,22 @@ import { QueryProvider } from "../integrations/tanstack-query/provider";
 import { Devtools } from "../modules/chrome/devtools";
 import { SiteFooter } from "../modules/chrome/site-footer";
 import { SiteNav } from "../modules/chrome/site-nav";
+import { getTheme } from "../modules/theme/theme.functions";
 import proseCss from "../styles/prose.css?url";
 
 export const Route = createRootRoute({
+	/*
+	 * The theme, resolved before anything renders.
+	 *
+	 * A root loader is the one place that can put a value into the *first byte*
+	 * the server writes, which is the whole requirement: `data-theme` has to be
+	 * correct on `<html>` before paint, or the page shows one theme and then
+	 * corrects itself. That correction is the flash, and no amount of CSS fixes
+	 * it - the server simply cannot see `localStorage` or a media query.
+	 *
+	 * A cookie it can see, and `getTheme` reads it out of the request header.
+	 */
+	loader: () => getTheme(),
 	head: () => ({
 		meta: [
 			{ charSet: "utf-8" },
@@ -57,6 +70,14 @@ function RootDocument({
 	children,
 }: Readonly<{ children: ReactNode }>): ReactNode {
 	/*
+	 * The theme the root loader resolved, which on the server is a cookie and on
+	 * the client is whatever the last navigation carried. It is read here rather
+	 * than passed down because both document shells below need it and one of
+	 * them renders no components at all.
+	 */
+	const theme = Route.useLoaderData();
+
+	/*
 	 * `/preview/*` renders inside an iframe - in the showcase frame and in every
 	 * archive card. It gets no chrome at all.
 	 *
@@ -78,7 +99,9 @@ function RootDocument({
 
 	if (isBare) {
 		return (
-			<html lang="en">
+			// The preview iframes get the theme too, or a demo renders in the
+			// opposite one to the page framing it.
+			<html lang="en" data-theme={theme} data-pv-theme={theme}>
 				<head>
 					<HeadContent />
 				</head>
@@ -91,7 +114,26 @@ function RootDocument({
 	}
 
 	return (
-		<html lang="en">
+		/*
+		 * Both themes are written here, in the first byte, from a cookie.
+		 *
+		 * `data-theme` is what `atoms.css` selects on. It has to be correct
+		 * before paint or the page renders one theme and corrects itself, and
+		 * that correction is a flash nothing in CSS can prevent - the server
+		 * cannot see `localStorage` and cannot evaluate a media query.
+		 *
+		 * `data-pv-theme` pins the *viewer* to the same answer.
+		 * `@sushindustries/react-product-viewer` themes itself from
+		 * `prefers-color-scheme`, which is the right default for a package that
+		 * does not know what it has been dropped into. This site does know. Left
+		 * alone, a machine set to dark drew a dark canvas and a dark loading
+		 * scrim inside a light page - two themes on one screen, decided by an
+		 * operating system setting neither of them asked about.
+		 *
+		 * Pinning at the consumer rather than editing the package keeps the
+		 * package correct for everybody else.
+		 */
+		<html lang="en" data-theme={theme} data-pv-theme={theme}>
 			<head>
 				<HeadContent />
 			</head>
@@ -103,7 +145,7 @@ function RootDocument({
 				 */}
 				<QueryProvider>
 					<SmoothScroll />
-					<SiteNav />
+					<SiteNav theme={theme} />
 					<main id="main">{children}</main>
 					<SiteFooter />
 					<Devtools />

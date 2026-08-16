@@ -1,5 +1,5 @@
-import { ProductViewer } from './product-viewer'
-import type { ProductViewerProps } from './product-viewer'
+import { ModelViewer } from './elements/model-viewer/model-viewer'
+import type { ModelViewerProps } from './elements/model-viewer/model-viewer.types'
 import type { CSSProperties, ReactElement, ReactNode } from 'react'
 import type { ZoneScheme } from '@sushindustries/product-viewer'
 
@@ -10,7 +10,7 @@ import type { ZoneScheme } from '@sushindustries/product-viewer'
  * for: it is the whole reason the visitor is looking at the screen, it is above
  * the fold, and the product turning slowly is the message.
  *
- * Two things this does that a bare `<ProductViewer>` in a tall div does not:
+ * Two things this does that a bare `<ModelViewer>` in a tall div does not:
  *
  *  - **The copy stays reachable.** Text sits in a layer that does not take
  *    pointer events, so dragging anywhere - including across the headline -
@@ -21,7 +21,7 @@ import type { ZoneScheme } from '@sushindustries/product-viewer'
 
 export interface ProductHeroProps<
   S extends ZoneScheme = ZoneScheme,
-> extends ProductViewerProps<S> {
+> extends ModelViewerProps<S> {
   /** Drawn over the canvas. Pointer-transparent except for interactive parts. */
   overlay?: ReactNode
   /** Where the overlay sits. @default "bottom-left" */
@@ -68,7 +68,7 @@ export function ProductHero<S extends ZoneScheme = ZoneScheme>({
         height ? ({ '--pv-hero-height': height } as CSSProperties) : undefined
       }
     >
-      <ProductViewer {...(viewer as ProductViewerProps<S>)} />
+      <ModelViewer {...(viewer as ModelViewerProps<S>)} />
       {scrim ? <div className="pv-hero__scrim" aria-hidden="true" /> : null}
       {overlay ? (
         <div className="pv-hero__overlay">
