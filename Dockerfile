@@ -13,13 +13,22 @@ WORKDIR /app
 
 RUN corepack enable
 
-# Only the manifests, so this layer is cached until a dependency actually
-# changes. Copying the source here would invalidate it on every edit.
+# Manifests only, so this layer stays cached until a dependency actually
+# changes rather than on every source edit.
+#
+# One COPY per workspace, listed by hand, because Docker flattens a glob like
+# `packages/*/package.json` into a single directory and loses the paths that
+# pnpm needs to identify each workspace.
+#
+# Adding a package means adding a line here. It fails loudly if you forget —
+# `--frozen-lockfile` sees a workspace in the lockfile with no manifest on
+# disk and stops — which is the failure mode worth having.
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/web/package.json apps/web/
 COPY packages/atoms/package.json packages/atoms/
 COPY packages/ui/package.json packages/ui/
 COPY packages/db/package.json packages/db/
+COPY packages/llms/package.json packages/llms/
 COPY packages/product-viewer/package.json packages/product-viewer/
 COPY packages/react-product-viewer/package.json packages/react-product-viewer/
 
@@ -35,17 +44,16 @@ WORKDIR /app
 
 RUN corepack enable
 
-# Every workspace's node_modules, not a hand-picked few. pnpm links workspace
-# packages through these directories, so a package whose tree is missing
-# resolves to nothing — and the error names the importer, not the package that
-# was skipped, which sends you looking in the wrong file.
-COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/apps/web/node_modules ./apps/web/node_modules
-COPY --from=deps /app/packages/atoms/node_modules ./packages/atoms/node_modules
-COPY --from=deps /app/packages/ui/node_modules ./packages/ui/node_modules
-COPY --from=deps /app/packages/db/node_modules ./packages/db/node_modules
-COPY --from=deps /app/packages/product-viewer/node_modules ./packages/product-viewer/node_modules
-COPY --from=deps /app/packages/react-product-viewer/node_modules ./packages/react-product-viewer/node_modules
+# The whole installed tree in one layer, rather than a list of workspaces.
+#
+# Listing them individually breaks twice over: a package with no dependencies
+# never gets a `node_modules` at all, so `COPY` fails on a path that does not
+# exist (`packages/atoms` is exactly that — one CSS file, no deps), and every
+# new package would need a line here or resolve to nothing at build time.
+#
+# The source is copied second. `.dockerignore` excludes node_modules from the
+# build context, so this adds the source without disturbing what was installed.
+COPY --from=deps /app /app
 COPY . .
 
 # Turbo, not a single filter. The viewer packages publish `dist/`, which only

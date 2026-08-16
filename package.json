@@ -8,8 +8,11 @@
 		"node": ">=22"
 	},
 	"scripts": {
-		"dev": "turbo run dev",
 		"build": "turbo run build",
+		"check": "node scripts/check-workspaces.mjs && pnpm exec biome check . && pnpm run typecheck && pnpm run build",
+		"check:workspaces": "node scripts/check-workspaces.mjs",
+		"dev": "turbo run dev",
+		"prepare": "git config core.hooksPath .githooks || true",
 		"start": "pnpm --filter @sushindustries/web start",
 		"typecheck": "turbo run typecheck"
 	},

@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# The gate that runs before anything leaves this machine.
+#
+# Every check here exists because something got past it once. The build is the
+# expensive one and it is not optional: import protection and workspace
+# resolution only fail at build time, so a push without it is a guess.
+#
+# Skip deliberately with `git push --no-verify` when you know what you are
+# doing — a hook you cannot bypass is a hook people delete.
+
+set -e
+
+echo "→ workspaces vs Dockerfile"
+node scripts/check-workspaces.mjs
+
+echo "→ format and lint"
+pnpm exec biome check .
+
+echo "→ types"
+pnpm run typecheck
+
+echo "→ build"
+pnpm run build
+
+echo "✓ ok to push"
