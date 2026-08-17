@@ -42,6 +42,26 @@ function arm(): void {
 
 /** `lazy(() => pacedImport(() => import("...")))` - same shape, later start. */
 export function pacedImport<T>(load: () => Promise<T>): Promise<T> {
+	/*
+	 * On the server, load immediately.
+	 *
+	 * The note above used to claim this queue never runs on the server because
+	 * nothing calls it before mount. That is wrong: `React.lazy` invokes its
+	 * loader while rendering, and rendering happens on the server first. So
+	 * every paced import queued itself into a queue whose only start signal is
+	 * `requestIdleCallback`, which does not exist there - and the render sat
+	 * waiting for a promise nothing would ever resolve.
+	 *
+	 * The symptom was every 3D preview and every archive card for a 3D
+	 * component hanging until the request timed out. `/preview/product-viewer`
+	 * took 25 seconds and returned nothing, while a preview with no paced
+	 * import returned in 15 milliseconds.
+	 *
+	 * Both reasons for pacing are browser-only anyway: there is no first paint
+	 * to protect and no WebGL context to lose.
+	 */
+	if (typeof window === "undefined") return load();
+
 	arm();
 
 	return new Promise<T>((resolve, reject) => {

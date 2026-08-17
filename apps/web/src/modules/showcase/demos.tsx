@@ -614,6 +614,54 @@ function MenuDemo(): ReactNode {
 }
 
 /** Frontmatter has no UI, so the demo is the parse, shown as input and output. */
+/*
+ * One canvas, four appearances, switched by pressing.
+ *
+ * The first version of this rendered three viewers side by side, which is the
+ * honest-looking mistake: three canvases means three 1.4 MB downloads and
+ * three WebGL contexts on one page, and the page never finished loading. The
+ * layout tests caught it by timing out, which is what they are for.
+ *
+ * One viewer is also the truer demo. Variants exist so a single model can look
+ * several ways, and showing that as one model changing is the claim itself,
+ * rather than three models arranged to imply it.
+ */
+const VARIANTS = ["Original", "White", "Black", "Nothing"] as const;
+
+function VariantsDemo(): ReactNode {
+	const [variant, setVariant] = useState<(typeof VARIANTS)[number]>("Original");
+
+	return (
+		<div className="grid gap-4">
+			<Suspense
+				fallback={<p className="label text-center">Loading the mark</p>}
+			>
+				<ProductViewer
+					model={LOGO_MODEL}
+					variants={[variant]}
+					loadingLabel={`Loading ${variant}`}
+					/* The page keeps the wheel; the model is turned by dragging. */
+					scroll="page"
+				/>
+			</Suspense>
+
+			<div className="flex gap-2 wrap justify-center">
+				{VARIANTS.map((name) => (
+					<button
+						key={name}
+						type="button"
+						className="archive-chip"
+						data-active={name === variant}
+						onClick={() => setVariant(name)}
+					>
+						{name}
+					</button>
+				))}
+			</div>
+		</div>
+	);
+}
+
 function FrontmatterDemo(): ReactNode {
 	const meta = parseFrontmatter(
 		FRONTMATTER_SAMPLE.replaceAll("---", "").trim(),
@@ -1684,6 +1732,23 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 			</Suspense>
 		),
 		...DEMO_SOURCES["product-viewer"],
+	},
+
+	/*
+	 * The variant system, shown rather than described.
+	 *
+	 * One GLB, four appearances. `logo.glb` carries KHR_materials_variants with
+	 * Original, White, Black and Nothing in it, so this is the model's own data
+	 * doing the work - not four files, and not four materials assigned by hand.
+	 *
+	 * Worth a demo because the documentation had a section explaining variants
+	 * and nothing on the page that let you see one. A three-dimensional feature
+	 * described in prose is the one kind of documentation nobody believes.
+	 */
+	"product-variants": {
+		poster: <p className="label text-center">One model, four variants</p>,
+		element: <VariantsDemo />,
+		...DEMO_SOURCES["product-variants"],
 	},
 };
 

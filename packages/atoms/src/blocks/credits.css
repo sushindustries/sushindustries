@@ -16,12 +16,21 @@
 	.credit-slot {
 		position: relative;
 		display: block;
+		/*
+		 * Fills its grid row. The row already stretches - that is the default -
+		 * but the slot was a block sized by its content, so a credit whose role
+		 * ran to two lines made a taller card than the one beside it and the
+		 * grid came out ragged along every row.
+		 */
+		height: 100%;
 	}
 
 	.credit {
 		display: flex;
 		flex-direction: column;
 		gap: var(--s-1);
+		/* Same reason, one level down: the card fills the slot. */
+		height: 100%;
 		padding: var(--s-3) var(--s-4);
 		border: 1px solid transparent;
 		border-radius: var(--r-lg);

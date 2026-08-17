@@ -78,6 +78,21 @@ export function Page() {
 
 ## One canvas, and the variants that shape it
 
+`logo.glb` carries `KHR_materials_variants` with four appearances in it -
+Original, White, Black and Nothing - so this is one file being asked to look
+four ways, rather than four files. Pass the name to `variants` and the model
+brings its own materials:
+
+<!-- ::start:showcase demo="product-variants" height="420" -->
+<!-- ::end:showcase -->
+
+`listVariants(gltf)` in `@sushindustries/product-viewer` reads the names out of
+a model rather than requiring you to know them, and `missingVariants` tells you
+which of the ones you asked for the file does not have - which is the check
+worth running in CI, because a variant name that does not exist fails silently
+and renders the default.
+
+
 There is exactly one `<Canvas>` in this package, in
 `elements/model-viewer/`. There were briefly two - the same component being
 split out to sit beside its own stylesheet, types and stories, while the

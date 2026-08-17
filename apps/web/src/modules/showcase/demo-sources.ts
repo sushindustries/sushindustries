@@ -28,6 +28,24 @@ export const DEMO_SOURCES = {
 </Reveal>`,
 		language: "tsx",
 	},
+	"product-variants": {
+		source: `const [variant, setVariant] = useState("Original")
+
+// One canvas. The names come from the model's own
+// KHR_materials_variants, not from four files.
+<ProductViewer
+	model="/models/logo.glb"
+	variants={[variant]}
+	scroll="page"
+/>
+
+{["Original", "White", "Black", "Nothing"].map((name) => (
+	<button key={name} onClick={() => setVariant(name)}>
+		{name}
+	</button>
+))}`,
+		language: "tsx",
+	},
 	"typed-mark": {
 		source: `<TypedMark text="sushi industries" />
 
