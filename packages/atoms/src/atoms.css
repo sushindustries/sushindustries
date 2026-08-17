@@ -657,6 +657,18 @@
 	.justify-end {
 		justify-content: end;
 	}
+	.justify-start {
+		justify-content: start;
+	}
+	.self-start {
+		align-self: flex-start;
+	}
+	.self-center {
+		align-self: center;
+	}
+	.self-end {
+		align-self: flex-end;
+	}
 	.inline-flex {
 		display: inline-flex;
 	}
@@ -677,6 +689,9 @@
 	}
 	.sticky {
 		position: sticky;
+	}
+	.fixed {
+		position: fixed;
 	}
 	.inset-0 {
 		inset: 0;
@@ -717,6 +732,20 @@
 	.mx-auto {
 		margin-inline: auto;
 	}
+	/*
+	 * The flex pushes. `auto` margin absorbs the free space on its side, which
+	 * is how one item in a row sits apart from the rest without the row
+	 * becoming two rows. Logical properties, so they survive an RTL page.
+	 */
+	.ms-auto {
+		margin-inline-start: auto;
+	}
+	.me-auto {
+		margin-inline-end: auto;
+	}
+	.mt-auto {
+		margin-top: auto;
+	}
 	.mt-1 {
 		margin-top: var(--s-1);
 	}
@@ -738,6 +767,9 @@
 	.mt-7 {
 		margin-top: var(--s-7);
 	}
+	.mb-1 {
+		margin-bottom: var(--s-1);
+	}
 	.mb-2 {
 		margin-bottom: var(--s-2);
 	}
@@ -753,6 +785,15 @@
 	.mb-6 {
 		margin-bottom: var(--s-6);
 	}
+	.mb-7 {
+		margin-bottom: var(--s-7);
+	}
+	.p-1 {
+		padding: var(--s-1);
+	}
+	.p-2 {
+		padding: var(--s-2);
+	}
 	.p-3 {
 		padding: var(--s-3);
 	}
@@ -764,6 +805,9 @@
 	}
 	.p-6 {
 		padding: var(--s-6);
+	}
+	.px-2 {
+		padding-inline: var(--s-2);
 	}
 	.px-3 {
 		padding-inline: var(--s-3);
@@ -783,8 +827,14 @@
 	.py-3 {
 		padding-block: var(--s-3);
 	}
+	.py-4 {
+		padding-block: var(--s-4);
+	}
 	.py-5 {
 		padding-block: var(--s-5);
+	}
+	.py-6 {
+		padding-block: var(--s-6);
 	}
 	.py-7 {
 		padding-block: var(--s-7);
@@ -802,6 +852,9 @@
 	}
 	.max-w-sm {
 		max-width: 460px;
+	}
+	.max-w-full {
+		max-width: 100%;
 	}
 
 	/* type */
@@ -831,6 +884,15 @@
 	}
 	.text-center {
 		text-align: center;
+	}
+	.text-end {
+		text-align: end;
+	}
+	.nowrap {
+		white-space: nowrap;
+	}
+	.italic {
+		font-style: italic;
 	}
 	.text-balance {
 		text-wrap: balance;
@@ -912,6 +974,12 @@
 	.border-b {
 		border-bottom: 1px solid var(--line-soft);
 	}
+	.border-s {
+		border-inline-start: 1px solid var(--line-soft);
+	}
+	.border-e {
+		border-inline-end: 1px solid var(--line-soft);
+	}
 	.rounded {
 		border-radius: var(--r);
 	}
@@ -926,6 +994,14 @@
 	}
 	.overflow-hidden {
 		overflow: hidden;
+	}
+	.overflow-auto {
+		overflow: auto;
+	}
+	/* Wide things - tables, code, diagrams - scroll inside their own box
+	   rather than making the whole page scroll sideways. */
+	.overflow-x-auto {
+		overflow-x: auto;
 	}
 	.pointer {
 		cursor: pointer;
@@ -6326,12 +6402,6 @@
 		list-style: none;
 		overflow-y: auto;
 		overscroll-behavior: contain;
-	}
-
-	.term-empty {
-		padding: var(--s-2);
-		color: var(--fg-faint);
-		font-size: var(--t-xs);
 	}
 
 	/*

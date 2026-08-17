@@ -12,6 +12,7 @@ import type { SectionId } from "../../modules/content/components/components.cata
 import { DocActions } from "../../modules/content/doc-actions";
 import { DocFeedback } from "../../modules/content/doc-feedback";
 import { REFERENCES } from "../../modules/content/references.catalogue";
+import { pageTitle, SITE } from "../../modules/content/site.catalogue";
 import {
 	componentSourceCode,
 	ldScript,
@@ -67,7 +68,7 @@ export const Route = createFileRoute("/components/$slug")({
 	},
 	head: ({ loaderData }) => ({
 		meta: [
-			{ title: `${loaderData?.doc.title ?? "Component"} - Sushindustries` },
+			{ title: pageTitle(loaderData?.doc.title ?? "Component") },
 			{ name: "description", content: loaderData?.doc.summary ?? "" },
 		],
 		// The machine-readable half: this page is source code somebody installs.
@@ -93,7 +94,7 @@ function ComponentDocPage(): ReactNode {
 					<Breadcrumb
 						origin="https://sushindustries.com"
 						items={[
-							{ label: "Sushindustries", href: "/" },
+							{ label: SITE.name, href: "/" },
 							{ label: "Components", href: "/components" },
 							...(doc.item
 								? [

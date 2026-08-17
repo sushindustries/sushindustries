@@ -3,6 +3,7 @@ import { REGISTRY_CATEGORIES } from "@sushindustries/ui/registry";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import * as z from "zod";
+import { pageTitle } from "../../modules/content/site.catalogue";
 import { listRegistry } from "../../modules/registry/registry.catalogue";
 import { hasDemo } from "../../modules/showcase/demo-sources";
 
@@ -17,7 +18,7 @@ export const Route = createFileRoute("/components/")({
 	validateSearch: searchSchema,
 	head: () => ({
 		meta: [
-			{ title: "Components - Sushindustries" },
+			{ title: pageTitle("Components") },
 			{
 				name: "description",
 				content:
@@ -95,6 +96,24 @@ function ComponentsPage(): ReactNode {
 						const query = params.toString();
 						return query ? `/components?${query}` : "/components";
 					}}
+					/*
+					 * Page links go through the router, not through anchors. A plain
+					 * anchor is not intercepted, so every page click was a full
+					 * document load of a page whose data was already in memory.
+					 */
+					renderPageLink={({ page: next, href: _href, children, ...rest }) => (
+						<Link
+							to="/components"
+							search={{
+								...(category ? { category } : {}),
+								...(tag ? { tag } : {}),
+								...(next > 1 ? { page: next } : {}),
+							}}
+							{...rest}
+						>
+							{children}
+						</Link>
+					)}
 					/*
 					 * Changing category drops the tag. A tag that exists in one
 					 * category usually does not in the next, and carrying it over

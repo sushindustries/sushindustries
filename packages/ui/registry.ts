@@ -175,7 +175,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	{
 		name: "archive",
 		kind: "block",
-		version: "0.1.0",
+		version: "0.1.1",
 		title: "Archive",
 		description:
 			"A filterable grid with categories, subcategories and tags. Renders its own links through a callback so the router stays yours.",
@@ -473,7 +473,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "pagination",
-		version: "0.1.0",
+		version: "0.1.1",
 		title: "Pagination",
 		description:
 			"Pages as links with first and last always reachable. The window everyone already knows, and nothing that breaks middle-click.",

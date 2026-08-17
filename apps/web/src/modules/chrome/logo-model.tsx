@@ -9,7 +9,9 @@ import {
 	useState,
 } from "react";
 import type { Group } from "three";
+import type { GLTF } from "three-stdlib";
 import { pacedImport } from "../showcase/paced-import";
+import { useProductModel } from "../showcase/use-model";
 import { LOGO_MODEL } from "./logo";
 
 /*
@@ -54,7 +56,11 @@ export interface LogoModelProps {
 	tilt?: number;
 }
 
-function SpinningViewer({ revolutions, tilt }: LogoModelProps): ReactNode {
+function SpinningViewer({
+	gltf,
+	revolutions,
+	tilt,
+}: LogoModelProps & { gltf: GLTF }): ReactNode {
 	const modelRef = useRef<Group>(null);
 
 	/*
@@ -87,6 +93,8 @@ function SpinningViewer({ revolutions, tilt }: LogoModelProps): ReactNode {
 	return (
 		<ProductViewer
 			model={LOGO_MODEL}
+			// Already downloaded and parsed by the time this mounts - see below.
+			gltf={gltf}
 			modelRef={modelRef}
 			// Drawn on the page, not on a canvas. A hero mark with a rectangle
 			// behind it announces that there is a canvas there, which is the one
@@ -120,11 +128,21 @@ export function LogoModel({
 	const [mounted, setMounted] = useState(false);
 	useEffect(() => setMounted(true), []);
 
+	/*
+	 * The GLB, downloading from the moment hydration lands - in parallel with
+	 * the viewer chunk, which the pacer holds back until idle. Before this the
+	 * two arrived in series: chunk, then canvas, then the canvas started
+	 * fetching the model. Now the placeholder holds until *both* are ready and
+	 * the swap is one material change, with no loading scrim spinning inside
+	 * the stage in between.
+	 */
+	const gltf = useProductModel(LOGO_MODEL.url, mounted);
+
 	return (
 		<div className="logo-stage">
-			{mounted ? (
+			{mounted && gltf ? (
 				<Suspense fallback={<StagePlaceholder />}>
-					<SpinningViewer revolutions={revolutions} tilt={tilt} />
+					<SpinningViewer gltf={gltf} revolutions={revolutions} tilt={tilt} />
 				</Suspense>
 			) : (
 				<StagePlaceholder />

@@ -7,8 +7,15 @@ export interface PaginationProps {
 	pageCount: number;
 	/** Builds the href for a page number; the host's router owns the URL shape. */
 	hrefFor: (page: number) => string;
-	/** Rendered around every href, so a router can own navigation. */
+	/**
+	 * Rendered around every href, so a router can own navigation.
+	 *
+	 * `page` is the number the link leads to, passed alongside the resolved
+	 * href because a typed router builds its link from a route pattern and
+	 * params, not from a path that has already been flattened into a string.
+	 */
 	renderLink?: (props: {
+		page: number;
 		href: string;
 		className: string;
 		"aria-current"?: "page";
@@ -50,7 +57,8 @@ export function Pagination({
 	if (pageCount <= 1) return null;
 
 	const link =
-		renderLink ?? (({ children, ...props }) => <a {...props}>{children}</a>);
+		renderLink ??
+		(({ children, page: _page, ...props }) => <a {...props}>{children}</a>);
 
 	return (
 		<nav
@@ -59,6 +67,7 @@ export function Pagination({
 		>
 			{page > 1
 				? link({
+						page: page - 1,
 						href: hrefFor(page - 1),
 						className: "pages-step",
 						"aria-label": "Previous page",
@@ -75,6 +84,7 @@ export function Pagination({
 				) : (
 					<span key={entry}>
 						{link({
+							page: entry,
 							href: hrefFor(entry),
 							className: "pages-num",
 							"aria-current": entry === page ? "page" : undefined,
@@ -86,6 +96,7 @@ export function Pagination({
 
 			{page < pageCount
 				? link({
+						page: page + 1,
 						href: hrefFor(page + 1),
 						className: "pages-step",
 						"data-dir": "next",

@@ -137,7 +137,8 @@ export function AssistantPanel({
 
 					<ul className="term-threads">
 						{threads.length === 0 ? (
-							<li className="term-empty">Nothing yet</li>
+							// Utilities, not a block: three declarations do not earn a name.
+							<li className="p-2 fg-faint text-xs">Nothing yet</li>
 						) : null}
 
 						{threads.map((thread) => (

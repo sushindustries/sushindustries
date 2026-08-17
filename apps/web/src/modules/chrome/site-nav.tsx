@@ -1,5 +1,6 @@
 import { NavBar } from "@sushindustries/ui";
 import type { ReactNode } from "react";
+import { SITE } from "../content/site.catalogue";
 import { SiteTheme } from "../theme/site-theme";
 import type { Theme } from "../theme/theme.schemas";
 import { GithubStar } from "./github-star";
@@ -36,7 +37,7 @@ export function SiteNav({ theme }: SiteNavProps): ReactNode {
 						height={26}
 						className="nav-mark"
 					/>
-					<span className="mono text-sm font-semibold">sushindustries</span>
+					<span className="mono text-sm font-semibold">{SITE.name}</span>
 				</span>
 			}
 			entries={navEntries()}

@@ -1,5 +1,6 @@
 import type { SiteDescription, SiteSection } from "@sushindustries/llms";
 import { skills } from "../assistant/skills.server";
+import { SITE } from "./site.catalogue";
 import { sitePaths, siteSections } from "./site-index";
 
 /*
@@ -56,7 +57,7 @@ function skillSection(): SiteSection {
 export function describeSite(origin: string): SiteDescription {
 	return {
 		origin,
-		title: "Sushindustries",
+		title: SITE.name,
 		summary:
 			"Small packages, built carefully. A TanStack Start site and the component library it is made of.",
 		framing:

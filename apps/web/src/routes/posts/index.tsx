@@ -2,12 +2,13 @@ import { Reveal } from "@sushindustries/ui";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { listPosts } from "../../modules/content/posts/posts.catalogue";
+import { pageTitle } from "../../modules/content/site.catalogue";
 
 export const Route = createFileRoute("/posts/")({
 	component: PostsPage,
 	head: () => ({
 		meta: [
-			{ title: "Writing - Sushindustries" },
+			{ title: pageTitle("Writing") },
 			{ name: "description", content: "Notes on what I am building." },
 		],
 	}),

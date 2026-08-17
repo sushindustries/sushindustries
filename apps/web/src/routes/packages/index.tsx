@@ -2,12 +2,13 @@ import { Reveal } from "@sushindustries/ui";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { listPackages } from "../../modules/content/packages/packages.catalogue";
+import { pageTitle } from "../../modules/content/site.catalogue";
 
 export const Route = createFileRoute("/packages/")({
 	component: PackagesPage,
 	head: () => ({
 		meta: [
-			{ title: "Packages - Sushindustries" },
+			{ title: pageTitle("Packages") },
 			{
 				name: "description",
 				content: "Everything published from the sushindustries monorepo.",

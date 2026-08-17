@@ -3,6 +3,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { findBuiltPage } from "../../modules/content/pages/pages.catalogue";
 import { REFERENCES } from "../../modules/content/references.catalogue";
+import { pageTitle, SITE } from "../../modules/content/site.catalogue";
 import { BLOCKS } from "../../modules/markdown/blocks";
 
 /*
@@ -24,7 +25,7 @@ export const Route = createFileRoute("/p/$slug")({
 	},
 	head: ({ loaderData }) => ({
 		meta: [
-			{ title: `${loaderData?.page.title ?? "Page"} - Sushindustries` },
+			{ title: pageTitle(loaderData?.page.title ?? "Page") },
 			{ name: "description", content: loaderData?.page.summary ?? "" },
 		],
 	}),
@@ -37,7 +38,7 @@ function BuiltPageView(): ReactNode {
 		<article className="container" style={{ paddingBlock: "var(--s-8)" }}>
 			<Breadcrumb
 				origin="https://sushindustries.com"
-				items={[{ label: "Sushindustries", href: "/" }, { label: page.title }]}
+				items={[{ label: SITE.name, href: "/" }, { label: page.title }]}
 			/>
 
 			<h1 className="h2 mt-5 text-balance">{page.title}</h1>

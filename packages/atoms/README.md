@@ -28,23 +28,40 @@ Then compose. Every class does exactly one thing:
 
 ## Elements & utilities
 
-The package is implemented as a single stylesheet. Below are the most-used classes and utilities - open `packages/atoms/atoms.css` for the full list.
+The package is one stylesheet in four layers - `tokens`, `base`, `blocks`,
+`utilities` - and the utilities are the part meant to be composed in markup.
+The vocabulary deliberately covers the same axes Bootstrap's utility API
+covers, with two differences: every spacing value is a token from the `--s-*`
+scale rather than a free number, and there is exactly one name per job.
 
-- Layout & components
-  - `.card` - basic card container
-  - `.container` - page/container sizing (uses `--container`)
-- Typography
-  - `.h1`, `.h2`, `.h3` - heading sizes (clamped)
-  - `.text-sm`, `.text-base`, `.text-lg`
-  - `.m-0` - remove margin
-- Spacing
-  - `--s-1` … `--s-9` - fixed step spacing variables
-  - Utilities: `.p-1`, `.p-2`, `.m-1`, `.m-2` (see CSS for exact mapping)
-- Color & semantic
-  - `--color-nori`, `--color-rice`, `--color-salmon` - tokens used across utilities
-  - `.fg-dim` - dimmed foreground color
+| Axis | Classes | Bootstrap's spelling of the same idea |
+| --- | --- | --- |
+| Display | `.flex` `.inline-flex` `.grid` `.block` `.hidden` | `d-flex` `d-inline-flex` `d-grid` `d-block` `d-none` |
+| Flex direction & wrap | `.col` `.wrap` | `flex-column` `flex-wrap` |
+| Align & justify | `.items-center/-start/-end/-baseline` `.justify-center/-between/-start/-end` | `align-items-*` `justify-content-*` |
+| Self alignment | `.self-start` `.self-center` `.self-end` | `align-self-*` |
+| Grow & shrink | `.flex-1` `.shrink-0` `.min-w-0` | `flex-fill` `flex-shrink-0` |
+| Gap | `.gap-1` … `.gap-7` | `gap-{0-5}` |
+| Margin | `.m-0` `.mt-1`…`.mt-7` `.mb-1`…`.mb-7` `.mx-auto` `.ms-auto` `.me-auto` `.mt-auto` | `m-0` `mt-*` `mb-*` `mx-auto` `ms-auto` `me-auto` `mt-auto` |
+| Padding | `.p-0`…`.p-6` `.px-2`…`.px-5` `.py-2`…`.py-7` | `p-*` `px-*` `py-*` |
+| Sizing | `.w-full` `.h-full` `.max-w-full` `.max-w-prose` `.max-w-sm` | `w-100` `h-100` `mw-100` |
+| Position | `.relative` `.absolute` `.sticky` `.fixed` `.inset-0` `.z-1` `.z-nav` | `position-*` `top-0`/`bottom-0`… |
+| Type size | `.text-xs` `.text-sm` `.text-md` `.text-lg` `.h1` `.h2` `.h3` | `fs-*` `h1`…`h3` |
+| Type style | `.font-medium` `.font-semibold` `.italic` `.mono` `.uppercase` `.label` | `fw-*` `fst-italic` `text-uppercase` |
+| Text layout | `.text-center` `.text-end` `.text-balance` `.text-pretty` `.nowrap` `.truncate` `.leading-tight` | `text-center` `text-end` `text-nowrap` `text-truncate` `lh-*` |
+| Colour | `.fg` `.fg-dim` `.fg-faint` `.fg-accent` `.bg-1` `.bg-2` | `text-*` `bg-*` |
+| Border | `.border` `.border-t` `.border-b` `.border-s` `.border-e` | `border` `border-top`… `border-start`… |
+| Radius | `.rounded` `.rounded-lg` `.rounded-xl` `.rounded-full` | `rounded-*` `rounded-circle`/`pill` |
+| Overflow | `.overflow-hidden` `.overflow-auto` `.overflow-x-auto` | `overflow-*` |
+| Accessibility | `.sr-only` `.pointer` | `visually-hidden` |
 
-Open the stylesheet: https://github.com/sushindustries/sushindustries/blob/main/packages/atoms/atoms.css
+What Bootstrap has that this deliberately does not: opacity and shadow
+utilities (elevation is a material decision, and material lives in the
+`blocks` layer, not in markup), percentage widths (`w-25/50/75` - that is a
+grid's job), and the responsive infix system (`d-md-none` - variants here are
+data-attributes on blocks, and containers respond with container queries).
+
+Open the stylesheet: https://github.com/sushindustries/sushindustries/blob/main/packages/atoms/src/atoms.css
 
 ## Why not Tailwind
 

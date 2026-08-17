@@ -30,10 +30,42 @@ export default defineConfig({
 			"Cross-Origin-Opener-Policy": "same-origin",
 			"Cross-Origin-Embedder-Policy": "credentialless",
 		},
+		/*
+		 * Transformed at server start instead of on the first request, so the
+		 * first page open does not pay the cold-transform tax for the module
+		 * graph everything shares.
+		 */
+		warmup: {
+			clientFiles: ["./src/routes/__root.tsx", "./src/routes/index.tsx"],
+		},
 	},
 
 	resolve: {
 		tsconfigPaths: true,
+	},
+
+	/*
+	 * Everything the pacer loads *late* is declared *early*.
+	 *
+	 * Vite pre-bundles only the dependencies it can see from the entry. The
+	 * viewer stack is behind a paced dynamic import that fires at idle, so in
+	 * dev Vite discovered three mid-session, re-optimised, and forced a full
+	 * page reload right while the page was being used - the reload flakiness
+	 * was this, not the code. Naming them here puts them in the first
+	 * optimisation pass, so the idle import is served from cache like
+	 * everything else.
+	 */
+	optimizeDeps: {
+		include: [
+			"three",
+			"three-stdlib",
+			"three-custom-shader-material",
+			"@react-three/fiber",
+			"@react-three/drei",
+			"@stackblitz/sdk",
+			"@tanstack/react-pacer",
+			"lenis",
+		],
 	},
 
 	plugins: [

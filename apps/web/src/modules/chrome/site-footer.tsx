@@ -1,5 +1,6 @@
 import { Icon } from "@sushindustries/ui";
 import type { ReactNode } from "react";
+import { SITE } from "../content/site.catalogue";
 import { footerColumns } from "./footer.catalogue";
 
 /*
@@ -48,7 +49,7 @@ export function SiteFooter(): ReactNode {
 				</div>
 
 				<div className="flex items-center justify-between gap-4 wrap mt-6 py-3 border-t">
-					<p className="label m-0">Sushindustries</p>
+					<p className="label m-0">{SITE.name}</p>
 					<p className="label m-0">
 						Built on{" "}
 						<a

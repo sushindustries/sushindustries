@@ -10,6 +10,7 @@
 import { ModelMark } from "@sushindustries/react-product-viewer/model-mark";
 import { Icon } from "@sushindustries/ui";
 import type { CSSProperties, ReactNode } from "react";
+import { SITE } from "../content/site.catalogue";
 import { LOGO_MODEL } from "./logo";
 
 /*
@@ -49,7 +50,7 @@ export function SiteMark({
 			model={LOGO_MODEL}
 			seconds={seconds}
 			motion={motion}
-			label="Sushindustries"
+			label={SITE.name}
 			/*
 			 * The flat mark, drawn underneath and never removed.
 			 *

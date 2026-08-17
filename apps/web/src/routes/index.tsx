@@ -6,6 +6,7 @@ import { SiteShelf } from "../modules/chrome/site-shelf";
 import { CREDITS } from "../modules/content/credits";
 import { listPackages } from "../modules/content/packages/packages.catalogue";
 import type { PackageSummary } from "../modules/content/packages/packages.schemas";
+import { SITE } from "../modules/content/site.catalogue";
 
 export const Route = createFileRoute("/")({
 	component: Home,
@@ -19,7 +20,7 @@ function Home(): ReactNode {
 		<>
 			<section className="container hero">
 				<div>
-					<h1 className="h1 text-balance">Sushindustries</h1>
+					<h1 className="h1 text-balance">{SITE.name}</h1>
 					<p className="mt-5 text-lg fg-dim max-w-sm text-pretty">
 						Check what I am building. Small packages, made to be used.
 					</p>

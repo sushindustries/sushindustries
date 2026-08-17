@@ -1,7 +1,7 @@
 import { Fragment, type ReactNode } from "react";
 import type { ArchiveCategory, ArchiveItem } from "./archive.schemas";
 import { Icon } from "./icon";
-import { Pagination } from "./pagination";
+import { Pagination, type PaginationProps } from "./pagination";
 
 export interface ArchiveProps {
 	categories: readonly ArchiveCategory[];
@@ -30,6 +30,12 @@ export interface ArchiveProps {
 	pageSize?: number;
 	/** Builds the href for a page number. Required when `page` is set. */
 	hrefForPage?: (page: number) => string;
+	/**
+	 * Rendered around every page number, forwarded to `Pagination` untouched.
+	 * Without it page links are plain anchors, which a client-side router does
+	 * not intercept - every page click becomes a full document load.
+	 */
+	renderPageLink?: PaginationProps["renderLink"];
 	renderLink: (props: {
 		kind: "category" | "tag" | "item";
 		/** Category id, tag name, or item id. */
@@ -80,6 +86,7 @@ export function Archive({
 	page,
 	pageSize = 24,
 	hrefForPage,
+	renderPageLink,
 	renderLink,
 	emptyLabel = "Nothing here yet.",
 }: ArchiveProps): ReactNode {
@@ -203,6 +210,14 @@ export function Archive({
 									<>
 										<div className="archive-preview">
 											{item.previewSrc ? (
+												/*
+												 * No `allow-scripts`, deliberately. The preview is a
+												 * picture, and a grid of these was eighteen hydrating
+												 * app instances fighting the click that opens a card.
+												 * Without the grant the browser refuses to run any
+												 * script in the frame, so each card costs its HTML and
+												 * CSS and nothing else.
+												 */
 												<iframe
 													className="archive-frame"
 													src={item.previewSrc}
@@ -210,7 +225,7 @@ export function Archive({
 													loading="lazy"
 													tabIndex={-1}
 													aria-hidden="true"
-													sandbox="allow-scripts allow-same-origin"
+													sandbox="allow-same-origin"
 												/>
 											) : (
 												<span className="label">{item.category}</span>
@@ -294,6 +309,7 @@ export function Archive({
 						page={current}
 						pageCount={pageCount}
 						hrefFor={hrefForPage}
+						renderLink={renderPageLink}
 					/>
 				</div>
 			) : null}

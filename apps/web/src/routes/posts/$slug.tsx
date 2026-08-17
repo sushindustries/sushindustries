@@ -3,6 +3,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { findPost } from "../../modules/content/posts/posts.catalogue";
 import { REFERENCES } from "../../modules/content/references.catalogue";
+import { pageTitle } from "../../modules/content/site.catalogue";
 import { BLOCKS } from "../../modules/markdown/blocks";
 
 /*
@@ -19,7 +20,7 @@ export const Route = createFileRoute("/posts/$slug")({
 	},
 	head: ({ loaderData }) => ({
 		meta: [
-			{ title: `${loaderData?.post.title ?? "Post"} - Sushindustries` },
+			{ title: pageTitle(loaderData?.post.title ?? "Post") },
 			{ name: "description", content: loaderData?.post.summary ?? "" },
 		],
 	}),

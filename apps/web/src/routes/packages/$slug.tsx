@@ -10,6 +10,7 @@ import { DocActions } from "../../modules/content/doc-actions";
 import { DocFeedback } from "../../modules/content/doc-feedback";
 import { findPackage } from "../../modules/content/packages/packages.catalogue";
 import { REFERENCES } from "../../modules/content/references.catalogue";
+import { pageTitle, SITE } from "../../modules/content/site.catalogue";
 import {
 	ldScript,
 	packageApplication,
@@ -31,7 +32,7 @@ export const Route = createFileRoute("/packages/$slug")({
 	},
 	head: ({ loaderData }) => ({
 		meta: [
-			{ title: `${loaderData?.entry.name ?? "Package"} - Sushindustries` },
+			{ title: pageTitle(loaderData?.entry.name ?? "Package") },
 			{ name: "description", content: loaderData?.entry.description ?? "" },
 		],
 		scripts: loaderData ? [ldScript(packageApplication(loaderData.entry))] : [],
@@ -46,7 +47,7 @@ function PackagePage(): ReactNode {
 			<Breadcrumb
 				origin="https://sushindustries.com"
 				items={[
-					{ label: "Sushindustries", href: "/" },
+					{ label: SITE.name, href: "/" },
 					{ label: "Packages", href: "/packages" },
 					{ label: entry.name },
 				]}

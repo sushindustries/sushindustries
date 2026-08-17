@@ -1,22 +1,34 @@
 import atomsCss from "@sushindustries/atoms/atoms.css?url";
 import viewerCss from "@sushindustries/react-product-viewer/styles.css?url";
 import { SmoothScroll } from "@sushindustries/ui";
+import type { QueryClient } from "@tanstack/react-query";
 import {
-	createRootRoute,
+	createRootRouteWithContext,
 	HeadContent,
 	Outlet,
 	Scripts,
 	useRouterState,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { QueryProvider } from "../integrations/tanstack-query/provider";
 import { Devtools } from "../modules/chrome/devtools";
 import { SiteFooter } from "../modules/chrome/site-footer";
 import { SiteNav } from "../modules/chrome/site-nav";
+import { pageTitle, SITE } from "../modules/content/site.catalogue";
 import { getTheme } from "../modules/theme/theme.functions";
 import proseCss from "../styles/prose.css?url";
 
-export const Route = createRootRoute({
+/*
+ * The router context, declared where the tree starts so every route inherits
+ * the type. `queryClient` is the per-request client `getRouter()` makes -
+ * having it here is what lets a loader write
+ * `context.queryClient.ensureQueryData(...)` and have the result dehydrate
+ * into the SSR stream instead of fetching again on the client.
+ */
+export interface RouterContext {
+	queryClient: QueryClient;
+}
+
+export const Route = createRootRouteWithContext<RouterContext>()({
 	/*
 	 * The theme, resolved before anything renders.
 	 *
@@ -33,15 +45,14 @@ export const Route = createRootRoute({
 		meta: [
 			{ charSet: "utf-8" },
 			{ name: "viewport", content: "width=device-width, initial-scale=1" },
-			{ title: "Sushindustries" },
+			{ title: pageTitle() },
 			{
 				name: "description",
-				content:
-					"Small packages, built carefully. Tools, libraries and components from Sushindustries.",
+				content: SITE.description,
 			},
 			// The mark, wherever a link to this site unfurls.
 			{ property: "og:image", content: "/sushi-logo.png" },
-			{ property: "og:site_name", content: "Sushindustries" },
+			{ property: "og:site_name", content: SITE.name },
 			{ property: "og:type", content: "website" },
 		],
 		// Order matters: atoms defines the tokens that prose.css reads.
@@ -101,6 +112,21 @@ function RootDocument({
 		select: (state) => state.location.pathname,
 	});
 
+	/*
+	 * A card preview is a picture, so it ships no JavaScript.
+	 *
+	 * The archive renders up to eighteen of these iframes per page, each with
+	 * `pointer-events: none` over it - nothing in them can be interacted with.
+	 * Hydrating them anyway meant eighteen full app instances competing for
+	 * the one main thread, which is what made clicking a card feel slow: the
+	 * navigation had to queue behind seventeen hydrations nobody could use.
+	 * Omitting <Scripts /> makes each card pure SSR'd HTML and CSS.
+	 */
+	const isStill = useRouterState({
+		select: (state) =>
+			(state.location.search as { fit?: string }).fit === "card",
+	});
+
 	const isBare = pathname.startsWith("/preview/");
 
 	if (isBare) {
@@ -113,7 +139,7 @@ function RootDocument({
 				</head>
 				<body>
 					{children}
-					<Scripts />
+					{isStill ? null : <Scripts />}
 				</body>
 			</html>
 		);
@@ -145,17 +171,15 @@ function RootDocument({
 			</head>
 			<body>
 				{/*
-				 * QueryProvider wraps the page and the devtools together, because
-				 * the Query panel reads the client out of context - outside it,
-				 * the panel renders but shows nothing.
+				 * No QueryClientProvider here - `setupRouterSsrQueryIntegration`
+				 * in router.tsx wraps the whole router render in one, which is
+				 * why the devtools' Query panel below still finds the client.
 				 */}
-				<QueryProvider>
-					<SmoothScroll />
-					<SiteNav theme={theme} />
-					<main id="main">{children}</main>
-					<SiteFooter />
-					<Devtools />
-				</QueryProvider>
+				<SmoothScroll />
+				<SiteNav theme={theme} />
+				<main id="main">{children}</main>
+				<SiteFooter />
+				<Devtools />
 				<Scripts />
 			</body>
 		</html>

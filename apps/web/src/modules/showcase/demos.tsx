@@ -1052,7 +1052,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 		element: (
 			<Breadcrumb
 				items={[
-					{ label: "Sushindustries", href: "/" },
+					{ label: "Adam Jurek", href: "/" },
 					{ label: "Components", href: "/components" },
 					{ label: "Docs", href: "/components?category=docs" },
 					{ label: "Breadcrumb" },
