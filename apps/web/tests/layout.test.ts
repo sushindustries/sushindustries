@@ -122,6 +122,63 @@ describe.runIf(browser !== null)("every page, measured", () => {
 		},
 	);
 
+	/*
+	 * The other edge, which the overflow check cannot see.
+	 *
+	 * A negative left offset does not extend `scrollWidth`, so a element hanging
+	 * off the left of the screen produces no spill and no scrollbar - the
+	 * browser just clips it and says nothing. The cinema video bled a flat
+	 * margin into a gutter that was not there and lost 48px of picture at
+	 * 1024px, through a suite that checked three widths for overflow and passed
+	 * every time.
+	 *
+	 * Left is the only side worth checking this way: anything off the right
+	 * extends the scroll width and the test above already has it.
+	 */
+	test.each([PHONE, DESKTOP])(
+		"nothing is clipped off the left edge at $width px",
+		async (viewport) => {
+			const context = await contextAt(viewport);
+			const page = await context.newPage();
+			const offenders: string[] = [];
+
+			for (const path of paths) {
+				await page.goto(base + path, { waitUntil: "load" });
+				const fault = await page.evaluate(async () => {
+					await document.fonts.ready;
+
+					const clipped = [...document.querySelectorAll("main *")]
+						.filter((element) => {
+							const rect = element.getBoundingClientRect();
+							/*
+							 * A hair of rounding is not a bug; a visible slice is.
+							 * Zero-size elements are skipped because a collapsed
+							 * node at -1px is not something anyone can see.
+							 */
+							return rect.left < -2 && rect.width > 4 && rect.height > 4;
+						})
+						.slice(0, 3)
+						.map(
+							(element) =>
+								`${element.tagName.toLowerCase()}.${element.className
+									.toString()
+									.split(" ")
+									.slice(0, 2)
+									.join(".")} at ${Math.round(
+									element.getBoundingClientRect().left,
+								)}px`,
+						);
+
+					return clipped.length > 0 ? clipped.join(", ") : null;
+				});
+				if (fault) offenders.push(`${path} at ${viewport.width}px: ${fault}`);
+			}
+
+			await context.close();
+			expect(offenders).toStrictEqual([]);
+		},
+	);
+
 	test("the Markdown grid block expands on desktop and stacks on a phone", async () => {
 		const cards = '.grid-auto[data-columns="3"] > *';
 

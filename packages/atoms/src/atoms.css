@@ -7565,16 +7565,44 @@
 	}
 
 	/*
-	 * Cinema breaks the prose column on a wide screen.
+	 * Cinema breaks the prose column on a wide screen - into space that exists.
 	 *
-	 * Only above the column's own width: below it the negative margins would
-	 * pull the frame off the side of a phone, which is the bug this rule shape
-	 * exists to avoid.
+	 * The previous rule bled a flat `--s-8` each side and assumed the page had
+	 * that much margin to give. It does not. `.container` is
+	 * `min(100% - gutter*2, --container)` centred, so until the viewport passes
+	 * the container's own width the margin either side is just `--gutter` -
+	 * 24px against a 72px bleed. Measured at 1024px and 1280px the frame's left
+	 * edge landed at -48px and -29px: hanging off the side of the screen, with
+	 * that much of the picture cut away.
+	 *
+	 * It never showed up as page overflow because a negative left offset does
+	 * not extend `scrollWidth` - the browser simply clips it. That is why this
+	 * survived a test suite that checks for overflow at three widths.
+	 *
+	 * So the bleed is now the smaller of what the design wants and what the
+	 * page actually has spare, which is the gutter until the container is
+	 * capped and half the leftover after that. On a page whose column sits
+	 * further in - anything with a rail beside it - the real margin is larger
+	 * than this, so the rule under-bleeds rather than over-bleeds, and
+	 * under-bleeding is invisible where over-bleeding loses the picture.
 	 */
 	@media (min-width: 900px) {
 		.video[data-variant="cinema"] .video-stage {
-			width: calc(100% + var(--s-8) * 2);
-			margin-left: calc(var(--s-8) * -1);
+			/*
+			 * `100vw` counts the scrollbar; the container is laid out inside it.
+			 * On a machine with classic scrollbars that is fifteen pixels of
+			 * space this arithmetic thinks it has and the page does not, which
+			 * put the frame seven pixels off the left edge at 1280. `--s-3`
+			 * covers the widest common scrollbar and leaves the result a hair
+			 * inside the edge rather than flush against it.
+			 */
+			--cinema-bleed: min(
+				var(--s-8),
+				max(var(--s-2), (100vw - var(--container)) / 2 - var(--s-3))
+			);
+
+			width: calc(100% + var(--cinema-bleed) * 2);
+			margin-inline: calc(var(--cinema-bleed) * -1);
 		}
 	}
 

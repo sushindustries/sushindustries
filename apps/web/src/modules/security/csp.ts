@@ -142,6 +142,25 @@ export function securityHeaders(
 		.map((origin) => `"${origin}"`)
 		.join(" ");
 
+	/*
+	 * No `Cross-Origin-Embedder-Policy`, deliberately.
+	 *
+	 * DevTools suggests one whenever a frame is blocked, and taking that advice
+	 * here would break the site. `require-corp` refuses every cross-origin
+	 * subresource that does not send `Cross-Origin-Resource-Policy`, and of the
+	 * five origins this site embeds, four send no such header: Mux, TikTok,
+	 * Facebook and StackBlitz. Only YouTube sends it. So the header that is
+	 * supposed to stop a frame being blocked would block four of them.
+	 *
+	 * `credentialless` is the softer form and still strips credentials from
+	 * cross-origin loads, which is exactly what the social embeds need to keep.
+	 *
+	 * COEP exists to buy cross-origin isolation - `SharedArrayBuffer`, precise
+	 * timers, `performance.measureUserAgentSpecificMemory`. Nothing here uses
+	 * any of them, so the trade is the whole embed layer for a capability the
+	 * site does not want. Checked 2026-08-17; if a future feature needs
+	 * isolation, the cost is re-measuring those five origins, not guessing.
+	 */
 	return {
 		"content-security-policy": contentSecurityPolicy(options),
 		"referrer-policy": "strict-origin-when-cross-origin",
