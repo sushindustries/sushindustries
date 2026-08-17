@@ -9,8 +9,15 @@ costing money it did not need to.
 pnpm new <post|component|package|glyph> <slug>   # start it from a template
 pnpm doctor                                      # what is missing
 pnpm doctor --fix                                # repair what can be repaired
+pnpm doctor:map                                  # how the repo is constructed
 pnpm check                                       # doctor, lint, types, build
 ```
+
+`doctor:map` prints the construction from the repo itself - workspaces from
+the directories, the cascade from atoms.css, module and content counts, the
+registry by category, and every check with its own first sentence. Read it
+before changing structure: it is current by construction, because it reads
+the same sources the checks read.
 
 `pnpm check` is what `.githooks/pre-push` runs. The hook installs itself: the
 root `prepare` script sets `core.hooksPath` to `.githooks`, so a clone gets it

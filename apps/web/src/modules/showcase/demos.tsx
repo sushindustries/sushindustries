@@ -1229,8 +1229,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<Input placeholder="What are you looking for?" />
 			</div>
 		),
-		source: `<Input placeholder="What are you looking for?" />`,
-		language: "tsx",
+		...DEMO_SOURCES["input"],
 	},
 
 	textarea: {
@@ -1239,8 +1238,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<Textarea placeholder="Say what happened, in order." />
 			</div>
 		),
-		source: `<Textarea placeholder="Say what happened, in order." />`,
-		language: "tsx",
+		...DEMO_SOURCES["textarea"],
 	},
 
 	field: {
@@ -1254,13 +1252,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				</Field>
 			</div>
 		),
-		source: `<Field label="Email" hint="Only for the reply.">
-	<Input type="email" />
-</Field>
-<Field label="Handle" error="That one is taken.">
-	<Input defaultValue="sushi" />
-</Field>`,
-		language: "tsx",
+		...DEMO_SOURCES["field"],
 	},
 
 	checkbox: {
@@ -1270,8 +1262,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<Checkbox label="Write it down first" />
 			</div>
 		),
-		source: `<Checkbox label="Ship it" defaultChecked />`,
-		language: "tsx",
+		...DEMO_SOURCES["checkbox"],
 	},
 
 	"radio-group": {
@@ -1286,14 +1277,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				]}
 			/>
 		),
-		source: `<RadioGroup label="Theme" defaultValue="system"
-	options={[
-		{ value: "light", label: "Light" },
-		{ value: "dark", label: "Dark" },
-		{ value: "system", label: "System" },
-	]}
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES["radio-group"],
 	},
 
 	switch: {
@@ -1303,8 +1287,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<Switch label="Reduced motion" />
 			</div>
 		),
-		source: `<Switch label="Smooth scrolling" defaultChecked />`,
-		language: "tsx",
+		...DEMO_SOURCES["switch"],
 	},
 
 	"native-select": {
@@ -1317,11 +1300,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				</NativeSelect>
 			</div>
 		),
-		source: `<NativeSelect defaultValue="tanstack">
-	<option value="tanstack">TanStack CLI</option>
-	<option value="shadcn">shadcn</option>
-</NativeSelect>`,
-		language: "tsx",
+		...DEMO_SOURCES["native-select"],
 	},
 
 	slider: {
@@ -1330,8 +1309,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<Slider label="Simplify error" min={0} max={100} defaultValue={35} />
 			</div>
 		),
-		source: `<Slider label="Simplify error" min={0} max={100} defaultValue={35} />`,
-		language: "tsx",
+		...DEMO_SOURCES["slider"],
 	},
 
 	progress: {
@@ -1341,9 +1319,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<Progress label="Thinking" />
 			</div>
 		),
-		source: `<Progress label="Uploading the model" value={64} />
-<Progress label="Thinking" />`,
-		language: "tsx",
+		...DEMO_SOURCES["progress"],
 	},
 
 	accordion: {
@@ -1371,10 +1347,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				/>
 			</div>
 		),
-		source: `<Accordion defaultOpen={["why"]} items={[
-	{ id: "why", title: "Why details?", content: "..." },
-]} />`,
-		language: "tsx",
+		...DEMO_SOURCES["accordion"],
 	},
 
 	collapsible: {
@@ -1385,10 +1358,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				</Collapsible>
 			</div>
 		),
-		source: `<Collapsible summary="The fine print">
-	It was one sentence all along.
-</Collapsible>`,
-		language: "tsx",
+		...DEMO_SOURCES["collapsible"],
 	},
 
 	alert: {
@@ -1402,10 +1372,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				</Alert>
 			</div>
 		),
-		source: `<Alert title="Caution" tone="caution">
-	The one that means it.
-</Alert>`,
-		language: "tsx",
+		...DEMO_SOURCES["alert"],
 	},
 
 	tooltip: {
@@ -1418,21 +1385,12 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				to see it.
 			</p>
 		),
-		source: `<Tooltip label="One line, never any controls">
-	<span>the underlined thing</span>
-</Tooltip>`,
-		language: "tsx",
+		...DEMO_SOURCES["tooltip"],
 	},
 
 	toggle: {
 		element: <ToggleDemo />,
-		source: `<ToggleGroup label="View" value={view} onChange={setView}
-	options={[
-		{ value: "preview", label: "Preview" },
-		{ value: "code", label: "Code" },
-	]}
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES["toggle"],
 	},
 
 	table: {
@@ -1458,14 +1416,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				/>
 			</div>
 		),
-		source: `<Table rowKey={(r) => r.name}
-	columns={[
-		{ key: "name", header: "Category", render: (r) => r.name },
-		{ key: "count", header: "Items", align: "right", render: (r) => r.count },
-	]}
-	rows={rows}
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES["table"],
 	},
 
 	"scroll-area": {
@@ -1481,41 +1432,22 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				</ScrollArea>
 			</div>
 		),
-		source: `<ScrollArea maxHeight="10rem">
-	{rows.map((row) => <Row key={row.id} {...row} />)}
-</ScrollArea>`,
-		language: "tsx",
+		...DEMO_SOURCES["scroll-area"],
 	},
 
 	dialog: {
 		element: <DialogDemo />,
-		source: `<Dialog open={open} onClose={() => setOpen(false)}
-	title="Delete the draft?"
-	footer={<>
-		<Button variant="ghost" onClick={() => setOpen(false)}>Keep it</Button>
-		<Button onClick={confirm}>Delete</Button>
-	</>}>
-	It has been three weeks.
-</Dialog>`,
-		language: "tsx",
+		...DEMO_SOURCES["dialog"],
 	},
 
 	sheet: {
 		element: <SheetDemo />,
-		source: `<Sheet open={open} onClose={() => setOpen(false)} title="Filters">
-	<Field label="Category">…</Field>
-</Sheet>`,
-		language: "tsx",
+		...DEMO_SOURCES["sheet"],
 	},
 
 	toast: {
 		element: <ToastDemo />,
-		source: `const { toast } = useToast();
-
-<Button onClick={() => toast("Copied the command")}>
-	Do the thing
-</Button>`,
-		language: "tsx",
+		...DEMO_SOURCES["toast"],
 	},
 
 	typography: {

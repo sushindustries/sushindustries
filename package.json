@@ -12,6 +12,7 @@
 		"check": "pnpm run doctor && pnpm exec biome check . && pnpm run typecheck && pnpm run build",
 		"dev": "turbo run dev",
 		"doctor": "node scripts/doctor.mjs",
+		"doctor:map": "node scripts/doctor.mjs --map",
 		"fix": "node scripts/doctor.mjs --fix && pnpm exec biome check --write .",
 		"new": "node scripts/new.mjs",
 		"prepare": "git config core.hooksPath .githooks || true",

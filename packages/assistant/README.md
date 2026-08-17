@@ -2,6 +2,14 @@
 
 A chat panel that streams Markdown, told which machine it is running on.
 
+## Install
+
+```shell
+pnpm add @sushindustries/assistant @sushindustries/atoms
+```
+
+## Use
+
 ```tsx
 import { AssistantPanel } from "@sushindustries/assistant";
 

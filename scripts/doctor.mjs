@@ -310,6 +310,8 @@ function readRegistry() {
 			files,
 			registryDependencies,
 			title: block.match(/title:\s*"([^"]+)"/)?.[1] ?? name,
+			category: block.match(/category:\s*"([^"]+)"/)?.[1],
+			kind: block.match(/kind:\s*"([^"]+)"/)?.[1] ?? "component",
 		});
 	}
 
@@ -1490,10 +1492,327 @@ function checkMentionsAreReferences(items) {
 	}
 }
 
+/* ── construction: boundaries, blocks, reachability ──────────────────── */
+
+/**
+ * Routes are leaves of the import graph.
+ *
+ * A route may import anything; nothing may import a route. The moment a
+ * module reaches into `routes/` for a helper, that helper has two owners and
+ * the route stops being deletable. The one legal consumer of the generated
+ * tree is `router.tsx`, which is what the tree exists for.
+ */
+function checkRoutesAreLeaves() {
+	for (const path of trackedFiles()) {
+		if (!path.startsWith("apps/web/src/")) continue;
+		if (!/\.(ts|tsx)$/.test(path)) continue;
+		if (path.startsWith("apps/web/src/routes/")) continue;
+		if (path.endsWith("routeTree.gen.ts")) continue;
+
+		const source = read(path);
+
+		if (/from\s+"[^"]*\/routes\//.test(source)) {
+			report(
+				"boundaries",
+				path,
+				"imports from routes/ - routes are leaves, nothing imports them",
+				"move the shared piece into apps/web/src/modules/",
+			);
+		}
+
+		if (
+			source.includes("routeTree.gen") &&
+			path !== "apps/web/src/router.tsx"
+		) {
+			report(
+				"boundaries",
+				path,
+				"imports the generated route tree; only router.tsx may",
+			);
+		}
+	}
+}
+
+/** Markdown files a route actually renders through MarkdownView. */
+function renderedMarkdown() {
+	return trackedFiles().filter(
+		(path) =>
+			path.endsWith(".md") &&
+			(path.startsWith("apps/web/content/") ||
+				path.startsWith("packages/ui/docs/") ||
+				/^packages\/[\w-]+\/README\.md$/.test(path)),
+	);
+}
+
+/** Block names the renderer can dispatch: the app's map plus the built-ins. */
+function markdownBlockNames() {
+	const names = new Set(["tabs", "framework"]);
+	const source = read("apps/web/src/modules/markdown/blocks.ts");
+	const body = /BLOCKS: MarkdownBlocks = \{([\s\S]*?)\};/.exec(source)?.[1];
+
+	if (!body) {
+		report(
+			"blocks",
+			"apps/web/src/modules/markdown/blocks.ts",
+			"could not find the BLOCKS map this check reads its truth from",
+		);
+		return names;
+	}
+
+	for (const [, name] of body.matchAll(/^\s*([\w-]+):/gm)) names.add(name);
+	return names;
+}
+
+/**
+ * Every `::start:` block names something registered and is closed in order.
+ *
+ * An unclosed block swallows the rest of the document silently - the page
+ * renders shorter and nothing errors. A misspelled block name renders as
+ * nothing at all. Both are authoring mistakes a template system must catch
+ * at the gate, not in production.
+ */
+function checkBlocksResolve() {
+	const names = markdownBlockNames();
+
+	for (const path of renderedMarkdown()) {
+		const source = read(path);
+		const stack = [];
+
+		for (const match of source.matchAll(/<!--\s*::(start|end):([\w-]+)/g)) {
+			const [, edge, name] = match;
+
+			if (edge === "start") {
+				if (!names.has(name)) {
+					report(
+						"blocks",
+						path,
+						`unknown block \`::start:${name}\``,
+						`registered blocks: ${[...names].sort().join(", ")}`,
+					);
+				}
+				stack.push(name);
+			} else {
+				const open = stack.pop();
+				if (open !== name) {
+					report(
+						"blocks",
+						path,
+						`\`::end:${name}\` closes \`::start:${open ?? "nothing"}\``,
+					);
+				}
+			}
+		}
+
+		for (const name of stack) {
+			report(
+				"blocks",
+				path,
+				`\`::start:${name}\` is never closed, so it swallows the rest of the document`,
+			);
+		}
+	}
+}
+
+/** Demo ids the showcase block can point at, read from demo-sources.ts. */
+function demoNames() {
+	const source = read("apps/web/src/modules/showcase/demo-sources.ts");
+	const names = new Set();
+	for (const match of source.matchAll(
+		/^\t(?:"([\w-]+)"|([A-Za-z][\w-]*)):/gm,
+	)) {
+		names.add(match[1] ?? match[2]);
+	}
+	return names;
+}
+
+/**
+ * Showcase blocks point at demos that exist, viewer blocks at files that do.
+ *
+ * `demo="cardd"` renders an empty stage with no error; `model="/models/x.glb"`
+ * renders a loading label forever. The registry check catches drift in code;
+ * this catches the same drift in content.
+ */
+function checkBlockTargetsExist() {
+	const demos = demoNames();
+
+	for (const path of renderedMarkdown()) {
+		const source = read(path);
+
+		for (const [, demo] of source.matchAll(
+			/::start:showcase\s[^>]*?demo="([\w-]+)"/g,
+		)) {
+			if (demos.has(demo)) continue;
+			report(
+				"blocks",
+				path,
+				`showcase block points at demo "${demo}", which demo-sources.ts does not define`,
+			);
+		}
+
+		for (const [, model] of source.matchAll(
+			/::start:viewer\s[^>]*?model="(\/[^"]+)"/g,
+		)) {
+			if (exists(`apps/web/public${model}`)) continue;
+			report(
+				"blocks",
+				path,
+				`viewer block points at ${model}, which is not in apps/web/public`,
+			);
+		}
+	}
+}
+
+/**
+ * Every published page is reachable from somewhere.
+ *
+ * A page nobody links to is content that exists only for people who guess
+ * URLs. The nav, the footer, another page, a post or a doc must mention
+ * `/p/<slug>` - drafts are exempt, because a draft is allowed to be nowhere.
+ */
+function checkPagesAreReachable() {
+	const pages = trackedFiles().filter((path) =>
+		path.startsWith("apps/web/content/pages/"),
+	);
+
+	for (const page of pages) {
+		const source = read(page);
+		if (/^draft:\s*true/m.test(source)) continue;
+
+		const slug = page.replace(/^.*\/([\w-]+)\.md$/, "$1");
+		const target = `/p/${slug}`;
+
+		const linked = trackedFiles().some((other) => {
+			if (other === page) return false;
+			if (!/\.(md|ts|tsx)$/.test(other)) return false;
+			if (!other.startsWith("apps/web/")) return false;
+			return read(other).includes(target);
+		});
+
+		if (!linked) {
+			report(
+				"reachability",
+				page,
+				`nothing links to ${target}`,
+				"link it from nav.md, footer.md, or another document - or mark it draft",
+			);
+		}
+	}
+}
+
+/**
+ * A package README shows how to install and how to use.
+ *
+ * The README is the package's Markdown mirror - it is the page at
+ * /packages/<name>, the llms.txt body, and what npm shows. One with no
+ * install line or no code at all documents that the package exists, which
+ * the directory listing already did.
+ */
+function checkReadmesShowUsage() {
+	for (const workspace of workspaces()) {
+		const path = `${workspace}/README.md`;
+		if (!exists(path)) continue; // the missing-README check reports that
+
+		const source = read(path);
+
+		if (!/^## Install/m.test(source)) {
+			report(
+				"readme",
+				path,
+				"no `## Install` section",
+				"one command per installer, same as every other package here",
+			);
+		}
+
+		if (!source.includes("```")) {
+			report("readme", path, "no code fence - a package README shows usage");
+		}
+	}
+}
+
 /* ── run ─────────────────────────────────────────────────────────────── */
 
 const list = workspaces();
 const registry = readRegistry();
+
+/*
+ * `--map`: print how this repo is constructed, from the repo itself.
+ *
+ * The other half of maintaining a system is knowing its shape, and a shape
+ * written by hand goes stale the way every second list does. Everything
+ * below is read from the same sources the checks read, so it is current by
+ * construction - workspaces from pnpm, layers from atoms.css, modules from
+ * the directory, the check catalogue from this file's own JSDoc.
+ */
+if (process.argv.includes("--map")) {
+	const atoms = read("packages/atoms/src/atoms.css");
+	const layerOrder =
+		/@layer ([\w, ]+);/.exec(atoms)?.[1] ?? "(no layer declaration)";
+
+	console.log("# How this repo is constructed\n");
+
+	console.log("## Workspaces\n");
+	for (const workspace of list) {
+		const meta = JSON.parse(read(`${workspace}/package.json`));
+		console.log(`- ${meta.name} (${workspace}) - ${meta.description ?? ""}`);
+	}
+
+	console.log(`\n## The cascade\n\nLayer order: ${layerOrder}`);
+	for (const name of layerOrder.split(",").map((part) => part.trim())) {
+		const blocks = atoms.split(`@layer ${name} {`).length - 1;
+		console.log(`- ${name}: ${blocks} block(s) in atoms.css`);
+	}
+
+	console.log("\n## Site modules (apps/web/src/modules)\n");
+	for (const entry of readdirSync(join(root, "apps/web/src/modules"))) {
+		const files = readdirSync(join(root, "apps/web/src/modules", entry));
+		console.log(`- ${entry}: ${files.length} file(s)`);
+	}
+
+	console.log("\n## Registry\n");
+	const byCategory = new Map();
+	let blockCount = 0;
+	for (const item of registry) {
+		byCategory.set(item.category, (byCategory.get(item.category) ?? 0) + 1);
+		if (item.kind === "block") blockCount += 1;
+	}
+	console.log(
+		`${registry.length} items (${blockCount} blocks): ${[...byCategory]
+			.map(([category, count]) => `${category} ${count}`)
+			.join(", ")}`,
+	);
+
+	console.log("\n## Content\n");
+	const content = trackedFiles();
+	const count = (prefix) =>
+		content.filter((path) => path.startsWith(prefix)).length;
+	console.log(`- pages: ${count("apps/web/content/pages/")}`);
+	console.log(`- posts: ${count("apps/web/content/posts/")}`);
+	console.log(`- component docs: ${count("packages/ui/docs/")}`);
+	console.log(`- templates: ${count("templates/")}`);
+	console.log(
+		`- markdown blocks: ${[...markdownBlockNames()].sort().join(", ")}`,
+	);
+
+	console.log("\n## The checks\n");
+	const self = read("scripts/doctor.mjs");
+	for (const match of self.matchAll(/^(?:async )?function (check\w+)/gm)) {
+		/*
+		 * The summary is the first line of the JSDoc sitting directly above the
+		 * function, when there is one - checks describe themselves or they are
+		 * listed bare, which is its own nudge to write the sentence.
+		 */
+		const before = self.slice(0, match.index);
+		let summary = "";
+		if (before.trimEnd().endsWith("*/")) {
+			const open = before.lastIndexOf("/**");
+			const firstLine = /\*\*?\n \* ([^\n]+)/.exec(before.slice(open));
+			summary = firstLine ? `: ${firstLine[1]}` : "";
+		}
+		console.log(`- ${match[1]}${summary}`);
+	}
+
+	process.exit(0);
+}
 
 await checkDockerfileCoversWorkspaces(list);
 await checkWorkspaceReadmes(list);
@@ -1527,6 +1846,11 @@ checkVariantsAreAttributes();
 checkBlocksAreEarned();
 checkAtomsUseTokens();
 checkNoEmDashes();
+checkRoutesAreLeaves();
+checkBlocksResolve();
+checkBlockTargetsExist();
+checkPagesAreReachable();
+checkReadmesShowUsage();
 
 if (repairs.length > 0) {
 	console.log(`Repaired ${repairs.length}:`);

@@ -351,6 +351,131 @@ readList(meta, "tags");      // ["tanstack", "css"]`,
 </Suspense>`,
 		language: "tsx",
 	},
+	accordion: {
+		source: `<Accordion defaultOpen={["why"]} items={[
+	{ id: "why", title: "Why details?", content: "..." },
+]} />`,
+		language: "tsx",
+	},
+	alert: {
+		source: `<Alert title="Caution" tone="caution">
+	The one that means it.
+</Alert>`,
+		language: "tsx",
+	},
+	checkbox: {
+		source: `<Checkbox label="Ship it" defaultChecked />`,
+		language: "tsx",
+	},
+	collapsible: {
+		source: `<Collapsible summary="The fine print">
+	It was one sentence all along.
+</Collapsible>`,
+		language: "tsx",
+	},
+	dialog: {
+		source: `<Dialog open={open} onClose={() => setOpen(false)}
+	title="Delete the draft?"
+	footer={<>
+		<Button variant="ghost" onClick={() => setOpen(false)}>Keep it</Button>
+		<Button onClick={confirm}>Delete</Button>
+	</>}>
+	It has been three weeks.
+</Dialog>`,
+		language: "tsx",
+	},
+	field: {
+		source: `<Field label="Email" hint="Only for the reply.">
+	<Input type="email" />
+</Field>
+<Field label="Handle" error="That one is taken.">
+	<Input defaultValue="sushi" />
+</Field>`,
+		language: "tsx",
+	},
+	input: {
+		source: `<Input placeholder="What are you looking for?" />`,
+		language: "tsx",
+	},
+	"native-select": {
+		source: `<NativeSelect defaultValue="tanstack">
+	<option value="tanstack">TanStack CLI</option>
+	<option value="shadcn">shadcn</option>
+</NativeSelect>`,
+		language: "tsx",
+	},
+	progress: {
+		source: `<Progress label="Uploading the model" value={64} />
+<Progress label="Thinking" />`,
+		language: "tsx",
+	},
+	"radio-group": {
+		source: `<RadioGroup label="Theme" defaultValue="system"
+	options={[
+		{ value: "light", label: "Light" },
+		{ value: "dark", label: "Dark" },
+		{ value: "system", label: "System" },
+	]}
+/>`,
+		language: "tsx",
+	},
+	"scroll-area": {
+		source: `<ScrollArea maxHeight="10rem">
+	{rows.map((row) => <Row key={row.id} {...row} />)}
+</ScrollArea>`,
+		language: "tsx",
+	},
+	sheet: {
+		source: `<Sheet open={open} onClose={() => setOpen(false)} title="Filters">
+	<Field label="Category">…</Field>
+</Sheet>`,
+		language: "tsx",
+	},
+	slider: {
+		source: `<Slider label="Simplify error" min={0} max={100} defaultValue={35} />`,
+		language: "tsx",
+	},
+	switch: {
+		source: `<Switch label="Smooth scrolling" defaultChecked />`,
+		language: "tsx",
+	},
+	table: {
+		source: `<Table rowKey={(r) => r.name}
+	columns={[
+		{ key: "name", header: "Category", render: (r) => r.name },
+		{ key: "count", header: "Items", align: "right", render: (r) => r.count },
+	]}
+	rows={rows}
+/>`,
+		language: "tsx",
+	},
+	textarea: {
+		source: `<Textarea placeholder="Say what happened, in order." />`,
+		language: "tsx",
+	},
+	toast: {
+		source: `const { toast } = useToast();
+
+<Button onClick={() => toast("Copied the command")}>
+	Do the thing
+</Button>`,
+		language: "tsx",
+	},
+	toggle: {
+		source: `<ToggleGroup label="View" value={view} onChange={setView}
+	options={[
+		{ value: "preview", label: "Preview" },
+		{ value: "code", label: "Code" },
+	]}
+/>`,
+		language: "tsx",
+	},
+	tooltip: {
+		source: `<Tooltip label="One line, never any controls">
+	<span>the underlined thing</span>
+</Tooltip>`,
+		language: "tsx",
+	},
 } satisfies Readonly<Record<string, DemoSource>>;
 
 export function findDemoSource(id: string): DemoSource | undefined {
