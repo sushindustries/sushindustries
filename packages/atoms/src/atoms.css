@@ -4180,6 +4180,70 @@
 		border-top: 1px solid var(--line-soft);
 	}
 
+	/*
+	 * The parser speaks heading levels 1-6; stopping the styling at h3 left
+	 * h4-h6 to the browser's defaults, which read as a different site. Deep
+	 * levels converge on body size with the label treatment - past a point,
+	 * depth is a whisper, not a smaller shout.
+	 */
+	.prose h4 {
+		font-size: var(--t-md);
+		font-weight: 600;
+		line-height: 1.3;
+	}
+
+	.prose h5,
+	.prose h6 {
+		font-size: var(--t-sm);
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--fg-dim);
+	}
+
+	/*
+	 * GFM task items: `- [x] done`. The parser emits a disabled checkbox at
+	 * the head of the li; the marker would double the bullet, so it goes.
+	 */
+	.prose li:has(> input[type="checkbox"]) {
+		list-style: none;
+		margin-inline-start: calc(-1 * var(--s-4));
+	}
+
+	.prose li > input[type="checkbox"] {
+		accent-color: var(--accent);
+		margin-inline-end: var(--s-2);
+		vertical-align: -0.1em;
+	}
+
+	/* Struck text dims as well as strikes - the line alone is easy to miss. */
+	.prose del {
+		color: var(--fg-faint);
+	}
+
+	/*
+	 * Footnotes. The parser emits GitHub's markup - a `.footnotes` section
+	 * with an sr-only label, sup refs and backrefs - so these selectors match
+	 * what it writes. The section reads as an appendix: ruled off, smaller,
+	 * quieter.
+	 */
+	.prose .footnotes {
+		margin-top: var(--s-6);
+		padding-top: var(--s-4);
+		border-top: 1px solid var(--line-soft);
+		font-size: var(--t-sm);
+		color: var(--fg-dim);
+	}
+
+	.prose [data-footnote-ref] {
+		text-decoration: none;
+		color: var(--accent);
+	}
+
+	.prose [data-footnote-backref] {
+		text-decoration: none;
+	}
+
 	/* ── callouts ────────────────────────────────────────────────── */
 
 	/*
