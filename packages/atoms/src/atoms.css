@@ -581,6 +581,25 @@
 		pointer-events: none;
 	}
 
+	/*
+	 * Except where the author already said the smooth scroller keeps out.
+	 *
+	 * `data-lenis-prevent` marks a subtree that owns its own scrolling, and
+	 * Lenis honours it by ignoring the wheel there. The veil did not, which
+	 * left the two halves disagreeing and opened a dead zone: with the pointer
+	 * over a showcase or a device, Lenis declined the gesture because the
+	 * subtree is marked, and the veil made the embed inert because a scroll was
+	 * in flight - so the wheel reached neither, and scrolling inside the
+	 * machine simply stopped.
+	 *
+	 * One marker, honoured by both halves. Outside these subtrees the veil
+	 * still does its job, which is why scrolling *past* a preview stays whole.
+	 */
+	:root[data-scrolling] [data-lenis-prevent] iframe,
+	:root[data-scrolling] [data-lenis-prevent] canvas {
+		pointer-events: auto;
+	}
+
 	html {
 		/* Lenis animates scroll itself; leaving native smooth on fights it. */
 		scroll-behavior: auto;

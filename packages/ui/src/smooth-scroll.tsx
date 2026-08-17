@@ -30,12 +30,29 @@ export function SmoothScroll(): null {
 		 * the page settles.
 		 */
 		let settle = 0;
+		/*
+		 * Whether the veil is currently up, tracked here rather than read back
+		 * off the element.
+		 *
+		 * Lenis emits `scroll` every frame it animates, and this handler used to
+		 * write the attribute on every one of them - about 230 writes for a
+		 * single flick of the wheel, where the attribute only ever changes
+		 * twice. Each write dirties `:root`, and every rule keyed off
+		 * `[data-scrolling]` gets its invalidation walk again for a value that
+		 * did not change. Writing only on the edges makes it two.
+		 */
+		let veiled = false;
+		const lower = (): void => {
+			veiled = false;
+			document.documentElement.removeAttribute("data-scrolling");
+		};
 		const veil = (): void => {
-			document.documentElement.setAttribute("data-scrolling", "");
+			if (!veiled) {
+				veiled = true;
+				document.documentElement.setAttribute("data-scrolling", "");
+			}
 			window.clearTimeout(settle);
-			settle = window.setTimeout(() => {
-				document.documentElement.removeAttribute("data-scrolling");
-			}, 150);
+			settle = window.setTimeout(lower, 150);
 		};
 		lenis.on("scroll", veil);
 
