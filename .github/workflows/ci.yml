@@ -41,8 +41,12 @@ jobs:
       # Cheapest first. This reads the directory and nothing else, so a missing
       # Dockerfile line or a doc with no frontmatter fails in seconds rather
       # than after a build.
+      # `pnpm run doctor`, not `pnpm doctor`: pnpm has a builtin `doctor`
+      # command, and a bare `pnpm doctor` runs that one instead. It checks the
+      # pnpm installation, passes, and this step has been green without ever
+      # executing scripts/doctor.mjs.
       - name: Doctor
-        run: pnpm doctor
+        run: pnpm run doctor
 
       - name: Format and lint
         run: pnpm exec biome check .
@@ -54,6 +58,17 @@ jobs:
 
       - name: Build
         run: pnpm run build
+
+      # `exports`, `main` and `module` are written by tsdown from the chunks it
+      # actually emitted, so a manifest and its build cannot disagree here the
+      # way they did when the map was maintained by hand. The cost of that is
+      # that `package.json` is partly a build artefact: if the build rewrites
+      # one, the rewrite belongs in the commit, and this is what says so.
+      #
+      # It also runs publint and attw, which the configs mark `ci-only` - so a
+      # tarball whose types resolve wrongly fails here rather than on install.
+      - name: Manifests match the build
+        run: git diff --exit-code -- '**/package.json'
 
   image:
     name: Docker image

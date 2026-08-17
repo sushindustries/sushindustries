@@ -79,11 +79,7 @@ export function ShowcaseBlock({ attributes }: MarkdownBlockProps): ReactNode {
 			renderStackblitz={
 				code
 					? (source, lang) => (
-							<StackblitzEmbed
-								title={title}
-								code={source}
-								language={lang}
-							/>
+							<StackblitzEmbed title={title} code={source} language={lang} />
 						)
 					: undefined
 			}

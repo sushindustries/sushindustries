@@ -14,10 +14,10 @@ Minification removes unnecessary characters (whitespace, comments) and optimizes
 minify?: boolean | 'dce-only' | MinifyOptions
 ```
 
-- `true` - Enable full minification (whitespace removal, mangling, compression)
-- `false` - Disable minification (default)
-- `'dce-only'` - Only perform dead code elimination without full minification
-- `MinifyOptions` - Pass detailed options to the Oxc minifier
+- `true` — Enable full minification (whitespace removal, mangling, compression)
+- `false` — Disable minification (default)
+- `'dce-only'` — Only perform dead code elimination without full minification
+- `MinifyOptions` — Pass detailed options to the Oxc minifier
 
 ## Basic Usage
 

@@ -1,6 +1,6 @@
 # Introduction
 
-**tsdown** is _The Elegant Library Bundler_ - a fast, simple bundler for TypeScript and JavaScript libraries powered by Rolldown (Rust-based).
+**tsdown** is _The Elegant Library Bundler_ — a fast, simple bundler for TypeScript and JavaScript libraries powered by Rolldown (Rust-based).
 
 ## Why tsdown?
 

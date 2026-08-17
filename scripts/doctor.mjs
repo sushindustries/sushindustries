@@ -1026,6 +1026,10 @@ function checkNoEmDashes() {
 		if (!text.test(path)) continue;
 		if (path.startsWith("packages/product-viewer/")) continue;
 		if (path.startsWith("packages/react-product-viewer/")) continue;
+		// Vendored upstream, pinned by hash in skills-lock.json. House style
+		// does not apply to somebody else's prose, and rewriting it would only
+		// make the next `skills update` a conflict.
+		if (path.startsWith(".agents/skills/")) continue;
 
 		const body = read(path);
 		if (!body.includes(EM_DASH)) continue;
@@ -1112,6 +1116,63 @@ function checkTemplates() {
 	}
 }
 
+/**
+ * The build convention, asserted rather than remembered.
+ *
+ * `packages/ui` published nine subpaths pointing into a `dist/` that its
+ * `files` never shipped. Every one of them resolved here, because here the
+ * directory exists - it is the tarball that is empty, and nothing in a diff
+ * shows you a tarball. publint says so now, but only for a package that runs
+ * it, which is the part a config can silently stop doing.
+ *
+ * So the check is on the config, not the output: a package that builds does it
+ * through `tsdown.base.ts`, and a package whose exports name `dist/` ships it.
+ */
+function checkBuildsShareTheBase(list) {
+	for (const workspace of list) {
+		const manifest = readJson(`${workspace}/package.json`);
+		const config = `${workspace}/tsdown.config.ts`;
+
+		if (manifest.scripts?.build === "tsdown" && !exists(config)) {
+			report(
+				"build",
+				workspace,
+				"builds with tsdown and has no tsdown.config.ts",
+			);
+			continue;
+		}
+		if (!exists(config)) continue;
+
+		if (!read(config).includes("tsdown.base.ts")) {
+			report(
+				"build",
+				config,
+				"does not extend the shared base, so it opts out of publint, attw and generated exports",
+				'import { library } from "../../tsdown.base.ts"',
+			);
+		}
+
+		/*
+		 * `exports` is generated, so a wrong path is not the failure mode any
+		 * more - a path that is correct and then not published is. `files`
+		 * decides that, and nothing generates `files`.
+		 */
+		const shipsDist = (manifest.files ?? []).some(
+			(entry) => entry === "dist" || entry.startsWith("dist/"),
+		);
+		const usesDist = JSON.stringify(manifest.exports ?? {}).includes("./dist/");
+
+		if (usesDist && !shipsDist) {
+			report(
+				"build",
+				`${workspace}/package.json`,
+				"exports resolve into dist/, which `files` does not ship - every subpath 404s from the tarball",
+				'add "dist" to `files`',
+			);
+		}
+	}
+}
+
 /* ── run ─────────────────────────────────────────────────────────────── */
 
 const list = workspaces();
@@ -1121,6 +1182,7 @@ await checkDockerfileCoversWorkspaces(list);
 await checkWorkspaceReadmes(list);
 checkWorkspaceDescriptions(list);
 checkTypecheckHasConfig(list);
+checkBuildsShareTheBase(list);
 checkGeneratedFilesAreOrdered();
 
 checkRegistryFilesExist(registry);

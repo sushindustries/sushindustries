@@ -2160,6 +2160,27 @@
 		}
 	}
 
+	/*
+	 * The editable view. Same frame as a viewport, because it is one - the
+	 * difference is that the reader can type in it, not that it looks different.
+	 * Height is set inline: only the caller knows how tall the embed asked to be.
+	 */
+	.showcase-stackblitz {
+		display: block;
+		width: 100%;
+		overflow: hidden;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-0);
+	}
+
+	.showcase-stackblitz iframe {
+		display: block;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+
 	.showcase-code {
 		max-height: 480px;
 		overflow: auto;

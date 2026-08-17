@@ -2,10 +2,16 @@
 	"version": 1,
 	"skills": {
 		"tsdown": {
-			"source": "rolldown/tsdown",
+			"source": "antfu/skills",
 			"sourceType": "github",
 			"skillPath": "skills/tsdown/SKILL.md",
-			"computedHash": "19a64fcd232743e87971e7d34042cfdd6f63ebb7440400b06516ef5a1942455a"
+			"computedHash": "2183b9019058744215ab8b1261e34833653b5864da159bc022e3b9ad2f706aa5"
+		},
+		"tsdown-migrate": {
+			"source": "rolldown/tsdown",
+			"sourceType": "github",
+			"skillPath": "skills/tsdown-migrate/SKILL.md",
+			"computedHash": "ef840c62747ce5aed1e8b35197d767b022a690648f4a55d31e5e81ed8c21e0bd"
 		}
 	}
 }

@@ -50,8 +50,8 @@ dist/
 
 ## What It Affects
 
-1. **Entry name resolution** - Array entry paths are computed relative to `root` for output filenames
-2. **Unbundle mode** - Used as `preserveModulesRoot`, controlling output structure when `unbundle: true`
+1. **Entry name resolution** — Array entry paths are computed relative to `root` for output filenames
+2. **Unbundle mode** — Used as `preserveModulesRoot`, controlling output structure when `unbundle: true`
 
 ## When to Use
 

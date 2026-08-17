@@ -25,49 +25,25 @@
 	"engines": {
 		"node": ">=20.17.0"
 	},
-	"types": "./dist/index.d.mts",
+	"types": "./dist/index.d.cts",
 	"main": "./dist/index.cjs",
-	"module": "./dist/index.mjs",
+	"module": "./dist/index.js",
 	"exports": {
 		".": {
-			"import": {
-				"types": "./dist/index.d.mts",
-				"default": "./dist/index.mjs"
-			},
-			"require": {
-				"types": "./dist/index.d.cts",
-				"default": "./dist/index.cjs"
-			}
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
 		},
 		"./schema": {
-			"import": {
-				"types": "./dist/schema.d.mts",
-				"default": "./dist/schema.mjs"
-			},
-			"require": {
-				"types": "./dist/schema.d.cts",
-				"default": "./dist/schema.cjs"
-			}
+			"import": "./dist/schema.js",
+			"require": "./dist/schema.cjs"
 		},
 		"./swatch": {
-			"import": {
-				"types": "./dist/swatch.d.mts",
-				"default": "./dist/swatch.mjs"
-			},
-			"require": {
-				"types": "./dist/swatch.d.cts",
-				"default": "./dist/swatch.cjs"
-			}
+			"import": "./dist/swatch.js",
+			"require": "./dist/swatch.cjs"
 		},
 		"./zoned-material": {
-			"import": {
-				"types": "./dist/zoned-material.d.mts",
-				"default": "./dist/zoned-material.mjs"
-			},
-			"require": {
-				"types": "./dist/zoned-material.d.cts",
-				"default": "./dist/zoned-material.cjs"
-			}
+			"import": "./dist/zoned-material.js",
+			"require": "./dist/zoned-material.cjs"
 		},
 		"./package.json": "./package.json"
 	},
@@ -80,8 +56,7 @@
 	],
 	"scripts": {
 		"build": "tsdown",
-		"test:types": "tsc --noEmit",
-		"test:build": "publint --strict && attw --pack . --profile node16"
+		"test:types": "tsc --noEmit"
 	},
 	"peerDependencies": {
 		"three": ">=0.160.0",

@@ -9,6 +9,7 @@
 		"schema"
 	],
 	"files": [
+		"dist",
 		"src",
 		"drizzle.config.ts"
 	],
@@ -27,21 +28,21 @@
 		"drizzle-kit": "0.31.10"
 	},
 	"exports": {
-		"./client": {
-			"types": "./dist/client.server.d.cts",
-			"import": "./dist/client.server.mjs",
-			"require": "./dist/client.server.cjs"
-		},
 		"./client.server": {
-			"types": "./dist/client.server.d.cts",
 			"import": "./dist/client.server.mjs",
 			"require": "./dist/client.server.cjs"
 		},
 		"./schema": {
-			"types": "./dist/schema.d.cts",
 			"import": "./dist/schema.mjs",
 			"require": "./dist/schema.cjs"
 		},
-		"./package.json": "./package.json"
+		"./package.json": "./package.json",
+		"./client": {
+			"import": "./dist/client.server.mjs",
+			"require": "./dist/client.server.cjs"
+		}
+	},
+	"engines": {
+		"node": ">=20.17.0"
 	}
 }

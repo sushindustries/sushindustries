@@ -139,7 +139,7 @@ tsdown --config-loader native
 
 ### tsx Loader
 
-Uses [tsx](https://tsx.is/) library for loading via its tsImport API. Note: `tsx` is an optional peer dependency - install it manually first.
+Uses [tsx](https://tsx.is/) library for loading via its tsImport API. Note: `tsx` is an optional peer dependency — install it manually first.
 
 ```bash
 pnpm add -D tsx
@@ -148,7 +148,7 @@ tsdown --config-loader tsx
 
 ### Unrun Loader
 
-Uses [unrun](https://gugustinette.github.io/unrun/) library for loading. Note: `unrun` is an optional peer dependency - install it manually first.
+Uses [unrun](https://gugustinette.github.io/unrun/) library for loading. Note: `unrun` is an optional peer dependency — install it manually first.
 
 ```bash
 pnpm add -D unrun

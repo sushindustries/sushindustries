@@ -256,10 +256,7 @@ export function Showcase({
 				 * in a real WebContainer - the reader can change the code and see
 				 * the result without leaving the page.
 				 */
-				<div
-					className="showcase-stackblitz"
-					style={{ height: height + 40 }}
-				>
+				<div className="showcase-stackblitz" style={{ height: height + 40 }}>
 					{renderStackblitz?.(code ?? "", language)}
 				</div>
 			) : (

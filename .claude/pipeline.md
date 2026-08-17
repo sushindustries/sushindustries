@@ -26,7 +26,7 @@ Each layer catches what the layer before it cannot see, and costs more than it.
 | --- | --- | --- | --- |
 | `pnpm doctor` | seconds, no build | missing docs, missing Dockerfile lines, a class defined nowhere | nothing |
 | `pnpm check` | pre-push | types, import protection, a build that does not build | a minute |
-| CI `check` | on push and PR | the same, in a clean checkout | GitHub minutes |
+| CI `check` | on push and PR | the same, in a clean checkout, plus publint, attw and a manifest that disagrees with its build | GitHub minutes |
 | CI `image` | after `check` passes | a Docker build that fails, an image that will not boot | the expensive one |
 | Railway | after CI, on watched paths | nothing new. It deploys. | the build you already paid for once |
 
@@ -96,6 +96,84 @@ README rendered. There is no list to update, which is the point: a list is a
 thing that drifts, and the Dockerfile's hand-written one drifted twice before
 the doctor started asserting it.
 
+## How a package gets built
+
+Five packages compile, and all five build the same way, because they all call
+the same function:
+
+```ts
+// packages/<name>/tsdown.config.ts
+import { defineConfig } from "tsdown";
+import { library } from "../../tsdown.base.ts";
+
+export default defineConfig(
+  library({
+    entry: { index: "./src/index.ts" },
+    platform: "browser",
+  }),
+);
+```
+
+`tsdown.base.ts` holds everything that is not a per-package decision: both
+formats, `es2023`, declarations, tree-shaking, source maps, shims, and the two
+publishing checks. A package overrides what it genuinely differs on - entry
+points, platform, which dependencies must stay external - and nothing else. The
+merge is `defu`, so arrays concatenate: restating `format` would give you
+`["esm", "cjs", "esm", "cjs"]`.
+
+It is `tsdown.base.ts`, not `tsdown.config.ts`, on purpose. tsdown searches
+parent directories for a config file, and a root `tsdown.config.ts` would be
+found by every package that did not have its own. The base is a module you
+import, not a config that leaks downward.
+
+`pnpm doctor` asserts the arrangement: a package that builds has a config, and a
+config that exists imports the base. Opting out is allowed; opting out silently
+is not.
+
+### package.json is partly generated
+
+`exports`, `main` and `module` are written by tsdown from the chunks it actually
+emitted. Nobody maintains that map by hand any more, and this is why:
+`packages/ui` published eleven subpaths pointing into a `dist/` its `files`
+never shipped. Every one resolved in the repo, because in the repo the directory
+exists. It is the tarball that was empty, and no diff shows you a tarball.
+
+Two consequences:
+
+- **A build can change `package.json`, and the change belongs in the commit.**
+  CI runs `git diff --exit-code -- '**/package.json'` after building to say so.
+  The manifests are a fixed point: build twice, get the same file.
+- **`files` is still hand-written**, because nothing generates it. That is the
+  one half of the arrangement a human can still get wrong, so the doctor checks
+  the pair - exports naming `dist/` with a `files` that does not ship it is the
+  original bug, and it now fails in seconds.
+
+### publint and attw
+
+Both run `ci-only`, from the shared base. publint reads the manifest against the
+tarball; attw resolves the types the way each consumer's TypeScript will, on the
+`node16` profile - nothing here supports `node10` resolution and failing a check
+for a configuration no consumer runs is just noise.
+
+They are the reason `@sushindustries/ui/registry` is compiled rather than
+shipped as raw `.ts`: it is a module the site imports, and its own
+`import type { IconName } from "./src/icon"` did not resolve under Node16 for
+anybody who installed it. `pnpm doctor` still reads `packages/ui/registry.ts` by
+path, as text, so nothing about the installer changed.
+
+`failOnWarn` is `ci-only` too. A warning that is genuinely acceptable gets
+suppressed by name, next to the reason - see `suppressWarnings` in
+`packages/react-product-viewer/tsdown.config.ts`.
+
+### On the tsdown version
+
+`0.22.14` is both the current latest stable release and the checkpoint version
+the `tsdown-migrate` skill names: the last one that still accepts the deprecated
+tsup compatibility options and warns about each. `0.23` removes them and ignores
+leftovers *silently*. Nothing here uses one - the builds are warning-free - so
+the upgrade is safe to take as soon as `0.23` ships stable. Do not take a beta
+for it.
+
 ## Templates
 
 `templates/` holds the file each of those starts as. A template is Markdown
@@ -113,6 +191,8 @@ Structure, mostly - the things invisible in a diff and obvious in a directory.
 
 - every workspace has a Dockerfile manifest `COPY`, a README, a description,
   and a tsconfig if it has a `typecheck` script
+- every package that builds does it through `tsdown.base.ts`, and every package
+  whose `exports` name `dist/` ships `dist` in its `files`
 - no tracked file depends on a generated file without turbo declaring the order
 - every registry item's files exist, are exported, resolve their registry
   dependencies, and have a docs page and a demo

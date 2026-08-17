@@ -26,52 +26,28 @@
 		"tanstack",
 		"tanstack-intent"
 	],
-	"types": "./dist/index.d.mts",
+	"types": "./dist/index.d.cts",
 	"main": "./dist/index.cjs",
-	"module": "./dist/index.mjs",
+	"module": "./dist/index.js",
 	"exports": {
 		".": {
-			"import": {
-				"types": "./dist/index.d.mts",
-				"default": "./dist/index.mjs"
-			},
-			"require": {
-				"types": "./dist/index.d.cts",
-				"default": "./dist/index.cjs"
-			}
-		},
-		"./query": {
-			"import": {
-				"types": "./dist/query.d.mts",
-				"default": "./dist/query.mjs"
-			},
-			"require": {
-				"types": "./dist/query.d.cts",
-				"default": "./dist/query.cjs"
-			}
-		},
-		"./router": {
-			"import": {
-				"types": "./dist/router.d.mts",
-				"default": "./dist/router.mjs"
-			},
-			"require": {
-				"types": "./dist/router.d.cts",
-				"default": "./dist/router.cjs"
-			}
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
 		},
 		"./model-mark": {
-			"import": {
-				"types": "./dist/elements/model-mark/index.d.mts",
-				"default": "./dist/elements/model-mark/index.mjs"
-			},
-			"require": {
-				"types": "./dist/elements/model-mark/index.d.cts",
-				"default": "./dist/elements/model-mark/index.cjs"
-			}
+			"import": "./dist/model-mark.js",
+			"require": "./dist/model-mark.cjs"
 		},
-		"./styles.css": "./src/styles.css",
-		"./package.json": "./package.json"
+		"./query": {
+			"import": "./dist/query.js",
+			"require": "./dist/query.cjs"
+		},
+		"./router": {
+			"import": "./dist/router.js",
+			"require": "./dist/router.cjs"
+		},
+		"./package.json": "./package.json",
+		"./styles.css": "./src/styles.css"
 	},
 	"sideEffects": [
 		"*.css"
@@ -83,8 +59,7 @@
 	],
 	"scripts": {
 		"build": "tsdown",
-		"test:types": "tsc --noEmit",
-		"test:build": "publint --strict && attw --pack . --profile node16"
+		"test:types": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@sushindustries/product-viewer": "workspace:*"

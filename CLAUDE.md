@@ -20,7 +20,14 @@ apps/web/          the site. TanStack Start on Vite + Nitro.
 packages/atoms/    design tokens + atomic CSS. No build step.
 packages/ui/       the components the site is made of. All installable.
 packages/db/       Drizzle schema + client. Postgres.
+tsdown.base.ts     the one build every compiling package extends.
 ```
+
+Every package that compiles does it through `tsdown.base.ts`, which also
+generates that package's `exports`, `main` and `module` from the chunks the
+build emitted. So **`package.json` is partly a build artefact**: if a build
+rewrites one, commit the rewrite - CI diffs them. `files` is the half nothing
+generates, and the doctor checks it against the half that is generated.
 
 The rule that holds it together: **every visible element of the site is a
 component in `packages/ui`.** The site is the first consumer of the library,

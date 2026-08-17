@@ -11,6 +11,7 @@
 		"ai"
 	],
 	"files": [
+		"dist",
 		"src"
 	],
 	"publishConfig": {
@@ -21,13 +22,17 @@
 		"typecheck": "tsc --noEmit -p tsconfig.json"
 	},
 	"main": "./dist/index.cjs",
-	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.cts",
+	"module": "./dist/index.js",
 	"exports": {
 		".": {
-			"import": "./dist/index.mjs",
+			"import": "./dist/index.js",
 			"require": "./dist/index.cjs"
 		},
 		"./package.json": "./package.json"
-	}
+	},
+	"sideEffects": false,
+	"engines": {
+		"node": ">=20.17.0"
+	},
+	"types": "./dist/index.d.cts"
 }

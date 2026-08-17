@@ -10,6 +10,7 @@
 		"markdown"
 	],
 	"files": [
+		"dist",
 		"src",
 		"registry.ts",
 		"docs"
@@ -48,63 +49,61 @@
 		"zod": "4.4.3"
 	},
 	"main": "./dist/index.cjs",
-	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.cts",
+	"module": "./dist/index.js",
 	"exports": {
 		".": {
-			"import": "./dist/index.mjs",
+			"import": "./dist/index.js",
 			"require": "./dist/index.cjs"
 		},
 		"./archive": {
-			"import": "./dist/archive.mjs",
+			"import": "./dist/archive.js",
 			"require": "./dist/archive.cjs"
 		},
 		"./card": {
-			"import": "./dist/card.mjs",
+			"import": "./dist/card.js",
 			"require": "./dist/card.cjs"
 		},
 		"./doc-aside": {
-			"import": "./dist/doc-aside.mjs",
+			"import": "./dist/doc-aside.js",
 			"require": "./dist/doc-aside.cjs"
 		},
 		"./icon": {
-			"import": "./dist/icon.mjs",
+			"import": "./dist/icon.js",
 			"require": "./dist/icon.cjs"
 		},
 		"./markdown-view": {
-			"import": "./dist/markdown-view.mjs",
+			"import": "./dist/markdown-view.js",
 			"require": "./dist/markdown-view.cjs"
 		},
+		"./registry": {
+			"import": "./dist/registry.js",
+			"require": "./dist/registry.cjs"
+		},
 		"./reveal": {
-			"import": "./dist/reveal.mjs",
+			"import": "./dist/reveal.js",
 			"require": "./dist/reveal.cjs"
 		},
 		"./scroll-spin": {
-			"import": "./dist/scroll-spin.mjs",
+			"import": "./dist/scroll-spin.js",
 			"require": "./dist/scroll-spin.cjs"
 		},
 		"./section": {
-			"import": "./dist/section.mjs",
+			"import": "./dist/section.js",
 			"require": "./dist/section.cjs"
 		},
 		"./showcase": {
-			"import": "./dist/showcase.mjs",
+			"import": "./dist/showcase.js",
 			"require": "./dist/showcase.cjs"
 		},
 		"./smooth-scroll": {
-			"types": "./dist/smooth-scroll.d.cts",
-			"import": "./dist/smooth-scroll.mjs",
+			"import": "./dist/smooth-scroll.js",
 			"require": "./dist/smooth-scroll.cjs"
 		},
-		"./registry": {
-			"types": "./registry.ts",
-			"import": "./registry.ts",
-			"require": "./registry.ts",
-			"default": "./registry.ts",
-			"module": "./registry.ts",
-			"browser": "./registry.ts",
-			"production": "./registry.ts"
-		},
 		"./package.json": "./package.json"
-	}
+	},
+	"sideEffects": false,
+	"engines": {
+		"node": ">=20.17.0"
+	},
+	"types": "./dist/index.d.cts"
 }

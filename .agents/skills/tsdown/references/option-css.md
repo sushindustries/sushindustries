@@ -1,6 +1,6 @@
 # CSS Support
 
-**Status: Experimental - API and behavior may change.**
+**Status: Experimental — API and behavior may change.**
 
 Configure CSS handling including preprocessors, syntax lowering, minification, and code splitting.
 
@@ -16,7 +16,7 @@ When `@tsdown/css` is installed, CSS processing is automatically enabled. Withou
 
 ## CSS Import
 
-Import `.css` files from TypeScript/JavaScript - CSS is extracted into separate `.css` assets:
+Import `.css` files from TypeScript/JavaScript — CSS is extracted into separate `.css` assets:
 
 ```ts
 // src/index.ts
@@ -155,7 +155,7 @@ export default defineConfig({
     postcss: {
       plugins: [require('autoprefixer')],
     },
-    // Or: postcss: './config' - path to search for postcss.config.js
+    // Or: postcss: './config' — path to search for postcss.config.js
   },
 })
 ```
@@ -199,7 +199,7 @@ export default defineConfig({
 
 ## CSS Modules
 
-Files with `.module.css` (and `.module.scss`, `.module.less`, etc.) are treated as CSS modules - class names are scoped and exported as JS:
+Files with `.module.css` (and `.module.scss`, `.module.less`, etc.) are treated as CSS modules — class names are scoped and exported as JS:
 
 ```ts
 import styles from './app.module.css'
@@ -221,26 +221,6 @@ export default defineConfig({
 ```
 
 Set `css.modules: false` to disable. Function-form `generateScopedName` requires `transformer: 'postcss'`.
-
-`localsConvention` also accepts a function compatible with Vite and
-`postcss-modules`:
-
-```ts
-export default defineConfig({
-  css: {
-    modules: {
-      localsConvention: (
-        originalClassName,
-        generatedClassName,
-        inputFile,
-      ) => originalClassName.replaceAll(/-([a-z0-9])/g, (_, c) => c.toUpperCase()),
-    },
-  },
-})
-```
-
-The function form works with both CSS transformers and returns the JavaScript
-export key.
 
 ### Optional Dependencies (PostCSS path)
 
@@ -311,9 +291,9 @@ All declared as optional peer dependencies of `@tsdown/css`.
 | `css.modules` | `object \| false` | `{}` | CSS modules config, or `false` to disable |
 | `css.inject` | `boolean` | `false` | Preserve CSS imports in JS output |
 | `css.target` | `string \| string[] \| false` | _from `target`_ | CSS-specific lowering target |
-| `css.postcss` | `string \| object` | - | PostCSS config path or inline options |
-| `css.preprocessorOptions` | `object` | - | Preprocessor options |
-| `css.lightningcss` | `object` | - | Lightning CSS options |
+| `css.postcss` | `string \| object` | — | PostCSS config path or inline options |
+| `css.preprocessorOptions` | `object` | — | Preprocessor options |
+| `css.lightningcss` | `object` | — | Lightning CSS options |
 
 ## Related
 

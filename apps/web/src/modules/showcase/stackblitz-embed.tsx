@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { type ReactNode, useEffect, useRef } from "react";
 
 /*
  * The StackBlitz embed, built from a demo's source code.
@@ -16,7 +16,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 interface StackblitzProject {
 	readonly title: string;
 	readonly description: string;
-	readonly template: "react-ts";
+	readonly template: "create-react-app";
 	readonly files: Readonly<Record<string, string>>;
 	readonly dependencies: Readonly<Record<string, string>>;
 }
@@ -84,7 +84,7 @@ function buildProject(
 	return {
 		title: `${title} - StackBlitz`,
 		description: `Live demo of ${title} from sushindustries.`,
-		template: "react-ts",
+		template: "create-react-app",
 		files: {
 			"src/App.tsx": APP_TSX,
 			"src/Demo.tsx": demoContent,
@@ -114,15 +114,22 @@ export function StackblitzEmbed({
 
 	useEffect(() => {
 		if (mountedRef.current) return;
-		if (!containerRef.current) return;
+
+		// Captured before the await, not read after it. The ref can be detached
+		// while the SDK chunk is in flight, and a narrowing that happened before
+		// an await is not a fact about the moment the embed is mounted.
+		const container = containerRef.current;
+		if (!container) return;
 
 		mountedRef.current = true;
 
 		void (async () => {
-			const sdk = await import("@stackblitz/sdk");
+			// The SDK's only export is its default, so the namespace object a
+			// dynamic import hands back has no methods on it.
+			const { default: sdk } = await import("@stackblitz/sdk");
 			const project = buildProject(title, code, language);
 
-			sdk.embedProject(containerRef.current, project, {
+			sdk.embedProject(container, project, {
 				openFile: "src/Demo.tsx",
 				view: "preview",
 				theme: "light",
