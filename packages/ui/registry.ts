@@ -576,7 +576,12 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Typography",
 		description:
 			"The type scale as components: Heading with outline and size separated, the Label eyebrow, the Lead. One decision, made once.",
-		files: ["typography.tsx"],
+		/*
+		 * Ships `icon.tsx` because `Label` takes an optional glyph. Installing
+		 * typography without it would copy a file whose first import cannot
+		 * resolve, which works here only because the file exists here.
+		 */
+		files: ["typography.tsx", "icon.tsx"],
 		dependencies: {},
 		category: "content",
 		subcategory: "Text",

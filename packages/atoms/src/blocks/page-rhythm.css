@@ -61,4 +61,25 @@
 	.section > .label + * {
 		margin-top: var(--s-3);
 	}
+
+	/*
+	 * The gap between a page and the footer under it.
+	 *
+	 * The footer carried a top border and its own padding but no margin, so a
+	 * page whose last element had no bottom spacing of its own ran straight
+	 * into the rule - which is most documentation pages, because a docs article
+	 * ends on whatever its last section ended on.
+	 *
+	 * `--space-section` rather than a step off the fixed scale: this is the
+	 * distance between two regions of a page, which is the one measurement that
+	 * should grow with the viewport, and it is the same token the gap above a
+	 * section already uses.
+	 *
+	 * `margin-top: auto` pins it to the bottom on a page too short to fill the
+	 * screen, so a sparse page does not leave the footer floating halfway up.
+	 */
+	.site-footer {
+		margin-top: auto;
+		padding-top: var(--space-section);
+	}
 }

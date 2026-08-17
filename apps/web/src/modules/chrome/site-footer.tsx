@@ -13,7 +13,7 @@ import { footerColumns } from "./footer.catalogue";
  */
 export function SiteFooter(): ReactNode {
 	return (
-		<footer className="border-t">
+		<footer className="site-footer border-t">
 			<div className="container py-7">
 				<div
 					className="grid-auto"

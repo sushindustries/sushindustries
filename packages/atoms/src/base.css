@@ -52,7 +52,17 @@
 		scrollbar-gutter: stable;
 	}
 
+	/*
+	 * A column, so the footer can be pushed to the bottom rather than sit
+	 * wherever the content happened to stop. `min-height: 100svh` and not
+	 * `100vh`: on a phone `vh` counts the space behind the browser's own bars,
+	 * so a full-height page there is always slightly taller than the screen and
+	 * always scrolls a little for no reason.
+	 */
 	body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100svh;
 		margin: 0;
 		background: var(--bg-0);
 		color: var(--fg);

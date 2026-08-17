@@ -1,6 +1,5 @@
 import atomsCss from "@sushindustries/atoms/atoms.css?url";
 import viewerCss from "@sushindustries/react-product-viewer/styles.css?url";
-import { SmoothScroll } from "@sushindustries/ui";
 import type { QueryClient } from "@tanstack/react-query";
 import {
 	createRootRouteWithContext,
@@ -191,9 +190,29 @@ function RootDocument({
 				 * in router.tsx wraps the whole router render in one, which is
 				 * why the devtools' Query panel below still finds the client.
 				 */}
-				<SmoothScroll />
+				{/*
+				 * Lenis is not mounted.
+				 *
+				 * It hijacks the wheel to animate the scroll position itself,
+				 * which means every scrollable thing inside the page has to opt
+				 * out by hand - 23 `data-lenis-prevent` attributes, a veil that
+				 * disables pointer events on embeds mid-gesture, and a fight with
+				 * every iframe, canvas and overflow container on the site. The
+				 * result was scrolling that felt unpredictable, which is the one
+				 * thing smooth scrolling is supposed to fix.
+				 *
+				 * Native scrolling has none of those failure modes and is what
+				 * the reader's own settings, trackpad and accessibility
+				 * preferences already agree on.
+				 *
+				 * `SmoothScroll` stays in `packages/ui` and stays published: it
+				 * is a correct component and installing it is a reasonable
+				 * choice. This site just does not make it.
+				 */}
 				<SiteNav theme={theme} />
-				<main id="main">{children}</main>
+				<main id="main" className="flex-1">
+					{children}
+				</main>
 				<SiteFooter />
 				<Devtools />
 				<Scripts />

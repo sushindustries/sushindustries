@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Icon, type IconName } from "./icon";
 
 /*
  * The type scale, as components rather than as memory.
@@ -37,11 +38,33 @@ export function Heading({
 
 export interface LabelProps {
 	children: ReactNode;
+	/**
+	 * A glyph before the words.
+	 *
+	 * An eyebrow is four or five uppercase characters at the smallest size on
+	 * the page, which is the hardest thing on it to scan. A glyph gives the
+	 * section a shape that is recognisable before the word is read, and on a
+	 * page of several sections that is the difference between a list of
+	 * headings and a set of places.
+	 *
+	 * Optional, because an eyebrow with nothing meaningful to draw is better
+	 * with no glyph than with a decorative one.
+	 */
+	icon?: IconName;
 }
 
 /** The eyebrow: mono, small caps, quiet. One per section, above the title. */
-export function Label({ children }: LabelProps): ReactNode {
-	return <p className="label m-0">{children}</p>;
+export function Label({ children, icon }: LabelProps): ReactNode {
+	return (
+		<p className="label m-0">
+			{/*
+			 * `aria-hidden`: the glyph repeats the word beside it, and a screen
+			 * reader announcing both reads the section name twice.
+			 */}
+			{icon ? <Icon name={icon} size={12} aria-hidden="true" /> : null}
+			{children}
+		</p>
+	);
 }
 
 export interface LeadProps {

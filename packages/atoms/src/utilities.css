@@ -317,12 +317,26 @@
 	 * one type gesture the site repeats, and it is what separates a section from
 	 * the section above it without drawing a line.
 	 */
+	/*
+	 * `inline-flex` so an eyebrow can carry a glyph and still sit on one line
+	 * with its words. Inline, not block: an eyebrow is a run of text, and a
+	 * block here would take the full width and break any layout that puts one
+	 * beside something else.
+	 */
 	.label {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-2);
 		font-family: var(--mono);
 		font-size: var(--t-xs);
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
 		color: var(--fg-faint);
+	}
+
+	/* The glyph never stretches, and never inherits the letter-spacing gap. */
+	.label svg {
+		flex: 0 0 auto;
 	}
 
 	.truncate {
