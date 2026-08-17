@@ -4432,6 +4432,62 @@
 		align-items: start;
 	}
 
+	/*
+	 * The row under every document title: what the page is, then what you can
+	 * do with it.
+	 *
+	 * The row itself is composed in the markup - it is a flex row with a gap
+	 * and nothing a utility cannot say. What earns a name is the pair of groups
+	 * inside it, because they carry a rule no utility has: below a certain
+	 * width they stop being chips in a line and become a control strip.
+	 *
+	 * A container query rather than a viewport one: this row sits in the full
+	 * width of a package page and in a narrower column on a component page, and
+	 * it should break by how much room it actually has, not by how big the
+	 * window is. The `.cq` utility on the row is what they measure against.
+	 */
+
+	/*
+	 * The metadata is one unit, and it goes first.
+	 *
+	 * Grouping the labels means the break happens between "what this page is"
+	 * and "what you can do with it" - the seam that means something - instead
+	 * of between two buttons.
+	 */
+	.doc-actions-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--s-2);
+		margin-right: auto;
+	}
+
+	.doc-actions-set {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--s-2);
+	}
+
+	/*
+	 * Under 26rem of row, the actions take the width and split it evenly.
+	 *
+	 * Ragged chips on a phone read as debris; equal ones read as a control
+	 * strip. `flex: 1 1 auto` keeps the words on one line each - a "Copy as
+	 * Markdown" broken across two lines is worse than any alignment gain.
+	 */
+	@container (max-width: 26rem) {
+		.doc-actions-meta,
+		.doc-actions-set {
+			width: 100%;
+		}
+
+		.doc-actions-set > * {
+			flex: 1 1 auto;
+			justify-content: center;
+		}
+	}
+
 	.doc-aside {
 		position: sticky;
 		/* Clears the sticky site nav, which is about 52px tall. */

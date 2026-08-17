@@ -69,79 +69,90 @@ export function DocActions({
 	 * as chips shouting verbs at a reader who can see the buttons.
 	 */
 	return (
-		<div className="mt-4 flex items-center gap-2 wrap">
-			{updated ? (
-				<span className="label">
-					Last updated{" "}
-					{new Date(updated).toLocaleDateString("en-US", {
-						year: "numeric",
-						month: "short",
-						day: "numeric",
-						timeZone: "UTC",
-					})}
-				</span>
-			) : null}
-			<span className="label">{minutes} min read</span>
-			<CopyButton text={markdown} label="Copy as Markdown" ground="paper" />
-			{markdownUrl ? (
-				<a
-					className="copy-btn"
-					data-ground="paper"
-					data-action="read"
-					href={markdownUrl}
-				>
-					View as Markdown
-				</a>
-			) : null}
-
+		<div className="cq mt-4 flex items-center gap-2 wrap">
 			{/*
-			 * One accent pill among quiet chips. The prompt works in Claude,
-			 * Cursor or anything that can fetch a URL - one door, lit, beats
-			 * three neutral ones nobody can tell apart.
+			 * What the page is, as one group. Keeping the labels together means a
+			 * narrow row breaks between the description and the controls rather
+			 * than between two buttons.
 			 */}
-			{promptUrl ? (
-				<CopyButton
-					text={prompt}
-					label="Agent setup"
-					icon="spark"
-					ground="accent"
-				/>
-			) : null}
+			<div className="doc-actions-meta">
+				{updated ? (
+					<span className="label">
+						Last updated{" "}
+						{new Date(updated).toLocaleDateString("en-US", {
+							year: "numeric",
+							month: "short",
+							day: "numeric",
+							timeZone: "UTC",
+						})}
+					</span>
+				) : null}
+				<span className="label">{minutes} min read</span>
+			</div>
 
-			{/*
-			 * The two GitHub doors, shown only when someone other than me could
-			 * walk through them. Both open an editor on a file in the repo, and
-			 * while the repo is private that editor is a 404 - an affordance
-			 * that advertises an action the reader cannot take is worse than no
-			 * affordance, because they have to click it to find out.
-			 */}
-			{REPO_IS_PUBLIC && editPath ? (
-				<a
-					className="copy-btn"
-					data-ground="paper"
-					data-action="edit"
-					href={`${REPO_URL}/edit/main/${editPath}`}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Edit on GitHub
-				</a>
-			) : null}
+			{/* What you can do with it. */}
+			<div className="doc-actions-set">
+				<CopyButton text={markdown} label="Copy as Markdown" ground="paper" />
+				{markdownUrl ? (
+					<a
+						className="copy-btn"
+						data-ground="paper"
+						data-action="read"
+						href={markdownUrl}
+					>
+						View as Markdown
+					</a>
+				) : null}
 
-			{REPO_IS_PUBLIC && !editPath && writePath ? (
-				<a
-					className="copy-btn"
-					data-ground="paper"
-					data-action="edit"
-					href={`${REPO_URL}/new/main/${writePath}?filename=index.md${
-						writeBody ? `&value=${encodeURIComponent(writeBody)}` : ""
-					}`}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Write this page
-				</a>
-			) : null}
+				{/*
+				 * One accent pill among quiet chips. The prompt works in Claude,
+				 * Cursor or anything that can fetch a URL - one door, lit, beats
+				 * three neutral ones nobody can tell apart.
+				 */}
+				{promptUrl ? (
+					<CopyButton
+						text={prompt}
+						label="Agent setup"
+						icon="spark"
+						ground="accent"
+					/>
+				) : null}
+
+				{/*
+				 * The two GitHub doors, shown only when someone other than me could
+				 * walk through them. Both open an editor on a file in the repo, and
+				 * while the repo is private that editor is a 404 - an affordance
+				 * that advertises an action the reader cannot take is worse than no
+				 * affordance, because they have to click it to find out.
+				 */}
+				{REPO_IS_PUBLIC && editPath ? (
+					<a
+						className="copy-btn"
+						data-ground="paper"
+						data-action="edit"
+						href={`${REPO_URL}/edit/main/${editPath}`}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Edit on GitHub
+					</a>
+				) : null}
+
+				{REPO_IS_PUBLIC && !editPath && writePath ? (
+					<a
+						className="copy-btn"
+						data-ground="paper"
+						data-action="edit"
+						href={`${REPO_URL}/new/main/${writePath}?filename=index.md${
+							writeBody ? `&value=${encodeURIComponent(writeBody)}` : ""
+						}`}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Write this page
+					</a>
+				) : null}
+			</div>
 		</div>
 	);
 }
