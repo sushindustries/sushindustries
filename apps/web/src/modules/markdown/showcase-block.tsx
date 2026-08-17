@@ -1,10 +1,8 @@
 import {
-	highlighter,
+	CodeBlock,
 	type MarkdownBlockProps,
-	resolveLanguage,
 	Showcase,
 } from "@sushindustries/ui";
-import { createHighlightedCodeBlockProps } from "@tanstack/highlight/react";
 import type { ReactNode } from "react";
 import { findRegistryItem } from "../registry/registry.catalogue";
 import { findDemo } from "../showcase/demos";
@@ -55,31 +53,23 @@ export function ShowcaseBlock({ attributes }: MarkdownBlockProps): ReactNode {
 						}
 					: undefined
 			}
-			// Passed in so `packages/ui` needs no highlighter of its own; the
-			// Showcase component stays a layout, not a rendering pipeline.
-			renderCode={(code, language) => {
-				const block = createHighlightedCodeBlockProps({
-					highlighter,
-					code,
-					lang: resolveLanguage(language),
-					className: "code-block",
-				});
-
-				return (
-					<div
-						className={block.className}
-						// biome-ignore lint/security/noDangerouslySetInnerHtml: highlighter output, escaped by renderTokens
-						dangerouslySetInnerHTML={{ __html: block.htmlMarkup }}
-					/>
-				);
-			}}
+			// `copy: false` because the Showcase renders its own copy button
+			// over the whole code tab - two chips for one block is one too many.
+			renderCode={(code, language) => (
+				<CodeBlock code={code} language={language} copy={false} />
+			)}
 			// The StackBlitz tab: a live, editable copy of the demo. Built from
 			// the same source the Code tab shows, so the reader can change it and
 			// see the result without leaving the page.
 			renderStackblitz={
 				code
 					? (source, lang) => (
-							<StackblitzEmbed title={title} code={source} language={lang} />
+							<StackblitzEmbed
+								demoId={id}
+								title={title}
+								code={source}
+								language={lang}
+							/>
 						)
 					: undefined
 			}

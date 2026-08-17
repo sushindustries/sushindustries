@@ -206,7 +206,7 @@ export function NavBar({
 				})}
 
 				{/* Wide: a row of triggers. */}
-				<div className="nav-row flex items-center gap-1">
+				<div className="nav-row">
 					{entries.map((entry) =>
 						entry.items && entry.items.length > 0 ? (
 							<Panel key={entry.href} entry={entry} renderLink={renderLink} />

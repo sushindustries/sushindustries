@@ -79,7 +79,7 @@ export function Dock({
 				</button>
 			) : null}
 
-			<div className="dock-tasks">
+			<div className="dock-tasks" data-lenis-prevent>
 				{tasks.map((task) => (
 					<span key={task.id} className="dock-task">
 						<button

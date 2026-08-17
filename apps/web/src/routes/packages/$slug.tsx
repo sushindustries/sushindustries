@@ -1,7 +1,19 @@
-import { collectHeadings, DocAside, MarkdownView } from "@sushindustries/ui";
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import {
+	Breadcrumb,
+	collectHeadings,
+	DocAside,
+	MarkdownView,
+} from "@sushindustries/ui";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { DocActions } from "../../modules/content/doc-actions";
+import { DocFeedback } from "../../modules/content/doc-feedback";
 import { findPackage } from "../../modules/content/packages/packages.catalogue";
+import { REFERENCES } from "../../modules/content/references.catalogue";
+import {
+	ldScript,
+	packageApplication,
+} from "../../modules/content/structured-data";
 import { BLOCKS } from "../../modules/markdown/blocks";
 
 /*
@@ -22,6 +34,7 @@ export const Route = createFileRoute("/packages/$slug")({
 			{ title: `${loaderData?.entry.name ?? "Package"} - Sushindustries` },
 			{ name: "description", content: loaderData?.entry.description ?? "" },
 		],
+		scripts: loaderData ? [ldScript(packageApplication(loaderData.entry))] : [],
 	}),
 });
 
@@ -30,9 +43,14 @@ function PackagePage(): ReactNode {
 
 	return (
 		<article className="container" style={{ paddingBlock: "var(--s-8)" }}>
-			<Link to="/packages" className="label">
-				← Packages
-			</Link>
+			<Breadcrumb
+				origin="https://sushindustries.com"
+				items={[
+					{ label: "Sushindustries", href: "/" },
+					{ label: "Packages", href: "/packages" },
+					{ label: entry.name },
+				]}
+			/>
 
 			<header className="mt-5">
 				<div className="flex items-center gap-3 wrap">
@@ -43,13 +61,34 @@ function PackagePage(): ReactNode {
 					{entry.description}
 				</p>
 				<code className="code mt-5 max-w-prose">{entry.install}</code>
+
+				{/* The README is the page, so "Copy page" copies the README. */}
+				<DocActions
+					title={entry.name}
+					markdown={entry.readme}
+					markdownUrl={`https://github.com/sushindustries/sushindustries/blob/main/packages/${entry.slug}/README.md`}
+					promptUrl={`https://sushindustries.com/r/prompt/packages/${entry.slug}`}
+					editPath={`packages/${entry.slug}/README.md`}
+				/>
 			</header>
 
 			<div className="mt-7">
 				<div className="doc-layout">
-					<DocAside headings={headings} />
+					<DocAside
+						headings={headings}
+						footer={
+							<DocFeedback
+								page={`/packages/${entry.slug}`}
+								markdown={entry.readme}
+							/>
+						}
+					/>
 					<div className="min-w-0">
-						<MarkdownView source={entry.readme} blocks={BLOCKS} />
+						<MarkdownView
+							source={entry.readme}
+							blocks={BLOCKS}
+							references={REFERENCES}
+						/>
 					</div>
 				</div>
 			</div>

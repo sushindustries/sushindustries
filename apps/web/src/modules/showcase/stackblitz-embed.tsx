@@ -1,42 +1,108 @@
 import { type ReactNode, useEffect, useRef } from "react";
 
 /*
- * The StackBlitz embed, built from a demo's source code.
+ * The StackBlitz embed: the demo, actually running, actually editable.
  *
- * The SDK is loaded dynamically so it is tree-shaken if nothing imports this
- * file, and so it never runs on a server. It is a client-only concern: the SDK
- * touches `document` and opens a WebContainer, neither of which exists during
- * SSR, so the embed is mounted only when the StackBlitz tab is visible.
+ * Nothing here is published to npm, so a project that says
+ * `"@sushindustries/ui": "latest"` installs nothing and the embed dies on
+ * boot. The honest source of the component code is the same one the
+ * installers use: `/r/tanstack/<id>.json` inlines every file of an item and
+ * names the items it depends on, so the embed fetches that - the demo runs
+ * the exact source a `tanstack add` would copy, with the atoms stylesheet
+ * bundled in as text.
  *
- * Each demo becomes a self-contained React + TypeScript project on StackBlitz.
- * The source the author wrote beside the element is the entry point, so the
- * editable copy is the same code the reader was just looking at.
+ * `template: "node"` boots a WebContainer that runs `npm install && npm
+ * start`, which makes the project an ordinary Vite app rather than something
+ * shaped for an embed. The reader gets the editor and the running result in
+ * one frame, and every file is real.
+ *
+ * The SDK and the stylesheet are dynamic imports: both are fetched when the
+ * StackBlitz tab is opened and never otherwise, so this file costs the
+ * documentation page nothing.
  */
 
-interface StackblitzProject {
-	readonly title: string;
-	readonly description: string;
-	readonly template: "create-react-app";
+interface AddOn {
 	readonly files: Readonly<Record<string, string>>;
-	readonly dependencies: Readonly<Record<string, string>>;
+	readonly packageAdditions?: {
+		readonly dependencies?: Readonly<Record<string, string>>;
+	};
+	readonly dependsOn?: readonly string[];
 }
 
-const DEPS: Readonly<Record<string, string>> = {
-	react: "^19.0.0",
-	"react-dom": "^19.0.0",
-	"@sushindustries/ui": "latest",
-	"@sushindustries/atoms": "latest",
-};
+/** The item, plus everything it says it needs, fetched breadth-first. */
+async function collectAddOns(id: string): Promise<AddOn[]> {
+	const seen = new Set<string>();
+	const queue = [id];
+	const out: AddOn[] = [];
 
-const APP_TSX = `import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { Demo } from "./Demo";
+	while (queue.length > 0) {
+		const next = queue.shift();
+		if (!next || seen.has(next)) continue;
+		seen.add(next);
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <Demo />
-  </StrictMode>,
-);
+		const response = await fetch(`/r/tanstack/${next}.json`);
+		if (!response.ok) continue;
+
+		const addOn = (await response.json()) as AddOn;
+		out.push(addOn);
+		queue.push(...(addOn.dependsOn ?? []));
+	}
+
+	return out;
+}
+
+/*
+ * The names the snippet actually uses, read from the code itself: JSX tags
+ * that start with a capital, and hook calls. That is what makes the generated
+ * import line real rather than a guess - `<Card>` in the snippet becomes
+ * `import { Card }` above it.
+ */
+function usedNames(code: string): string[] {
+	const names = new Set<string>();
+
+	for (const match of code.matchAll(/<([A-Z]\w+)/g)) {
+		if (match[1]) names.add(match[1]);
+	}
+	for (const match of code.matchAll(/\b(use[A-Z]\w+)\s*\(/g)) {
+		if (match[1]) names.add(match[1]);
+	}
+	for (const match of code.matchAll(
+		/\b(parseFrontmatter|readString|readList|parseArchive|collectHeadings)\b/g,
+	)) {
+		if (match[1]) names.add(match[1]);
+	}
+
+	return [...names];
+}
+
+const PACKAGE_JSON = (dependencies: Readonly<Record<string, string>>): string =>
+	JSON.stringify(
+		{
+			name: "sushindustries-demo",
+			private: true,
+			type: "module",
+			scripts: { dev: "vite", start: "vite" },
+			dependencies: {
+				react: "^19.0.0",
+				"react-dom": "^19.0.0",
+				...dependencies,
+			},
+			devDependencies: {
+				"@types/react": "^19.0.0",
+				"@types/react-dom": "^19.0.0",
+				"@vitejs/plugin-react": "^5.0.0",
+				typescript: "^5.6.0",
+				vite: "^6.0.0",
+			},
+		},
+		null,
+		2,
+	);
+
+const VITE_CONFIG = `import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+
+export default defineConfig({ plugins: [react()] });
 `;
 
 const INDEX_HTML = `<!doctype html>
@@ -48,9 +114,21 @@ const INDEX_HTML = `<!doctype html>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/App.tsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
+`;
+
+const MAIN_TSX = `import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { Demo } from "./Demo";
+import "./atoms.css";
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <Demo />
+  </StrictMode>,
+);
 `;
 
 const TSCONFIG = `{
@@ -67,35 +145,46 @@ const TSCONFIG = `{
 }
 `;
 
-function buildProject(
-	title: string,
-	code: string,
-	language: string,
-): StackblitzProject {
-	const isTsx = language === "tsx" || language === "ts";
+function demoFile(code: string, names: string[]): string {
+	// One import per name the snippet uses, against the barrel of everything
+	// the registry shipped. Unused sources stay browsable in the file tree.
+	const imports =
+		names.length > 0
+			? `import { ${names.sort().join(", ")} } from "./components/sushindustries";\n\n`
+			: "";
 
-	const demoContent = isTsx
+	const body = code.trim().startsWith("<")
 		? `export function Demo() {\n  return (\n${code
 				.split("\n")
-				.map((l) => `    ${l}`)
+				.map((line) => `    ${line}`)
 				.join("\n")}\n  );\n}\n`
-		: code;
+		: `${code}\n\nexport function Demo() {\n  return <p>Open the console - this demo is code, not UI.</p>;\n}\n`;
 
-	return {
-		title: `${title} - StackBlitz`,
-		description: `Live demo of ${title} from sushindustries.`,
-		template: "create-react-app",
-		files: {
-			"src/App.tsx": APP_TSX,
-			"src/Demo.tsx": demoContent,
-			"index.html": INDEX_HTML,
-			"tsconfig.json": TSCONFIG,
-		},
-		dependencies: DEPS,
-	};
+	return `${imports}${body}`;
+}
+
+/*
+ * WebContainer embeds only run in Chromium-based browsers - they need
+ * cross-origin isolation headers an embedding page does not control. On
+ * anything else the same project opens on stackblitz.com instead, where
+ * StackBlitz serves its own headers and every supported browser works.
+ */
+function isChromium(): boolean {
+	interface UAData {
+		readonly brands?: ReadonlyArray<{ readonly brand: string }>;
+	}
+	const data = (navigator as Navigator & { userAgentData?: UAData })
+		.userAgentData;
+
+	if (data?.brands) {
+		return data.brands.some((entry) => /Chromium/i.test(entry.brand));
+	}
+	return /Chrom(e|ium)\//.test(navigator.userAgent);
 }
 
 export interface StackblitzEmbedProps {
+	/** Registry id of the demo; what `/r/tanstack/<id>.json` is fetched for. */
+	demoId: string;
 	/** The demo title, used as the project name. */
 	title: string;
 	/** The demo source code. */
@@ -105,42 +194,111 @@ export interface StackblitzEmbedProps {
 }
 
 export function StackblitzEmbed({
+	demoId,
 	title,
 	code,
-	language,
 }: StackblitzEmbedProps): ReactNode {
 	const containerRef = useRef<HTMLDivElement>(null);
-	const mountedRef = useRef(false);
 
 	useEffect(() => {
-		if (mountedRef.current) return;
+		const host = containerRef.current;
+		if (!host) return;
 
-		// Captured before the await, not read after it. The ref can be detached
-		// while the SDK chunk is in flight, and a narrowing that happened before
-		// an await is not a fact about the moment the embed is mounted.
-		const container = containerRef.current;
-		if (!container) return;
+		/*
+		 * The SDK *replaces* the element it is handed with its iframe. Handing
+		 * it the React-rendered div means React later tries to remove a child
+		 * that no longer exists - the removeChild crash. So the SDK gets a
+		 * node created here, appended here, and cleared here; React owns only
+		 * the empty host around it.
+		 */
+		const container = document.createElement("div");
+		container.style.height = "100%";
+		host.appendChild(container);
 
-		mountedRef.current = true;
+		let cancelled = false;
 
 		void (async () => {
 			// The SDK's only export is its default, so the namespace object a
 			// dynamic import hands back has no methods on it.
-			const { default: sdk } = await import("@stackblitz/sdk");
-			const project = buildProject(title, code, language);
+			const [{ default: sdk }, { default: atomsCss }, addOns] =
+				await Promise.all([
+					import("@stackblitz/sdk"),
+					import("@sushindustries/atoms/atoms.css?raw"),
+					collectAddOns(demoId),
+				]);
+
+			const files: Record<string, string> = {
+				"package.json": "",
+				"index.html": INDEX_HTML,
+				"vite.config.ts": VITE_CONFIG,
+				"tsconfig.json": TSCONFIG,
+				"src/main.tsx": MAIN_TSX,
+				"src/atoms.css": atomsCss,
+			};
+
+			const dependencies: Record<string, string> = {};
+			const stems: string[] = [];
+
+			for (const addOn of addOns) {
+				Object.assign(dependencies, addOn.packageAdditions?.dependencies);
+				for (const [path, content] of Object.entries(addOn.files)) {
+					files[path] = content;
+					const stem = path
+						.split("/")
+						.at(-1)
+						?.replace(/\.tsx?$/, "");
+					if (stem) stems.push(stem);
+				}
+			}
+
+			// The barrel the demo imports from: everything the registry shipped.
+			files["src/components/sushindustries/index.ts"] = stems
+				.map((stem) => `export * from "./${stem}";`)
+				.join("\n");
+
+			files["package.json"] = PACKAGE_JSON(dependencies);
+			files["src/Demo.tsx"] = demoFile(code, usedNames(code));
+
+			// Unmounted while the SDK chunk was in flight: boot nothing.
+			if (cancelled) return;
+
+			const project = {
+				title: `${title} - sushindustries`,
+				description: `Live demo of ${title} from sushindustries.`,
+				template: "node" as const,
+				files,
+			};
+
+			if (!isChromium()) {
+				const open = document.createElement("button");
+				open.type = "button";
+				open.className = "copy-btn";
+				open.dataset.ground = "paper";
+				open.textContent =
+					"Open in StackBlitz (embeds need a Chromium browser)";
+				open.addEventListener("click", () =>
+					sdk.openProject(project, { openFile: "src/Demo.tsx" }),
+				);
+				container.replaceChildren(open);
+				container.classList.add("flex", "items-center", "justify-center");
+				return;
+			}
 
 			sdk.embedProject(container, project, {
 				openFile: "src/Demo.tsx",
-				view: "preview",
+				view: "default",
 				theme: "light",
 				height: "100%",
 			});
 		})();
 
 		return () => {
-			mountedRef.current = false;
+			cancelled = true;
+			// Whatever the SDK left inside the host - its iframe, the fallback
+			// button - is imperative DOM, so it is cleared imperatively.
+			host.replaceChildren();
 		};
-	}, [title, code, language]);
+	}, [demoId, title, code]);
 
 	return <div ref={containerRef} className="showcase-stackblitz-frame" />;
 }

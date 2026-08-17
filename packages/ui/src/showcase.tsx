@@ -1,4 +1,5 @@
 import { Fragment, type ReactNode, useState } from "react";
+import { CopyButton } from "./copy-button";
 import { Icon } from "./icon";
 
 /**
@@ -61,6 +62,20 @@ export const SHOWCASE_DEVICES: readonly ShowcaseDevice[] = [
 		width: "100%",
 		height: 0,
 		note: "whatever the page has",
+	},
+	{
+		id: "xl",
+		label: "XL",
+		width: "1280px",
+		height: 760,
+		note: "past the 1080 wide layout",
+	},
+	{
+		id: "xxl",
+		label: "XXL",
+		width: "1680px",
+		height: 900,
+		note: "a big desktop, where the max-widths hold the line",
 	},
 ];
 
@@ -239,7 +254,7 @@ export function Showcase({
 			</div>
 
 			{tab === "preview" ? (
-				<div className="showcase-stage" data-view={view}>
+				<div className="showcase-stage" data-view={view} data-lenis-prevent>
 					{shown.map((device) => (
 						<Frame
 							key={device.id}
@@ -260,12 +275,34 @@ export function Showcase({
 					{renderStackblitz?.(code ?? "", language)}
 				</div>
 			) : (
-				<div className="showcase-code">
-					{code && renderCode ? (
-						renderCode(code, language)
-					) : (
-						<pre className="code-block">{code}</pre>
-					)}
+				/*
+				 * Code, beside the thing it makes. The split answers "and what
+				 * does that render?" without a tab switch: the same iframe the
+				 * Preview tab uses, so it costs one lazy document and stays
+				 * honest about media queries. On a narrow screen the split
+				 * stacks, code first, because the code is what this tab is for.
+				 *
+				 * The copy button lives here rather than inside `renderCode`, so
+				 * the figure's code is copyable whether the host highlighted it
+				 * or the fallback <pre> rendered it plain.
+				 */
+				<div className="showcase-split">
+					<div className="showcase-code code-shell" data-lenis-prevent>
+						{code && renderCode ? (
+							renderCode(code, language)
+						) : (
+							<pre className="code-block">{code}</pre>
+						)}
+						{code ? <CopyButton text={code} /> : null}
+					</div>
+					<iframe
+						className="showcase-viewport"
+						style={{ height }}
+						src={src}
+						title={title ? `${title}, running` : "The example, running"}
+						sandbox="allow-scripts allow-same-origin"
+						loading="lazy"
+					/>
 				</div>
 			)}
 
@@ -283,7 +320,10 @@ export function Showcase({
 					{installEntries.map(([name, command]) => (
 						<Fragment key={name}>
 							<span className="label">{name}</span>
-							<code className="code min-w-0">{command}</code>
+							<code className="code min-w-0">
+								{command}
+								<CopyButton text={command} ground="paper" />
+							</code>
 						</Fragment>
 					))}
 				</figcaption>

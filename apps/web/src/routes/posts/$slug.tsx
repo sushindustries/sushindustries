@@ -2,6 +2,7 @@ import { collectHeadings, DocAside, MarkdownView } from "@sushindustries/ui";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { findPost } from "../../modules/content/posts/posts.catalogue";
+import { REFERENCES } from "../../modules/content/references.catalogue";
 import { BLOCKS } from "../../modules/markdown/blocks";
 
 /*
@@ -46,7 +47,11 @@ function PostPage(): ReactNode {
 				<div className="doc-layout">
 					<DocAside headings={headings} />
 					<div className="min-w-0">
-						<MarkdownView source={post.body} blocks={BLOCKS} />
+						<MarkdownView
+							source={post.body}
+							blocks={BLOCKS}
+							references={REFERENCES}
+						/>
 					</div>
 				</div>
 			</div>

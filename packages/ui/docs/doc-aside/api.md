@@ -1,6 +1,6 @@
 ---
 title: API
-summary: Every prop on DocAside, and what the collapse does without JavaScript.
+summary: Every prop on `DocAside`, and what the collapse does without JavaScript.
 ---
 
 ## Props

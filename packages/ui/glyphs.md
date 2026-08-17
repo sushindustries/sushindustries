@@ -50,6 +50,12 @@ Multiple paths per glyph go in separate backticks in the same cell.
 | chat | `M4 5h16v11H9l-5 4z` | One speech bubble with a tail, and no second bubble behind it. Two bubbles say conversation and are half the size each at 24px, where the tail is the only part that still reads. |
 | linkedin | `M4 4h16v16H4z` `M8 10.5v6` `M8 7.6v.1` `M11.6 16.5v-6` `M11.6 13.2a2.6 2.6 0 0 1 5.2 0v3.3` | The wordmark reduced to its two letters in a square, drawn at this stroke weight rather than pasted in as a logo. |
 | clock | `M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16z` `M12 7.6V12l3 1.8` | A face and two hands. |
+| copy | `M9 8.5h10.5V21H9z` `M5 15.5v-12h9` | Two pages, the front one whole and the back one implied by two edges. The duplicate is the message, not the clipboard. |
+| github | `M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4` `M9 18c-4.51 2-5-2-7-2` | The octocat as an outline, at this set's stroke rather than as a pasted logo - the tentacle-arm is the part that makes it read at 15px. |
+| cursor | `M6 3.5 19 11l-5.6 1.6L10 19z` | A pointer, mid-click. The editor named after it uses the same shape for the same reason. |
+| spark | `M12 3v18` `M4.2 7.5l15.6 9` `M19.8 7.5 4.2 16.5` | A six-ray asterisk: the generic mark for an AI assistant, drawn at this set's stroke rather than borrowed from any one vendor. |
+| star | `M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z` | Five points, closed. The one shape GitHub taught everyone to press. |
+| check | `M5 13l4.5 4.5L19 7.5` | A tick. It replaces the copy glyph for a moment, so it is drawn at the same weight and nothing else moves. |
 
 ## Adding one
 

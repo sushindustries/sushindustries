@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { ArchiveCategory, ArchiveItem } from "./archive.schemas";
 import { Icon } from "./icon";
+import { Pagination } from "./pagination";
 
 export interface ArchiveProps {
 	categories: readonly ArchiveCategory[];
@@ -23,6 +24,12 @@ export interface ArchiveProps {
 	 * silently fails to match `/components/$slug`. The href stays for hosts
 	 * that just want an anchor.
 	 */
+	/** 1-based page within the filtered result. Absent means "no pagination". */
+	page?: number;
+	/** Items per page when `page` is set. */
+	pageSize?: number;
+	/** Builds the href for a page number. Required when `page` is set. */
+	hrefForPage?: (page: number) => string;
 	renderLink: (props: {
 		kind: "category" | "tag" | "item";
 		/** Category id, tag name, or item id. */
@@ -70,15 +77,30 @@ export function Archive({
 	activeTag,
 	hrefForCategory,
 	hrefForTag,
+	page,
+	pageSize = 24,
+	hrefForPage,
 	renderLink,
 	emptyLabel = "Nothing here yet.",
 }: ArchiveProps): ReactNode {
 	const inCategory =
 		active === "all" ? items : items.filter((item) => item.category === active);
 
-	const shown = activeTag
+	const matched = activeTag
 		? inCategory.filter((item) => item.tags.includes(activeTag))
 		: inCategory;
+
+	/*
+	 * Paged after filtering, so the numbers describe the result the reader is
+	 * actually looking at. `page` clamps rather than 404s: a bookmarked page 3
+	 * of a filter that now fits on one page should show the last page, not an
+	 * empty grid.
+	 */
+	const pageCount = Math.max(1, Math.ceil(matched.length / pageSize));
+	const current = page ? Math.min(Math.max(1, page), pageCount) : 1;
+	const shown = page
+		? matched.slice((current - 1) * pageSize, current * pageSize)
+		: matched;
 
 	const counts = new Map<string, number>();
 	for (const item of items) {
@@ -259,6 +281,16 @@ export function Archive({
 					)}
 				</div>
 			)}
+
+			{page && hrefForPage ? (
+				<div className="mt-7">
+					<Pagination
+						page={current}
+						pageCount={pageCount}
+						hrefFor={hrefForPage}
+					/>
+				</div>
+			) : null}
 		</div>
 	);
 }

@@ -33,7 +33,7 @@ function fail(message) {
 }
 
 if (!kind || !slug) {
-	fail("Usage: pnpm new <post|component|package> <slug>");
+	fail("Usage: pnpm new <post|page|component|package|glyph> <slug>");
 }
 
 if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) {
@@ -83,6 +83,26 @@ async function newPost() {
 	written.push(target);
 	todo.push(`write \`summary:\` in ${target} - it is what the index shows`);
 	todo.push(`set \`draft: false\` when it should be public`);
+}
+
+/* ── page ────────────────────────────────────────────────────────────── */
+
+async function newPage() {
+	const target = `apps/web/content/pages/${slug}.md`;
+
+	await writeFrom("page", target, {
+		slug,
+		title: titleCase(slug),
+		date: new Date().toISOString().slice(0, 10),
+	});
+
+	written.push(target);
+	todo.push(
+		`build the page in ${target} - every block the site knows works there`,
+	);
+	todo.push(
+		`set \`draft: false\` when it should be public - it appears at /p/${slug}`,
+	);
 }
 
 /* ── component ───────────────────────────────────────────────────────── */
@@ -247,6 +267,7 @@ async function newGlyph() {
 
 const kinds = {
 	post: newPost,
+	page: newPage,
 	component: newComponent,
 	package: newPackage,
 	glyph: newGlyph,

@@ -310,6 +310,52 @@
 		--scrim: color-mix(in srgb, #1a1713 42%, transparent);
 
 		/*
+		 * Code is a terminal, whichever theme the page is in.
+		 *
+		 * Everything else on this site is paper, and both themes are versions of
+		 * paper. Code is the one thing on it that is not prose - it is a view into
+		 * a machine - so it keeps the machine's material: a warm charcoal slab that
+		 * does not invert. That is also what lets one syntax palette serve both
+		 * themes instead of two palettes that drift.
+		 *
+		 * The hues are the CLI's. `packages/cli-kit` in the project manager renders
+		 * with xterm-256 codes chosen to survive terminal themes; these are those
+		 * codes as hex - 203, 209, 215, 149, 114, 79, 80, 75, 69, 105, 141 - so a
+		 * command pasted from the terminal into a fence keeps its colours.
+		 */
+		--code-bg: #1d2226;
+		--code-bg-deep: #171b1f;
+		--code-line: #323a40;
+		--code-edge: color-mix(in srgb, #ffffff 9%, transparent);
+		--code-ink: #dde2e4;
+		--code-ink-dim: #8b969c;
+		/* Glass on charcoal. The paper's --glass tokens are mixed from the sheet,
+		   which on this slab would be a smudge of the wrong material. */
+		--code-chip: color-mix(in srgb, #ffffff 8%, transparent);
+		--code-chip-edge: color-mix(in srgb, #ffffff 16%, transparent);
+
+		/*
+		 * Semantic, not decorative: one token per thing the grammar can say,
+		 * named after the `th-*` classes TanStack Highlight emits. The raw hue
+		 * appears exactly once, here - a rule below this layer never holds a hex.
+		 */
+		--syn-keyword: #5fafff;
+		--syn-string: #87d787;
+		--syn-number: #ffaf5f;
+		--syn-literal: #ff875f;
+		--syn-comment: #7b868c;
+		--syn-function: #af87ff;
+		--syn-property: #5fd7af;
+		--syn-variable: #ffd7af;
+		--syn-type: #5fd7d7;
+		--syn-tag: #ff5f5f;
+		--syn-selector: #afd75f;
+		--syn-operator: #a9b3b9;
+		--syn-meta: #8787ff;
+		/* The CLI's brand is orange; a command in a shell fence is the CLI. */
+		--syn-command: #ff875f;
+
+		/*
 		 * Folders are sage, and that is not decoration.
 		 *
 		 * Two hues total, and the rule behind them has not changed: everything
@@ -495,6 +541,14 @@
 
 		/* The scrim has to take the page away, and a dark page needs more of it. */
 		--scrim: color-mix(in srgb, #05080a 62%, transparent);
+
+		/*
+		 * Code does not invert - but on a dark page the slab has to sit a step
+		 * *above* the ground to stay a slab, where on paper it sits below.
+		 */
+		--code-bg: #21282d;
+		--code-bg-deep: #1a2025;
+		--code-line: #39434a;
 
 		/*
 	 * Fills are mixed from the ground, so they follow it without being
@@ -714,11 +768,20 @@
 	.px-5 {
 		padding-inline: var(--s-5);
 	}
+	.p-0 {
+		padding: 0;
+	}
 	.py-2 {
 		padding-block: var(--s-2);
 	}
 	.py-3 {
 		padding-block: var(--s-3);
+	}
+	.py-5 {
+		padding-block: var(--s-5);
+	}
+	.py-7 {
+		padding-block: var(--s-7);
 	}
 
 	/* sizing */
@@ -894,6 +957,12 @@
 		gap: var(--s-3);
 	}
 
+	/* The card plus its docs chip. A span, because credits render in prose. */
+	.credit-slot {
+		position: relative;
+		display: block;
+	}
+
 	.credit {
 		display: flex;
 		flex-direction: column;
@@ -905,6 +974,37 @@
 		transition:
 			border-color 200ms ease,
 			background 200ms ease;
+	}
+
+	/*
+	 * Their mark, quoted in its own colours. A dependency's logo is quotation,
+	 * and a quotation is not recoloured - it is also how a reader recognises
+	 * Vite or React faster than by reading either name.
+	 */
+	.credit-logo {
+		width: 28px;
+		height: 28px;
+		object-fit: contain;
+		flex-shrink: 0;
+	}
+
+	/* The one action that is not "open the project": read its manual. */
+	.credit-docs {
+		position: absolute;
+		top: var(--s-2);
+		right: var(--s-2);
+		opacity: 0;
+	}
+
+	.credit-slot:hover .credit-docs,
+	.credit-slot:focus-within .credit-docs {
+		opacity: 1;
+	}
+
+	@media (hover: none) {
+		.credit-docs {
+			opacity: 1;
+		}
 	}
 
 	@media (hover: hover) and (pointer: fine) {
@@ -1624,6 +1724,27 @@
 	}
 
 	/*
+	 * The row owns its own layout instead of borrowing `.flex` from the
+	 * utilities layer. Utilities are the last layer and always win, so a
+	 * `.flex` in the markup was quietly beating the `display: none` below -
+	 * which is why the desktop row kept rendering, overflowed, on phones.
+	 */
+	.nav-row {
+		display: flex;
+		align-items: center;
+		gap: var(--s-1);
+	}
+
+	/* The brand mark: image pixels, sized here so the header height cannot
+	   depend on what got exported from the drawing app. */
+	.nav-mark {
+		display: block;
+		width: 26px;
+		height: 26px;
+		object-fit: contain;
+	}
+
+	/*
 	 * The switch. One breakpoint, and the two halves are mutually exclusive on
 	 * either side of it.
 	 */
@@ -1948,17 +2069,697 @@
 		overflow-wrap: anywhere;
 	}
 
+	/*
+	 * The fence: a terminal slab on the paper.
+	 *
+	 * It reads as an object *on* the page, not a tinted region of it - contact
+	 * shadow below, a lit top edge above, and the charcoal ground that does not
+	 * change with the theme. The grey it replaced separated from the page by
+	 * two points of lightness and disappeared the moment the theme went dark.
+	 *
+	 * `.code-block` is both shapes the renderer produces: a bare `<pre>` for an
+	 * untagged fence, and a wrapper `<div>` around the highlighter's own
+	 * `<pre class="th-code">` for a tagged one. The inner pre resets to zero so
+	 * both shapes are one slab with one padding.
+	 */
 	.code-block {
 		margin: 0;
 		padding: var(--s-4);
-		background: var(--bg-1);
-		border: 1px solid var(--line-soft);
+		background: var(--code-bg);
+		color: var(--code-ink);
+		border: 1px solid var(--code-line);
 		border-radius: var(--r-lg);
+		box-shadow:
+			inset 0 1px 0 var(--code-edge),
+			var(--lift-1);
 		font-family: var(--mono);
 		font-size: var(--t-sm);
 		line-height: 1.7;
 		overflow-x: auto;
 		tab-size: 2;
+	}
+
+	.code-block .th-code {
+		margin: 0;
+		padding: 0;
+		background: transparent;
+		font: inherit;
+		overflow: visible;
+	}
+
+	/*
+	 * The syntax palette. One rule per thing the grammar can say, each reading
+	 * the token defined beside its siblings - never a hex down here.
+	 *
+	 * Comments are italic as well as dim, because dimness alone stops working
+	 * inside a long highlighted block where half the tokens are already mid-tone.
+	 */
+	.th-keyword {
+		color: var(--syn-keyword);
+	}
+	.th-string {
+		color: var(--syn-string);
+	}
+	.th-number {
+		color: var(--syn-number);
+	}
+	.th-literal {
+		color: var(--syn-literal);
+	}
+	.th-comment {
+		color: var(--syn-comment);
+		font-style: italic;
+	}
+	.th-function {
+		color: var(--syn-function);
+	}
+	.th-property {
+		color: var(--syn-property);
+	}
+	.th-variable {
+		color: var(--syn-variable);
+	}
+	.th-type {
+		color: var(--syn-type);
+	}
+	.th-tag {
+		color: var(--syn-tag);
+	}
+	.th-selector {
+		color: var(--syn-selector);
+	}
+	.th-operator {
+		color: var(--syn-operator);
+	}
+	.th-meta {
+		color: var(--syn-meta);
+	}
+	.th-heading {
+		color: var(--code-ink);
+		font-weight: 700;
+	}
+	.th-link {
+		color: var(--syn-keyword);
+		text-decoration: underline;
+	}
+	.th-code-inline {
+		color: var(--syn-property);
+	}
+	.th-inserted {
+		color: var(--syn-string);
+		background: color-mix(in srgb, var(--syn-string) 14%, transparent);
+	}
+	.th-deleted {
+		color: var(--syn-tag);
+		background: color-mix(in srgb, var(--syn-tag) 14%, transparent);
+	}
+
+	/*
+	 * A shell fence is the CLI, so it borrows the CLI's grammar: the command in
+	 * the brand orange and weighted, the way `cli-kit` prints it. The deeper
+	 * ground is what separates "type this" from "read this" at a glance.
+	 */
+	.code-block:has(.th-code--shell) {
+		background: var(--code-bg-deep);
+	}
+	.th-code--shell .th-command {
+		color: var(--syn-command);
+		font-weight: 600;
+	}
+
+	/*
+	 * Copy, as a glass chip on the slab.
+	 *
+	 * Fill plus edge, no blur - the one-blur-per-surface rule - and always
+	 * visible on coarse pointers, because "appears on hover" is a desktop
+	 * fiction a phone cannot perform.
+	 */
+	.copy-btn {
+		display: inline-flex;
+		align-items: center;
+		flex-shrink: 0;
+		gap: var(--s-1);
+		padding: 5px var(--s-3);
+		border: 1px solid var(--code-chip-edge);
+		border-radius: var(--r);
+		background: var(--code-chip);
+		color: var(--code-ink);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		white-space: nowrap;
+		cursor: pointer;
+		transition:
+			opacity 160ms var(--ease-out),
+			color 160ms var(--ease-out),
+			border-color 160ms var(--ease-out);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.copy-btn:hover {
+			border-color: var(--code-ink-dim);
+		}
+
+		.copy-btn[data-ground="paper"]:hover {
+			border-color: var(--accent);
+			color: var(--accent);
+		}
+	}
+
+	.copy-btn[data-copied="true"] {
+		color: var(--syn-string);
+		border-color: color-mix(in srgb, var(--syn-string) 40%, transparent);
+	}
+
+	/*
+	 * The same chip on paper: the install rows, the doc actions bar. A card's
+	 * ground and a lifted edge rather than glass - glass over paper was the
+	 * "nearly invisible" version, because the fill was the page.
+	 */
+	.copy-btn[data-ground="paper"] {
+		border-color: var(--line);
+		background: var(--bg-0);
+		color: var(--fg-dim);
+		box-shadow:
+			inset 0 1px 0 var(--glass-edge),
+			var(--lift-1);
+		text-decoration: none;
+	}
+
+	.copy-btn[data-ground="paper"][data-copied="true"] {
+		color: var(--wasabi);
+		border-color: color-mix(in srgb, var(--wasabi) 45%, transparent);
+	}
+
+	/*
+	 * The lit chip: the one action on a bar that is an invitation rather than
+	 * a utility. Accent fill, pill radius - it reads before the label does.
+	 */
+	.copy-btn[data-ground="accent"] {
+		border-color: transparent;
+		border-radius: 999px;
+		background: var(--accent);
+		color: var(--on-accent);
+		font-weight: 600;
+		box-shadow: var(--lift-1);
+	}
+
+	.copy-btn[data-ground="accent"][data-copied="true"] {
+		background: var(--wasabi);
+	}
+
+	/*
+	 * The slab with its button. The shell exists so the button can sit inside
+	 * the fence's corner without being part of the scrolling content - the
+	 * fence scrolls sideways, the button does not move.
+	 */
+	.code-shell {
+		position: relative;
+	}
+
+	/*
+	 * The slab's corner: the language badge always, the copy chip on demand.
+	 * One container so the two never fight over the same corner, and the badge
+	 * shifts nothing when the chip appears.
+	 */
+	.code-tools {
+		position: absolute;
+		top: var(--s-2);
+		right: var(--s-2);
+		display: flex;
+		align-items: center;
+		gap: var(--s-2);
+	}
+
+	.code-lang {
+		padding: 3px var(--s-2);
+		border-radius: var(--r);
+		background: var(--code-chip);
+		color: var(--code-ink-dim);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		user-select: none;
+	}
+
+	.code-shell .copy-btn {
+		opacity: 0;
+	}
+
+	.code-shell:hover .copy-btn,
+	.code-shell:focus-within .copy-btn {
+		opacity: 1;
+	}
+
+	@media (hover: none) {
+		.code-shell .copy-btn {
+			opacity: 1;
+		}
+	}
+
+	/* Every line owns its full scroll width, which is what makes a hover or a
+	   highlight span the block rather than stopping at the text's edge. */
+	.th-line {
+		display: inline-block;
+		min-width: 100%;
+		width: max-content;
+	}
+
+	.th-code--line-numbers .th-line::before {
+		display: inline-block;
+		width: 2.5em;
+		padding-right: 1em;
+		color: var(--syn-comment);
+		content: attr(data-line);
+		text-align: right;
+		user-select: none;
+	}
+
+	/* ── buttons ─────────────────────────────────────────────────── */
+
+	/*
+	 * Two buttons, one hierarchy. The pill is the one action a section wants
+	 * taken; the ghost is the alternative beside it. There is no third kind,
+	 * because a row of three buttons is a menu wearing costumes.
+	 */
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--s-2);
+		padding: var(--s-3) var(--s-5);
+		border: 1px solid transparent;
+		border-radius: 999px;
+		background: var(--accent);
+		color: var(--on-accent);
+		font: 600 var(--t-sm) / 1 var(--sans);
+		text-decoration: none;
+		cursor: pointer;
+		box-shadow: var(--lift-1);
+		transition:
+			background 160ms ease,
+			box-shadow 160ms ease,
+			translate 160ms var(--ease-out);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.btn:hover {
+			background: var(--accent-dim);
+			box-shadow: var(--lift-2);
+			translate: 0 -1px;
+		}
+	}
+
+	.btn-ghost {
+		background: transparent;
+		border-color: var(--line);
+		color: var(--fg-dim);
+		box-shadow: none;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.btn-ghost:hover {
+			background: color-mix(in srgb, var(--accent) 8%, transparent);
+			border-color: var(--accent);
+			color: var(--accent);
+			box-shadow: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.btn {
+			transition: none;
+		}
+	}
+
+	/* ── command palette ─────────────────────────────────────────── */
+
+	/*
+	 * The search, in the top layer. The dialog is the backdrop and the box is
+	 * the surface: keeping them separate is what makes click-outside a real
+	 * area rather than a guess.
+	 */
+	.palette {
+		width: min(37rem, calc(100vw - 2 * var(--s-4)));
+		margin: 12vh auto auto;
+		padding: 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-card);
+		background: var(--bg-0);
+		box-shadow: var(--lift-3);
+		color: inherit;
+	}
+
+	.palette::backdrop {
+		background: var(--scrim);
+	}
+
+	.palette-box {
+		display: flex;
+		flex-direction: column;
+		max-height: min(24rem, 60vh);
+	}
+
+	.palette-head {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		padding: var(--s-3) var(--s-4);
+		border-bottom: 1px solid var(--line-soft);
+		color: var(--fg-faint);
+	}
+
+	.palette-input {
+		flex: 1;
+		min-width: 0;
+		border: 0;
+		background: transparent;
+		color: var(--fg);
+		font: var(--t-md) / 1.4 var(--sans);
+		outline: none;
+	}
+
+	.palette-kbd {
+		padding: 2px var(--s-2);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--fg-faint);
+	}
+
+	.palette-list {
+		margin: 0;
+		padding: var(--s-2);
+		list-style: none;
+		overflow-y: auto;
+	}
+
+	.palette-item {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		width: 100%;
+		padding: var(--s-2) var(--s-3);
+		border: 0;
+		border-radius: var(--r-lg);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	/*
+	 * The icon on its tile, in the category's pastel - the same tone pairs the
+	 * nav panel uses, so a colour means one thing everywhere it appears.
+	 */
+	.palette-icon {
+		display: grid;
+		place-items: center;
+		width: 28px;
+		height: 28px;
+		flex-shrink: 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		background: var(--bg-1);
+		color: var(--fg-faint);
+	}
+
+	.palette-icon[data-tone="motion"] {
+		background: var(--tone-motion);
+		color: var(--tone-motion-ink);
+	}
+
+	.palette-icon[data-tone="layout"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+	}
+
+	.palette-icon[data-tone="content"] {
+		background: var(--tone-content);
+		color: var(--tone-content-ink);
+	}
+
+	.palette-icon[data-tone="docs"] {
+		background: var(--tone-docs);
+		color: var(--tone-docs-ink);
+	}
+
+	.palette-icon[data-tone="3d"] {
+		background: var(--tone-3d);
+		color: var(--tone-3d-ink);
+	}
+
+	.palette-item[data-active="true"] {
+		background: var(--bg-2);
+		color: var(--fg);
+	}
+
+	/* The trigger that lives in the nav: a small field-shaped button. */
+	.palette-trigger {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-2);
+		padding: 6px var(--s-3);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+		color: var(--fg-faint);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		cursor: pointer;
+		transition:
+			color 160ms ease,
+			border-color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.palette-trigger:hover {
+			color: var(--fg-dim);
+			border-color: var(--line);
+		}
+	}
+
+	/* ── pagination ──────────────────────────────────────────────── */
+
+	.pages-num,
+	.pages-step {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 34px;
+		height: 34px;
+		padding: 0 var(--s-2);
+		border: 1px solid transparent;
+		border-radius: var(--r-lg);
+		color: var(--fg-dim);
+		text-decoration: none;
+		transition:
+			color 160ms ease,
+			border-color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.pages-num:hover,
+		.pages-step:hover {
+			border-color: var(--line-soft);
+			color: var(--fg);
+		}
+	}
+
+	.pages-num[aria-current="page"] {
+		border-color: var(--line);
+		background: var(--bg-1);
+		color: var(--fg);
+	}
+
+	/* The chevron points down by default; the steps need sideways. */
+	.pages-step {
+		rotate: 90deg;
+	}
+
+	.pages-step[data-dir="next"] {
+		rotate: -90deg;
+	}
+
+	.pages-gap {
+		color: var(--fg-faint);
+	}
+
+	/* ── breadcrumb ──────────────────────────────────────────────── */
+
+	/*
+	 * The trail. Mono and small like every other piece of page furniture, with
+	 * the chevron glyph as separator - a rotated copy of the one the nav
+	 * already uses, so the two systems read as one.
+	 */
+	.crumbs {
+		display: block;
+	}
+
+	.crumbs-list {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: var(--s-1);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.crumbs-item a {
+		color: var(--fg-faint);
+		text-decoration: none;
+		transition: color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.crumbs-item a:hover {
+			color: var(--accent);
+		}
+	}
+
+	.crumbs-item [aria-current="page"] {
+		color: var(--fg-dim);
+	}
+
+	.crumbs-sep {
+		display: flex;
+		color: var(--fg-faint);
+		rotate: -90deg;
+	}
+
+	/* ── references ──────────────────────────────────────────────── */
+
+	/*
+	 * A mention of a thing this repo owns, made walkable.
+	 *
+	 * Prose that names `Showcase` and prose that links to it used to be two
+	 * different sentences the author had to choose between. A ref is both: it
+	 * reads inline like code, and hovering it raises a card with the
+	 * component's own summary, so the reader can decide whether the mention is
+	 * worth a page visit before paying for one.
+	 *
+	 * The card is real markup, not `title=`: a tooltip cannot carry a summary,
+	 * a category, and an install line, and it cannot be entered. `:focus-within`
+	 * keeps it open for keyboards, and on coarse pointers the first tap opens
+	 * and the second follows - which is native anchor behaviour left alone.
+	 */
+	.ref {
+		position: relative;
+		display: inline-block;
+	}
+
+	.ref-link {
+		font-family: var(--mono);
+		font-size: 0.9em;
+		color: var(--accent);
+		text-decoration: none;
+		border-bottom: 1px dashed color-mix(in srgb, var(--accent) 50%, transparent);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.ref-link:hover {
+			border-bottom-style: solid;
+		}
+	}
+
+	.ref-card {
+		position: absolute;
+		left: 0;
+		top: calc(100% + var(--s-2));
+		z-index: 30;
+		width: max-content;
+		max-width: min(21rem, 80vw);
+		padding: var(--s-3) var(--s-4);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-0);
+		box-shadow: var(--lift-2);
+		opacity: 0;
+		visibility: hidden;
+		translate: 0 -4px;
+		transition:
+			opacity 160ms var(--ease-out),
+			translate 160ms var(--ease-out),
+			visibility 0s 160ms;
+	}
+
+	.ref:hover .ref-card,
+	.ref:focus-within .ref-card {
+		opacity: 1;
+		visibility: visible;
+		translate: 0 0;
+		transition-delay: 120ms, 120ms, 120ms;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.ref-card {
+			translate: 0 0;
+			transition: none;
+		}
+	}
+
+	/* The card's text is utilities composed in the markup - the block owns
+	   only what utilities cannot say: position, reveal, and the shadow. */
+
+	/* ── action badges ───────────────────────────────────────────── */
+
+	/*
+	 * A verb, wearing its colour.
+	 *
+	 * Docs here keep saying the same few words - install, create, read, run,
+	 * edit - and each of those is a different kind of ask. The badge is a
+	 * square glass token that makes the kind visible before the sentence is
+	 * read, and machine-visible always: `data-action` is the contract, so an
+	 * agent scraping a page can enumerate what the page wants done without
+	 * parsing prose. The colours are the tone pairs the categories already
+	 * use - a verb is a kind of thing, and kinds of things have tones.
+	 */
+	.act {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-1);
+		padding: 2px var(--s-2);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		background: var(--glass);
+		box-shadow: inset 0 1px 0 var(--glass-edge);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--fg-dim);
+	}
+
+	.act[data-action="install"] {
+		background: var(--tone-motion);
+		color: var(--tone-motion-ink);
+	}
+
+	.act[data-action="create"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+	}
+
+	.act[data-action="read"] {
+		background: var(--tone-content);
+		color: var(--tone-content-ink);
+	}
+
+	.act[data-action="run"] {
+		background: var(--tone-docs);
+		color: var(--tone-docs-ink);
+	}
+
+	.act[data-action="edit"] {
+		background: var(--tone-3d);
+		color: var(--tone-3d-ink);
 	}
 
 	/* ── responsive ──────────────────────────────────────────────── */
@@ -2108,7 +2909,11 @@
 		padding: var(--s-3);
 	}
 
-	.showcase-stage[data-view="compare"] {
+	/* XL and XXL are wider than the stage on most screens; every view scrolls
+	   sideways rather than resizing the page around one frame. */
+	.showcase-stage[data-view="compare"],
+	.showcase-stage[data-view="xl"],
+	.showcase-stage[data-view="xxl"] {
 		justify-content: start;
 		overflow-x: auto;
 	}
@@ -2179,6 +2984,26 @@
 		width: 100%;
 		height: 100%;
 		border: 0;
+	}
+
+	/*
+	 * The Code tab's split: source beside the same iframe the Preview shows.
+	 * Stacks below the narrow breakpoint, code first - the code is what the
+	 * tab is for, the render is the proof beside it.
+	 */
+	.showcase-split {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: var(--s-3);
+		padding: var(--s-3);
+		background: var(--bg-0);
+		align-items: start;
+	}
+
+	@media (max-width: 860px) {
+		.showcase-split {
+			grid-template-columns: minmax(0, 1fr);
+		}
 	}
 
 	.showcase-code {
@@ -2289,14 +3114,10 @@
 		color: var(--accent);
 	}
 
+	/* Rhythm only. The slab's material - ground, border, shadow, palette -
+	   is defined once, on `.code-block`, and prose does not restate it. */
 	.prose .code-block {
 		margin-top: var(--s-4);
-		border: 1px solid var(--line-soft);
-		border-radius: var(--r-lg);
-		font-family: var(--mono);
-		font-size: var(--t-sm);
-		line-height: 1.7;
-		tab-size: 2;
 	}
 
 	.prose .code-block code {
@@ -2530,6 +3351,16 @@
 		.doc-aside-link:hover {
 			color: var(--fg-dim);
 		}
+	}
+
+	.doc-aside-footer {
+		margin-top: var(--s-4);
+		padding-top: var(--s-4);
+		border-top: 1px solid var(--line-soft);
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		gap: var(--s-2);
 	}
 
 	.doc-aside-link[data-active="true"] {

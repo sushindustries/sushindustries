@@ -15,7 +15,14 @@
 		"src"
 	],
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"exports": {
+			".": {
+				"import": "./dist/index.js",
+				"require": "./dist/index.cjs"
+			},
+			"./package.json": "./package.json"
+		}
 	},
 	"scripts": {
 		"build": "tsdown",
@@ -24,10 +31,7 @@
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.js",
 	"exports": {
-		".": {
-			"import": "./dist/index.js",
-			"require": "./dist/index.cjs"
-		},
+		".": "./src/index.ts",
 		"./package.json": "./package.json"
 	},
 	"sideEffects": false,

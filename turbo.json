@@ -1,6 +1,6 @@
 {
 	"$schema": "https://turborepo.dev/schema.json",
-	"globalDependencies": ["tsconfig.base.json"],
+	"globalDependencies": ["tsconfig.base.json", "tsdown.base.ts"],
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],

@@ -1,6 +1,7 @@
 import type { MarkdownBlockProps } from "@sushindustries/ui";
 import { ClientOnly } from "@tanstack/react-router";
 import { lazy, type ReactNode, Suspense } from "react";
+import { pacedImport } from "../showcase/paced-import";
 
 /*
  * A 3D product viewer, embedded in Markdown.
@@ -23,8 +24,8 @@ import { lazy, type ReactNode, Suspense } from "react";
  *    prose below it does not jump when the canvas mounts.
  */
 
-const ProductViewer = lazy(
-	() => import("@sushindustries/react-product-viewer"),
+const ProductViewer = lazy(() =>
+	pacedImport(() => import("@sushindustries/react-product-viewer")),
 );
 
 function toNumber(value: string | undefined, fallback: number): number {

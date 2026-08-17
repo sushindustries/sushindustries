@@ -1,9 +1,21 @@
-import { collectHeadings, DocAside, MarkdownView } from "@sushindustries/ui";
+import {
+	Breadcrumb,
+	collectHeadings,
+	DocAside,
+	MarkdownView,
+} from "@sushindustries/ui";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import * as z from "zod";
 import { findComponentPage } from "../../modules/content/components/component-page";
 import type { SectionId } from "../../modules/content/components/components.catalogue";
+import { DocActions } from "../../modules/content/doc-actions";
+import { DocFeedback } from "../../modules/content/doc-feedback";
+import { REFERENCES } from "../../modules/content/references.catalogue";
+import {
+	componentSourceCode,
+	ldScript,
+} from "../../modules/content/structured-data";
 import { BLOCKS } from "../../modules/markdown/blocks";
 import { findDemo } from "../../modules/showcase/demos";
 
@@ -54,6 +66,10 @@ export const Route = createFileRoute("/components/$slug")({
 			{ title: `${loaderData?.doc.title ?? "Component"} - Sushindustries` },
 			{ name: "description", content: loaderData?.doc.summary ?? "" },
 		],
+		// The machine-readable half: this page is source code somebody installs.
+		scripts: loaderData?.doc.item
+			? [ldScript(componentSourceCode(loaderData.doc.item))]
+			: [],
 	}),
 });
 
@@ -70,9 +86,22 @@ function ComponentDocPage(): ReactNode {
 		<article>
 			<header className="doc-header">
 				<div className="container">
-					<Link to="/components" className="label">
-						← Components
-					</Link>
+					<Breadcrumb
+						origin="https://sushindustries.com"
+						items={[
+							{ label: "Sushindustries", href: "/" },
+							{ label: "Components", href: "/components" },
+							...(doc.item
+								? [
+										{
+											label: doc.item.category,
+											href: `/components?category=${doc.item.category}`,
+										},
+									]
+								: []),
+							{ label: doc.title },
+						]}
+					/>
 
 					<div className="mt-4 flex items-center gap-3 wrap">
 						<h1 className="h2 m-0">{doc.title}</h1>
@@ -82,6 +111,25 @@ function ComponentDocPage(): ReactNode {
 					{doc.summary ? (
 						<p className="mt-3 fg-dim max-w-prose text-pretty">{doc.summary}</p>
 					) : null}
+
+					{/*
+					 * The same page, for every kind of reader: raw Markdown for a
+					 * person, a one-line prompt for their agent, an edit link for
+					 * whoever spots the typo. Generated pages have no file on
+					 * GitHub, so they get no edit link rather than a dead one.
+					 */}
+					<DocActions
+						title={doc.title}
+						updated={doc.generated ? undefined : doc.updated}
+						markdown={doc.sections.map((section) => section.body).join("\n\n")}
+						markdownUrl={`/r/md/${doc.slug}`}
+						promptUrl={`https://sushindustries.com/r/prompt/${doc.slug}`}
+						editPath={
+							doc.generated
+								? undefined
+								: `packages/ui/docs/${doc.slug}/index.md`
+						}
+					/>
 
 					<nav className="doc-tabs mt-6" aria-label="Sections">
 						{doc.sections.map((section) => (
@@ -103,9 +151,23 @@ function ComponentDocPage(): ReactNode {
 			<div className="container mt-7">
 				{active ? (
 					<div className="doc-layout">
-						<DocAside headings={headings[active.id] ?? []} />
+						<DocAside
+							headings={headings[active.id] ?? []}
+							footer={
+								<DocFeedback
+									page={`/components/${doc.slug}`}
+									markdown={doc.sections
+										.map((section) => section.body)
+										.join("\n\n")}
+								/>
+							}
+						/>
 						<div className="min-w-0">
-							<MarkdownView source={active.body} blocks={BLOCKS} />
+							<MarkdownView
+								source={active.body}
+								blocks={BLOCKS}
+								references={REFERENCES}
+							/>
 						</div>
 					</div>
 				) : (

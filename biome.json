@@ -42,7 +42,8 @@
 			"!packages/react-product-viewer",
 			"!**/.turbo",
 			"!**/.nitro",
-			"!**/.tanstack"
+			"!**/.tanstack",
+			"!apps/web/public/logos"
 		]
 	}
 }

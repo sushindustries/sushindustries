@@ -7,6 +7,7 @@ import {
 	json,
 	notFoundJson,
 	originFrom,
+	paywalled,
 } from "../../../modules/registry/registry.server";
 
 /*
@@ -30,6 +31,9 @@ export const Route = createFileRoute("/r/tanstack/$name")({
 				const item = findRegistryItem(name);
 
 				if (!item) return notFoundJson(`No add-on named "${name}"`);
+
+				// The blockade: pro items exist in the registry but not here.
+				if (item.access === "pro") return paywalled(name);
 
 				return json(toTanStackAddOn(item, originFrom(request)));
 			},

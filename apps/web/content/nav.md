@@ -33,6 +33,8 @@ step with the first.
 
 - [Components](/components) `layers`
   - {categories}
+- [Blocks](/components?tag=block) `grid`
+  - {blocks}
 - [Packages](/packages) `package`
   - [All packages](/packages) `package` - Everything published from this monorepo
   - [UI](/packages/ui) `layers` - The components the site is made of

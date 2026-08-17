@@ -1,9 +1,9 @@
-import { createHighlightedCodeBlockProps } from "@tanstack/highlight/react";
 import { docsMarkdownExtensions } from "@tanstack/markdown/extensions/docs";
 import { Markdown, type MarkdownComponents } from "@tanstack/markdown/react";
 import { isValidElement, type ReactNode } from "react";
-import { highlighter, resolveLanguage } from "./highlighter";
+import { CodeBlock } from "./code-block";
 import { createBlockDispatcher, type MarkdownBlocks } from "./markdown-blocks";
+import { Ref, type ReferenceMap } from "./reference";
 
 /*
  * Markdown, rendered - and the template layer that content files write against.
@@ -53,42 +53,58 @@ function readFence(children: ReactNode): CodeFence | undefined {
 	return { code: props.children, lang: match?.[1] };
 }
 
-const BASE_COMPONENTS = {
-	pre(props) {
-		const fence = readFence(props.children);
+// The literal type flows through untouched: annotating the return as
+// `MarkdownComponents` widens it to the full intrinsic-elements record, and
+// the spread at the call site stops type-checking.
+function createComponents(references: ReferenceMap) {
+	return {
+		pre(props) {
+			const fence = readFence(props.children);
 
-		// Not a language-tagged fence - leave it as the parser emitted it.
-		if (!fence) return <pre className="code-block">{props.children}</pre>;
+			// Not a language-tagged fence - leave it as the parser emitted it.
+			if (!fence) return <pre className="code-block">{props.children}</pre>;
 
-		const block = createHighlightedCodeBlockProps({
-			highlighter,
-			code: fence.code.replace(/\n$/, ""),
-			lang: resolveLanguage(fence.lang),
-			className: "code-block",
-		});
+			return <CodeBlock code={fence.code} language={fence.lang} />;
+		},
 
-		return (
-			<div
-				className={block.className}
-				// biome-ignore lint/security/noDangerouslySetInnerHtml: highlighter output, escaped by renderTokens
-				dangerouslySetInnerHTML={{ __html: block.htmlMarkup }}
-			/>
-		);
-	},
+		/*
+		 * Inline code that names something this repo owns becomes a reference:
+		 * the same text, now a link wearing a hover card. Matching is exact and
+		 * the map is supplied by the host, so this stays a lookup rather than
+		 * entity extraction - `Showcase` resolves because the app said it does.
+		 *
+		 * An already-linked mention is left alone: the parser renders the code
+		 * element inside the anchor, and a hover card inside somebody's chosen
+		 * link would be two navigations fighting over one word.
+		 */
+		code(props) {
+			const text = typeof props.children === "string" ? props.children : "";
+			const reference = references[text];
 
-	a(props) {
-		const external = props.href?.startsWith("http") ?? false;
+			if (reference) {
+				return <Ref reference={reference}>{text}</Ref>;
+			}
 
-		return (
-			<a
-				{...props}
-				className="fg-accent"
-				rel={external ? "noopener noreferrer" : props.rel}
-				target={external ? "_blank" : props.target}
-			/>
-		);
-	},
-} satisfies MarkdownComponents;
+			return <code {...props} />;
+		},
+
+		a(props) {
+			const external = props.href?.startsWith("http") ?? false;
+
+			return (
+				<a
+					{...props}
+					className="fg-accent"
+					rel={external ? "noopener noreferrer" : props.rel}
+					target={external ? "_blank" : props.target}
+				/>
+			);
+		},
+	} satisfies MarkdownComponents;
+}
+
+const NO_REFERENCES: ReferenceMap = {};
+const BASE_COMPONENTS = createComponents(NO_REFERENCES);
 
 export interface MarkdownViewProps {
 	source: string;
@@ -98,18 +114,30 @@ export interface MarkdownViewProps {
 	 * this package having to know what that component is.
 	 */
 	blocks?: MarkdownBlocks;
+	/**
+	 * Things this document may mention, keyed by the exact inline-code text
+	 * that names them. A matching mention renders as a `Ref`: a link with a
+	 * hover card carrying the target's own summary.
+	 */
+	references?: ReferenceMap;
 }
 
 export function MarkdownView({
 	source,
 	blocks = {},
+	references = NO_REFERENCES,
 }: MarkdownViewProps): ReactNode {
+	const components =
+		references === NO_REFERENCES
+			? BASE_COMPONENTS
+			: createComponents(references);
+
 	return (
 		<div className="prose">
 			<Markdown
 				extensions={EXTENSIONS}
 				components={{
-					...BASE_COMPONENTS,
+					...components,
 					"md-comment-component": createBlockDispatcher(blocks),
 				}}
 			>

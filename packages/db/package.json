@@ -28,21 +28,29 @@
 		"drizzle-kit": "0.31.10"
 	},
 	"exports": {
-		"./client.server": {
-			"import": "./dist/client.server.mjs",
-			"require": "./dist/client.server.cjs"
-		},
-		"./schema": {
-			"import": "./dist/schema.mjs",
-			"require": "./dist/schema.cjs"
-		},
+		"./client.server": "./src/client.server.ts",
+		"./schema": "./src/schema.ts",
 		"./package.json": "./package.json",
-		"./client": {
-			"import": "./dist/client.server.mjs",
-			"require": "./dist/client.server.cjs"
-		}
+		"./client": "./src/client.server.ts"
 	},
 	"engines": {
 		"node": ">=20.17.0"
+	},
+	"publishConfig": {
+		"exports": {
+			"./client.server": {
+				"import": "./dist/client.server.mjs",
+				"require": "./dist/client.server.cjs"
+			},
+			"./schema": {
+				"import": "./dist/schema.mjs",
+				"require": "./dist/schema.cjs"
+			},
+			"./package.json": "./package.json",
+			"./client": {
+				"import": "./dist/client.server.mjs",
+				"require": "./dist/client.server.cjs"
+			}
+		}
 	}
 }

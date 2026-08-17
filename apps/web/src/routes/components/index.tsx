@@ -9,6 +9,7 @@ import { findDemo } from "../../modules/showcase/demos";
 const searchSchema = z.object({
 	category: z.string().optional(),
 	tag: z.string().optional(),
+	page: z.coerce.number().int().min(1).optional(),
 });
 
 export const Route = createFileRoute("/components/")({
@@ -57,7 +58,7 @@ export const Route = createFileRoute("/components/")({
 
 function ComponentsPage(): ReactNode {
 	const { categories, items } = Route.useLoaderData();
-	const { category, tag } = Route.useSearch();
+	const { category, tag, page } = Route.useSearch();
 
 	return (
 		<section className="container" style={{ paddingBlock: "var(--s-8)" }}>
@@ -84,6 +85,16 @@ function ComponentsPage(): ReactNode {
 					items={items}
 					active={category ?? "all"}
 					activeTag={tag}
+					page={page ?? 1}
+					pageSize={18}
+					hrefForPage={(next) => {
+						const params = new URLSearchParams();
+						if (category) params.set("category", category);
+						if (tag) params.set("tag", tag);
+						if (next > 1) params.set("page", String(next));
+						const query = params.toString();
+						return query ? `/components?${query}` : "/components";
+					}}
 					/*
 					 * Changing category drops the tag. A tag that exists in one
 					 * category usually does not in the next, and carrying it over

@@ -9,6 +9,7 @@ import {
 	useState,
 } from "react";
 import type { Group } from "three";
+import { pacedImport } from "../showcase/paced-import";
 import { LOGO_MODEL } from "./logo";
 
 /*
@@ -42,8 +43,8 @@ function StagePlaceholder(): ReactNode {
  * The fallback holds the stage at the size the canvas will be, so the arrival
  * of the model is a material change rather than a layout one.
  */
-const ProductViewer = lazy(
-	() => import("@sushindustries/react-product-viewer"),
+const ProductViewer = lazy(() =>
+	pacedImport(() => import("@sushindustries/react-product-viewer")),
 );
 
 export interface LogoModelProps {

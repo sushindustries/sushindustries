@@ -53,9 +53,19 @@ const shared: UserConfig = {
 	 */
 	minify: false,
 
-	// Generated from the emitted chunks, including `main`/`module`/`types` for
-	// resolvers that predate `exports`.
-	exports: { legacy: true },
+	/*
+	 * Generated from the emitted chunks, including `main`/`module`/`types` for
+	 * resolvers that predate `exports`.
+	 *
+	 * `devExports` is the half that keeps dev honest: in the workspace,
+	 * `exports` points at `src/`, and the `dist/` map lives in `publishConfig`,
+	 * which pnpm applies at pack time. Without it the site resolved every
+	 * package through `dist` - so an edit to a component did nothing until a
+	 * rebuild, and a new export was a module-not-found in a running dev server.
+	 * Vite compiles the source either way; only an npm consumer needs the
+	 * artefacts, and only the tarball gives them the artefact map.
+	 */
+	exports: { legacy: true, devExports: true },
 
 	/*
 	 * The two checks that only matter at publish time, so they only run where

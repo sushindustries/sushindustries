@@ -29,22 +29,10 @@
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.js",
 	"exports": {
-		".": {
-			"import": "./dist/index.js",
-			"require": "./dist/index.cjs"
-		},
-		"./schema": {
-			"import": "./dist/schema.js",
-			"require": "./dist/schema.cjs"
-		},
-		"./swatch": {
-			"import": "./dist/swatch.js",
-			"require": "./dist/swatch.cjs"
-		},
-		"./zoned-material": {
-			"import": "./dist/zoned-material.js",
-			"require": "./dist/zoned-material.cjs"
-		},
+		".": "./src/index.ts",
+		"./schema": "./src/schema.ts",
+		"./swatch": "./src/swatch.ts",
+		"./zoned-material": "./src/zoned-material.ts",
 		"./package.json": "./package.json"
 	},
 	"sideEffects": false,
@@ -80,6 +68,25 @@
 		"zod": "4.4.3"
 	},
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"exports": {
+			".": {
+				"import": "./dist/index.js",
+				"require": "./dist/index.cjs"
+			},
+			"./schema": {
+				"import": "./dist/schema.js",
+				"require": "./dist/schema.cjs"
+			},
+			"./swatch": {
+				"import": "./dist/swatch.js",
+				"require": "./dist/swatch.cjs"
+			},
+			"./zoned-material": {
+				"import": "./dist/zoned-material.js",
+				"require": "./dist/zoned-material.cjs"
+			},
+			"./package.json": "./package.json"
+		}
 	}
 }

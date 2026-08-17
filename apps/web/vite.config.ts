@@ -15,6 +15,21 @@ import { defineConfig } from "vite";
 export default defineConfig({
 	server: {
 		port: 3000,
+		/*
+		 * Cross-origin isolation, for the StackBlitz tab.
+		 *
+		 * WebContainers run on SharedArrayBuffer, and a page only gets that
+		 * with COOP + COEP set - "embedded without proper isolation headers"
+		 * is the error this pair removes. `credentialless` rather than
+		 * `require-corp`, so third-party subresources keep loading without
+		 * every one of them having to opt in via CORP.
+		 *
+		 * The production half of this lives in `nitro.config.ts`.
+		 */
+		headers: {
+			"Cross-Origin-Opener-Policy": "same-origin",
+			"Cross-Origin-Embedder-Policy": "credentialless",
+		},
 	},
 
 	resolve: {

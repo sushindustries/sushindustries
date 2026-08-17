@@ -29,6 +29,31 @@ export type PackageStat = typeof packageStats.$inferSelect;
 export type NewPackageStat = typeof packageStats.$inferInsert;
 
 /*
+ * One row per vote on a documentation page.
+ *
+ * Raw events rather than counters, on purpose: a counter answers exactly one
+ * question and destroys the data that would have answered the next. Rows can
+ * be counted, windowed by day, or joined against a page rename - a pair of
+ * integers can only ever go up.
+ */
+export const pageFeedback = pgTable("page_feedback", {
+	id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+
+	/** Route path of the page judged, e.g. `/components/code-block`. */
+	page: text("page").notNull(),
+
+	/** `up` or `down`. Text rather than an enum: a migration per emotion is too many. */
+	vote: text("vote").notNull(),
+
+	createdAt: timestamp("created_at", { withTimezone: true })
+		.notNull()
+		.defaultNow(),
+});
+
+export type PageFeedback = typeof pageFeedback.$inferSelect;
+export type NewPageFeedback = typeof pageFeedback.$inferInsert;
+
+/*
  * The query builders, re-exported.
  *
  * So that a consumer needs one dependency rather than two. Importing

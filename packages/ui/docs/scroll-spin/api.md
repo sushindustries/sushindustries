@@ -1,6 +1,6 @@
 ---
 title: API
-summary: Every prop on ScrollSpin, including what it does under reduced motion.
+summary: Every prop on `ScrollSpin`, including what it does under reduced motion.
 ---
 
 ## Props

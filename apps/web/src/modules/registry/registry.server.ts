@@ -48,3 +48,34 @@ export function notFoundJson(message: string): Response {
 		},
 	});
 }
+
+/*
+ * The blockade. An item marked `access: "pro"` in the registry has its files
+ * refused here, at the one place all four endpoints pass through - the
+ * install commands, the prompt documents and the raw Markdown all consult
+ * the same field, so a future paid tier is a check against a subscription
+ * instead of a hunt for every route that serves source.
+ *
+ * 402, because that is precisely what it means, and a JSON body an installer
+ * can show rather than swallow.
+ */
+export function paywalled(name: string): Response {
+	return new Response(
+		JSON.stringify(
+			{
+				error: `"${name}" is a pro component`,
+				detail:
+					"This item requires a subscription. Public items install without one.",
+			},
+			null,
+			2,
+		),
+		{
+			status: 402,
+			headers: {
+				"content-type": "application/json; charset=utf-8",
+				"access-control-allow-origin": "*",
+			},
+		},
+	);
+}

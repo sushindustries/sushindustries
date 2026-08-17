@@ -9,7 +9,7 @@ to drive two things that share no code.
 <!-- ::start:showcase demo="use-scroll-turn" height="420" -->
 <!-- ::end:showcase -->
 
-## Why it is a hook and not just part of ScrollSpin
+## Why it is a hook and not just part of `ScrollSpin`
 
 `ScrollSpin` writes a CSS transform. The hero on the home page writes a
 three.js object's rotation, because a CSS `rotateY` on a canvas spins the

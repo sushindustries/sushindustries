@@ -81,6 +81,7 @@ function generateHome(item: RegistryItem, hasDemo: boolean): string {
 	lines.push("");
 	lines.push("| | |");
 	lines.push("| --- | --- |");
+	lines.push(`| Version | ${item.version} |`);
 	lines.push(
 		`| Category | ${item.category}${item.subcategory ? ` · ${item.subcategory}` : ""} |`,
 	);

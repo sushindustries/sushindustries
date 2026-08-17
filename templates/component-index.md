@@ -5,6 +5,7 @@ tokens: slug, title
 ---
 title: {title}
 summary:
+updated:
 ---
 
 One paragraph on what this does and when to reach for it. This is the first

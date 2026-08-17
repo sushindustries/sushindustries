@@ -174,6 +174,51 @@ leftovers *silently*. Nothing here uses one - the builds are warning-free - so
 the upgrade is safe to take as soon as `0.23` ships stable. Do not take a beta
 for it.
 
+## The documentation surface
+
+Everything below reads from the registry or the content catalogues, so none of
+it is a second list to maintain.
+
+- **Code material.** Fences are a charcoal terminal slab in both themes, with
+  the CLI's xterm-256 palette as `--syn-*` tokens in atoms. The highlighter's
+  `th-*` classes are styled once, in atoms - the day this lived in
+  `apps/web/src/styles/prose.css` it silently outranked every `@layer` rule,
+  because unlayered CSS beats layered CSS. Nothing unlayered may style a
+  component again.
+- **Utilities beat blocks.** Same lesson, other direction: a `.flex` utility in
+  markup outranks a block rule's `display: none` in a media query, which is how
+  the desktop nav kept rendering on phones. A class a breakpoint needs to take
+  away must own its own layout.
+- **References.** Backticked mentions of registry items and packages become
+  links wearing hover cards (`Ref` + the `references` prop on `MarkdownView`,
+  fed by `references.catalogue.ts`). The doctor flags bare PascalCase mentions
+  that should be references.
+- **The agent surface.** `/agent-setup/prompt` routes an agent to
+  `/r/prompt/<name>` (components) and `/r/prompt/packages/<name>` (packages);
+  `/r/md/<name>` is any component page as Markdown. The URLs are extensionless
+  because the dev pipeline classifies dotted paths as asset requests. Every
+  component and package page carries the bar: Last updated (from `updated:`
+  frontmatter), View as Markdown, Copy page, Claude / Cursor / Agent setup
+  (all copy the same one-line prompt), Edit on GitHub.
+- **Structured data.** `Breadcrumb` renders the visible trail and its
+  schema.org `BreadcrumbList` from one array; component pages add
+  `SoftwareSourceCode`, package pages `SoftwareApplication`
+  (`structured-data.ts`).
+- **Search.** `CommandPalette` in the nav, ⌘K or `/`, over every page,
+  component, block, package and post. Open state is a TanStack Store because
+  the trigger and the hotkey are unrelated writers.
+- **Pages.** `pnpm new page <slug>` writes `content/pages/<slug>.md`; it ships
+  at `/p/<slug>` with the full block layer. `draft: true` keeps it off.
+- **Versioning and access.** Every registry item carries `version` (cited by
+  installers, prompts and the generated page) and optionally
+  `access: "pro"` - the endpoints answer 402 for pro items, so a paid tier is
+  a check against a subscription, not a hunt through routes.
+- **Heavy things wait.** three-loading islands import through
+  `paced-import.ts`: a pacer queue, concurrency 1, started on idle - LCP wins,
+  and viewers boot one at a time instead of losing WebGL contexts.
+- **Lenis and inner scrolls.** Any `overflow: auto` container inside the page
+  gets `data-lenis-prevent`, or the smooth scroller fights it.
+
 ## Templates
 
 `templates/` holds the file each of those starts as. A template is Markdown

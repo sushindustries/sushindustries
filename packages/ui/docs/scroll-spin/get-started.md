@@ -1,6 +1,6 @@
 ---
 title: Get Started
-summary: Install ScrollSpin, wrap something in it, and see it turn on scroll.
+summary: Install `ScrollSpin`, wrap something in it, and see it turn on scroll.
 ---
 
 ## Install

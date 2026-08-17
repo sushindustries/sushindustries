@@ -51,59 +51,76 @@
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.js",
 	"exports": {
-		".": {
-			"import": "./dist/index.js",
-			"require": "./dist/index.cjs"
-		},
-		"./archive": {
-			"import": "./dist/archive.js",
-			"require": "./dist/archive.cjs"
-		},
-		"./card": {
-			"import": "./dist/card.js",
-			"require": "./dist/card.cjs"
-		},
-		"./doc-aside": {
-			"import": "./dist/doc-aside.js",
-			"require": "./dist/doc-aside.cjs"
-		},
-		"./icon": {
-			"import": "./dist/icon.js",
-			"require": "./dist/icon.cjs"
-		},
-		"./markdown-view": {
-			"import": "./dist/markdown-view.js",
-			"require": "./dist/markdown-view.cjs"
-		},
-		"./registry": {
-			"import": "./dist/registry.js",
-			"require": "./dist/registry.cjs"
-		},
-		"./reveal": {
-			"import": "./dist/reveal.js",
-			"require": "./dist/reveal.cjs"
-		},
-		"./scroll-spin": {
-			"import": "./dist/scroll-spin.js",
-			"require": "./dist/scroll-spin.cjs"
-		},
-		"./section": {
-			"import": "./dist/section.js",
-			"require": "./dist/section.cjs"
-		},
-		"./showcase": {
-			"import": "./dist/showcase.js",
-			"require": "./dist/showcase.cjs"
-		},
-		"./smooth-scroll": {
-			"import": "./dist/smooth-scroll.js",
-			"require": "./dist/smooth-scroll.cjs"
-		},
+		".": "./src/index.ts",
+		"./archive": "./src/archive.tsx",
+		"./card": "./src/card.tsx",
+		"./doc-aside": "./src/doc-aside.tsx",
+		"./icon": "./src/icon.tsx",
+		"./markdown-view": "./src/markdown-view.tsx",
+		"./registry": "./registry.ts",
+		"./reveal": "./src/reveal.tsx",
+		"./scroll-spin": "./src/scroll-spin.tsx",
+		"./section": "./src/section.tsx",
+		"./showcase": "./src/showcase.tsx",
+		"./smooth-scroll": "./src/smooth-scroll.tsx",
 		"./package.json": "./package.json"
 	},
 	"sideEffects": false,
 	"engines": {
 		"node": ">=20.17.0"
 	},
-	"types": "./dist/index.d.cts"
+	"types": "./dist/index.d.cts",
+	"publishConfig": {
+		"exports": {
+			".": {
+				"import": "./dist/index.js",
+				"require": "./dist/index.cjs"
+			},
+			"./archive": {
+				"import": "./dist/archive.js",
+				"require": "./dist/archive.cjs"
+			},
+			"./card": {
+				"import": "./dist/card.js",
+				"require": "./dist/card.cjs"
+			},
+			"./doc-aside": {
+				"import": "./dist/doc-aside.js",
+				"require": "./dist/doc-aside.cjs"
+			},
+			"./icon": {
+				"import": "./dist/icon.js",
+				"require": "./dist/icon.cjs"
+			},
+			"./markdown-view": {
+				"import": "./dist/markdown-view.js",
+				"require": "./dist/markdown-view.cjs"
+			},
+			"./registry": {
+				"import": "./dist/registry.js",
+				"require": "./dist/registry.cjs"
+			},
+			"./reveal": {
+				"import": "./dist/reveal.js",
+				"require": "./dist/reveal.cjs"
+			},
+			"./scroll-spin": {
+				"import": "./dist/scroll-spin.js",
+				"require": "./dist/scroll-spin.cjs"
+			},
+			"./section": {
+				"import": "./dist/section.js",
+				"require": "./dist/section.cjs"
+			},
+			"./showcase": {
+				"import": "./dist/showcase.js",
+				"require": "./dist/showcase.cjs"
+			},
+			"./smooth-scroll": {
+				"import": "./dist/smooth-scroll.js",
+				"require": "./dist/smooth-scroll.cjs"
+			},
+			"./package.json": "./package.json"
+		}
+	}
 }

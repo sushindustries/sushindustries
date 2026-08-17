@@ -30,22 +30,10 @@
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.js",
 	"exports": {
-		".": {
-			"import": "./dist/index.js",
-			"require": "./dist/index.cjs"
-		},
-		"./model-mark": {
-			"import": "./dist/model-mark.js",
-			"require": "./dist/model-mark.cjs"
-		},
-		"./query": {
-			"import": "./dist/query.js",
-			"require": "./dist/query.cjs"
-		},
-		"./router": {
-			"import": "./dist/router.js",
-			"require": "./dist/router.cjs"
-		},
+		".": "./src/index.ts",
+		"./model-mark": "./src/elements/model-mark/index.ts",
+		"./query": "./src/query.ts",
+		"./router": "./src/router.ts",
 		"./package.json": "./package.json",
 		"./styles.css": "./src/styles.css"
 	},
@@ -98,6 +86,26 @@
 		"three-stdlib": "2.36.1"
 	},
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"exports": {
+			".": {
+				"import": "./dist/index.js",
+				"require": "./dist/index.cjs"
+			},
+			"./model-mark": {
+				"import": "./dist/model-mark.js",
+				"require": "./dist/model-mark.cjs"
+			},
+			"./query": {
+				"import": "./dist/query.js",
+				"require": "./dist/query.cjs"
+			},
+			"./router": {
+				"import": "./dist/router.js",
+				"require": "./dist/router.cjs"
+			},
+			"./package.json": "./package.json",
+			"./styles.css": "./src/styles.css"
+		}
 	}
 }

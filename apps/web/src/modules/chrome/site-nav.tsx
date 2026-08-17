@@ -2,7 +2,9 @@ import { NavBar } from "@sushindustries/ui";
 import type { ReactNode } from "react";
 import { SiteTheme } from "../theme/site-theme";
 import type { Theme } from "../theme/theme.schemas";
+import { GithubStar } from "./github-star";
 import { navEntries } from "./nav.catalogue";
+import { SiteSearch, SiteSearchTrigger } from "./site-search";
 
 /*
  * This site's header: the NavBar component, given this site's nav.
@@ -25,19 +27,29 @@ export interface SiteNavProps {
 export function SiteNav({ theme }: SiteNavProps): ReactNode {
 	return (
 		<NavBar
-			brand={<span className="mono text-sm font-semibold">sushindustries</span>}
+			brand={
+				<span className="flex items-center gap-2">
+					<img
+						src="/sushi-logo.png"
+						alt=""
+						width={26}
+						height={26}
+						className="nav-mark"
+					/>
+					<span className="mono text-sm font-semibold">sushindustries</span>
+				</span>
+			}
 			entries={navEntries()}
 			trailing={
 				<span className="flex items-center gap-3">
-					<a
-						href="https://github.com/sushindustries"
-						className="nav-link"
-						target="_blank"
-						rel="noreferrer"
-					>
-						GitHub
-					</a>
-
+					{/*
+					 * Three things, deliberately: search, the repo, the theme.
+					 * LinkedIn lives on the shelf - a header that lists every
+					 * place I exist is a business card, not a nav.
+					 */}
+					<SiteSearchTrigger />
+					<SiteSearch />
+					<GithubStar />
 					<SiteTheme initial={theme} />
 				</span>
 			}

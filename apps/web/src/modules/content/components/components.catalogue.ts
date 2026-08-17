@@ -55,6 +55,8 @@ export interface ComponentDoc {
 	readonly summary: string;
 	/** The package that ships it, e.g. `@sushindustries/ui`. */
 	readonly packageName: string;
+	/** `updated:` from index.md's frontmatter. Shown as "Last updated". */
+	readonly updated?: string;
 	/** Present sections, in the fixed order above. */
 	readonly sections: readonly DocSection[];
 }
@@ -89,6 +91,7 @@ interface Draft {
 	pkg: string;
 	title: string;
 	summary: string;
+	updated: string;
 	sections: Map<SectionId, string>;
 }
 
@@ -106,6 +109,7 @@ for (const [path, raw] of Object.entries(FILES)) {
 		pkg,
 		title: slug,
 		summary: "",
+		updated: "",
 		sections: new Map<SectionId, string>(),
 	};
 
@@ -114,6 +118,7 @@ for (const [path, raw] of Object.entries(FILES)) {
 	if (section === "index") {
 		draft.title = readString(meta, "title", slug);
 		draft.summary = readString(meta, "summary");
+		draft.updated = readString(meta, "updated");
 	}
 
 	draft.sections.set(section, body);
@@ -125,6 +130,7 @@ const DOCS: readonly ComponentDoc[] = [...DRAFTS.values()]
 		slug: draft.slug,
 		title: draft.title,
 		summary: draft.summary,
+		updated: draft.updated || undefined,
 		packageName: `@sushindustries/${draft.pkg}`,
 		sections: SECTION_ORDER.filter((id) => draft.sections.has(id)).map(
 			(id) => ({

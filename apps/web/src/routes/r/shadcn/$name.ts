@@ -7,6 +7,7 @@ import {
 	json,
 	notFoundJson,
 	originFrom,
+	paywalled,
 } from "../../../modules/registry/registry.server";
 
 /*
@@ -28,6 +29,9 @@ export const Route = createFileRoute("/r/shadcn/$name")({
 				const item = findRegistryItem(name);
 
 				if (!item) return notFoundJson(`No component named "${name}"`);
+
+				// The blockade: pro items exist in the registry but not here.
+				if (item.access === "pro") return paywalled(name);
 
 				return json(toShadcn(item, originFrom(request)));
 			},

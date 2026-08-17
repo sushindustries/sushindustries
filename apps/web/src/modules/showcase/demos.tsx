@@ -3,9 +3,13 @@ import {
 	type ArchiveCategory,
 	type ArchiveItem,
 	BootLoader,
+	Breadcrumb,
 	Card,
 	Clock,
+	CodeBlock,
+	CommandPalette,
 	ContextMenu,
+	CopyButton,
 	Credit,
 	type CreditProps,
 	DeskWindow,
@@ -14,10 +18,16 @@ import {
 	Dock,
 	FolderShelf,
 	Grid,
+	Heading,
+	Label,
+	Lead,
 	MarkdownView,
 	type MenuAction,
 	NavBar,
+	Pagination,
+	type PaletteEntry,
 	parseFrontmatter,
+	Ref,
 	Reveal,
 	readList,
 	readString,
@@ -34,6 +44,7 @@ import {
 	useScrollProgress,
 	useScrollTurn,
 } from "@sushindustries/ui";
+
 import {
 	lazy,
 	type ReactNode,
@@ -43,6 +54,7 @@ import {
 	useState,
 } from "react";
 import { LOGO_MODEL } from "../chrome/logo";
+import { pacedImport } from "./paced-import";
 
 /*
  * The live examples, one per showcase id.
@@ -56,8 +68,8 @@ import { LOGO_MODEL } from "../chrome/logo";
  * demo that mounts something heavy costs nothing on the documentation page.
  */
 
-const ProductViewer = lazy(
-	() => import("@sushindustries/react-product-viewer"),
+const ProductViewer = lazy(() =>
+	pacedImport(() => import("@sushindustries/react-product-viewer")),
 );
 
 /*
@@ -277,6 +289,57 @@ const SHELF_SAMPLE: readonly ShelfEntry[] = [
 		icon: "file",
 	},
 ];
+
+/** The palette needs open state, so its demo carries a trigger. */
+function CommandPaletteDemo(): ReactNode {
+	const [open, setOpen] = useState(false);
+
+	const entries: readonly PaletteEntry[] = [
+		{
+			id: "card",
+			title: "Card",
+			hint: "Title, meta, body",
+			href: "#card",
+			group: "layout",
+			icon: "layers",
+		},
+		{
+			id: "showcase",
+			title: "Showcase",
+			hint: "A component at every width",
+			href: "#showcase",
+			group: "content",
+			icon: "text",
+		},
+		{
+			id: "device",
+			title: "Device",
+			hint: "Three machines in CSS 3D",
+			href: "#device",
+			group: "layout",
+			icon: "cube",
+		},
+	];
+
+	return (
+		<div className="flex justify-center">
+			<button
+				type="button"
+				className="palette-trigger"
+				onClick={() => setOpen(true)}
+			>
+				Search
+				<kbd className="palette-kbd">⌘K</kbd>
+			</button>
+			<CommandPalette
+				entries={entries}
+				open={open}
+				onClose={() => setOpen(false)}
+				onSelect={() => setOpen(false)}
+			/>
+		</div>
+	);
+}
 
 /** Actions that say what they would have done, so the demo has no side effects. */
 function sampleActions(entry: ShelfEntry): MenuAction[] {
@@ -1004,6 +1067,134 @@ desk.raise(id);`,
 		language: "tsx",
 	},
 
+	breadcrumb: {
+		element: (
+			<Breadcrumb
+				items={[
+					{ label: "Sushindustries", href: "/" },
+					{ label: "Components", href: "/components" },
+					{ label: "Docs", href: "/components?category=docs" },
+					{ label: "Breadcrumb" },
+				]}
+			/>
+		),
+		source: `<Breadcrumb
+	origin="https://example.com"
+	items={[
+		{ label: "Home", href: "/" },
+		{ label: "Components", href: "/components" },
+		{ label: "Breadcrumb" },
+	]}
+/>`,
+		language: "tsx",
+	},
+
+	"command-palette": {
+		element: <CommandPaletteDemo />,
+		source: `<CommandPalette
+	entries={entries}
+	open={open}
+	onClose={() => setOpen(false)}
+	onSelect={(entry) => navigate(entry.href)}
+/>`,
+		language: "tsx",
+	},
+
+	pagination: {
+		element: (
+			<div className="flex justify-center">
+				<Pagination
+					page={4}
+					pageCount={12}
+					hrefFor={(page) => `#page-${page}`}
+				/>
+			</div>
+		),
+		source: `<Pagination
+	page={page}
+	pageCount={12}
+	hrefFor={(page) => \`?page=\${page}\`}
+/>`,
+		language: "tsx",
+	},
+
+	typography: {
+		element: (
+			<div>
+				<Label>Eyebrow</Label>
+				<Heading as="h3" size="h2">
+					A heading, sized apart from its level
+				</Heading>
+				<Lead>
+					The paragraph under a title: dimmed, measured, never full-width.
+				</Lead>
+			</div>
+		),
+		source: `<Label>Eyebrow</Label>
+<Heading as="h3" size="h2">A heading</Heading>
+<Lead>The paragraph under it.</Lead>`,
+		language: "tsx",
+	},
+
+	"code-block": {
+		element: (
+			<CodeBlock
+				code={`export function greet(name: string): string {\n\t// The CLI's colours, on the slab\n\treturn \`hello, \${name}\`;\n}`}
+				language="ts"
+			/>
+		),
+		source: `<CodeBlock
+	code={source}
+	language="ts"
+/>`,
+		language: "tsx",
+	},
+
+	"copy-button": {
+		element: (
+			<div className="flex items-center gap-3 justify-center">
+				<code className="code">
+					pnpm add @sushindustries/ui
+					<CopyButton text="pnpm add @sushindustries/ui" ground="paper" />
+				</code>
+			</div>
+		),
+		source: `<CopyButton
+	text="pnpm add @sushindustries/ui"
+	ground="paper"
+/>`,
+		language: "tsx",
+	},
+
+	reference: {
+		element: (
+			<p className="m-0 text-center">
+				The figure at the top of every component page is a{" "}
+				<Ref
+					reference={{
+						title: "Showcase",
+						href: "/components/showcase",
+						summary:
+							"A component at every width it has to survive, with its source beside it.",
+						meta: "@sushindustries/ui · content",
+					}}
+				>
+					Showcase
+				</Ref>
+				, and hovering the mention tells you so.
+			</p>
+		),
+		source: `<Ref reference={{
+	title: "Showcase",
+	href: "/components/showcase",
+	summary: "A component at every width…",
+	meta: "@sushindustries/ui",
+}}>
+	Showcase
+</Ref>`,
+		language: "tsx",
+	},
+
 	frontmatter: {
 		element: <FrontmatterDemo />,
 		poster: <p className="label text-center">Reads the metadata block</p>,
@@ -1022,8 +1213,8 @@ readList(meta, "tags");      // ["tanstack", "css"]`,
 				<ProductViewer model={LOGO_MODEL} loadingLabel="Loading the mark" />
 			</Suspense>
 		),
-		source: `const ProductViewer = lazy(
-	() => import("@sushindustries/react-product-viewer"),
+		source: `const ProductViewer = lazy(() =>
+	pacedImport(() => import("@sushindustries/react-product-viewer")),
 );
 
 <Suspense fallback={null}>

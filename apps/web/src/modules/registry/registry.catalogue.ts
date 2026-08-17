@@ -85,6 +85,8 @@ export function toShadcn(item: RegistryItem, origin: string): ShadcnItem {
 export interface TanStackAddOn {
 	id: string;
 	name: string;
+	/** The element's own version, from its registry entry. */
+	version: string;
 	description: string;
 	type: "add-on";
 	phase: "add-on";
@@ -105,6 +107,7 @@ export function toTanStackAddOn(
 	const addOn: TanStackAddOn = {
 		id: item.name,
 		name: item.title,
+		version: item.version,
 		description: item.description,
 		type: "add-on",
 		phase: "add-on",

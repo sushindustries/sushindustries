@@ -39,9 +39,15 @@ export const Route = createRootRoute({
 				content:
 					"Small packages, built carefully. Tools, libraries and components from Sushindustries.",
 			},
+			// The mark, wherever a link to this site unfurls.
+			{ property: "og:image", content: "/sushi-logo.png" },
+			{ property: "og:site_name", content: "Sushindustries" },
+			{ property: "og:type", content: "website" },
 		],
 		// Order matters: atoms defines the tokens that prose.css reads.
 		links: [
+			{ rel: "icon", href: "/sushi-logo.png", type: "image/png" },
+			{ rel: "apple-touch-icon", href: "/sushi-logo.png" },
 			{ rel: "stylesheet", href: atomsCss },
 			{ rel: "stylesheet", href: proseCss },
 			/*

@@ -14,8 +14,19 @@ export {
 	parseArchive,
 } from "./archive.schemas";
 export { BootLoader, type BootLoaderProps } from "./boot-loader";
+export {
+	Breadcrumb,
+	type BreadcrumbItem,
+	type BreadcrumbProps,
+} from "./breadcrumb";
 export { Card, type CardProps } from "./card";
 export { Clock, type ClockProps } from "./clock";
+export { CodeBlock, type CodeBlockProps } from "./code-block";
+export {
+	CommandPalette,
+	type CommandPaletteProps,
+	type PaletteEntry,
+} from "./command-palette";
 export {
 	ContextMenu,
 	type ContextMenuProps,
@@ -23,6 +34,7 @@ export {
 	type MenuAction,
 	useContextMenu,
 } from "./context-menu";
+export { CopyButton, type CopyButtonProps } from "./copy-button";
 export { Credit, type CreditProps } from "./credit";
 export { DeskWindow, type DeskWindowProps } from "./desk-window";
 export { Device, type DeviceProps } from "./device";
@@ -66,6 +78,13 @@ export {
 	type NavEntry,
 	type NavItem,
 } from "./nav-bar";
+export { Pagination, type PaginationProps } from "./pagination";
+export {
+	Ref,
+	type Reference,
+	type ReferenceMap,
+	type RefProps,
+} from "./reference";
 export { Reveal, type RevealProps } from "./reveal";
 export { ScrollSpin, type ScrollSpinProps } from "./scroll-spin";
 export { Section, type SectionProps } from "./section";
@@ -82,6 +101,14 @@ export {
 	ThemeToggle,
 	type ThemeToggleProps,
 } from "./theme-toggle";
+export {
+	Heading,
+	type HeadingProps,
+	Label,
+	type LabelProps,
+	Lead,
+	type LeadProps,
+} from "./typography";
 export {
 	type DeskApi,
 	type DeskState,

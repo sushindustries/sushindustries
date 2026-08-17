@@ -23,6 +23,17 @@ function Home(): ReactNode {
 					<p className="mt-5 text-lg fg-dim max-w-sm text-pretty">
 						Check what I am building. Small packages, made to be used.
 					</p>
+
+					{/* One action, one alternative. The pill goes where the
+					    library is; the ghost goes to how it is put together. */}
+					<div className="mt-6 flex items-center gap-3 wrap">
+						<Link to="/components" className="btn">
+							Browse the components
+						</Link>
+						<Link to="/packages" className="btn btn-ghost">
+							See the packages
+						</Link>
+					</div>
 				</div>
 
 				<LogoModel />

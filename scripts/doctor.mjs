@@ -935,8 +935,15 @@ function checkBlocksAreEarned() {
 	 * inside a media query is responsive, which is one of the reasons a block is
 	 * allowed to exist, so it is exempt anyway.
 	 */
+	/*
+	 * Exactly one tab of indentation: a layer's top-level rules. Two tabs is a
+	 * rule nested in a media query, and those must not become "providers" - a
+	 * responsive override that happens to be one declaration long is not a
+	 * utility, and treating it as one flagged `.doc-layout` as recomposable
+	 * from a `.showcase-split` breakpoint rule.
+	 */
 	const rules = [
-		...css.matchAll(/^[\t ]*(\.[\w-]+(?:,\s*\.[\w-]+)*)\s*\{([^}]*)\}/gm),
+		...css.matchAll(/^\t(\.[\w-]+(?:,\s*\.[\w-]+)*)\s*\{([^}]*)\}/gm),
 	];
 
 	/** `padding-inline: var(--s-4)` -> `.px-4`, from the single-property rules. */
@@ -980,6 +987,18 @@ function checkBlocksAreEarned() {
 			`\\${name}(?:[:\\[.]|\\s*[>+~]|\\s+\\.)`,
 		).test(css);
 		if (elaborated) continue;
+
+		/*
+		 * Also exempt if a media query restates the bare class. `.nav-row` is
+		 * `display: flex` up here and `display: none` below 860px - the block
+		 * exists precisely so the breakpoint has one name to take away, which
+		 * a utility in the markup cannot be.
+		 */
+		const overriddenResponsively = new RegExp(
+			`^\\t\\t\\${name}\\s*\\{`,
+			"m",
+		).test(css);
+		if (overriddenResponsively) continue;
 
 		const declarations = body
 			.split(";")
@@ -1173,6 +1192,57 @@ function checkBuildsShareTheBase(list) {
 	}
 }
 
+/**
+ * A mention that could be a reference, and is not.
+ *
+ * `MarkdownView` turns backticked mentions of registry items into walkable
+ * references - a link wearing a hover card. That only fires on the backticked
+ * form, so a doc that writes ScrollSpin as a bare word ships a mention the
+ * reader cannot follow, and nothing looks wrong in review.
+ *
+ * Only multi-hump PascalCase names are checked (`ScrollSpin`, `DocAside`):
+ * they are unambiguous component names. Single-word titles like "Card" are
+ * ordinary English, and a check that flags prose is a check people disable.
+ */
+function checkMentionsAreReferences(items) {
+	const pascals = items
+		.map((item) =>
+			item.name
+				.split("-")
+				.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+				.join(""),
+		)
+		.filter((name) => /[a-z][A-Z]/.test(name));
+	if (pascals.length === 0) return;
+
+	const sources = trackedFiles().filter(
+		(path) =>
+			(path.startsWith("packages/ui/docs/") ||
+				path.startsWith("apps/web/content/posts/") ||
+				/^packages\/[^/]+\/README\.md$/.test(path)) &&
+			path.endsWith(".md"),
+	);
+
+	for (const path of sources) {
+		const body = read(path)
+			// Fences, inline code and links are already resolved or deliberate.
+			.replace(/```[\s\S]*?```/g, "")
+			.replace(/`[^`]*`/g, "")
+			.replace(/\[[^\]]*\]\([^)]*\)/g, "");
+
+		for (const name of pascals) {
+			if (!new RegExp(`(?<![\\w./])${name}(?![\\w])`).test(body)) continue;
+
+			report(
+				"references",
+				path,
+				`mentions ${name} as a bare word, so it does not link or carry its hover card`,
+				`write it as \`${name}\` and MarkdownView resolves it`,
+			);
+		}
+	}
+}
+
 /* ── run ─────────────────────────────────────────────────────────────── */
 
 const list = workspaces();
@@ -1199,6 +1269,7 @@ checkDevicesAreGenerated();
 checkSkills();
 checkDocSectionsAreReal();
 checkRegistryItemsAreAddressable(registry);
+checkMentionsAreReferences(registry);
 checkCategoriesHaveIcons();
 checkComponentClassesLiveInAtoms();
 checkVariantsAreAttributes();

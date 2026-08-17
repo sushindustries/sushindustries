@@ -6,6 +6,11 @@ export interface DocAsideProps {
 	label?: string;
 	/** Hide below this many headings. One heading is not a contents list. */
 	minHeadings?: number;
+	/**
+	 * Rendered under the contents list: feedback buttons, a copy action,
+	 * whatever the page wants within reach of a reader who is already here.
+	 */
+	footer?: ReactNode;
 }
 
 /*
@@ -29,6 +34,7 @@ export function DocAside({
 	headings,
 	label = "On this page",
 	minHeadings = 2,
+	footer,
 }: DocAsideProps): ReactNode {
 	const active = useActiveHeading(headings);
 	const toggleId = useId();
@@ -36,7 +42,7 @@ export function DocAside({
 	if (headings.length < minHeadings) return null;
 
 	return (
-		<aside className="doc-aside">
+		<aside className="doc-aside" data-lenis-prevent>
 			{/*
 			 * Checkbox before the label so `:checked ~` can reach the list. It is
 			 * focusable and announced; only its default appearance is hidden.
@@ -70,6 +76,8 @@ export function DocAside({
 					))}
 				</ul>
 			</nav>
+
+			{footer ? <div className="doc-aside-footer">{footer}</div> : null}
 		</aside>
 	);
 }
