@@ -37,6 +37,7 @@ export type IconName =
 	| "chat"
 	| "linkedin"
 	| "clock"
+	| "calendar"
 	| "copy"
 	| "github"
 	| "cursor"
@@ -250,6 +251,15 @@ const PATHS: Record<IconName, ReactNode> = {
 		<>
 			<path d="M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16z" />
 			<path d="M12 7.6V12l3 1.8" />
+		</>
+	),
+	// A month, with the header band ruled off and two rings above it. Beside the clock it is unmistakably a date rather than a duration, which is the only distinction the two have to carry.
+	calendar: (
+		<>
+			<path d="M4 7.5A1.5 1.5 0 0 1 5.5 6h13A1.5 1.5 0 0 1 20 7.5v11a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5z" />
+			<path d="M4 10.5h16" />
+			<path d="M8.5 3.5v4" />
+			<path d="M15.5 3.5v4" />
 		</>
 	),
 	// Two pages, the front one whole and the back one implied by two edges. The duplicate is the message, not the clipboard.

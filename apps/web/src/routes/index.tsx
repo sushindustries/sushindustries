@@ -1,4 +1,4 @@
-import { Credit, Reveal, Section } from "@sushindustries/ui";
+import { Credit, Hero, Reveal, Section } from "@sushindustries/ui";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { LogoModel } from "../modules/chrome/logo-model";
@@ -18,27 +18,29 @@ function Home(): ReactNode {
 
 	return (
 		<>
-			<section className="container hero">
-				<div>
-					<h1 className="h1 text-balance">{SITE.name}</h1>
-					<p className="mt-5 text-lg fg-dim max-w-sm text-pretty">
-						Check what I am building. Small packages, made to be used.
-					</p>
-
-					{/* One action, one alternative. The pill goes where the
-					    library is; the ghost goes to how it is put together. */}
-					<div className="mt-6 flex items-center gap-3 wrap">
-						<Link to="/components" className="btn">
-							Browse the components
-						</Link>
-						<Link to="/packages" className="btn btn-ghost">
-							See the packages
-						</Link>
-					</div>
-				</div>
-
-				<LogoModel />
-			</section>
+			{/*
+			 * The same Hero the component pages use, in its landing variant. One
+			 * action and one alternative: the pill goes where the library is, the
+			 * ghost goes to how it is put together.
+			 */}
+			<div className="container">
+				<Hero
+					variant="landing"
+					title={SITE.name}
+					summary="Check what I am building. Small packages, made to be used."
+					media={<LogoModel />}
+					actions={
+						<>
+							<Link to="/components" className="btn">
+								Browse the components
+							</Link>
+							<Link to="/packages" className="btn btn-ghost">
+								See the packages
+							</Link>
+						</>
+					}
+				/>
+			</div>
 
 			<Section id="shelf" label="Everything" title="Open a folder">
 				<p className="fg-dim max-w-prose text-pretty m-0 mb-6">

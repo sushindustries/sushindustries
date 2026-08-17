@@ -59,29 +59,6 @@ function categoryItems(): NavItem[] {
 }
 
 /*
- * The blocks, expanded the same way categories are.
- *
- * A block is a registry item with `kind: "block"` - an assembly that stands as
- * a region of a page rather than one element of it. The hierarchy the header
- * shows (Components > categories, Blocks > the assemblies, Packages > the
- * published things) is read from the registry, so promoting a component to a
- * block is one field, not an edit in three files.
- */
-function blockItems(): NavItem[] {
-	const icons = new Map(
-		REGISTRY_CATEGORIES.map((category) => [category.id, category.icon]),
-	);
-
-	return REGISTRY_ITEMS.filter((item) => item.kind === "block").map((item) => ({
-		label: item.title,
-		href: `/components/${item.name}`,
-		icon: icons.get(item.category) ?? "layers",
-		tone: item.category,
-		description: item.description,
-	}));
-}
-
-/*
  * Only the list under `## The nav` is the nav.
  *
  * The rest of the file documents the format, and the format documentation
@@ -99,11 +76,6 @@ export function navEntries(): readonly NavEntry[] {
 	for (const line of navSection().split("\n")) {
 		if (line.trim() === "- {categories}") {
 			entries.at(-1)?.items.push(...categoryItems());
-			continue;
-		}
-
-		if (line.trim() === "- {blocks}") {
-			entries.at(-1)?.items.push(...blockItems());
 			continue;
 		}
 

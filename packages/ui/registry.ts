@@ -408,6 +408,21 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		preview: "A contents list tracking the heading you are under",
 	},
 	{
+		name: "hero",
+		schema: "WPHeader",
+		version: "0.1.0",
+		title: "Hero",
+		description:
+			"The head of a documentation page: trail, element name, version, measured facts, actions and a responsive shot. Folds to one column by the room it has, not by the size of the window.",
+		files: ["hero.tsx", "icon.tsx"],
+		dependencies: {},
+		category: "docs",
+		subcategory: "Page furniture",
+		tags: ["container-query", "responsive", "no-deps"],
+		preview: "A page head with its name, its facts and a picture of itself",
+		kind: "block",
+	},
+	{
 		name: "showcase",
 		schema: "SoftwareSourceCode",
 		version: "0.1.0",

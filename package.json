@@ -14,6 +14,7 @@
 		"doctor": "node scripts/doctor.mjs",
 		"doctor:map": "node scripts/doctor.mjs --map",
 		"schema-org": "node scripts/schema-org.mjs",
+		"shots": "node scripts/shots.mjs",
 		"fix": "node scripts/doctor.mjs --fix && pnpm exec biome check --write .",
 		"new": "node scripts/new.mjs",
 		"prepare": "git config core.hooksPath .githooks || true",

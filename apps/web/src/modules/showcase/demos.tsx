@@ -30,6 +30,8 @@ import {
 	FolderShelf,
 	Grid,
 	Heading,
+	Hero,
+	Icon,
 	Input,
 	Item,
 	Kbd,
@@ -787,6 +789,88 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 		),
 		poster: <p className="label text-center">An on-page contents rail</p>,
 		...DEMO_SOURCES["doc-aside"],
+	},
+
+	hero: {
+		element: (
+			<div className="flex col gap-7">
+				{/*
+				 * The doc variant, with everything it can carry: a trail, a name
+				 * written as a tag, a version, three measured facts, two actions
+				 * and a picture. The shot points at a real component's captures,
+				 * so this demo is also a check that they were generated.
+				 */}
+				<Hero
+					trail={
+						<Breadcrumb
+							items={[
+								{ label: "Sushindustries", href: "/" },
+								{ label: "Components", href: "/components" },
+								{ label: "Avatar" },
+							]}
+						/>
+					}
+					name="avatar"
+					version="0.1.0"
+					title="Avatar"
+					summary="A face, its initials, or the tone of the group it belongs to."
+					facts={[
+						{ icon: "calendar", label: "Last updated", value: "17 Aug 2026" },
+						{ icon: "clock", label: "Reading time", value: "2 min read" },
+						{ icon: "spark", label: "Agent", value: "agent ready" },
+					]}
+					shot={{
+						alt: "The Avatar component, captured on a laptop",
+						aspect: "16 / 10",
+						sources: [
+							{ src: "/shots/avatar-phone.webp", width: 352 },
+							{ src: "/shots/avatar-tablet.webp", width: 640 },
+							{ src: "/shots/avatar-laptop.webp", width: 960 },
+						],
+					}}
+					actions={
+						<>
+							<Button href="/components/avatar" variant="ghost">
+								Docs
+							</Button>
+							<CopyButton
+								text="Fetch and execute the instructions at https://sushindustries.com/r/prompt/avatar"
+								label="Copy prompt"
+								icon="spark"
+								ground="accent"
+							/>
+						</>
+					}
+				/>
+
+				{/*
+				 * The landing variant, with a stand-in for the 3D mark. The real
+				 * one is a site module and has no business inside a component demo.
+				 */}
+				<Hero
+					variant="landing"
+					title="Sushindustries"
+					summary="Check what I am building. Small packages, made to be used."
+					media={
+						<AspectRatio ratio={1}>
+							<div className="flex items-center justify-center h-full bg-2 rounded-lg">
+								<Icon name="sushi" size={64} />
+							</div>
+						</AspectRatio>
+					}
+					actions={
+						<>
+							<Button href="/components">Browse the components</Button>
+							<Button href="/packages" variant="ghost">
+								See the packages
+							</Button>
+						</>
+					}
+				/>
+			</div>
+		),
+		poster: <p className="label text-center">A page head, and its facts</p>,
+		...DEMO_SOURCES.hero,
 	},
 
 	"video-player": {

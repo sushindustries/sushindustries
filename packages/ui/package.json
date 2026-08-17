@@ -83,6 +83,7 @@
 		"./frontmatter": "./src/frontmatter.ts",
 		"./grid": "./src/grid.tsx",
 		"./headings": "./src/headings.ts",
+		"./hero": "./src/hero.tsx",
 		"./highlighter": "./src/highlighter.ts",
 		"./icon": "./src/icon.tsx",
 		"./input": "./src/input.tsx",
@@ -260,6 +261,10 @@
 			"./headings": {
 				"import": "./dist/headings.js",
 				"require": "./dist/headings.cjs"
+			},
+			"./hero": {
+				"import": "./dist/hero.js",
+				"require": "./dist/hero.cjs"
 			},
 			"./highlighter": {
 				"import": "./dist/highlighter.js",

@@ -62,6 +62,48 @@ export const DEMO_SOURCES = {
 		source: `<DocAside headings={collectHeadings(markdown)} />`,
 		language: "tsx",
 	},
+	hero: {
+		source: `{/* The head of a documentation page. */}
+<Hero
+	trail={<Breadcrumb items={trail} />}
+	name="avatar"
+	version="0.1.0"
+	title="Avatar"
+	summary="A face, its initials, or the tone of the group it belongs to."
+	facts={[
+		{ icon: "calendar", label: "Last updated", value: "17 Aug 2026" },
+		{ icon: "clock", label: "Reading time", value: "2 min read" },
+		{ icon: "spark", label: "Agent", value: "agent ready" },
+	]}
+	shot={{
+		alt: "Avatar, on a laptop",
+		aspect: "16 / 10",
+		sources: [
+			{ src: "/shots/avatar-phone.webp", width: 352 },
+			{ src: "/shots/avatar-tablet.webp", width: 640 },
+			{ src: "/shots/avatar-laptop.webp", width: 960 },
+		],
+	}}
+	actions={
+		<>
+			<Button href="/components/avatar?tab=get-started" variant="ghost">
+				Docs
+			</Button>
+			<CopyButton text={prompt} label="Copy prompt" icon="spark" ground="accent" />
+		</>
+	}
+/>
+
+{/* The same component at the top of the home page. */}
+<Hero
+	variant="landing"
+	title="Sushindustries"
+	summary="Check what I am building. Small packages, made to be used."
+	media={<LogoModel />}
+	actions={<Button href="/components">Browse the components</Button>}
+/>`,
+		language: "tsx",
+	},
 	"video-player": {
 		source: `<VideoPlayer
 	title="Never Gonna Give You Up"

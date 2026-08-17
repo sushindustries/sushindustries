@@ -85,6 +85,13 @@ export {
 } from "./frontmatter";
 export { Grid, type GridProps, type Space } from "./grid";
 export { collectHeadings, type DocHeading } from "./headings";
+export {
+	Hero,
+	type HeroFact,
+	type HeroProps,
+	type HeroShot,
+	type HeroShotSource,
+} from "./hero";
 export { highlighter, resolveLanguage } from "./highlighter";
 export { Icon, type IconName, type IconProps } from "./icon";
 export { Input, type InputProps } from "./input";
