@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type { DeviceKind } from "./device-kinds";
 
 export interface DeviceProps {
-	/** What is on the screen. */
+	/** The desktop. It scrolls on its own and chains at the end. */
 	children: ReactNode;
 	/**
 	 * Which machine to draw.
@@ -13,7 +13,7 @@ export interface DeviceProps {
 	 * to put all three on one page.
 	 */
 	kind?: DeviceKind;
-	/** Drawn behind the screen's contents. */
+	/** Drawn behind the desktop, and never in the way of a click. */
 	wallpaper?: ReactNode;
 	/** Shown in the strip at the top of the screen. */
 	title?: string;

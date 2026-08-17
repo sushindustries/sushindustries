@@ -113,6 +113,21 @@ function createComponents(references: ReferenceMap) {
 const NO_REFERENCES: ReferenceMap = {};
 const BASE_COMPONENTS = createComponents(NO_REFERENCES);
 
+/*
+ * Comments that are not block markers, removed before parsing.
+ *
+ * The parser turns `<!-- ::start:name -->` into an element and leaves every
+ * other HTML comment as text, so an ordinary Markdown comment is printed on
+ * the page. `<!-- generated:api -->` - the fence that tells `pnpm doctor`
+ * which half of an API tab it may rewrite - rendered as a visible line above
+ * the props table on every component page that had one.
+ *
+ * Stripped rather than styled away: a comment is the author saying "not for
+ * the reader", and `display: none` would still put it in the copied Markdown
+ * and in what a screen reader walks.
+ */
+const PLAIN_COMMENT = /<!--(?!\s*::(?:start|end):)[\s\S]*?-->\n?/g;
+
 export interface MarkdownViewProps {
 	/** Raw Markdown. Parsed to a bounded AST, so author content cannot inject markup. */
 	source: string;
@@ -149,7 +164,7 @@ export function MarkdownView({
 					"md-comment-component": createBlockDispatcher(blocks),
 				}}
 			>
-				{source}
+				{source.replace(PLAIN_COMMENT, "")}
 			</Markdown>
 		</div>
 	);

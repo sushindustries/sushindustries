@@ -82,16 +82,7 @@ one is full of real controls - folders that open, windows that drag, a dock.
 The animation was a thing you sat through before the screen became readable,
 and it ran again every time somebody scrolled back up.
 
-## Props
-
-| Prop | Type | What it does |
-| --- | --- | --- |
-| `children` | `ReactNode` | The desktop. Scrolls on its own and chains at the end. |
-| `kind` | `DeviceKind` | Overrides the width. Omit and the stylesheet decides. |
-| `wallpaper` | `ReactNode` | Behind the desktop, and never in the way of a click. |
-| `title` | `string` | In the strip at the top of the screen. |
-| `toolbar` | `ReactNode` | Also in the strip, right-aligned. |
-| `dock` | `ReactNode` | Pinned along the bottom, below the scrolling desktop. |
+## The dock belongs to the screen, not the desktop
 
 The dock is a child of the *screen*, not of the desktop, so anything it opens
 is measured against the screen and clipped by the screen. Inside the desktop it

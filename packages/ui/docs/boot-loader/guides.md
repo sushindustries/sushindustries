@@ -46,16 +46,6 @@ Removing it entirely would be worse than useless. Somebody who asked for less
 motion still needs to know something is happening, and a blank screen with no
 explanation is not less motion - it is less information.
 
-## Props
-
-| Prop | Type | What it does |
-| --- | --- | --- |
-| `children` | `ReactNode` | Drawn in the square stage above the counter |
-| `duration` | `number` | Roughly how long a run takes. Default 1600ms |
-| `ready` | `boolean` | Until true, the count stalls at 90 |
-| `onDone` | `() => void` | Called once it has reached 100 and faded |
-| `label` | `string` | Read out instead of the number, which is meaningless spoken |
-
 ## Accessibility
 
 `role="status"` and not `alert` - something loading is not an interruption.
