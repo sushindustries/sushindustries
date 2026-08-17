@@ -1,31 +1,19 @@
-import { defineConfig } from "tsdown";
+import { defineConfig } from 'tsdown'
 
 export default defineConfig({
-	entry: [
-		"./src/index.ts",
-		"./src/reveal.tsx",
-		"./src/smooth-scroll.tsx",
-		"./src/scroll-spin.tsx",
-		"./src/card.tsx",
-		"./src/section.tsx",
-		"./src/markdown-view.tsx",
-		"./src/showcase.tsx",
-		"./src/icon.tsx",
-		"./src/doc-aside.tsx",
-		"./src/archive.tsx",
-	],
-	format: ["esm", "cjs"],
-	dts: true,
-	deps: {
-		neverBundle: [
-			"react",
-			"react-dom",
-			"@sushindustries/atoms",
-			"@tanstack/highlight",
-			"@tanstack/markdown",
-			"lenis",
-			"zod",
-		],
-	},
-	clean: true,
-});
+  entry: [
+    'src/index.ts',
+    'src/archive/index.tsx',
+    'src/card/index.tsx',
+    'src/doc-aside/index.tsx',
+    'src/icon/index.tsx',
+    'src/markdown-view/index.tsx',
+    'src/reveal/index.tsx',
+    'src/scroll-spin/index.tsx',
+    'src/section/index.tsx',
+    'src/showcase/index.tsx',
+    'src/smooth-scroll/index.ts',
+  ],
+  format: ['esm', 'cjs'],
+  dts: true,
+})
