@@ -2,7 +2,9 @@ import { type ReactNode, useEffect, useRef } from "react";
 import { Icon } from "./icon";
 
 export interface DialogProps {
+	/** Calls `showModal`, so the page behind goes inert while it is true. */
 	open: boolean;
+	/** Escape, the backdrop and the close button all arrive here. Clear `open` or the two disagree. */
 	onClose: () => void;
 	title: string;
 	children: ReactNode;

@@ -9,7 +9,9 @@ export interface TableColumn<Row> {
 }
 
 export interface TableProps<Row> {
+	/** Header and renderer per column, in display order. `key` has to be unique across them. */
 	columns: readonly TableColumn<Row>[];
+	/** Rendered in the order given - sorting belongs to the page. Empty leaves the headers standing. */
 	rows: readonly Row[];
 	/** Stable id per row. */
 	rowKey: (row: Row) => string;

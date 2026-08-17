@@ -77,6 +77,14 @@ export function readRegistry() {
 			files: list("files"),
 			registryDependencies: list("registryDependencies"),
 			title: block.match(/title:\s*"([^"]+)"/)?.[1] ?? name,
+			/*
+			 * Written across lines by the formatter when it is long, and it
+			 * usually is - so the pattern spans newlines and tolerates an escaped
+			 * quote inside the sentence.
+			 */
+			description: (
+				block.match(/description:\s*\n?\s*"((?:[^"\\]|\\.)*)"/)?.[1] ?? ""
+			).replace(/\\"/g, '"'),
 			category: block.match(/category:\s*"([^"]+)"/)?.[1],
 			kind: block.match(/kind:\s*"([^"]+)"/)?.[1] ?? "component",
 			schema: block.match(/schema:\s*"([^"]+)"/)?.[1],

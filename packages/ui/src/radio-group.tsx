@@ -8,10 +8,15 @@ export interface RadioOption {
 export interface RadioGroupProps {
 	/** Group label, announced with the set. */
 	label: string;
+	/** Empty renders a legend and nothing else. Values must be unique in the set. */
 	options: readonly RadioOption[];
+	/** Controlled selection. Set it and nothing moves until `onChange` comes back. */
 	value?: string;
+	/** Uncontrolled starting selection. Ignored once `value` is set. */
 	defaultValue?: string;
+	/** Handed the option's value, not the event. */
 	onChange?: (value: string) => void;
+	/** The shared radio name. A generated id when absent, so two groups on one page never merge. */
 	name?: string;
 }
 

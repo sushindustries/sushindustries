@@ -114,6 +114,7 @@ const NO_REFERENCES: ReferenceMap = {};
 const BASE_COMPONENTS = createComponents(NO_REFERENCES);
 
 export interface MarkdownViewProps {
+	/** Raw Markdown. Parsed to a bounded AST, so author content cannot inject markup. */
 	source: string;
 	/**
 	 * Custom `<!-- ::start:name -->` blocks this document may use, keyed by

@@ -5,6 +5,7 @@ export interface CreditProps {
 	name: string;
 	/** Who made it. Shown so authorship is never ambiguous. */
 	by: string;
+	/** The project's own home. Opens in a new tab, since it leaves this site. */
 	href: string;
 	/** What it does *here*. One line, present tense. */
 	role: string;

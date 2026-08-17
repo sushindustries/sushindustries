@@ -22,11 +22,15 @@ export interface PaletteEntry {
 }
 
 export interface CommandPaletteProps {
+	/** Everything searchable. Matched by substring, and only the first twelve hits are shown. */
 	entries: readonly PaletteEntry[];
+	/** Drives `showModal`. Opening clears the query and puts the selection back on the first hit. */
 	open: boolean;
+	/** Escape, the backdrop and the close event all arrive here. The host still owns `open`. */
 	onClose: () => void;
 	/** Called with the chosen entry; the host owns navigation. */
 	onSelect: (entry: PaletteEntry) => void;
+	/** The only hint at what is searchable - nothing else labels the field. */
 	placeholder?: string;
 }
 

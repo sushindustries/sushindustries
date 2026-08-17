@@ -4,7 +4,9 @@ import { Icon } from "./icon";
 import { Pagination, type PaginationProps } from "./pagination";
 
 export interface ArchiveProps {
+	/** The chips, in the order given. One with no items still gets a chip, counted zero. */
 	categories: readonly ArchiveCategory[];
+	/** Everything, before filtering. Category counts come from here, so they hold steady as filters narrow. */
 	items: readonly ArchiveItem[];
 	/** Current category filter id, or `"all"`. */
 	active?: string;
@@ -52,6 +54,7 @@ export interface ArchiveProps {
 		"data-tone"?: string;
 		children: ReactNode;
 	}) => ReactNode;
+	/** Replaces the grid when the filters match nothing. The chips stay, so the reader can undo. */
 	emptyLabel?: string;
 }
 

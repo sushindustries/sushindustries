@@ -2,7 +2,9 @@ import { type ReactNode, useEffect, useRef } from "react";
 import { Icon } from "./icon";
 
 export interface SheetProps {
+	/** Calls `showModal`. A sheet is still modal - the page behind it cannot be reached. */
 	open: boolean;
+	/** Escape, the backdrop and the close button all arrive here. Clear `open` or the two disagree. */
 	onClose: () => void;
 	title: string;
 	children: ReactNode;

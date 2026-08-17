@@ -24,6 +24,7 @@ export interface QuestionsProps {
 	 * "Common questions" and "Try asking" are different promises.
 	 */
 	readonly heading?: string;
+	/** Empty renders nothing, heading included. Each question is its own key, so duplicates collide. */
 	readonly questions: readonly string[];
 	/**
 	 * Put the question to something that can answer it. Given this, each entry

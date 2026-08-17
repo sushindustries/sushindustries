@@ -13,6 +13,7 @@ export interface GridProps {
 	 * and no count to keep in step with a media query.
 	 */
 	min?: string;
+	/** A step on the scale, rendered as `data-gap`. Between rows as well as columns. */
 	gap?: Space;
 	/** Fixed column count, for the cases where content really is paired. */
 	columns?: 2 | 3 | 4;

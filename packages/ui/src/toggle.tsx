@@ -3,14 +3,18 @@ import type { ReactNode } from "react";
 export interface ToggleProps {
 	/** What pressing it means. */
 	children: ReactNode;
+	/** Drives `aria-pressed` and `data-active`. The state is the caller's - nothing moves on its own. */
 	pressed: boolean;
+	/** Handed the opposite of `pressed`, never the event. */
 	onPressedChange: (pressed: boolean) => void;
 }
 
 export interface ToggleGroupProps {
 	/** The choices, keyed by value. */
 	options: readonly { value: string; label: ReactNode }[];
+	/** The pressed option. One matching nothing leaves every button up. */
 	value: string;
+	/** Handed the chosen value. Pressing the option already down fires it again. */
 	onChange: (value: string) => void;
 	/** Announced name of the group. */
 	label: string;

@@ -155,7 +155,9 @@ export function useContextMenu(): ContextMenuState {
 }
 
 export interface ContextMenuProps {
+	/** What `useContextMenu` returns. One hook per menu - two menus sharing one state open together. */
 	state: ContextMenuState;
+	/** The rows, in order. Choosing one closes the menu before running it. */
 	actions: readonly MenuAction[];
 	/** Named for screen readers, since the menu itself has no visible title. */
 	label?: string;

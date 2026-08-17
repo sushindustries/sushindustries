@@ -4,10 +4,13 @@ export interface ButtonProps {
 	children: ReactNode;
 	/** Renders an anchor instead. A button that navigates is a link. */
 	href?: string;
+	/** Dropped when `href` is set - the anchor navigates instead. */
 	onClick?: MouseEventHandler<HTMLButtonElement>;
 	/** `pill` is the one action a section wants taken; `ghost` the alternative. */
 	variant?: "pill" | "ghost";
+	/** `submit` is the only reason a button in a form should be anything else. */
 	type?: "button" | "submit";
+	/** Reaches the button only. An `href` cannot be disabled - do not render it. */
 	disabled?: boolean;
 }
 

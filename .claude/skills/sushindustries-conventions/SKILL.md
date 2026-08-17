@@ -191,6 +191,29 @@ Three more rules that follow from it:
   weeks without existing in the stylesheet, doing nothing, because nothing
   checked.
 
+## Documentation
+
+**A doc file lives at `packages/<pkg>/docs/<slug>/<section>.md`, exactly three
+levels, and `<section>` is one of `index`, `get-started`, `guides`, `api`,
+`examples`.** Anything else renders on no page at all.
+
+That is a location rule, and both halves of it have been broken. A file named
+for something outside the five was silently filtered out by the catalogue. A
+file one level shallower - `packages/assistant/docs/index.md`, 208 lines -
+matched neither the glob nor the check that was supposed to catch it, and was
+invisible for as long as it existed. `pnpm doctor` now asserts both.
+
+**The API tab is generated, so the prop description is a JSDoc comment.**
+Editing the table in `api.md` is the wrong move: the fenced region is rewritten
+from the interface, and the doctor fails when the two disagree. Writing the
+sentence on the interface instead puts it on the docs page and in every
+consumer's editor at once.
+
+The rest of the contract - which tab a section belongs in, the word budgets,
+and the rule that a heading must give the reader something to copy - is in
+`.claude/skills/document-an-element/SKILL.md`. `pnpm docs` reports where a page
+falls short of it.
+
 ## Voice
 
 One person builds this. Write "I", not "we". No "our team", no royal plural,

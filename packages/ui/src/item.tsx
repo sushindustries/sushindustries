@@ -7,7 +7,9 @@ export interface ItemProps {
 	description?: string;
 	/** Right-aligned, in the label style. */
 	meta?: string;
+	/** Draws the tile at the left. Without it the row starts at the title. */
 	icon?: IconName;
+	/** Colour family for the tile, resolved by the stylesheet. Does nothing without `icon`. */
 	tone?: string;
 	/** Renders the row as a link. */
 	href?: string;

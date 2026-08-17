@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 export interface ProgressProps {
 	/** 0 to `max`. Omit for the indeterminate sweep. */
 	value?: number;
+	/** A full bar. The default means `value` can be a percentage with no conversion. */
 	max?: number;
 	/** What is progressing. Announced with the number. */
 	label: string;

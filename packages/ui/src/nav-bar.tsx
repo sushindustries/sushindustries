@@ -36,8 +36,11 @@ export interface NavEntry {
 }
 
 export interface NavBarProps {
+	/** The mark at the left. Already wrapped in a link, so do not pass an anchor. */
 	brand: ReactNode;
+	/** Where the mark leads. */
 	brandHref?: string;
+	/** The top row. An entry with `items` becomes a panel, one without stays a plain link. */
 	entries: readonly NavEntry[];
 	/** Right-hand side. Usually one external link. */
 	trailing?: ReactNode;

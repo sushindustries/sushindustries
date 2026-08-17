@@ -3,15 +3,24 @@
 From "I want to add something" to "it is live", and what stops each step from
 costing money it did not need to.
 
-## The four commands
+## The commands
 
 ```shell
-pnpm new <post|component|package|glyph> <slug>   # start it from a template
+pnpm new <post|page|desk|docs|component|package|glyph> <slug> [section]
 pnpm doctor                                      # what is missing
 pnpm doctor --fix                                # repair what can be repaired
 pnpm doctor:map                                  # how the repo is constructed
+pnpm docs                                        # what every element documents
 pnpm check                                       # doctor, lint, types, build
 ```
+
+`pnpm docs` is a checkbox matrix: one row per element, one column per
+documentation tab, plus whether it has a demo and whether it meets the
+contract. `--todo` narrows it to the rows with a gap, `--slug <name>` expands
+one element and prints the command that fixes each finding, `--json` is for
+something else to read. It always exits 0 - the doctor is the gate, and a
+report that can fail a build is a second gate that will disagree with the
+first.
 
 `doctor:map` prints the construction from the repo itself - workspaces from
 the directories, the cascade from atoms.css, module and content counts, the
@@ -233,6 +242,19 @@ it is a second list to maintain.
   markup outranks a block rule's `display: none` in a media query, which is how
   the desktop nav kept rendering on phones. A class a breakpoint needs to take
   away must own its own layout.
+- **The API tab is generated.** `packages/<pkg>/docs/<slug>/api.md` carries a
+  `<!-- generated:api -->` fence, and what is inside it comes from the exported
+  interface: names, types, defaults read out of the destructuring parameter,
+  and the JSDoc as the description. So the `Does` column is a source comment,
+  and improving a description means editing the interface - where it also
+  reaches every consumer's editor. `pnpm doctor --fix` regenerates; a file with
+  no fence is reported and never rewritten, because inferring the boundary from
+  headings once deleted eighteen lines of somebody's writing.
+- **The five tabs are files.** `index`, `get-started`, `guides`, `api`,
+  `examples`, in that order, and the tab bar is built from the ones that exist.
+  Home is a shop window with a 350-word budget: over it, the page is carrying
+  another tab, and the fix is `pnpm new docs <slug> guides` and moving whole
+  sections. See `.claude/skills/document-an-element/SKILL.md`.
 - **References.** Backticked mentions of registry items and packages become
   links wearing hover cards (`Ref` + the `references` prop on `MarkdownView`,
   fed by `references.catalogue.ts`). The doctor flags bare PascalCase mentions
@@ -285,6 +307,11 @@ Structure, mostly - the things invisible in a diff and obvious in a directory.
 - no tracked file depends on a generated file without turbo declaring the order
 - every registry item's files exist, are exported, resolve their registry
   dependencies, and have a docs page and a demo
+- every `api.md` matches the interface it documents, and every documented
+  element has a non-empty `summary:` - both repairable, because both copy
+  something that already exists rather than inventing prose
+- every doc file sits at `packages/<pkg>/docs/<slug>/<section>.md`, and every
+  desktop icon label fits the tile it is drawn in
 - every content file has the frontmatter its catalogue reads
 - every class a `packages/ui` component uses is defined in `packages/atoms`,
   not in the site

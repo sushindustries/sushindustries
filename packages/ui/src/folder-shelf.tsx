@@ -122,6 +122,7 @@ export interface ShelfEntry {
 }
 
 export interface FolderShelfProps {
+	/** The whole tree. The top level is the desktop; the rest appears once a window opens onto it. */
 	readonly entries: readonly ShelfEntry[];
 	/**
 	 * The menu for an entry, built by the consumer.
@@ -134,6 +135,7 @@ export interface FolderShelfProps {
 	actionsFor?: (entry: ShelfEntry, path: readonly ShelfEntry[]) => MenuAction[];
 	/** Text in the search window's field. Controlled by the consumer. */
 	query?: string;
+	/** Every keystroke in that field. Without it the field cannot be typed into. */
 	onQuery?: (query: string) => void;
 	/** What a search result does when chosen. */
 	onChoose?: (entry: ShelfEntry, path: readonly ShelfEntry[]) => void;

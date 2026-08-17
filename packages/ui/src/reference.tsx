@@ -19,6 +19,7 @@ export interface Reference {
 export type ReferenceMap = Readonly<Record<string, Reference>>;
 
 export interface RefProps {
+	/** The target, resolved by the caller. The card is built from this, never fetched. */
 	reference: Reference;
 	children: ReactNode;
 }

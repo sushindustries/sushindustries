@@ -6,6 +6,7 @@ export interface EmptyProps {
 	title: string;
 	/** The way out: why it is empty, or what to do about it. */
 	children?: ReactNode;
+	/** The glyph above the title. Always drawn - a bare empty state reads as a failed render. */
 	icon?: IconName;
 	/** Usually a Button. */
 	action?: ReactNode;

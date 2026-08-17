@@ -5,6 +5,7 @@ import { highlighter, resolveLanguage } from "./highlighter";
 import { Icon } from "./icon";
 
 export interface CodeBlockProps {
+	/** The source. One trailing newline is dropped, so the copy is exactly what is shown. */
 	code: string;
 	/** Fence language. Aliases like `bash` and `js` resolve; unknown falls back to plaintext. */
 	language?: string;

@@ -5,6 +5,7 @@ export interface CollapsibleProps {
 	/** The always-visible line. */
 	summary: string;
 	children: ReactNode;
+	/** Open on the first paint. After that the reader's toggle stands - nothing re-forces it. */
 	defaultOpen?: boolean;
 }
 

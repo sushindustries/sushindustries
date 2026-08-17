@@ -56,6 +56,7 @@ export interface AvatarGroupProps {
 	people: readonly Pick<AvatarProps, "name" | "src" | "tone">[];
 	/** How many faces before the count takes over. */
 	max?: number;
+	/** Pixel size of every face, the overflow count included. */
 	size?: number;
 }
 

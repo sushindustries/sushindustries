@@ -5,6 +5,7 @@ export interface SkeletonProps {
 	shape?: "line" | "block" | "circle";
 	/** CSS size overrides; the shapes carry sensible defaults. */
 	width?: string;
+	/** Any CSS length. Overrides the shape - a taller `line` is one thick bar, not two. */
 	height?: string;
 }
 

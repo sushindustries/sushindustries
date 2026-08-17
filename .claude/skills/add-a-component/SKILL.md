@@ -147,19 +147,30 @@ Deriving source from JSX is a compiler; writing it is two lines.
 Demos render only inside `/preview/<slug>`, in an iframe, so a heavy demo costs
 the documentation page nothing.
 
-### 6. The docs (optional)
+### 6. The docs
 
-Write these when the generated page is not enough - when there is a decision to
-explain, a trap to warn about, or an API worth a table.
+```shell
+pnpm docs --slug my-thing     # what is missing, and the command for each
+pnpm new docs my-thing api    # the prop table, filled in from your source
+pnpm new docs my-thing guides
+```
 
 ```text
 packages/ui/docs/my-thing/
 ├── index.md         Home        (replaces the generated section)
 ├── get-started.md   Get Started
 ├── guides.md        Guides
-├── api.md           API
+├── api.md           API         generated - edit the JSDoc, not the table
 └── examples.md      Examples
 ```
+
+**Write the JSDoc on your props.** It becomes the `Does` column of `api.md` and
+the editor hover for everyone who installs this, and `pnpm doctor` fails when
+the table and the interface disagree. That is the one place where editing the
+Markdown is the wrong move.
+
+`.claude/skills/document-an-element/SKILL.md` has the contract each tab has to
+meet, and which tab a given section belongs in.
 
 The tab bar is built from the files that exist. One file is one tab; there is
 no route to edit and no list to update. Only `index.md` needs frontmatter:

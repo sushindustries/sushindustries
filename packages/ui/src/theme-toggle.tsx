@@ -8,7 +8,9 @@ export interface ThemeOption {
 }
 
 export interface ThemeToggleProps {
+	/** The segments, left to right. Arrows walk them and wrap at both ends. */
 	readonly options: readonly ThemeOption[];
+	/** The id of the pressed segment. One matching no option leaves the group with no tab stop. */
 	readonly value: string;
 	/**
 	 * Called with the chosen id.
@@ -19,6 +21,7 @@ export interface ThemeToggleProps {
 	 * picked one would be wrong in three codebases out of four.
 	 */
 	onChange(id: string): void;
+	/** Names the group for screen readers. The segments are icons, so nothing else says what it switches. */
 	readonly label?: string;
 }
 

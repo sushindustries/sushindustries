@@ -4,6 +4,7 @@ import { Icon } from "./icon";
 export interface PaginationProps {
 	/** 1-based. */
 	page: number;
+	/** Total pages. One or fewer renders nothing - a single page is not a choice. */
 	pageCount: number;
 	/** Builds the href for a page number; the host's router owns the URL shape. */
 	hrefFor: (page: number) => string;

@@ -76,7 +76,9 @@ export interface HeroProps {
 	readonly title: string;
 	/** Shown as a chip beside the heading. The element's version, not the package's. */
 	readonly version?: string;
+	/** One paragraph under the heading. Absent puts the facts straight beneath it. */
 	readonly summary?: ReactNode;
+	/** Keyed by `label`, so two facts cannot share one. Empty renders no list at all. */
 	readonly facts?: readonly HeroFact[];
 	/** The one or two things to do here. Composed by the caller. */
 	readonly actions?: ReactNode;

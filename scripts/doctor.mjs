@@ -34,7 +34,12 @@ import {
 	renderDevicesCss,
 	renderDeviceTypes,
 } from "./devices.mjs";
-import { generatedApiRegion, renderApiSection } from "./docs.mjs";
+import {
+	generatedApiRegion,
+	readRegistry,
+	renderApiSection,
+	survey,
+} from "./docs.mjs";
 import {
 	GLYPH_OUTPUT,
 	GLYPH_SOURCE,
@@ -397,43 +402,6 @@ function checkGeneratedFilesAreOrdered() {
 
 /* ── the component pipeline ──────────────────────────────────────────── */
 
-/**
- * Registry entries are the contract for `npx shadcn add` and the TanStack CLI.
- * An entry naming a file that does not exist installs an empty component.
- */
-function readRegistry() {
-	const source = read("packages/ui/registry.ts");
-	const items = [];
-
-	for (const block of source.split(/\n\t\{\n/).slice(1)) {
-		const name = block.match(/name:\s*"([^"]+)"/)?.[1];
-		if (!name) continue;
-
-		const files = (block.match(/files:\s*\[([^\]]*)\]/s)?.[1] ?? "")
-			.split(",")
-			.map((entry) => entry.trim().replace(/^"|"$/g, ""))
-			.filter(Boolean);
-
-		const registryDependencies = (
-			block.match(/registryDependencies:\s*\[([^\]]*)\]/s)?.[1] ?? ""
-		)
-			.split(",")
-			.map((entry) => entry.trim().replace(/^"|"$/g, ""))
-			.filter(Boolean);
-
-		items.push({
-			name,
-			files,
-			registryDependencies,
-			title: block.match(/title:\s*"([^"]+)"/)?.[1] ?? name,
-			category: block.match(/category:\s*"([^"]+)"/)?.[1],
-			kind: block.match(/kind:\s*"([^"]+)"/)?.[1] ?? "component",
-			schema: block.match(/schema:\s*"([^"]+)"/)?.[1],
-		});
-	}
-
-	return items;
-}
 
 /**
  * Every element names a real schema.org class.
@@ -1071,6 +1039,89 @@ function checkDocSectionsAreReal() {
  * interface - where it also reaches every consumer's editor - and comes back
  * here through `--fix`.
  */
+/**
+ * Every doc section carries the shape its tab promises.
+ *
+ * The tabs exist so a component page is not one long file: Home says what it
+ * is and shows it, Get Started gets it rendering, Guides is for what is true
+ * after it works, API is the props, Examples is it doing a job. When four of
+ * the five went unwritten, Home became the manual - a median of 140 words, and
+ * a worst case of 2,177.
+ *
+ * So the rules are about shape rather than length. A Home tab over budget is
+ * not too long, it is carrying another tab, and the fix is `pnpm new docs
+ * <slug> guides` and moving whole sections into it. A heading with nothing to
+ * copy under it and a page of prose is the one this repo calls a life story.
+ *
+ * The contract itself lives in `scripts/docs.mjs`, so the report and this
+ * check cannot disagree about what is wrong.
+ */
+function checkDocsFollowTheContract() {
+	for (const row of survey(readRegistry())) {
+		for (const finding of row.findings) {
+			/*
+			 * Empty summaries are `checkDocsHaveSummaries`, which can repair them.
+			 * Reporting the same file twice under two names is how a list of
+			 * problems becomes a list nobody reads.
+			 */
+			if (finding.rule === "frontmatter") continue;
+			/* API drift is `checkApiDocsMatchSource`, which regenerates it. */
+			if (finding.rule === "api-drift") continue;
+
+			report("contract", finding.path, finding.message, finding.hint);
+		}
+	}
+}
+
+/**
+ * Every documented element has a summary, because forty-three did not.
+ *
+ * `summary:` is the meta description, the line in `llms.txt`, and the sentence
+ * under the heading on the page. `templates/component-index.md` scaffolds it
+ * blank, so it shipped blank - which `component-page.ts` already works around
+ * by falling back to the registry description at render time.
+ *
+ * If the fallback is the right sentence, it is the right sentence to write
+ * down. Fixable for exactly that reason: this copies a sentence that exists
+ * rather than inventing one, so it is not the scaffolded "TODO" this repo
+ * refuses. An element with no registry entry has nothing to copy, and is
+ * reported instead.
+ */
+function checkDocsHaveSummaries(items) {
+	const descriptions = new Map(
+		items.map((item) => [item.name, item.description]),
+	);
+
+	for (const path of trackedFiles()) {
+		const slug = /^packages\/[^/]+\/docs\/([\w-]+)\/index\.md$/.exec(path)?.[1];
+		if (!slug) continue;
+
+		const body = read(path);
+		const value = /^summary:(.*)$/m.exec(body)?.[1];
+		if (value === undefined || value.trim()) continue;
+
+		const description = descriptions.get(slug);
+
+		if (description && shouldFix) {
+			writeFileSync(
+				join(root, path),
+				body.replace(/^summary:.*$/m, `summary: ${description}`),
+			);
+			repaired(`${path}: summary from the registry description`);
+			continue;
+		}
+
+		report(
+			"frontmatter",
+			path,
+			"`summary:` is empty, so the page ships with no meta description",
+			description
+				? "pnpm doctor --fix copies the registry description"
+				: "no registry entry to copy from - write one sentence",
+		);
+	}
+}
+
 async function checkApiDocsMatchSource(items) {
 	for (const item of items) {
 		const path = `packages/ui/docs/${item.name}/api.md`;
@@ -2304,6 +2355,7 @@ checkDocSectionsAreReal();
 checkDocsAreAddressable();
 checkDeskLabelsFit();
 await checkApiDocsMatchSource(registry);
+checkDocsHaveSummaries(registry);
 checkRegistryItemsAreAddressable(registry);
 checkMentionsAreReferences(registry);
 checkCategoriesHaveIcons();

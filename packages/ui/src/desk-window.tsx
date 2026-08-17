@@ -4,11 +4,15 @@ import { Icon } from "./icon";
 export interface DeskWindowProps {
 	title: ReactNode;
 	children: ReactNode;
+	/** Left edge in pixels within the desk. Clamped so 80px always stays reachable. */
 	x: number;
+	/** Top edge in pixels within the desk. Clamped so the title bar cannot leave it. */
 	y: number;
+	/** Stacking order, applied as `zIndex`. The desk decides which window is highest. */
 	z: number;
 	/** Set once resized. Absent uses the CSS default. */
 	w?: number;
+	/** Set once resized, never below 160. Absent uses the CSS default. */
 	h?: number;
 	/** Committed on release, not during the drag. */
 	onMove(x: number, y: number): void;

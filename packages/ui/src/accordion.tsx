@@ -8,6 +8,7 @@ export interface AccordionItem {
 }
 
 export interface AccordionProps {
+	/** Rendered in order and keyed by `id`. Each opens without closing the others. */
 	items: readonly AccordionItem[];
 	/** Ids open on first render. */
 	defaultOpen?: readonly string[];
