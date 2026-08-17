@@ -1,4 +1,5 @@
 import type { RegistryItem } from "@sushindustries/ui/registry";
+import { REPO_IS_PUBLIC, REPO_URL } from "./repo";
 import { entityId, pageId, ref } from "./schema-graph";
 import { SITE } from "./site.catalogue";
 
@@ -79,7 +80,14 @@ export function componentSourceCode(item: RegistryItem): object {
 		url: `${SITE.url}/components/${item.name}`,
 		programmingLanguage: "TypeScript",
 		runtimePlatform: "React 19",
-		codeRepository: "https://github.com/sushindustries/sushindustries",
+		/*
+		 * `codeRepository` only while the repo answers. Structured data is a set
+		 * of claims made to a machine that will check them, and a property whose
+		 * value 404s is a claim that fails - the crawler cannot tell "private"
+		 * from "wrong", so the honest move is to say nothing rather than point
+		 * at a door that does not open.
+		 */
+		...(REPO_IS_PUBLIC ? { codeRepository: REPO_URL } : {}),
 		license: "https://opensource.org/license/mit/",
 		isPartOf: {
 			"@type": "SoftwareApplication",
@@ -123,7 +131,7 @@ export function packageApplication(pkg: {
 		applicationCategory: "DeveloperApplication",
 		operatingSystem: "Any",
 		offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-		codeRepository: "https://github.com/sushindustries/sushindustries",
+		...(REPO_IS_PUBLIC ? { codeRepository: REPO_URL } : {}),
 	};
 }
 

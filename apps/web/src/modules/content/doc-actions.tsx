@@ -1,5 +1,6 @@
 import { CopyButton } from "@sushindustries/ui";
 import type { ReactNode } from "react";
+import { REPO_IS_PUBLIC, REPO_URL } from "./repo";
 
 /*
  * The head of every component and package page: the same document, offered to
@@ -14,8 +15,6 @@ import type { ReactNode } from "react";
  * its GitHub remote, which is exactly the knowledge `packages/ui` must not
  * have. The pieces it is made of - CopyButton, the badges - are the library's.
  */
-
-const REPO = "https://github.com/sushindustries/sushindustries";
 
 export interface DocActionsProps {
 	/** The page's own Markdown, for "Copy page". */
@@ -109,12 +108,19 @@ export function DocActions({
 				/>
 			) : null}
 
-			{editPath ? (
+			{/*
+			 * The two GitHub doors, shown only when someone other than me could
+			 * walk through them. Both open an editor on a file in the repo, and
+			 * while the repo is private that editor is a 404 - an affordance
+			 * that advertises an action the reader cannot take is worse than no
+			 * affordance, because they have to click it to find out.
+			 */}
+			{REPO_IS_PUBLIC && editPath ? (
 				<a
 					className="copy-btn"
 					data-ground="paper"
 					data-action="edit"
-					href={`${REPO}/edit/main/${editPath}`}
+					href={`${REPO_URL}/edit/main/${editPath}`}
 					target="_blank"
 					rel="noopener noreferrer"
 				>
@@ -122,12 +128,12 @@ export function DocActions({
 				</a>
 			) : null}
 
-			{!editPath && writePath ? (
+			{REPO_IS_PUBLIC && !editPath && writePath ? (
 				<a
 					className="copy-btn"
 					data-ground="paper"
 					data-action="edit"
-					href={`${REPO}/new/main/${writePath}?filename=index.md${
+					href={`${REPO_URL}/new/main/${writePath}?filename=index.md${
 						writeBody ? `&value=${encodeURIComponent(writeBody)}` : ""
 					}`}
 					target="_blank"

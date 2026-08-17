@@ -61,7 +61,8 @@ utilities (elevation is a material decision, and material lives in the
 grid's job), and the responsive infix system (`d-md-none` - variants here are
 data-attributes on blocks, and containers respond with container queries).
 
-Open the stylesheet: https://github.com/sushindustries/sushindustries/blob/main/packages/atoms/src/atoms.css
+Open the stylesheet: `node_modules/@sushindustries/atoms/src/atoms.css`. It is
+the whole library, it is the only file, and it is meant to be read.
 
 ## Why not Tailwind
 

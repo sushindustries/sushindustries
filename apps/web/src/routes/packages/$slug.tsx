@@ -67,7 +67,7 @@ function PackagePage(): ReactNode {
 				<DocActions
 					title={entry.name}
 					markdown={entry.readme}
-					markdownUrl={`https://github.com/sushindustries/sushindustries/blob/main/packages/${entry.slug}/README.md`}
+					markdownUrl={`/r/md/packages/${entry.slug}`}
 					promptUrl={`https://sushindustries.com/r/prompt/packages/${entry.slug}`}
 					editPath={`packages/${entry.slug}/README.md`}
 				/>

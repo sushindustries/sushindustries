@@ -1,6 +1,7 @@
 import { Icon } from "@sushindustries/ui";
 import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
+import { PROFILE_URL, REPO_IS_PUBLIC, REPO_SLUG } from "../content/repo";
 
 /*
  * The repository, with its stars on it.
@@ -14,25 +15,30 @@ import type { ReactNode } from "react";
  * Renders the plain link until the number arrives, so the nav is identical on
  * server and client and nothing shifts when the query lands.
  */
-const REPO = "sushindustries/sushindustries";
-
 /*
  * The link goes to the profile, not the repo: the repo is private today, so
  * its URL is a 404 for everyone who is not me. The star count comes from the
  * repo API and simply stays hidden until the day that changes - the widget is
  * already wired for it.
  */
-const PROFILE = "https://github.com/sushindustries";
 
 export function GithubStar(): ReactNode {
 	const { data } = useQuery({
-		queryKey: ["github-stars", REPO],
+		queryKey: ["github-stars", REPO_SLUG],
 		queryFn: async (): Promise<number | null> => {
-			const response = await fetch(`https://api.github.com/repos/${REPO}`);
+			const response = await fetch(`https://api.github.com/repos/${REPO_SLUG}`);
 			if (!response.ok) return null;
 			const body = (await response.json()) as { stargazers_count?: number };
 			return body.stargazers_count ?? null;
 		},
+		/*
+		 * Not asked at all while the repo is private. Returning null on a 404
+		 * hid the count, but the request still happened - one guaranteed-failing
+		 * call from the nav of every page, which is a 404 in the console of
+		 * every page and a request against an API with a 60-per-hour budget.
+		 * The query stays here, wired and ready, and simply does not run.
+		 */
+		enabled: REPO_IS_PUBLIC,
 		staleTime: 60 * 60 * 1000,
 		gcTime: 60 * 60 * 1000,
 		retry: false,
@@ -40,7 +46,7 @@ export function GithubStar(): ReactNode {
 
 	return (
 		<a
-			href={PROFILE}
+			href={PROFILE_URL}
 			className="nav-link flex items-center gap-2"
 			target="_blank"
 			rel="noreferrer"
