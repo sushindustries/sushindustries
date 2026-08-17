@@ -1,13 +1,12 @@
 {
 	"$schema": "https://turborepo.dev/schema.json",
-	"globalDependencies": [
-		"tsconfig.base.json",
-		"tsdown.base.ts",
-		"packages/atoms/src/**"
-	],
+	"globalDependencies": ["tsconfig.base.json", "tsdown.base.ts"],
 	"tasks": {
+		"transit": {
+			"dependsOn": ["^transit"]
+		},
 		"build": {
-			"dependsOn": ["^build"],
+			"dependsOn": ["^build", "transit"],
 			"outputs": [".output/**", "dist/**", "src/routeTree.gen.ts"],
 			"env": ["NODE_ENV"]
 		},
