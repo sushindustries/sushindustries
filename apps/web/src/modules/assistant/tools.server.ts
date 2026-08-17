@@ -38,9 +38,26 @@ function inputSchema(schema: ReturnType<typeof skillSchema>): z.ZodTypeAny {
 		 */
 		const described = base.describe(property.description);
 
+		/*
+		 * Optional parameters are nullable, not absent.
+		 *
+		 * Groq validates the model's tool call against this schema before the
+		 * call ever reaches us, and it treats every declared property as one the
+		 * call must carry - omitting an `.optional()` one fails the whole run
+		 * with `missing properties`, which surfaces to the reader as an
+		 * assistant that answered nothing at all. The failure is intermittent
+		 * by nature, because whether the model volunteers an optional argument
+		 * depends on how much it deliberated.
+		 *
+		 * Declaring them nullable is the shape that satisfies a strict
+		 * validator and still lets the model say "I have no value for this":
+		 * the property is always present, and `null` is the way to leave it
+		 * out. Every handler already reads these through `??` or a clamp, so
+		 * null and absent mean the same thing on our side.
+		 */
 		shape[name] = schema.required.includes(name)
 			? described
-			: described.optional();
+			: described.nullable();
 	}
 
 	return z.object(shape);

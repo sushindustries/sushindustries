@@ -30,9 +30,16 @@ const parsed = parsePersona(source);
  * check below is what makes it honest - it is a cast that has been verified,
  * not a cast that has been asserted.
  */
+/*
+ * Both entries here were Llama models, and Groq has retired both: the key
+ * authenticates and the completion 404s. The adapter's union is what Groq
+ * served when the adapter was published, so it proves a name is spelled right,
+ * not that it is still being served - these are checked against a live
+ * `/v1/models` call, which is the only thing that can say.
+ */
 const MODELS = [
-	"llama-3.1-8b-instant",
-	"llama-3.3-70b-versatile",
+	"openai/gpt-oss-120b",
+	"openai/gpt-oss-20b",
 ] as const satisfies readonly GroqModel[];
 
 type GroqModel = Parameters<typeof createGroqText>[0];

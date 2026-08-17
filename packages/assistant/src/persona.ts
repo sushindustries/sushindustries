@@ -20,8 +20,19 @@ export interface Persona {
 	readonly maxTokens: number;
 }
 
+/*
+ * `llama-3.3-70b-versatile` was here and Groq has since retired it - the key
+ * authenticates, the model 404s, and the panel reports a broken assistant for
+ * a reason no log makes obvious. A hosted model is not a constant; it is
+ * someone else's deployment, and it can be withdrawn between two deploys of
+ * this repo.
+ *
+ * The default is therefore a model checked against `/v1/models` on the day it
+ * was set. `meta.model` in the persona document still overrides it, which is
+ * where a per-deployment choice belongs.
+ */
 const DEFAULTS = {
-	model: "llama-3.3-70b-versatile",
+	model: "openai/gpt-oss-120b",
 	temperature: 0.6,
 	maxTokens: 700,
 } as const;

@@ -1,4 +1,4 @@
-import { chat, toServerSentEventsResponse } from "@tanstack/ai";
+import { chat, maxIterations, toServerSentEventsResponse } from "@tanstack/ai";
 import { createGroqText } from "@tanstack/ai-groq";
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
@@ -97,6 +97,21 @@ export const Route = createFileRoute("/api/chat")({
 					 */
 					tools: chatTools,
 					/*
+					 * Three model turns, and then it answers with what it has.
+					 *
+					 * The loop is what makes tools useful - search, read the result,
+					 * search again - and it is also the failure mode: a model that
+					 * cannot find what it wants will keep asking, and an unbounded
+					 * loop spends the reader's time and the key's budget on an answer
+					 * that was never going to arrive. One run here was measured taking
+					 * four turns for a single question.
+					 *
+					 * Three is enough for the shape these skills have (find something,
+					 * read it, answer) and short enough that a wrong turn costs a
+					 * second rather than a minute.
+					 */
+					agentLoopStrategy: maxIterations(3),
+					/*
 					 * Provider-native names, deliberately.
 					 *
 					 * These used to be flattened onto the root of `chat()` and were
@@ -109,6 +124,26 @@ export const Route = createFileRoute("/api/chat")({
 					modelOptions: {
 						temperature: persona.temperature,
 						max_completion_tokens: persona.maxTokens,
+						/*
+						 * Think less, out loud, and not at the reader's expense.
+						 *
+						 * gpt-oss reasons before it answers, and at the default effort it
+						 * spends most of the stream doing it: measured on one ordinary
+						 * question, 452 reasoning chunks arrived before the first word of
+						 * the reply. The panel filters them out, so what a reader sees is
+						 * a cursor sitting still for several seconds and then an answer -
+						 * which reads as broken rather than as thoughtful.
+						 *
+						 * It also competes for `max_completion_tokens`: reasoning is
+						 * billed against the same ceiling as the answer, so a long enough
+						 * deliberation can leave nothing left to say it with.
+						 *
+						 * `hidden` because nothing here renders them, and streaming
+						 * thousands of tokens the client throws away is bandwidth spent
+						 * on a phone for no one's benefit.
+						 */
+						reasoning_effort: "low",
+						reasoning_format: "hidden",
 					},
 				});
 
