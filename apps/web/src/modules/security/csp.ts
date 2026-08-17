@@ -178,8 +178,13 @@ export function securityHeaders(
 	 * COEP exists to buy cross-origin isolation - `SharedArrayBuffer`, precise
 	 * timers, `performance.measureUserAgentSpecificMemory`. Nothing here uses
 	 * any of them, so the trade is the whole embed layer for a capability the
-	 * site does not want. Checked 2026-08-17; if a future feature needs
-	 * isolation, the cost is re-measuring those five origins, not guessing.
+	 * site does not want.
+	 *
+	 * Re-measured 2026-08-18, and it is worse than "no header": YouTube sends
+	 * `cross-origin` and would survive, Facebook sends `same-origin` and would
+	 * be actively refused, and StackBlitz, TikTok and Mux send nothing at all.
+	 * Four of five embeds go dark. If a future feature needs isolation, the
+	 * cost is re-measuring those five origins, not guessing.
 	 */
 	return {
 		"content-security-policy": contentSecurityPolicy(options),

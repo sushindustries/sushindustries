@@ -77,6 +77,24 @@ describe("the content security policy", () => {
 		expect(missing).toStrictEqual([]);
 	});
 
+	test("lets a GLB decode, because that is WebAssembly", () => {
+		/*
+		 * Compiling a Wasm module counts as evaluation under CSP, so a
+		 * `script-src` without this throws inside the loader and every 3D
+		 * viewer is an empty canvas - a 200 response, a canvas of the right
+		 * size, and no model. It shipped that way, and dev hid it: dev adds
+		 * `'unsafe-eval'`, which permits Wasm too, so it worked on the machine
+		 * it was written on and nowhere else.
+		 *
+		 * The second assertion is the point of the first. `'unsafe-eval'` would
+		 * also make this pass, and would hand an injected string to `eval`.
+		 */
+		const scriptSrc = readDirective("script-src");
+
+		expect(scriptSrc).toContain("'wasm-unsafe-eval'");
+		expect(scriptSrc).not.toContain("'unsafe-eval'");
+	});
+
 	test("closes the directives an injection would use", () => {
 		expect(readDirective("object-src")).toContain("'none'");
 		expect(readDirective("base-uri")).toContain("'self'");
