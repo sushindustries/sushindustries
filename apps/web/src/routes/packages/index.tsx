@@ -39,8 +39,21 @@ function PackagesPage(): ReactNode {
 							params={{ slug: entry.slug }}
 							className="card h-full"
 						>
-							<div className="flex items-center justify-between gap-3">
-								<h2 className="h3 m-0 min-w-0 truncate">{entry.name}</h2>
+							{/*
+							 * The scope above, the name below, and the name is the big
+							 * one. Every package here is `@sushindustries/something`, so
+							 * the scope is the half that distinguishes nothing and it was
+							 * taking most of the line: at the widths this grid actually
+							 * uses, `truncate` on the full name rendered
+							 * "@sushindustries/product..." and "@sushindustries/react-p...".
+							 * A card whose heading is an ellipsis where the name should be
+							 * does not tell a reader what the package is.
+							 */}
+							<div className="flex items-baseline justify-between gap-3">
+								<div className="min-w-0">
+									<p className="label m-0">@sushindustries</p>
+									<h2 className="h3 m-0 mt-1">{entry.slug}</h2>
+								</div>
 								<span className="label shrink-0">{entry.version}</span>
 							</div>
 							<p className="m-0 fg-dim text-sm text-pretty">
