@@ -3,13 +3,17 @@ title: API
 summary: Every prop on `ScrollSpin`, including what it does under reduced motion.
 ---
 
+<!-- generated:api -->
+
 ## Props
 
 | Prop | Type | Default | Does |
 | --- | --- | --- | --- |
-| `children` | `ReactNode` | - | Whatever should turn |
-| `revolutions` | `number` | `2` | Viewport heights per full turn. Higher is slower |
-| `tilt` | `number` | `8` | Degrees of X-axis wobble. `0` for a flat turntable |
+| `children` | `ReactNode` | - | Whatever should turn. A logo, a mark, an image, a diagram. |
+| `revolutions?` | `number` | `2` | Viewport heights per full revolution. Higher is slower. Tied to viewport height rather than pixels so the rotation per "screen scrolled" is the same on a phone and on a monitor. |
+| `tilt?` | `number` | `8` | Degrees of wobble on the X axis. Set to 0 for a flat turntable. |
+
+<!-- /generated:api -->
 
 ### `revolutions`
 

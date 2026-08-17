@@ -34,6 +34,7 @@ import {
 	renderDevicesCss,
 	renderDeviceTypes,
 } from "./devices.mjs";
+import { generatedApiRegion, renderApiSection } from "./docs.mjs";
 import {
 	GLYPH_OUTPUT,
 	GLYPH_SOURCE,
@@ -1049,6 +1050,75 @@ function checkDocSectionsAreReal() {
 			path,
 			`"${match[1]}" is not a section, so this file renders on no page at all`,
 			`rename it to one of ${allowed.join(", ")}, or give it its own docs/<slug>/index.md`,
+		);
+	}
+}
+
+/**
+ * Every API tab matches the source it documents.
+ *
+ * The Props table is generated - names, types, defaults and the JSDoc line all
+ * come out of the interface - so a table that no longer matches is a table that
+ * lies, and a prop table that lies is worse than none: a reader trusts it.
+ *
+ * It found drift the day it was written. Of the three hand-maintained `api.md`
+ * files in the repo, two were already wrong: `doc-aside` never documented
+ * `footer` (which this site passes) and `video-player` never documented
+ * `theme`.
+ *
+ * This is the one place where editing the Markdown is the wrong move. The
+ * `Does` column is the JSDoc on the prop, so a better sentence goes in the
+ * interface - where it also reaches every consumer's editor - and comes back
+ * here through `--fix`.
+ */
+async function checkApiDocsMatchSource(items) {
+	for (const item of items) {
+		const path = `packages/ui/docs/${item.name}/api.md`;
+		if (!exists(path)) continue;
+
+		const expected = renderApiSection(`packages/ui/src/${item.files[0]}`);
+		if (!expected) continue;
+
+		const body = read(path);
+		const found = generatedApiRegion(body);
+
+		/*
+		 * A file with no fence is never rewritten, only reported.
+		 *
+		 * Without the markers there is nothing that says where somebody's
+		 * writing begins, and a repair that guesses is a repair that deletes.
+		 * This one did: it took `### revolutions`, `### tilt` and a callout out
+		 * of `scroll-spin/api.md` because they sat under the table it was
+		 * replacing. Adding the fence is a decision about someone else's file,
+		 * so it is left to them.
+		 */
+		if (found === undefined) {
+			report(
+				"docs",
+				path,
+				"no `<!-- generated:api -->` fence, so the props table is maintained by hand and will drift",
+				"wrap the generated section in the fence, then pnpm doctor --fix keeps it current",
+			);
+			continue;
+		}
+
+		if (found === expected.trim()) continue;
+
+		if (shouldFix) {
+			/* Only between the markers. Everything outside them is untouched. */
+			writeFileSync(
+				join(root, path),
+				body.replace(generatedApiRegion(body), expected.trim()),
+			);
+			repaired(`${path}: API section regenerated from the source`);
+			continue;
+		}
+
+		report(
+			"docs",
+			path,
+			"the API section no longer matches the source",
+			"pnpm doctor --fix - and to change a description, edit the JSDoc",
 		);
 	}
 }
@@ -2233,6 +2303,7 @@ checkSkills();
 checkDocSectionsAreReal();
 checkDocsAreAddressable();
 checkDeskLabelsFit();
+await checkApiDocsMatchSource(registry);
 checkRegistryItemsAreAddressable(registry);
 checkMentionsAreReferences(registry);
 checkCategoriesHaveIcons();

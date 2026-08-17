@@ -3,13 +3,18 @@ title: API
 summary: Every prop on `DocAside`, and what the collapse does without JavaScript.
 ---
 
+<!-- generated:api -->
+
 ## Props
 
 | Prop | Type | Default | Does |
 | --- | --- | --- | --- |
-| `headings` | `readonly DocHeading[]` | - | The list to render |
-| `label` | `string` | `"On this page"` | Heading on desktop, button text on mobile |
-| `minHeadings` | `number` | `2` | Renders nothing below this count |
+| `headings` | `readonly DocHeading[]` | - | The list to render. Collect it in a route loader, not in the component. |
+| `label?` | `string` | `"On this page"` | Heading on desktop, button text on mobile. |
+| `minHeadings?` | `number` | `2` | Renders nothing below this count. One heading is not a contents list. |
+| `footer?` | `ReactNode` | - | Rendered under the contents list: feedback buttons, a copy action, whatever the page wants within reach of a reader who is already here. |
+
+<!-- /generated:api -->
 
 ## Getting the headings
 

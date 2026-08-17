@@ -18,14 +18,15 @@
  * until a deploy fails.
  */
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { docSlugs, readRegistry, renderApiDoc, sectionOrder } from "./docs.mjs";
 import { writeFrom } from "./templates.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const [kind, slug] = process.argv.slice(2);
+const [kind, slug, section] = process.argv.slice(2);
 
 function fail(message) {
 	console.error(message);
@@ -33,7 +34,9 @@ function fail(message) {
 }
 
 if (!kind || !slug) {
-	fail("Usage: pnpm new <post|page|desk|component|package|glyph> <slug>");
+	fail(
+		"Usage: pnpm new <post|page|desk|docs|component|package|glyph> <slug> [section]",
+	);
 }
 
 if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) {
@@ -286,12 +289,85 @@ async function newDesk() {
 	todo.push(`list its icons under \`## The desk\` in ${target}`);
 }
 
+/*
+ * A documentation tab for an element that already exists.
+ *
+ *   pnpm new docs <slug> <section>
+ *
+ * The tabs are files, so adding one is writing a file - which is exactly the
+ * kind of bookkeeping this script is for. `pnpm docs --slug <name>` prints the
+ * command for every tab an element is missing, so the two compose.
+ *
+ * `api` is the one that does not come from a template. Its Props table is
+ * generated from the exported interface - names, types, defaults and the JSDoc
+ * line - so what lands is the real API rather than a placeholder somebody has
+ * to fill in and nobody does.
+ */
+async function newDocs() {
+	const sections = sectionOrder();
+
+	if (!section) {
+		fail(`Usage: pnpm new docs <slug> <${sections.join("|")}>`);
+	}
+
+	if (!sections.includes(section)) {
+		fail(`"${section}" is not a tab. One of: ${sections.join(", ")}.`);
+	}
+
+	if (section === "index") {
+		fail(
+			"index.md is written by `pnpm new component <slug>`, and `pnpm doctor --fix` repairs a missing one. A second path to it is a second thing to keep in step.",
+		);
+	}
+
+	/* The package that already documents this slug, or ui when it is registered. */
+	const owner = docSlugs().find((one) => one.slug === slug);
+	const item = readRegistry().find((one) => one.name === slug);
+
+	if (!owner && !item) {
+		fail(
+			`No docs directory for "${slug}", and it is not in the registry. Scaffold the element first: pnpm new component ${slug}`,
+		);
+	}
+
+	const dir = owner?.dir ?? `packages/ui/docs/${slug}`;
+	const target = `${dir}/${section}.md`;
+
+	if (existsSync(join(root, target))) {
+		fail(`${target} already exists. Edit it, or delete it first.`);
+	}
+
+	const title = item?.title ?? titleCase(slug);
+
+	if (section === "api") {
+		const source = item ? `packages/ui/src/${item.files[0]}` : undefined;
+
+		if (!source) {
+			fail(
+				`"${slug}" has no registry entry, so nothing says which file its API is in. Write ${target} by hand.`,
+			);
+		}
+
+		await mkdir(dirname(join(root, target)), { recursive: true });
+		writeFileSync(join(root, target), renderApiDoc(title, source));
+		written.push(target);
+		todo.push(
+			`add anything the types cannot say under \`## Notes\` in ${target}`,
+		);
+	} else {
+		await writeFrom(`component-${section}`, target, { slug, title });
+		written.push(target);
+		todo.push(`write ${target} - it is a template until you do`);
+	}
+}
+
 /* ── run ─────────────────────────────────────────────────────────────── */
 
 const kinds = {
 	post: newPost,
 	page: newPage,
 	desk: newDesk,
+	docs: newDocs,
 	component: newComponent,
 	package: newPackage,
 	glyph: newGlyph,

@@ -59,7 +59,13 @@ export interface VideoPlayerProps {
 	provider?: VideoProvider;
 	/** The still. Without one the frame is a plain ground and the title. */
 	poster?: string;
+	/** Rendered as `data-variant`, never a modifier class. */
 	variant?: VideoVariant;
+	/**
+	 * Forces the dark frame instead of following the page. `auto` is omitted
+	 * rather than written, because a page full of `data-theme="auto"` says
+	 * nothing and the selector wants a theme somebody chose.
+	 */
 	theme?: VideoTheme;
 	/** CSS aspect ratio for the reserved box, e.g. `16 / 9`. */
 	ratio?: string;
@@ -72,6 +78,7 @@ export interface VideoPlayerProps {
 	 * state; pass them and the host can enforce one playing video per page.
 	 */
 	active?: boolean;
+	/** Fires in both modes, so a host can coordinate without taking ownership. */
 	onActiveChange?: (active: boolean) => void;
 	/** The real player. Mounted only while active, so stopping unmounts it. */
 	children?: ReactNode;

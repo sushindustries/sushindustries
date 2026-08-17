@@ -3,20 +3,25 @@ title: Video Player API
 summary: Every prop, and the block attributes that map onto them.
 ---
 
+<!-- generated:api -->
+
 ## Props
 
-| Prop | Type | Default | What it is |
+| Prop | Type | Default | Does |
 | --- | --- | --- | --- |
-| `title` | `string` | required | What the video is. Used three times: the poster's alt text, the caption, and the button's accessible name. "Play" alone tells a screen-reader user nothing on a page with four of these. |
-| `provider` | `"youtube" \| "mux" \| "file"` | `"file"` | Only ever a data attribute and a label. Nothing in the component behaves on it. |
-| `poster` | `string` | none | The still. Without one the frame is a plain ground and the title. |
-| `variant` | `"inline" \| "cinema" \| "card"` | `"inline"` | Rendered as `data-variant`, never a modifier class. |
-| `ratio` | `string` | `"16 / 9"` | CSS aspect ratio for the reserved box. The one thing set inline, because an author's ratio is data and no token can hold an arbitrary one. |
-| `caption` | `ReactNode` | none | A line under the frame. The title is already shown; this is the rest. |
-| `sourceLabel` | `string` | the provider's name | The badge on the poster, so a reader knows who is about to be asked for bytes. |
-| `active` | `boolean` | uncontrolled | Pass it with `onActiveChange` to let a host enforce one playing video per page. |
-| `onActiveChange` | `(active: boolean) => void` | none | Fires in both modes, so a host can coordinate without taking ownership. |
-| `children` | `ReactNode` | none | The real player. Mounted only while active, so stopping unmounts it. |
+| `title` | `string` | - | What the video is. Required, and used three times: the poster's alt text, the caption under the frame, and the button's accessible name - "Play" alone tells a screen-reader user nothing on a page with four of these. |
+| `provider?` | `VideoProvider` | `"file"` | Only ever a data attribute and a label. Nothing here behaves on it. |
+| `poster?` | `string` | - | The still. Without one the frame is a plain ground and the title. |
+| `variant?` | `VideoVariant` | `"inline"` | Rendered as `data-variant`, never a modifier class. |
+| `theme?` | `VideoTheme` | `"auto"` | Forces the dark frame instead of following the page. `auto` is omitted rather than written, because a page full of `data-theme="auto"` says nothing and the selector wants a theme somebody chose. |
+| `ratio?` | `string` | `"16 / 9"` | CSS aspect ratio for the reserved box, e.g. `16 / 9`. |
+| `caption?` | `ReactNode` | - | A line under the frame. The title is already shown; this is the rest. |
+| `sourceLabel?` | `string` | - | Where it is hosted, shown on the frame: "YouTube", "Mux". |
+| `active?` | `boolean` | - | Controlled activation. Leave both out and the component owns its own state; pass them and the host can enforce one playing video per page. |
+| `onActiveChange?` | `(active: boolean) => void` | - | Fires in both modes, so a host can coordinate without taking ownership. |
+| `children?` | `ReactNode` | - | The real player. Mounted only while active, so stopping unmounts it. |
+
+<!-- /generated:api -->
 
 ## Block attributes
 

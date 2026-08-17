@@ -2,9 +2,11 @@ import { type ReactNode, useEffect, useId, useState } from "react";
 import type { DocHeading } from "./headings";
 
 export interface DocAsideProps {
+	/** The list to render. Collect it in a route loader, not in the component. */
 	headings: readonly DocHeading[];
+	/** Heading on desktop, button text on mobile. */
 	label?: string;
-	/** Hide below this many headings. One heading is not a contents list. */
+	/** Renders nothing below this count. One heading is not a contents list. */
 	minHeadings?: number;
 	/**
 	 * Rendered under the contents list: feedback buttons, a copy action,
