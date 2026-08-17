@@ -37,34 +37,46 @@ function BuiltPageView(): ReactNode {
 
 	return (
 		<article className="container" style={{ paddingBlock: "var(--s-8)" }}>
-			<Breadcrumb
-				origin="https://sushindustries.com"
-				items={[{ label: SITE.name, href: "/" }, { label: page.title }]}
-			/>
-
-			<h1 className="h2 mt-5 text-balance">{page.title}</h1>
-			{page.summary ? (
-				<p className="mt-3 fg-dim max-w-prose text-pretty">{page.summary}</p>
-			) : null}
-
 			{/*
-			 * Built pages are files in the repo like everything else, so they get
-			 * the same bar the docs get: the date, the copy, and the edit link
-			 * straight to the Markdown this page is rendered from.
+			 * One column for the whole document.
+			 *
+			 * A built page has no sidebar, so the reading column *is* the page,
+			 * and everything belongs on it. Without this the head ran the full
+			 * 1180px container while the body ran 642px, which put the title,
+			 * the trail and the copy button on three different left-to-right
+			 * spans over the same text - the action strip ended up 440px to the
+			 * right of the paragraph it described.
 			 */}
-			<DocActions
-				title={page.title}
-				markdown={page.body}
-				updated={page.updated}
-				editPath={`apps/web/content/pages/${page.slug}.md`}
-			/>
-
-			<div className="mt-7">
-				<MarkdownView
-					source={page.body}
-					blocks={BLOCKS}
-					references={REFERENCES}
+			<div className="max-w-prose">
+				<Breadcrumb
+					origin="https://sushindustries.com"
+					items={[{ label: SITE.name, href: "/" }, { label: page.title }]}
 				/>
+
+				<h1 className="h2 mt-5 text-balance">{page.title}</h1>
+				{page.summary ? (
+					<p className="mt-3 fg-dim text-pretty">{page.summary}</p>
+				) : null}
+
+				{/*
+				 * Built pages are files in the repo like everything else, so they get
+				 * the same bar the docs get: the date, the copy, and the edit link
+				 * straight to the Markdown this page is rendered from.
+				 */}
+				<DocActions
+					title={page.title}
+					markdown={page.body}
+					updated={page.updated}
+					editPath={`apps/web/content/pages/${page.slug}.md`}
+				/>
+
+				<div className="mt-7">
+					<MarkdownView
+						source={page.body}
+						blocks={BLOCKS}
+						references={REFERENCES}
+					/>
+				</div>
 			</div>
 		</article>
 	);

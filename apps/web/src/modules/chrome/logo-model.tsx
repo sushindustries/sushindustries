@@ -103,6 +103,20 @@ function SpinningViewer({
 			// It is a mark, not a product on a floor: no grid, no shadow plate
 			// implied by ground, and free to be looked at from underneath.
 			groundBound={false}
+			/*
+			 * The wheel belongs to the page here, not to the model.
+			 *
+			 * This sits in the hero, which is the first thing under the cursor
+			 * when somebody arrives and starts scrolling. Capturing the wheel to
+			 * zoom turns the top of the document into a hole the page will not
+			 * scroll past, and the reader blames the site rather than the canvas.
+			 *
+			 * Dragging still orbits, in every scroll mode, so the mark stays
+			 * something you can pick up and turn. That is the half worth having:
+			 * it is deliberate, it needs a press to start, and it cannot happen
+			 * by accident on the way down the page.
+			 */
+			scroll="page"
 			loadingLabel="Loading the mark"
 		/>
 	);

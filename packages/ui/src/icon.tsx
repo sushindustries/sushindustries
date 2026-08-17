@@ -47,7 +47,8 @@ export type IconName =
 	| "check"
 	| "play"
 	| "pause"
-	| "expand";
+	| "expand"
+	| "send";
 
 export interface IconProps {
 	name: IconName;
@@ -329,6 +330,13 @@ const PATHS: Record<IconName, ReactNode> = {
 			<path d="M14.5 19.5h5v-5" />
 			<path d="M4.5 4.5 10 10" />
 			<path d="M19.5 19.5 14 14" />
+		</>
+	),
+	// A paper aeroplane. The second stroke is the near wing's crease, and it is the whole glyph: without it this is an arrowhead at 13px, and an arrowhead already means something else here.
+	send: (
+		<>
+			<path d="M21.5 2.5 2.5 10.2l7.3 2.9 2.9 7.3z" />
+			<path d="M21.5 2.5 9.8 13.1" />
 		</>
 	),
 };

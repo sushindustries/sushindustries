@@ -28,6 +28,13 @@ export const DEMO_SOURCES = {
 </Reveal>`,
 		language: "tsx",
 	},
+	"typed-mark": {
+		source: `<TypedMark text="sushi industries" />
+
+{/* offset moves where the colour cycle starts */}
+<TypedMark text="one class, one job" offset={4} />`,
+		language: "tsx",
+	},
 	questions: {
 		source: `<Questions
 	heading="Common questions"

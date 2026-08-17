@@ -3,14 +3,25 @@ import {
 	AssistantPanel,
 	useConversations,
 } from "@sushindustries/assistant";
-import { MarkdownView, useDeviceKind } from "@sushindustries/ui";
+import {
+	Icon,
+	MarkdownView,
+	TypedMark,
+	useDeviceKind,
+} from "@sushindustries/ui";
 import { fetchServerSentEvents } from "@tanstack/ai-client";
 import { useChat } from "@tanstack/ai-react";
 import { useThrottledValue } from "@tanstack/react-pacer";
 import { useStore } from "@tanstack/react-store";
 import { type ReactNode, useEffect, useMemo } from "react";
+import { REFERENCES } from "../content/references.catalogue";
 import { BLOCKS } from "../markdown/blocks";
 import { askedQuestion, clearAskedQuestion } from "../markdown/questions.store";
+import {
+	assistantGreeting,
+	assistantLinks,
+	assistantOpeners,
+} from "./assistant.catalogue";
 
 /*
  * This site's assistant: the panel, wired to this site's stream.
@@ -137,12 +148,52 @@ export function SiteAssistant(): ReactNode {
 			onOpenThread={history.open}
 			onDeleteThread={history.remove}
 			onNewThread={history.start}
+			sendIcon={<Icon name="send" size={13} />}
+			mark={<TypedMark text="sushi industries" />}
 			streaming={streaming}
 			onSend={(text) => chat.sendMessage({ content: text })}
 			placeholder="Ask about this site"
-			greeting="Ask about the components, the packages, or why any of this is built the way it is."
+			greeting={
+				<>
+					{assistantGreeting()}
+					{/*
+					 * The links live inside the greeting rather than beside it: they
+					 * are part of the hello, and a second block under the paragraph
+					 * would read as navigation the panel does not have.
+					 *
+					 * `rel="noreferrer"` on every one - they leave the site, and a
+					 * referrer is not this site's to hand over.
+					 */}
+					<ul className="term-elsewhere">
+						{assistantLinks().map((link) => (
+							<li key={link.href}>
+								<a
+									className="term-link"
+									href={link.href}
+									target="_blank"
+									rel="noreferrer"
+								>
+									{link.icon ? <Icon name={link.icon} size={12} /> : null}
+									{link.label}
+								</a>
+							</li>
+						))}
+					</ul>
+				</>
+			}
+			openers={assistantOpeners()}
 			renderMarkdown={(source) => (
-				<MarkdownView source={source} blocks={BLOCKS} />
+				/*
+				 * `references` is what makes an answer walkable.
+				 *
+				 * The model writes `Card` or `@sushindustries/ui` in backticks
+				 * because that is how it talks about them, and the same catalogue
+				 * that turns those into hover-carded links on every doc page turns
+				 * them into links here. So a reply about a component is one press
+				 * away from the component, and the assistant stops being a place
+				 * you read about the site instead of visiting it.
+				 */
+				<MarkdownView source={source} blocks={BLOCKS} references={REFERENCES} />
 			)}
 		/>
 	);

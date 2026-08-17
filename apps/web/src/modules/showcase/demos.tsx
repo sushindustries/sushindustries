@@ -71,6 +71,7 @@ import {
 	ToastProvider,
 	ToggleGroup,
 	Tooltip,
+	TypedMark,
 	useContextMenu,
 	useDeviceKind,
 	useScrollProgress,
@@ -677,6 +678,44 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 		...DEMO_SOURCES["scroll-spin"],
 	},
 
+	"typed-mark": {
+		/*
+		 * On the terminal slab, because that is the surface the `--syn-*` hues
+		 * were checked against. The same nine colours on paper would be a
+		 * demo of an accessibility failure.
+		 */
+		poster: (
+			<div
+				className="p-6 text-lg"
+				style={{
+					background: "var(--code-bg)",
+					borderRadius: "var(--r-lg)",
+					fontFamily: "var(--mono)",
+				}}
+			>
+				<TypedMark text="sushi industries" />
+			</div>
+		),
+		element: (
+			<div
+				className="p-6 grid gap-4"
+				style={{
+					background: "var(--code-bg)",
+					borderRadius: "var(--r-lg)",
+					fontFamily: "var(--mono)",
+				}}
+			>
+				<span className="text-lg">
+					<TypedMark text="sushi industries" />
+				</span>
+				{/* `offset` moves where the cycle starts, so two marks differ. */}
+				<span className="text-lg">
+					<TypedMark text="one class, one job" offset={4} />
+				</span>
+			</div>
+		),
+		...DEMO_SOURCES["typed-mark"],
+	},
 	reveal: {
 		poster: (
 			<Card title="I arrive on scroll">

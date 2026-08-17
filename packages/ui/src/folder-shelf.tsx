@@ -330,6 +330,66 @@ export function FolderShelf({
 			} => entry.search || (entry.path !== null && entry.path.length > 0),
 		);
 
+	/*
+	 * Escape closes the front window.
+	 *
+	 * The note by the window list has said this was "done by hand below" for as
+	 * long as these have not been `<dialog>`s, and nothing ever did it: giving
+	 * up `showModal()` to get a desk that stacks also gave up the Escape that
+	 * came free with it, and the only way out became the close button.
+	 *
+	 * The front window only, one per press. That is what a desktop does - the
+	 * key closes what you are looking at, not everything you have ever opened -
+	 * and it leaves a second press meaning the next one down.
+	 */
+	const close = desk.close;
+	const frontId = open.reduce<{ id: string; z: number } | undefined>(
+		(front, entry) =>
+			front === undefined || entry.state.z > front.z
+				? { id: entry.state.id, z: entry.state.z }
+				: front,
+		undefined,
+	)?.id;
+
+	useEffect(() => {
+		if (frontId === undefined) return;
+		/* Captured after the guard: the handler is hoisted, so it cannot see
+		 * the narrowing that happened above it. */
+		const id = frontId;
+
+		function onKeyDown(event: KeyboardEvent): void {
+			if (event.key !== "Escape" || event.defaultPrevented) return;
+
+			/*
+			 * A modal owns Escape while it is open. The command palette and the
+			 * dialogs are real `<dialog>`s, so one being open means the key was
+			 * aimed at it, and taking a window away behind it would be two
+			 * things happening from one press.
+			 */
+			if (document.querySelector("dialog[open]")) return;
+
+			/*
+			 * Not while typing. Escape in the search field or the composer means
+			 * "drop what I am entering"; closing the window it lives in throws
+			 * away the rest of the window to answer a smaller question.
+			 */
+			const target = event.target;
+			if (
+				target instanceof HTMLInputElement ||
+				target instanceof HTMLTextAreaElement ||
+				target instanceof HTMLSelectElement ||
+				(target instanceof HTMLElement && target.isContentEditable)
+			) {
+				return;
+			}
+
+			close(id);
+		}
+
+		document.addEventListener("keydown", onKeyDown);
+		return () => document.removeEventListener("keydown", onKeyDown);
+	}, [frontId, close]);
+
 	const results = query.trim()
 		? flatten(entries).filter(({ entry }) => matches(entry, query))
 		: [];
@@ -420,9 +480,10 @@ export function FolderShelf({
 			 * goes to the top layer by definition, so it covers the browser window
 			 * rather than the screen it belongs to, and only one can be open.
 			 *
-			 * Escape and focus are done by hand below. The stacking is the `z` each
-			 * window carries, which is also what makes front-to-back survive a
-			 * reload.
+			 * So Escape is bound by hand instead, in the effect above, and it
+			 * closes the front window only. The stacking is the `z` each window
+			 * carries, which is also what makes front-to-back survive a reload
+			 * and what "front" means when the key is pressed.
 			 */}
 			{open.map(({ state, path, search }) => (
 				<DeskWindow
@@ -560,7 +621,16 @@ function ShelfTile({
 				) : null}
 			</span>
 			<span className="shelf-name">{entry.label}</span>
-			{entry.description ? (
+			{/*
+			 * A folder says what it is by being one. It already carries the
+			 * glyph and the count, and a category blurb under that is a third
+			 * answer to a question nobody asked twice - it made every folder
+			 * tile a different height and the row of them read as debris.
+			 *
+			 * Leaves keep theirs, because for a leaf the description is the
+			 * only thing distinguishing two files with similar names.
+			 */}
+			{entry.description && !isFolder(entry) ? (
 				<span className="shelf-note">{entry.description}</span>
 			) : null}
 		</>

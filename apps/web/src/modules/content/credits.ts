@@ -25,6 +25,37 @@ export const CREDITS: readonly CreditProps[] = [
 		docs: "https://tanstack.com/router/latest/docs",
 	},
 	{
+		name: "TanStack AI",
+		by: "TanStack",
+		href: "https://tanstack.com/ai",
+		role: "Streams the assistant's replies, and runs its tool loop.",
+		logo: "/logos/tanstack.png",
+		docs: "https://tanstack.com/ai/latest/docs",
+	},
+	{
+		name: "Railway",
+		by: "Railway",
+		href: "https://railway.com",
+		role: "Builds the Dockerfile and runs the server this page came from.",
+		logo: "/logos/railway.svg",
+		docs: "https://docs.railway.com",
+	},
+	{
+		/*
+		 * The one that was being used without being listed.
+		 *
+		 * Every model reply on this site comes from here, which makes it the
+		 * most load-bearing dependency on the page and the only one that was
+		 * missing from its own credits list. Fixed rather than explained away.
+		 */
+		name: "Groq",
+		by: "Groq",
+		href: "https://groq.com",
+		role: "Runs the model behind the assistant. Every reply on this site is theirs.",
+		logo: "/logos/groq.ico",
+		docs: "https://console.groq.com/docs",
+	},
+	{
 		name: "TanStack Markdown",
 		by: "TanStack",
 		href: "https://tanstack.com/markdown",

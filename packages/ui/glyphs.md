@@ -61,6 +61,7 @@ Multiple paths per glyph go in separate backticks in the same cell.
 | play | `M8.5 5.5 18.5 12l-10 6.5z` | A right-pointing triangle, closed. The one control nobody has to be taught. |
 | pause | `M9.5 5.5v13M14.5 5.5v13` | Two bars at the play triangle's height, so the button does not change size when it changes meaning. |
 | expand | `M9.5 4.5h-5v5` `M14.5 19.5h5v-5` `M4.5 4.5 10 10` `M19.5 19.5 14 14` | Two corners and the arrows leaving them. Fullscreen, drawn as the direction it goes. |
+| send | `M21.5 2.5 2.5 10.2l7.3 2.9 2.9 7.3z` `M21.5 2.5 9.8 13.1` | A paper aeroplane. The second stroke is the near wing's crease, and it is the whole glyph: without it this is an arrowhead at 13px, and an arrowhead already means something else here. |
 
 ## Adding one
 

@@ -211,6 +211,32 @@ author should know they are choices rather than gaps:
 | Setext headings | `#` headings, which the hierarchy check can count |
 | Indented code blocks | Fenced blocks, which can name a language and a file |
 
+## A machine, from a list
+
+The `device` block draws a machine and puts a desk on its screen. The desk is
+its own Markdown file in `content/desks/`, and **the extension on each line
+decides what that line is**:
+
+```md
+<!-- ::start:device from="home" kind="tablet" title="SUSHINDUSTRIES" -->
+<!-- ::end:device -->
+```
+
+```md
+- assistant.app `terminal` - Ask about this site
+- components.folder `layers`
+  - [Button](/components/button)
+  - [Card](/components/card)
+- [Writing](/posts) `note`
+```
+
+`.app` opens an app in a window, `.folder` holds whatever is indented under it,
+and a plain link stays a link. Adding an icon to the machine on the front page
+is adding a line to a list.
+
+<!-- ::start:device from="home" kind="tablet" title="SUSHINDUSTRIES" -->
+<!-- ::end:device -->
+
 ## The point
 
 Every element on this site has a Markdown mirror, every page is a file a

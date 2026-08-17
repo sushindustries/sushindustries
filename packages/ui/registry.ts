@@ -149,6 +149,20 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		preview: "A card fading and rising into place",
 	},
 	{
+		name: "typed-mark",
+		schema: "SoftwareSourceCode",
+		version: "0.1.0",
+		title: "Typed Mark",
+		description:
+			"Types a word out one character at a time, cycling the syntax palette. No JavaScript, no state, and it runs with scripting off.",
+		files: ["typed-mark.tsx"],
+		dependencies: {},
+		category: "motion",
+		subcategory: "Text effects",
+		tags: ["type", "css-only", "no-js", "a11y", "no-deps"],
+		preview: "A name typing itself in nine colours",
+	},
+	{
 		name: "smooth-scroll",
 		schema: "SoftwareSourceCode",
 		version: "0.1.0",

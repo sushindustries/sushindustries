@@ -1,5 +1,6 @@
 import type { MarkdownBlocks } from "@sushindustries/ui";
 import { CardBlock } from "./card-block";
+import { DeviceBlock } from "./device-block";
 import { PersonBlock, ReviewBlock } from "./entity-blocks";
 import { GridBlock, SpacerBlock } from "./layout-blocks";
 import { QuestionsBlock } from "./questions-block";
@@ -18,6 +19,7 @@ import { ViewerBlock } from "./viewer-block";
  */
 export const BLOCKS: MarkdownBlocks = {
 	card: CardBlock,
+	device: DeviceBlock,
 	showcase: ShowcaseBlock,
 	viewer: ViewerBlock,
 	video: VideoBlock,

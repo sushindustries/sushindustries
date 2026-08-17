@@ -89,8 +89,22 @@ export const boundSkills = bindSkills(skills, {
 			return { item, score };
 		});
 
-		return scored
-			.filter((entry) => entry.score > 0)
+		/*
+		 * No words is a browse, not a search that found nothing.
+		 *
+		 * "Which components can I install?" is answered by the model calling
+		 * this with an empty query, and scoring against zero words gives every
+		 * item a score of 0 - so the filter below removed all of them and the
+		 * tool returned `[]`. The model, correctly, then told the reader it did
+		 * not have that information, while sitting on a registry of 66 items.
+		 *
+		 * An empty query means "show me what there is", which is the most
+		 * obvious question anybody asks an assistant about a component library.
+		 */
+		const matched =
+			words.length === 0 ? scored : scored.filter((entry) => entry.score > 0);
+
+		return matched
 			.sort((a, b) => b.score - a.score)
 			.slice(0, count(limit, 5, 12))
 			.map(({ item }) => ({

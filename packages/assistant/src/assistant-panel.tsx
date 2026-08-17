@@ -1,4 +1,10 @@
-import { type FormEvent, type ReactNode, useEffect, useRef } from "react";
+import {
+	type FormEvent,
+	type KeyboardEvent,
+	type ReactNode,
+	useEffect,
+	useRef,
+} from "react";
 
 export interface AssistantMessage {
 	readonly id: string;
@@ -36,6 +42,36 @@ export interface AssistantPanelProps {
 	/** Shown under the banner when there is nothing to read yet. */
 	readonly greeting?: ReactNode;
 	readonly placeholder?: string;
+	/**
+	 * The glyph on the send button.
+	 *
+	 * A node rather than an icon name, for the same reason `renderMarkdown` is
+	 * a render prop: this package has no icon set and should not acquire one
+	 * for a single button. The site passes its `Icon`; anyone installing this
+	 * passes whatever theirs is, or nothing, and the button is a word.
+	 */
+	readonly sendIcon?: ReactNode;
+	/**
+	 * The name in the banner.
+	 *
+	 * Text by default, so this package renders a banner with no help. The site
+	 * passes `TypedMark`, which types the name out in the syntax palette; a
+	 * consumer who wants their own name here passes their own node.
+	 */
+	readonly mark?: ReactNode;
+	/**
+	 * Questions offered before the first one is asked.
+	 *
+	 * Pressing one sends it verbatim through `onSend`, so each string is the
+	 * question rather than a label for it - "What can I find here?" and not
+	 * "About". A blank prompt is the hardest part of a chat panel, and four
+	 * openers is the cheapest way to answer "what can I even ask".
+	 *
+	 * They disappear once there is a transcript. A suggestion is help with
+	 * starting, and after the first exchange it is clutter competing with the
+	 * answer above it.
+	 */
+	readonly openers?: readonly string[];
 
 	/*
 	 * The sidebar. All optional and they arrive together - given no `threads`
@@ -76,6 +112,9 @@ export function AssistantPanel({
 	renderMarkdown,
 	greeting,
 	placeholder = "Ask about this site",
+	sendIcon,
+	mark,
+	openers,
 	threads,
 	activeThread,
 	onOpenThread,
@@ -108,6 +147,69 @@ export function AssistantPanel({
 		node.scrollTop = node.scrollHeight;
 	}, [messages]);
 
+	/*
+	 * ── Shell history, because this is a shell ───────────────────────────
+	 *
+	 * Up walks back through what you have already asked, down walks forward,
+	 * and the thing you were part-way through typing comes back when you reach
+	 * the end. Every terminal does this and the muscle memory arrives with the
+	 * reader, so a prompt that ignores Up is a prompt that feels broken before
+	 * anybody can say why.
+	 *
+	 * Derived from `messages` rather than kept in a second list: what you sent
+	 * is already in the transcript, and a private copy of it is a copy that can
+	 * disagree - switch threads and a stored list would offer you the last
+	 * conversation's questions in this one.
+	 */
+	const sent = messages
+		.filter((message) => message.role === "user")
+		.map((message) => message.content);
+
+	/* How far back we are. -1 is "not in the history, editing a new line". */
+	const step = useRef(-1);
+	/* What was in the field when the walk started, so it can be handed back. */
+	const draft = useRef("");
+
+	function recall(event: KeyboardEvent<HTMLTextAreaElement>): void {
+		const node = field.current;
+		if (!node || sent.length === 0) return;
+
+		const caret = node.selectionStart ?? 0;
+		const up = event.key === "ArrowUp";
+
+		/*
+		 * Only when the caret is on the edge it would leave.
+		 *
+		 * A message here can be several lines - Shift+Enter makes one - and
+		 * stealing Up from the middle of that would make the field impossible
+		 * to edit. Up recalls only from the first line, down only from the
+		 * last, which is exactly where the key had nowhere else to go.
+		 */
+		if (up && node.value.slice(0, caret).includes("\n")) return;
+		if (!up && node.value.slice(caret).includes("\n")) return;
+		if (!up && step.current === -1) return;
+
+		event.preventDefault();
+
+		if (step.current === -1) draft.current = node.value;
+
+		const next = up
+			? Math.min(step.current + 1, sent.length - 1)
+			: step.current - 1;
+
+		step.current = next;
+		node.value = next === -1 ? draft.current : (sent.at(-1 - next) ?? "");
+
+		/*
+		 * Caret to the end, and the box resized to what it now holds. Landing
+		 * mid-line after a recall means the next keystroke lands in the middle
+		 * of the recalled question.
+		 */
+		node.style.height = "auto";
+		node.style.height = `${node.scrollHeight}px`;
+		node.setSelectionRange(node.value.length, node.value.length);
+	}
+
 	function submit(event: FormEvent): void {
 		event.preventDefault();
 
@@ -115,6 +217,10 @@ export function AssistantPanel({
 		if (!value || streaming) return;
 
 		onSend(value);
+
+		/* Sending ends the walk: the next Up starts again from the newest. */
+		step.current = -1;
+		draft.current = "";
 
 		if (field.current) {
 			field.current.value = "";
@@ -202,46 +308,98 @@ export function AssistantPanel({
 						<span className="term-slash" aria-hidden="true">
 							{"//"}
 						</span>
-						<span className="term-mark">sushi industries</span>
+						<span className="term-mark">{mark ?? "sushi industries"}</span>
 						<span className="term-slash" aria-hidden="true">
 							{"//"}
 						</span>
 					</p>
 
+					{/*
+					 * A `div`, not a `p`.
+					 *
+					 * The greeting is a `ReactNode`, so a caller can put a list of
+					 * links in it - and this site does. A `<ul>` inside a `<p>` is
+					 * invalid, and the browser does not merely tolerate it: it
+					 * closes the paragraph early, which produces a DOM that does not
+					 * match what the server rendered and a hydration mismatch on
+					 * every page load.
+					 */}
 					{messages.length === 0 && greeting ? (
-						<p className="term-greeting">{greeting}</p>
+						<div className="term-greeting">{greeting}</div>
 					) : null}
 
-					{messages.map((message) => (
-						<article
-							key={message.id}
-							className="term-turn"
-							data-role={message.role}
-						>
-							{/*
-							 * A prompt sigil, not a name badge. `>` is what somebody typed
-							 * at and `$` is what answered - two characters instead of two
-							 * labels, which is most of what makes a log read as a log. The
-							 * word is still there for a screen reader, which cannot see
-							 * the difference between two pieces of punctuation.
-							 */}
-							<span className="term-sigil" aria-hidden="true">
-								{message.role === "user" ? ">" : "$"}
-							</span>
+					{/*
+					 * Openers, while the log is empty.
+					 *
+					 * Real buttons in a real list, not chips made of divs: each one
+					 * sends a message, which is what a button is, and a screen reader
+					 * gets told how many there are before it reads the first.
+					 */}
+					{messages.length === 0 && openers && openers.length > 0 ? (
+						<ul className="term-openers" aria-label="Questions to start with">
+							{openers.map((opener) => (
+								<li key={opener}>
+									<button
+										type="button"
+										className="term-opener"
+										disabled={streaming}
+										onClick={() => onSend(opener)}
+									>
+										{opener}
+									</button>
+								</li>
+							))}
+						</ul>
+					) : null}
 
-							<div className="term-body">
-								<span className="sr-only">
-									{message.role === "user" ? "You asked" : "The assistant said"}
+					{/*
+					 * Turns with nothing in them are not turns.
+					 *
+					 * A reply that calls a tool comes back as an assistant message
+					 * whose text parts are empty - the content was a tool call, not
+					 * prose - and rendering it produced a second `$` sigil above the
+					 * real answer, and a second "The assistant said" for anybody
+					 * listening rather than looking. The model appeared to answer
+					 * twice, once with silence.
+					 *
+					 * The caret below already covers the only case where an empty
+					 * assistant turn means something, which is waiting for the first
+					 * token.
+					 */}
+					{messages
+						.filter((message) => message.content.trim() !== "")
+						.map((message) => (
+							<article
+								key={message.id}
+								className="term-turn"
+								data-role={message.role}
+							>
+								{/*
+								 * A prompt sigil, not a name badge. `>` is what somebody typed
+								 * at and `$` is what answered - two characters instead of two
+								 * labels, which is most of what makes a log read as a log. The
+								 * word is still there for a screen reader, which cannot see
+								 * the difference between two pieces of punctuation.
+								 */}
+								<span className="term-sigil" aria-hidden="true">
+									{message.role === "user" ? ">" : "$"}
 								</span>
 
-								{renderMarkdown ? (
-									renderMarkdown(message.content)
-								) : (
-									<p className="term-plain">{message.content}</p>
-								)}
-							</div>
-						</article>
-					))}
+								<div className="term-body">
+									<span className="sr-only">
+										{message.role === "user"
+											? "You asked"
+											: "The assistant said"}
+									</span>
+
+									{renderMarkdown ? (
+										renderMarkdown(message.content)
+									) : (
+										<p className="term-plain">{message.content}</p>
+									)}
+								</div>
+							</article>
+						))}
 
 					{/*
 					 * A caret while the reply is empty, and nothing once it has text.
@@ -298,6 +456,11 @@ export function AssistantPanel({
 							node.style.height = `${node.scrollHeight}px`;
 						}}
 						onKeyDown={(event) => {
+							if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+								recall(event);
+								return;
+							}
+
 							if (event.key !== "Enter" || event.shiftKey) return;
 
 							event.preventDefault();
@@ -305,8 +468,26 @@ export function AssistantPanel({
 						}}
 					/>
 
-					<button type="submit" className="term-send" disabled={streaming}>
-						{streaming ? "..." : "Send"}
+					{/*
+					 * The glyph alone, once there is one.
+					 *
+					 * A paper aeroplane needs no caption, and the word beside it was
+					 * making the button wide enough to crowd the field on a phone.
+					 * `aria-label` carries the name for anyone who cannot see the
+					 * glyph, so nothing is lost by removing the text - it stops being
+					 * drawn, not stops existing.
+					 *
+					 * Without an icon it falls back to the word, so the package still
+					 * renders a working button for a consumer who passes nothing.
+					 */}
+					<button
+						type="submit"
+						className="term-send"
+						data-icon={sendIcon ? "true" : undefined}
+						disabled={streaming}
+						aria-label={streaming ? "Sending" : "Send"}
+					>
+						{streaming ? "..." : (sendIcon ?? "Send")}
 					</button>
 				</form>
 			</div>

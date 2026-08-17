@@ -165,6 +165,7 @@ export {
 	type ToggleProps,
 } from "./toggle";
 export { Tooltip, type TooltipProps } from "./tooltip";
+export { TypedMark, type TypedMarkProps } from "./typed-mark";
 export {
 	Heading,
 	type HeadingProps,

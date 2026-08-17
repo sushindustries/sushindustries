@@ -33,7 +33,7 @@ function fail(message) {
 }
 
 if (!kind || !slug) {
-	fail("Usage: pnpm new <post|page|component|package|glyph> <slug>");
+	fail("Usage: pnpm new <post|page|desk|component|package|glyph> <slug>");
 }
 
 if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) {
@@ -263,11 +263,35 @@ async function newGlyph() {
 	todo.push("run `pnpm doctor --fix` to regenerate packages/ui/src/icon.tsx");
 }
 
+/* ── desk ────────────────────────────────────────────────────────────── */
+
+/*
+ * A desk is what is on a drawn machine, and it is a Markdown list: one line per
+ * icon, with the extension deciding whether the line is an app, a folder or a
+ * link. Nothing is registered in code - the catalogue globs the directory, so
+ * this writes one file and the desk exists.
+ */
+async function newDesk() {
+	const target = `apps/web/content/desks/${slug}.md`;
+
+	await writeFrom("desk", target, {
+		slug,
+		title: titleCase(slug),
+	});
+
+	written.push(target);
+	todo.push(
+		`put it on a page: \`<!-- ::start:device from="${slug}" -->\` then \`<!-- ::end:device -->\``,
+	);
+	todo.push(`list its icons under \`## The desk\` in ${target}`);
+}
+
 /* ── run ─────────────────────────────────────────────────────────────── */
 
 const kinds = {
 	post: newPost,
 	page: newPage,
+	desk: newDesk,
 	component: newComponent,
 	package: newPackage,
 	glyph: newGlyph,
