@@ -51,7 +51,20 @@ function componentFolders(): ShelfEntry[] {
 function packageEntries(): ShelfEntry[] {
 	return listPackages().map((entry) => ({
 		id: `package-${entry.slug}`,
-		label: entry.name,
+		/*
+		 * The short name, which is what a filename on a desk is.
+		 *
+		 * This was `entry.name` - the full `@sushindustries/react-product-viewer`
+		 * - and the scope is identical on all seven, so it spent sixty per cent
+		 * of every tile repeating a word that distinguishes nothing. Worse, it
+		 * has no space in it, so it could not wrap and sat 148px wide in a 108px
+		 * tile, overlapping the icon beside it.
+		 *
+		 * Nothing is hidden by this: the card, the page and the install command
+		 * all carry the scope, and `content/desks/home.md` has always written
+		 * these as `[atoms]` and `[ui]`. The two paths now agree.
+		 */
+		label: entry.slug,
 		description: entry.description,
 		href: `/packages/${entry.slug}`,
 		icon: "package" as IconName,
@@ -176,6 +189,21 @@ export function shelfEntries(): readonly ShelfEntry[] {
 	 * An empty `children` array would make a leaf look like a folder, since
 	 * "is a folder" is "has children". Stripped here rather than guarded at
 	 * every use.
+	 */
+	/*
+	 * Not validated against the label limit, deliberately.
+	 *
+	 * This shelf is half authored and half expanded - `{posts}`, `{components}`
+	 * and `{packages}` turn into entries labelled with post titles and component
+	 * titles, which are long because a post title is a sentence. Holding
+	 * generated data to an authoring rule is how a validator ends up throwing on
+	 * correct content, which is exactly what happened: every post title failed
+	 * and the shelf rendered as an error instead of a desk.
+	 *
+	 * The limit is for labels a person types, and `pnpm doctor` enforces it on
+	 * the Markdown where they type them. A long generated label is safe now for
+	 * a different reason - `.shelf-name` wraps it inside its tile rather than
+	 * over its neighbour.
 	 */
 	return roots.map((root) => ({
 		...root,

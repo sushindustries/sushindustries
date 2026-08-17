@@ -1054,6 +1054,85 @@ function checkDocSectionsAreReal() {
 }
 
 /**
+ * Every desktop icon label fits the tile it is drawn in.
+ *
+ * A desk icon is a tile six to nine characters wide, and its label is the only
+ * field an author writes freely - the glyph comes from a table, the href from a
+ * route, the kind from a file extension. So it is the only one that can be
+ * wrong in a way nothing catches.
+ *
+ * It was wrong for months. The packages folder labelled every icon with the
+ * full scoped name, and `@sushindustries/react-product-viewer` is thirty-six
+ * characters with no space in it, so it could not wrap: measured at 148px in a
+ * 108px tile, overlapping its neighbour by 26 pixels. The stylesheet keeps a
+ * label inside its tile now whatever it says, but a name broken across four
+ * lines is still a name nobody reads.
+ *
+ * The limits are read out of `shelf.schemas.ts` rather than restated, so the
+ * number the doctor enforces and the number the renderer validates are the same
+ * number. Same arrangement as `SECTION_ORDER`.
+ */
+function checkDeskLabelsFit() {
+	const schema = "apps/web/src/modules/chrome/shelf.schemas.ts";
+	if (!exists(schema)) return;
+
+	const source = read(schema);
+	const limit = Number(/MAX_LABEL = (\d+)/.exec(source)?.[1]);
+	const noteLimit = Number(/MAX_DESCRIPTION = (\d+)/.exec(source)?.[1]);
+	if (!limit) return;
+
+	/* `- [Label](/href)` or `- name.app`, then an optional ` - description`. */
+	const line =
+		/^\s*-\s+(?:\[([^\]]+)\]\([^)]*\)|([\w-]+)\.(?:app|folder))(?:\s+`[^`]+`)?(?:\s+-\s+(.+?))?\s*$/;
+
+	for (const path of trackedFiles()) {
+		if (!/^apps\/web\/content\/(desks\/[\w-]+|shelf)\.md$/.test(path)) continue;
+
+		const body = read(path);
+
+		/*
+		 * Only the list, never the prose above it. These files document their
+		 * own format with a fenced example of the shape being parsed, and a
+		 * check that read the whole file would report the documentation.
+		 */
+		const at = Math.max(
+			body.indexOf("## The desk"),
+			body.indexOf("## The shelf"),
+		);
+		if (at < 0) continue;
+
+		const lines = body.slice(at).split("\n");
+
+		for (const [index, text] of lines.entries()) {
+			const match = line.exec(text);
+			if (!match) continue;
+
+			const [, linkLabel, name, description] = match;
+			const label =
+				linkLabel ?? (name ? name[0].toUpperCase() + name.slice(1) : "");
+			const where = `${path}:${body.slice(0, at).split("\n").length + index}`;
+
+			if (label.length > limit) {
+				report(
+					"desk",
+					where,
+					`"${label}" is ${label.length} characters and a desktop icon holds ${limit}`,
+					"use the short name - the page it opens carries the full one",
+				);
+			}
+
+			if (description && noteLimit && description.length > noteLimit) {
+				report(
+					"desk",
+					where,
+					`the note under "${label}" is ${description.length} characters (limit ${noteLimit})`,
+				);
+			}
+		}
+	}
+}
+
+/**
  * Every docs file is at the depth the catalogue globs.
  *
  * The other half of the same failure, and the half the check above cannot see:
@@ -2153,6 +2232,7 @@ checkDevicesAreGenerated();
 checkSkills();
 checkDocSectionsAreReal();
 checkDocsAreAddressable();
+checkDeskLabelsFit();
 checkRegistryItemsAreAddressable(registry);
 checkMentionsAreReferences(registry);
 checkCategoriesHaveIcons();

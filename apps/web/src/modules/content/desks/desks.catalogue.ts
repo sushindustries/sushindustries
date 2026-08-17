@@ -1,4 +1,5 @@
 import type { IconName, ShelfEntry } from "@sushindustries/ui";
+import { validateShelf } from "../../chrome/shelf.schemas";
 
 /*
  * Desks, read from `content/desks/*.md`.
@@ -117,11 +118,21 @@ function parse(source: string): ShelfEntry[] {
 		.filter((entry) => !entry.children || entry.children.length > 0);
 }
 
-const DESKS: readonly Desk[] = Object.entries(FILES).map(([path, raw]) => ({
-	slug: path.split("/").at(-1)?.replace(/\.md$/, "") ?? "desk",
-	title: titleOf(raw),
-	entries: parse(raw),
-}));
+const DESKS: readonly Desk[] = Object.entries(FILES).map(([path, raw]) => {
+	const slug = path.split("/").at(-1)?.replace(/\.md$/, "") ?? "desk";
+
+	return {
+		slug,
+		title: titleOf(raw),
+		/*
+		 * Checked here, where the file that caused it can still be named.
+		 * `pnpm doctor` is the gate that reports this before a push; this is the
+		 * backstop for a desk that reached the server anyway, and it names the
+		 * file rather than letting two icons quietly overlap.
+		 */
+		entries: validateShelf(parse(raw), `content/desks/${slug}.md`),
+	};
+});
 
 export function listDesks(): readonly Desk[] {
 	return DESKS;

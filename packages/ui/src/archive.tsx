@@ -14,16 +14,6 @@ export interface ArchiveProps {
 	hrefForCategory: (id: string) => string;
 	/** Builds the href for a tag chip. Pass `undefined` to clear the tag. */
 	hrefForTag?: (tag: string | undefined) => string;
-	/**
-	 * Renders the link wrapper, so the host can use its router's Link.
-	 *
-	 * `kind` and `id` are passed alongside the plain href because a typed
-	 * router needs the route pattern and its params, not a path that has
-	 * already been resolved - handing `Link` a resolved `/components/reveal`
-	 * gets an anchor with the right href whose click is intercepted and then
-	 * silently fails to match `/components/$slug`. The href stays for hosts
-	 * that just want an anchor.
-	 */
 	/** 1-based page within the filtered result. Absent means "no pagination". */
 	page?: number;
 	/** Items per page when `page` is set. */
@@ -36,6 +26,16 @@ export interface ArchiveProps {
 	 * not intercept - every page click becomes a full document load.
 	 */
 	renderPageLink?: PaginationProps["renderLink"];
+	/**
+	 * Renders the link wrapper, so the host can use its router's Link.
+	 *
+	 * `kind` and `id` are passed alongside the plain href because a typed
+	 * router needs the route pattern and its params, not a path that has
+	 * already been resolved - handing `Link` a resolved `/components/reveal`
+	 * gets an anchor with the right href whose click is intercepted and then
+	 * silently fails to match `/components/$slug`. The href stays for hosts
+	 * that just want an anchor.
+	 */
 	renderLink: (props: {
 		kind: "category" | "tag" | "item";
 		/** Category id, tag name, or item id. */

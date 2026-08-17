@@ -798,24 +798,32 @@ function WindowBody({
 			 *
 			 * The window's own title bar and close button belong to `DeskWindow`,
 			 * so this is only navigation.
+			 *
+			 * Hidden at one level, because there the only crumb is the folder the
+			 * title bar already names - "PACKAGES" printed twice, one line apart,
+			 * the second one a button that navigates to where you are standing.
+			 * The same rule `DocAside` applies to a single heading: offering
+			 * navigation to the current location is not navigation.
 			 */}
-			<nav className="window-path" aria-label="Path">
-				{path.map((entry, index) => (
-					<span key={entry.id} className="window-crumb">
-						{index > 0 ? (
-							<Icon name="chevron" size={12} className="window-sep" />
-						) : null}
-						<button
-							type="button"
-							className="window-crumb-button"
-							aria-current={index === path.length - 1 ? "true" : undefined}
-							onClick={() => onNavigate(path.slice(0, index + 1))}
-						>
-							{entry.label}
-						</button>
-					</span>
-				))}
-			</nav>
+			{path.length > 1 ? (
+				<nav className="window-path" aria-label="Path">
+					{path.map((entry, index) => (
+						<span key={entry.id} className="window-crumb">
+							{index > 0 ? (
+								<Icon name="chevron" size={12} className="window-sep" />
+							) : null}
+							<button
+								type="button"
+								className="window-crumb-button"
+								aria-current={index === path.length - 1 ? "true" : undefined}
+								onClick={() => onNavigate(path.slice(0, index + 1))}
+							>
+								{entry.label}
+							</button>
+						</span>
+					))}
+				</nav>
+			) : null}
 
 			{/*
 			 * Icons on a canvas, not rows in a table.

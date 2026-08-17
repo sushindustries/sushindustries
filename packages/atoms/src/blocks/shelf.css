@@ -270,20 +270,41 @@
 		font-size: clamp(var(--t-xs), 3.2cqi, var(--t-sm));
 		font-weight: 500;
 		/*
-		 * `break-word`, not `anywhere`, and the difference is visible.
+		 * `anywhere`, and the pair below is what makes it safe.
 		 *
-		 * `anywhere` lets the browser count a tile's minimum width as one
+		 * This said `break-word` for a good reason that stopped being true. The
+		 * fear was that `anywhere` lets a tile's minimum width count as one
 		 * character, so the grid hands every tile the narrowest column it can
-		 * and then breaks the labels to fit it - which is how a row of icons
-		 * came out reading "Assista / nt" and "Compo / nents".
+		 * and breaks the labels to fit - which is how a row of icons once came
+		 * out reading "Assista / nt" and "Compo / nents".
 		 *
-		 * `break-word` keeps a word whole when it fits and only breaks one that
-		 * genuinely cannot, and it leaves the longest word in the label as the
-		 * tile's minimum width, so the column is sized to hold it in the first
-		 * place. `hyphens` makes the remaining unavoidable break readable.
+		 * That only happens while a track's floor is derived from its content.
+		 * Neither grid does that any more: the desktop is
+		 * `minmax(0, 1fr)` by column count, and `.shelf` above has an explicit
+		 * `clamp(6rem, 22cqi, 9.5rem)`. A stated floor cannot be talked down by
+		 * a label, so the regression the old note describes cannot recur.
+		 *
+		 * Keeping `break-word` had a cost that was worse and visible. It does
+		 * not reduce the min-content width, and this is a flex item with the
+		 * default `min-width: auto` - so a name with no space in it,
+		 * `@sushindustries/react-product-viewer`, refused to shrink and sat
+		 * 148px wide in a 108px tile. Measured in the Packages window: six
+		 * labels overlapping their neighbours by 11 to 26 pixels each.
+		 *
+		 * The name stays whole. It wraps to as many lines as it needs and is
+		 * never clipped or ellipsised - a package you cannot read the name of
+		 * is not a package anybody can install.
 		 */
-		overflow-wrap: break-word;
-		hyphens: auto;
+		min-width: 0;
+		overflow-wrap: anywhere;
+		/*
+		 * No `hyphens: auto`, and this is a correctness rule rather than a
+		 * taste one. An inserted hyphen is indistinguishable from a real one,
+		 * so a wrapped `@sushindustries/assistant` renders as
+		 * "@sushindus-tries/as-sistant" and the reader has just been shown a
+		 * package name that does not exist. These are identifiers people type.
+		 */
+		hyphens: none;
 	}
 
 	.shelf-note {
