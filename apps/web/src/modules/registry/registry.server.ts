@@ -26,8 +26,19 @@ export function originFrom(request: Request): string {
 	return `${proto}://${host}`;
 }
 
-export function json(body: unknown): Response {
+export function json(
+	body: unknown,
+	/*
+	 * A status, for the handlers that have something to refuse. Optional so
+	 * every existing caller keeps meaning 200 without saying so, and a bad
+	 * query can still answer 400 instead of a cheerful 200 with an error in
+	 * the body - which is the shape that makes a client's error handling
+	 * unreachable.
+	 */
+	init: { status?: number } = {},
+): Response {
 	return new Response(JSON.stringify(body, null, 2), {
+		status: init.status ?? 200,
 		headers: {
 			"content-type": "application/json; charset=utf-8",
 			// Installers are the only readers and they fetch once. Public because

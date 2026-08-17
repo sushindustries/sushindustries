@@ -13,7 +13,13 @@ import type { ReactNode } from "react";
 import { Devtools } from "../modules/chrome/devtools";
 import { SiteFooter } from "../modules/chrome/site-footer";
 import { SiteNav } from "../modules/chrome/site-nav";
+import {
+	graph,
+	personNode,
+	webSiteNode,
+} from "../modules/content/schema-graph";
 import { pageTitle, SITE } from "../modules/content/site.catalogue";
+import { ldScript } from "../modules/content/structured-data";
 import { getTheme } from "../modules/theme/theme.functions";
 import proseCss from "../styles/prose.css?url";
 
@@ -71,6 +77,16 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 			 */
 			{ rel: "stylesheet", href: viewerCss },
 		],
+		/*
+		 * The two anchors of the entity graph, on every page.
+		 *
+		 * Everything else that gets published - a component, a video, a review
+		 * written in a Markdown block - refers to these by `@id` rather than
+		 * describing the site and me again. Emitting them at the root is what
+		 * makes those references resolvable on whichever page they appear,
+		 * which is the difference between a graph and a pile of nodes.
+		 */
+		scripts: [ldScript(graph([webSiteNode(), personNode()]))],
 	}),
 	component: RootComponent,
 });

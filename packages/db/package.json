@@ -30,6 +30,7 @@
 	"exports": {
 		"./client.server": "./src/client.server.ts",
 		"./schema": "./src/schema.ts",
+		"./schema-org": "./src/schema-org.ts",
 		"./package.json": "./package.json",
 		"./client": "./src/client.server.ts"
 	},
@@ -45,6 +46,10 @@
 			"./schema": {
 				"import": "./dist/schema.mjs",
 				"require": "./dist/schema.cjs"
+			},
+			"./schema-org": {
+				"import": "./dist/schema-org.mjs",
+				"require": "./dist/schema-org.cjs"
 			},
 			"./package.json": "./package.json",
 			"./client": {

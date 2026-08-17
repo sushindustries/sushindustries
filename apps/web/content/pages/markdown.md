@@ -178,6 +178,27 @@ once you scroll near it:
 <!-- ::start:viewer model="/models/logo.glb" height="380" label="Loading the mark" -->
 <!-- ::end:viewer -->
 
+## The entity net
+
+Two more blocks exist for the half of a page that machines read. Each renders
+what you see *and* publishes one node into the page's schema.org graph, joined
+to the rest by identifier rather than by repetition:
+
+<!-- ::start:person name="Adam Jurek" role="Everything on this site" self="true" -->
+<!-- ::end:person -->
+
+<!-- ::start:review author="A reader" rating="5" date="2026-08-17" -->
+The review block is a quote you can see and a `Review` a crawler can follow.
+Its `itemReviewed` points at whatever the page is about, so it is attached to
+a thing rather than floating beside one.
+<!-- ::end:review -->
+
+`self="true"` on a person means me, so the node becomes the site's own
+`Person` rather than a second one with the same name - the duplicate that
+makes an entity graph useless. Everything else on the page refers to that same
+identifier: the site publishes it, every page is authored by it, and the
+component pages point their source-code nodes at the pages they are on.
+
 ## What is deliberately off
 
 The parser can do four more things this site chooses not to use, and an

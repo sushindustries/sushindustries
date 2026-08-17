@@ -1,5 +1,14 @@
 import { sql } from "drizzle-orm";
-import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import {
+	integer,
+	jsonb,
+	pgTable,
+	text,
+	timestamp,
+	unique,
+	uuid,
+} from "drizzle-orm/pg-core";
+import type { SchemaTypeName } from "./schema-org.generated";
 
 /*
  * The schema is client-safe on purpose.
@@ -54,107 +63,118 @@ export type PageFeedback = typeof pageFeedback.$inferSelect;
 export type NewPageFeedback = typeof pageFeedback.$inferInsert;
 
 /*
- * schema.org, as tables.
+ * schema.org, as the data model.
  *
- * Every element that shows content on this site has a type at schema.org that
- * already describes it, and there is no reason to invent a second vocabulary
- * beside it. So the columns here are the property names from the published
- * type, spelled the way the standard spells them, and the JSON-LD a page emits
- * is that row with an `@type` on it rather than a separate object somebody
- * keeps in step by hand.
+ * Every element that shows content has a type at schema.org that already
+ * describes it, and there is no reason to invent a second vocabulary beside
+ * one that a search engine, a reader mode and another agent all already parse.
+ * So an element is a `Thing` here, its `type` is a class from the published
+ * vocabulary, and the JSON-LD a page emits is the row with an `@type` on it
+ * rather than a second object somebody keeps in step by hand.
  *
- * Which is the point of putting them in the schema package: an element's data
- * shape, its database row and its structured data become one definition, and
- * the next element that needs one adds a table beside this rather than a new
- * convention. `VideoObject` is the first because the video player is the first
- * element whose content is not simply the page it sits on.
+ * One table rather than nine hundred. A table per class would be a migration
+ * per class, for a vocabulary whose whole point is that it is open - and the
+ * columns below are exactly the properties `Thing` itself declares, which is
+ * to say the ones every class inherits and every query wants to filter on.
+ * Everything a subtype adds lives in `properties`, validated against
+ * `schemaProperties()` from `@sushindustries/db/schema-org`.
  *
- * https://schema.org/VideoObject
+ * That module is a separate entry on purpose: the vocabulary is ninety
+ * kilobytes of generated data, and only the type name is needed here. A type
+ * import costs nothing at runtime.
+ *
+ * https://schema.org/Thing
  */
-export const videoObjects = pgTable("video_objects", {
-	id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+export const things = pgTable(
+	"things",
+	{
+		id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
 
-	/** Where it is shown, so a row can be found from a route. Not schema.org. */
-	page: text("page").notNull(),
+		/**
+		 * The schema.org class, e.g. `VideoObject`, `SoftwareSourceCode`.
+		 * Text rather than an enum: nine hundred values is not an enum, and the
+		 * vocabulary gains classes without asking this database first.
+		 */
+		type: text("type").$type<SchemaTypeName>().notNull(),
 
-	/** schema.org/name. The title, and what a search result shows. */
-	name: text("name").notNull(),
+		/** Our id for it: a registry name, a page path, a slug. */
+		slug: text("slug").notNull(),
 
-	/** schema.org/description. One or two sentences. */
-	description: text("description"),
+		/* The properties `Thing` declares, as columns, because these are the
+		   ones worth an index and a filter. https://schema.org/Thing */
+		name: text("name").notNull(),
+		description: text("description"),
+		url: text("url"),
+		image: text("image"),
 
-	/** schema.org/thumbnailUrl. The still, and the poster the player uses. */
-	thumbnailUrl: text("thumbnail_url"),
+		/**
+		 * Everything the subtype adds: `uploadDate` on a VideoObject,
+		 * `programmingLanguage` on SoftwareSourceCode. Keys are checked against
+		 * the vocabulary before a write, so this is open rather than untyped.
+		 */
+		properties: jsonb("properties")
+			.$type<Record<string, unknown>>()
+			.notNull()
+			.default({}),
 
-	/**
-	 * schema.org/uploadDate. Required by Google for a video rich result, and
-	 * deliberately nullable: a date nobody knows is better absent than invented,
-	 * and the emitter drops the key rather than sending a guess.
-	 */
-	uploadDate: timestamp("upload_date", { withTimezone: true }),
+		createdAt: timestamp("created_at", { withTimezone: true })
+			.notNull()
+			.defaultNow(),
+		updatedAt: timestamp("updated_at", { withTimezone: true })
+			.notNull()
+			.defaultNow(),
+	},
+	/* One row per thing, not one per time something wrote about it. */
+	(table) => [unique("things_type_slug").on(table.type, table.slug)],
+);
 
-	/** schema.org/duration, as an ISO 8601 duration: `PT3M33S`. */
-	duration: text("duration"),
-
-	/** schema.org/embedUrl. The player URL - what an iframe would point at. */
-	embedUrl: text("embed_url"),
-
-	/** schema.org/contentUrl. The media file itself, when there is one. */
-	contentUrl: text("content_url"),
-
-	createdAt: timestamp("created_at", { withTimezone: true })
-		.notNull()
-		.defaultNow(),
-});
-
-export type VideoObject = typeof videoObjects.$inferSelect;
-export type NewVideoObject = typeof videoObjects.$inferInsert;
+export type Thing = typeof things.$inferSelect;
+export type NewThing = typeof things.$inferInsert;
 
 /**
- * The half of a `VideoObject` that describes the video rather than the row.
+ * The half of a thing that describes it rather than the row it sits in.
  *
- * A page usually has these to hand without a database - the video block builds
- * one from its own Markdown attributes - so the emitter takes this rather than
- * a row, and a stored row satisfies it by being a superset.
+ * A page usually has this to hand without a database - the video block builds
+ * one from its own Markdown attributes - so the serialiser takes this, and a
+ * stored row satisfies it by being a superset.
  */
-export type VideoObjectFields = Partial<
-	Pick<
-		NewVideoObject,
-		"description" | "thumbnailUrl" | "duration" | "embedUrl" | "contentUrl"
-	>
-> & {
-	name: string;
-	/** ISO 8601 date. A `Date` from a row is accepted and serialised. */
-	uploadDate?: Date | string | null;
-};
+export interface ThingFields {
+	readonly type: SchemaTypeName;
+	readonly name: string;
+	readonly description?: string | null;
+	readonly url?: string | null;
+	readonly image?: string | null;
+	readonly properties?: Readonly<Record<string, unknown>>;
+}
 
 /**
- * One row, or one set of fields, as schema.org JSON-LD.
+ * One thing, as schema.org JSON-LD.
  *
- * Empty keys are dropped rather than sent as null: a consumer reading
- * `"uploadDate": null` has been told something false, where a missing key
- * only says nothing.
+ * Empty values are dropped rather than serialised as null: a consumer reading
+ * `"uploadDate": null` has been told something false, where a missing key only
+ * says nothing. Dates are ISO strings, which is what the standard asks for and
+ * what a `Date` from a row is not.
  */
-export function videoObjectLd(video: VideoObjectFields): object {
-	const uploaded =
-		video.uploadDate instanceof Date
-			? video.uploadDate.toISOString()
-			: video.uploadDate;
+export function thingLd(thing: ThingFields): object {
+	const entries: Array<[string, unknown]> = [
+		["@context", "https://schema.org"],
+		["@type", thing.type],
+		["name", thing.name],
+		["description", thing.description],
+		["url", thing.url],
+		["image", thing.image],
+		...Object.entries(thing.properties ?? {}),
+	];
 
 	return Object.fromEntries(
-		Object.entries({
-			"@context": "https://schema.org",
-			"@type": "VideoObject",
-			name: video.name,
-			description: video.description,
-			thumbnailUrl: video.thumbnailUrl,
-			uploadDate: uploaded,
-			duration: video.duration,
-			embedUrl: video.embedUrl,
-			contentUrl: video.contentUrl,
-		}).filter(
-			([, value]) => value !== undefined && value !== null && value !== "",
-		),
+		entries
+			.map(([key, value]) => [
+				key,
+				value instanceof Date ? value.toISOString() : value,
+			])
+			.filter(
+				([, value]) => value !== undefined && value !== null && value !== "",
+			),
 	);
 }
 

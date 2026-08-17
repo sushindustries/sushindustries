@@ -1,4 +1,4 @@
-import { videoObjectLd } from "@sushindustries/db/schema";
+import { thingLd } from "@sushindustries/db/schema";
 import {
 	type MarkdownBlockProps,
 	VideoPlayer,
@@ -119,14 +119,20 @@ export function VideoBlock({ attributes }: MarkdownBlockProps): ReactNode {
 	 * with no `VideoObject` beside it is a video no search result will ever
 	 * show a thumbnail for.
 	 */
-	const schema = videoObjectLd({
+	const schema = thingLd({
+		type: "VideoObject",
 		name: title,
 		description: attributes.caption,
-		thumbnailUrl: still,
-		uploadDate: attributes.uploaded,
-		duration: attributes.duration,
-		embedUrl: embedUrl(provider, source),
-		contentUrl: provider === "file" ? source : undefined,
+		image: still,
+		properties: {
+			// Subtype properties, spelled as schema.org spells them. Empty ones
+			// are dropped by the serialiser rather than published as null.
+			thumbnailUrl: still,
+			uploadDate: attributes.uploaded,
+			duration: attributes.duration,
+			embedUrl: embedUrl(provider, source),
+			contentUrl: provider === "file" ? source : undefined,
+		},
 	});
 
 	return (

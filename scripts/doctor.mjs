@@ -312,10 +312,68 @@ function readRegistry() {
 			title: block.match(/title:\s*"([^"]+)"/)?.[1] ?? name,
 			category: block.match(/category:\s*"([^"]+)"/)?.[1],
 			kind: block.match(/kind:\s*"([^"]+)"/)?.[1] ?? "component",
+			schema: block.match(/schema:\s*"([^"]+)"/)?.[1],
 		});
 	}
 
 	return items;
+}
+
+/**
+ * Every element names a real schema.org class.
+ *
+ * The registry cannot import the vocabulary - `packages/ui` has no
+ * dependencies and is not taking one for a string - so the check lives here
+ * instead, reading the generated module by path. That is the trade: the field
+ * is a plain string in the package, and a class that schema.org does not
+ * publish fails at the gate rather than shipping as JSON-LD nothing parses.
+ */
+function checkElementsDeclareSchemaType(items) {
+	const generated = read("packages/db/src/schema-org.generated.ts");
+	const listed = generated.match(
+		/export const SCHEMA_TYPES = (\[[\s\S]*?\]) as const;/,
+	)?.[1];
+
+	if (!listed) {
+		problem(
+			"schema",
+			"packages/db/src/schema-org.generated.ts",
+			"cannot read SCHEMA_TYPES",
+			"regenerate it: pnpm run schema-org",
+		);
+		return;
+	}
+
+	/*
+	 * Read the strings out rather than parsing the array as JSON. The formatter
+	 * rewrites the generated file across many lines with a trailing comma,
+	 * which is valid TypeScript and not valid JSON - so `JSON.parse` here fails
+	 * on a file that is perfectly correct, and did.
+	 */
+	const types = new Set(
+		[...listed.matchAll(/"([^"]+)"/g)].map((match) => match[1]),
+	);
+
+	for (const item of items) {
+		if (!item.schema) {
+			problem(
+				"schema",
+				"packages/ui/registry.ts",
+				`${item.name} declares no schema.org type`,
+				'add `schema: "SoftwareSourceCode"` or the class it actually expresses',
+			);
+			continue;
+		}
+
+		if (!types.has(item.schema)) {
+			problem(
+				"schema",
+				"packages/ui/registry.ts",
+				`${item.name} claims schema.org type ${item.schema}, which does not exist`,
+				`check the spelling at https://schema.org/${item.schema}`,
+			);
+		}
+	}
 }
 
 function checkRegistryFilesExist(items) {
@@ -1821,6 +1879,7 @@ checkTypecheckHasConfig(list);
 checkBuildsShareTheBase(list);
 checkGeneratedFilesAreOrdered();
 
+checkElementsDeclareSchemaType(registry);
 checkRegistryFilesExist(registry);
 checkRegistryDependenciesResolve(registry);
 checkComponentImportsAreDeclared(registry);

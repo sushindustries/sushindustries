@@ -66,6 +66,21 @@ export const REGISTRY_CATEGORIES: ReadonlyArray<{
 export interface RegistryItem {
 	/** Install id and URL segment. Matches the source filename. */
 	readonly name: string;
+	/**
+	 * The schema.org class this element expresses.
+	 *
+	 * Not a label: it is the type the element's page publishes as JSON-LD and
+	 * the type its row carries in `things`, so a breadcrumb is a
+	 * `BreadcrumbList`, an archive is a `CollectionPage`, and a control that
+	 * expresses no content of its own is the honest answer - the source code
+	 * you install.
+	 *
+	 * Typed as `string` rather than pulled from `@sushindustries/db` on
+	 * purpose: this package has no dependencies and is not about to take one
+	 * for a string. `pnpm doctor` checks every value against the generated
+	 * vocabulary, so a class that does not exist fails at the gate instead.
+	 */
+	readonly schema: string;
 	readonly title: string;
 	readonly description: string;
 	/** Files copied into the consumer, relative to `src/`. */
@@ -121,6 +136,7 @@ export interface RegistryItem {
 export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	{
 		name: "reveal",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Reveal",
 		description:
@@ -134,6 +150,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "smooth-scroll",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Smooth Scroll",
 		description:
@@ -147,6 +164,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "scroll-spin",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Scroll Spin",
 		description:
@@ -161,6 +179,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "use-scroll-turn",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "useScrollTurn",
 		description:
@@ -174,6 +193,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "archive",
+		schema: "CollectionPage",
 		kind: "block",
 		version: "0.1.1",
 		title: "Archive",
@@ -189,6 +209,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "use-scroll-progress",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "useScrollProgress",
 		description:
@@ -202,6 +223,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "device",
+		schema: "SoftwareSourceCode",
 		kind: "block",
 		version: "0.1.0",
 		title: "Device",
@@ -216,6 +238,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "use-device-kind",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "useDeviceKind",
 		description:
@@ -230,6 +253,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "desk-window",
+		schema: "SoftwareSourceCode",
 		kind: "block",
 		version: "0.1.0",
 		title: "Desk Window",
@@ -244,6 +268,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "dock",
+		schema: "SiteNavigationElement",
 		kind: "block",
 		version: "0.1.0",
 		title: "Dock",
@@ -258,6 +283,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "use-desk-state",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "useDeskState",
 		description:
@@ -271,6 +297,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "context-menu",
+		schema: "SiteNavigationElement",
 		kind: "block",
 		version: "0.1.0",
 		title: "Context Menu",
@@ -288,6 +315,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "folder-shelf",
+		schema: "ItemList",
 		kind: "block",
 		version: "0.1.0",
 		title: "Folder Shelf",
@@ -309,6 +337,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "boot-loader",
+		schema: "SoftwareSourceCode",
 		kind: "block",
 		version: "0.1.0",
 		title: "Boot Loader",
@@ -323,6 +352,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "card",
+		schema: "CreativeWork",
 		version: "0.1.0",
 		title: "Card",
 		description:
@@ -336,6 +366,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "section",
+		schema: "WebPageElement",
 		version: "0.1.0",
 		title: "Section",
 		description:
@@ -350,6 +381,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "doc-aside",
+		schema: "SiteNavigationElement",
 		version: "0.1.0",
 		title: "Doc Aside",
 		description:
@@ -363,6 +395,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "showcase",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Showcase",
 		description:
@@ -377,6 +410,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "clock",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Clock",
 		description:
@@ -390,6 +424,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "credit",
+		schema: "Person",
 		version: "0.1.0",
 		title: "Credit",
 		description:
@@ -403,6 +438,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "markdown-view",
+		schema: "Article",
 		version: "0.1.0",
 		title: "Markdown View",
 		description:
@@ -419,6 +455,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "code-block",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Code Block",
 		description:
@@ -435,6 +472,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "copy-button",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Copy Button",
 		description:
@@ -448,6 +486,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "breadcrumb",
+		schema: "BreadcrumbList",
 		version: "0.1.0",
 		title: "Breadcrumb",
 		description:
@@ -461,6 +500,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "command-palette",
+		schema: "SiteNavigationElement",
 		version: "0.1.0",
 		title: "Command Palette",
 		description:
@@ -474,6 +514,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "pagination",
+		schema: "SiteNavigationElement",
 		version: "0.1.1",
 		title: "Pagination",
 		description:
@@ -487,6 +528,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "typography",
+		schema: "WebPageElement",
 		version: "0.1.0",
 		title: "Typography",
 		description:
@@ -500,6 +542,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "badge",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Badge",
 		description:
@@ -513,6 +556,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "kbd",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Kbd",
 		description:
@@ -526,6 +570,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "separator",
+		schema: "WebPageElement",
 		version: "0.1.0",
 		title: "Separator",
 		description:
@@ -539,6 +584,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "skeleton",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Skeleton",
 		description:
@@ -552,6 +598,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "spinner",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Spinner",
 		description:
@@ -565,6 +612,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "avatar",
+		schema: "Person",
 		version: "0.1.0",
 		title: "Avatar",
 		description:
@@ -578,6 +626,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "aspect-ratio",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Aspect Ratio",
 		description:
@@ -591,6 +640,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "button",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Button",
 		description:
@@ -604,6 +654,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "empty",
+		schema: "WebPageElement",
 		version: "0.1.0",
 		title: "Empty",
 		description:
@@ -617,6 +668,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "item",
+		schema: "ListItem",
 		version: "0.1.0",
 		title: "Item",
 		description:
@@ -630,6 +682,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "input",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Input",
 		description:
@@ -643,6 +696,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "textarea",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Textarea",
 		description:
@@ -656,6 +710,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "field",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Field",
 		description:
@@ -669,6 +724,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "checkbox",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Checkbox",
 		description:
@@ -682,6 +738,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "radio-group",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Radio Group",
 		description:
@@ -695,6 +752,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "switch",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Switch",
 		description:
@@ -708,6 +766,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "native-select",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Native Select",
 		description:
@@ -721,6 +780,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "slider",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Slider",
 		description:
@@ -734,6 +794,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "progress",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Progress",
 		description:
@@ -747,6 +808,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "accordion",
+		schema: "WebPageElement",
 		version: "0.1.0",
 		title: "Accordion",
 		description:
@@ -760,6 +822,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "collapsible",
+		schema: "WebPageElement",
 		version: "0.1.0",
 		title: "Collapsible",
 		description:
@@ -773,6 +836,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "alert",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Alert",
 		description:
@@ -786,6 +850,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "tooltip",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Tooltip",
 		description:
@@ -799,6 +864,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "toggle",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Toggle",
 		description:
@@ -812,6 +878,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "table",
+		schema: "Table",
 		version: "0.1.0",
 		title: "Table",
 		description:
@@ -825,6 +892,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "scroll-area",
+		schema: "WebPageElement",
 		version: "0.1.0",
 		title: "Scroll Area",
 		description:
@@ -838,6 +906,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "dialog",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Dialog",
 		description:
@@ -851,6 +920,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "sheet",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Sheet",
 		description:
@@ -864,6 +934,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "toast",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Toast",
 		description:
@@ -877,6 +948,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "reference",
+		schema: "DefinedTerm",
 		version: "0.1.0",
 		title: "Reference",
 		description:
@@ -890,6 +962,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "grid",
+		schema: "ItemList",
 		version: "0.1.0",
 		title: "Grid",
 		description:
@@ -903,6 +976,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "theme-toggle",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Theme Toggle",
 		description:
@@ -916,6 +990,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "spacer",
+		schema: "WebPageElement",
 		version: "0.1.0",
 		title: "Spacer",
 		description:
@@ -929,6 +1004,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "nav-bar",
+		schema: "SiteNavigationElement",
 		kind: "block",
 		version: "0.1.0",
 		title: "Nav Bar",
@@ -943,6 +1019,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "video-player",
+		schema: "VideoObject",
 		version: "0.1.0",
 		title: "Video Player",
 		description:
@@ -956,6 +1033,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 	},
 	{
 		name: "frontmatter",
+		schema: "SoftwareSourceCode",
 		version: "0.1.0",
 		title: "Frontmatter",
 		description:

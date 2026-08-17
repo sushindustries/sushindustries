@@ -1,5 +1,6 @@
 import type { MarkdownBlocks } from "@sushindustries/ui";
 import { CardBlock } from "./card-block";
+import { PersonBlock, ReviewBlock } from "./entity-blocks";
 import { GridBlock, SpacerBlock } from "./layout-blocks";
 import { ShelfBlock } from "./shelf-block";
 import { ShowcaseBlock } from "./showcase-block";
@@ -22,4 +23,6 @@ export const BLOCKS: MarkdownBlocks = {
 	grid: GridBlock,
 	spacer: SpacerBlock,
 	shelf: ShelfBlock,
+	person: PersonBlock,
+	review: ReviewBlock,
 };

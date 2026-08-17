@@ -15,7 +15,13 @@ import { library } from "../../tsdown.base.ts";
  */
 export default defineConfig(
 	library({
-		entry: ["./src/schema.ts", "./src/client.server.ts"],
+		/*
+		 * `schema-org` is its own entry because the vocabulary is ninety
+		 * kilobytes of generated data. A route wanting a row type must not pull
+		 * it into a browser bundle, and a separate entry is what makes that a
+		 * property of the build rather than of everyone's discipline.
+		 */
+		entry: ["./src/schema.ts", "./src/schema-org.ts", "./src/client.server.ts"],
 		platform: "node",
 		deps: {
 			neverBundle: ["drizzle-orm", "postgres"],

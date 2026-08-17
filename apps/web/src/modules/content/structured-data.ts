@@ -1,4 +1,5 @@
 import type { RegistryItem } from "@sushindustries/ui/registry";
+import { entityId, pageId, ref } from "./schema-graph";
 import { SITE } from "./site.catalogue";
 
 /*
@@ -62,6 +63,17 @@ export function componentSourceCode(item: RegistryItem): object {
 	return {
 		"@context": "https://schema.org",
 		"@type": "SoftwareSourceCode",
+		/*
+		 * The id a review points at.
+		 *
+		 * Without it this node is anonymous, and a `Review` whose
+		 * `itemReviewed` names an id nothing publishes is a dangling edge - the
+		 * page reads as "somebody reviewed something" rather than "somebody
+		 * reviewed this component". `#entity` rather than the page's own id
+		 * because the component and the page about it are different things.
+		 */
+		"@id": entityId(`/components/${item.name}`),
+		mainEntityOfPage: ref(pageId(`/components/${item.name}`)),
 		name: item.title,
 		description: item.description,
 		url: `${SITE.url}/components/${item.name}`,
@@ -76,6 +88,22 @@ export function componentSourceCode(item: RegistryItem): object {
 			applicationCategory: "DeveloperApplication",
 		},
 		keywords: [item.category, ...(item.tags ?? [])].join(", "),
+
+		/*
+		 * What the element expresses, from its registry declaration.
+		 *
+		 * `about` rather than a second `@type`, because the two claims are
+		 * different and only one of them is true: this page is source code, and
+		 * the thing that source code produces is a `BreadcrumbList`. Saying the
+		 * page *is* a BreadcrumbList would be a lie that validates.
+		 *
+		 * Omitted when the element expresses nothing beyond itself - a switch,
+		 * a spinner - because `about: SoftwareSourceCode` on a page that is
+		 * already SoftwareSourceCode says nothing at all.
+		 */
+		...(item.schema && item.schema !== "SoftwareSourceCode"
+			? { about: { "@type": item.schema } }
+			: {}),
 	};
 }
 
