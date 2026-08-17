@@ -1,0 +1,58 @@
+@layer blocks {
+	/* ── buttons ─────────────────────────────────────────────────── */
+
+	/*
+	 * Two buttons, one hierarchy. The pill is the one action a section wants
+	 * taken; the ghost is the alternative beside it. There is no third kind,
+	 * because a row of three buttons is a menu wearing costumes.
+	 */
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--s-2);
+		padding: var(--s-3) var(--s-5);
+		border: 1px solid transparent;
+		border-radius: 999px;
+		background: var(--accent);
+		color: var(--on-accent);
+		font: 600 var(--t-sm) / 1 var(--sans);
+		text-decoration: none;
+		cursor: pointer;
+		box-shadow: var(--lift-1);
+		transition:
+			background 160ms ease,
+			box-shadow 160ms ease,
+			translate 160ms var(--ease-out);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.btn:hover {
+			background: var(--accent-dim);
+			box-shadow: var(--lift-2);
+			translate: 0 -1px;
+		}
+	}
+
+	.btn-ghost {
+		background: transparent;
+		border-color: var(--line);
+		color: var(--fg-dim);
+		box-shadow: none;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.btn-ghost:hover {
+			background: color-mix(in srgb, var(--accent) 8%, transparent);
+			border-color: var(--accent);
+			color: var(--accent);
+			box-shadow: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.btn {
+			transition: none;
+		}
+	}
+}

@@ -1,0 +1,63 @@
+@layer blocks {
+	/* ── theme toggle ─────────────────────────────────── */
+
+	/*
+	 * A segmented control: one well, one lit option.
+	 *
+	 * Recessed rather than raised, like the dock, because it is a place you put
+	 * a choice into rather than a thing that sits on the page. The inset edge is
+	 * what makes a row of three buttons read as one control instead of three.
+	 */
+	.theme-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 2px;
+		padding: 2px;
+		border: 1px solid var(--line-soft);
+		border-radius: 999px;
+		background: var(--bg-2);
+		box-shadow: inset 0 1px 2px
+			color-mix(in srgb, var(--shadow) 22%, transparent);
+	}
+
+	.theme-toggle-option {
+		display: grid;
+		place-items: center;
+		width: 28px;
+		height: 28px;
+		border: 0;
+		border-radius: 999px;
+		background: transparent;
+		color: var(--fg-faint);
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	/*
+	 * `aria-checked` is the selector, not a `data-active` beside it.
+	 *
+	 * The attribute that tells a screen reader which option is chosen is the
+	 * same attribute that draws it, so the two cannot disagree. A separate
+	 * `data-` flag is a second source of truth for one fact, and the way it
+	 * fails is that the control looks right and announces the wrong option.
+	 */
+	.theme-toggle-option[aria-checked="true"] {
+		background: var(--bg-0);
+		color: var(--accent);
+		box-shadow: var(--lift-1);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.theme-toggle-option:hover {
+			color: var(--fg);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.theme-toggle-option {
+			transition: none;
+		}
+	}
+}

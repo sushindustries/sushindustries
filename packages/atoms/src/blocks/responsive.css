@@ -1,0 +1,26 @@
+@layer blocks {
+	/* ── responsive ──────────────────────────────────────────────── */
+
+	/* --bp-narrow: 860px. Below it the two-column hero stacks, mark first. */
+	@media (max-width: 860px) {
+		.hero[data-variant="landing"] {
+			min-height: 0;
+			padding-block: var(--s-7);
+		}
+
+		.hero[data-variant="landing"] .hero-split {
+			grid-template-columns: 1fr;
+			gap: var(--s-6);
+		}
+
+		.logo-stage {
+			max-width: 340px;
+			max-height: none;
+			order: -1;
+		}
+
+		.nav-narrow-hide {
+			display: none;
+		}
+	}
+}

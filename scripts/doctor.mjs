@@ -70,6 +70,84 @@ function readJson(path) {
 	return JSON.parse(read(path));
 }
 
+/*
+ * ── atoms, which is an entry plus its chapters ──────────────────────────
+ *
+ * `atoms.css` is a layer statement and then nothing but imports. Every check
+ * below wants the whole cascade, so they follow the import list and work on
+ * the concatenation.
+ *
+ * The import list, not a directory listing, and the difference is load-
+ * bearing: `checkBlocksAreEarned` resolves a declaration to the *first* rule
+ * that provides it, which is only right while utilities are read before the
+ * blocks that might restate them. Sorted filenames would put `blocks/` first
+ * and quietly reassign every utility.
+ */
+const ATOMS_ENTRY = "packages/atoms/src/atoms.css";
+const ATOMS_IMPORT = /^@import\s+"\.\/([^"]+)"(?:\s+layer\((\w+)\))?;/gm;
+
+/** The chapters, in cascade order, each with the layer it lands in. */
+function atomsFiles() {
+	return [...read(ATOMS_ENTRY).matchAll(ATOMS_IMPORT)].map(
+		([, file, layer]) => ({
+			path: `packages/atoms/src/${file}`,
+			css: read(`packages/atoms/src/${file}`),
+			/* Set only when the import assigns the layer, as devices.css does. */
+			assignedLayer: layer ?? undefined,
+		}),
+	);
+}
+
+/**
+ * Every atoms chapter concatenated, with a way back to the file a line is in.
+ */
+function readAtoms() {
+	const files = atomsFiles();
+	const parts = [];
+	const spans = [];
+	let start = 0;
+
+	for (const file of files) {
+		/*
+		 * A file imported with `layer(x)` carries no wrapper of its own - the
+		 * import is what assigns it. Wrap it here so the concatenation has one
+		 * shape, and the unlayered-rule check does not read a generated file as
+		 * a leak of the very thing it is checking for.
+		 */
+		const text = file.assignedLayer
+			? `@layer ${file.assignedLayer} {\n${file.css}}\n`
+			: file.css;
+		const height = text.split("\n").length - 1;
+
+		spans.push({
+			path: file.path,
+			start,
+			height,
+			wrapped: Boolean(file.assignedLayer),
+		});
+		parts.push(text);
+		start += height;
+	}
+
+	const css = parts.join("");
+
+	/** A line index in the concatenation, as `path:line` in its own file. */
+	function locate(index) {
+		const span = spans.find((s) => index < s.start + s.height) ?? spans.at(-1);
+		if (!span) return ATOMS_ENTRY;
+		// The wrapper added above is not a line of the file it wraps.
+		const line = index - span.start + (span.wrapped ? 0 : 1);
+		return `${span.path}:${Math.max(line, 1)}`;
+	}
+
+	/** Which chapter contains a snippet, for a report that has no line. */
+	function whichFile(needle) {
+		return files.find((file) => file.css.includes(needle))?.path ?? ATOMS_ENTRY;
+	}
+
+	return { css, files, locate, whichFile };
+}
+
 function exists(path) {
 	return existsSync(join(root, path));
 }
@@ -225,6 +303,43 @@ function checkWorkspaceDescriptions(list) {
 			"description",
 			`${workspace}/package.json`,
 			"no description - the packages index renders this, so the entry is blank",
+		);
+	}
+}
+
+/**
+ * Every package says what it may be used under.
+ *
+ * A manifest with no `license` is not neutral: with no licence granted, the
+ * default is all rights reserved, so an "installable" package is one nobody
+ * may legally install. Five of these shipped that way while the site told
+ * every reader to `pnpm add` them, which is the kind of mistake that is
+ * invisible in a diff and total in effect.
+ *
+ * The root `LICENSE` is checked here too, because a per-package `"MIT"` with
+ * no licence text anywhere names a licence rather than granting one.
+ */
+function checkLicences(list) {
+	if (!exists("LICENSE")) {
+		report(
+			"licence",
+			"LICENSE",
+			"no licence file at the repo root",
+			"without one the default is all rights reserved, and nothing here may be used",
+		);
+	}
+
+	for (const workspace of list) {
+		const manifest = readJson(`${workspace}/package.json`);
+		/* Private workspaces are never published, so they grant nothing. */
+		if (manifest.private) continue;
+		if (manifest.license) continue;
+
+		report(
+			"licence",
+			`${workspace}/package.json`,
+			"no `license` field",
+			'add `"license": "MIT"` - a published package with no licence may not be used',
 		);
 	}
 }
@@ -469,48 +584,54 @@ function checkRegistryFilesAreExported(items) {
  * the statements that set them up.
  */
 function checkAtomsAreLayered() {
-	const source = read("packages/atoms/src/atoms.css").replace(
-		/\/\*[\s\S]*?\*\//g,
-		"",
-	);
+	/*
+	 * Per chapter rather than over the concatenation, so the report names the
+	 * file to open. A chapter imported with `layer()` is exempt: the import
+	 * assigns its layer, so its own top level is bare by design.
+	 */
+	for (const file of [{ path: ATOMS_ENTRY, css: read(ATOMS_ENTRY) }].concat(
+		atomsFiles().filter((file) => !file.assignedLayer),
+	)) {
+		const source = file.css.replace(/\/\*[\s\S]*?\*\//g, "");
 
-	let depth = 0;
-	let buffer = "";
-	for (const char of source) {
-		if (char === "{") {
-			if (depth === 0) {
-				const prelude = buffer.trim();
-				if (!prelude.startsWith("@layer")) {
-					report(
-						"layers",
-						"packages/atoms/src/atoms.css",
-						`top-level rule outside every layer: \`${prelude.slice(0, 60)}\``,
-						"unlayered CSS outranks all four layers; move it into one",
-					);
+		let depth = 0;
+		let buffer = "";
+		for (const char of source) {
+			if (char === "{") {
+				if (depth === 0) {
+					const prelude = buffer.trim();
+					if (!prelude.startsWith("@layer")) {
+						report(
+							"layers",
+							file.path,
+							`top-level rule outside every layer: \`${prelude.slice(0, 60)}\``,
+							"unlayered CSS outranks all four layers; move it into one",
+						);
+					}
 				}
-			}
-			depth += 1;
-			buffer = "";
-		} else if (char === "}") {
-			depth -= 1;
-		} else if (depth === 0) {
-			if (char === ";") {
-				const statement = buffer.trim();
-				if (
-					statement &&
-					!statement.startsWith("@layer") &&
-					!statement.startsWith("@import") &&
-					!statement.startsWith("@charset")
-				) {
-					report(
-						"layers",
-						"packages/atoms/src/atoms.css",
-						`top-level statement outside every layer: \`${statement.slice(0, 60)}\``,
-					);
-				}
+				depth += 1;
 				buffer = "";
-			} else {
-				buffer += char;
+			} else if (char === "}") {
+				depth -= 1;
+			} else if (depth === 0) {
+				if (char === ";") {
+					const statement = buffer.trim();
+					if (
+						statement &&
+						!statement.startsWith("@layer") &&
+						!statement.startsWith("@import") &&
+						!statement.startsWith("@charset")
+					) {
+						report(
+							"layers",
+							file.path,
+							`top-level statement outside every layer: \`${statement.slice(0, 60)}\``,
+						);
+					}
+					buffer = "";
+				} else {
+					buffer += char;
+				}
 			}
 		}
 	}
@@ -527,10 +648,8 @@ function checkAtomsAreLayered() {
  * the width it was written at.
  */
 function checkGridsAreResponsive() {
-	const source = read("packages/atoms/src/atoms.css").replace(
-		/\/\*[\s\S]*?\*\//g,
-		"",
-	);
+	const atoms = readAtoms();
+	const source = atoms.css.replace(/\/\*[\s\S]*?\*\//g, "");
 
 	/*
 	 * One pass, tracking whether the rule sits inside a query block. Flat
@@ -594,7 +713,7 @@ function checkGridsAreResponsive() {
 
 		report(
 			"responsive",
-			"packages/atoms/src/atoms.css",
+			atoms.whichFile(rule),
 			`\`${rule}\` fixes ${count} columns with no @media/@container override`,
 			"use repeat(auto-fit, minmax(...)) or collapse it in a query",
 		);
@@ -802,7 +921,7 @@ function checkMarkdownHierarchy() {
  * at which the honest fix is to stop computing it.
  */
 function checkComponentClassesLiveInAtoms() {
-	const atoms = read("packages/atoms/src/atoms.css");
+	const atoms = readAtoms().css;
 
 	/*
 	 * Utility-shaped names are checked everywhere, not just in the library.
@@ -1181,8 +1300,8 @@ function checkVariantsAreAttributes() {
  * site.
  */
 function checkAtomsUseTokens() {
-	const css = read("packages/atoms/src/atoms.css");
-	const lines = css.split("\n");
+	const atoms = readAtoms();
+	const lines = atoms.css.split("\n");
 
 	/*
 	 * The `tokens` layer is the definition site, so literals there are the
@@ -1209,9 +1328,109 @@ function checkAtomsUseTokens() {
 
 		report(
 			"tokens",
-			`packages/atoms/src/atoms.css:${index + 1}`,
+			atoms.locate(index),
 			`literal colour \`${line.trim()}\``,
 			"add it to :root and reference the token, so the palette stays one edit wide",
+		);
+	}
+}
+
+/**
+ * Every custom property a rule reads is one some rule writes.
+ *
+ * `var(--r-sm)` with nothing defining `--r-sm` is not an error anywhere. The
+ * declaration is dropped, the corner renders square, and it looks deliberate.
+ * Three rules were doing exactly that, and `questions.css` shipped with no
+ * text colour and no border for the same reason - the feature looked finished
+ * because the fallback for "no value" is "the value it already had".
+ *
+ * A reference with a fallback - `var(--grid-min, 16rem)` - is fine by
+ * construction: the fallback is the definition for the case where there isn't
+ * one. Only bare references have to resolve.
+ */
+function checkTokensResolve() {
+	const atoms = readAtoms();
+
+	/*
+	 * Set from JavaScript at runtime, so they are declared nowhere in CSS and
+	 * that is correct: a dragged window's position cannot have a stylesheet
+	 * value. Each one is written by the component named beside it.
+	 */
+	const FROM_SCRIPT = new Set([
+		"--w", // desk-window, resized
+		"--h", // desk-window, resized
+		"--x", // desk-window, dragged
+		"--y", // desk-window, dragged
+		"--video-ratio", // video-player, from the media's own dimensions
+		"--i", // typed-mark, a character's position in the word
+	]);
+
+	const defined = new Set(
+		[...atoms.css.matchAll(/^\s*(--[\w-]+)\s*:/gm)].map((match) => match[1]),
+	);
+
+	/* Bare `var(--x)` only: a comma means a fallback follows. */
+	for (const match of atoms.css.matchAll(/var\(\s*(--[\w-]+)\s*\)/g)) {
+		const name = match[1];
+		if (defined.has(name) || FROM_SCRIPT.has(name)) continue;
+
+		const line = atoms.css.slice(0, match.index).split("\n").length - 1;
+		report(
+			"tokens",
+			atoms.locate(line),
+			`\`var(${name})\` is never defined`,
+			"define it in the tokens layer, or give the reference a fallback",
+		);
+	}
+}
+
+/**
+ * Depth comes from the ladder, not from a number picked in the moment.
+ *
+ * The same argument as colour, one axis over. A raw `z-index` is a claim about
+ * what this element beats, made without seeing anything it is competing with,
+ * and the file had reached `29`, `30` and `31` sitting next to each other
+ * before anyone noticed. At that point the numbers are not a scale: nothing
+ * says whether 31 beats 30 deliberately or by accident, and inserting a layer
+ * between them means renumbering whatever sits above.
+ *
+ * Tokens turn it back into a question with an answer. `--z-scrim` under
+ * `--z-overlay` is an ordering somebody decided once, in one place, where the
+ * whole ladder is visible at the same time.
+ */
+function checkDepthsUseTokens() {
+	const atoms = readAtoms();
+
+	let inTokens = false;
+	let depth = 0;
+
+	for (const [index, line] of atoms.css.split("\n").entries()) {
+		if (line.startsWith("@layer tokens {")) {
+			inTokens = true;
+			depth = 0;
+		}
+
+		/* The tokens layer is where the ladder is written down, so it is exempt. */
+		if (inTokens) {
+			depth += (line.match(/\{/g) ?? []).length;
+			depth -= (line.match(/\}/g) ?? []).length;
+			if (depth <= 0 && line.includes("}")) inTokens = false;
+			continue;
+		}
+
+		/*
+		 * `z-index: 0` and `auto` are exempt: neither is a position in the
+		 * ladder. Zero creates a stacking context without claiming a rank, and
+		 * that is a real thing to want on its own.
+		 */
+		const match = /z-index:\s*(-?\d+)\s*;/.exec(line);
+		if (!match || match[1] === "0") continue;
+
+		report(
+			"tokens",
+			atoms.locate(index),
+			`literal depth \`${line.trim()}\``,
+			"use a --z-* token, so the stacking order is decided in one place",
 		);
 	}
 }
@@ -1235,7 +1454,8 @@ function checkAtomsUseTokens() {
  * the things markup cannot express.
  */
 function checkBlocksAreEarned() {
-	const css = read("packages/atoms/src/atoms.css");
+	const atoms = readAtoms();
+	const css = atoms.css;
 
 	/*
 	 * Rules, flattened. Nested at-rules are skipped rather than parsed: a rule
@@ -1319,7 +1539,7 @@ function checkBlocksAreEarned() {
 
 		report(
 			"atomic",
-			"packages/atoms/src/atoms.css",
+			atoms.whichFile(name),
 			`${name} is ${declarations.length} utilities written again`,
 			`compose them in the markup: ${covered
 				.map((line) => provided.get(line))
@@ -1802,9 +2022,15 @@ const registry = readRegistry();
  * the directory, the check catalogue from this file's own JSDoc.
  */
 if (process.argv.includes("--map")) {
-	const atoms = read("packages/atoms/src/atoms.css");
 	const layerOrder =
-		/@layer ([\w, ]+);/.exec(atoms)?.[1] ?? "(no layer declaration)";
+		/@layer ([\w, ]+);/.exec(read(ATOMS_ENTRY))?.[1] ??
+		"(no layer declaration)";
+
+	/* Which layer each chapter lands in: from its import, or from its own tag. */
+	const chapters = atomsFiles().map((file) => ({
+		path: file.path.replace("packages/atoms/src/", ""),
+		layer: file.assignedLayer ?? /@layer (\w+) \{/.exec(file.css)?.[1],
+	}));
 
 	console.log("# How this repo is constructed\n");
 
@@ -1816,8 +2042,10 @@ if (process.argv.includes("--map")) {
 
 	console.log(`\n## The cascade\n\nLayer order: ${layerOrder}`);
 	for (const name of layerOrder.split(",").map((part) => part.trim())) {
-		const blocks = atoms.split(`@layer ${name} {`).length - 1;
-		console.log(`- ${name}: ${blocks} block(s) in atoms.css`);
+		const own = chapters.filter((chapter) => chapter.layer === name);
+		console.log(
+			`- ${name}: ${own.length} file(s) - ${own.map((c) => c.path).join(", ")}`,
+		);
 	}
 
 	console.log("\n## Site modules (apps/web/src/modules)\n");
@@ -1875,6 +2103,7 @@ if (process.argv.includes("--map")) {
 await checkDockerfileCoversWorkspaces(list);
 await checkWorkspaceReadmes(list);
 checkWorkspaceDescriptions(list);
+checkLicences(list);
 checkTypecheckHasConfig(list);
 checkBuildsShareTheBase(list);
 checkGeneratedFilesAreOrdered();
@@ -1904,6 +2133,8 @@ checkComponentClassesLiveInAtoms();
 checkVariantsAreAttributes();
 checkBlocksAreEarned();
 checkAtomsUseTokens();
+checkDepthsUseTokens();
+checkTokensResolve();
 checkNoEmDashes();
 checkRoutesAreLeaves();
 checkBlocksResolve();

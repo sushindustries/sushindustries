@@ -1,0 +1,260 @@
+@layer blocks {
+	/* ── device ──────────────────────────────────────────────────── */
+
+	/*
+		 * One machine, drawn three ways.
+		 *
+		 * Every number that differs between a phone, a tablet and a laptop is a
+		 * custom property set in `devices.css`, which is generated from
+		 * `devices.md`. Nothing below asks how wide the window is - it reads
+		 * `--device-*` and draws. That split is the point: the shape of the machine
+		 * is a decision, written down once in a table, and this is only the drawing.
+		 *
+		 * The stage carries the perspective, so the body, the base and the screen
+		 * all agree about where the viewer is standing. Put it on the body and the
+		 * body gets its own vanishing point, and the deck stops agreeing with it.
+		 */
+	.device {
+		position: relative;
+		width: min(100%, var(--device-width, 60rem));
+		margin-inline: auto;
+		perspective: var(--device-lens);
+		perspective-origin: 50% 20%;
+	}
+
+	/*
+		 * The screen half: a lid, a slab, a handset. Whichever it is, it is this.
+		 *
+		 * `transform-style: preserve-3d` keeps the screen inside it in the same 3D
+		 * space rather than flattening it to a picture, and the tilt is the only
+		 * reason the perspective on the stage has anything to do. Zero would be an
+		 * ordinary rectangle and the whole stage would be dead weight.
+		 */
+	.device-body {
+		position: relative;
+		transform-origin: 50% 100%;
+		transform: rotateX(var(--device-tilt));
+		transform-style: preserve-3d;
+		aspect-ratio: var(--device-aspect);
+		border: 1px solid var(--line);
+		border-radius: var(--device-corner);
+		/*
+		 * The case, one clear step darker than the page.
+		 *
+		 * It was `--bg-3`, which on a pale palette is barely a step at all, and
+		 * the whole machine dissolved into the page behind it - most obviously
+		 * once a window was open, when the only thing left holding the shape was
+		 * a one-pixel border.
+		 *
+		 * `--shell` is a different material from the page rather than another
+		 * step on the same ladder, which is the honest description: this is an
+		 * object sitting on the page, not a panel of it.
+		 */
+		background: linear-gradient(170deg, var(--shell), var(--shell-deep));
+		box-shadow:
+			0 1px 0 var(--glass-edge) inset,
+			var(--lift-3);
+	}
+
+	/*
+	 * The screen, and the edge that stops things leaving it.
+	 *
+	 * `overflow: hidden` is not decoration here. Everything inside is positioned
+	 * against the desk - windows, dragged icons, the dock - and every one of
+	 * them is clamped by JavaScript that measures a box. A rounding error, a
+	 * scrollbar gutter, or a machine whose case is rounder than its screen puts
+	 * a pixel or two the other side of that box, and without a clip the case
+	 * simply is not there: on the tablet the right-hand edge had no border at
+	 * all and an icon could be thrown clean out of the machine.
+	 *
+	 * The radius is what makes it visible. A clip on a square box inside a
+	 * rounded case leaves the corners uncovered, which is the bit that reads as
+	 * a missing border rather than as a clipping bug.
+	 */
+	.device-screen {
+		position: absolute;
+		inset: var(--device-bezel);
+		display: flex;
+		flex-direction: column;
+		/*
+			 * Inside a rounded body, so its own corners are the body's less the
+			 * bezel. A screen with the same radius as the case it sits in has visibly
+			 * thicker corners than edges, which is the tell that it was drawn rather
+			 * than assembled.
+			 */
+		border-radius: calc(var(--device-corner) - var(--device-bezel));
+		background: var(--bg-0);
+		/*
+		 * Sunk into the case rather than laid on it.
+		 *
+		 * An inset shadow at the top edge is what a screen behind a bezel looks
+		 * like: light falls *into* it. Without it the screen and the case are two
+		 * flat rectangles of slightly different colour, which on a pale palette
+		 * is almost nothing at all.
+		 */
+		box-shadow:
+			inset 0 1px 3px color-mix(in srgb, var(--shadow-deep) 40%, transparent),
+			inset 0 0 0 1px color-mix(in srgb, var(--shadow) 25%, transparent);
+		overflow: hidden;
+		/*
+			 * Above the back panel, explicitly.
+			 *
+			 * Both are children of a `preserve-3d` body, and z-order there is decided
+			 * by 3D position rather than by document order - which browsers resolve
+			 * consistently for painting and less consistently for hit-testing. Saying
+			 * it in two ways, with a positive `translateZ` here and `pointer-events:
+			 * none` on the panel, means no engine has to be trusted about it.
+			 */
+		transform: translateZ(1px);
+	}
+
+	.device-wallpaper {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		/* Behind the desktop, and never in the way of a click on a folder. */
+		pointer-events: none;
+	}
+
+	/*
+		 * The back of the case, two pixels behind the screen.
+		 *
+		 * It is never seen face on, but it is what the bezel's edges are made of at
+		 * this angle - without it the screen's border is a line rather than the edge
+		 * of a panel with thickness.
+		 */
+	.device-back {
+		position: absolute;
+		inset: 0;
+		border-radius: var(--device-corner);
+		background: linear-gradient(160deg, var(--shell), var(--shell-deep));
+		transform: translateZ(-2px);
+		/*
+			 * Decorative, and it must never be clickable.
+			 *
+			 * It is `inset: 0` over the whole body and comes after the screen in the
+			 * DOM, so the only thing keeping it behind is `preserve-3d` honouring its
+			 * `translateZ`. Any ancestor that flattens the 3D context - a filter, an
+			 * overflow, a browser quirk - puts this panel on top of the screen, where
+			 * it swallows every click on every folder and looks completely fine while
+			 * doing it.
+			 */
+		pointer-events: none;
+	}
+
+	/*
+		 * One dot, not a notch.
+		 *
+		 * A notch is a specific vendor's specific phone, and drawing it here would
+		 * make this a picture of that phone rather than a machine. A camera dot is
+		 * what every handheld has had for fifteen years.
+		 */
+	.device-camera {
+		display: var(--device-camera);
+		position: absolute;
+		left: 50%;
+		top: calc(var(--device-bezel) / 2);
+		width: 5px;
+		height: 5px;
+		translate: -50% -50%;
+		border-radius: 999px;
+		background: var(--shell-deep);
+		transform: translateZ(2px);
+		pointer-events: none;
+	}
+
+	/*
+		 * The home indicator: the other half of what says "no keyboard".
+		 *
+		 * Over the screen rather than under it, because that is where it is on a
+		 * handset - and the dock inside the screen leaves room for it.
+		 */
+	.device-bar {
+		display: var(--device-bar);
+		position: absolute;
+		left: 50%;
+		bottom: calc(var(--device-bezel) + var(--s-2));
+		width: 34%;
+		height: 4px;
+		translate: -50% 0;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--ink) 22%, transparent);
+		transform: translateZ(2px);
+		pointer-events: none;
+	}
+
+	/* The seam where a lid meets a deck. On a slab there is nothing to seam. */
+	.device-hinge {
+		display: var(--device-hinge);
+		position: absolute;
+		left: 12%;
+		right: 12%;
+		bottom: -1px;
+		height: 2px;
+		border-radius: 999px;
+		background: linear-gradient(
+			to right,
+			transparent,
+			var(--shell),
+			transparent
+		);
+		pointer-events: none;
+	}
+
+	/*
+		 * The keyboard half, drawn as two slabs laid back in 3D.
+		 *
+		 * `rotateX(72deg)` is a deck seen at a shallow angle. Exactly 90 would be
+		 * edge-on and invisible; this is the angle at which a keyboard deck reads as
+		 * a surface receding away from you.
+		 */
+	.device-base {
+		display: var(--device-deck);
+		position: relative;
+		height: 26px;
+		transform-style: preserve-3d;
+		transform: rotateX(72deg);
+		transform-origin: 50% 0;
+	}
+
+	.device-deck {
+		position: absolute;
+		inset: 0;
+		border: 1px solid var(--line);
+		border-top: 0;
+		border-radius: 0 0 var(--r) var(--r);
+		background: linear-gradient(to bottom, var(--shell), var(--shell-deep) 70%);
+	}
+
+	.device-pad {
+		position: absolute;
+		left: 50%;
+		top: 30%;
+		width: 22%;
+		height: 42%;
+		translate: -50% 0;
+		border-radius: 3px;
+		background: color-mix(in srgb, var(--bg-3) 60%, transparent);
+	}
+
+	/*
+		 * Contact shadow. It is what stops the machine floating, and it is a
+		 * pseudo-surface rather than a box-shadow so it can be wider than the object
+		 * and softer at the edges than a shadow is allowed to be.
+		 */
+	.device-shadow {
+		position: absolute;
+		left: 50%;
+		bottom: -18px;
+		width: 78%;
+		height: 34px;
+		translate: -50% 0;
+		background: radial-gradient(
+			ellipse at center,
+			color-mix(in srgb, var(--shadow-deep) 45%, transparent),
+			transparent 70%
+		);
+		filter: blur(6px);
+		pointer-events: none;
+	}
+}

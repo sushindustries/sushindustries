@@ -1,0 +1,257 @@
+@layer blocks {
+	/* ── dock ────────────────────────────────────────────────────── */
+
+	/*
+	 * The strip along the bottom of a screen.
+	 *
+	 * One row that scrolls sideways rather than wrapping: a dock that grows a
+	 * second row moves the desktop above it, and a desktop that resizes because
+	 * you opened a window is a desktop that loses track of your icons.
+	 */
+	.dock {
+		display: flex;
+		align-items: center;
+		/*
+		 * Fluid, against the screen rather than the window.
+		 *
+		 * A fixed 8px of padding is a comfortable slot on a 60rem laptop screen
+		 * and half the height of a phone's dock. `cqi` is one percent of the
+		 * screen this dock is pinned to, so the slot keeps its proportions in all
+		 * three machines - and in a showcase frame, where all three are on the
+		 * page at once and a window-width query would give them identical docks.
+		 */
+		gap: clamp(4px, 1.2cqi, 8px);
+		flex: 0 0 auto;
+		padding: clamp(5px, 1.4cqi, 9px);
+		/*
+		 * Lifted clear of the home indicator, which is drawn over the bottom of
+		 * the screen on a phone and a tablet and is nothing on a laptop. Without
+		 * it the bar crosses the dock's own buttons.
+		 */
+		padding-bottom: calc(clamp(5px, 1.4cqi, 9px) + var(--device-floor));
+		/*
+		 * Recessed, not applied.
+		 *
+		 * A border-top and a lighter fill made this read as a bar laid on top of
+		 * the screen. An inset shadow at the top edge and a fill darker than the
+		 * desktop reads as a channel cut into it - the light falls into the dock
+		 * rather than off the front of it, which is the whole difference between
+		 * a strip and a slot.
+		 *
+		 * No blur either: it sits on the desktop, which is a solid surface, so
+		 * there is nothing behind it worth the readback.
+		 */
+		background: color-mix(in srgb, var(--bg-3) 86%, transparent);
+		box-shadow:
+			inset 0 1px 0 color-mix(in srgb, var(--bg-3) 90%, transparent),
+			inset 0 2px 6px color-mix(in srgb, var(--bg-3) 60%, transparent);
+		/*
+		 * Above the desktop, without becoming a containing block.
+		 *
+		 * `z-index` alone, and no `position`. A flex item takes a z-index while
+		 * still being statically positioned, which is exactly what is wanted
+		 * here: the dock lifts above the desktop so a dragged window cannot
+		 * cover it, and it does *not* become the containing block for the search
+		 * palette inside it.
+		 *
+		 * With `position: relative` the palette centred itself on this strip -
+		 * about forty pixels tall - instead of on the screen, and came out
+		 * squashed against the bottom edge. That is what "the search box does
+		 * not render properly" was.
+		 */
+		z-index: var(--z-desk);
+	}
+
+	/*
+	 * A round well for one glyph.
+	 *
+	 * It was a pill with the word Search in it, which put a labelled button
+	 * beside a row of buttons labelled with folder names, all competing for the
+	 * same reading. A magnifier is the one icon that needs no label; the word
+	 * lives in the tooltip and the `aria-label` for anyone who wants it.
+	 */
+	.dock-start {
+		display: grid;
+		place-items: center;
+		flex: 0 0 auto;
+		/* Square, and sized with the dock around it rather than against it. */
+		width: clamp(28px, 6cqi, 34px);
+		height: clamp(28px, 6cqi, 34px);
+		/*
+		 * No outline, and no fill until it is pointed at.
+		 *
+		 * The dock is a channel cut into the screen, and a bordered pill sitting
+		 * in it is a button that has been placed there rather than a control that
+		 * belongs to it. A ring drawn around a glyph also competes with the glyph:
+		 * a magnifier already reads as one shape, and putting a circle round it
+		 * makes two.
+		 *
+		 * The well arrives on hover, where it is doing something - saying which of
+		 * several things the pointer is on - rather than sitting there declaring
+		 * that this is a button, which the shape of a magnifier had already said.
+		 */
+		border: 0;
+		border-radius: 999px;
+		background: transparent;
+		color: var(--fg-dim);
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.dock-start:hover {
+			background: color-mix(in srgb, var(--ink) 8%, transparent);
+			color: var(--fg);
+		}
+	}
+
+	/*
+	 * The list takes what is left. `min-height: 0` is the load-bearing line: a
+	 * flex child refuses to shrink below its content without it, so the list
+	 * would push the panel taller instead of scrolling inside it - which is the
+	 * usual reason an `overflow` that is set does not appear to do anything.
+	 */
+	.search-results {
+		flex: 1;
+		min-height: 0;
+		margin: 0;
+		padding: 0;
+		overflow-y: auto;
+		list-style: none;
+	}
+
+	.search-result {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		width: 100%;
+		min-height: 44px;
+		padding: var(--s-2);
+		border: 0;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.dock-result:hover {
+			background: var(--bg-2);
+		}
+	}
+
+	.dock-result:focus-visible {
+		background: var(--bg-2);
+	}
+
+	/*
+	 * Scrolls when there are more windows than room, and shows nothing for it.
+	 *
+	 * A scrollbar in a dock is a scrollbar across the bottom of somebody's
+	 * screen: it appears the moment a third folder is opened, it is the only
+	 * white thing in the whole machine, and it moves. The row is a handful of
+	 * chips that can be dragged sideways, which is what every dock does, and a
+	 * bar is not how anybody was going to discover that.
+	 *
+	 * `scrollbar-width: none` covers Firefox and modern WebKit; the
+	 * pseudo-element covers the rest. Both are needed and neither is enough.
+	 * Nothing is trapped by this - the row still scrolls by wheel, by drag and
+	 * by keyboard, and every chip in it is a real focusable button, so tabbing
+	 * scrolls it into view.
+	 */
+	.dock-tasks {
+		display: flex;
+		align-items: center;
+		gap: var(--s-1);
+		flex: 1;
+		min-width: 0;
+		overflow-x: auto;
+		scrollbar-width: none;
+		overscroll-behavior-x: contain;
+	}
+
+	.dock-tasks::-webkit-scrollbar {
+		display: none;
+	}
+
+	.dock-task {
+		display: inline-flex;
+		align-items: center;
+		flex: 0 0 auto;
+		border-radius: var(--r);
+		background: color-mix(in srgb, var(--bg-2) 70%, transparent);
+		overflow: hidden;
+	}
+
+	.dock-task-face {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-2);
+		/* The same clamp as the launcher, so the row has one height. */
+		min-height: clamp(28px, 6cqi, 34px);
+		padding: 0 var(--s-2) 0 var(--s-3);
+		border: 0;
+		background: transparent;
+		color: var(--fg-faint);
+		font: inherit;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		cursor: pointer;
+	}
+
+	/*
+	 * The front-most window. Marked with the folder blue rather than the accent,
+	 * because it is a container that is showing, not an action to take.
+	 */
+	.dock-task-face[data-active="true"] {
+		color: var(--fg);
+		box-shadow: inset 0 -2px 0 var(--folder);
+	}
+
+	/*
+	 * Fluid against the screen, which is what replaced a `max-width: 620px`
+	 * query here. That query asked how wide the browser window was, and the
+	 * answer has nothing to do with how much room this dock has: the phone
+	 * drawn on a wide monitor got the laptop's label width inside a 22rem
+	 * screen, and every chip overflowed.
+	 */
+	.dock-task-label {
+		max-width: clamp(4rem, 18cqi, 9rem);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.dock-task-close {
+		display: grid;
+		place-items: center;
+		width: clamp(22px, 5cqi, 28px);
+		height: clamp(28px, 6cqi, 34px);
+		border: 0;
+		background: transparent;
+		color: var(--fg-faint);
+		cursor: pointer;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.dock-task-close:hover {
+			background: var(--bg-3);
+			color: var(--fg);
+		}
+	}
+
+	.dock-corner {
+		flex: 0 0 auto;
+		padding-inline: var(--s-2);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.desk-window {
+			animation: none;
+		}
+	}
+}

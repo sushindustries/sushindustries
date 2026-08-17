@@ -1,0 +1,178 @@
+@layer blocks {
+	/* ── forms ───────────────────────────────────────────────────── */
+
+	/*
+	 * One control skin. Everything typed-into shares it - input, textarea,
+	 * select - and the focus ring is the accent at low opacity rather than
+	 * the browser default, visible on both themes without shouting.
+	 */
+	.field-control {
+		display: block;
+		width: 100%;
+		padding: var(--s-2) var(--s-3);
+		border: 1px solid var(--line);
+		border-radius: var(--r-lg);
+		background: var(--bg-0);
+		color: var(--fg);
+		font: var(--t-md) / 1.5 var(--sans);
+		transition:
+			border-color 160ms ease,
+			box-shadow 160ms ease;
+	}
+
+	.field-control:focus-visible {
+		outline: none;
+		border-color: var(--accent);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+	}
+
+	.field-control::placeholder {
+		color: var(--fg-faint);
+	}
+
+	.field-textarea {
+		resize: vertical;
+		field-sizing: content;
+		min-height: 4.5em;
+	}
+
+	/* The labelled wrapper: label, control, and the one line under it. */
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-2);
+	}
+
+	.field-note {
+		color: var(--fg-faint);
+	}
+
+	.field[data-invalid="true"] .field-note {
+		color: var(--tuna);
+	}
+
+	.field[data-invalid="true"] .field-control {
+		border-color: var(--tuna);
+	}
+
+	/*
+	 * Native checks and radios, painted rather than replaced. accent-color
+	 * keeps every behaviour the platform ships and costs one property.
+	 */
+	/* The wrapper is utilities in the markup; the block owns only the input. */
+	.choice input {
+		width: 16px;
+		height: 16px;
+		margin: 0;
+		accent-color: var(--accent);
+	}
+
+	.choice-group {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-2);
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	/* The switch: a checkbox that admits it. :checked drives everything. */
+	.switch-track {
+		display: inline-flex;
+		align-items: center;
+		width: 38px;
+		height: 22px;
+		padding: 2px;
+		border: 1px solid var(--line);
+		border-radius: 999px;
+		background: var(--bg-2);
+		transition: background 180ms ease;
+	}
+
+	.switch-thumb {
+		width: 16px;
+		height: 16px;
+		border-radius: 999px;
+		background: var(--bg-0);
+		box-shadow: var(--lift-1);
+		transition: translate 180ms var(--ease-out);
+	}
+
+	.switch input:checked + .switch-track {
+		background: var(--accent);
+		border-color: var(--accent);
+	}
+
+	.switch input:checked + .switch-track .switch-thumb {
+		translate: 16px 0;
+	}
+
+	.switch input:focus-visible + .switch-track {
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.switch-thumb,
+		.switch-track {
+			transition: none;
+		}
+	}
+
+	/* The platform's select, with the chevron appearance:none removed. */
+	.select-wrap {
+		position: relative;
+		display: block;
+	}
+
+	.select-wrap .field-control {
+		appearance: none;
+		padding-right: var(--s-6);
+	}
+
+	.select-chevron {
+		position: absolute;
+		top: 50%;
+		right: var(--s-3);
+		translate: 0 -50%;
+		pointer-events: none;
+		color: var(--fg-faint);
+		display: flex;
+	}
+
+	/* Range and progress, painted natively. */
+	.slider {
+		width: 100%;
+		accent-color: var(--accent);
+	}
+
+	.progress {
+		width: 100%;
+		height: 8px;
+		border: 0;
+		border-radius: 999px;
+		overflow: hidden;
+		background: var(--bg-2);
+		accent-color: var(--accent);
+	}
+
+	.progress::-webkit-progress-bar {
+		background: var(--bg-2);
+	}
+
+	.progress::-webkit-progress-value {
+		background: var(--accent);
+		border-radius: 999px;
+	}
+
+	.progress::-moz-progress-bar {
+		background: var(--accent);
+		border-radius: 999px;
+	}
+
+	/* The installer's own mark beside its name, at label size. */
+	.install-logo {
+		width: 16px;
+		height: 16px;
+		object-fit: contain;
+	}
+}

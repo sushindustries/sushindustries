@@ -1,0 +1,328 @@
+@layer blocks {
+	/* ── shelf ───────────────────────────────────────────────────── */
+
+	/*
+	 * The shelf and its window, as one unit. The dialog is a child of this rather
+	 * than a portal, because `showModal()` puts it in the top layer regardless of
+	 * where it sits in the tree - so there is nothing to gain from moving it and a
+	 * portal to keep in sync if it were.
+	 */
+	/*
+	 * The desk: the box windows and placed icons are positioned inside.
+	 *
+	 * `position: relative` is the whole point of this rule. Windows are
+	 * `position: absolute` and this is their parent, so without it they resolve
+	 * against whichever ancestor happens to be positioned - which was the
+	 * screen, two levels up and a different size, so a window dragged to the
+	 * bottom of the desk ended up somewhere else entirely and could leave the
+	 * screen.
+	 *
+	 * It is also what `useDragPlace` reads as `offsetParent` to turn a drag into
+	 * a percentage, and what `DeskWindow` measures to clamp a drag. Three things
+	 * depend on this element being the positioned one, which is why it is said
+	 * here rather than inherited by luck.
+	 *
+	 * `min-height: 100%` makes it fill the desktop even when the icons do not,
+	 * so an icon can be dragged to the bottom of the visible area rather than to
+	 * the bottom of the two rows of icons.
+	 */
+	.shelf-root {
+		position: relative;
+		min-height: 100%;
+		/*
+		 * Windows are clipped to the desk, and cannot lengthen it.
+		 *
+		 * They are absolutely positioned, so they do not grow this box - but they
+		 * were still painted past the bottom of it and past the bottom of the
+		 * screen, which is a window somebody has to scroll the desktop to reach
+		 * and can then drag no further. `clip` keeps them inside the machine,
+		 * which is the same promise the drag clamp makes and the same one the
+		 * bezel implies.
+		 *
+		 * `clip` rather than `hidden`: `hidden` makes this a scroll container,
+		 * which would give the desk a second scrollbar of its own and let a
+		 * dragged window scroll it.
+		 */
+		overflow: clip;
+	}
+
+	/*
+	 * A shelf of folders.
+	 *
+	 * `auto-fit` with a `minmax` floor rather than a column count: the shelf sits
+	 * in a section on the home page and in a showcase frame at 320px, and neither
+	 * should need to be told about the other.
+	 */
+	.shelf {
+		display: grid;
+		/*
+		 * The floor tracks the pane, so a window dragged narrow packs its icons
+		 * tighter instead of dropping to one very wide column, and a window
+		 * dragged wide spreads them instead of stretching four of them across it.
+		 */
+		grid-template-columns: repeat(
+				auto-fit,
+				minmax(clamp(6rem, 22cqi, 9.5rem), 1fr)
+			);
+		gap: clamp(var(--s-2), 1.5cqi, var(--s-3));
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	/*
+	 * The desktop counts columns; a window keeps guessing.
+	 *
+	 * A machine's home screen has a column count, not a minimum tile width -
+	 * three across on a phone is what makes those icons read as apps, and
+	 * `auto-fit` at 9.5rem gives a 22rem phone two columns and a lot of air. So
+	 * on the desktop the count comes from `devices.md` with the rest of the
+	 * machine.
+	 *
+	 * Scoped with `>` to the shelf that *is* the desktop. The same grid appears
+	 * inside every open window, and a window is a box somebody resizes by hand -
+	 * it has no idea what machine it is on and should not be told, so it keeps
+	 * `auto-fit`.
+	 */
+	/*
+	 * The desktop's grid: a fixed number of columns, and rows that exist whether
+	 * or not anything is in them.
+	 *
+	 * Both halves are load-bearing and the second one is the subtle one.
+	 * `grid-auto-rows: max-content` was here, and an implicit row with nothing in
+	 * it has a max-content height of zero - so dropping an icon on row five
+	 * created five rows, four of them zero pixels tall, and the icon appeared
+	 * directly under the first one. It looked as though the bottom of the screen
+	 * simply refused icons.
+	 *
+	 * A fixed row height makes row five a real place. It is also the number
+	 * `useDragPlace` divides a drop by to work out which row it was over - the
+	 * hook measures the tile rather than being told, so the cell size here and
+	 * the cell size there are the same measurement of the same element rather
+	 * than two constants somebody has to keep in step.
+	 *
+	 * `min-height: 100%` is what makes the empty desk droppable at all: without
+	 * it the grid is as tall as its two rows of icons, and everything below that
+	 * is outside the box the drag measures against.
+	 */
+	.device-desktop .shelf-root > .shelf {
+		grid-template-columns: repeat(var(--device-columns), minmax(0, 1fr));
+		grid-auto-rows: var(--shelf-row);
+		min-height: 100%;
+	}
+
+	/*
+	 * An icon somebody has dragged somewhere.
+	 *
+	 * Still a grid item - `gridColumn` and `gridRow` are set inline from the
+	 * resolved cell. That is what makes both of the things people ask for true
+	 * without any arithmetic here: an item placed on a grid line cannot end up
+	 * outside the grid, and auto-placement will not put another icon on a cell
+	 * that has been explicitly claimed.
+	 *
+	 * It was `position: absolute` with a percentage offset, which was wrong in
+	 * both directions at once: icons drifted off the right edge on a narrow
+	 * screen, and two of them could sit exactly on top of each other with the
+	 * lower one unclickable.
+	 *
+	 * `--x` and `--y` are the live drag offset, written by the hook on every
+	 * frame and removed when it commits. Nothing else moves while they are set.
+	 */
+	/*
+	 * The tile itself: the thing that is drawn, and the thing that moves.
+	 *
+	 * `--x` and `--y` are the live drag offset, written by `useDragPlace` on
+	 * every frame and removed when it commits a cell. They have to be read on
+	 * *this* element and not on the cell around it, because the hook sets them
+	 * on the element its handlers are attached to and a custom property set
+	 * there does not reach the element's parent. Putting the translate on the
+	 * `<li>` looked correct and moved nothing at all.
+	 *
+	 * It was `relative h-full` - two utilities standing in for a block that
+	 * needed a name the moment it had a state and a transform of its own.
+	 */
+	.shelf-tile {
+		position: relative;
+		height: 100%;
+		translate: var(--x, 0) var(--y, 0);
+	}
+
+	/* Above its neighbours while it is being carried over them. */
+	.shelf-tile[data-dragging="true"] {
+		z-index: var(--z-raised);
+		cursor: grabbing;
+	}
+
+	.shelf-cell:has(.shelf-tile[data-dragging="true"]) {
+		z-index: var(--z-raised);
+	}
+
+	.shelf-cell {
+		min-width: 0;
+	}
+
+	.shelf-face {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: clamp(4px, 1.2cqi, 8px);
+		width: 100%;
+		height: 100%;
+		/* Fluid against the pane, so a tile in a narrow window is a small tile
+	   rather than a full-size one with its label wrapped to four lines. */
+		padding: clamp(var(--s-2), 3cqi, var(--s-4))
+			clamp(var(--s-1), 2cqi, var(--s-3)) clamp(var(--s-3), 4cqi, var(--s-5));
+		border: 1px solid transparent;
+		/* Squarer than the rest of the site. A desktop icon is a small square
+	   thing, and the 16px card radius made these read as cards with pictures
+	   on them rather than as icons. */
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		text-align: center;
+		cursor: pointer;
+		transition:
+			background 160ms ease,
+			border-color 160ms ease,
+			translate 220ms var(--ease-out);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		/*
+		 * `translate` and not `transform`, and the difference is the flutter.
+		 *
+		 * `.shelf-tile` already carries a `translate` for the drag offset. A
+		 * `transform: translateY()` here is a *different property* that composes
+		 * after it, so hovering a tile put text through two stacked transforms
+		 * and the browser re-rasterised the glyph and the label on every frame of
+		 * the transition - which is the shimmer on hover.
+		 *
+		 * Using the same individual property means one translation, resolved
+		 * once. It also composes correctly with the drag rather than fighting it.
+		 */
+		.shelf-face:hover {
+			background:
+				linear-gradient(to bottom, var(--glass-edge), transparent 45%),
+				var(--bg-1);
+			border-color: var(--line-soft);
+			translate: 0 -2px;
+		}
+	}
+
+	.shelf-face:focus-visible {
+		background: var(--bg-1);
+		border-color: var(--line-soft);
+	}
+
+	/* No hover on a touch screen, so the press has to answer for itself. */
+	.shelf-face:active {
+		background: var(--bg-2);
+		/* Same property as the hover above, or it cancels nothing. */
+		translate: 0 0;
+	}
+
+	.shelf-glyph {
+		position: relative;
+		display: grid;
+		place-items: center;
+		color: var(--fg-faint);
+		transition: color 160ms ease;
+	}
+
+	/*
+	 * The glyph is sized here, not by the `size` prop it was rendered with.
+	 *
+	 * `Icon` writes `width` and `height` attributes, which are a default that
+	 * any CSS beats - so the component keeps one honest number for anybody
+	 * reading the markup, and the tile scales it to the pane it is actually in.
+	 * A 40px icon is right on a laptop desktop and half the height of a tile in
+	 * a window dragged down to 260px.
+	 */
+	.shelf-glyph svg {
+		width: clamp(22px, 9cqi, 40px);
+		height: clamp(22px, 9cqi, 40px);
+	}
+
+	/*
+	 * How many things are inside, on the folder itself.
+	 *
+	 * A folder you have to open to discover is empty is a folder that wasted a
+	 * click, and this is the cheapest possible way to not do that.
+	 */
+	.shelf-count {
+		position: absolute;
+		right: -6px;
+		bottom: 2px;
+		min-width: 18px;
+		padding: 0 4px;
+		border-radius: 999px;
+		background: var(--bg-3);
+		color: var(--fg-dim);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		line-height: 18px;
+		text-align: center;
+	}
+
+	.shelf-name {
+		color: var(--fg);
+		font-size: clamp(var(--t-xs), 3.2cqi, var(--t-sm));
+		font-weight: 500;
+		/*
+		 * `break-word`, not `anywhere`, and the difference is visible.
+		 *
+		 * `anywhere` lets the browser count a tile's minimum width as one
+		 * character, so the grid hands every tile the narrowest column it can
+		 * and then breaks the labels to fit it - which is how a row of icons
+		 * came out reading "Assista / nt" and "Compo / nents".
+		 *
+		 * `break-word` keeps a word whole when it fits and only breaks one that
+		 * genuinely cannot, and it leaves the longest word in the label as the
+		 * tile's minimum width, so the column is sized to hold it in the first
+		 * place. `hyphens` makes the remaining unavoidable break readable.
+		 */
+		overflow-wrap: break-word;
+		hyphens: auto;
+	}
+
+	.shelf-note {
+		font-size: var(--t-xs);
+		line-height: 1.4;
+		color: var(--fg-faint);
+	}
+
+	/*
+	 * The visible way into the menu.
+	 *
+	 * Always present rather than revealed on hover. A control that only exists
+	 * while a pointer is over it does not exist on a touch screen, and this one is
+	 * the only route to the menu for anyone who does not right-click.
+	 */
+	.shelf-more,
+	.window-more {
+		position: absolute;
+		top: var(--s-2);
+		right: var(--s-2);
+		display: grid;
+		place-items: center;
+		width: 30px;
+		height: 30px;
+		border: 1px solid transparent;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-faint);
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.shelf-more:hover,
+		.window-more:hover {
+			background: var(--bg-2);
+			color: var(--fg);
+		}
+	}
+}

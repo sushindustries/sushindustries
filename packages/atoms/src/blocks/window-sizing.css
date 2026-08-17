@@ -1,0 +1,137 @@
+@layer blocks {
+	/*
+	 * Windows take their size from custom properties when they have been
+	 * resized, and fall back to the default otherwise. `var(--w, <default>)` is
+	 * what lets one rule serve both cases without a second class.
+	 */
+	/*
+	 * A resized window, bounded by the desk it is on.
+	 *
+	 * `--w` and `--h` are pixels, committed when somebody let go of the corner,
+	 * and pixels do not survive a change of machine: a window sized on a 60rem
+	 * laptop screen is wider than the whole of a 22rem phone, and it hung off
+	 * both edges with no way to reach the corner and drag it back.
+	 *
+	 * `min()` against 100% is what makes the stored size a *wish*. It is honoured
+	 * wherever there is room and quietly ignored where there is not, which is the
+	 * right relationship between a remembered preference and a smaller screen.
+	 */
+	.desk-window {
+		width: min(var(--w, min(30rem, calc(100% - var(--s-5)))), 100%);
+		/*
+		 * `min()` on the height as well as the max-height.
+		 *
+		 * They have to agree. Clamping only the max-height left `height` at the
+		 * stored pixel value, so a window sized on a laptop and reopened on a
+		 * phone was told to be 500px tall and allowed to be 300 - and a flex
+		 * column whose height and max-height disagree lays its children out
+		 * against the height and then paints them inside the max, which is
+		 * exactly the "everything is cut off" this produced.
+		 */
+		/*
+		 * `--h` is a length or it is nothing, and the two cases are separate
+		 * declarations on purpose.
+		 *
+		 * This was one line, `min(var(--h, auto), 100%)`, and `auto` is not a
+		 * length - so on every window nobody had resized the whole declaration
+		 * was invalid, dropped, and the height fell back to the initial value
+		 * with no warning anywhere. Written as a fallback of `auto` on its own it
+		 * is valid in both cases, and the clamp below still bounds it.
+		 */
+		height: var(--h, auto);
+		max-height: min(var(--h, min(78%, 30rem)), 100%);
+		/* Never smaller than its own title bar plus something to look at. */
+		min-width: min(15rem, 100%);
+		min-height: 10rem;
+	}
+
+	.desk-window[data-resizing="true"] {
+		user-select: none;
+	}
+
+	/*
+	 * The resize corner.
+	 *
+	 * Two diagonal lines rather than a filled triangle, which is the shape
+	 * people already read as "drag me" and costs one gradient. It is bigger than
+	 * it looks: 20px is under the 24px minimum for a pointer target, and this
+	 * one is refinement rather than function, but a corner you cannot catch is
+	 * a corner that reads as broken.
+	 */
+	.desk-resize {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		width: 20px;
+		height: 20px;
+		cursor: nwse-resize;
+		touch-action: none;
+		background: repeating-linear-gradient(
+			-45deg,
+			transparent 0 3px,
+			var(--line) 3px 4px
+		);
+		border-bottom-right-radius: var(--r-lg);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.desk-resize:hover {
+			background: repeating-linear-gradient(
+				-45deg,
+				transparent 0 3px,
+				var(--fg-faint) 3px 4px
+			);
+		}
+	}
+
+	/* A page shown inside a window, rather than navigated to. */
+	/*
+	 * A page, inside a box roughly a third the width it was written for.
+	 *
+	 * Prose reflows; four things do not, and every one of them pushed the window
+	 * wider than the screen rather than scrolling: a code block, a table, a long
+	 * URL, and an image with an intrinsic size. Each gets the same treatment -
+	 * scroll inside its own box, or wrap.
+	 *
+	 * `min-width: 0` on the page itself is what allows any of it to work. A grid
+	 * or flex child's automatic minimum size is its content, so without this the
+	 * page is as wide as its widest table no matter what the rules below say.
+	 */
+	.window-page {
+		min-width: 0;
+		padding: clamp(var(--s-2), 3cqi, var(--s-4));
+		font-size: clamp(var(--t-xs), 3.4cqi, var(--t-sm));
+	}
+
+	.window-page pre,
+	.window-page table {
+		display: block;
+		max-width: 100%;
+		overflow-x: auto;
+	}
+
+	.window-page img,
+	.window-page svg,
+	.window-page video {
+		max-width: 100%;
+		height: auto;
+	}
+
+	/*
+	 * A URL is one word as far as wrapping is concerned, and one word wider than
+	 * the box wins. `anywhere` rather than `break-word` because it is allowed to
+	 * affect the intrinsic minimum width, which is the half that matters here.
+	 */
+	.window-page a,
+	.window-page code {
+		overflow-wrap: anywhere;
+	}
+
+	@media (max-width: 620px) {
+		/* Nowhere to resize to at this width, and the corner would sit under a
+		   thumb that is trying to scroll. */
+		.desk-resize {
+			display: none;
+		}
+	}
+}

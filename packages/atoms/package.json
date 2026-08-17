@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"type": "module",
 	"description": "The design tokens and the atomic utilities built on them. One stylesheet, no build step, no framework.",
+	"license": "MIT",
 	"keywords": [
 		"css",
 		"atomic",

@@ -1,0 +1,36 @@
+@layer blocks {
+	/*
+	 * Portrait, for the formats that are shot that way.
+	 *
+	 * The cap is the whole rule. A 9:16 video given the prose column's width on
+	 * a desktop is around 1100px tall - taller than the screen reading it, so
+	 * the controls under it are never on screen at the same time as the video.
+	 * Capping the width and centring it is what a phone-shaped video wants on a
+	 * page that is not a phone.
+	 */
+	.video[data-variant="reel"] .video-stage {
+		max-width: 22rem;
+		margin-inline: auto;
+	}
+
+	.video[data-variant="reel"] figcaption {
+		max-width: 22rem;
+		margin-inline: auto;
+	}
+
+	/*
+	 * The dark shell, in both site themes.
+	 *
+	 * Tokens, not hexes: `--bg-3` is the darkest ground the palette has in
+	 * light mode and stays the right side of the contrast in dark mode, so one
+	 * rule serves both instead of a second set of colours nobody maintains.
+	 */
+	.video[data-theme="dark"] .video-stage {
+		border-color: var(--bg-3);
+		background: var(--bg-3);
+	}
+
+	.video[data-theme="dark"] .video-play {
+		background: color-mix(in srgb, var(--bg-0) 88%, transparent);
+	}
+}

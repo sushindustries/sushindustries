@@ -106,6 +106,42 @@ A package with no `name`, or with `private: true`, is skipped.
 Atomic classes from `@sushindustries/atoms`. One class, one job. Compose in
 markup; do not write a component-specific stylesheet.
 
+### Where a style goes in atoms
+
+`atoms.css` is an **entry, not a stylesheet**. It holds the layer statement and
+then nothing but imports:
+
+```css
+@layer tokens, base, blocks, utilities;   /* the cascade, decided here */
+
+@import "./devices.css" layer(blocks);
+@import "./tokens.css";
+@import "./base.css";
+@import "./utilities.css";
+@import "./blocks/nav.css";               /* one file per chapter */
+```
+
+Each chapter file opens with its own `@layer` wrapper. Cross-layer precedence
+comes from the statement at the top, so **file order cannot change which layer
+wins**. That is what makes splitting safe, and it is why a chapter must never
+be pasted back into the entry.
+
+Three rules follow:
+
+- **A new chapter is a new file plus a line in the entry.** Nothing globs the
+  directory, on purpose: the import list *is* the cascade order, so it has to
+  be written where a human can read it top to bottom.
+- **Order inside a layer still matters.** Rules in the same layer resolve by
+  source order on a specificity tie, and `pnpm doctor` resolves a declaration
+  to the first rule providing it. So `utilities.css` is imported before
+  `blocks/`, and a chapter goes where its rules already sat.
+- **Never reopen a chapter later in the list.** Two `@import`s of the same file
+  split its rules around whatever is between them.
+
+Vite flattens every `@import` at build time, so the browser still gets one
+file. This was measured, not assumed: splitting 7,990 lines into 44 chapters
+emitted a byte-identical asset with the same content hash.
+
 If a value is not in the scale, add it to the scale or use the scale. There is
 no arbitrary-value syntax and that is deliberate - a short scale is what makes
 an interface look measured rather than assembled.

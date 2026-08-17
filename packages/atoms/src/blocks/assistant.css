@@ -1,0 +1,438 @@
+@layer blocks {
+	/* ── the banner ───────────────────────────────────── */
+
+	.term-banner {
+		display: flex;
+		align-items: center;
+		gap: var(--s-2);
+		flex: 0 0 auto;
+		margin: 0;
+		font-size: var(--t-xs);
+		letter-spacing: 0.22em;
+		text-transform: lowercase;
+		user-select: none;
+	}
+
+	/*
+	 * The slashes are punctuation and the name is the subject, so they are
+	 * different colours and that is the entire reason they are separate
+	 * elements. Written as one string they could only ever be one colour, and
+	 * the banner would read as a heading that happens to have slashes in it.
+	 */
+	.term-slash {
+		color: var(--fg-faint);
+	}
+
+	.term-mark {
+		color: var(--accent);
+	}
+
+	.term-greeting {
+		margin: 0;
+		color: var(--fg-faint);
+		font-size: var(--t-xs);
+		line-height: 1.6;
+		text-wrap: pretty;
+	}
+
+	/*
+	 * The links under the greeting, and the questions under those.
+	 *
+	 * Both are pills for the same reason the send button is: this panel is a
+	 * column of text, and a capsule is the one shape in it that reads as
+	 * pressable without a border heavy enough to compete with the prose.
+	 *
+	 * `flex-wrap` rather than a grid. These are a sentence's worth of chips
+	 * whose widths come from their words, and a grid would either clip the
+	 * longest or pad the shortest to match it.
+	 */
+	.term-elsewhere,
+	.term-openers {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--s-2);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.term-elsewhere {
+		margin-top: var(--s-3);
+	}
+
+	.term-openers {
+		margin-top: var(--s-4);
+	}
+
+	.term-link,
+	.term-opener {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-2);
+		padding: var(--s-1) var(--s-3);
+		border: 1px solid var(--line);
+		border-radius: var(--r-pill);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		font-size: var(--t-xs);
+		line-height: 1.5;
+		text-align: left;
+		text-decoration: none;
+		cursor: pointer;
+		transition:
+			border-color 140ms ease,
+			color 140ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.term-link:hover,
+		.term-opener:hover {
+			border-color: var(--accent);
+			color: var(--accent);
+		}
+	}
+
+	/*
+	 * Keyboard reaches everything here, and can be seen doing it.
+	 *
+	 * These are real `<a>` and `<button>` elements, so Tab already stops on
+	 * them and Enter already fires them - that half was free and is the reason
+	 * they were not built as divs. What was missing is the half that makes it
+	 * usable: an outline, offset far enough from a pill's edge to read as a
+	 * ring around it rather than as a thicker border.
+	 *
+	 * `:focus-visible` rather than `:focus`, so a mouse press does not leave a
+	 * ring behind on a control somebody has already finished with.
+	 */
+	.term-link:focus-visible,
+	.term-opener:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+
+	/*
+	 * Disabled while a reply streams. Pressing a second question mid-answer
+	 * would interleave two replies in one log.
+	 */
+	.term-opener:disabled {
+		opacity: 0.5;
+		cursor: default;
+	}
+
+	.term-link svg,
+	.term-opener svg {
+		flex: 0 0 auto;
+	}
+
+	/*
+	 * The glyphs carry the colour, and the words do not.
+	 *
+	 * Three chips in a row all wearing the accent read as one repeated button.
+	 * Colouring only the icon lets each link be recognisable at a glance while
+	 * the labels stay a single quiet voice, so the row still reads as a
+	 * sentence rather than as a toolbar.
+	 *
+	 * The same `--syn-*` cycle `TypedMark` uses, and for the same reason: they
+	 * are the hues checked against the terminal slab. Cycling by position
+	 * rather than naming a tone per link means adding a fourth link in the
+	 * Markdown gets a colour without touching this file.
+	 */
+	/*
+	 * Counted on the `li`, not on the link. The anchor is its item's only
+	 * child, so `.term-link:nth-child(2)` matches nothing, forever, silently.
+	 */
+	.term-elsewhere li:nth-child(4n + 1) .term-link svg {
+		color: var(--syn-keyword);
+	}
+	.term-elsewhere li:nth-child(4n + 2) .term-link svg {
+		color: var(--syn-number);
+	}
+	.term-elsewhere li:nth-child(4n + 3) .term-link svg {
+		color: var(--syn-tag);
+	}
+	.term-elsewhere li:nth-child(4n + 4) .term-link svg {
+		color: var(--syn-property);
+	}
+
+	/*
+	 * On hover the whole chip takes the accent, glyph included, so the thing
+	 * under the pointer is one object rather than a border and a coloured dot.
+	 */
+	@media (hover: hover) and (pointer: fine) {
+		.term-link:hover svg {
+			color: inherit;
+		}
+	}
+
+	/* ── one turn ─────────────────────────────────────── */
+
+	/*
+	 * A sigil in a fixed gutter, and the answer beside it.
+	 *
+	 * `auto 1fr` rather than a flex row, so every sigil lands on the same
+	 * vertical line however wide the panel is. A ragged left edge is what makes
+	 * a log stop looking like output.
+	 */
+	.term-turn {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: var(--s-3);
+		min-width: 0;
+	}
+
+	.term-sigil {
+		color: var(--fg-faint);
+		font-size: var(--t-sm);
+		line-height: 1.6;
+		user-select: none;
+	}
+
+	.term-turn[data-role="assistant"] .term-sigil {
+		color: var(--accent);
+	}
+
+	/*
+	 * The same containment as a page in a window, for the same reason: the model
+	 * writes fences and tables, and neither reflows. Each scrolls inside its own
+	 * box rather than widening the panel around it.
+	 */
+	.term-body {
+		min-width: 0;
+		font-size: clamp(var(--t-xs), 3.2cqi, var(--t-sm));
+		line-height: 1.6;
+	}
+
+	.term-body pre,
+	.term-body table {
+		display: block;
+		max-width: 100%;
+		overflow-x: auto;
+	}
+
+	.term-body a,
+	.term-body code {
+		overflow-wrap: anywhere;
+	}
+
+	.term-plain {
+		margin: 0;
+		white-space: pre-wrap;
+	}
+
+	.term-caret {
+		width: 8px;
+		height: 1em;
+		margin: 0;
+		background: var(--accent);
+		animation: term-blink 1s steps(2, start) infinite;
+	}
+
+	@keyframes term-blink {
+		50% {
+			opacity: 0;
+		}
+	}
+
+	/* ── the composer ─────────────────────────────────── */
+
+	/*
+	 * Pinned to the bottom, outside the scrolling log.
+	 *
+	 * `flex: 0 0 auto` on a sibling of the log is what pins it: the log takes
+	 * everything left over and this keeps its own height at every window size.
+	 * Inside the log it would scroll away with the transcript, which is the
+	 * difference between an interface and a thing that used to be there.
+	 *
+	 * `align-items: flex-end` so the prompt and the button stay level with the
+	 * *last* line of a field that has grown, rather than floating in the middle
+	 * of it.
+	 */
+	.term-form {
+		display: flex;
+		align-items: flex-end;
+		gap: var(--s-2);
+		flex: 0 0 auto;
+		padding: clamp(var(--s-2), 2.5cqi, var(--s-3));
+		border-top: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--bg-3) 55%, transparent);
+	}
+
+	.term-prompt {
+		flex: 0 0 auto;
+		padding-bottom: 6px;
+		color: var(--accent);
+		font-size: var(--t-sm);
+		user-select: none;
+	}
+
+	/*
+	 * The field has no box of its own.
+	 *
+	 * A bordered input inside a bordered composer inside a bordered window is
+	 * three frames around one line of text. The prompt beside it already says
+	 * where to type, which is how it works in the thing this is imitating.
+	 *
+	 * Its height is set inline by the component from `scrollHeight`, so this
+	 * rule's job is the ceiling - without one a pasted paragraph pushes the
+	 * transcript off the top of the window.
+	 */
+	.term-field {
+		flex: 1;
+		min-width: 0;
+		max-height: 7lh;
+		padding: var(--s-2) 0;
+		border: 0;
+		background: transparent;
+		color: var(--fg);
+		font: inherit;
+		font-size: var(--t-sm);
+		line-height: 1.5;
+		resize: none;
+	}
+
+	.term-field:focus-visible {
+		outline: 0;
+	}
+
+	.term-field::placeholder {
+		color: var(--fg-faint);
+	}
+
+	/*
+	 * Outlined, in the accent, and filled by nothing.
+	 *
+	 * A solid orange button is the brightest thing on the screen and this panel
+	 * is a dark log - it would pull the eye away from the answer, which is the
+	 * only thing here worth looking at. An outline in the same colour is exactly
+	 * as findable and does not compete: it reads as the terminal's own control
+	 * rather than as a call to action pasted onto one.
+	 *
+	 * It fills on hover, which is where a fill is doing work.
+	 */
+	/*
+	 * A capsule, because it is the one thing in the row that is pressed.
+	 *
+	 * The composer is a line of text with a control at the end of it, and a
+	 * rounded rectangle at that size reads as another field rather than as a
+	 * button. A pill is the one shape in the interface that cannot be mistaken
+	 * for an input, which is worth more here than consistency with the square
+	 * corners elsewhere.
+	 *
+	 * `inline-flex` with a gap so the glyph and the word are one object: the
+	 * icon carries the meaning at a glance and the word confirms it, and they
+	 * have to sit on one baseline for that to work.
+	 */
+	.term-send {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-2);
+		flex: 0 0 auto;
+		min-height: 32px;
+		padding-inline: var(--s-3);
+		border: 1px solid var(--accent);
+		border-radius: var(--r-pill);
+		background: transparent;
+		color: var(--accent);
+		font: inherit;
+		font-size: var(--t-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	/* The glyph never stretches, whatever the button's content does. */
+	.term-send svg {
+		flex: 0 0 auto;
+	}
+
+	/*
+	 * Icon-only: a circle, not a capsule with one thing in it.
+	 *
+	 * A pill whose content is a single 13px glyph is mostly padding, and it
+	 * reads as a button that lost its label. Equal width and height at the
+	 * row's height makes it deliberate.
+	 */
+	.term-send[data-icon="true"] {
+		width: 32px;
+		padding-inline: 0;
+		justify-content: center;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.term-send:hover:not(:disabled) {
+			background: var(--accent);
+			color: var(--on-accent);
+		}
+	}
+
+	.term-send:disabled {
+		border-color: var(--line);
+		color: var(--fg-faint);
+		cursor: default;
+	}
+
+	/*
+	 * An application fills its window; a document is padded inside one.
+	 *
+	 * `:has()` is the honest way to say that. The canvas cannot know what it was
+	 * given, and adding a prop to say so would push a layout decision up through
+	 * three components to be answered by the thing that looked it up.
+	 */
+	/*
+	 * An application opens bigger than a folder does.
+	 *
+	 * A window sized for a grid of eight icons is a cramped terminal, and the
+	 * defaults here are the ones somebody gets before they have ever dragged a
+	 * corner - which for most readers is every time. `var(--w, ...)` keeps a
+	 * size they *have* chosen winning, so this is a better default rather than
+	 * an override.
+	 */
+	.desk-window:has(.term) {
+		width: min(var(--w, 44rem), 100%);
+		height: var(--h, min(82%, 30rem));
+		max-height: min(var(--h, min(82%, 30rem)), 100%);
+	}
+
+	.window-canvas:has(.term) {
+		display: flex;
+		padding: 0;
+		overflow: hidden;
+	}
+
+	.window-page:has(.term) {
+		display: flex;
+		flex: 1;
+		min-height: 0;
+		min-width: 0;
+		padding: 0;
+	}
+
+	/*
+	 * Filling is done with `flex`, never with `height: 100%`.
+	 *
+	 * A percentage height resolves against an ancestor's height, and every
+	 * ancestor here is a flex item whose height comes from `flex: 1` - which
+	 * browsers treat as definite inconsistently enough that the terminal
+	 * collapsed to the height of its own contents and sat at the bottom of a
+	 * mostly empty window. `flex: 1` asks for the leftover space instead, which
+	 * needs no ancestor to have committed to a height at all.
+	 */
+	.window-page:has(.term) .term {
+		flex: 1;
+		height: auto;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.term-caret,
+		.term-send {
+			animation: none;
+			transition: none;
+		}
+	}
+}

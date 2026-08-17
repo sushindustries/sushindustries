@@ -1,0 +1,166 @@
+@layer blocks {
+	/* ── desk windows ────────────────────────────────────────────── */
+
+	/*
+	 * A window on the desk.
+	 *
+	 * Positioned against `.shelf-root`, which is the desk. Not a modal, not
+	 * portalled: several can be open, they stack by their own `z`, and each one
+	 * covers the screen it belongs to rather than the browser window.
+	 *
+	 * Position rides on two custom properties so a drag can write them directly
+	 * without going through React. Sixty state updates a second would re-render
+	 * a grid of icons on every frame of every drag.
+	 */
+	.desk-window {
+		position: absolute;
+		top: 0;
+		left: 0;
+		translate: var(--x, 0) var(--y, 0);
+		display: flex;
+		flex-direction: column;
+		width: min(30rem, calc(100% - var(--s-5)));
+		max-height: min(78%, 30rem);
+		border: 1px solid var(--line);
+		border-radius: var(--r-lg);
+		background:
+			linear-gradient(to bottom, var(--glass-edge), transparent 22%),
+			color-mix(in srgb, var(--bg-1) 96%, transparent);
+		box-shadow: var(--lift-3);
+		overflow: hidden;
+		animation: desk-window-in 160ms var(--ease-out);
+	}
+
+	/*
+	 * Opacity and a nudge, never a scale.
+	 *
+	 * `scale: 0.98` was here and it is the reason text shivered as a window
+	 * opened: scaling an element re-rasterises every glyph inside it on every
+	 * frame, and at 98% the type is landing between pixels for the whole
+	 * animation. Two per cent is not enough scale for anybody to notice and is
+	 * more than enough to make the text look wet.
+	 *
+	 * A four-pixel rise reads as the same arrival and leaves the type alone.
+	 */
+	@keyframes desk-window-in {
+		from {
+			opacity: 0;
+			translate: 0 4px;
+		}
+	}
+
+	/*
+	 * While dragging: no transition on anything, and no text selection.
+	 *
+	 * A transition would make the window trail the pointer, and a drag that
+	 * selects the title text as it goes leaves a blue smear behind it.
+	 */
+	.desk-window[data-dragging="true"] {
+		user-select: none;
+		cursor: grabbing;
+	}
+
+	.desk-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--s-3);
+		flex: 0 0 auto;
+		/* Comfortably grabbable. A thin title bar is a window people fight. */
+		min-height: 40px;
+		padding: var(--s-2) var(--s-2) var(--s-2) var(--s-4);
+		border-bottom: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--bg-3) 45%, transparent);
+		cursor: grab;
+		/* The bar is a handle, so the browser must not claim the drag for
+		   scrolling or for text selection. */
+		touch-action: none;
+	}
+
+	.desk-title {
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--fg-dim);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.desk-close {
+		display: grid;
+		place-items: center;
+		flex: 0 0 auto;
+		width: 32px;
+		height: 32px;
+		border: 1px solid transparent;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--close-mark);
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.desk-close:hover {
+			background: color-mix(in srgb, var(--close-mark) 14%, transparent);
+			color: var(--close-mark);
+		}
+	}
+
+	/*
+	 * The body takes what the title bar leaves, and never more.
+	 *
+	 * `flex: 1` with `min-height: 0` is the pair that makes a resized window
+	 * work at all. Without `flex: 1` the body is its content's height and the
+	 * window's own height is ignored; without `min-height: 0` the body refuses
+	 * to shrink below its content, so dragging the corner up cuts the bottom off
+	 * instead of scrolling it. Both had to be here and only one was.
+	 */
+	.desk-body {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-height: 0;
+		min-width: 0;
+		overflow: hidden;
+	}
+
+	/* The desk is the positioning context for its windows, and has to have a
+	   height for a window to be placed against. */
+	.shelf-root {
+		position: relative;
+		min-height: 100%;
+		/*
+		 * Windows are clipped to the desk, and cannot lengthen it.
+		 *
+		 * They are absolutely positioned, so they do not grow this box - but they
+		 * were still painted past the bottom of it and past the bottom of the
+		 * screen, which is a window somebody has to scroll the desktop to reach
+		 * and can then drag no further. `clip` keeps them inside the machine,
+		 * which is the same promise the drag clamp makes and the same one the
+		 * bezel implies.
+		 *
+		 * `clip` rather than `hidden`: `hidden` makes this a scroll container,
+		 * which would give the desk a second scrollbar of its own and let a
+		 * dragged window scroll it.
+		 */
+		overflow: clip;
+	}
+
+	@media (max-width: 620px) {
+		/*
+		 * On a phone a window fills the desk and stops being draggable in any
+		 * useful sense: there is nowhere to drag it to. It keeps its bar and its
+		 * close button, which is all it needs at that size.
+		 */
+		.desk-window {
+			width: 100%;
+			max-height: 100%;
+			translate: 0 0;
+		}
+	}
+}

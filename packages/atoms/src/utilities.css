@@ -1,0 +1,413 @@
+@layer utilities {
+	/* layout */
+	.flex {
+		display: flex;
+	}
+	.grid {
+		display: grid;
+	}
+	.block {
+		display: block;
+	}
+	.hidden {
+		display: none;
+	}
+	.col {
+		flex-direction: column;
+	}
+	.wrap {
+		flex-wrap: wrap;
+	}
+	.items-center {
+		align-items: center;
+	}
+	.items-start {
+		align-items: flex-start;
+	}
+	.items-end {
+		align-items: flex-end;
+	}
+	.items-baseline {
+		align-items: baseline;
+	}
+	.justify-center {
+		justify-content: center;
+	}
+	.justify-between {
+		justify-content: space-between;
+	}
+	.justify-end {
+		justify-content: end;
+	}
+	.justify-start {
+		justify-content: start;
+	}
+	.self-start {
+		align-self: flex-start;
+	}
+	.self-center {
+		align-self: center;
+	}
+	.self-end {
+		align-self: flex-end;
+	}
+	.inline-flex {
+		display: inline-flex;
+	}
+	.flex-1 {
+		flex: 1;
+	}
+	.shrink-0 {
+		flex-shrink: 0;
+	}
+	.min-w-0 {
+		min-width: 0;
+	}
+	.relative {
+		position: relative;
+	}
+	.absolute {
+		position: absolute;
+	}
+	.sticky {
+		position: sticky;
+	}
+	.fixed {
+		position: fixed;
+	}
+	.inset-0 {
+		inset: 0;
+	}
+	.z-1 {
+		z-index: var(--z-base);
+	}
+	.z-nav {
+		z-index: var(--z-sticky);
+	}
+
+	.gap-1 {
+		gap: var(--s-1);
+	}
+	.gap-2 {
+		gap: var(--s-2);
+	}
+	.gap-3 {
+		gap: var(--s-3);
+	}
+	.gap-4 {
+		gap: var(--s-4);
+	}
+	.gap-5 {
+		gap: var(--s-5);
+	}
+	.gap-6 {
+		gap: var(--s-6);
+	}
+	.gap-7 {
+		gap: var(--s-7);
+	}
+
+	/* spacing */
+	.m-0 {
+		margin: 0;
+	}
+	.mx-auto {
+		margin-inline: auto;
+	}
+	/*
+	 * The flex pushes. `auto` margin absorbs the free space on its side, which
+	 * is how one item in a row sits apart from the rest without the row
+	 * becoming two rows. Logical properties, so they survive an RTL page.
+	 */
+	.ms-auto {
+		margin-inline-start: auto;
+	}
+	.me-auto {
+		margin-inline-end: auto;
+	}
+	.mt-auto {
+		margin-top: auto;
+	}
+	.mt-1 {
+		margin-top: var(--s-1);
+	}
+	.mt-2 {
+		margin-top: var(--s-2);
+	}
+	.mt-3 {
+		margin-top: var(--s-3);
+	}
+	.mt-4 {
+		margin-top: var(--s-4);
+	}
+	.mt-5 {
+		margin-top: var(--s-5);
+	}
+	.mt-6 {
+		margin-top: var(--s-6);
+	}
+	.mt-7 {
+		margin-top: var(--s-7);
+	}
+	.mb-1 {
+		margin-bottom: var(--s-1);
+	}
+	.mb-2 {
+		margin-bottom: var(--s-2);
+	}
+	.mb-3 {
+		margin-bottom: var(--s-3);
+	}
+	.mb-4 {
+		margin-bottom: var(--s-4);
+	}
+	.mb-5 {
+		margin-bottom: var(--s-5);
+	}
+	.mb-6 {
+		margin-bottom: var(--s-6);
+	}
+	.mb-7 {
+		margin-bottom: var(--s-7);
+	}
+	.p-1 {
+		padding: var(--s-1);
+	}
+	.p-2 {
+		padding: var(--s-2);
+	}
+	.p-3 {
+		padding: var(--s-3);
+	}
+	.p-4 {
+		padding: var(--s-4);
+	}
+	.p-5 {
+		padding: var(--s-5);
+	}
+	.p-6 {
+		padding: var(--s-6);
+	}
+	.px-2 {
+		padding-inline: var(--s-2);
+	}
+	.px-3 {
+		padding-inline: var(--s-3);
+	}
+	.px-4 {
+		padding-inline: var(--s-4);
+	}
+	.px-5 {
+		padding-inline: var(--s-5);
+	}
+	.p-0 {
+		padding: 0;
+	}
+	.py-2 {
+		padding-block: var(--s-2);
+	}
+	.py-3 {
+		padding-block: var(--s-3);
+	}
+	.py-4 {
+		padding-block: var(--s-4);
+	}
+	.py-5 {
+		padding-block: var(--s-5);
+	}
+	.py-6 {
+		padding-block: var(--s-6);
+	}
+	.py-7 {
+		padding-block: var(--s-7);
+	}
+
+	/* sizing */
+	.w-full {
+		width: 100%;
+	}
+	.h-full {
+		height: 100%;
+	}
+	/*
+	 * The reading column, wherever it is needed outside `.prose` - a page's
+	 * title, its lead, its action strip. One token, so the head of a document
+	 * and the body of it cannot end up different widths.
+	 */
+	.max-w-prose {
+		max-width: var(--measure);
+	}
+	.max-w-sm {
+		max-width: 460px;
+	}
+	.max-w-full {
+		max-width: 100%;
+	}
+
+	/* type */
+	.text-xs {
+		font-size: var(--t-xs);
+	}
+	.text-sm {
+		font-size: var(--t-sm);
+	}
+	.text-md {
+		font-size: var(--t-md);
+	}
+	.text-lg {
+		font-size: var(--t-lg);
+	}
+	.font-medium {
+		font-weight: 500;
+	}
+	.font-semibold {
+		font-weight: 600;
+	}
+	.mono {
+		font-family: var(--mono);
+	}
+	.uppercase {
+		text-transform: uppercase;
+	}
+	.text-center {
+		text-align: center;
+	}
+	.text-end {
+		text-align: end;
+	}
+	.nowrap {
+		white-space: nowrap;
+	}
+	.italic {
+		font-style: italic;
+	}
+	.text-balance {
+		text-wrap: balance;
+	}
+	.text-pretty {
+		text-wrap: pretty;
+	}
+	.leading-tight {
+		line-height: 1.15;
+	}
+
+	.h1 {
+		font-size: var(--t-h1);
+		line-height: 0.92;
+		letter-spacing: -0.04em;
+		font-weight: 600;
+	}
+
+	.h2 {
+		font-size: var(--t-h2);
+		line-height: 1.08;
+		letter-spacing: -0.025em;
+		font-weight: 600;
+	}
+
+	.h3 {
+		font-size: var(--t-h3);
+		line-height: 1.25;
+		letter-spacing: -0.012em;
+		font-weight: 600;
+	}
+
+	/*
+	 * Structural labels are monospace, uppercase and letter-spaced. This is the
+	 * one type gesture the site repeats, and it is what separates a section from
+	 * the section above it without drawing a line.
+	 */
+	.label {
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+	}
+
+	.truncate {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	/* colour */
+	.fg {
+		color: var(--fg);
+	}
+	.fg-dim {
+		color: var(--fg-dim);
+	}
+	.fg-faint {
+		color: var(--fg-faint);
+	}
+	.fg-accent {
+		color: var(--accent);
+	}
+
+	/* surface */
+	.bg-1 {
+		background: var(--bg-1);
+	}
+	.bg-2 {
+		background: var(--bg-2);
+	}
+	.border {
+		border: 1px solid var(--line);
+	}
+	.border-t {
+		border-top: 1px solid var(--line-soft);
+	}
+	.border-b {
+		border-bottom: 1px solid var(--line-soft);
+	}
+	.border-s {
+		border-inline-start: 1px solid var(--line-soft);
+	}
+	.border-e {
+		border-inline-end: 1px solid var(--line-soft);
+	}
+	.rounded {
+		border-radius: var(--r);
+	}
+	.rounded-lg {
+		border-radius: var(--r-lg);
+	}
+	.rounded-xl {
+		border-radius: var(--r-card);
+	}
+	.rounded-full {
+		border-radius: 999px;
+	}
+	.overflow-hidden {
+		overflow: hidden;
+	}
+	.overflow-auto {
+		overflow: auto;
+	}
+	/* Wide things - tables, code, diagrams - scroll inside their own box
+	   rather than making the whole page scroll sideways. */
+	.overflow-x-auto {
+		overflow-x: auto;
+	}
+	.pointer {
+		cursor: pointer;
+	}
+
+	/*
+	 * Available to screen readers, invisible to everyone else. The clip-path is
+	 * what keeps it out of the layout without `display: none`, which would take it
+	 * out of the accessibility tree too.
+	 */
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+		border: 0;
+	}
+}

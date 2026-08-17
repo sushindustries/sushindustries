@@ -1,0 +1,67 @@
+@layer blocks {
+	/* ── shelf search ────────────────────────────────────────────── */
+
+	.search-field {
+		display: flex;
+		align-items: center;
+		gap: var(--s-2);
+		margin-bottom: var(--s-4);
+		padding: var(--s-2) var(--s-3);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: color-mix(in srgb, var(--bg-3) 55%, transparent);
+	}
+
+	/* Focus lands on the input, so the ring belongs to the whole field. */
+	.search-field:focus-within {
+		border-color: var(--line);
+		outline: 2px solid var(--accent);
+		outline-offset: 1px;
+	}
+
+	.search-glyph {
+		flex: 0 0 auto;
+		color: var(--fg-faint);
+	}
+
+	.search-input {
+		flex: 1;
+		min-width: 0;
+		border: 0;
+		background: transparent;
+		color: var(--fg);
+		font: inherit;
+		font-size: var(--t-sm);
+	}
+
+	.search-input:focus {
+		/* The field draws the ring, not the input inside it. */
+		outline: none;
+	}
+
+	.search-input::placeholder {
+		color: var(--fg-faint);
+	}
+
+	.search-count {
+		flex: 0 0 auto;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--fg-faint);
+	}
+
+	.shelf-results {
+		padding: 0;
+		max-height: none;
+	}
+
+	/* Where a result lives. Only rendered in search results, where it is the
+   difference between a name and an answer. */
+	.window-where {
+		display: block;
+		margin-top: 1px;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--folder);
+	}
+}

@@ -1,0 +1,678 @@
+@layer blocks {
+	/* ── nav ─────────────────────────────────────────────────────── */
+
+	/*
+	 * The blur is on a pseudo-element, not on `.nav` itself, and that is load
+	 * bearing.
+	 *
+	 * `backdrop-filter` on an element makes it a containing block for every
+	 * `position: fixed` descendant. With it on `.nav`, the mobile drawer inside
+	 * this header measured `inset: 0` against the header rather than against the
+	 * viewport - so a full-height drawer came out header-height, in the wrong
+	 * place, with a scrim that dimmed sixty pixels of the page.
+	 *
+	 * Moving the filter down one level leaves `.nav` an ordinary element, and the
+	 * glass looks identical.
+	 */
+	.nav {
+		position: sticky;
+		top: 0;
+		z-index: var(--z-sticky);
+		border-bottom: 1px solid var(--line-soft);
+	}
+
+	/*
+	 * Frosted, not tinted.
+	 *
+	 * At 82% opacity this was a dark bar with a slight blur behind it, and
+	 * anything scrolling under it - the hero's model especially - disappeared at
+	 * the boundary rather than passing behind it. Glass is the opposite: a light
+	 * fill and a strong blur, so what goes under it stays visible and goes soft.
+	 *
+	 * The gradient is a lit top edge fading out. That single highlight is what
+	 * separates "translucent panel" from "sheet of glass", and it costs nothing.
+	 */
+	.nav::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: var(--z-under);
+		background:
+			linear-gradient(to bottom, var(--glass-edge), transparent 55%),
+			color-mix(in srgb, var(--bg-3) 55%, transparent);
+		backdrop-filter: var(--glass-blur);
+	}
+
+	.nav-link {
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+		padding: var(--s-2);
+		transition: color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.nav-link:hover {
+			color: var(--fg);
+		}
+	}
+
+	.nav-link[data-active="true"] {
+		color: var(--fg);
+	}
+
+	/*
+	 * The expanding panels.
+	 *
+	 * Built on <details>, so `[open]` is the state and there is nothing to
+	 * synchronise. The summary marker is removed in two ways because Safari still
+	 * wants the WebKit pseudo-element.
+	 */
+	.nav-burger,
+	.nav-group {
+		position: relative;
+	}
+
+	/*
+	 * The desktop menus are deliberately NOT containing blocks. Anchored to
+	 * their trigger, a 46rem panel under a trigger near either end of the row
+	 * ran off the window on that side. Anchored to the bar itself - `.nav` is
+	 * the nearest positioned ancestor - every panel centres under the whole
+	 * header and cannot leave the viewport at any width.
+	 */
+	.nav-menu {
+		position: static;
+	}
+
+	.nav-menu summary,
+	.nav-burger summary,
+	.nav-group summary {
+		list-style: none;
+		cursor: pointer;
+	}
+
+	.nav-menu summary::-webkit-details-marker,
+	.nav-burger summary::-webkit-details-marker,
+	.nav-group summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.nav-chevron {
+		color: var(--fg-faint);
+		transition: transform 220ms var(--ease-out);
+	}
+
+	[open] > summary .nav-chevron {
+		transform: rotate(180deg);
+	}
+
+	.nav-menu[open] > summary,
+	.nav-group[open] > summary {
+		color: var(--fg);
+	}
+
+	/*
+	 * Absolutely positioned, so opening a panel never moves the page under the
+	 * pointer that opened it.
+	 *
+	 * Right-aligned rather than centred on its trigger. Centring reads better on
+	 * the middle entry and puts the last one half off-screen, and a panel that has
+	 * to be clamped by the viewport is a panel whose left edge moves depending on
+	 * which trigger opened it. Anchored to the right, every panel opens in the same
+	 * place relative to its trigger.
+	 */
+	.nav-panel {
+		position: absolute;
+		top: calc(100% + var(--s-3));
+		left: 0;
+		right: 0;
+		margin-inline: auto;
+		z-index: var(--z-sticky-over);
+		width: max-content;
+		max-width: min(46rem, calc(100vw - var(--s-6)));
+		padding: var(--s-3);
+		border: 1px solid var(--line);
+		border-radius: var(--r-card);
+		background:
+			linear-gradient(to bottom, var(--glass-edge), transparent 40%),
+			color-mix(in srgb, var(--bg-1) 88%, transparent);
+		backdrop-filter: var(--glass-blur);
+		box-shadow: var(--lift-3);
+		transform-origin: top center;
+		animation: nav-panel-in 220ms var(--ease-out);
+	}
+
+	/*
+	 * Soft expansion: it grows into place rather than appearing.
+	 *
+	 * A scale that starts near 1 and a translate of a few pixels is the whole
+	 * effect. Anything larger reads as a zoom, and the panel then has to travel far
+	 * enough that the eye follows the movement instead of the content.
+	 */
+	@keyframes nav-panel-in {
+		from {
+			opacity: 0;
+			scale: 0.97;
+			translate: 0 -6px;
+		}
+	}
+
+	/*
+	 * Two or three columns, worked out from the panel's width rather than declared.
+	 *
+	 * One column is a list, and a list is what the nav already is - the panel earns
+	 * its existence by showing the whole set at once. `auto-fit` means a panel with
+	 * two items is two columns wide rather than a tall narrow strip.
+	 */
+	.nav-panel-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+		gap: var(--s-1);
+		padding: 0;
+		list-style: none;
+	}
+
+	.nav-panel-item {
+		display: flex;
+		align-items: start;
+		gap: var(--s-3);
+		padding: var(--s-3);
+		border: 1px solid transparent;
+		border-radius: var(--r-lg);
+		color: var(--fg-dim);
+		transition:
+			background 160ms ease,
+			border-color 160ms ease;
+	}
+
+	/*
+	 * The icon tile: glass, made of a gradient rather than of a filter.
+	 *
+	 * A light top edge over a darker fill is what actually reads as a raised piece
+	 * of glass. `backdrop-filter` on a 34px tile adds almost nothing to that, and
+	 * it is not free: each one becomes its own backdrop root, and eighteen of them
+	 * inside a panel that is itself blurred inside a header that is also blurred
+	 * crashed the renderer outright.
+	 *
+	 * One blur per surface is the rule that came out of it. A blur inside a blur
+	 * inside a blur is not a design decision, it is three GPU readbacks per frame.
+	 */
+	.nav-panel-icon {
+		display: grid;
+		place-items: center;
+		flex: 0 0 auto;
+		width: 34px;
+		height: 34px;
+		border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+		border-radius: var(--r-lg);
+		background:
+			linear-gradient(
+				160deg,
+				color-mix(in srgb, var(--shell-edge) 55%, transparent),
+				transparent 62%
+			),
+			var(--bg-3);
+		color: var(--fg-dim);
+		transition:
+			color 160ms ease,
+			border-color 160ms ease;
+	}
+
+	/*
+	 * A tile in its category's colour.
+	 *
+	 * One rule per tone, reading two tokens each, so the colour of a category
+	 * lives in `:root` and this is only the wiring. `data-tone` and not a class,
+	 * for the same reason every variant here is an attribute: it travels with
+	 * the component and cannot be applied without its base.
+	 *
+	 * The `:where()` keeps specificity at zero, so a utility in the markup still
+	 * beats it. That matters here more than usual - these are the rules most
+	 * likely to be overridden for one entry, and a rule that has to be fought is
+	 * a rule that gets copied instead.
+	 */
+	.nav-panel-icon[data-tone="motion"] {
+		background: var(--tone-motion);
+		color: var(--tone-motion-ink);
+	}
+
+	.nav-panel-icon[data-tone="layout"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+	}
+
+	.nav-panel-icon[data-tone="content"] {
+		background: var(--tone-content);
+		color: var(--tone-content-ink);
+	}
+
+	.nav-panel-icon[data-tone="docs"] {
+		background: var(--tone-docs);
+		color: var(--tone-docs-ink);
+	}
+
+	.nav-panel-icon[data-tone="3d"] {
+		background: var(--tone-3d);
+		color: var(--tone-3d-ink);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.nav-panel-item:hover {
+			background: var(--bg-2);
+			border-color: var(--line-soft);
+		}
+
+		/*
+		 * The tile lifts with the row, so the whole item reads as one target.
+		 *
+		 * A tinted tile keeps its own colour and gains a border in it, rather
+		 * than turning the accent - the tint is what says which category this is,
+		 * and losing it on hover means losing the information at the moment
+		 * somebody is looking hardest.
+		 */
+		.nav-panel-item:hover .nav-panel-icon {
+			border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+			color: var(--accent);
+		}
+
+		.nav-panel-item:hover .nav-panel-icon[data-tone] {
+			border-color: currentColor;
+			color: inherit;
+		}
+	}
+
+	.nav-panel-item:focus-visible {
+		background: var(--bg-2);
+		border-color: var(--line-soft);
+	}
+
+	.nav-panel-description {
+		display: block;
+		margin-top: 2px;
+		font-size: var(--t-xs);
+		line-height: 1.5;
+		color: var(--fg-faint);
+	}
+
+	.nav-panel-all {
+		display: block;
+		margin-top: var(--s-2);
+		padding: var(--s-3);
+		border-top: 1px solid var(--line-soft);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+		transition: color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.nav-panel-all:hover {
+			color: var(--accent);
+		}
+	}
+
+	/* ── the mobile drawer ───────────────────────────────────────── */
+
+	/*
+	 * Hidden until the row is. The two are exclusive by construction rather than
+	 * by a JavaScript check, so there is no width at which both or neither shows.
+	 */
+	.nav-burger {
+		display: none;
+	}
+
+	.nav-burger-toggle {
+		display: grid;
+		place-items: center;
+		width: 42px;
+		height: 42px;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+		color: var(--fg-dim);
+	}
+
+	/*
+	 * While open, the toggle floats above the drawer.
+	 *
+	 * It has to. The drawer is fixed and full-screen on a phone, so it covers the
+	 * header the toggle lives in - and a full-screen menu whose only close control
+	 * is underneath it has no exit at all. Lifting the same control above the sheet
+	 * is better than adding a second one: the thing that closes the menu is
+	 * visibly the thing that opened it, in the same place, having turned into an X.
+	 */
+	.nav-burger[open] .nav-burger-toggle {
+		position: fixed;
+		top: var(--s-3);
+		right: var(--s-4);
+		z-index: var(--z-overlay-over);
+		border-color: var(--line);
+		background: var(--bg-2);
+		color: var(--fg);
+	}
+
+	/*
+	 * Three bars that become a cross.
+	 *
+	 * Drawn here rather than taken from the glyph set, because a glyph cannot morph
+	 * and the morph is the affordance: it says the same control closes what it
+	 * opened.
+	 */
+	.nav-burger-bars,
+	.nav-burger-bars::before,
+	.nav-burger-bars::after {
+		display: block;
+		width: 16px;
+		height: 1.5px;
+		border-radius: 2px;
+		background: currentColor;
+		transition:
+			transform 260ms var(--ease-out),
+			background 160ms ease;
+	}
+
+	.nav-burger-bars::before,
+	.nav-burger-bars::after {
+		content: "";
+		position: relative;
+	}
+
+	.nav-burger-bars::before {
+		top: -5px;
+	}
+
+	.nav-burger-bars::after {
+		top: 3.5px;
+	}
+
+	/*
+	 * Open: the middle bar goes, the outer two cross.
+	 *
+	 * `background: transparent` on the middle bar, not `opacity: 0`. Opacity on an
+	 * element groups it with its pseudo-elements, and nothing inside can opt back
+	 * in - `opacity: 1` on a child cannot escape a parent's `opacity: 0`. Written
+	 * that way the press hid all three bars, so the full-screen drawer opened with
+	 * no visible way out of it.
+	 *
+	 * Only the parent's own background draws the middle bar, so clearing it leaves
+	 * the other two untouched.
+	 */
+	.nav-burger[open] .nav-burger-bars {
+		background: transparent;
+	}
+
+	/*
+	 * Both bars translate to the centre line, then rotate about it. The offsets are
+	 * the negatives of the `top` values above: 5px up for one, 5px down for the
+	 * other, so the cross meets rather than nearly meeting.
+	 */
+	.nav-burger[open] .nav-burger-bars::before {
+		transform: translateY(5px) rotate(45deg);
+	}
+
+	.nav-burger[open] .nav-burger-bars::after {
+		transform: translateY(-5px) rotate(-45deg);
+	}
+
+	/*
+	 * A drawer, not a dropdown.
+	 *
+	 * Full height against the right edge, so the menu is somewhere rather than on
+	 * top of something. A dropdown of this many entries covers the page it came
+	 * from and leaves the reader unsure whether they navigated.
+	 *
+	 * On a phone it takes the whole screen. A 23rem panel on a 390px device is not
+	 * a drawer, it is a panel with a 40px strip of unusable page beside it, and
+	 * that strip is a tap target for "close" that nobody can hit reliably. Full
+	 * width also means the items get the width they were designed at instead of
+	 * being squeezed. The tablet keeps the drawer, where a strip of page is wide
+	 * enough to still read as page.
+	 *
+	 * `100dvh`, not `100vh`: on iOS Safari `vh` is the height with the toolbar
+	 * hidden, so a `100vh` drawer runs under the address bar and the last entry is
+	 * unreachable.
+	 */
+	.nav-sheet {
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: var(--z-overlay);
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-1);
+		width: min(23rem, 86vw);
+		height: 100dvh;
+		padding: calc(var(--s-8) + var(--s-3)) var(--s-4) var(--s-6);
+		overflow-y: auto;
+		/*
+		 * The drawer takes the drag, and the page does not get it.
+		 *
+		 * `overscroll-behavior` stops the scroll chaining onward once the drawer
+		 * hits its end, and `touch-action: pan-y` claims vertical drags for this
+		 * element rather than letting the browser hand them to the page behind.
+		 * Without the pair, a drag inside the menu scrolls the article under it,
+		 * which is the one thing a modal surface must not do.
+		 */
+		overscroll-behavior: contain;
+		touch-action: pan-y;
+		border-left: 1px solid var(--line);
+		/*
+		 * Opaque, and no blur. The drawer sits over a 62% scrim, so whatever a
+		 * backdrop-filter would have blurred is already hidden - it was paying for
+		 * a full-screen GPU readback every frame to composite something invisible.
+		 */
+		background: var(--bg-1);
+		box-shadow: -24px 0 60px color-mix(in srgb, var(--bg-3) 70%, transparent);
+		/*
+		 * Slower than the desktop panel, and deliberately. A drawer travels the
+		 * width of the screen, and a full-screen surface that arrives in 200ms
+		 * reads as a page change rather than as something opening.
+		 */
+		animation: nav-sheet-in 420ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	/*
+	 * Closed means gone, not merely hidden.
+	 *
+	 * The browser hides a closed `<details>`'s contents, but the drawer's own
+	 * `display: flex` leaves it a box - one squeezed to the toggle's width,
+	 * whose nav rows then overflow it and widen the page. Every phone-width
+	 * page could scroll sideways into a menu nobody had opened.
+	 */
+	.nav-burger:not([open]) .nav-sheet {
+		display: none;
+	}
+
+	@keyframes nav-sheet-in {
+		from {
+			translate: 100% 0;
+		}
+	}
+
+	/*
+	 * There is deliberately no `overflow: hidden` scroll lock here.
+	 *
+	 * The obvious way to stop the page moving behind the drawer is
+	 * `html:has(.nav-burger[open]) { overflow: hidden }`, and it is worse than the
+	 * problem. Making the scrolling element non-scrollable drops its scroll
+	 * offset, so opening the menu halfway down a page throws the reader back to
+	 * the top - and closing it does not bring them back. Losing someone's place is
+	 * a worse outcome than a page that can still be scrolled while covered.
+	 *
+	 * What actually needed fixing was scroll chaining, and that is handled where it
+	 * happens: `overscroll-behavior: contain` and `touch-action: pan-y` on the
+	 * sheet, plus `data-lenis-prevent` so the smooth-scroll driver leaves the
+	 * drawer's own scrolling to the browser.
+	 */
+
+	/*
+	 * The dimmed page behind it. A pseudo-element on the details rather than a
+	 * second node, so nothing in the markup exists only to be a backdrop.
+	 */
+	.nav-burger[open]::before {
+		content: "";
+		position: fixed;
+		inset: 0;
+		z-index: var(--z-scrim);
+		background: color-mix(in srgb, var(--bg-3) 62%, transparent);
+		animation: nav-scrim-in 420ms ease;
+	}
+
+	@keyframes nav-scrim-in {
+		from {
+			opacity: 0;
+		}
+	}
+
+	/*
+	 * Phones: the whole screen.
+	 *
+	 * The border and the shadow go with the strip of page they were separating it
+	 * from. A shadow against a screen edge is a smudge.
+	 */
+	@media (max-width: 620px) {
+		.nav-sheet {
+			width: 100%;
+			border-left: 0;
+			box-shadow: none;
+		}
+	}
+
+	/*
+	 * Group headers and item rows share one left edge.
+	 *
+	 * Both use the same horizontal padding, and the nested list adds none. Any
+	 * indent on the list would push every icon tile a few pixels right of the
+	 * group's own icon, and the drawer would read as two columns that nearly line
+	 * up, which is worse than either lining up or clearly not.
+	 *
+	 * `44px` is the minimum comfortable touch target, and a nav row is the control
+	 * most likely to be tapped by a thumb reaching across a screen.
+	 */
+	/* The drawer's own heading, so the sheet does not start mid-list. */
+	.nav-sheet-title {
+		padding: 0 var(--s-3) var(--s-3);
+		border-bottom: 1px solid var(--line-soft);
+	}
+
+	.nav-group-summary {
+		min-height: 44px;
+		padding: var(--s-2) var(--s-3);
+		border-radius: var(--r-lg);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--fg-dim);
+		transition: background 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.nav-group-summary:hover {
+			background: var(--bg-2);
+			color: var(--fg);
+		}
+	}
+
+	/* No hover on a touch screen, so the press itself has to answer. */
+	.nav-group-summary:active,
+	.nav-sheet .nav-panel-item:active {
+		background: var(--bg-2);
+	}
+
+	/* The chevron goes to the end of the row; the icon stays with the label. */
+	.nav-group-summary .nav-chevron {
+		margin-left: auto;
+	}
+
+	/* Inside the drawer the panel list is a plain column: the width is not there. */
+	.nav-sheet .nav-panel-list {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 2px;
+		padding: 0;
+	}
+
+	.nav-sheet .nav-panel-item {
+		min-height: 44px;
+		padding: var(--s-3);
+	}
+
+	/*
+	 * Items sit under their group, on the same left edge.
+	 *
+	 * Every row in the drawer starts with a 34px tile, group headers included, so
+	 * the tiles form one column down the sheet. A rule set in behind them is what
+	 * says the items belong to the group above; indenting them instead would break
+	 * that column and the drawer would read as two lists that nearly line up.
+	 */
+	.nav-sheet .nav-panel-list,
+	.nav-sheet > .nav-group > .nav-panel-all {
+		margin-left: calc(var(--s-3) + 17px);
+		border-left: 1px solid var(--line-soft);
+		padding-left: var(--s-3);
+	}
+
+	/* The nested tiles are smaller: they are inside a rule, not starting one. */
+	.nav-sheet .nav-panel-item .nav-panel-icon {
+		width: 28px;
+		height: 28px;
+	}
+
+	.nav-sheet .nav-panel-all {
+		margin-bottom: var(--s-4);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.nav-panel,
+		.nav-sheet,
+		.nav-burger[open]::before {
+			animation: none;
+		}
+
+		.nav-chevron,
+		.nav-burger-bars,
+		.nav-burger-bars::before,
+		.nav-burger-bars::after {
+			transition: none;
+		}
+	}
+
+	/*
+	 * The row owns its own layout instead of borrowing `.flex` from the
+	 * utilities layer. Utilities are the last layer and always win, so a
+	 * `.flex` in the markup was quietly beating the `display: none` below -
+	 * which is why the desktop row kept rendering, overflowed, on phones.
+	 */
+	.nav-row {
+		display: flex;
+		align-items: center;
+		gap: var(--s-1);
+	}
+
+	/* The brand mark: image pixels, sized here so the header height cannot
+	   depend on what got exported from the drawing app. */
+	.nav-mark {
+		display: block;
+		width: 26px;
+		height: 26px;
+		object-fit: contain;
+	}
+
+	/*
+	 * The switch. One breakpoint, and the two halves are mutually exclusive on
+	 * either side of it.
+	 */
+	@media (max-width: 860px) {
+		.nav-row {
+			display: none;
+		}
+
+		.nav-burger {
+			display: block;
+		}
+	}
+}

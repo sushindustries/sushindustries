@@ -1,0 +1,61 @@
+@layer blocks {
+	/* ── folders, in blue ────────────────────────────────────────── */
+
+	/*
+	 * A drawn folder rather than an outlined one.
+	 *
+	 * The glyph is stroked paths, and `fill` on the paths in CSS beats the
+	 * `fill="none"` presentation attribute on the SVG - so the same glyph is a
+	 * line icon everywhere else and a solid folder here, with no second drawing to
+	 * keep in step. The stroke stays as the lit edge on top of the fill, which is
+	 * what gives it a front face and a back.
+	 */
+	.shelf-glyph svg path,
+	.window-icon svg path {
+		fill: var(--folder-fill);
+		transition:
+			fill 160ms ease,
+			stroke 160ms ease;
+	}
+
+	.shelf-glyph,
+	.window-icon {
+		color: var(--folder);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.shelf-face:hover .shelf-glyph,
+		.window-face:hover .window-icon {
+			color: var(--folder);
+		}
+
+		/*
+		 * An icon that is art keeps its own colour on hover.
+		 *
+		 * The folder colour means "a thing you open", and it is applied to the
+		 * glyph because for every other tile the glyph *is* a folder. The
+		 * assistant's is a logo, and a logo tinted sage on hover does not read as
+		 * a state - it reads as the wrong colour.
+		 */
+		.shelf-tile[data-art="true"] .shelf-glyph,
+		.shelf-face:hover .shelf-tile[data-art="true"] .shelf-glyph {
+			color: inherit;
+		}
+
+		.shelf-face:hover .shelf-glyph svg path,
+		.window-face:hover .window-icon svg path {
+			fill: color-mix(in srgb, var(--folder) 34%, transparent);
+		}
+	}
+
+	/* A file is not a folder, so it does not get the folder's fill or its blue. */
+	.window-icon:has(svg path[d^="M6 3h8l4 4v14H6z"]),
+	.shelf-glyph:has(svg path[d^="M6 3h8l4 4v14H6z"]) {
+		color: var(--fg-dim);
+	}
+
+	.window-icon:has(svg path[d^="M6 3h8l4 4v14H6z"]) svg path,
+	.shelf-glyph:has(svg path[d^="M6 3h8l4 4v14H6z"]) svg path {
+		fill: color-mix(in srgb, var(--ink) 8%, transparent);
+	}
+}

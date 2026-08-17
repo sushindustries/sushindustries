@@ -1,0 +1,88 @@
+@layer base {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	/*
+	 * The scroll veil's other half. While Lenis has a scroll in flight the
+	 * document carries `data-scrolling` (set by SmoothScroll), and for exactly
+	 * that long every embedded surface stops swallowing the wheel - an iframe
+	 * or a canvas under the cursor otherwise eats the events mid-gesture,
+	 * which is the flutter a page of live previews used to have. The moment
+	 * the page settles the attribute drops and the previews are interactive
+	 * again.
+	 */
+	:root[data-scrolling] iframe,
+	:root[data-scrolling] canvas {
+		pointer-events: none;
+	}
+
+	/*
+	 * Except where the author already said the smooth scroller keeps out.
+	 *
+	 * `data-lenis-prevent` marks a subtree that owns its own scrolling, and
+	 * Lenis honours it by ignoring the wheel there. The veil did not, which
+	 * left the two halves disagreeing and opened a dead zone: with the pointer
+	 * over a showcase or a device, Lenis declined the gesture because the
+	 * subtree is marked, and the veil made the embed inert because a scroll was
+	 * in flight - so the wheel reached neither, and scrolling inside the
+	 * machine simply stopped.
+	 *
+	 * One marker, honoured by both halves. Outside these subtrees the veil
+	 * still does its job, which is why scrolling *past* a preview stays whole.
+	 */
+	:root[data-scrolling] [data-lenis-prevent] iframe,
+	:root[data-scrolling] [data-lenis-prevent] canvas {
+		pointer-events: auto;
+	}
+
+	html {
+		/* Lenis animates scroll itself; leaving native smooth on fights it. */
+		scroll-behavior: auto;
+		-webkit-text-size-adjust: 100%;
+		/*
+		 * Always reserve the scrollbar's width, whether or not there is one.
+		 *
+		 * Otherwise the content width depends on whether a given page happens to be
+		 * long enough to need a scrollbar, and every centred thing shifts sideways
+		 * by about fifteen pixels on the way from a long page to a short one.
+		 */
+		scrollbar-gutter: stable;
+	}
+
+	body {
+		margin: 0;
+		background: var(--bg-0);
+		color: var(--fg);
+		font: var(--t-md) / 1.6 var(--sans);
+		-webkit-font-smoothing: antialiased;
+		overflow-x: hidden;
+	}
+
+	h1,
+	h2,
+	h3,
+	p,
+	figure {
+		margin: 0;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	img,
+	svg {
+		display: block;
+		max-width: 100%;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 3px;
+		border-radius: 2px;
+	}
+}

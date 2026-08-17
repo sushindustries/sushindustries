@@ -1,0 +1,33 @@
+@layer blocks {
+	/*
+	 * A bare icon control in the dock's corner.
+	 *
+	 * White rather than the folder blue or the accent: it is neither a
+	 * container nor an action on this page - it leaves the site. Reserving the
+	 * two hues for things that happen here is what keeps them meaning anything.
+	 */
+	.dock-icon {
+		display: grid;
+		place-items: center;
+		width: 30px;
+		height: 30px;
+		border-radius: var(--r);
+		color: var(--fg);
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.dock-icon:hover {
+			background: var(--bg-3);
+		}
+	}
+
+	/* `tabular-nums` so the minute changing does not move the rest of the row. */
+	.clock {
+		color: var(--fg-dim);
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+	}
+}

@@ -1,0 +1,71 @@
+@layer blocks {
+	/* ── credits ─────────────────────────────────────────────────── */
+
+	/*
+	 * Deliberately quieter than `.card`. Work I depend on is listed, not
+	 * promoted - if these looked like the package cards, the page would read as
+	 * though I wrote them.
+	 */
+	.credit-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+		gap: var(--s-3);
+	}
+
+	/* The card plus its docs chip. A span, because credits render in prose. */
+	.credit-slot {
+		position: relative;
+		display: block;
+	}
+
+	.credit {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-1);
+		padding: var(--s-3) var(--s-4);
+		border: 1px solid transparent;
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+		transition:
+			border-color 200ms ease,
+			background 200ms ease;
+	}
+
+	/*
+	 * Their mark, quoted in its own colours. A dependency's logo is quotation,
+	 * and a quotation is not recoloured - it is also how a reader recognises
+	 * Vite or React faster than by reading either name.
+	 */
+	.credit-logo {
+		width: 28px;
+		height: 28px;
+		object-fit: contain;
+		flex-shrink: 0;
+	}
+
+	/* The one action that is not "open the project": read its manual. */
+	.credit-docs {
+		position: absolute;
+		top: var(--s-2);
+		right: var(--s-2);
+		opacity: 0;
+	}
+
+	.credit-slot:hover .credit-docs,
+	.credit-slot:focus-within .credit-docs {
+		opacity: 1;
+	}
+
+	@media (hover: none) {
+		.credit-docs {
+			opacity: 1;
+		}
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.credit:hover {
+			background: var(--bg-2);
+			border-color: var(--line-soft);
+		}
+	}
+}

@@ -1,0 +1,294 @@
+@layer blocks {
+	/* ── elements ────────────────────────────────────────────────── */
+
+	/*
+	 * The toned glyph tile, defined once. The nav panel, the palette, the
+	 * card and the list row all draw the same 26px tile with the same five
+	 * tone pairs; this is that tile with its own name, so the next component
+	 * that needs one composes it instead of writing a sixth copy.
+	 */
+	.tile {
+		display: grid;
+		place-items: center;
+		width: 26px;
+		height: 26px;
+		flex-shrink: 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		background: var(--bg-2);
+		color: var(--fg-faint);
+	}
+
+	.tile[data-tone="motion"] {
+		background: var(--tone-motion);
+		color: var(--tone-motion-ink);
+	}
+
+	.tile[data-tone="layout"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+	}
+
+	.tile[data-tone="content"] {
+		background: var(--tone-content);
+		color: var(--tone-content-ink);
+	}
+
+	.tile[data-tone="docs"] {
+		background: var(--tone-docs);
+		color: var(--tone-docs-ink);
+	}
+
+	.tile[data-tone="3d"] {
+		background: var(--tone-3d);
+		color: var(--tone-3d-ink);
+	}
+
+	/*
+	 * A word wearing a fill. Same pastel-and-ink pairs as everything toned;
+	 * the quiet default is for words that are labels rather than categories.
+	 */
+	.badge {
+		display: inline-flex;
+		align-items: center;
+		padding: 2px var(--s-2);
+		border: 1px solid var(--line-soft);
+		border-radius: 999px;
+		background: var(--bg-2);
+		color: var(--fg-dim);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.06em;
+	}
+
+	.badge[data-tone="motion"] {
+		background: var(--tone-motion);
+		color: var(--tone-motion-ink);
+		border-color: transparent;
+	}
+
+	.badge[data-tone="layout"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+		border-color: transparent;
+	}
+
+	.badge[data-tone="content"] {
+		background: var(--tone-content);
+		color: var(--tone-content-ink);
+		border-color: transparent;
+	}
+
+	.badge[data-tone="docs"] {
+		background: var(--tone-docs);
+		color: var(--tone-docs-ink);
+		border-color: transparent;
+	}
+
+	.badge[data-tone="3d"] {
+		background: var(--tone-3d);
+		color: var(--tone-3d-ink);
+		border-color: transparent;
+	}
+
+	/* A rule with two directions. Vertical stretches to its container. */
+	.separator {
+		border: 0;
+		margin: 0;
+		background: var(--line-soft);
+	}
+
+	.separator[data-orientation="horizontal"] {
+		display: block;
+		width: 100%;
+		height: 1px;
+	}
+
+	.separator[data-orientation="vertical"] {
+		display: inline-block;
+		width: 1px;
+		align-self: stretch;
+		min-height: 1em;
+	}
+
+	/*
+	 * The wait, shaped like the thing awaited. The shimmer is a background
+	 * sweep; reduced motion removes the sweep and keeps the placeholder.
+	 */
+	.skeleton {
+		display: inline-block;
+		background: linear-gradient(
+			100deg,
+			var(--bg-2) 40%,
+			var(--bg-1) 50%,
+			var(--bg-2) 60%
+		);
+		background-size: 200% 100%;
+		border-radius: var(--r);
+		animation: skeleton-sweep 1.4s ease-in-out infinite;
+	}
+
+	.skeleton[data-shape="line"] {
+		width: 100%;
+		height: 0.9em;
+	}
+
+	.skeleton[data-shape="block"] {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		border-radius: var(--r-lg);
+	}
+
+	.skeleton[data-shape="circle"] {
+		width: 40px;
+		height: 40px;
+		border-radius: 999px;
+	}
+
+	@keyframes skeleton-sweep {
+		from {
+			background-position: 200% 0;
+		}
+		to {
+			background-position: -200% 0;
+		}
+	}
+
+	/* One ring, one border, one turn. Reduced motion pulses instead. */
+	.spinner {
+		display: inline-block;
+		border: 2px solid var(--line-soft);
+		border-top-color: var(--accent);
+		border-radius: 999px;
+		animation: spinner-turn 800ms linear infinite;
+	}
+
+	@keyframes spinner-turn {
+		to {
+			rotate: 360deg;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.skeleton {
+			animation: none;
+			background: var(--bg-2);
+		}
+
+		.spinner {
+			animation: spinner-pulse 1.6s ease-in-out infinite;
+		}
+	}
+
+	@keyframes spinner-pulse {
+		50% {
+			opacity: 0.4;
+		}
+	}
+
+	/* A person at glyph size: image if it loads, initials on a tone if not. */
+	.avatar {
+		display: inline-grid;
+		place-items: center;
+		overflow: hidden;
+		border: 1px solid var(--line-soft);
+		border-radius: 999px;
+		background: var(--bg-2);
+		color: var(--fg-dim);
+		font-family: var(--mono);
+		font-weight: 600;
+		user-select: none;
+	}
+
+	.avatar[data-tone="motion"] {
+		background: var(--tone-motion);
+		color: var(--tone-motion-ink);
+	}
+
+	.avatar[data-tone="layout"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+	}
+
+	.avatar[data-tone="content"] {
+		background: var(--tone-content);
+		color: var(--tone-content-ink);
+	}
+
+	.avatar[data-tone="docs"] {
+		background: var(--tone-docs);
+		color: var(--tone-docs-ink);
+	}
+
+	.avatar[data-tone="3d"] {
+		background: var(--tone-3d);
+		color: var(--tone-3d-ink);
+	}
+
+	.avatar-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	/* A box that keeps its shape, and fills whatever is put in it. */
+	.ratio {
+		position: relative;
+		overflow: hidden;
+		border-radius: var(--r-lg);
+	}
+
+	.ratio > * {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	/* Nothing, said properly: centred, quiet, with the way out underneath. */
+	.empty {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--s-2);
+		padding: var(--s-7) var(--s-5);
+		border: 1px dashed var(--line);
+		border-radius: var(--r-card);
+		text-align: center;
+		color: var(--fg-dim);
+	}
+
+	.empty-icon {
+		display: grid;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+		color: var(--fg-faint);
+	}
+
+	/* One row of a list: the nav panel's anatomy, extracted. */
+	.item {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		padding: var(--s-2) var(--s-3);
+		border: 1px solid transparent;
+		border-radius: var(--r-lg);
+		color: inherit;
+		text-decoration: none;
+		transition:
+			background 160ms ease,
+			border-color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		a.item:hover {
+			background: var(--bg-2);
+			border-color: var(--line-soft);
+		}
+	}
+}

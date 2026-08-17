@@ -1,0 +1,336 @@
+@layer blocks {
+	/* ── code ────────────────────────────────────────────────────── */
+
+	/*
+	 * An install command wraps; it does not scroll.
+	 *
+	 * `overflow-x: auto` was here, and on a card narrower than
+	 * `pnpm add @sushindustries/product-viewer` it drew a scrollbar - a white
+	 * bar across the bottom of the box, the brightest thing on the card, sitting
+	 * under a command whose second half was hidden behind an interaction nobody
+	 * would think to try.
+	 *
+	 * The content is one short line of text with obvious break points. Wrapping
+	 * shows all of it, costs a second line, and needs no scrollbar to explain.
+	 * `anywhere` rather than `break-word` because a package name is one word as
+	 * far as wrapping is concerned, and one word wider than the box wins.
+	 *
+	 * `align-items: start` because once it can be two lines tall, anything
+	 * beside it - a copy button - should sit level with the first line rather
+	 * than floating in the middle of the block.
+	 */
+	.code {
+		display: flex;
+		align-items: start;
+		justify-content: space-between;
+		gap: var(--s-4);
+		padding: var(--s-3) var(--s-4);
+		background: var(--bg-1);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		font-family: var(--mono);
+		font-size: var(--t-sm);
+		min-width: 0;
+		overflow-wrap: anywhere;
+	}
+
+	/*
+	 * The fence: a terminal slab on the paper.
+	 *
+	 * It reads as an object *on* the page, not a tinted region of it - contact
+	 * shadow below, a lit top edge above, and the charcoal ground that does not
+	 * change with the theme. The grey it replaced separated from the page by
+	 * two points of lightness and disappeared the moment the theme went dark.
+	 *
+	 * `.code-block` is both shapes the renderer produces: a bare `<pre>` for an
+	 * untagged fence, and a wrapper `<div>` around the highlighter's own
+	 * `<pre class="th-code">` for a tagged one. The inner pre resets to zero so
+	 * both shapes are one slab with one padding.
+	 */
+	.code-block {
+		margin: 0;
+		padding: var(--s-4);
+		background: var(--code-bg);
+		color: var(--code-ink);
+		border: 1px solid var(--code-line);
+		border-radius: var(--r-lg);
+		box-shadow:
+			inset 0 1px 0 var(--code-edge),
+			var(--lift-1);
+		font-family: var(--mono);
+		font-size: var(--t-sm);
+		line-height: 1.7;
+		overflow-x: auto;
+		tab-size: 2;
+	}
+
+	/*
+	 * A fence on its own - a README rendered outside the code-block shell -
+	 * still has to scroll rather than widen the page. Wide content owns its
+	 * own scrollbar; the page never scrolls sideways for it.
+	 */
+	.th-code {
+		overflow-x: auto;
+	}
+
+	.code-block .th-code {
+		margin: 0;
+		padding: 0;
+		background: transparent;
+		font: inherit;
+		/* Inside the slab the slab scrolls, so the pre must not: two nested
+		   scrollbars over one line of code is one too many. */
+		overflow: visible;
+	}
+
+	/*
+	 * The syntax palette. One rule per thing the grammar can say, each reading
+	 * the token defined beside its siblings - never a hex down here.
+	 *
+	 * Comments are italic as well as dim, because dimness alone stops working
+	 * inside a long highlighted block where half the tokens are already mid-tone.
+	 */
+	.th-keyword {
+		color: var(--syn-keyword);
+	}
+	.th-string {
+		color: var(--syn-string);
+	}
+	.th-number {
+		color: var(--syn-number);
+	}
+	.th-literal {
+		color: var(--syn-literal);
+	}
+	.th-comment {
+		color: var(--syn-comment);
+		font-style: italic;
+	}
+	.th-function {
+		color: var(--syn-function);
+	}
+	.th-property {
+		color: var(--syn-property);
+	}
+	.th-variable {
+		color: var(--syn-variable);
+	}
+	.th-type {
+		color: var(--syn-type);
+	}
+	.th-tag {
+		color: var(--syn-tag);
+	}
+	.th-selector {
+		color: var(--syn-selector);
+	}
+	.th-operator {
+		color: var(--syn-operator);
+	}
+	.th-meta {
+		color: var(--syn-meta);
+	}
+	.th-heading {
+		color: var(--code-ink);
+		font-weight: 700;
+	}
+	.th-link {
+		color: var(--syn-keyword);
+		text-decoration: underline;
+	}
+	.th-code-inline {
+		color: var(--syn-property);
+	}
+	.th-inserted {
+		color: var(--syn-string);
+		background: color-mix(in srgb, var(--syn-string) 14%, transparent);
+	}
+	.th-deleted {
+		color: var(--syn-tag);
+		background: color-mix(in srgb, var(--syn-tag) 14%, transparent);
+	}
+
+	/*
+	 * A shell fence is the CLI, so it borrows the CLI's grammar: the command in
+	 * the brand orange and weighted, the way `cli-kit` prints it. The deeper
+	 * ground is what separates "type this" from "read this" at a glance.
+	 */
+	.code-block:has(.th-code--shell) {
+		background: var(--code-bg-deep);
+	}
+	.th-code--shell .th-command {
+		color: var(--syn-command);
+		font-weight: 600;
+	}
+
+	/*
+	 * Copy, as a glass chip on the slab.
+	 *
+	 * Fill plus edge, no blur - the one-blur-per-surface rule - and always
+	 * visible on coarse pointers, because "appears on hover" is a desktop
+	 * fiction a phone cannot perform.
+	 */
+	.copy-btn {
+		display: inline-flex;
+		align-items: center;
+		flex-shrink: 0;
+		gap: var(--s-1);
+		padding: 5px var(--s-3);
+		border: 1px solid var(--code-chip-edge);
+		border-radius: var(--r);
+		background: var(--code-chip);
+		color: var(--code-ink);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		white-space: nowrap;
+		cursor: pointer;
+		transition:
+			opacity 160ms var(--ease-out),
+			color 160ms var(--ease-out),
+			border-color 160ms var(--ease-out);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.copy-btn:hover {
+			border-color: var(--code-ink-dim);
+		}
+
+		.copy-btn[data-ground="paper"]:hover {
+			border-color: var(--accent);
+			color: var(--accent);
+		}
+	}
+
+	.copy-btn[data-copied="true"] {
+		color: var(--syn-string);
+		border-color: color-mix(in srgb, var(--syn-string) 40%, transparent);
+	}
+
+	/*
+	 * The same chip on paper: the install rows, the doc actions bar. A card's
+	 * ground and a lifted edge rather than glass - glass over paper was the
+	 * "nearly invisible" version, because the fill was the page.
+	 */
+	.copy-btn[data-ground="paper"] {
+		border-color: var(--line);
+		background: var(--bg-0);
+		color: var(--fg-dim);
+		box-shadow:
+			inset 0 1px 0 var(--glass-edge),
+			var(--lift-1);
+		text-decoration: none;
+	}
+
+	.copy-btn[data-ground="paper"][data-copied="true"] {
+		color: var(--wasabi);
+		border-color: color-mix(in srgb, var(--wasabi) 45%, transparent);
+	}
+
+	/*
+	 * The lit chip: the one action on a bar that is an invitation rather than
+	 * a utility. Accent fill, pill radius - it reads before the label does.
+	 */
+	.copy-btn[data-ground="accent"] {
+		border-color: transparent;
+		border-radius: 999px;
+		background: var(--accent);
+		color: var(--on-accent);
+		font-weight: 600;
+		box-shadow: var(--lift-1);
+	}
+
+	.copy-btn[data-ground="accent"][data-copied="true"] {
+		background: var(--wasabi);
+	}
+
+	/*
+	 * The slab with its button. The shell exists so the button can sit inside
+	 * the fence's corner without being part of the scrolling content - the
+	 * fence scrolls sideways, the button does not move.
+	 */
+	.code-shell {
+		position: relative;
+	}
+
+	/*
+	 * The slab's corner: the language badge always, the copy chip on demand.
+	 * One container so the two never fight over the same corner, and the badge
+	 * shifts nothing when the chip appears.
+	 */
+	.code-tools {
+		position: absolute;
+		top: var(--s-2);
+		right: var(--s-2);
+		display: flex;
+		align-items: center;
+		gap: var(--s-2);
+	}
+
+	/* The fence's file= metadata: a tab above the slab naming the file. */
+	.code-file {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-1);
+		margin-bottom: -1px;
+		padding: 4px var(--s-3);
+		border: 1px solid var(--code-line);
+		border-bottom: 0;
+		border-radius: var(--r-lg) var(--r-lg) 0 0;
+		background: var(--code-bg-deep);
+		color: var(--code-ink-dim);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+	}
+
+	.code-shell:has(.code-file) .code-block {
+		border-top-left-radius: 0;
+	}
+
+	.code-lang {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-1);
+		padding: 3px var(--s-2);
+		border-radius: var(--r);
+		background: var(--code-chip);
+		color: var(--code-ink-dim);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		user-select: none;
+	}
+
+	.code-shell .copy-btn {
+		opacity: 0;
+	}
+
+	.code-shell:hover .copy-btn,
+	.code-shell:focus-within .copy-btn {
+		opacity: 1;
+	}
+
+	@media (hover: none) {
+		.code-shell .copy-btn {
+			opacity: 1;
+		}
+	}
+
+	/* Every line owns its full scroll width, which is what makes a hover or a
+	   highlight span the block rather than stopping at the text's edge. */
+	.th-line {
+		display: inline-block;
+		min-width: 100%;
+		width: max-content;
+	}
+
+	.th-code--line-numbers .th-line::before {
+		display: inline-block;
+		width: 2.5em;
+		padding-right: 1em;
+		color: var(--syn-comment);
+		content: attr(data-line);
+		text-align: right;
+		user-select: none;
+	}
+}

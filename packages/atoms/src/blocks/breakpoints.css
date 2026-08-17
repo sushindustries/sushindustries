@@ -1,0 +1,313 @@
+@layer blocks {
+	/* ── tablet ──────────────────────────────────────────────────── */
+
+	/* Narrower rail, same behaviour. Below this the rail stops paying for itself. */
+	@media (max-width: 1080px) and (min-width: 861px) {
+		.doc-layout {
+			grid-template-columns: 160px minmax(0, 1fr);
+			gap: var(--s-5);
+		}
+	}
+
+	/* ── mobile ──────────────────────────────────────────────────── */
+
+	/*
+	 * --bp-narrow: 860px. The rail becomes one collapsed row above the prose.
+	 * A phone has no column to spare, and a contents list that pushes the article
+	 * down by ten lines is worse than no contents list.
+	 */
+	@media (max-width: 860px) {
+		.doc-layout {
+			grid-template-columns: minmax(0, 1fr);
+			gap: var(--s-4);
+		}
+
+		.doc-aside {
+			position: static;
+			max-height: none;
+			border: 1px solid var(--line-soft);
+			border-radius: var(--r-lg);
+			background: var(--bg-1);
+		}
+
+		.doc-aside-summary {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: var(--s-3);
+			padding: var(--s-3) var(--s-4);
+			cursor: pointer;
+			min-height: 44px;
+		}
+
+		.doc-aside-chevron {
+			display: block;
+			color: var(--fg-faint);
+			transform: rotate(90deg);
+			transition: transform 200ms var(--ease-out);
+		}
+
+		.doc-aside-toggle:checked + .doc-aside-summary .doc-aside-chevron {
+			transform: rotate(-90deg);
+		}
+
+		/* Collapsed by default: the article is what the reader came for. */
+		.doc-aside-list {
+			display: none;
+			border-left: 0;
+			border-top: 1px solid var(--line-soft);
+			padding: var(--s-2);
+		}
+
+		.doc-aside-toggle:checked ~ nav .doc-aside-list {
+			display: block;
+		}
+
+		/*
+		 * The footer collapses with the list it belongs to.
+		 *
+		 * It sits outside the `<nav>` - it is page actions, not navigation - so
+		 * the rule above never reached it, and a "collapsed" contents box still
+		 * rendered the feedback buttons and the copy control underneath its own
+		 * closed summary. What the reader saw was a large empty panel with two
+		 * unexplained controls in it, above the article they came for.
+		 */
+		.doc-aside-footer {
+			display: none;
+		}
+
+		.doc-aside-toggle:checked ~ .doc-aside-footer {
+			display: flex;
+			padding: var(--s-3) var(--s-4);
+			border-top: 1px solid var(--line-soft);
+			margin-top: 0;
+		}
+
+		.doc-aside-link {
+			margin-left: 0;
+			border-left: 0;
+			padding: var(--s-3) var(--s-4);
+			min-height: 44px;
+		}
+
+		.doc-aside-link[data-active="true"] {
+			border-left: 0;
+			background: var(--bg-2);
+			border-radius: var(--r);
+		}
+	}
+
+	.archive-chip {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-2);
+		padding: var(--s-2) var(--s-3);
+		min-height: 36px;
+		border: 1px solid var(--line-soft);
+		border-radius: 999px;
+		background: var(--bg-1);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+		transition:
+			color 160ms ease,
+			background 160ms ease,
+			border-color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.archive-chip:hover {
+			color: var(--fg);
+			border-color: var(--line);
+		}
+	}
+
+	.archive-chip.is-active {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: var(--on-accent);
+		font-weight: 600;
+	}
+
+	.archive-count {
+		opacity: 0.6;
+		font-variant-numeric: tabular-nums;
+	}
+
+	/*
+	 * Wider minimum than the package grid: these cards carry a preview, and a
+	 * component squeezed into 260px is being misrepresented.
+	 */
+	.archive-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+		gap: var(--s-4);
+	}
+
+	.archive-card {
+		display: flex;
+		flex-direction: column;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-card);
+		background: var(--bg-1);
+		overflow: hidden;
+		transition:
+			border-color 200ms ease,
+			transform 260ms var(--ease-out);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.archive-card:hover {
+			border-color: var(--line);
+			transform: translateY(-3px);
+		}
+	}
+
+	/*
+	 * A fixed-ratio window on the component. The ground colour shows through so a
+	 * preview with nothing in it reads as empty rather than broken.
+	 */
+	.archive-preview {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		display: grid;
+		place-items: center;
+		background: var(--bg-0);
+		border-bottom: 1px solid var(--line-soft);
+		overflow: hidden;
+	}
+
+	/*
+	 * A card's category colours the one place the category is already named.
+	 *
+	 * This was a 3px stripe down the left edge, and it was wrong for a reason
+	 * worth keeping: a coloured border is a decoration bolted onto a shape, and
+	 * twenty-five cards each with a different offset edge reads as a broken grid
+	 * rather than as a grouping. The eye follows the ragged left edge instead of
+	 * the content.
+	 *
+	 * The preview panel already falls back to the category's *name* when there is
+	 * no live preview, which makes it the honest place to put the colour: it is
+	 * the part of the card that is about the category, so tinting it is
+	 * information rather than trim. Where a preview does exist the tint is behind
+	 * it and does no harm.
+	 *
+	 * The tone is set on the card and read by the child, so one variable does the
+	 * work and the mapping below is five lines instead of ten.
+	 */
+	.archive-card[data-tone="motion"] {
+		--tone: var(--tone-motion);
+		--tone-ink: var(--tone-motion-ink);
+	}
+
+	.archive-card[data-tone="layout"] {
+		--tone: var(--tone-layout);
+		--tone-ink: var(--tone-layout-ink);
+	}
+
+	.archive-card[data-tone="content"] {
+		--tone: var(--tone-content);
+		--tone-ink: var(--tone-content-ink);
+	}
+
+	.archive-card[data-tone="docs"] {
+		--tone: var(--tone-docs);
+		--tone-ink: var(--tone-docs-ink);
+	}
+
+	.archive-card[data-tone="3d"] {
+		--tone: var(--tone-3d);
+		--tone-ink: var(--tone-3d-ink);
+	}
+
+	/*
+	 * The dependency row: chips that wrap, and never a scrollbar.
+	 *
+	 * `flex-wrap` rather than an overflow, because these are one or two short
+	 * words each and there is nothing to gain by hiding the second one behind a
+	 * gesture. A card is allowed to be a line taller.
+	 */
+	.archive-deps {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--s-1) var(--s-2);
+	}
+
+	.archive-dep {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		padding: 2px var(--s-2);
+		border-radius: 999px;
+		background: var(--pastel-stone);
+		color: var(--fg-dim);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		white-space: nowrap;
+	}
+
+	/*
+	 * "No dependencies" is the good case, so it is the one with colour.
+	 *
+	 * Every other chip in this row is a cost. This one is the absence of a cost,
+	 * and on a grid where most items have it the sage reads as a property of the
+	 * library rather than as a badge on an individual card - which is the honest
+	 * impression, because it is.
+	 */
+	.archive-dep[data-none="true"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+	}
+
+	.archive-card[data-tone] .archive-preview {
+		background: var(--tone);
+	}
+
+	.archive-card[data-tone] .archive-preview .label {
+		color: var(--tone-ink);
+	}
+
+	.archive-frame {
+		width: 100%;
+		height: 100%;
+		border: 0;
+		/* The preview is a picture: the click belongs to the card. */
+		pointer-events: none;
+	}
+
+	/*
+	 * Tags are secondary to categories, so they are quieter: square, smaller, and
+	 * lower contrast. If they looked like the category chips the reader would have
+	 * two equal-weight controls and no idea which one to use first.
+	 */
+	.archive-tag {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-2);
+		padding: var(--s-1) var(--s-2);
+		min-height: 28px;
+		border: 1px solid transparent;
+		border-radius: var(--r);
+		background: var(--bg-2);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--fg-faint);
+		transition:
+			color 160ms ease,
+			border-color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.archive-tag:hover {
+			color: var(--fg);
+			border-color: var(--line);
+		}
+	}
+
+	.archive-tag.is-active {
+		color: var(--fg);
+		border-color: var(--accent);
+	}
+}

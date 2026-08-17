@@ -1,0 +1,94 @@
+@layer blocks {
+	/* ── pagination ──────────────────────────────────────────────── */
+
+	.pages-num,
+	.pages-step {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 34px;
+		height: 34px;
+		padding: 0 var(--s-2);
+		border: 1px solid transparent;
+		border-radius: var(--r-lg);
+		color: var(--fg-dim);
+		text-decoration: none;
+		transition:
+			color 160ms ease,
+			border-color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.pages-num:hover,
+		.pages-step:hover {
+			border-color: var(--line-soft);
+			color: var(--fg);
+		}
+	}
+
+	.pages-num[aria-current="page"] {
+		border-color: var(--line);
+		background: var(--bg-1);
+		color: var(--fg);
+	}
+
+	/* The chevron points down by default; the steps need sideways. */
+	.pages-step {
+		rotate: 90deg;
+	}
+
+	.pages-step[data-dir="next"] {
+		rotate: -90deg;
+	}
+
+	.pages-gap {
+		color: var(--fg-faint);
+	}
+
+	/* ── breadcrumb ──────────────────────────────────────────────── */
+
+	/*
+	 * The trail. Mono and small like every other piece of page furniture, with
+	 * the chevron glyph as separator - a rotated copy of the one the nav
+	 * already uses, so the two systems read as one.
+	 */
+	.crumbs {
+		display: block;
+	}
+
+	.crumbs-list {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: var(--s-1);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.crumbs-item a {
+		color: var(--fg-faint);
+		text-decoration: none;
+		transition: color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.crumbs-item a:hover {
+			color: var(--accent);
+		}
+	}
+
+	.crumbs-item [aria-current="page"] {
+		color: var(--fg-dim);
+	}
+
+	.crumbs-sep {
+		display: flex;
+		color: var(--fg-faint);
+		rotate: -90deg;
+	}
+}

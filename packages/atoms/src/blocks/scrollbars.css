@@ -1,0 +1,81 @@
+@layer blocks {
+	/* ── scrollbars ──────────────────────────────────────────────── */
+
+	/*
+	 * A visible track on anything that scrolls inside a frame.
+	 *
+	 * Overlay scrollbars, which most platforms now default to, fade out when
+	 * the pointer is elsewhere. On a page that is fine - the page obviously
+	 * scrolls. Inside a window on a desktop it is not: a folder with more icons
+	 * than fit looks exactly like a folder with that many icons, and the only
+	 * hint otherwise is a scrollbar nobody has summoned yet.
+	 *
+	 * `scrollbar-width: thin` and `scrollbar-color` are the standard properties
+	 * and do the whole job in Firefox and current Chrome. The `::-webkit-`
+	 * rules under them are for Safari, which still wants its own.
+	 */
+	.window-canvas,
+	.search-results,
+	.device-desktop,
+	.nav-sheet {
+		scrollbar-width: thin;
+		scrollbar-color: var(--line) transparent;
+	}
+
+	.window-canvas::-webkit-scrollbar,
+	.search-results::-webkit-scrollbar,
+	.device-desktop::-webkit-scrollbar,
+	.nav-sheet::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	.window-canvas::-webkit-scrollbar-track,
+	.search-results::-webkit-scrollbar-track,
+	.device-desktop::-webkit-scrollbar-track,
+	.nav-sheet::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	/*
+	 * The thumb is inset by a transparent border rather than being 10px wide.
+	 * `background-clip: content-box` is what makes the border show the track
+	 * through it, which is how a 6px thumb sits in a 10px gutter without the
+	 * gutter needing a colour of its own.
+	 */
+	.window-canvas::-webkit-scrollbar-thumb,
+	.search-results::-webkit-scrollbar-thumb,
+	.device-desktop::-webkit-scrollbar-thumb,
+	.nav-sheet::-webkit-scrollbar-thumb {
+		border: 2px solid transparent;
+		border-radius: 999px;
+		background: var(--line);
+		background-clip: content-box;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.window-canvas::-webkit-scrollbar-thumb:hover,
+		.search-results::-webkit-scrollbar-thumb:hover,
+		.device-desktop::-webkit-scrollbar-thumb:hover,
+		.nav-sheet::-webkit-scrollbar-thumb:hover {
+			background: var(--fg-faint);
+			background-clip: content-box;
+		}
+	}
+
+	/*
+	 * The window's own scrolling area has to be allowed to be short. Without
+	 * `min-height: 0` a flex child refuses to shrink below its content, so the
+	 * canvas grows past the window instead of scrolling inside it - which is
+	 * the usual reason an overflow that is set does not appear to work.
+	 */
+	/*
+	 * `.window-canvas` states its own `flex: 1; min-height: 0` now, so the
+	 * descendant override that used to be here is gone. Two rules saying the
+	 * same thing about the same element is one rule and one place it is wrong.
+	 */
+	.desk-body > .window-frame {
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
+	}
+}
