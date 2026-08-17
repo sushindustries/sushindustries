@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"type": "module",
 	"description": "The components this site is made of. Every one of them is installable on its own - nothing here is site-specific.",
+	"license": "MIT",
 	"keywords": [
 		"react",
 		"components",
@@ -117,6 +118,7 @@
 		"./toast": "./src/toast.tsx",
 		"./toggle": "./src/toggle.tsx",
 		"./tooltip": "./src/tooltip.tsx",
+		"./typed-mark": "./src/typed-mark.tsx",
 		"./typography": "./src/typography.tsx",
 		"./use-desk-state": "./src/use-desk-state.ts",
 		"./use-device-kind": "./src/use-device-kind.ts",
@@ -397,6 +399,10 @@
 			"./tooltip": {
 				"import": "./dist/tooltip.js",
 				"require": "./dist/tooltip.cjs"
+			},
+			"./typed-mark": {
+				"import": "./dist/typed-mark.js",
+				"require": "./dist/typed-mark.cjs"
 			},
 			"./typography": {
 				"import": "./dist/typography.js",

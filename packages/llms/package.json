@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"type": "module",
 	"description": "Generate llms.txt, llms-full.txt, robots.txt and sitemap.xml from one description of a site. Framework-agnostic strings in, strings out.",
+	"license": "MIT",
 	"keywords": [
 		"llms.txt",
 		"robots.txt",

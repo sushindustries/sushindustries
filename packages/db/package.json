@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"type": "module",
 	"description": "The schema and the client. Drizzle over Postgres, with the connection kept server-side by construction.",
+	"license": "MIT",
 	"keywords": [
 		"drizzle",
 		"postgres",
