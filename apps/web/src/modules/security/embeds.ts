@@ -57,8 +57,27 @@ export const EMBED_PROVIDERS: Readonly<Record<string, EmbedProvider>> = {
 		id: "mux",
 		label: "Mux",
 		img: ["https://image.mux.com"],
-		media: ["https://stream.mux.com"],
-		connect: ["https://stream.mux.com", "https://inferred.litix.io"],
+		/*
+		 * A wildcard, and not for convenience.
+		 *
+		 * `stream.mux.com` is the URL the player is *given*; it is not the host
+		 * it ends up talking to. Mux redirects playback to a regional delivery
+		 * host - `manifest-gcp-us-east1-vop1.fastly.mux.com` was the one that
+		 * failed here - and which region a viewer is sent to is decided by where
+		 * that viewer is. Naming the hosts individually would mean a policy that
+		 * passes on this machine and blocks the video for somebody on another
+		 * continent, which is the worst kind of bug: correct in every test, and
+		 * broken for people who cannot tell you why.
+		 *
+		 * The subdomain wildcard is scoped to a domain we already trust with the
+		 * player itself, so it grants nothing that embedding Mux did not.
+		 */
+		media: ["https://stream.mux.com", "https://*.mux.com"],
+		connect: [
+			"https://stream.mux.com",
+			"https://*.mux.com",
+			"https://inferred.litix.io",
+		],
 		poster: (source) => `https://image.mux.com/${source}/thumbnail.webp`,
 	},
 

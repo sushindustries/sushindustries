@@ -12,11 +12,14 @@ backticked word is a glyph from `packages/ui/glyphs.md`.
 ## The footer
 
 - [Site](/)
+  - [Get started](/p/getting-started) `spark`
   - [Components](/components) `layers`
   - [Blocks](/components?tag=block) `grid`
   - [Packages](/packages) `package`
   - [Writing](/posts) `note`
 - [Elsewhere](/)
+  - [Contact](/p/contact) `chat`
+  - [All accounts](/p/socials) `share`
   - [GitHub](https://github.com/sushindustries) `github`
   - [LinkedIn](https://www.linkedin.com/in/adamjurek22) `linkedin`
 - [For machines](/)

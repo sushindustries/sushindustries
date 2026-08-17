@@ -2,6 +2,7 @@ import type { MarkdownBlocks } from "@sushindustries/ui";
 import { CardBlock } from "./card-block";
 import { PersonBlock, ReviewBlock } from "./entity-blocks";
 import { GridBlock, SpacerBlock } from "./layout-blocks";
+import { QuestionsBlock } from "./questions-block";
 import { ShelfBlock } from "./shelf-block";
 import { ShowcaseBlock } from "./showcase-block";
 import { VideoBlock } from "./video-block";
@@ -25,4 +26,5 @@ export const BLOCKS: MarkdownBlocks = {
 	shelf: ShelfBlock,
 	person: PersonBlock,
 	review: ReviewBlock,
+	questions: QuestionsBlock,
 };

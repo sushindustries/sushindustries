@@ -7,8 +7,10 @@ import { MarkdownView, useDeviceKind } from "@sushindustries/ui";
 import { fetchServerSentEvents } from "@tanstack/ai-client";
 import { useChat } from "@tanstack/ai-react";
 import { useThrottledValue } from "@tanstack/react-pacer";
+import { useStore } from "@tanstack/react-store";
 import { type ReactNode, useEffect, useMemo } from "react";
 import { BLOCKS } from "../markdown/blocks";
+import { askedQuestion, clearAskedQuestion } from "../markdown/questions.store";
 
 /*
  * This site's assistant: the panel, wired to this site's stream.
@@ -70,6 +72,27 @@ export function SiteAssistant(): ReactNode {
 	 */
 	const [transcript] = useThrottledValue(chat.messages, { wait: REDRAW_MS });
 
+	/*
+	 * A question pressed somewhere in the page, asked here.
+	 *
+	 * The store is cleared as it is read rather than by whoever wrote it: the
+	 * writer is a button that has already unmounted by the time this runs on
+	 * some pages, and a value left set would re-ask itself on the next render.
+	 *
+	 * Sending is guarded on `streaming` because a reader can press a second
+	 * question while the first is still answering, and the honest behaviour is
+	 * to ignore it rather than interleave two replies in one transcript.
+	 */
+	const pending = useStore(askedQuestion);
+	const streaming = chat.status === "streaming";
+	const send = chat.sendMessage;
+
+	useEffect(() => {
+		if (!pending || streaming) return;
+		clearAskedQuestion();
+		send({ content: pending });
+	}, [pending, streaming, send]);
+
 	const messages = useMemo<AssistantMessage[]>(
 		() =>
 			transcript.map((message) => ({
@@ -114,7 +137,7 @@ export function SiteAssistant(): ReactNode {
 			onOpenThread={history.open}
 			onDeleteThread={history.remove}
 			onNewThread={history.start}
-			streaming={chat.status === "streaming"}
+			streaming={streaming}
 			onSend={(text) => chat.sendMessage({ content: text })}
 			placeholder="Ask about this site"
 			greeting="Ask about the components, the packages, or why any of this is built the way it is."

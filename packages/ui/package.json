@@ -94,6 +94,7 @@
 		"./nav-bar": "./src/nav-bar.tsx",
 		"./pagination": "./src/pagination.tsx",
 		"./progress": "./src/progress.tsx",
+		"./questions": "./src/questions.tsx",
 		"./radio-group": "./src/radio-group.tsx",
 		"./reference": "./src/reference.tsx",
 		"./reveal": "./src/reveal.tsx",
@@ -303,6 +304,10 @@
 			"./progress": {
 				"import": "./dist/progress.js",
 				"require": "./dist/progress.cjs"
+			},
+			"./questions": {
+				"import": "./dist/questions.js",
+				"require": "./dist/questions.cjs"
 			},
 			"./radio-group": {
 				"import": "./dist/radio-group.js",

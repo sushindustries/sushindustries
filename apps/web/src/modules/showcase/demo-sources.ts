@@ -28,6 +28,18 @@ export const DEMO_SOURCES = {
 </Reveal>`,
 		language: "tsx",
 	},
+	questions: {
+		source: `<Questions
+	heading="Common questions"
+	questions={[
+		"How do I install a component?",
+		"Do I need the whole library?",
+		"What happens when a component updates?",
+	]}
+	onAsk={(question) => assistant.send(question)}
+/>`,
+		language: "tsx",
+	},
 	card: {
 		source: `<Card title="With meta" meta="v0.1.0">
 	<p>Body goes here.</p>

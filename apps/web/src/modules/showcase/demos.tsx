@@ -43,6 +43,7 @@ import {
 	type PaletteEntry,
 	Progress,
 	parseFrontmatter,
+	Questions,
 	RadioGroup,
 	Ref,
 	Reveal,
@@ -85,6 +86,7 @@ import {
 	useState,
 } from "react";
 import { LOGO_MODEL } from "../chrome/logo";
+import { askAssistant } from "../markdown/questions.store";
 import { DEMO_SOURCES } from "./demo-sources";
 import { pacedImport } from "./paced-import";
 
@@ -691,6 +693,21 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 			</div>
 		),
 		...DEMO_SOURCES.reveal,
+	},
+
+	questions: {
+		element: (
+			<Questions
+				heading="Common questions"
+				questions={[
+					"How do I install a component?",
+					"Do I need the whole library?",
+					"What happens when a component updates?",
+				]}
+				onAsk={askAssistant}
+			/>
+		),
+		...DEMO_SOURCES.questions,
 	},
 
 	card: {

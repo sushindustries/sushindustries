@@ -351,6 +351,20 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		preview: "A mark, a number climbing, and a rule filling",
 	},
 	{
+		name: "questions",
+		schema: "ItemList",
+		version: "0.1.0",
+		title: "Questions",
+		description:
+			"The questions a page expects to be asked. Given an onAsk, each one is a button that puts itself to an assistant; without it, a plain list.",
+		files: ["questions.tsx"],
+		dependencies: {},
+		category: "content",
+		subcategory: "Documents",
+		tags: ["assistant", "no-deps"],
+		preview: "Three questions, pressable",
+	},
+	{
 		name: "card",
 		schema: "CreativeWork",
 		version: "0.1.0",

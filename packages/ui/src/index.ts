@@ -105,6 +105,7 @@ export {
 } from "./nav-bar";
 export { Pagination, type PaginationProps } from "./pagination";
 export { Progress, type ProgressProps } from "./progress";
+export { Questions, type QuestionsProps } from "./questions";
 export {
 	RadioGroup,
 	type RadioGroupProps,

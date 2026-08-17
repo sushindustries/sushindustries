@@ -7630,3 +7630,91 @@
 		background: color-mix(in srgb, var(--bg-0) 88%, transparent);
 	}
 }
+
+@layer blocks {
+	/*
+	 * The questions a page expects, as things you can press.
+	 *
+	 * They read as a list and behave as controls, which is the tension worth
+	 * getting right: too button-like and a paragraph of prose turns into a
+	 * toolbar; too plain and nobody discovers that pressing one answers it.
+	 * So they carry a quiet edge that only warms on hover, and the arrow is
+	 * what says "this goes somewhere".
+	 */
+	.questions {
+		margin-block: var(--s-6);
+	}
+
+	.questions-title {
+		margin-bottom: var(--s-3);
+		font-size: var(--t-sm);
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		color: var(--ink-2);
+	}
+
+	/*
+	 * A grid rather than a flex column: on a wide page two questions sit side
+	 * by side and the block stops being a stripe of full-width bars, and the
+	 * same declaration stacks them on a phone with no second rule.
+	 */
+	.questions-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+		gap: var(--s-2);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.questions-ask {
+		display: flex;
+		align-items: center;
+		gap: var(--s-2);
+		width: 100%;
+		padding: var(--s-3) var(--s-4);
+		border: 1px solid var(--edge);
+		border-radius: var(--r);
+		background: var(--bg-1);
+		color: var(--ink-1);
+		font: inherit;
+		font-size: var(--t-sm);
+		text-align: left;
+		cursor: pointer;
+		transition:
+			border-color 160ms var(--ease-out),
+			background 160ms var(--ease-out);
+	}
+
+	/*
+	 * The mark that says a question is answerable. `::before` rather than an
+	 * icon element, because it is punctuation - it should not be announced,
+	 * and a screen reader already has the question itself.
+	 */
+	.questions-ask::before {
+		content: "?";
+		flex-shrink: 0;
+		display: grid;
+		place-items: center;
+		width: 1.5rem;
+		height: 1.5rem;
+		border-radius: 50%;
+		background: var(--bg-2);
+		color: var(--ink-2);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+	}
+
+	/* Not a control, so it does not offer to be pressed. */
+	.questions-ask[data-static="true"] {
+		cursor: default;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.questions-ask:not([data-static="true"]):hover {
+			border-color: var(--accent);
+			background: var(--bg-2);
+		}
+	}
+}
