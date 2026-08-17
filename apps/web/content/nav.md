@@ -41,4 +41,9 @@ step with the first.
   - [Atoms](/packages/atoms) `grid` - Design tokens and atomic CSS
   - [Product Viewer](/packages/react-product-viewer) `cube` - A GLB in a React component
   - [LLMs](/packages/llms) `text` - Crawler files and a sitemap from one description of a site
+- [Examples](/p/markdown) `book`
+  - [Markdown](/p/markdown) `text` - Every syntax the renderer speaks and the atoms underneath it
+  - [Blog layout](/p/blog-layout) `note` - A blog front page written as Markdown blocks
+  - [Documentation layout](/p/documentation-layout) `book` - A docs landing page as a copyable template
+  - [The read API](/p/api) `link` - Every endpoint, documented from its own catalogue
 - [Writing](/posts) `note`

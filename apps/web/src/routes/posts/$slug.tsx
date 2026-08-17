@@ -1,6 +1,7 @@
 import { collectHeadings, DocAside, MarkdownView } from "@sushindustries/ui";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { DocActions } from "../../modules/content/doc-actions";
 import { findPost } from "../../modules/content/posts/posts.catalogue";
 import { REFERENCES } from "../../modules/content/references.catalogue";
 import { pageTitle } from "../../modules/content/site.catalogue";
@@ -42,6 +43,13 @@ function PostPage(): ReactNode {
 						{post.date}
 					</time>
 				) : null}
+
+				{/* A post is a file in the repo; the bar links straight to it. */}
+				<DocActions
+					title={post.title}
+					markdown={post.body}
+					editPath={`apps/web/content/posts/${post.slug}.md`}
+				/>
 			</header>
 
 			<div className="mt-7">

@@ -179,7 +179,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Archive",
 		description:
 			"A filterable grid with categories, subcategories and tags. Renders its own links through a callback so the router stays yours.",
-		files: ["archive.tsx", "archive.schemas.ts"],
+		files: ["archive.tsx", "archive.schemas.ts", "pagination.tsx", "icon.tsx"],
 		dependencies: { zod: "^4.4.3" },
 		registryDependencies: ["card"],
 		category: "layout",
@@ -327,7 +327,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Card",
 		description:
 			"Title, optional meta, arbitrary body. Heading level is a prop so the outline stays correct.",
-		files: ["card.tsx"],
+		files: ["card.tsx", "icon.tsx"],
 		dependencies: {},
 		category: "layout",
 		subcategory: "Containers",
@@ -369,6 +369,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 			"A component in a real iframe at every width it has to survive, side by side, with its source and install commands.",
 		files: ["showcase.tsx", "icon.tsx"],
 		dependencies: {},
+		registryDependencies: ["copy-button"],
 		category: "docs",
 		subcategory: "Presentation",
 		tags: ["iframe", "responsive"],
@@ -422,7 +423,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Code Block",
 		description:
 			"A highlighted code slab with the CLI's colours, a lit top edge, and a copy button that confirms in place.",
-		files: ["code-block.tsx", "highlighter.ts"],
+		files: ["code-block.tsx", "highlighter.ts", "icon.tsx"],
 		dependencies: {
 			"@tanstack/highlight": "0.0.10",
 		},

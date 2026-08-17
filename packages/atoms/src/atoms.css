@@ -567,6 +567,20 @@
 		box-sizing: border-box;
 	}
 
+	/*
+	 * The scroll veil's other half. While Lenis has a scroll in flight the
+	 * document carries `data-scrolling` (set by SmoothScroll), and for exactly
+	 * that long every embedded surface stops swallowing the wheel - an iframe
+	 * or a canvas under the cursor otherwise eats the events mid-gesture,
+	 * which is the flutter a page of live previews used to have. The moment
+	 * the page settles the attribute drops and the previews are interactive
+	 * again.
+	 */
+	:root[data-scrolling] iframe,
+	:root[data-scrolling] canvas {
+		pointer-events: none;
+	}
+
 	html {
 		/* Lenis animates scroll itself; leaving native smooth on fights it. */
 		scroll-behavior: auto;

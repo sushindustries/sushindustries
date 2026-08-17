@@ -397,6 +397,199 @@ function checkRegistryFilesAreExported(items) {
 	}
 }
 
+/**
+ * Every rule in atoms.css lives inside a declared layer.
+ *
+ * The cascade rule the whole system leans on: tokens < base < blocks <
+ * utilities, and *unlayered CSS beats all of it*. A selector written at the
+ * top level of the file silently outranks every utility on the site - that
+ * exact bug shipped once from prose.css, where an unlayered code theme
+ * shadowed the code material for days. Inside atoms it would be worse and
+ * invisible, so the file's top level admits nothing but `@layer` blocks and
+ * the statements that set them up.
+ */
+function checkAtomsAreLayered() {
+	const source = read("packages/atoms/src/atoms.css").replace(
+		/\/\*[\s\S]*?\*\//g,
+		"",
+	);
+
+	let depth = 0;
+	let buffer = "";
+	for (const char of source) {
+		if (char === "{") {
+			if (depth === 0) {
+				const prelude = buffer.trim();
+				if (!prelude.startsWith("@layer")) {
+					report(
+						"layers",
+						"packages/atoms/src/atoms.css",
+						`top-level rule outside every layer: \`${prelude.slice(0, 60)}\``,
+						"unlayered CSS outranks all four layers; move it into one",
+					);
+				}
+			}
+			depth += 1;
+			buffer = "";
+		} else if (char === "}") {
+			depth -= 1;
+		} else if (depth === 0) {
+			if (char === ";") {
+				const statement = buffer.trim();
+				if (
+					statement &&
+					!statement.startsWith("@layer") &&
+					!statement.startsWith("@import") &&
+					!statement.startsWith("@charset")
+				) {
+					report(
+						"layers",
+						"packages/atoms/src/atoms.css",
+						`top-level statement outside every layer: \`${statement.slice(0, 60)}\``,
+					);
+				}
+				buffer = "";
+			} else {
+				buffer += char;
+			}
+		}
+	}
+}
+
+/**
+ * Every fixed-column grid collapses somewhere.
+ *
+ * `repeat(3, 1fr)` is three columns forever, including on a phone, where it
+ * is three columns of clipped text. A grid in atoms is responsive one of two
+ * ways: intrinsically (`auto-fit`/`auto-fill` with `minmax()`), or explicitly
+ * (the same class appears again inside a `@media` or `@container` block that
+ * overrides it). A fixed count with neither is a layout that only works at
+ * the width it was written at.
+ */
+function checkGridsAreResponsive() {
+	const source = read("packages/atoms/src/atoms.css").replace(
+		/\/\*[\s\S]*?\*\//g,
+		"",
+	);
+
+	/*
+	 * One pass, tracking whether the rule sits inside a query block. Flat
+	 * selectors only, which is what the file contains - the atoms checker
+	 * above this one already guards the file's shape.
+	 */
+	const fixed = new Map(); // selector -> declaration
+	const overridden = new Set(); // selectors that appear inside a query
+
+	let depth = 0;
+	let inQuery = 0;
+	let buffer = "";
+	let selector = "";
+	for (const char of source) {
+		if (char === "{") {
+			const prelude = buffer.trim();
+			if (
+				depth === 1 ||
+				(depth === 2 && inQuery) ||
+				prelude.startsWith("@media") ||
+				prelude.startsWith("@container")
+			) {
+				if (prelude.startsWith("@media") || prelude.startsWith("@container")) {
+					inQuery = depth + 1;
+				} else if (inQuery) {
+					overridden.add(prelude);
+				} else {
+					selector = prelude;
+				}
+			}
+			depth += 1;
+			buffer = "";
+		} else if (char === "}") {
+			depth -= 1;
+			if (inQuery && depth < inQuery) inQuery = 0;
+			buffer = "";
+		} else {
+			buffer += char;
+			if (char === ";" && selector && depth >= 2 && !inQuery) {
+				const match = buffer.match(
+					/grid-template-columns:\s*repeat\(\s*(\d+)\s*,/,
+				);
+				if (match && Number(match[1]) > 1) fixed.set(selector, match[1]);
+				buffer = "";
+			}
+		}
+	}
+
+	for (const [rule, count] of fixed) {
+		/*
+		 * Covered when a query block restates the rule's class - matched on the
+		 * leading class token, because the override is usually *more general*
+		 * (`[data-columns]` covering every `[data-columns="n"]`), so neither
+		 * string contains the other whole.
+		 */
+		const token = rule.match(/\.[\w-]+/)?.[0];
+		const covered =
+			token !== undefined &&
+			[...overridden].some((inner) => inner.includes(token));
+		if (covered) continue;
+
+		report(
+			"responsive",
+			"packages/atoms/src/atoms.css",
+			`\`${rule}\` fixes ${count} columns with no @media/@container override`,
+			"use repeat(auto-fit, minmax(...)) or collapse it in a query",
+		);
+	}
+}
+
+/**
+ * A component that renders another component says so in the registry.
+ *
+ * The imports in the source are the truth; `registryDependencies` is the
+ * copy installers act on. When the two drift, `shadcn add` copies a file
+ * whose first import cannot resolve - the component works here and breaks
+ * in every project that installs it. So: any runtime import of a sibling
+ * module that belongs to a *different* registry item must be declared.
+ */
+function checkComponentImportsAreDeclared(items) {
+	// A shared file like icon.tsx ships in many items, so a stem has a set of
+	// owners and any declared one satisfies the import.
+	const owners = new Map();
+	for (const item of items) {
+		for (const file of item.files) {
+			const stem = file.replace(/\.tsx?$/, "");
+			if (!owners.has(stem)) owners.set(stem, new Set());
+			owners.get(stem).add(item.name);
+		}
+	}
+
+	for (const item of items) {
+		const declared = new Set(item.registryDependencies);
+		const own = new Set(item.files.map((file) => file.replace(/\.tsx?$/, "")));
+
+		for (const file of item.files) {
+			const source = read(`packages/ui/src/${file}`);
+
+			for (const [, stem] of source.matchAll(
+				/import\s[^;]*?from\s+"\.\/([\w.-]+)"/g,
+			)) {
+				if (own.has(stem)) continue;
+
+				const holders = owners.get(stem);
+				if (!holders) continue;
+				if ([...holders].some((name) => declared.has(name))) continue;
+
+				const [suggestion] = holders;
+				report(
+					"registry",
+					`packages/ui/src/${file}`,
+					`imports ./${stem} but "${item.name}" neither ships it nor declares an item that does`,
+					`add "${stem}.tsx" to its files, or "${suggestion}" to its registryDependencies`,
+				);
+			}
+		}
+	}
+}
+
 /** Every registry item gets a page in the museum, so every one needs a doc. */
 async function checkRegistryItemsHaveDocs(items) {
 	for (const item of items) {
@@ -477,6 +670,60 @@ function checkContentFrontmatter() {
 		for (const required of REQUIRED_FRONTMATTER[base]) {
 			if (keys.includes(required)) continue;
 			report("frontmatter", path, `missing \`${required}:\``);
+		}
+	}
+}
+
+/**
+ * Rendered documents keep a proper heading hierarchy.
+ *
+ * The routes render each document's title as the page `<h1>`, so a `#` inside
+ * a body is a second h1 - two top headings on one page, and an outline that
+ * lies to assistive tech and to crawlers alike. Skipped levels (`##` straight
+ * to `####`) break the same outline in the other direction.
+ *
+ * Scoped to documents a route renders. The chrome catalogues (nav.md,
+ * footer.md, shelf.md) title themselves because nothing else does.
+ */
+const RENDERED_MARKDOWN = [
+	"apps/web/content/pages/",
+	"apps/web/content/posts/",
+	"packages/ui/docs/",
+];
+
+function checkMarkdownHierarchy() {
+	for (const path of trackedFiles()) {
+		if (!path.endsWith(".md")) continue;
+		if (!RENDERED_MARKDOWN.some((prefix) => path.startsWith(prefix))) continue;
+
+		const body = read(path)
+			.replace(/^---\n[\s\S]*?\n---\n/, "")
+			.replace(/```[\s\S]*?```/g, "");
+
+		let previous = null;
+		for (const match of body.matchAll(/^(#{1,6})\s+(.*)$/gm)) {
+			const level = match[1].length;
+			const text = match[2].trim();
+
+			if (level === 1) {
+				report(
+					"hierarchy",
+					path,
+					`h1 in body: \`# ${text}\``,
+					"the route renders the title; start the body at ##",
+				);
+			}
+
+			if (previous !== null && level > previous + 1) {
+				report(
+					"hierarchy",
+					path,
+					`heading skips h${previous} -> h${level} at \`${text}\``,
+					"outlines must not skip levels",
+				);
+			}
+
+			previous = level;
 		}
 	}
 }
@@ -1257,12 +1504,16 @@ checkGeneratedFilesAreOrdered();
 
 checkRegistryFilesExist(registry);
 checkRegistryDependenciesResolve(registry);
+checkComponentImportsAreDeclared(registry);
+checkAtomsAreLayered();
+checkGridsAreResponsive();
 checkRegistryFilesAreExported(registry);
 checkExportsAreRegistered(registry);
 await checkRegistryItemsHaveDocs(registry);
 checkRegistryItemsHaveDemos(registry);
 
 checkContentFrontmatter();
+checkMarkdownHierarchy();
 checkTemplates();
 checkGlyphsAreGenerated();
 checkDevicesAreGenerated();

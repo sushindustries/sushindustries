@@ -1,4 +1,8 @@
-import { REGISTRY_ITEMS, type RegistryItem } from "@sushindustries/ui/registry";
+import {
+	REGISTRY_CATEGORIES,
+	REGISTRY_ITEMS,
+	type RegistryItem,
+} from "@sushindustries/ui/registry";
 
 /*
  * One source, two installers.
@@ -150,8 +154,25 @@ export function toRegistryIndex(origin: string): {
 	};
 }
 
+/*
+ * Sorted once, at module scope: category in the order the taxonomy declares
+ * them, title A-Z within one. The registry file itself is append-ordered -
+ * whatever was built last is last - and serving that order meant the archive,
+ * the API and the search all showed sixty-two items in the order of their
+ * commit history, which reads as no order at all.
+ */
+const CATEGORY_RANK = new Map(
+	REGISTRY_CATEGORIES.map((category, index) => [category.id, index]),
+);
+
+const SORTED_ITEMS: readonly RegistryItem[] = [...REGISTRY_ITEMS].sort(
+	(a, b) =>
+		(CATEGORY_RANK.get(a.category) ?? 99) -
+			(CATEGORY_RANK.get(b.category) ?? 99) || a.title.localeCompare(b.title),
+);
+
 export function listRegistry(): readonly RegistryItem[] {
-	return REGISTRY_ITEMS;
+	return SORTED_ITEMS;
 }
 
 export function findRegistryItem(name: string): RegistryItem | undefined {

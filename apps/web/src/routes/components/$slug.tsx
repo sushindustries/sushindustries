@@ -7,9 +7,11 @@ import {
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import * as z from "zod";
+import { componentBacklinks } from "../../modules/content/components/backlinks";
 import { findComponentPage } from "../../modules/content/components/component-page";
 import type { SectionId } from "../../modules/content/components/components.catalogue";
 import { DocActions } from "../../modules/content/doc-actions";
+import { DocBacklinks } from "../../modules/content/doc-backlinks";
 import { DocFeedback } from "../../modules/content/doc-feedback";
 import { REFERENCES } from "../../modules/content/references.catalogue";
 import { pageTitle, SITE } from "../../modules/content/site.catalogue";
@@ -64,6 +66,9 @@ export const Route = createFileRoute("/components/$slug")({
 					collectHeadings(section.body),
 				]),
 			),
+			// The element's place in the graph, resolved here so the connections
+			// footer is part of the SSR'd page rather than a client scan.
+			links: componentBacklinks(params.slug),
 		};
 	},
 	head: ({ loaderData }) => ({
@@ -79,7 +84,7 @@ export const Route = createFileRoute("/components/$slug")({
 });
 
 function ComponentDocPage(): ReactNode {
-	const { doc, headings } = Route.useLoaderData();
+	const { doc, headings, links } = Route.useLoaderData();
 	const { tab } = Route.useSearch();
 
 	// An unknown or absent tab falls back to the first section rather than
@@ -120,8 +125,10 @@ function ComponentDocPage(): ReactNode {
 					{/*
 					 * The same page, for every kind of reader: raw Markdown for a
 					 * person, a one-line prompt for their agent, an edit link for
-					 * whoever spots the typo. Generated pages have no file on
-					 * GitHub, so they get no edit link rather than a dead one.
+					 * whoever spots the typo. A generated page has no file to edit,
+					 * so it offers the file instead - GitHub's new-file editor with
+					 * the name and frontmatter filled in. Writing it replaces the
+					 * generated Home outright.
 					 */}
 					<DocActions
 						title={doc.title}
@@ -133,6 +140,28 @@ function ComponentDocPage(): ReactNode {
 							doc.generated
 								? undefined
 								: `packages/ui/docs/${doc.slug}/index.md`
+						}
+						writePath={
+							doc.generated ? `packages/ui/docs/${doc.slug}` : undefined
+						}
+						writeBody={
+							doc.generated
+								? [
+										"---",
+										`title: ${doc.title}`,
+										`summary: ${doc.summary}`,
+										"updated: ",
+										"---",
+										"",
+										doc.summary,
+										"",
+										`<!-- ::start:showcase demo="${doc.slug}" height="420" -->`,
+										"<!-- ::end:showcase -->",
+										"",
+										"## Notes",
+										"",
+									].join("\n")
+								: undefined
 						}
 					/>
 
@@ -178,6 +207,8 @@ function ComponentDocPage(): ReactNode {
 				) : (
 					<p className="fg-dim">Nothing written yet.</p>
 				)}
+
+				<DocBacklinks links={links} />
 			</div>
 		</article>
 	);

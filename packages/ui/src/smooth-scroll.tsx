@@ -20,6 +20,25 @@ export function SmoothScroll(): null {
 			smoothWheel: true,
 		});
 
+		/*
+		 * The scroll veil. An iframe or a canvas swallows the wheel events that
+		 * pass over it, and Lenis loses its stream mid-gesture - which is the
+		 * flutter every page full of live previews had. While a scroll is in
+		 * flight the document carries `data-scrolling`, and the stylesheet turns
+		 * embedded surfaces `pointer-events: none` for exactly that long, so the
+		 * gesture stays whole and the previews are interactive again the moment
+		 * the page settles.
+		 */
+		let settle = 0;
+		const veil = (): void => {
+			document.documentElement.setAttribute("data-scrolling", "");
+			window.clearTimeout(settle);
+			settle = window.setTimeout(() => {
+				document.documentElement.removeAttribute("data-scrolling");
+			}, 150);
+		};
+		lenis.on("scroll", veil);
+
 		let frame = 0;
 		function raf(time: number): void {
 			lenis.raf(time);
@@ -29,6 +48,8 @@ export function SmoothScroll(): null {
 
 		return () => {
 			cancelAnimationFrame(frame);
+			window.clearTimeout(settle);
+			document.documentElement.removeAttribute("data-scrolling");
 			lenis.destroy();
 		};
 	}, []);

@@ -20,14 +20,24 @@ const REPO = "https://github.com/sushindustries/sushindustries";
 export interface DocActionsProps {
 	/** The page's own Markdown, for "Copy page". */
 	markdown: string;
-	/** Absolute URL of the raw Markdown view. */
-	markdownUrl: string;
-	/** Absolute URL of the agent setup instructions. */
-	promptUrl: string;
+	/** Absolute URL of the raw Markdown view, when the page serves one. */
+	markdownUrl?: string;
+	/** Absolute URL of the agent setup instructions, when the page has them. */
+	promptUrl?: string;
 	/** What the agent prompt calls the thing being set up. */
 	title: string;
 	/** Repo path of the source Markdown, for editing on GitHub. */
 	editPath?: string;
+	/**
+	 * Repo directory where the Markdown *would* live, for pages that are
+	 * generated and have no file yet. Renders a "Write this page" door that
+	 * opens GitHub's new-file editor with the name and a starter body filled
+	 * in - the create half of the edit button, for the pages editing cannot
+	 * reach.
+	 */
+	writePath?: string;
+	/** Starter body for the new file. Kept short: GitHub reads it off the URL. */
+	writeBody?: string;
 	/** `updated:` from the document's frontmatter, e.g. "2026-08-17". */
 	updated?: string;
 }
@@ -38,6 +48,8 @@ export function DocActions({
 	promptUrl,
 	title,
 	editPath,
+	writePath,
+	writeBody,
 	updated,
 }: DocActionsProps): ReactNode {
 	const prompt = `Fetch and execute the appropriate instructions to set me up with ${title} from ${promptUrl}`;
@@ -72,26 +84,30 @@ export function DocActions({
 			) : null}
 			<span className="label">{minutes} min read</span>
 			<CopyButton text={markdown} label="Copy as Markdown" ground="paper" />
-			<a
-				className="copy-btn"
-				data-ground="paper"
-				data-action="read"
-				href={markdownUrl}
-			>
-				View as Markdown
-			</a>
+			{markdownUrl ? (
+				<a
+					className="copy-btn"
+					data-ground="paper"
+					data-action="read"
+					href={markdownUrl}
+				>
+					View as Markdown
+				</a>
+			) : null}
 
 			{/*
 			 * One accent pill among quiet chips. The prompt works in Claude,
 			 * Cursor or anything that can fetch a URL - one door, lit, beats
 			 * three neutral ones nobody can tell apart.
 			 */}
-			<CopyButton
-				text={prompt}
-				label="Agent setup"
-				icon="spark"
-				ground="accent"
-			/>
+			{promptUrl ? (
+				<CopyButton
+					text={prompt}
+					label="Agent setup"
+					icon="spark"
+					ground="accent"
+				/>
+			) : null}
 
 			{editPath ? (
 				<a
@@ -103,6 +119,21 @@ export function DocActions({
 					rel="noopener noreferrer"
 				>
 					Edit on GitHub
+				</a>
+			) : null}
+
+			{!editPath && writePath ? (
+				<a
+					className="copy-btn"
+					data-ground="paper"
+					data-action="edit"
+					href={`${REPO}/new/main/${writePath}?filename=index.md${
+						writeBody ? `&value=${encodeURIComponent(writeBody)}` : ""
+					}`}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					Write this page
 				</a>
 			) : null}
 		</div>
