@@ -21,7 +21,6 @@
 		"@sushindustries/react-product-viewer": "workspace:*",
 		"@sushindustries/ui": "workspace:*",
 		"@stackblitz/sdk": "^1.11.0",
-		"@stackblitz/sdk": "^1.11.0",
 		"@tanstack/ai": "^0.44.1",
 		"@tanstack/ai-client": "^0.23.2",
 		"@tanstack/ai-groq": "^0.6.0",
