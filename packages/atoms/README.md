@@ -26,6 +26,26 @@ Then compose. Every class does exactly one thing:
 </article>
 ```
 
+## Elements & utilities
+
+The package is implemented as a single stylesheet. Below are the most-used classes and utilities — open `packages/atoms/atoms.css` for the full list.
+
+- Layout & components
+  - `.card` — basic card container
+  - `.container` — page/container sizing (uses `--container`)
+- Typography
+  - `.h1`, `.h2`, `.h3` — heading sizes (clamped)
+  - `.text-sm`, `.text-base`, `.text-lg`
+  - `.m-0` — remove margin
+- Spacing
+  - `--s-1` … `--s-9` — fixed step spacing variables
+  - Utilities: `.p-1`, `.p-2`, `.m-1`, `.m-2` (see CSS for exact mapping)
+- Color & semantic
+  - `--color-nori`, `--color-rice`, `--color-salmon` — tokens used across utilities
+  - `.fg-dim` — dimmed foreground color
+
+Open the stylesheet: https://github.com/sushindustries/sushindustries/blob/main/packages/atoms/atoms.css
+
 ## Why not Tailwind
 
 Tailwind is the right answer when a team needs every utility and a build step
@@ -45,6 +65,16 @@ headings covers phone through desktop.
 
 Override any of them by redefining the custom property on `:root` after the
 import.
+
+Example override:
+
+```css
+:root {
+  --color-text: #111111;
+  --color-bg: #ffffff;
+  --s-3: 1.5rem;
+}
+```
 
 ## Units, and which one when
 
@@ -90,6 +120,13 @@ showing, and its last hundred pixels are unreachable.
 
 `100dvh` on a full-screen drawer is the difference between a menu whose last
 entry can be tapped and one whose last entry cannot.
+
+## Browser support & notes
+
+- `clamp()` — supported in modern browsers; see https://developer.mozilla.org/docs/Web/CSS/clamp
+- Container queries (`@container`) — modern support; see https://developer.mozilla.org/docs/Web/CSS/@container
+- Viewport units: `dvh` — supported in modern mobile browsers; see https://developer.mozilla.org/docs/Web/CSS/dvh
+- `aspect-ratio` — use instead of the padding-top percentage hack; see https://developer.mozilla.org/docs/Web/CSS/aspect-ratio
 
 ### Container queries beat media queries in a library
 
