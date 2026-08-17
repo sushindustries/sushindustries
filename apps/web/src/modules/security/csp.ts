@@ -63,6 +63,26 @@ export function contentSecurityPolicy({
 			"script-src",
 			"'self'",
 			"'unsafe-inline'",
+			/*
+			 * `'wasm-unsafe-eval'`, because a GLB is decoded by WebAssembly.
+			 *
+			 * Compiling a Wasm module counts as evaluation under CSP, so a policy
+			 * without this throws `CompileError: WebAssembly.instantiate()` inside
+			 * the loader and the canvas mounts, sizes itself, and stays empty
+			 * forever. Nothing fails loudly: the page is 200, the element is
+			 * there, and the model is the only thing missing.
+			 *
+			 * It shipped that way, and it was invisible locally for the worst
+			 * possible reason - dev adds `'unsafe-eval'`, which happens to permit
+			 * Wasm too, so every viewer worked on this machine and none worked in
+			 * production. Exactly what the `connect-src` note below describes,
+			 * one directive up.
+			 *
+			 * This is the narrow form on purpose: it allows compiling Wasm and
+			 * nothing else. `'unsafe-eval'` would also hand an injected string to
+			 * `eval`, which is the hole this file exists to close.
+			 */
+			"'wasm-unsafe-eval'",
 			...(dev ? ["'unsafe-eval'"] : []),
 		),
 
