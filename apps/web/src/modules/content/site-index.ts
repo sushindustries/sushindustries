@@ -1,6 +1,7 @@
 import { listRegistry } from "../registry/registry.catalogue";
 import { listComponentDocs } from "./components/components.catalogue";
 import { listPackages } from "./packages/packages.catalogue";
+import { listBuiltPages } from "./pages/pages.catalogue";
 import { listPosts } from "./posts/posts.catalogue";
 
 /*
@@ -40,7 +41,7 @@ function componentEntries(): IndexEntry[] {
 	 * Driven by the registry, not by the docs folder: every registry item has a
 	 * page, so listing only the hand-written ones would hide most of them.
 	 */
-	return listRegistry().map((item) => {
+	const fromRegistry = listRegistry().map((item) => {
 		const doc = written.get(item.name);
 
 		return {
@@ -50,6 +51,24 @@ function componentEntries(): IndexEntry[] {
 			body: doc?.sections.map((section) => section.body).join("\n\n"),
 		};
 	});
+
+	/*
+	 * Plus the other direction: a hand-written doc with no registry entry -
+	 * the atoms motion guide, the product viewer - still ships a page, and a
+	 * page the site links to but never lists is invisible to every crawler.
+	 * The page tests fail that shape now; this is what satisfies them.
+	 */
+	const registered = new Set(listRegistry().map((item) => item.name));
+	const docOnly = [...written.values()]
+		.filter((doc) => !registered.has(doc.slug))
+		.map((doc) => ({
+			path: `/components/${doc.slug}`,
+			title: doc.title,
+			description: doc.summary,
+			body: doc.sections.map((section) => section.body).join("\n\n"),
+		}));
+
+	return [...fromRegistry, ...docOnly];
 }
 
 export function siteSections(): readonly IndexSection[] {
@@ -76,6 +95,17 @@ export function siteSections(): readonly IndexSection[] {
 				path: `/posts/${post.slug}`,
 				title: post.title,
 				description: post.summary,
+			})),
+		},
+		{
+			title: "Pages",
+			description:
+				"Standalone pages: the layout examples, the Markdown showcase, and the site's own reference material.",
+			entries: listBuiltPages().map((page) => ({
+				path: `/p/${page.slug}`,
+				title: page.title,
+				description: page.summary,
+				body: page.body,
 			})),
 		},
 	];

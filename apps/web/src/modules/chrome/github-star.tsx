@@ -48,7 +48,9 @@ export function GithubStar(): ReactNode {
 		>
 			<Icon name="github" size={15} />
 			{typeof data === "number" ? (
-				<span className="flex items-center gap-1 mono text-xs">
+				// The count is a claim, not a control: on the burger tier it goes,
+				// the link stays - this is the only GitHub link in the chrome.
+				<span className="flex items-center gap-1 mono text-xs nav-narrow-hide">
 					<Icon name="star" size={11} />
 					{data}
 				</span>

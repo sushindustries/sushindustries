@@ -59,6 +59,23 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      # The browser the layout tests measure in. Cached on the lockfile, since
+      # the Playwright version is what decides which build gets downloaded.
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Chromium
+        run: pnpm --filter @sushindustries/web exec playwright install --with-deps chromium
+
+      # Every sitemap page, twice over: document semantics over HTTP against
+      # the built server, then geometry in Chromium at phone and desktop
+      # widths. Locally a machine without the browser skips the geometry half;
+      # here nothing skips.
+      - name: Pages
+        run: pnpm run test
+
       # `exports`, `main` and `module` are written by tsdown from the chunks it
       # actually emitted, so a manifest and its build cannot disagree here the
       # way they did when the map was maintained by hand. The cost of that is

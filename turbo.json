@@ -1,6 +1,10 @@
 {
 	"$schema": "https://turborepo.dev/schema.json",
-	"globalDependencies": ["tsconfig.base.json", "tsdown.base.ts"],
+	"globalDependencies": [
+		"tsconfig.base.json",
+		"tsdown.base.ts",
+		"packages/atoms/src/**"
+	],
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
@@ -9,6 +13,10 @@
 		},
 		"typecheck": {
 			"dependsOn": ["^build", "build"]
+		},
+		"test": {
+			"dependsOn": ["build"],
+			"env": ["CI"]
 		},
 		"dev": {
 			"cache": false,

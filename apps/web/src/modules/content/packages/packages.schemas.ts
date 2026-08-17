@@ -16,6 +16,12 @@ export interface PackageSummary {
 }
 
 export interface PackageDoc extends PackageSummary {
-	/** Raw README markdown. Rendered with TanStack Markdown. */
+	/** Raw README markdown, exactly as it ships. What "Copy page" copies. */
 	readonly readme: string;
+	/**
+	 * The README without its `# name` line, for rendering on the package page.
+	 * The page supplies its own h1, and a document with two is a document with
+	 * none - the outline check fails it and a screen reader announces both.
+	 */
+	readonly body: string;
 }

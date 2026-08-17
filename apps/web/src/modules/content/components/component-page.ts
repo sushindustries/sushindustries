@@ -153,7 +153,20 @@ export function findComponentPage(
 	const item = findRegistryItem(slug);
 
 	// Hand-written wins outright: if somebody wrote it, they meant it.
-	if (written) return { ...written, generated: false, item };
+	if (written) {
+		return {
+			...written,
+			/*
+			 * Except an empty summary, which nobody meant: the doc template
+			 * scaffolds `summary:` blank and forty pages shipped it that way,
+			 * each one a page with no meta description. The registry entry
+			 * always has one sentence, so an unfilled field falls back to it.
+			 */
+			summary: written.summary || item?.description || "",
+			generated: false,
+			item,
+		};
+	}
 
 	if (!item) return undefined;
 

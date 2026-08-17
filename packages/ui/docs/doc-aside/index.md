@@ -6,6 +6,9 @@ summary: An on-page table of contents that is a rail on desktop and a collapsed 
 Every heading in this page's sidebar comes from the Markdown itself. There is
 no list to maintain - write an `h2` and it appears.
 
+<!-- ::start:showcase demo="doc-aside" height="420" -->
+<!-- ::end:showcase -->
+
 ## What it does
 
 A sticky rail beside the prose on desktop, a narrower rail on tablet, and one

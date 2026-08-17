@@ -32,6 +32,7 @@ Each layer catches what the layer before it cannot see, and costs more than it.
 | Layer | Runs | Catches | Costs |
 | --- | --- | --- | --- |
 | `pnpm doctor` | seconds, no build | missing docs, missing Dockerfile lines, a class defined nowhere | nothing |
+| `pnpm test` | pre-push, after the build | what the *served page* gets wrong: a skipped heading, a second h1, a dead link, a page nothing lists, a phone-width overflow | seconds |
 | `pnpm check` | pre-push | types, import protection, a build that does not build | a minute |
 | CI `check` | on push and PR | the same, in a clean checkout, plus publint, attw and a manifest that disagrees with its build | GitHub minutes |
 | CI `image` | after `check` passes | a Docker build that fails, an image that will not boot | the expensive one |
@@ -51,6 +52,42 @@ And then one red CI run on a fourth: `routeTree.gen.ts` is generated and
 gitignored, so `tsc` passed here and failed in a clean checkout. That one is
 fixed by declaring `typecheck` after `build` in `turbo.json`, and the doctor
 now refuses any repeat of the shape.
+
+## The pages, checked as pages
+
+`pnpm test` (`apps/web/tests/`) boots the **built** server - the same
+`.output/server/index.mjs` Railway runs - and reads every URL in the sitemap.
+Not the dev server: the dev pipeline injects its own client entry into the
+stream, so a check that passes against markup production never serves is a
+check against nothing.
+
+Two suites, in the order they cost:
+
+- **`semantics.test.ts`** fetches each page and parses it: one `h1`, no
+  skipped heading levels, the three landmarks, a title and a description,
+  alt text, no unresolved `::start:` marker, every internal link resolving,
+  and every linked page present in the sitemap. Scripts are stripped before
+  the assertions, because the serialized loader data quotes each page's raw
+  Markdown and would otherwise answer for it.
+- **`layout.test.ts`** opens the same pages in headless Chromium at 360px and
+  1280px with **JavaScript off** - the site is server-rendered, so hydration
+  must not be the thing that fixes an overflow - and measures: nothing wider
+  than the viewport, the Markdown grid side by side on desktop and stacked on
+  a phone, a type scale that keeps its order.
+
+The sitemap is the roster on purpose. It is built from the same site index as
+`llms.txt`, so a page the tests never saw is a page no crawler was told about
+either, and the reverse check fails any page the site links to but does not
+list. That pairing is what found `/p/*` missing from both.
+
+A machine without Chromium skips the geometry half with the command to fix it;
+CI installs it and never skips.
+
+**`packages/atoms/src/**` is a `globalDependency`.** Atoms has no build step,
+so nothing else captures its files: editing `atoms.css` left every cached
+build valid and the built server served the previous stylesheet. The first run
+of these tests found it, by fixing a phone overflow four times and watching
+the same 285px come back.
 
 ## Not paying twice
 

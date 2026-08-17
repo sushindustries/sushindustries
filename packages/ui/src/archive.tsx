@@ -243,9 +243,15 @@ export function Archive({
 										 */}
 										<div className="flex col gap-2 p-4">
 											<div className="flex items-center justify-between gap-3">
-												<h3 className="h3 m-0 min-w-0 truncate">
+												{/*
+												 * h2 with the h3 look. The archive sits directly under
+												 * a page's h1, and an h3 there is a skipped level in
+												 * every outline checker. h2 is safe in any host:
+												 * same-or-shallower never skips.
+												 */}
+												<h2 className="h3 m-0 min-w-0 truncate">
 													{item.title}
-												</h3>
+												</h2>
 												{item.meta ? (
 													<span className="label shrink-0">{item.meta}</span>
 												) : null}

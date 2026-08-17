@@ -30,4 +30,11 @@ pnpm run typecheck
 echo "-> build"
 pnpm run build
 
+# The pages themselves, against the server the build just produced: every
+# sitemap URL's document semantics over HTTP, and its geometry in headless
+# Chromium at phone and desktop widths. A machine without the browser skips
+# the geometry half with a warning; CI runs it always.
+echo "-> pages"
+pnpm run test
+
 echo "ok to push"

@@ -1677,6 +1677,18 @@
 		animation: nav-sheet-in 420ms cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
+	/*
+	 * Closed means gone, not merely hidden.
+	 *
+	 * The browser hides a closed `<details>`'s contents, but the drawer's own
+	 * `display: flex` leaves it a box - one squeezed to the toggle's width,
+	 * whose nav rows then overflow it and widen the page. Every phone-width
+	 * page could scroll sideways into a menu nobody had opened.
+	 */
+	.nav-burger:not([open]) .nav-sheet {
+		display: none;
+	}
+
 	@keyframes nav-sheet-in {
 		from {
 			translate: 100% 0;
@@ -2287,11 +2299,22 @@
 		tab-size: 2;
 	}
 
+	/*
+	 * A fence on its own - a README rendered outside the code-block shell -
+	 * still has to scroll rather than widen the page. Wide content owns its
+	 * own scrollbar; the page never scrolls sideways for it.
+	 */
+	.th-code {
+		overflow-x: auto;
+	}
+
 	.code-block .th-code {
 		margin: 0;
 		padding: 0;
 		background: transparent;
 		font: inherit;
+		/* Inside the slab the slab scrolls, so the pre must not: two nested
+		   scrollbars over one line of code is one too many. */
 		overflow: visible;
 	}
 
@@ -3670,6 +3693,15 @@
 		}
 	}
 
+	/*
+	 * Hidden means `display: none`, not `visibility: hidden`.
+	 *
+	 * An invisible box still counts toward the page's scrollable overflow, and
+	 * a card anchored to a reference near the right margin reached x=525 on a
+	 * 360px screen - every page with a hover card could scroll sideways into
+	 * blank space. `display` removes the box; `allow-discrete` keeps the
+	 * fade-out, and `@starting-style` below keeps the fade-in.
+	 */
 	.ref-card {
 		position: absolute;
 		left: 0;
@@ -3682,21 +3714,26 @@
 		border-radius: var(--r-lg);
 		background: var(--bg-0);
 		box-shadow: var(--lift-2);
+		display: none;
 		opacity: 0;
-		visibility: hidden;
 		translate: 0 -4px;
 		transition:
 			opacity 160ms var(--ease-out),
 			translate 160ms var(--ease-out),
-			visibility 0s 160ms;
+			display 160ms allow-discrete;
 	}
 
 	.ref:hover .ref-card,
 	.ref:focus-within .ref-card {
+		display: block;
 		opacity: 1;
-		visibility: visible;
 		translate: 0 0;
-		transition-delay: 120ms, 120ms, 120ms;
+		transition-delay: 120ms, 120ms, 0s;
+
+		@starting-style {
+			opacity: 0;
+			translate: 0 -4px;
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -3852,6 +3889,9 @@
 	 */
 	.showcase-devices {
 		flex: 0 0 auto;
+		/* The row of width presets is itself the widest thing in the bar on a
+		   phone; wrapping it beats letting XL and XXL push the page sideways. */
+		flex-wrap: wrap;
 		gap: 2px;
 		padding: 2px;
 		margin: 0;
@@ -3949,6 +3989,9 @@
 	.showcase-viewport {
 		display: block;
 		width: 100%;
+		/* The device presets set inline widths wider than a phone; the frame
+		   clamps to its stage rather than carrying the page off with it. */
+		max-width: 100%;
 		border: 1px solid var(--line-soft);
 		border-radius: var(--r-lg);
 		background: var(--bg-0);
@@ -4084,6 +4127,13 @@
 	.prose {
 		max-width: 68ch;
 		color: var(--fg-dim);
+		/*
+		 * A bare URL in a sentence is one word to the line breaker, and a
+		 * repository URL is longer than a phone. Without this it hangs out of
+		 * the column and takes the whole page's horizontal scroll with it -
+		 * a text node, so no element box ever shows where it came from.
+		 */
+		overflow-wrap: break-word;
 	}
 
 	.prose > * + * {

@@ -19,9 +19,14 @@ function skillSection(): SiteSection {
 	return {
 		title: "Assistant skills",
 		description:
-			"What the assistant at /assistant can do. Each is a tool it calls on your behalf; the source of each declaration is packages/assistant/skills/.",
+			"What the assistant on the desktop at / can do. Each is a tool it calls on your behalf; the source of each declaration is packages/assistant/skills/.",
 		entries: skills.map((skill) => ({
-			path: "/assistant",
+			/*
+			 * The desktop, not `/assistant`: the assistant is a window on the desk
+			 * with no route behind it (see shelf-page.tsx), and a published link
+			 * that 404s teaches an agent to distrust the rest of the file.
+			 */
+			path: "/",
 			title: skill.name,
 			description: [
 				skill.summary,

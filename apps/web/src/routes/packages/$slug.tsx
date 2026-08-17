@@ -28,7 +28,7 @@ export const Route = createFileRoute("/packages/$slug")({
 		const entry = findPackage(params.slug);
 		if (!entry) throw notFound();
 
-		return { entry, headings: collectHeadings(entry.readme) };
+		return { entry, headings: collectHeadings(entry.body) };
 	},
 	head: ({ loaderData }) => ({
 		meta: [
@@ -85,8 +85,9 @@ function PackagePage(): ReactNode {
 						}
 					/>
 					<div className="min-w-0">
+						{/* `body`, not `readme`: the h1 above is this page's title. */}
 						<MarkdownView
-							source={entry.readme}
+							source={entry.body}
 							blocks={BLOCKS}
 							references={REFERENCES}
 						/>

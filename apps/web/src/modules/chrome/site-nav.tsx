@@ -42,7 +42,7 @@ export function SiteNav({ theme }: SiteNavProps): ReactNode {
 			}
 			entries={navEntries()}
 			trailing={
-				<span className="flex items-center gap-3">
+				<span className="flex items-center gap-2">
 					{/*
 					 * Three things, deliberately: search, the repo, the theme.
 					 * LinkedIn lives on the shelf - a header that lists every

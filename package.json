@@ -9,7 +9,7 @@
 	},
 	"scripts": {
 		"build": "turbo run build",
-		"check": "pnpm run doctor && pnpm exec biome check . && pnpm run typecheck && pnpm run build",
+		"check": "pnpm run doctor && pnpm exec biome check . && pnpm run typecheck && pnpm run build && pnpm run test",
 		"dev": "turbo run dev",
 		"doctor": "node scripts/doctor.mjs",
 		"doctor:map": "node scripts/doctor.mjs --map",
@@ -17,6 +17,7 @@
 		"new": "node scripts/new.mjs",
 		"prepare": "git config core.hooksPath .githooks || true",
 		"start": "pnpm --filter @sushindustries/web start",
+		"test": "turbo run test",
 		"typecheck": "turbo run typecheck"
 	},
 	"devDependencies": {

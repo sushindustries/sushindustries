@@ -44,6 +44,7 @@ function toDoc(path: string, manifest: RawManifest): PackageDoc | undefined {
 	if (!slug || !name || manifest.private) return undefined;
 
 	const readmePath = path.replace("/package.json", "/README.md");
+	const readme = READMES[readmePath] ?? "";
 
 	return {
 		slug,
@@ -52,7 +53,10 @@ function toDoc(path: string, manifest: RawManifest): PackageDoc | undefined {
 		description: manifest.description ?? "",
 		keywords: manifest.keywords ?? [],
 		install: `pnpm add ${name}`,
-		readme: READMES[readmePath] ?? "",
+		readme,
+		// The page renders `body` under its own h1; `readme` stays whole for
+		// GitHub, npm and the copy actions, where the title line belongs.
+		body: readme.replace(/^# .+\n+/, ""),
 	};
 }
 

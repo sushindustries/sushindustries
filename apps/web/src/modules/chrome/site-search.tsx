@@ -143,7 +143,10 @@ export function SiteSearchTrigger(): ReactNode {
 		>
 			<Icon name="search" size={13} />
 			<span className="nav-narrow-hide">Search</span>
-			<kbd className="palette-kbd">⌘K</kbd>
+			{/* A keyboard hint is furniture on a screen driven by thumbs, and the
+			    burger tier had no room for it - it was one of the three chips
+			    pushing the toggle off a 360px screen. */}
+			<kbd className="palette-kbd nav-narrow-hide">⌘K</kbd>
 		</button>
 	);
 }

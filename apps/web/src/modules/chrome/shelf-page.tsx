@@ -98,7 +98,9 @@ export function renderShelfPage(entry: ShelfEntry): ReactNode {
 		const found = findPackage(pkg);
 		if (!found) return null;
 
-		return <MarkdownView source={found.readme} blocks={BLOCKS} />;
+		// `body`, not `readme`: the window's title bar already names the package,
+		// and a second h1 inside the page hosting the desk breaks its outline.
+		return <MarkdownView source={found.body} blocks={BLOCKS} />;
 	}
 
 	const post = slugFrom(href, "/posts/");
