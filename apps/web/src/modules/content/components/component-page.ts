@@ -39,12 +39,29 @@ export interface ComponentPage extends ComponentDoc {
  * hand-written page - same callouts, same showcase block, same highlighting.
  * A second rendering path would be a second thing to keep in step.
  */
-function generateHome(item: RegistryItem, hasDemo: boolean): string {
+function generateHome(
+	item: RegistryItem,
+	hasDemo: boolean,
+	usage?: string,
+): string {
 	const lines: string[] = [item.description, ""];
 
 	if (hasDemo) {
 		lines.push(`<!-- ::start:showcase demo="${item.name}" height="420" -->`);
 		lines.push("<!-- ::end:showcase -->");
+		lines.push("");
+	}
+
+	if (usage) {
+		lines.push("## Usage");
+		lines.push("");
+		lines.push(
+			`\`\`\`tsx
+import { ${pascal(item.name)} } from "@sushindustries/ui";
+
+${usage}
+\`\`\``,
+		);
 		lines.push("");
 	}
 
@@ -115,9 +132,22 @@ function generateHome(item: RegistryItem, hasDemo: boolean): string {
 	return lines.join("\n");
 }
 
+function pascal(slug: string): string {
+	return slug
+		.split("-")
+		.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+		.join("");
+}
+
 export function findComponentPage(
 	slug: string,
 	hasDemo: (id: string) => boolean,
+	/*
+	 * The demo's own source, when the caller has one. It becomes the Usage
+	 * section - hand-written beside the element, so the generated page shows
+	 * code somebody meant rather than a templated `<X />`.
+	 */
+	demoSource?: (id: string) => string | undefined,
 ): ComponentPage | undefined {
 	const written = findComponentDoc(slug);
 	const item = findRegistryItem(slug);
@@ -138,7 +168,7 @@ export function findComponentPage(
 			{
 				id: "index",
 				label: "Home",
-				body: generateHome(item, hasDemo(item.name)),
+				body: generateHome(item, hasDemo(item.name), demoSource?.(item.name)),
 			},
 		],
 	};

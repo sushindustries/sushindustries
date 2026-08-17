@@ -1,4 +1,5 @@
 import type { MarkdownBlocks } from "@sushindustries/ui";
+import { CardBlock } from "./card-block";
 import { GridBlock, SpacerBlock } from "./layout-blocks";
 import { ShelfBlock } from "./shelf-block";
 import { ShowcaseBlock } from "./showcase-block";
@@ -13,6 +14,7 @@ import { ViewerBlock } from "./viewer-block";
  * works on one page is a page, not a block.
  */
 export const BLOCKS: MarkdownBlocks = {
+	card: CardBlock,
 	showcase: ShowcaseBlock,
 	viewer: ViewerBlock,
 	grid: GridBlock,

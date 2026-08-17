@@ -54,6 +54,7 @@ Multiple paths per glyph go in separate backticks in the same cell.
 | github | `M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4` `M9 18c-4.51 2-5-2-7-2` | The octocat as an outline, at this set's stroke rather than as a pasted logo - the tentacle-arm is the part that makes it read at 15px. |
 | cursor | `M6 3.5 19 11l-5.6 1.6L10 19z` | A pointer, mid-click. The editor named after it uses the same shape for the same reason. |
 | spark | `M12 3v18` `M4.2 7.5l15.6 9` `M19.8 7.5 4.2 16.5` | A six-ray asterisk: the generic mark for an AI assistant, drawn at this set's stroke rather than borrowed from any one vendor. |
+| terminal | `M4 5h16v14H4z` `M7.5 9.5 10.5 12l-3 2.5` `M12.5 15h4` | A frame, a prompt chevron, a cursor line. The shell, drawn as the window it runs in. |
 | star | `M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z` | Five points, closed. The one shape GitHub taught everyone to press. |
 | check | `M5 13l4.5 4.5L19 7.5` | A tick. It replaces the copy glyph for a moment, so it is drawn at the same weight and nothing else moves. |
 

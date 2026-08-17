@@ -4,7 +4,10 @@ import {
 	markdown,
 	notFoundMarkdown,
 } from "../../../modules/registry/agent-setup.server";
-import { findDemo } from "../../../modules/showcase/demos";
+import {
+	findDemoSource,
+	hasDemo,
+} from "../../../modules/showcase/demo-sources";
 
 /*
  * A component page as the Markdown it is made of.
@@ -21,7 +24,11 @@ export const Route = createFileRoute("/r/md/$name")({
 		handlers: {
 			GET: ({ params }) => {
 				const name = params.name.replace(/\.md$/, "");
-				const doc = findComponentPage(name, (id) => Boolean(findDemo(id)));
+				const doc = findComponentPage(
+					name,
+					hasDemo,
+					(id) => findDemoSource(id)?.source,
+				);
 
 				if (!doc) return notFoundMarkdown(`No component named "${name}".`);
 

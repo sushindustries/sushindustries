@@ -52,3 +52,28 @@ export interface LeadProps {
 export function Lead({ children }: LeadProps): ReactNode {
 	return <p className="mt-3 fg-dim max-w-prose text-pretty">{children}</p>;
 }
+
+export interface TextProps {
+	children: ReactNode;
+	/** Body sizes from the scale. */
+	size?: "xs" | "sm" | "md" | "lg";
+	/** How loud: default ink, dimmed, or faint. */
+	tone?: "default" | "dim" | "faint";
+	/** Render as a span for inline use. */
+	inline?: boolean;
+}
+
+/** Body copy on the scale. The variant that exists so ad-hoc font-size does not. */
+export function Text({
+	children,
+	size = "md",
+	tone = "default",
+	inline,
+}: TextProps): ReactNode {
+	const toneClass =
+		tone === "dim" ? " fg-dim" : tone === "faint" ? " fg-faint" : "";
+	const className = `m-0 text-${size}${toneClass}`;
+
+	if (inline) return <span className={className}>{children}</span>;
+	return <p className={className}>{children}</p>;
+}

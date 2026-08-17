@@ -4,7 +4,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import * as z from "zod";
 import { listRegistry } from "../../modules/registry/registry.catalogue";
-import { findDemo } from "../../modules/showcase/demos";
+import { hasDemo } from "../../modules/showcase/demo-sources";
 
 const searchSchema = z.object({
 	category: z.string().optional(),
@@ -42,7 +42,7 @@ export const Route = createFileRoute("/components/")({
 			// generated from this entry when it does not.
 			href: `/components/${item.name}`,
 			// Only things with a demo can show one.
-			previewSrc: findDemo(item.name)
+			previewSrc: hasDemo(item.name)
 				? `/preview/${item.name}?fit=card`
 				: undefined,
 		}));

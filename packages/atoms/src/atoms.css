@@ -654,6 +654,12 @@
 	.justify-between {
 		justify-content: space-between;
 	}
+	.justify-end {
+		justify-content: end;
+	}
+	.inline-flex {
+		display: inline-flex;
+	}
 	.flex-1 {
 		flex: 1;
 	}
@@ -1176,10 +1182,20 @@
 	 * synchronise. The summary marker is removed in two ways because Safari still
 	 * wants the WebKit pseudo-element.
 	 */
-	.nav-menu,
 	.nav-burger,
 	.nav-group {
 		position: relative;
+	}
+
+	/*
+	 * The desktop menus are deliberately NOT containing blocks. Anchored to
+	 * their trigger, a 46rem panel under a trigger near either end of the row
+	 * ran off the window on that side. Anchored to the bar itself - `.nav` is
+	 * the nearest positioned ancestor - every panel centres under the whole
+	 * header and cannot leave the viewport at any width.
+	 */
+	.nav-menu {
+		position: static;
 	}
 
 	.nav-menu summary,
@@ -1222,7 +1238,9 @@
 	.nav-panel {
 		position: absolute;
 		top: calc(100% + var(--s-3));
+		left: 0;
 		right: 0;
+		margin-inline: auto;
 		z-index: 21;
 		width: max-content;
 		max-width: min(46rem, calc(100vw - var(--s-6)));
@@ -1234,7 +1252,7 @@
 			color-mix(in srgb, var(--bg-1) 88%, transparent);
 		backdrop-filter: var(--glass-blur);
 		box-shadow: var(--lift-3);
-		transform-origin: top right;
+		transform-origin: top center;
 		animation: nav-panel-in 220ms var(--ease-out);
 	}
 
@@ -1802,6 +1820,33 @@
 	 * that reflow to one column stop being a comparison, so these hold until the
 	 * narrow breakpoint and then give up all at once.
 	 */
+	/*
+	 * Spans: how a grid stops being uniform without stopping being a grid.
+	 *
+	 * Any direct child may claim more track - two columns, three, or the full
+	 * row - and that is the whole bento vocabulary: a hero is a full-row card,
+	 * a feature is a 2-span beside two singles. The claim collapses on narrow
+	 * screens along with the columns, so a span can never force a squeeze.
+	 */
+	.grid-auto > [data-span="2"] {
+		grid-column: span 2;
+	}
+
+	.grid-auto > [data-span="3"] {
+		grid-column: span 3;
+	}
+
+	.grid-auto > [data-span="full"] {
+		grid-column: 1 / -1;
+	}
+
+	@media (max-width: 860px) {
+		.grid-auto > [data-span="2"],
+		.grid-auto > [data-span="3"] {
+			grid-column: auto;
+		}
+	}
+
 	.grid-auto[data-columns="2"] {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
@@ -2018,6 +2063,59 @@
 			background 200ms ease,
 			box-shadow 200ms ease,
 			transform 260ms var(--ease-out);
+	}
+
+	/*
+	 * The image card. The picture bleeds to the card's own edge - the padding
+	 * is carved out with negative margins rather than a second wrapper - and
+	 * is cropped to a fixed ratio so a grid of these holds one line whatever
+	 * was uploaded.
+	 */
+	.card-media {
+		display: block;
+		width: calc(100% + 2 * var(--s-5));
+		margin: calc(-1 * var(--s-5)) calc(-1 * var(--s-5)) 0;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		border-radius: var(--r-card) var(--r-card) 0 0;
+	}
+
+	/* The category card's glyph tile, in the same tones as the nav panel. */
+	.card-icon {
+		display: grid;
+		place-items: center;
+		width: 26px;
+		height: 26px;
+		flex-shrink: 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		background: var(--bg-2);
+		color: var(--fg-faint);
+	}
+
+	.card-icon[data-tone="motion"] {
+		background: var(--tone-motion);
+		color: var(--tone-motion-ink);
+	}
+
+	.card-icon[data-tone="layout"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+	}
+
+	.card-icon[data-tone="content"] {
+		background: var(--tone-content);
+		color: var(--tone-content-ink);
+	}
+
+	.card-icon[data-tone="docs"] {
+		background: var(--tone-docs);
+		color: var(--tone-docs-ink);
+	}
+
+	.card-icon[data-tone="3d"] {
+		background: var(--tone-3d);
+		color: var(--tone-3d-ink);
 	}
 
 	@media (hover: hover) and (pointer: fine) {
@@ -2290,7 +2388,30 @@
 		gap: var(--s-2);
 	}
 
+	/* The fence's file= metadata: a tab above the slab naming the file. */
+	.code-file {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-1);
+		margin-bottom: -1px;
+		padding: 4px var(--s-3);
+		border: 1px solid var(--code-line);
+		border-bottom: 0;
+		border-radius: var(--r-lg) var(--r-lg) 0 0;
+		background: var(--code-bg-deep);
+		color: var(--code-ink-dim);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+	}
+
+	.code-shell:has(.code-file) .code-block {
+		border-top-left-radius: 0;
+	}
+
 	.code-lang {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-1);
 		padding: 3px var(--s-2);
 		border-radius: var(--r);
 		background: var(--code-chip);
@@ -2632,6 +2753,796 @@
 		display: flex;
 		color: var(--fg-faint);
 		rotate: -90deg;
+	}
+
+	/* ── elements ────────────────────────────────────────────────── */
+
+	/*
+	 * The toned glyph tile, defined once. The nav panel, the palette, the
+	 * card and the list row all draw the same 26px tile with the same five
+	 * tone pairs; this is that tile with its own name, so the next component
+	 * that needs one composes it instead of writing a sixth copy.
+	 */
+	.tile {
+		display: grid;
+		place-items: center;
+		width: 26px;
+		height: 26px;
+		flex-shrink: 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		background: var(--bg-2);
+		color: var(--fg-faint);
+	}
+
+	.tile[data-tone="motion"] {
+		background: var(--tone-motion);
+		color: var(--tone-motion-ink);
+	}
+
+	.tile[data-tone="layout"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+	}
+
+	.tile[data-tone="content"] {
+		background: var(--tone-content);
+		color: var(--tone-content-ink);
+	}
+
+	.tile[data-tone="docs"] {
+		background: var(--tone-docs);
+		color: var(--tone-docs-ink);
+	}
+
+	.tile[data-tone="3d"] {
+		background: var(--tone-3d);
+		color: var(--tone-3d-ink);
+	}
+
+	/*
+	 * A word wearing a fill. Same pastel-and-ink pairs as everything toned;
+	 * the quiet default is for words that are labels rather than categories.
+	 */
+	.badge {
+		display: inline-flex;
+		align-items: center;
+		padding: 2px var(--s-2);
+		border: 1px solid var(--line-soft);
+		border-radius: 999px;
+		background: var(--bg-2);
+		color: var(--fg-dim);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.06em;
+	}
+
+	.badge[data-tone="motion"] {
+		background: var(--tone-motion);
+		color: var(--tone-motion-ink);
+		border-color: transparent;
+	}
+
+	.badge[data-tone="layout"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+		border-color: transparent;
+	}
+
+	.badge[data-tone="content"] {
+		background: var(--tone-content);
+		color: var(--tone-content-ink);
+		border-color: transparent;
+	}
+
+	.badge[data-tone="docs"] {
+		background: var(--tone-docs);
+		color: var(--tone-docs-ink);
+		border-color: transparent;
+	}
+
+	.badge[data-tone="3d"] {
+		background: var(--tone-3d);
+		color: var(--tone-3d-ink);
+		border-color: transparent;
+	}
+
+	/* A rule with two directions. Vertical stretches to its container. */
+	.separator {
+		border: 0;
+		margin: 0;
+		background: var(--line-soft);
+	}
+
+	.separator[data-orientation="horizontal"] {
+		display: block;
+		width: 100%;
+		height: 1px;
+	}
+
+	.separator[data-orientation="vertical"] {
+		display: inline-block;
+		width: 1px;
+		align-self: stretch;
+		min-height: 1em;
+	}
+
+	/*
+	 * The wait, shaped like the thing awaited. The shimmer is a background
+	 * sweep; reduced motion removes the sweep and keeps the placeholder.
+	 */
+	.skeleton {
+		display: inline-block;
+		background: linear-gradient(
+			100deg,
+			var(--bg-2) 40%,
+			var(--bg-1) 50%,
+			var(--bg-2) 60%
+		);
+		background-size: 200% 100%;
+		border-radius: var(--r);
+		animation: skeleton-sweep 1.4s ease-in-out infinite;
+	}
+
+	.skeleton[data-shape="line"] {
+		width: 100%;
+		height: 0.9em;
+	}
+
+	.skeleton[data-shape="block"] {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		border-radius: var(--r-lg);
+	}
+
+	.skeleton[data-shape="circle"] {
+		width: 40px;
+		height: 40px;
+		border-radius: 999px;
+	}
+
+	@keyframes skeleton-sweep {
+		from {
+			background-position: 200% 0;
+		}
+		to {
+			background-position: -200% 0;
+		}
+	}
+
+	/* One ring, one border, one turn. Reduced motion pulses instead. */
+	.spinner {
+		display: inline-block;
+		border: 2px solid var(--line-soft);
+		border-top-color: var(--accent);
+		border-radius: 999px;
+		animation: spinner-turn 800ms linear infinite;
+	}
+
+	@keyframes spinner-turn {
+		to {
+			rotate: 360deg;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.skeleton {
+			animation: none;
+			background: var(--bg-2);
+		}
+
+		.spinner {
+			animation: spinner-pulse 1.6s ease-in-out infinite;
+		}
+	}
+
+	@keyframes spinner-pulse {
+		50% {
+			opacity: 0.4;
+		}
+	}
+
+	/* A person at glyph size: image if it loads, initials on a tone if not. */
+	.avatar {
+		display: inline-grid;
+		place-items: center;
+		overflow: hidden;
+		border: 1px solid var(--line-soft);
+		border-radius: 999px;
+		background: var(--bg-2);
+		color: var(--fg-dim);
+		font-family: var(--mono);
+		font-weight: 600;
+		user-select: none;
+	}
+
+	.avatar[data-tone="motion"] {
+		background: var(--tone-motion);
+		color: var(--tone-motion-ink);
+	}
+
+	.avatar[data-tone="layout"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+	}
+
+	.avatar[data-tone="content"] {
+		background: var(--tone-content);
+		color: var(--tone-content-ink);
+	}
+
+	.avatar[data-tone="docs"] {
+		background: var(--tone-docs);
+		color: var(--tone-docs-ink);
+	}
+
+	.avatar[data-tone="3d"] {
+		background: var(--tone-3d);
+		color: var(--tone-3d-ink);
+	}
+
+	.avatar-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	/* A box that keeps its shape, and fills whatever is put in it. */
+	.ratio {
+		position: relative;
+		overflow: hidden;
+		border-radius: var(--r-lg);
+	}
+
+	.ratio > * {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	/* Nothing, said properly: centred, quiet, with the way out underneath. */
+	.empty {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--s-2);
+		padding: var(--s-7) var(--s-5);
+		border: 1px dashed var(--line);
+		border-radius: var(--r-card);
+		text-align: center;
+		color: var(--fg-dim);
+	}
+
+	.empty-icon {
+		display: grid;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+		color: var(--fg-faint);
+	}
+
+	/* One row of a list: the nav panel's anatomy, extracted. */
+	.item {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		padding: var(--s-2) var(--s-3);
+		border: 1px solid transparent;
+		border-radius: var(--r-lg);
+		color: inherit;
+		text-decoration: none;
+		transition:
+			background 160ms ease,
+			border-color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		a.item:hover {
+			background: var(--bg-2);
+			border-color: var(--line-soft);
+		}
+	}
+
+	/* ── forms ───────────────────────────────────────────────────── */
+
+	/*
+	 * One control skin. Everything typed-into shares it - input, textarea,
+	 * select - and the focus ring is the accent at low opacity rather than
+	 * the browser default, visible on both themes without shouting.
+	 */
+	.field-control {
+		display: block;
+		width: 100%;
+		padding: var(--s-2) var(--s-3);
+		border: 1px solid var(--line);
+		border-radius: var(--r-lg);
+		background: var(--bg-0);
+		color: var(--fg);
+		font: var(--t-md) / 1.5 var(--sans);
+		transition:
+			border-color 160ms ease,
+			box-shadow 160ms ease;
+	}
+
+	.field-control:focus-visible {
+		outline: none;
+		border-color: var(--accent);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+	}
+
+	.field-control::placeholder {
+		color: var(--fg-faint);
+	}
+
+	.field-textarea {
+		resize: vertical;
+		field-sizing: content;
+		min-height: 4.5em;
+	}
+
+	/* The labelled wrapper: label, control, and the one line under it. */
+	.field {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-2);
+	}
+
+	.field-note {
+		color: var(--fg-faint);
+	}
+
+	.field[data-invalid="true"] .field-note {
+		color: var(--tuna);
+	}
+
+	.field[data-invalid="true"] .field-control {
+		border-color: var(--tuna);
+	}
+
+	/*
+	 * Native checks and radios, painted rather than replaced. accent-color
+	 * keeps every behaviour the platform ships and costs one property.
+	 */
+	/* The wrapper is utilities in the markup; the block owns only the input. */
+	.choice input {
+		width: 16px;
+		height: 16px;
+		margin: 0;
+		accent-color: var(--accent);
+	}
+
+	.choice-group {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-2);
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	/* The switch: a checkbox that admits it. :checked drives everything. */
+	.switch-track {
+		display: inline-flex;
+		align-items: center;
+		width: 38px;
+		height: 22px;
+		padding: 2px;
+		border: 1px solid var(--line);
+		border-radius: 999px;
+		background: var(--bg-2);
+		transition: background 180ms ease;
+	}
+
+	.switch-thumb {
+		width: 16px;
+		height: 16px;
+		border-radius: 999px;
+		background: var(--bg-0);
+		box-shadow: var(--lift-1);
+		transition: translate 180ms var(--ease-out);
+	}
+
+	.switch input:checked + .switch-track {
+		background: var(--accent);
+		border-color: var(--accent);
+	}
+
+	.switch input:checked + .switch-track .switch-thumb {
+		translate: 16px 0;
+	}
+
+	.switch input:focus-visible + .switch-track {
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.switch-thumb,
+		.switch-track {
+			transition: none;
+		}
+	}
+
+	/* The platform's select, with the chevron appearance:none removed. */
+	.select-wrap {
+		position: relative;
+		display: block;
+	}
+
+	.select-wrap .field-control {
+		appearance: none;
+		padding-right: var(--s-6);
+	}
+
+	.select-chevron {
+		position: absolute;
+		top: 50%;
+		right: var(--s-3);
+		translate: 0 -50%;
+		pointer-events: none;
+		color: var(--fg-faint);
+		display: flex;
+	}
+
+	/* Range and progress, painted natively. */
+	.slider {
+		width: 100%;
+		accent-color: var(--accent);
+	}
+
+	.progress {
+		width: 100%;
+		height: 8px;
+		border: 0;
+		border-radius: 999px;
+		overflow: hidden;
+		background: var(--bg-2);
+		accent-color: var(--accent);
+	}
+
+	.progress::-webkit-progress-bar {
+		background: var(--bg-2);
+	}
+
+	.progress::-webkit-progress-value {
+		background: var(--accent);
+		border-radius: 999px;
+	}
+
+	.progress::-moz-progress-bar {
+		background: var(--accent);
+		border-radius: 999px;
+	}
+
+	/* The installer's own mark beside its name, at label size. */
+	.install-logo {
+		width: 16px;
+		height: 16px;
+		object-fit: contain;
+	}
+
+	/* ── disclosure and overlays ─────────────────────────────────── */
+
+	/* details, stacked. The chevron turns because [open] says so. */
+	.accordion {
+		display: flex;
+		flex-direction: column;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+	}
+
+	.accordion-item + .accordion-item {
+		border-top: 1px solid var(--line-soft);
+	}
+
+	.accordion-summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--s-3);
+		padding: var(--s-3) var(--s-4);
+		font-weight: 600;
+		font-size: var(--t-sm);
+		cursor: pointer;
+		list-style: none;
+	}
+
+	.accordion-summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.accordion-chevron {
+		display: flex;
+		color: var(--fg-faint);
+		transition: rotate 180ms var(--ease-out);
+	}
+
+	.accordion-item[open] > .accordion-summary .accordion-chevron {
+		rotate: 180deg;
+	}
+
+	.accordion-body {
+		padding: 0 var(--s-4) var(--s-4);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.accordion-chevron {
+			transition: none;
+		}
+	}
+
+	/*
+	 * The one-line tooltip, revealed by CSS on hover and focus-within. It is
+	 * one line by contract; anything richer is the reference hover card.
+	 */
+	.tooltip {
+		position: relative;
+		display: inline-block;
+	}
+
+	.tooltip-bubble {
+		position: absolute;
+		bottom: calc(100% + var(--s-2));
+		left: 50%;
+		translate: -50% 0;
+		z-index: 30;
+		width: max-content;
+		max-width: 16rem;
+		padding: var(--s-1) var(--s-3);
+		border-radius: var(--r);
+		background: var(--ink);
+		color: var(--bg-0);
+		font-size: var(--t-xs);
+		opacity: 0;
+		visibility: hidden;
+		transition:
+			opacity 140ms ease,
+			visibility 0s 140ms;
+		pointer-events: none;
+	}
+
+	.tooltip:hover .tooltip-bubble,
+	.tooltip:focus-within .tooltip-bubble {
+		opacity: 1;
+		visibility: visible;
+		transition-delay: 350ms, 350ms;
+	}
+
+	/* A button that stays down. data-active is the pressed look. */
+	.toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-1);
+		padding: var(--s-2) var(--s-3);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+		color: var(--fg-dim);
+		font: 500 var(--t-sm) / 1 var(--sans);
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			color 140ms ease,
+			border-color 140ms ease;
+	}
+
+	.toggle[data-active="true"] {
+		background: var(--bg-3);
+		border-color: var(--line);
+		color: var(--fg);
+	}
+
+	.toggle-group {
+		display: inline-flex;
+		gap: var(--s-1);
+		margin: 0;
+		padding: var(--s-1);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+	}
+
+	.toggle-group .toggle {
+		border-color: transparent;
+		background: transparent;
+	}
+
+	.toggle-group .toggle[data-active="true"] {
+		background: var(--bg-3);
+	}
+
+	/* A real table, in the site's rhythm, scrolling in its own frame. */
+	.table-frame {
+		overflow-x: auto;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+	}
+
+	.table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: var(--t-sm);
+	}
+
+	.table th {
+		padding: var(--s-3) var(--s-4);
+		border-bottom: 1px solid var(--line);
+		text-align: left;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+		white-space: nowrap;
+	}
+
+	.table td {
+		padding: var(--s-3) var(--s-4);
+		border-bottom: 1px solid var(--line-soft);
+	}
+
+	.table tbody tr:last-child td {
+		border-bottom: 0;
+	}
+
+	.table th[data-align="right"],
+	.table td[data-align="right"] {
+		text-align: right;
+		font-variant-numeric: tabular-nums;
+	}
+
+	/* The named inner scroll: thin bar, lenis handed back by the component. */
+	.scroll-area {
+		overflow-y: auto;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		padding: var(--s-3);
+		background: var(--bg-0);
+	}
+
+	/* The dialog and its edge-docked sibling. */
+	.dialog {
+		width: min(28rem, calc(100vw - 2 * var(--s-4)));
+		margin: auto;
+		padding: 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-card);
+		background: var(--bg-0);
+		box-shadow: var(--lift-3);
+		color: inherit;
+	}
+
+	.dialog::backdrop,
+	.sheet::backdrop {
+		background: var(--scrim);
+	}
+
+	.dialog-box {
+		padding: var(--s-5);
+	}
+
+	.dialog-close {
+		display: grid;
+		place-items: center;
+		width: 30px;
+		height: 30px;
+		border: 1px solid transparent;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-faint);
+		cursor: pointer;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.dialog-close:hover {
+			border-color: var(--line-soft);
+			color: var(--fg);
+		}
+	}
+
+	.sheet {
+		position: fixed;
+		inset: 0 0 0 auto;
+		height: 100dvh;
+		max-height: none;
+		width: min(24rem, 92vw);
+		margin: 0;
+		padding: 0;
+		border: 0;
+		border-left: 1px solid var(--line-soft);
+		background: var(--bg-0);
+		box-shadow: var(--lift-3);
+		color: inherit;
+		animation: sheet-in 260ms var(--ease-out);
+	}
+
+	.sheet[data-side="left"] {
+		inset: 0 auto 0 0;
+		border-left: 0;
+		border-right: 1px solid var(--line-soft);
+	}
+
+	@keyframes sheet-in {
+		from {
+			translate: 24px 0;
+			opacity: 0;
+		}
+	}
+
+	.sheet[data-side="left"] {
+		animation-name: sheet-in-left;
+	}
+
+	@keyframes sheet-in-left {
+		from {
+			translate: -24px 0;
+			opacity: 0;
+		}
+	}
+
+	.sheet-box {
+		height: 100%;
+		overflow-y: auto;
+		padding: var(--s-5);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.sheet {
+			animation: none;
+		}
+	}
+
+	/* Toasts: bottom corner, one at a time in practice, polite always. */
+	.toasts {
+		position: fixed;
+		bottom: var(--s-5);
+		right: var(--s-5);
+		z-index: 60;
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-2);
+	}
+
+	.toast {
+		padding: var(--s-3) var(--s-4);
+		border: 1px solid var(--line);
+		border-radius: var(--r-lg);
+		background: var(--bg-0);
+		box-shadow: var(--lift-2);
+		font-size: var(--t-sm);
+		animation: toast-in 200ms var(--ease-out);
+	}
+
+	@keyframes toast-in {
+		from {
+			translate: 0 8px;
+			opacity: 0;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.toast {
+			animation: none;
+		}
+	}
+
+	/* Faces, stacked; the border is what keeps each face legible over the last. */
+	.avatar-group {
+		display: inline-flex;
+	}
+
+	.avatar-group .avatar {
+		border: 2px solid var(--bg-0);
+	}
+
+	.avatar-group > * + * {
+		margin-left: -8px;
 	}
 
 	/* ── references ──────────────────────────────────────────────── */
@@ -3108,6 +4019,19 @@
 		font-size: var(--t-lg);
 	}
 
+	/*
+	 * Markdown-native pictures. Framed like the site's other media - radius,
+	 * soft line, never wider than the prose - so an Unsplash drop-in and a
+	 * screenshot read as furniture rather than as holes in the page.
+	 */
+	.prose img {
+		display: block;
+		max-width: 100%;
+		height: auto;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+	}
+
 	.prose code {
 		font-family: var(--mono);
 		font-size: 0.9em;
@@ -3172,7 +4096,7 @@
 	 * `> [!NOTE] Title` blocks. The parser emits GitHub's alert class names, so
 	 * these selectors match what it writes rather than something invented here.
 	 */
-	.prose .markdown-alert {
+	.markdown-alert {
 		margin-top: var(--s-5);
 		padding: var(--s-4);
 		border-left: 2px solid var(--accent);
@@ -3180,7 +4104,7 @@
 		background: var(--bg-1);
 	}
 
-	.prose .markdown-alert-title {
+	.markdown-alert-title {
 		margin: 0 0 var(--s-2);
 		font-family: var(--mono);
 		font-size: var(--t-xs);
@@ -3189,20 +4113,20 @@
 		color: var(--fg);
 	}
 
-	.prose .markdown-alert-content > * + * {
+	.markdown-alert-content > * + * {
 		margin-top: var(--s-3);
 	}
 
-	.prose .markdown-alert-note {
+	.markdown-alert-note {
 		border-left-color: var(--info);
 	}
-	.prose .markdown-alert-tip {
+	.markdown-alert-tip {
 		border-left-color: var(--wasabi);
 	}
-	.prose .markdown-alert-warning {
+	.markdown-alert-warning {
 		border-left-color: var(--tamago);
 	}
-	.prose .markdown-alert-caution {
+	.markdown-alert-caution {
 		border-left-color: var(--accent);
 	}
 

@@ -1,12 +1,20 @@
 import {
+	Accordion,
+	Alert,
 	Archive,
 	type ArchiveCategory,
 	type ArchiveItem,
+	AspectRatio,
+	Avatar,
+	Badge,
 	BootLoader,
 	Breadcrumb,
+	Button,
 	Card,
+	Checkbox,
 	Clock,
 	CodeBlock,
+	Collapsible,
 	CommandPalette,
 	ContextMenu,
 	CopyButton,
@@ -14,35 +22,57 @@ import {
 	type CreditProps,
 	DeskWindow,
 	Device,
+	Dialog,
 	DocAside,
 	Dock,
+	Empty,
+	Field,
 	FolderShelf,
 	Grid,
 	Heading,
+	Input,
+	Item,
+	Kbd,
 	Label,
 	Lead,
 	MarkdownView,
 	type MenuAction,
+	NativeSelect,
 	NavBar,
 	Pagination,
 	type PaletteEntry,
+	Progress,
 	parseFrontmatter,
+	RadioGroup,
 	Ref,
 	Reveal,
 	readList,
 	readString,
+	ScrollArea,
 	ScrollSpin,
 	type ScrollTurn,
 	Section,
+	Separator,
+	Sheet,
 	type ShelfEntry,
 	Showcase,
+	Skeleton,
+	Slider,
 	SmoothScroll,
 	Spacer,
+	Spinner,
+	Switch,
+	Table,
+	Textarea,
 	ThemeToggle,
+	ToastProvider,
+	ToggleGroup,
+	Tooltip,
 	useContextMenu,
 	useDeviceKind,
 	useScrollProgress,
 	useScrollTurn,
+	useToast,
 } from "@sushindustries/ui";
 
 import {
@@ -54,6 +84,7 @@ import {
 	useState,
 } from "react";
 import { LOGO_MODEL } from "../chrome/logo";
+import { DEMO_SOURCES } from "./demo-sources";
 import { pacedImport } from "./paced-import";
 
 /*
@@ -341,6 +372,88 @@ function CommandPaletteDemo(): ReactNode {
 	);
 }
 
+/** Toggles need state, so their demo carries it. */
+function ToggleDemo(): ReactNode {
+	const [view, setView] = useState("preview");
+	return (
+		<ToggleGroup
+			label="View"
+			value={view}
+			onChange={setView}
+			options={[
+				{ value: "preview", label: "Preview" },
+				{ value: "code", label: "Code" },
+				{ value: "split", label: "Split" },
+			]}
+		/>
+	);
+}
+
+function DialogDemo(): ReactNode {
+	const [open, setOpen] = useState(false);
+	return (
+		<>
+			<Button variant="ghost" onClick={() => setOpen(true)}>
+				Delete the draft
+			</Button>
+			<Dialog
+				open={open}
+				onClose={() => setOpen(false)}
+				title="Delete the draft?"
+				footer={
+					<>
+						<Button variant="ghost" onClick={() => setOpen(false)}>
+							Keep it
+						</Button>
+						<Button onClick={() => setOpen(false)}>Delete</Button>
+					</>
+				}
+			>
+				It has been three weeks.
+			</Dialog>
+		</>
+	);
+}
+
+function SheetDemo(): ReactNode {
+	const [open, setOpen] = useState(false);
+	return (
+		<>
+			<Button variant="ghost" onClick={() => setOpen(true)}>
+				Open the filters
+			</Button>
+			<Sheet open={open} onClose={() => setOpen(false)} title="Filters">
+				<div className="flex col gap-4">
+					<Field label="Category">
+						<NativeSelect defaultValue="all">
+							<option value="all">All</option>
+							<option value="motion">Motion</option>
+						</NativeSelect>
+					</Field>
+					<Switch label="Only no-deps" defaultChecked />
+				</div>
+			</Sheet>
+		</>
+	);
+}
+
+function ToastCaller(): ReactNode {
+	const { toast } = useToast();
+	return (
+		<Button variant="ghost" onClick={() => toast("Copied the command")}>
+			Do the thing
+		</Button>
+	);
+}
+
+function ToastDemo(): ReactNode {
+	return (
+		<ToastProvider>
+			<ToastCaller />
+		</ToastProvider>
+	);
+}
+
 /** Actions that say what they would have done, so the demo has no side effects. */
 function sampleActions(entry: ShelfEntry): MenuAction[] {
 	return [
@@ -556,10 +669,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<p className="label text-center mt-6">Scroll the frame</p>
 			</div>
 		),
-		source: `<ScrollSpin revolutions={1.5} tilt={10}>
-	<img src="/mark.svg" alt="" />
-</ScrollSpin>`,
-		language: "tsx",
+		...DEMO_SOURCES["scroll-spin"],
 	},
 
 	reveal: {
@@ -579,10 +689,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				</Reveal>
 			</div>
 		),
-		source: `<Reveal delay={80}>
-	<Card title="I arrive on scroll" />
-</Reveal>`,
-		language: "tsx",
+		...DEMO_SOURCES.reveal,
 	},
 
 	card: {
@@ -594,12 +701,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<Card title="As a link" href="https://tanstack.com" />
 			</div>
 		),
-		source: `<Card title="With meta" meta="v0.1.0">
-	<p>Body goes here.</p>
-</Card>
-
-<Card title="As a link" href="https://tanstack.com" />`,
-		language: "tsx",
+		...DEMO_SOURCES.card,
 	},
 
 	section: {
@@ -610,10 +712,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				</p>
 			</Section>
 		),
-		source: `<Section id="work" label="Work" title="A section heading">
-	<p>Body content.</p>
-</Section>`,
-		language: "tsx",
+		...DEMO_SOURCES.section,
 	},
 
 	/*
@@ -637,8 +736,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 			</div>
 		),
 		poster: <p className="label text-center">Changes how the page scrolls</p>,
-		source: `<SmoothScroll />`,
-		language: "tsx",
+		...DEMO_SOURCES["smooth-scroll"],
 	},
 
 	"doc-aside": {
@@ -670,17 +768,13 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 			</div>
 		),
 		poster: <p className="label text-center">An on-page contents rail</p>,
-		source: `<DocAside headings={collectHeadings(markdown)} />`,
-		language: "tsx",
+		...DEMO_SOURCES["doc-aside"],
 	},
 
 	"use-scroll-turn": {
 		element: <ScrollTurnReadout />,
 		poster: <p className="label text-center">An angle, every frame</p>,
-		source: `useScrollTurn(({ turn, wobble }) => {
-	node.style.transform = \`rotateY(\${turn * 360}deg)\`;
-});`,
-		language: "tsx",
+		...DEMO_SOURCES["use-scroll-turn"],
 	},
 
 	archive: {
@@ -702,51 +796,19 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				)}
 			/>
 		),
-		source: `<Archive
-	categories={categories}
-	items={items}
-	hrefForCategory={(id) => \`/components?category=\${id}\`}
-	renderLink={({ kind, id, className, children }) =>
-		kind === "item" ? (
-			<Link to="/components/$slug" params={{ slug: id }} className={className}>
-				{children}
-			</Link>
-		) : (
-			<Link to="/components" search={{ category: id }} className={className}>
-				{children}
-			</Link>
-		)
-	}
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES.archive,
 	},
 
 	"use-scroll-progress": {
 		element: <ProgressReadout />,
 		poster: <p className="label text-center">0 to 1, as it arrives</p>,
-		source: `useScrollProgress(ref, (progress) => {
-	bar.style.transform = \`scaleX(\${progress})\`;
-});`,
-		language: "tsx",
+		...DEMO_SOURCES["use-scroll-progress"],
 	},
 
 	"theme-toggle": {
 		element: <ThemeToggleDemo />,
 		poster: <p className="label text-center">three states, one tab stop</p>,
-		source: `// It reports the id and stores nothing. A cookie, a server
-// function or an account setting are four different answers,
-// and a component that picked one would be wrong in three
-// codebases out of four.
-<ThemeToggle
-	options={[
-		{ id: "light", label: "Light", icon: "sun" },
-		{ id: "dark", label: "Dark", icon: "moon" },
-		{ id: "system", label: "System", icon: "contrast" },
-	]}
-	value={theme}
-	onChange={setTheme}
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES["theme-toggle"],
 	},
 
 	"boot-loader": {
@@ -759,12 +821,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				</BootLoader>
 			</div>
 		),
-		source: `// \`ready\` is what stops it lying: the count eases to 90 on a
-// timer and waits there until the thing it covers has arrived.
-<BootLoader ready={modelLoaded} onDone={reveal}>
-	<SpinningMark />
-</BootLoader>`,
-		language: "tsx",
+		...DEMO_SOURCES["boot-loader"],
 	},
 
 	device: {
@@ -777,26 +834,13 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				/>
 			</Device>
 		),
-		source: `// The machine follows the window: a phone, a tablet from 720px,
-// a laptop from 1080px. Nothing here measures anything.
-<Device title="sushindustries" wallpaper={<Wallpaper />}>
-	<FolderShelf entries={entries} actionsFor={actionsFor} />
-</Device>
-
-// Or say which one, and the width stops having an opinion.
-<Device kind="tablet">{...}</Device>`,
-		language: "tsx",
+		...DEMO_SOURCES.device,
 	},
 
 	"use-device-kind": {
 		element: <DeviceReadout />,
 		poster: <p className="label text-center">the machine, named</p>,
-		source: `const kind = useDeviceKind();
-
-// null until mounted, on purpose: the server cannot know, and a
-// default would be a claim it cannot support.
-<p>{kind ?? "measuring"}</p>`,
-		language: "tsx",
+		...DEMO_SOURCES["use-device-kind"],
 	},
 
 	"desk-window": {
@@ -819,14 +863,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 			</div>
 		),
 		poster: <p className="label text-center">A window you can drag</p>,
-		source: `<DeskWindow
-	title="Applications"
-	x={x} y={y} z={z}
-	onMove={(x, y) => desk.move(id, x, y)}
-	onClose={() => desk.close(id)}
-	onRaise={() => desk.raise(id)}
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES["desk-window"],
 	},
 
 	dock: {
@@ -843,14 +880,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 			/>
 		),
 		poster: <p className="label text-center">Search, what is open, a corner</p>,
-		source: `<Dock
-	tasks={tasks}
-	onSelectTask={desk.raise}
-	onCloseTask={desk.close}
-	onSearch={() => desk.open(SEARCH_PATH)}
-	trailing={<Clock />}
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES.dock,
 	},
 
 	"use-desk-state": {
@@ -865,25 +895,13 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 		poster: (
 			<p className="label text-center">It remembers where you left things</p>
 		),
-		source: `const desk = useDeskState("my.desk");
-
-desk.open(["applications", "motion"]);
-desk.move(id, x, y);
-desk.raise(id);`,
-		language: "ts",
+		...DEMO_SOURCES["use-desk-state"],
 	},
 
 	"context-menu": {
 		element: <MenuDemo />,
 		poster: <p className="label text-center">Right-click, hold, or press</p>,
-		source: `const menu = useContextMenu();
-
-<div {...menu.triggerProps}>
-	<button {...menu.buttonProps}>Actions</button>
-</div>
-
-<ContextMenu state={menu} actions={actions} />`,
-		language: "tsx",
+		...DEMO_SOURCES["context-menu"],
 	},
 
 	"folder-shelf": {
@@ -894,11 +912,7 @@ desk.raise(id);`,
 				actionsFor={sampleActions}
 			/>
 		),
-		source: `<FolderShelf
-	entries={shelfEntries()}
-	actionsFor={(entry, path) => shelfActions(entry, path)}
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES["folder-shelf"],
 	},
 
 	grid: {
@@ -914,13 +928,7 @@ desk.raise(id);`,
 				))}
 			</Grid>
 		),
-		source: `<Grid min="14rem" gap={4}>
-	<Card title="One" />
-	<Card title="Two" />
-	<Card title="Three" />
-	<Card title="Four" />
-</Grid>`,
-		language: "tsx",
+		...DEMO_SOURCES.grid,
 	},
 
 	spacer: {
@@ -935,10 +943,7 @@ desk.raise(id);`,
 				<p className="fg-dim m-0">And a plain gap.</p>
 			</div>
 		),
-		source: `<Spacer size={6} label="Then" />
-<Spacer size={5} rule />
-<Spacer size={5} />`,
-		language: "tsx",
+		...DEMO_SOURCES.spacer,
 	},
 
 	"nav-bar": {
@@ -978,12 +983,7 @@ desk.raise(id);`,
 			/>
 		),
 		poster: <p className="label text-center">A header with expanding panels</p>,
-		source: `<NavBar
-	brand={<span className="mono">acme</span>}
-	entries={navEntries()}
-	trailing={<a href="https://github.com/...">GitHub</a>}
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES["nav-bar"],
 	},
 
 	showcase: {
@@ -1000,13 +1000,7 @@ desk.raise(id);`,
 				install={{ shadcn: "pnpm dlx shadcn@latest add .../card.json" }}
 			/>
 		),
-		source: `<Showcase
-	src="/preview/card"
-	title="Card"
-	code={source}
-	install={{ shadcn: "pnpm dlx shadcn@latest add .../card.json" }}
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES.showcase,
 	},
 
 	clock: {
@@ -1029,13 +1023,7 @@ desk.raise(id);`,
 			</div>
 		),
 		poster: <Clock />,
-		source: `<Clock />
-
-<Clock
-	options={{ weekday: "long", hour: "2-digit", minute: "2-digit" }}
-	every={1000}
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES.clock,
 	},
 
 	credit: {
@@ -1052,19 +1040,12 @@ desk.raise(id);`,
 				))}
 			</div>
 		),
-		source: `<Credit
-	name="Lenis"
-	by="Darkroom Engineering"
-	href="https://lenis.darkroom.engineering"
-	role="Smooth scrolling"
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES.credit,
 	},
 
 	"markdown-view": {
 		element: <MarkdownView source={MARKDOWN_SAMPLE} />,
-		source: `<MarkdownView source={markdown} />`,
-		language: "tsx",
+		...DEMO_SOURCES["markdown-view"],
 	},
 
 	breadcrumb: {
@@ -1078,26 +1059,12 @@ desk.raise(id);`,
 				]}
 			/>
 		),
-		source: `<Breadcrumb
-	origin="https://example.com"
-	items={[
-		{ label: "Home", href: "/" },
-		{ label: "Components", href: "/components" },
-		{ label: "Breadcrumb" },
-	]}
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES.breadcrumb,
 	},
 
 	"command-palette": {
 		element: <CommandPaletteDemo />,
-		source: `<CommandPalette
-	entries={entries}
-	open={open}
-	onClose={() => setOpen(false)}
-	onSelect={(entry) => navigate(entry.href)}
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES["command-palette"],
 	},
 
 	pagination: {
@@ -1110,11 +1077,444 @@ desk.raise(id);`,
 				/>
 			</div>
 		),
-		source: `<Pagination
-	page={page}
-	pageCount={12}
-	hrefFor={(page) => \`?page=\${page}\`}
+		...DEMO_SOURCES.pagination,
+	},
+
+	badge: {
+		element: (
+			<div className="flex items-center gap-2 wrap justify-center">
+				<Badge>plain</Badge>
+				<Badge tone="motion">motion</Badge>
+				<Badge tone="layout">layout</Badge>
+				<Badge tone="content">content</Badge>
+				<Badge tone="docs">docs</Badge>
+			</div>
+		),
+		...DEMO_SOURCES.badge,
+	},
+
+	kbd: {
+		element: (
+			<p className="m-0 text-center text-sm fg-dim">
+				Press <Kbd>\u2318K</Kbd> to search, <Kbd>esc</Kbd> to close.
+			</p>
+		),
+		...DEMO_SOURCES.kbd,
+	},
+
+	separator: {
+		element: (
+			<div className="max-w-sm">
+				<p className="m-0 text-sm">Above the line</p>
+				<div className="mt-3 mb-3">
+					<Separator />
+				</div>
+				<div className="flex items-center gap-3 text-sm">
+					<span>Left</span>
+					<Separator orientation="vertical" decorative />
+					<span>Right</span>
+				</div>
+			</div>
+		),
+		...DEMO_SOURCES.separator,
+	},
+
+	skeleton: {
+		element: (
+			<div className="max-w-sm flex col gap-3">
+				<div className="flex items-center gap-3">
+					<Skeleton shape="circle" />
+					<div className="flex-1 flex col gap-2">
+						<Skeleton shape="line" width="60%" />
+						<Skeleton shape="line" width="40%" />
+					</div>
+				</div>
+				<Skeleton shape="block" />
+			</div>
+		),
+		...DEMO_SOURCES.skeleton,
+	},
+
+	spinner: {
+		element: (
+			<div className="flex items-center gap-3 justify-center">
+				<Spinner label="Loading the example" />
+				<span className="text-sm fg-dim">Loading the example</span>
+			</div>
+		),
+		...DEMO_SOURCES.spinner,
+	},
+
+	avatar: {
+		element: (
+			<div className="flex items-center gap-3 justify-center">
+				<Avatar
+					name="Ada Lovelace"
+					src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&q=60"
+					size={40}
+				/>
+				<Avatar name="Ada Lovelace" size={40} tone="content" />
+				<Avatar name="Sushi" size={40} tone="motion" />
+			</div>
+		),
+		...DEMO_SOURCES.avatar,
+	},
+
+	"aspect-ratio": {
+		element: (
+			<div className="max-w-sm w-full">
+				<AspectRatio ratio={16 / 9}>
+					<img
+						src="https://images.unsplash.com/photo-1579027989536-b7b1f875659b?w=800&q=60"
+						alt="A wave, held to a 16:9 crop"
+					/>
+				</AspectRatio>
+			</div>
+		),
+		...DEMO_SOURCES["aspect-ratio"],
+	},
+
+	button: {
+		element: (
+			<div className="flex items-center gap-3 justify-center">
+				<Button>The one action</Button>
+				<Button variant="ghost">The alternative</Button>
+			</div>
+		),
+		...DEMO_SOURCES.button,
+	},
+
+	empty: {
+		element: (
+			<div className="max-w-sm w-full">
+				<Empty
+					title="No posts yet"
+					icon="note"
+					action={<Button variant="ghost">Write one</Button>}
+				>
+					Drafts stay off the index until they say otherwise.
+				</Empty>
+			</div>
+		),
+		...DEMO_SOURCES.empty,
+	},
+
+	item: {
+		element: (
+			<div className="max-w-sm w-full flex col gap-1">
+				<Item
+					title="Reveal"
+					description="Fades and rises on first sight"
+					meta="v0.1.0"
+					icon="motion"
+					tone="motion"
+					href="#reveal"
+				/>
+				<Item
+					title="Grid"
+					description="Columns from one number"
+					meta="v0.1.0"
+					icon="grid"
+					tone="layout"
+					href="#grid"
+				/>
+			</div>
+		),
+		...DEMO_SOURCES.item,
+	},
+
+	input: {
+		element: (
+			<div className="max-w-sm w-full">
+				<Input placeholder="What are you looking for?" />
+			</div>
+		),
+		source: `<Input placeholder="What are you looking for?" />`,
+		language: "tsx",
+	},
+
+	textarea: {
+		element: (
+			<div className="max-w-sm w-full">
+				<Textarea placeholder="Say what happened, in order." />
+			</div>
+		),
+		source: `<Textarea placeholder="Say what happened, in order." />`,
+		language: "tsx",
+	},
+
+	field: {
+		element: (
+			<div className="max-w-sm w-full flex col gap-4">
+				<Field label="Email" hint="Only for the reply.">
+					<Input type="email" placeholder="you@example.com" />
+				</Field>
+				<Field label="Handle" error="That one is taken.">
+					<Input defaultValue="sushi" />
+				</Field>
+			</div>
+		),
+		source: `<Field label="Email" hint="Only for the reply.">
+	<Input type="email" />
+</Field>
+<Field label="Handle" error="That one is taken.">
+	<Input defaultValue="sushi" />
+</Field>`,
+		language: "tsx",
+	},
+
+	checkbox: {
+		element: (
+			<div className="flex col gap-2">
+				<Checkbox label="Ship it" defaultChecked />
+				<Checkbox label="Write it down first" />
+			</div>
+		),
+		source: `<Checkbox label="Ship it" defaultChecked />`,
+		language: "tsx",
+	},
+
+	"radio-group": {
+		element: (
+			<RadioGroup
+				label="Theme"
+				defaultValue="system"
+				options={[
+					{ value: "light", label: "Light" },
+					{ value: "dark", label: "Dark" },
+					{ value: "system", label: "System" },
+				]}
+			/>
+		),
+		source: `<RadioGroup label="Theme" defaultValue="system"
+	options={[
+		{ value: "light", label: "Light" },
+		{ value: "dark", label: "Dark" },
+		{ value: "system", label: "System" },
+	]}
 />`,
+		language: "tsx",
+	},
+
+	switch: {
+		element: (
+			<div className="flex col gap-3">
+				<Switch label="Smooth scrolling" defaultChecked />
+				<Switch label="Reduced motion" />
+			</div>
+		),
+		source: `<Switch label="Smooth scrolling" defaultChecked />`,
+		language: "tsx",
+	},
+
+	"native-select": {
+		element: (
+			<div className="max-w-sm w-full">
+				<NativeSelect defaultValue="tanstack">
+					<option value="tanstack">TanStack CLI</option>
+					<option value="shadcn">shadcn</option>
+					<option value="pnpm">pnpm</option>
+				</NativeSelect>
+			</div>
+		),
+		source: `<NativeSelect defaultValue="tanstack">
+	<option value="tanstack">TanStack CLI</option>
+	<option value="shadcn">shadcn</option>
+</NativeSelect>`,
+		language: "tsx",
+	},
+
+	slider: {
+		element: (
+			<div className="max-w-sm w-full">
+				<Slider label="Simplify error" min={0} max={100} defaultValue={35} />
+			</div>
+		),
+		source: `<Slider label="Simplify error" min={0} max={100} defaultValue={35} />`,
+		language: "tsx",
+	},
+
+	progress: {
+		element: (
+			<div className="max-w-sm w-full flex col gap-4">
+				<Progress label="Uploading the model" value={64} />
+				<Progress label="Thinking" />
+			</div>
+		),
+		source: `<Progress label="Uploading the model" value={64} />
+<Progress label="Thinking" />`,
+		language: "tsx",
+	},
+
+	accordion: {
+		element: (
+			<div className="max-w-sm w-full">
+				<Accordion
+					defaultOpen={["why"]}
+					items={[
+						{
+							id: "why",
+							title: "Why details?",
+							content: "Toggle, keyboard and announcement ship in the element.",
+						},
+						{
+							id: "find",
+							title: "Find in page?",
+							content: "The browser opens the right panel itself.",
+						},
+						{
+							id: "close",
+							title: "Auto-close others?",
+							content: "No - that is a radio group in a costume.",
+						},
+					]}
+				/>
+			</div>
+		),
+		source: `<Accordion defaultOpen={["why"]} items={[
+	{ id: "why", title: "Why details?", content: "..." },
+]} />`,
+		language: "tsx",
+	},
+
+	collapsible: {
+		element: (
+			<div className="max-w-sm w-full">
+				<Collapsible summary="The fine print">
+					It was one sentence all along.
+				</Collapsible>
+			</div>
+		),
+		source: `<Collapsible summary="The fine print">
+	It was one sentence all along.
+</Collapsible>`,
+		language: "tsx",
+	},
+
+	alert: {
+		element: (
+			<div className="max-w-sm w-full flex col gap-3">
+				<Alert title="Note" tone="note">
+					The calm default.
+				</Alert>
+				<Alert title="Caution" tone="caution">
+					The one that means it.
+				</Alert>
+			</div>
+		),
+		source: `<Alert title="Caution" tone="caution">
+	The one that means it.
+</Alert>`,
+		language: "tsx",
+	},
+
+	tooltip: {
+		element: (
+			<p className="m-0 text-center">
+				Hover the{" "}
+				<Tooltip label="One line, and never any controls">
+					<span className="fg-accent">underlined thing</span>
+				</Tooltip>{" "}
+				to see it.
+			</p>
+		),
+		source: `<Tooltip label="One line, never any controls">
+	<span>the underlined thing</span>
+</Tooltip>`,
+		language: "tsx",
+	},
+
+	toggle: {
+		element: <ToggleDemo />,
+		source: `<ToggleGroup label="View" value={view} onChange={setView}
+	options={[
+		{ value: "preview", label: "Preview" },
+		{ value: "code", label: "Code" },
+	]}
+/>`,
+		language: "tsx",
+	},
+
+	table: {
+		element: (
+			<div className="max-w-sm w-full">
+				<Table
+					caption="Registry items by category"
+					rowKey={(row: { name: string }) => row.name}
+					columns={[
+						{ key: "name", header: "Category", render: (r) => r.name },
+						{
+							key: "count",
+							header: "Items",
+							align: "right",
+							render: (r: { count: number }) => r.count,
+						},
+					]}
+					rows={[
+						{ name: "Motion", count: 6 },
+						{ name: "Layout", count: 17 },
+						{ name: "Content", count: 24 },
+					]}
+				/>
+			</div>
+		),
+		source: `<Table rowKey={(r) => r.name}
+	columns={[
+		{ key: "name", header: "Category", render: (r) => r.name },
+		{ key: "count", header: "Items", align: "right", render: (r) => r.count },
+	]}
+	rows={rows}
+/>`,
+		language: "tsx",
+	},
+
+	"scroll-area": {
+		element: (
+			<div className="max-w-sm w-full">
+				<ScrollArea maxHeight="10rem">
+					{Array.from({ length: 12 }, (_, i) => (
+						// biome-ignore lint/suspicious/noArrayIndexKey: static demo rows
+						<p key={i} className="m-0 text-sm py-2">
+							Row {i + 1} of a list taller than its frame
+						</p>
+					))}
+				</ScrollArea>
+			</div>
+		),
+		source: `<ScrollArea maxHeight="10rem">
+	{rows.map((row) => <Row key={row.id} {...row} />)}
+</ScrollArea>`,
+		language: "tsx",
+	},
+
+	dialog: {
+		element: <DialogDemo />,
+		source: `<Dialog open={open} onClose={() => setOpen(false)}
+	title="Delete the draft?"
+	footer={<>
+		<Button variant="ghost" onClick={() => setOpen(false)}>Keep it</Button>
+		<Button onClick={confirm}>Delete</Button>
+	</>}>
+	It has been three weeks.
+</Dialog>`,
+		language: "tsx",
+	},
+
+	sheet: {
+		element: <SheetDemo />,
+		source: `<Sheet open={open} onClose={() => setOpen(false)} title="Filters">
+	<Field label="Category">…</Field>
+</Sheet>`,
+		language: "tsx",
+	},
+
+	toast: {
+		element: <ToastDemo />,
+		source: `const { toast } = useToast();
+
+<Button onClick={() => toast("Copied the command")}>
+	Do the thing
+</Button>`,
 		language: "tsx",
 	},
 
@@ -1130,10 +1530,7 @@ desk.raise(id);`,
 				</Lead>
 			</div>
 		),
-		source: `<Label>Eyebrow</Label>
-<Heading as="h3" size="h2">A heading</Heading>
-<Lead>The paragraph under it.</Lead>`,
-		language: "tsx",
+		...DEMO_SOURCES.typography,
 	},
 
 	"code-block": {
@@ -1143,11 +1540,7 @@ desk.raise(id);`,
 				language="ts"
 			/>
 		),
-		source: `<CodeBlock
-	code={source}
-	language="ts"
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES["code-block"],
 	},
 
 	"copy-button": {
@@ -1159,11 +1552,7 @@ desk.raise(id);`,
 				</code>
 			</div>
 		),
-		source: `<CopyButton
-	text="pnpm add @sushindustries/ui"
-	ground="paper"
-/>`,
-		language: "tsx",
+		...DEMO_SOURCES["copy-button"],
 	},
 
 	reference: {
@@ -1184,25 +1573,13 @@ desk.raise(id);`,
 				, and hovering the mention tells you so.
 			</p>
 		),
-		source: `<Ref reference={{
-	title: "Showcase",
-	href: "/components/showcase",
-	summary: "A component at every width…",
-	meta: "@sushindustries/ui",
-}}>
-	Showcase
-</Ref>`,
-		language: "tsx",
+		...DEMO_SOURCES.reference,
 	},
 
 	frontmatter: {
 		element: <FrontmatterDemo />,
 		poster: <p className="label text-center">Reads the metadata block</p>,
-		source: `const meta = parseFrontmatter(raw);
-
-readString(meta, "title");   // "A post"
-readList(meta, "tags");      // ["tanstack", "css"]`,
-		language: "ts",
+		...DEMO_SOURCES.frontmatter,
 	},
 
 	"product-viewer": {
@@ -1213,14 +1590,7 @@ readList(meta, "tags");      // ["tanstack", "css"]`,
 				<ProductViewer model={LOGO_MODEL} loadingLabel="Loading the mark" />
 			</Suspense>
 		),
-		source: `const ProductViewer = lazy(() =>
-	pacedImport(() => import("@sushindustries/react-product-viewer")),
-);
-
-<Suspense fallback={null}>
-	<ProductViewer model={LOGO_MODEL} />
-</Suspense>`,
-		language: "tsx",
+		...DEMO_SOURCES["product-viewer"],
 	},
 };
 

@@ -34,6 +34,7 @@ const EXTENSIONS = docsMarkdownExtensions();
 interface CodeFence {
 	code: string;
 	lang: string | undefined;
+	file: string | undefined;
 }
 
 /*
@@ -44,13 +45,17 @@ interface CodeFence {
 function readFence(children: ReactNode): CodeFence | undefined {
 	if (!isValidElement(children)) return undefined;
 
-	const props = children.props as { children?: unknown; className?: string };
+	const props = children.props as {
+		children?: unknown;
+		className?: string;
+		"data-file"?: string;
+	};
 
 	if (typeof props.children !== "string") return undefined;
 
 	const match = /language-([\w-]+)/.exec(props.className ?? "");
 
-	return { code: props.children, lang: match?.[1] };
+	return { code: props.children, lang: match?.[1], file: props["data-file"] };
 }
 
 // The literal type flows through untouched: annotating the return as
@@ -64,7 +69,9 @@ function createComponents(references: ReferenceMap) {
 			// Not a language-tagged fence - leave it as the parser emitted it.
 			if (!fence) return <pre className="code-block">{props.children}</pre>;
 
-			return <CodeBlock code={fence.code} language={fence.lang} />;
+			return (
+				<CodeBlock code={fence.code} language={fence.lang} file={fence.file} />
+			);
 		},
 
 		/*

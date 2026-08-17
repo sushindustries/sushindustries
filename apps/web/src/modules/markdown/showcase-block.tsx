@@ -5,7 +5,7 @@ import {
 } from "@sushindustries/ui";
 import type { ReactNode } from "react";
 import { findRegistryItem } from "../registry/registry.catalogue";
-import { findDemo } from "../showcase/demos";
+import { findDemoSource } from "../showcase/demo-sources";
 import { StackblitzEmbed } from "../showcase/stackblitz-embed";
 
 /*
@@ -29,7 +29,7 @@ export function ShowcaseBlock({ attributes }: MarkdownBlockProps): ReactNode {
 	const id = attributes.demo;
 	if (!id) return null;
 
-	const demo = findDemo(id);
+	const demo = findDemoSource(id);
 	const item = findRegistryItem(id);
 
 	const height = Number(attributes.height);
@@ -45,6 +45,11 @@ export function ShowcaseBlock({ attributes }: MarkdownBlockProps): ReactNode {
 			code={code}
 			language={language}
 			height={resolvedHeight}
+			installLogos={{
+				tanstack: "/logos/tanstack.png",
+				shadcn: "/logos/shadcnui.svg",
+				pnpm: "/logos/pnpm.svg",
+			}}
 			install={
 				item
 					? {

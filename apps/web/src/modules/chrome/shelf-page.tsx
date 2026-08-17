@@ -5,7 +5,7 @@ import { findComponentPage } from "../content/components/component-page";
 import { findPackage } from "../content/packages/packages.catalogue";
 import { findPost } from "../content/posts/posts.catalogue";
 import { BLOCKS } from "../markdown/blocks";
-import { findDemo } from "../showcase/demos";
+import { findDemoSource, hasDemo } from "../showcase/demo-sources";
 
 /*
  * A page, rendered inside a window on the desktop.
@@ -66,7 +66,11 @@ export function renderShelfPage(entry: ShelfEntry): ReactNode {
 
 	const component = slugFrom(href, "/components/");
 	if (component) {
-		const page = findComponentPage(component, (id) => Boolean(findDemo(id)));
+		const page = findComponentPage(
+			component,
+			hasDemo,
+			(id) => findDemoSource(id)?.source,
+		);
 		if (!page) return null;
 
 		/*

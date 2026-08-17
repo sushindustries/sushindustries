@@ -41,6 +41,7 @@ export type IconName =
 	| "github"
 	| "cursor"
 	| "spark"
+	| "terminal"
 	| "star"
 	| "check";
 
@@ -274,6 +275,14 @@ const PATHS: Record<IconName, ReactNode> = {
 			<path d="M12 3v18" />
 			<path d="M4.2 7.5l15.6 9" />
 			<path d="M19.8 7.5 4.2 16.5" />
+		</>
+	),
+	// A frame, a prompt chevron, a cursor line. The shell, drawn as the window it runs in.
+	terminal: (
+		<>
+			<path d="M4 5h16v14H4z" />
+			<path d="M7.5 9.5 10.5 12l-3 2.5" />
+			<path d="M12.5 15h4" />
 		</>
 	),
 	// Five points, closed. The one shape GitHub taught everyone to press.

@@ -17,7 +17,7 @@ import {
 	ldScript,
 } from "../../modules/content/structured-data";
 import { BLOCKS } from "../../modules/markdown/blocks";
-import { findDemo } from "../../modules/showcase/demos";
+import { findDemoSource, hasDemo } from "../../modules/showcase/demo-sources";
 
 /*
  * One component, its sections across the top.
@@ -43,7 +43,11 @@ export const Route = createFileRoute("/components/$slug")({
 		 * component in the archive opens - a card that links nowhere is worse
 		 * than no card.
 		 */
-		const doc = findComponentPage(params.slug, (id) => Boolean(findDemo(id)));
+		const doc = findComponentPage(
+			params.slug,
+			hasDemo,
+			(id) => findDemoSource(id)?.source,
+		);
 		if (!doc) throw notFound();
 
 		/*

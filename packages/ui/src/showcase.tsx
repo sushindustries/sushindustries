@@ -89,6 +89,8 @@ export interface ShowcaseProps {
 	language?: string;
 	/** Install commands, keyed by installer name. */
 	install?: Readonly<Record<string, string>>;
+	/** Installer logos, keyed by the same names. Their marks, quoted as images. */
+	installLogos?: Readonly<Record<string, string>>;
 	/** Height of the desktop frame, which has no device height of its own. */
 	height?: number;
 	/** Rendered code block. Passed in so this file needs no highlighter. */
@@ -172,6 +174,7 @@ export function Showcase({
 	code,
 	language = "tsx",
 	install,
+	installLogos,
 	height = 420,
 	renderCode,
 	renderStackblitz,
@@ -319,7 +322,17 @@ export function Showcase({
 				<figcaption className="showcase-install p-3">
 					{installEntries.map(([name, command]) => (
 						<Fragment key={name}>
-							<span className="label">{name}</span>
+							<span className="label flex items-center gap-2">
+								{installLogos?.[name] ? (
+									<img
+										className="install-logo"
+										src={installLogos[name]}
+										alt=""
+										loading="lazy"
+									/>
+								) : null}
+								{name}
+							</span>
 							<code className="code min-w-0">
 								{command}
 								<CopyButton text={command} ground="paper" />
