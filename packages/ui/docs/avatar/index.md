@@ -1,6 +1,6 @@
 ---
 title: Avatar
-summary:
+summary: A person at glyph size: the image if it loads, initials on a toned fill if it does not.
 updated:
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: useScrollProgress
-summary:
+summary: How far one element has travelled up the viewport, 0 to 1, once per frame. Gated by an observer so an off-screen element costs nothing.
 ---
 
 One paragraph on what this does and when to reach for it. This is the first

@@ -1,6 +1,6 @@
 ---
 title: Skeleton
-summary:
+summary: The wait, drawn as the thing being waited for: a line, a block or a circle, shimmering unless motion is reduced.
 updated:
 ---
 

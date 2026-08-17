@@ -1,6 +1,6 @@
 ---
 title: Button
-summary:
+summary: The pill and the ghost - one action and its alternative, with no third variant on purpose.
 updated:
 ---
 

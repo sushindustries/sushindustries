@@ -1,6 +1,6 @@
 ---
 title: Empty
-summary:
+summary: Nothing, said properly: what is missing, why that is fine, and what to do next - in that order, quietly.
 updated:
 ---
 

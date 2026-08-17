@@ -1,6 +1,6 @@
 ---
 title: Collapsible
-summary:
+summary: One details, dressed - a sentence that opens, for prose rather than lists.
 updated:
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Radio Group
-summary:
+summary: Radios in a fieldset - the one grouping screen readers announce without help.
 updated:
 ---
 

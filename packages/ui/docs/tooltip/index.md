@@ -1,6 +1,6 @@
 ---
 title: Tooltip
-summary:
+summary: One line on hover and focus, in the markup rather than in title= - and never carrying controls.
 updated:
 ---
 

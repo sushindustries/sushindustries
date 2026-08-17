@@ -1,6 +1,6 @@
 ---
 title: Native Select
-summary:
+summary: The platform's own select in the site's clothes - the phone wheel and the OS menu, kept.
 updated:
 ---
 

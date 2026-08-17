@@ -1,6 +1,6 @@
 ---
 title: Separator
-summary:
+summary: A rule with two directions and an accessibility decision: announced when it separates content, silent when it is furniture.
 updated:
 ---
 

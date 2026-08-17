@@ -1,5 +1,6 @@
 ---
 title: Get Started
+summary: Install the package, then mount the viewer lazily so three arrives with the click that needs it.
 ---
 
 ## Install
@@ -43,3 +44,25 @@ export function Page() {
 > take it. A static import pulls ~600 kB of three and R3F into your entry
 > chunk, on every page, for every visitor — including the ones who never scroll
 > to it.
+
+## Usage
+
+```tsx
+import { lazy, Suspense } from "react";
+
+const ProductViewer = lazy(
+	() => import("@sushindustries/react-product-viewer"),
+);
+
+export function Page() {
+	return (
+		<Suspense fallback={null}>
+			<ProductViewer
+				model={{ url: "/models/logo.glb", realLength: 1 }}
+				variants={["White"]}
+				groundBound={false}
+			/>
+		</Suspense>
+	);
+}
+```

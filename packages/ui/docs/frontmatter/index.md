@@ -1,6 +1,6 @@
 ---
 title: Frontmatter
-summary:
+summary: A small frontmatter reader for `key: value` and inline lists. Not YAML, deliberately.
 ---
 
 One paragraph on what this does and when to reach for it. This is the first

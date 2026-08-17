@@ -5,10 +5,12 @@ updated: 2026-08-17
 ---
 
 Prose that names `Showcase` and prose that links to it used to be two different
-sentences the author had to choose between. A reference is both: it reads
-inline like code, and hovering it raises a card with the component's title,
-summary and package - so the reader decides whether the mention is worth a page
-visit before paying for one. Entering the mention follows the link.
+sentences the author had to choose between.
+
+A reference is both: it reads inline like code, and hovering it raises a card
+with the component's title, summary and package - so the reader decides whether
+the mention is worth a page visit before paying for one. Entering the mention
+follows the link.
 
 <!-- ::start:showcase demo="reference" height="340" -->
 <!-- ::end:showcase -->

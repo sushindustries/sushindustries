@@ -1,6 +1,6 @@
 ---
 title: Accordion
-summary:
+summary: details, stacked - every behaviour ships in the element, and items open independently on purpose.
 updated:
 ---
 

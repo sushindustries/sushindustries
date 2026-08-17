@@ -1,6 +1,6 @@
 ---
 title: Kbd
-summary:
+summary: A key, drawn as one. Semantically <kbd>, visually the chip the command palette already wears.
 updated:
 ---
 

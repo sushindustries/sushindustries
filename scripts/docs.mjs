@@ -95,19 +95,32 @@ export function readRegistry() {
 }
 
 /**
- * Whether an element has a demo to show.
+ * The demo ids, read as the keys of the `DEMOS` object.
  *
- * The same substring test `checkRegistryItemsHaveDemos` uses, because
- * `demos.tsx` is JSX and parsing it properly to answer a yes/no question would
- * be a compiler for no gain.
+ * A substring search was the obvious shortcut and it was wrong: `demos.tsx`
+ * contains `tone="motion"` and `category: "motion"` as ordinary data, so
+ * `"motion"` looked like a demo that does not exist and the atoms motion guide
+ * was told to add a showcase block that would render nothing.
+ *
+ * Keys are the one thing at a single tab of indentation followed by a colon
+ * and a brace, which is structure rather than content and cannot be matched by
+ * a string somebody wrote inside a demo.
  */
-let demoSource;
+let demoIds;
+
+export function demoNames() {
+	if (demoIds) return demoIds;
+
+	const source = read("apps/web/src/modules/showcase/demos.tsx");
+	demoIds = new Set(
+		[...source.matchAll(/^\t"?([\w-]+)"?:\s*\{/gm)].map(([, id]) => id),
+	);
+
+	return demoIds;
+}
 
 export function hasDemo(slug) {
-	demoSource ??= read("apps/web/src/modules/showcase/demos.tsx");
-	return (
-		demoSource.includes(`"${slug}"`) || demoSource.includes(`\n\t${slug}:`)
-	);
+	return demoNames().has(slug);
 }
 
 /* ── reading the source ──────────────────────────────────────────────── */
@@ -481,7 +494,25 @@ export function needsDoc(member) {
 	return !SELF_EVIDENT.has(member.prop);
 }
 
+/*
+ * A block that shows the element running, which is what Home owes a reader.
+ *
+ * Narrow on purpose: `grid` and `spacer` are blocks, but a page that only laid
+ * something out has still not shown the component it documents.
+ */
 const LIVE_BLOCK = /<!--\s*::start:(showcase|viewer|device|shelf)\b/;
+
+/*
+ * Any registered block at all, for the "a heading earns its place" rule.
+ *
+ * Wider than `LIVE_BLOCK`, and the difference is a real finding: a section of
+ * `spacer/guides.md` demonstrates the component with an inline
+ * `<!-- ::start:spacer -->` and was reported as prose with nothing to copy,
+ * because the narrow pattern did not know that block. The two questions are
+ * different - "does Home show the thing" and "does this heading hand the
+ * reader anything" - so they get two patterns rather than one compromise.
+ */
+const ANY_BLOCK = /<!--\s*::start:[a-z-]+/;
 
 function withoutFrontmatter(body) {
 	return body.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, "");
@@ -545,7 +576,7 @@ function carriesSomethingToTake(body) {
 	return (
 		/```/.test(body) ||
 		/^\s*\|/m.test(body) ||
-		LIVE_BLOCK.test(body) ||
+		ANY_BLOCK.test(body) ||
 		/^>\s*\[!/m.test(body)
 	);
 }

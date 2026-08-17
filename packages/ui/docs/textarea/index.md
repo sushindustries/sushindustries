@@ -1,6 +1,6 @@
 ---
 title: Textarea
-summary:
+summary: A textarea in the same clothes as Input, growing with its content where the browser allows.
 updated:
 ---
 

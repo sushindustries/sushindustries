@@ -1,6 +1,6 @@
 ---
 title: Scroll Area
-summary:
+summary: The named inner scroll: thin bar, and the smooth scroller handed back - the pair everyone forgets separately.
 updated:
 ---
 

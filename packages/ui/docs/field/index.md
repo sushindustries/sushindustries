@@ -1,6 +1,6 @@
 ---
 title: Field
-summary:
+summary: A labelled control with one line under it - the error is announced by being pointed at, not by being red.
 updated:
 ---
 

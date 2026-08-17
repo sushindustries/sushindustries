@@ -1,6 +1,6 @@
 ---
 title: Checkbox
-summary:
+summary: A native checkbox with its words attached, painted by accent-color rather than redrawn.
 updated:
 ---
 

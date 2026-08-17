@@ -1,6 +1,6 @@
 ---
 title: Command Palette
-summary:
+summary: Search over everything the host can name, in a native dialog: substring filter, arrow keys, and the host keeps the router.
 updated:
 ---
 

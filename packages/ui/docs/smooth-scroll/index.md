@@ -1,6 +1,6 @@
 ---
 title: Smooth Scroll
-summary:
+summary: Mounts Lenis for the page and renders nothing. Respects reduced motion.
 ---
 
 One paragraph on what this does and when to reach for it. This is the first

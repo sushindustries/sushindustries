@@ -6,9 +6,10 @@ updated: 2026-08-17
 
 Code on this site is a terminal, whichever theme the page is in: a warm
 charcoal slab that does not invert, with a lit top edge and a contact shadow so
-it sits *on* the paper rather than tinting a region of it. The syntax palette
-is the CLI's own xterm-256 hues, so a command pasted from the terminal into a
-fence keeps its colours.
+it sits *on* the paper rather than tinting a region of it.
+
+The syntax palette is the CLI's own xterm-256 hues, so a command pasted from
+the terminal into a fence keeps its colours.
 
 <!-- ::start:showcase demo="code-block" height="380" -->
 <!-- ::end:showcase -->

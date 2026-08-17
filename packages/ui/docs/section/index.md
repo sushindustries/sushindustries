@@ -1,6 +1,6 @@
 ---
 title: Section
-summary:
+summary: Kicker, heading and body, revealing top-down with an 80ms offset.
 ---
 
 One paragraph on what this does and when to reach for it. This is the first

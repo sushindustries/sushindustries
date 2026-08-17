@@ -1,6 +1,6 @@
 ---
 title: Credit
-summary:
+summary: A dependency, credited, with its author required rather than optional.
 ---
 
 One paragraph on what this does and when to reach for it. This is the first

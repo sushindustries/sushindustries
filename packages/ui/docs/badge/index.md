@@ -1,6 +1,6 @@
 ---
 title: Badge
-summary:
+summary: A word wearing a fill, in the site's own tone pairs - a badge invents no colour of its own.
 updated:
 ---
 

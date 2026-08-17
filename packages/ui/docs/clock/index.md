@@ -1,6 +1,6 @@
 ---
 title: Clock
-summary:
+summary: The reader's own day and time, in the reader's own zone, without asking anybody for a location.
 ---
 
 One paragraph on what this does and when to reach for it. This is the first

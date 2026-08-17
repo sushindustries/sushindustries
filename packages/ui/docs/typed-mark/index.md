@@ -1,6 +1,6 @@
 ---
 title: Typed Mark
-summary:
+summary: Types a word out one character at a time, cycling the syntax palette. No JavaScript, no state, and it runs with scripting off.
 updated:
 ---
 

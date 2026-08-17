@@ -1,6 +1,6 @@
 ---
 title: Alert
-summary:
+summary: The Markdown callout, reachable from JSX - application news in the same box the docs already use.
 updated:
 ---
 

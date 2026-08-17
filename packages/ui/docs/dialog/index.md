@@ -1,6 +1,6 @@
 ---
 title: Dialog
-summary:
+summary: A native dialog driven by props: top layer, focus trap and Escape from the element, click-outside from here.
 updated:
 ---
 

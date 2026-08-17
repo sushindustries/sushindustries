@@ -36,6 +36,7 @@ import {
 } from "./devices.mjs";
 import {
 	generatedApiRegion,
+	hasDemo,
 	readRegistry,
 	renderApiSection,
 	survey,
@@ -402,7 +403,6 @@ function checkGeneratedFilesAreOrdered() {
 
 /* ── the component pipeline ──────────────────────────────────────────── */
 
-
 /**
  * Every element names a real schema.org class.
  *
@@ -767,11 +767,8 @@ async function checkRegistryItemsHaveDocs(items) {
  * that shows a placeholder. Not fixable: a demo is JSX somebody has to mean.
  */
 function checkRegistryItemsHaveDemos(items) {
-	const demos = read("apps/web/src/modules/showcase/demos.tsx");
-
 	for (const item of items) {
-		if (demos.includes(`"${item.name}"`) || demos.includes(`\n\t${item.name}:`))
-			continue;
+		if (hasDemo(item.name)) continue;
 
 		report(
 			"demo",

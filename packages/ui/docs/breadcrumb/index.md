@@ -1,6 +1,6 @@
 ---
 title: Breadcrumb
-summary:
+summary: The trail, told twice from one list: a visible nav with correct ARIA, and the schema.org BreadcrumbList rendered from the same array.
 ---
 
 One paragraph on what this does and when to reach for it. This is the first

@@ -1,6 +1,6 @@
 ---
 title: Sheet
-summary:
+summary: The dialog docked to an edge, for content tall enough that centring it would mean scrolling a floating box.
 updated:
 ---
 

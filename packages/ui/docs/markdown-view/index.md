@@ -1,6 +1,6 @@
 ---
 title: Markdown View
-summary:
+summary: Renders Markdown with callouts, CSS-only tabs, custom blocks and highlighted code.
 ---
 
 One paragraph on what this does and when to reach for it. This is the first

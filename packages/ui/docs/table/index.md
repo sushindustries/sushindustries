@@ -1,6 +1,6 @@
 ---
 title: Table
-summary:
+summary: A table that is a table: declared columns, right-aligned numbers, sideways scroll in its own frame.
 updated:
 ---
 

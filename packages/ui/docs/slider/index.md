@@ -1,6 +1,6 @@
 ---
 title: Slider
-summary:
+summary: A native range input with its label - keyboard steps and form value ship in the element.
 updated:
 ---
 

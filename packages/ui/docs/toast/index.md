@@ -1,6 +1,6 @@
 ---
 title: Toast
-summary:
+summary: Strings, four seconds, bottom corner, announced politely - one provider and one hook, nothing else.
 updated:
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Spinner
-summary:
+summary: One ring, one border, one turn - with a visually hidden label, because a spinner with nothing to announce is just an animation.
 updated:
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Item
-summary:
+summary: One row of a list: tile, title, description, meta - the nav panel's anatomy, extracted for reuse.
 updated:
 ---
 

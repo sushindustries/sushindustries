@@ -1,6 +1,6 @@
 ---
 title: Input
-summary:
+summary: A text input, and only the drawing of one - state and labels belong to the form and to Field.
 updated:
 ---
 

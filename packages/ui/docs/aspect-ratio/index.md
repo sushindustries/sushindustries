@@ -1,6 +1,6 @@
 ---
 title: Aspect Ratio
-summary:
+summary: A box that keeps its shape and fills whatever is put in it. CSS aspect-ratio, as a prop.
 updated:
 ---
 

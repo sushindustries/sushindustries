@@ -1,6 +1,6 @@
 ---
 title: Progress
-summary:
+summary: The native progress element, restyled - omit value and the indeterminate state is real.
 updated:
 ---
 

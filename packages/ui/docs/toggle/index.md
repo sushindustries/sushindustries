@@ -1,6 +1,6 @@
 ---
 title: Toggle
-summary:
+summary: A button that stays down, and the single-select group of them - aria-pressed is the whole contract.
 updated:
 ---
 

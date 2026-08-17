@@ -1,6 +1,6 @@
 ---
 title: Switch
-summary:
+summary: A checkbox that admits it: a real input with role=switch, and a track :checked drives.
 updated:
 ---
 

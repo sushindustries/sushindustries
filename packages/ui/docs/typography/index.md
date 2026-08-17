@@ -1,6 +1,6 @@
 ---
 title: Typography
-summary:
+summary: The type scale as components: Heading with outline and size separated, the Label eyebrow, the Lead. One decision, made once.
 updated:
 ---
 
