@@ -26,5 +26,7 @@ The boundary. A component that lists what it is not is a component you can
 decide against in ten seconds.
 
 > [!NOTE] Install commands are not written here
-> Anything in `packages/ui/registry.ts` gets its TanStack and shadcn commands
-> attached automatically, so there is nothing to keep in sync.
+> Anything in `packages/ui/registry.ts` gets its TanStack, shadcn and pnpm
+> commands appended to the bottom of this tab, along with its version,
+> dependencies and files. Do not add your own - the generated ones cannot go
+> stale, and a second copy immediately does.

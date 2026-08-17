@@ -39,7 +39,7 @@ export interface ComponentPage extends ComponentDoc {
  * hand-written page - same callouts, same showcase block, same highlighting.
  * A second rendering path would be a second thing to keep in step.
  */
-function generateHome(
+function generateIntro(
 	item: RegistryItem,
 	hasDemo: boolean,
 	usage?: string,
@@ -64,6 +64,26 @@ ${usage}
 		);
 		lines.push("");
 	}
+
+	return lines.join("\n");
+}
+
+/*
+ * How to install it, and what arrives when you do.
+ *
+ * Split from the intro because it is appended to *every* Home section, not
+ * only generated ones. `templates/component-index.md` has always ended with a
+ * note saying install commands are attached automatically and must not be
+ * written by hand - and that note was false for every component in the
+ * registry. A hand-written `index.md` won outright, `pnpm doctor` guarantees
+ * every registry item has one, so the generated path this lived in never ran
+ * once. Sixty-six pages documented components nobody was told how to install.
+ *
+ * Appended rather than prepended: the author's own words open the page, and
+ * the mechanical part goes underneath where a reader expects to find it.
+ */
+function generateSpec(item: RegistryItem): string {
+	const lines: string[] = [];
 
 	lines.push("## Install");
 	lines.push("");
@@ -152,7 +172,12 @@ export function findComponentPage(
 	const written = findComponentDoc(slug);
 	const item = findRegistryItem(slug);
 
-	// Hand-written wins outright: if somebody wrote it, they meant it.
+	/*
+	 * Hand-written wins outright: if somebody wrote it, they meant it. The one
+	 * thing it does not get to skip is how to install the thing - that is
+	 * appended from the registry, so it is right by construction rather than
+	 * right until a version changes.
+	 */
 	if (written) {
 		return {
 			...written,
@@ -165,6 +190,13 @@ export function findComponentPage(
 			summary: written.summary || item?.description || "",
 			generated: false,
 			item,
+			sections: item
+				? written.sections.map((section) =>
+						section.id === "index"
+							? { ...section, body: `${section.body}\n\n${generateSpec(item)}` }
+							: section,
+					)
+				: written.sections,
 		};
 	}
 
@@ -181,7 +213,10 @@ export function findComponentPage(
 			{
 				id: "index",
 				label: "Home",
-				body: generateHome(item, hasDemo(item.name), demoSource?.(item.name)),
+				body: [
+					generateIntro(item, hasDemo(item.name), demoSource?.(item.name)),
+					generateSpec(item),
+				].join("\n"),
 			},
 		],
 	};

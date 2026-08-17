@@ -4,32 +4,12 @@ tokens: slug, title
 -->
 ---
 title: Get Started
-summary: Install it, render it once, and know what you should be looking at.
+summary: Render {title} once, and know what you should be looking at.
 ---
 
-## Install
-
-<!-- ::start:tabs -->
-
-### TanStack
-
-```shell
-tanstack add https://sushindustries.com/r/tanstack/{slug}.json
-```
-
-### shadcn
-
-```shell
-pnpm dlx shadcn@latest add https://sushindustries.com/r/shadcn/{slug}.json
-```
-
-### pnpm
-
-```shell
-pnpm add @sushindustries/ui @sushindustries/atoms
-```
-
-<!-- ::end:tabs -->
+Install commands are on Home, attached from the registry - they are not written
+here, because a second copy is a copy that goes stale. This tab starts after the
+install worked.
 
 ## Use it
 

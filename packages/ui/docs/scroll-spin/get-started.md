@@ -1,31 +1,10 @@
 ---
 title: Get Started
-summary: Install `ScrollSpin`, wrap something in it, and see it turn on scroll.
+summary: Wrap something in `ScrollSpin` and see it turn on scroll.
 ---
 
-## Install
-
-<!-- ::start:tabs -->
-
-### TanStack
-
-```shell
-tanstack add https://sushindustries.com/r/tanstack/scroll-spin.json
-```
-
-### shadcn
-
-```shell
-pnpm dlx shadcn@latest add https://sushindustries.com/r/shadcn/scroll-spin.json
-```
-
-### pnpm
-
-```shell
-pnpm add @sushindustries/ui @sushindustries/atoms
-```
-
-<!-- ::end:tabs -->
+Install commands are on Home, attached from the registry. This tab starts after
+the install worked.
 
 ## Use it
 
