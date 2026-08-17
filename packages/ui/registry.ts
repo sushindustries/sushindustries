@@ -942,6 +942,19 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		preview: "A header with a panel of categories open under it",
 	},
 	{
+		name: "video-player",
+		version: "0.1.0",
+		title: "Video Player",
+		description:
+			"A video held behind a picture of itself. The player is a child, so it mounts on play and unmounts on stop - no vendor, no bytes and no cookies until somebody asks.",
+		files: ["video-player.tsx", "icon.tsx"],
+		dependencies: {},
+		category: "content",
+		subcategory: "Media",
+		tags: ["video", "facade", "privacy", "no-deps"],
+		preview: "A poster with a play button, and the frame it reserves",
+	},
+	{
 		name: "frontmatter",
 		version: "0.1.0",
 		title: "Frontmatter",

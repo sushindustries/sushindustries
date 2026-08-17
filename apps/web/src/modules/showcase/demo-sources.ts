@@ -50,6 +50,23 @@ export const DEMO_SOURCES = {
 		source: `<DocAside headings={collectHeadings(markdown)} />`,
 		language: "tsx",
 	},
+	"video-player": {
+		source: `<VideoPlayer
+	title="Never Gonna Give You Up"
+	provider="youtube"
+	poster="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+	variant="inline"
+>
+	{/* Mounted on play, unmounted on stop. Nothing loads before that. */}
+	<iframe
+		src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"
+		title="Never Gonna Give You Up"
+		allow="autoplay; encrypted-media; picture-in-picture"
+		allowFullScreen
+	/>
+</VideoPlayer>`,
+		language: "tsx",
+	},
 	"use-scroll-turn": {
 		source: `useScrollTurn(({ turn, wobble }) => {
 	node.style.transform = \`rotateY(\${turn * 360}deg)\`;

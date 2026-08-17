@@ -57,6 +57,9 @@ Multiple paths per glyph go in separate backticks in the same cell.
 | terminal | `M4 5h16v14H4z` `M7.5 9.5 10.5 12l-3 2.5` `M12.5 15h4` | A frame, a prompt chevron, a cursor line. The shell, drawn as the window it runs in. |
 | star | `M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z` | Five points, closed. The one shape GitHub taught everyone to press. |
 | check | `M5 13l4.5 4.5L19 7.5` | A tick. It replaces the copy glyph for a moment, so it is drawn at the same weight and nothing else moves. |
+| play | `M8.5 5.5 18.5 12l-10 6.5z` | A right-pointing triangle, closed. The one control nobody has to be taught. |
+| pause | `M9.5 5.5v13M14.5 5.5v13` | Two bars at the play triangle's height, so the button does not change size when it changes meaning. |
+| expand | `M9.5 4.5h-5v5` `M14.5 19.5h5v-5` `M4.5 4.5 10 10` `M19.5 19.5 14 14` | Two corners and the arrows leaving them. Fullscreen, drawn as the direction it goes. |
 
 ## Adding one
 

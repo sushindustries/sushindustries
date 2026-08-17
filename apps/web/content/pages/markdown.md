@@ -156,6 +156,21 @@ And a live component, running - not a screenshot:
 <!-- ::start:spacer size="6" -->
 <!-- ::end:spacer -->
 
+A video is a block too, and it costs nothing until you press it. What sits on
+the page is a poster and a button; the frame, the third-party script and the
+cookies arrive with the click and leave again when you press stop:
+
+<!-- ::start:video provider="youtube" id="dQw4w9WgXcQ" title="Never Gonna Give You Up" variant="cinema" caption="Rick Astley, 1987. The most-linked video on the internet, here because everyone already knows what it should look like." -->
+<!-- ::end:video -->
+
+The same block, pointed at Mux, which is the one to reach for when the video is
+mine. `<mux-player>` is a custom element rather than a frame, so it is not at
+the mercy of another site's opinion about being embedded, it adapts its bitrate
+to the connection, and its chunk is fetched by the click that needs it:
+
+<!-- ::start:video provider="mux" id="EcHgOK9coz5K4rjSwOkoE7Y7O01201YMIC200RI6lNxnhs" title="Mux's own demo asset" caption="Hosted video, played by @mux/mux-player-react. The player is loaded on press and unloaded on stop, like every other provider here." -->
+<!-- ::end:video -->
+
 Even the 3D viewer is a block. The model below is the site's own mark,
 loading through TanStack Query in parallel with the viewer code, and only
 once you scroll near it:

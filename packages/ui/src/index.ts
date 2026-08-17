@@ -184,3 +184,10 @@ export {
 	type ScrollTurnOptions,
 	useScrollTurn,
 } from "./use-scroll-turn";
+export {
+	VideoPlayer,
+	type VideoPlayerProps,
+	type VideoProvider,
+	type VideoTheme,
+	type VideoVariant,
+} from "./video-player";

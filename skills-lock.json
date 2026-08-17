@@ -1,6 +1,12 @@
 {
 	"version": 1,
 	"skills": {
+		"mux-video": {
+			"source": "muxinc/skills",
+			"sourceType": "github",
+			"skillPath": "skills/mux/SKILL.md",
+			"computedHash": "eaf3453ee47a8e00c657a6e9562389a88c03604761a6ed10a44224b4e7128f8a"
+		},
 		"tanstack-integration-best-practices": {
 			"source": "deckardger/tanstack-agent-skills",
 			"sourceType": "github",

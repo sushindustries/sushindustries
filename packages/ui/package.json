@@ -121,6 +121,7 @@
 		"./use-drag-place": "./src/use-drag-place.ts",
 		"./use-scroll-progress": "./src/use-scroll-progress.ts",
 		"./use-scroll-turn": "./src/use-scroll-turn.ts",
+		"./video-player": "./src/video-player.tsx",
 		"./package.json": "./package.json",
 		"./registry": "./registry.ts"
 	},
@@ -410,6 +411,10 @@
 			"./use-scroll-turn": {
 				"import": "./dist/use-scroll-turn.js",
 				"require": "./dist/use-scroll-turn.cjs"
+			},
+			"./video-player": {
+				"import": "./dist/video-player.js",
+				"require": "./dist/video-player.cjs"
 			},
 			"./package.json": "./package.json",
 			"./registry": {

@@ -34,6 +34,19 @@ One palette, two themes, zero literals below the tokens layer.
 <!-- ::start:spacer size="7" -->
 <!-- ::end:spacer -->
 
+## Watch instead
+
+A post that is really a video says so at the top, in the `card` variant, sized
+to sit in the column rather than take it over:
+
+<!-- ::start:video provider="youtube" id="dQw4w9WgXcQ" title="Never Gonna Give You Up" variant="card" -->
+<!-- ::end:video -->
+
+Put a second one in the column and only one of them can ever be playing: each
+block compares its own id to a store holding whichever video is mounted, so
+starting one stops the other rather than leaving it running somewhere off the
+screen.
+
 ## Everything else
 
 <!-- ::start:grid min="16rem" gap="3" -->

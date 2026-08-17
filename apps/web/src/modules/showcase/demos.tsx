@@ -73,6 +73,7 @@ import {
 	useScrollProgress,
 	useScrollTurn,
 	useToast,
+	VideoPlayer,
 } from "@sushindustries/ui";
 
 import {
@@ -769,6 +770,26 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 		),
 		poster: <p className="label text-center">An on-page contents rail</p>,
 		...DEMO_SOURCES["doc-aside"],
+	},
+
+	"video-player": {
+		element: (
+			<VideoPlayer
+				title="Never Gonna Give You Up"
+				provider="youtube"
+				poster="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+				caption="Press play and the frame appears. Press stop and it is gone again, along with everything it loaded."
+			>
+				<iframe
+					src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0"
+					title="Never Gonna Give You Up"
+					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+					allowFullScreen
+				/>
+			</VideoPlayer>
+		),
+		poster: <p className="label text-center">A video behind its own poster</p>,
+		...DEMO_SOURCES["video-player"],
 	},
 
 	"use-scroll-turn": {

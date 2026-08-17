@@ -161,7 +161,29 @@ function Frame({
 				 * nothing here and means a demo cannot navigate the page that
 				 * embeds it.
 				 */
-				sandbox="allow-scripts allow-same-origin"
+				/*
+				 * Sandbox flags are inherited by anything this frame embeds, so
+				 * a demo containing a video player is two frames deep and the
+				 * player only gets what is granted here. With the minimal set a
+				 * third-party player never loads at all - the nested frame ends
+				 * on a browser error page before it makes a request - which
+				 * looks like a broken component and is a missing token.
+				 *
+				 * What is still withheld is the part that matters: no
+				 * `allow-top-navigation`, so a demo cannot navigate the page
+				 * that embeds it.
+				 */
+				sandbox="allow-scripts allow-same-origin allow-presentation allow-popups allow-popups-to-escape-sandbox allow-forms"
+				/*
+				 * Permissions are delegated, or a demo that embeds a player is a
+				 * demo of a broken player. A frame gets no autoplay, no
+				 * fullscreen and no encrypted media unless the frame above it
+				 * says so, and a video component previewed here is two frames
+				 * deep - so the grant has to be made at this level for the
+				 * player inside to receive it. Nothing here grants a camera, a
+				 * microphone or a location.
+				 */
+				allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
 				loading="lazy"
 			/>
 		</figure>

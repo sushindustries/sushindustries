@@ -3,6 +3,7 @@ import { CardBlock } from "./card-block";
 import { GridBlock, SpacerBlock } from "./layout-blocks";
 import { ShelfBlock } from "./shelf-block";
 import { ShowcaseBlock } from "./showcase-block";
+import { VideoBlock } from "./video-block";
 import { ViewerBlock } from "./viewer-block";
 
 /*
@@ -17,6 +18,7 @@ export const BLOCKS: MarkdownBlocks = {
 	card: CardBlock,
 	showcase: ShowcaseBlock,
 	viewer: ViewerBlock,
+	video: VideoBlock,
 	grid: GridBlock,
 	spacer: SpacerBlock,
 	shelf: ShelfBlock,

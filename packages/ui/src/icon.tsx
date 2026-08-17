@@ -43,7 +43,10 @@ export type IconName =
 	| "spark"
 	| "terminal"
 	| "star"
-	| "check";
+	| "check"
+	| "play"
+	| "pause"
+	| "expand";
 
 export interface IconProps {
 	name: IconName;
@@ -295,6 +298,27 @@ const PATHS: Record<IconName, ReactNode> = {
 	check: (
 		<>
 			<path d="M5 13l4.5 4.5L19 7.5" />
+		</>
+	),
+	// A right-pointing triangle, closed. The one control nobody has to be taught.
+	play: (
+		<>
+			<path d="M8.5 5.5 18.5 12l-10 6.5z" />
+		</>
+	),
+	// Two bars at the play triangle's height, so the button does not change size when it changes meaning.
+	pause: (
+		<>
+			<path d="M9.5 5.5v13M14.5 5.5v13" />
+		</>
+	),
+	// Two corners and the arrows leaving them. Fullscreen, drawn as the direction it goes.
+	expand: (
+		<>
+			<path d="M9.5 4.5h-5v5" />
+			<path d="M14.5 19.5h5v-5" />
+			<path d="M4.5 4.5 10 10" />
+			<path d="M19.5 19.5 14 14" />
 		</>
 	),
 };
