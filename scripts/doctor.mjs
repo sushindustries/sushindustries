@@ -450,7 +450,7 @@ function checkElementsDeclareSchemaType(items) {
 	)?.[1];
 
 	if (!listed) {
-		problem(
+		report(
 			"schema",
 			"packages/db/src/schema-org.generated.ts",
 			"cannot read SCHEMA_TYPES",
@@ -471,7 +471,7 @@ function checkElementsDeclareSchemaType(items) {
 
 	for (const item of items) {
 		if (!item.schema) {
-			problem(
+			report(
 				"schema",
 				"packages/ui/registry.ts",
 				`${item.name} declares no schema.org type`,
@@ -481,7 +481,7 @@ function checkElementsDeclareSchemaType(items) {
 		}
 
 		if (!types.has(item.schema)) {
-			problem(
+			report(
 				"schema",
 				"packages/ui/registry.ts",
 				`${item.name} claims schema.org type ${item.schema}, which does not exist`,
@@ -1018,30 +1018,6 @@ function checkGlyphsAreGenerated() {
 }
 
 /**
- * The stylesheet and the type module both match the device table.
- *
- * Two outputs from one source, in two languages that cannot read each other: a
- * media query needs a literal `min-width`, and the client needs the same
- * numbers to say which machine it is running on. Generated, they agree by
- * construction. Written twice, they agreed by luck, and the way that breaks is
- * silent - a breakpoint moves in the stylesheet, and the assistant carries on
- * confidently telling a model it is on a laptop.
- */
-/**
- * Every skill parses, and every skill is bound to a handler.
- *
- * A malformed skill does not throw at build time. It becomes a tool with a
- * missing description, or a parameter the model has nothing to fill from, and
- * it fails at the one moment nobody is watching - when somebody asks a
- * question and the answer is quietly worse.
- *
- * The binding half is the one that actually goes wrong. Writing the Markdown is
- * the fun part and wiring the handler is the chore, so a skill declared and
- * never bound is the natural end of a half-finished afternoon. It is silently
- * dropped at runtime, so the model simply never gets the capability and nothing
- * anywhere says why.
- */
-/**
  * Every docs file lands on a page.
  *
  * Component docs are `packages/<pkg>/docs/<slug>/<section>.md`, and `<section>`
@@ -1077,6 +1053,46 @@ function checkDocSectionsAreReal() {
 	}
 }
 
+/**
+ * Every docs file is at the depth the catalogue globs.
+ *
+ * The other half of the same failure, and the half the check above cannot see:
+ * its pattern requires `docs/<slug>/<section>.md`, so a file sitting one level
+ * shallower matches neither the check nor the glob, and is invisible to both.
+ *
+ * `packages/assistant/docs/index.md` was 208 lines written that way. Nothing
+ * failed, nothing warned, and the page it should have been simply did not
+ * exist. The slug comes from the *directory*, so a doc without one has no
+ * address for a page to live at.
+ */
+function checkDocsAreAddressable() {
+	for (const path of trackedFiles()) {
+		const match = /^packages\/[^/]+\/docs\/([\w-]+)\.md$/.exec(path);
+		if (!match) continue;
+
+		report(
+			"docs",
+			path,
+			"sits directly in docs/, so nothing globs it and it renders on no page",
+			`move it to docs/${match[1]}/index.md - the directory is the slug`,
+		);
+	}
+}
+
+/**
+ * Every skill parses, and every skill is bound to a handler.
+ *
+ * A malformed skill does not throw at build time. It becomes a tool with a
+ * missing description, or a parameter the model has nothing to fill from, and
+ * it fails at the one moment nobody is watching - when somebody asks a
+ * question and the answer is quietly worse.
+ *
+ * The binding half is the one that actually goes wrong. Writing the Markdown is
+ * the fun part and wiring the handler is the chore, so a skill declared and
+ * never bound is the natural end of a half-finished afternoon. It is silently
+ * dropped at runtime, so the model simply never gets the capability and nothing
+ * anywhere says why.
+ */
 function checkSkills() {
 	const dir = "packages/assistant/skills";
 	if (!exists(dir)) return;
@@ -1193,6 +1209,16 @@ function checkRegistryItemsAreAddressable(items) {
 	}
 }
 
+/**
+ * The stylesheet and the type module both match the device table.
+ *
+ * Two outputs from one source, in two languages that cannot read each other: a
+ * media query needs a literal `min-width`, and the client needs the same
+ * numbers to say which machine it is running on. Generated, they agree by
+ * construction. Written twice, they agreed by luck, and the way that breaks is
+ * silent - a breakpoint moves in the stylesheet, and the assistant carries on
+ * confidently telling a model it is on a laptop.
+ */
 function checkDevicesAreGenerated() {
 	const devices = readDevices();
 	const problems = devicesProblems(devices);
@@ -2126,6 +2152,7 @@ checkGlyphsAreGenerated();
 checkDevicesAreGenerated();
 checkSkills();
 checkDocSectionsAreReal();
+checkDocsAreAddressable();
 checkRegistryItemsAreAddressable(registry);
 checkMentionsAreReferences(registry);
 checkCategoriesHaveIcons();
