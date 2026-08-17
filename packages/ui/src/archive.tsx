@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import type { ArchiveCategory, ArchiveItem } from "./archive.schemas";
 import { Icon } from "./icon";
 import { Pagination } from "./pagination";
@@ -187,98 +187,104 @@ export function Archive({
 				<p className="fg-faint mt-6">{emptyLabel}</p>
 			) : (
 				<div className="archive-grid mt-6">
-					{shown.map((item) =>
-						renderLink({
-							kind: "item",
-							id: item.id,
-							href: item.href,
-							className: "archive-card",
-							// The same tone hook as the nav. The card is the other place
-							// a category is visible, and the two must agree.
-							"data-tone": item.category,
-							children: (
-								<>
-									<div className="archive-preview">
-										{item.previewSrc ? (
-											<iframe
-												className="archive-frame"
-												src={item.previewSrc}
-												title={`${item.title} preview`}
-												loading="lazy"
-												tabIndex={-1}
-												aria-hidden="true"
-												sandbox="allow-scripts allow-same-origin"
-											/>
-										) : (
-											<span className="label">{item.category}</span>
-										)}
-									</div>
-
-									{/*
-									 * What it costs to install, at a glance.
-									 *
-									 * Deliberately above the title rather than buried under
-									 * the description: somebody scanning twenty-five cards
-									 * for something to use is filtering on this, and a fact
-									 * that only appears after you have read a paragraph is
-									 * not a fact you can scan.
-									 */}
-									<div className="flex col gap-2 p-4">
-										<div className="flex items-center justify-between gap-3">
-											<h3 className="h3 m-0 min-w-0 truncate">{item.title}</h3>
-											{item.meta ? (
-												<span className="label shrink-0">{item.meta}</span>
-											) : null}
+					{/* Keyed here, because `renderLink` owns the element and a host's
+					    Link has no reason to know it is being rendered in a list. */}
+					{shown.map((item) => (
+						<Fragment key={item.id}>
+							{renderLink({
+								kind: "item",
+								id: item.id,
+								href: item.href,
+								className: "archive-card",
+								// The same tone hook as the nav. The card is the other place
+								// a category is visible, and the two must agree.
+								"data-tone": item.category,
+								children: (
+									<>
+										<div className="archive-preview">
+											{item.previewSrc ? (
+												<iframe
+													className="archive-frame"
+													src={item.previewSrc}
+													title={`${item.title} preview`}
+													loading="lazy"
+													tabIndex={-1}
+													aria-hidden="true"
+													sandbox="allow-scripts allow-same-origin"
+												/>
+											) : (
+												<span className="label">{item.category}</span>
+											)}
 										</div>
 
-										{item.subcategory ? (
-											<p className="label m-0">{item.subcategory}</p>
-										) : null}
-
 										{/*
-										 * What installing this drags in.
+										 * What it costs to install, at a glance.
 										 *
-										 * The empty case is rendered rather than skipped, and
-										 * that is the whole point of the row: "no dependencies"
-										 * is the most useful thing most of these can say about
-										 * themselves, and expressing it as an *absence of
-										 * chips* means it is never actually said. A reader
-										 * scanning a grid cannot tell the difference between a
-										 * component with no dependencies and one whose row
-										 * failed to render.
+										 * Deliberately above the title rather than buried under
+										 * the description: somebody scanning twenty-five cards
+										 * for something to use is filtering on this, and a fact
+										 * that only appears after you have read a paragraph is
+										 * not a fact you can scan.
 										 */}
-										<p className="archive-deps m-0">
-											{item.dependencies.length === 0 ? (
-												<span className="archive-dep" data-none="true">
-													<Icon name="rule" size={12} />
-													No dependencies
-												</span>
-											) : (
-												item.dependencies.map((name) => (
-													<span key={name} className="archive-dep">
-														<Icon name="package" size={12} />
-														{name}
+										<div className="flex col gap-2 p-4">
+											<div className="flex items-center justify-between gap-3">
+												<h3 className="h3 m-0 min-w-0 truncate">
+													{item.title}
+												</h3>
+												{item.meta ? (
+													<span className="label shrink-0">{item.meta}</span>
+												) : null}
+											</div>
+
+											{item.subcategory ? (
+												<p className="label m-0">{item.subcategory}</p>
+											) : null}
+
+											{/*
+											 * What installing this drags in.
+											 *
+											 * The empty case is rendered rather than skipped, and
+											 * that is the whole point of the row: "no dependencies"
+											 * is the most useful thing most of these can say about
+											 * themselves, and expressing it as an *absence of
+											 * chips* means it is never actually said. A reader
+											 * scanning a grid cannot tell the difference between a
+											 * component with no dependencies and one whose row
+											 * failed to render.
+											 */}
+											<p className="archive-deps m-0">
+												{item.dependencies.length === 0 ? (
+													<span className="archive-dep" data-none="true">
+														<Icon name="rule" size={12} />
+														No dependencies
 													</span>
-												))
-											)}
-										</p>
+												) : (
+													item.dependencies.map((name) => (
+														<span key={name} className="archive-dep">
+															<Icon name="package" size={12} />
+															{name}
+														</span>
+													))
+												)}
+											</p>
 
-										<p className="m-0 fg-dim text-sm text-pretty">
-											{item.description}
-										</p>
+											<p className="m-0 fg-dim text-sm text-pretty">
+												{item.description}
+											</p>
 
-										{/*
-										 * The preview is aria-hidden, so this sentence is the
-										 * only description of it a screen reader will get.
-										 */}
-										{item.preview ? (
-											<p className="sr-only">Preview: {item.preview}</p>
-										) : null}
-									</div>
-								</>
-							),
-						}),
-					)}
+											{/*
+											 * The preview is aria-hidden, so this sentence is the
+											 * only description of it a screen reader will get.
+											 */}
+											{item.preview ? (
+												<p className="sr-only">Preview: {item.preview}</p>
+											) : null}
+										</div>
+									</>
+								),
+							})}
+						</Fragment>
+					))}
 				</div>
 			)}
 
