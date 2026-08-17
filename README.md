@@ -84,3 +84,17 @@ pnpm build
 pnpm typecheck
 pnpm exec biome check .
 ```
+
+## Licence
+
+MIT, and every package in here declares it. `pnpm doctor` fails a published
+workspace that does not, because a package telling people to install it while
+granting them no licence is one nobody may legally use.
+
+Two things are not covered by it, and `NOTICE.md` says why: the third-party
+logos on the credits page, which are their owners' marks and appear only to
+name the projects this site is built on, and the mark in
+`apps/web/public/models/` which is the identity of the site rather than
+something to reuse. Everything that renders it is MIT and works with any model.
+
+Built by Adam Jurek. One person, which is why everything here is written "I".
