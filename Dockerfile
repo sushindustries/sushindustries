@@ -43,6 +43,20 @@ RUN pnpm install --frozen-lockfile
 FROM node:22-alpine AS build
 WORKDIR /app
 
+# Vite inlines `VITE_*` variables at build time and Nitro bakes the /ingest
+# relay's target into its route rules, so all three have to exist *here*, not
+# just at runtime. Railway passes service variables to Docker builds only for
+# names the Dockerfile opts into with ARG - declared at the top of the stage,
+# which is the position their documentation's example uses. The key is public
+# by design (it can only write events); absent args build a site that simply
+# measures nothing.
+ARG VITE_POSTHOG_KEY
+ARG VITE_POSTHOG_HOST
+ARG POSTHOG_HOST
+ENV VITE_POSTHOG_KEY=$VITE_POSTHOG_KEY
+ENV VITE_POSTHOG_HOST=$VITE_POSTHOG_HOST
+ENV POSTHOG_HOST=$POSTHOG_HOST
+
 RUN corepack enable
 
 # The whole installed tree in one layer, rather than a list of workspaces.
@@ -63,15 +77,9 @@ COPY . .
 # app succeeded locally purely because a previous manual build had left `dist`
 # behind.
 
-# Vite inlines `VITE_*` variables at build time, so the analytics key and the
-# relay path have to exist *here*, not just at runtime. Railway passes service
-# variables to Docker builds as build args - but only for names the Dockerfile
-# declares. The key is public by design (it can only write events); absent
-# args build a site that simply measures nothing.
-ARG VITE_POSTHOG_KEY
-ARG VITE_POSTHOG_HOST
-ENV VITE_POSTHOG_KEY=$VITE_POSTHOG_KEY
-ENV VITE_POSTHOG_HOST=$VITE_POSTHOG_HOST
+# The one-line proof in every build log of whether the args arrived - "set"
+# or "unset", never the values.
+RUN echo "posthog build args: key=${VITE_POSTHOG_KEY:+set}${VITE_POSTHOG_KEY:-unset} relay=${VITE_POSTHOG_HOST:-unset} host=${POSTHOG_HOST:+set}${POSTHOG_HOST:-unset}"
 
 RUN pnpm build
 
