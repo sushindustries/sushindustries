@@ -1,14 +1,7 @@
 import type { RegistryItem } from "@sushindustries/ui/registry";
-import {
-	findRegistryItem,
-	listRegistry,
-} from "../../registry/registry.catalogue";
+import { findRegistryItem } from "../../registry/registry.catalogue";
 import { SITE } from "../site.catalogue";
-import {
-	type ComponentDoc,
-	findComponentDoc,
-	listComponentDocs,
-} from "./components.catalogue";
+import { type ComponentDoc, findComponentDoc } from "./components.catalogue";
 
 /*
  * A page for every component, whether or not anyone has written one.
@@ -219,11 +212,4 @@ export function findComponentPage(
 			},
 		],
 	};
-}
-
-/** Every component that has a page - which is now every registry item. */
-export function listComponentPages(): readonly string[] {
-	const slugs = new Set(listRegistry().map((item) => item.name));
-	for (const doc of listComponentDocs()) slugs.add(doc.slug);
-	return [...slugs];
 }

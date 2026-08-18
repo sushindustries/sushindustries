@@ -11,48 +11,10 @@ import { SITE } from "./site.catalogue";
  * structured data cannot say something the visible page does not - which is
  * both the rule Google enforces and the only honest version of the format.
  *
- * Breadcrumbs carry the full depth of where a thing lives: a component is
- * Home > Components > <Category> > <Title>, not a flat two-crumb trail. The
- * category crumb links to the filtered archive, which is a real page.
+ * The `BreadcrumbList` itself is the `Breadcrumb` component's job now, not a
+ * builder in this file - it renders the visible trail and the schema.org
+ * list from the same array.
  */
-
-interface Crumb {
-	readonly name: string;
-	readonly path: string;
-}
-
-export function breadcrumbs(crumbs: readonly Crumb[]): object {
-	return {
-		"@context": "https://schema.org",
-		"@type": "BreadcrumbList",
-		itemListElement: crumbs.map((crumb, index) => ({
-			"@type": "ListItem",
-			position: index + 1,
-			name: crumb.name,
-			item: `${SITE.url}${crumb.path}`,
-		})),
-	};
-}
-
-export function componentCrumbs(
-	item: { category: string } | undefined,
-	title: string,
-	slug: string,
-): readonly Crumb[] {
-	return [
-		{ name: SITE.name, path: "/" },
-		{ name: "Components", path: "/components" },
-		...(item
-			? [
-					{
-						name: item.category,
-						path: `/components?category=${item.category}`,
-					},
-				]
-			: []),
-		{ name: title, path: `/components/${slug}` },
-	];
-}
 
 /*
  * A component is source code somebody installs: `SoftwareSourceCode`, with the

@@ -134,10 +134,6 @@ const DESKS: readonly Desk[] = Object.entries(FILES).map(([path, raw]) => {
 	};
 });
 
-export function listDesks(): readonly Desk[] {
-	return DESKS;
-}
-
 export function findDesk(slug: string): Desk | undefined {
 	return DESKS.find((desk) => desk.slug === slug);
 }

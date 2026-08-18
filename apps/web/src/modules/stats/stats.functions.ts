@@ -18,7 +18,7 @@ import { countView, readViews } from "./stats.server";
  * `stats.server.ts`: the page renders no number rather than an error.
  */
 export const countPackageView = createServerFn({ method: "POST" })
-	.inputValidator((slug: string) => slug)
+	.validator((slug: string) => slug)
 	.handler(async ({ data }) => {
 		await countView(data);
 		return (await readViews(data))?.views ?? null;

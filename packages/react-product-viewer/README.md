@@ -3,6 +3,9 @@
 The React adapter for `@sushindustries/product-viewer`. The core package holds
 everything that is just three.js; this holds the component and the hooks.
 
+See [Model Mark](/components/model-mark) for the icon-size variant this package
+also exports.
+
 ## Install
 
 ```bash

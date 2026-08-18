@@ -2,6 +2,8 @@
 
 A chat panel that streams Markdown, told which machine it is running on.
 
+See it running as the site's own [Assistant](/components/assistant) terminal.
+
 ## Install
 
 ```shell
