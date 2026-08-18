@@ -213,9 +213,9 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Archive",
 		description:
 			"A filterable grid with categories, subcategories and tags. Renders its own links through a callback so the router stays yours.",
-		files: ["archive.tsx", "archive.schemas.ts", "pagination.tsx", "icon.tsx"],
+		files: ["archive.tsx", "archive.schemas.ts", "pagination.tsx"],
 		dependencies: { zod: "^4.4.3" },
-		registryDependencies: ["card"],
+		registryDependencies: ["icon", "card"],
 		category: "layout",
 		subcategory: "Containers",
 		tags: ["block", "grid", "filter", "schema"],
@@ -273,7 +273,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Desk Window",
 		description:
 			"A window you can drag, close and stack. Position is written to the element during a drag and to state only on release.",
-		files: ["desk-window.tsx", "icon.tsx"],
+		files: ["desk-window.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "layout",
 		subcategory: "Overlays",
@@ -288,7 +289,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Dock",
 		description:
 			"A launcher, what is open, and a corner. Search opens upward and results are the consumer's to compute.",
-		files: ["dock.tsx", "icon.tsx"],
+		files: ["dock.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "layout",
 		subcategory: "Page structure",
@@ -317,7 +319,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Context Menu",
 		description:
 			"One menu, reachable by right-click, by long press, and by a button. Escape and arrow keys included.",
-		files: ["context-menu.tsx", "icon.tsx"],
+		files: ["context-menu.tsx"],
+		registryDependencies: ["icon"],
 		// `react-dom` for `createPortal`. Stated rather than assumed: a React
 		// project is not guaranteed to have react-dom, and this one does not
 		// render without it.
@@ -340,10 +343,14 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 			"context-menu.tsx",
 			"desk-window.tsx",
 			"use-desk-state.ts",
-			"icon.tsx",
 		],
 		dependencies: {},
-		registryDependencies: ["context-menu", "desk-window", "use-desk-state"],
+		registryDependencies: [
+			"icon",
+			"context-menu",
+			"desk-window",
+			"use-desk-state",
+		],
 		category: "layout",
 		subcategory: "Containers",
 		tags: ["block", "dialog", "tree", "touch", "no-deps"],
@@ -385,7 +392,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Card",
 		description:
 			"Title, optional meta, arbitrary body. Heading level is a prop so the outline stays correct.",
-		files: ["card.tsx", "icon.tsx"],
+		files: ["card.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "layout",
 		subcategory: "Containers",
@@ -428,7 +436,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Doc Nav",
 		description:
 			"The left rail of a documentation page: the sections of a library, the elements in each, and the one that is open. A sticky column on a wide screen, a collapsed row below it.",
-		files: ["doc-nav.tsx", "icon.tsx"],
+		files: ["doc-nav.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "docs",
 		subcategory: "Navigation",
@@ -442,7 +451,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Hero",
 		description:
 			"The head of a documentation page: trail, element name, version, measured facts, actions and a responsive shot. Folds to one column by the room it has, not by the size of the window.",
-		files: ["hero.tsx", "icon.tsx"],
+		files: ["hero.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "docs",
 		subcategory: "Page furniture",
@@ -457,9 +467,9 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Showcase",
 		description:
 			"A component in a real iframe at every width it has to survive, side by side, with its source and install commands.",
-		files: ["showcase.tsx", "icon.tsx"],
+		files: ["showcase.tsx"],
 		dependencies: {},
-		registryDependencies: ["copy-button"],
+		registryDependencies: ["icon", "copy-button"],
 		category: "docs",
 		subcategory: "Presentation",
 		tags: ["iframe", "responsive"],
@@ -517,11 +527,11 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Code Block",
 		description:
 			"A highlighted code slab with the CLI's colours, a lit top edge, and a copy button that confirms in place.",
-		files: ["code-block.tsx", "highlighter.ts", "icon.tsx"],
+		files: ["code-block.tsx", "highlighter.ts"],
 		dependencies: {
 			"@tanstack/highlight": "0.0.10",
 		},
-		registryDependencies: ["copy-button"],
+		registryDependencies: ["icon", "copy-button"],
 		category: "content",
 		subcategory: "Rendering",
 		tags: ["code", "highlight", "copy", "ssr"],
@@ -534,7 +544,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Copy Button",
 		description:
 			"A glass chip that writes to the clipboard and confirms in the button itself, then hands back.",
-		files: ["copy-button.tsx", "icon.tsx"],
+		files: ["copy-button.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "content",
 		subcategory: "Rendering",
@@ -548,7 +559,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Breadcrumb",
 		description:
 			"The trail, told twice from one list: a visible nav with correct ARIA, and the schema.org BreadcrumbList rendered from the same array.",
-		files: ["breadcrumb.tsx", "icon.tsx"],
+		files: ["breadcrumb.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "docs",
 		subcategory: "Navigation",
@@ -562,7 +574,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Command Palette",
 		description:
 			"Search over everything the host can name, in a native dialog: substring filter, arrow keys, and the host keeps the router.",
-		files: ["command-palette.tsx", "icon.tsx"],
+		files: ["command-palette.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "docs",
 		subcategory: "Navigation",
@@ -576,7 +589,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Pagination",
 		description:
 			"Pages as links with first and last always reachable. The window everyone already knows, and nothing that breaks middle-click.",
-		files: ["pagination.tsx", "icon.tsx"],
+		files: ["pagination.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "docs",
 		subcategory: "Navigation",
@@ -595,12 +609,27 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		 * typography without it would copy a file whose first import cannot
 		 * resolve, which works here only because the file exists here.
 		 */
-		files: ["typography.tsx", "icon.tsx"],
+		files: ["typography.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "content",
 		subcategory: "Text",
 		tags: ["typography", "headings", "no-deps"],
 		preview: "A label, a heading and a lead, in the site's own scale",
+	},
+	{
+		name: "icon",
+		schema: "SoftwareSourceCode",
+		version: "0.1.0",
+		title: "Icon",
+		description:
+			"The glyph set, generated from a Markdown table where every drawing carries its reason. One component, typed names, no icon font.",
+		files: ["icon.tsx"],
+		dependencies: {},
+		category: "content",
+		subcategory: "Primitives",
+		tags: ["icons", "svg", "generated", "no-deps"],
+		preview: "The glyphs, in a row, at text size",
 	},
 	{
 		name: "badge",
@@ -721,7 +750,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Empty",
 		description:
 			"Nothing, said properly: what is missing, why that is fine, and what to do next - in that order, quietly.",
-		files: ["empty.tsx", "icon.tsx"],
+		files: ["empty.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "content",
 		subcategory: "Loading",
@@ -735,7 +765,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Item",
 		description:
 			"One row of a list: tile, title, description, meta - the nav panel's anatomy, extracted for reuse.",
-		files: ["item.tsx", "icon.tsx"],
+		files: ["item.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "layout",
 		subcategory: "Containers",
@@ -833,7 +864,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Native Select",
 		description:
 			"The platform's own select in the site's clothes - the phone wheel and the OS menu, kept.",
-		files: ["native-select.tsx", "icon.tsx"],
+		files: ["native-select.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "content",
 		subcategory: "Forms",
@@ -875,7 +907,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Accordion",
 		description:
 			"details, stacked - every behaviour ships in the element, and items open independently on purpose.",
-		files: ["accordion.tsx", "icon.tsx"],
+		files: ["accordion.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "layout",
 		subcategory: "Disclosure",
@@ -889,7 +922,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Collapsible",
 		description:
 			"One details, dressed - a sentence that opens, for prose rather than lists.",
-		files: ["collapsible.tsx", "icon.tsx"],
+		files: ["collapsible.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "layout",
 		subcategory: "Disclosure",
@@ -973,7 +1007,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Dialog",
 		description:
 			"A native dialog driven by props: top layer, focus trap and Escape from the element, click-outside from here.",
-		files: ["dialog.tsx", "icon.tsx"],
+		files: ["dialog.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "layout",
 		subcategory: "Overlays",
@@ -987,7 +1022,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Sheet",
 		description:
 			"The dialog docked to an edge, for content tall enough that centring it would mean scrolling a floating box.",
-		files: ["sheet.tsx", "icon.tsx"],
+		files: ["sheet.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "layout",
 		subcategory: "Overlays",
@@ -1043,7 +1079,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Theme Toggle",
 		description:
 			"A segmented control that reports which option was pressed and knows nothing about themes. Roving focus, and `aria-checked` is the selector that draws it.",
-		files: ["theme-toggle.tsx", "icon.tsx"],
+		files: ["theme-toggle.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "layout",
 		subcategory: "Page structure",
@@ -1072,7 +1109,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Nav Bar",
 		description:
 			"A site header whose panels expand. Built on <details>, so it works before hydration and closes on Escape.",
-		files: ["nav-bar.tsx", "icon.tsx"],
+		files: ["nav-bar.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "layout",
 		subcategory: "Page structure",
@@ -1086,7 +1124,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		title: "Video Player",
 		description:
 			"A video held behind a picture of itself. The player is a child, so it mounts on play and unmounts on stop - no vendor, no bytes and no cookies until somebody asks.",
-		files: ["video-player.tsx", "icon.tsx"],
+		files: ["video-player.tsx"],
+		registryDependencies: ["icon"],
 		dependencies: {},
 		category: "content",
 		subcategory: "Media",

@@ -818,6 +818,43 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 		...DEMO_SOURCES.reveal,
 	},
 
+	icon: {
+		element: (
+			<div className="flex items-center gap-4 wrap fg-dim">
+				{(
+					[
+						"cube",
+						"package",
+						"note",
+						"layers",
+						"motion",
+						"grid",
+						"text",
+						"book",
+						"folder",
+						"folder-open",
+						"file",
+						"search",
+						"sun",
+						"moon",
+						"chat",
+						"clock",
+						"copy",
+						"github",
+						"terminal",
+						"star",
+						"check",
+						"play",
+						"send",
+					] as const
+				).map((name) => (
+					<Icon key={name} name={name} size={20} />
+				))}
+			</div>
+		),
+		...DEMO_SOURCES.icon,
+	},
+
 	consent: {
 		/*
 		 * The poster wraps it in a transformed box: `transform` makes that box

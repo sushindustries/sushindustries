@@ -28,6 +28,13 @@ export const DEMO_SOURCES = {
 </Reveal>`,
 		language: "tsx",
 	},
+	icon: {
+		source: `import { Icon, type IconName } from "@sushindustries/ui";
+
+<Icon name="folder-open" />
+<Icon name="search" size={20} />`,
+		language: "tsx",
+	},
 	consent: {
 		source: `const [status, setStatus] = useState("pending")
 
