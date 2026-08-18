@@ -66,17 +66,21 @@ describe("the site graph", () => {
 
 	test("keeps the install edges the registry declares", () => {
 		/*
-		 * `archive` requires `card`, and that fact lives in one place. If the
-		 * graph ever states it differently from the installers, one of them is
-		 * lying to somebody who is about to run a command.
+		 * `scroll-spin` requires `use-scroll-turn`, and that fact lives in one
+		 * place. If the graph ever states it differently from the installers,
+		 * one of them is lying to somebody who is about to run a command.
+		 *
+		 * This edge and not `archive` -> `card`: that one turned out to be a
+		 * declaration of nothing - archive never imported Card - and a test
+		 * pinned to a spurious edge is the test defending the mistake.
 		 */
-		const archive = graph.nodes.find((node) =>
-			node.id.endsWith("/components/archive#entity"),
+		const spin = graph.nodes.find((node) =>
+			node.id.endsWith("/components/scroll-spin#entity"),
 		);
 
-		expect(archive).toBeDefined();
-		expect(archive?.edges.map((edge) => edge.to)).toContain(
-			`${SITE.url}/components/card#entity`,
+		expect(spin).toBeDefined();
+		expect(spin?.edges.map((edge) => edge.to)).toContain(
+			`${SITE.url}/components/use-scroll-turn#entity`,
 		);
 	});
 });

@@ -723,7 +723,24 @@ function checkComponentImportsAreDeclared(items) {
 				if (own.has(stem)) continue;
 
 				const holders = owners.get(stem);
-				if (!holders) continue;
+
+				/*
+				 * No item ships this file at all - the worst case, and the one
+				 * this check used to skip. folder-shelf imported a hook that
+				 * lived in no item's files, every install of it broke on the
+				 * first line, and this loop walked straight past because there
+				 * was no owner to compare against.
+				 */
+				if (!holders) {
+					report(
+						"registry",
+						`packages/ui/src/${file}`,
+						`imports ./${stem}, which no registry item ships - every install of "${item.name}" fails to resolve it`,
+						`add "${stem}.ts(x)" to an item's files - its own, or a new item's`,
+					);
+					continue;
+				}
+
 				if ([...holders].some((name) => declared.has(name))) continue;
 
 				const [suggestion] = holders;

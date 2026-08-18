@@ -192,6 +192,11 @@ export {
 } from "./use-desk-state";
 export { useDeviceKind } from "./use-device-kind";
 export {
+	type DragPlaceHandle,
+	type DragPlaceOptions,
+	useDragPlace,
+} from "./use-drag-place";
+export {
 	type ScrollProgressOptions,
 	useScrollProgress,
 } from "./use-scroll-progress";
