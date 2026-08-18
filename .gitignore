@@ -14,3 +14,7 @@ dist
 
 # Playwright MCP scratch output
 .playwright-mcp/
+
+# pnpm is the package manager. A stray `npm install` once committed this and
+# doubled every Dependabot alert.
+package-lock.json

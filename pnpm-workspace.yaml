@@ -18,6 +18,12 @@ allowBuilds:
 overrides:
   esbuild@<0.25.0: ">=0.25.0"
 
+  # jsdiff below 8.0.3 can be made to spin on a crafted patch - a denial of
+  # service in parsePatch. It arrives here as a devDependency of
+  # @tanstack/cli, which only ever diffs this repo's own files, so the
+  # practical risk is nil - but the alert is real and the fix is one line.
+  diff@<8.0.3: ">=8.0.3"
+
   # One React, for the whole workspace.
   #
   # The viewer package pins react 19.2.0 for its own tests; the app runs 19.2.8.
