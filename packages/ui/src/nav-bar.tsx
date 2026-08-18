@@ -66,10 +66,12 @@ type RenderLink = NonNullable<NavBarProps["renderLink"]>;
  * closes on Escape, and does all of it in the browser with no JavaScript from
  * here at all.
  *
- * What it costs is close-on-outside-click, which `<details>` has no notion of.
- * That is bought back with one `onBlur` - twelve lines, degrading to "the panel
- * stays open until you click the summary again", which is a mildly annoying
- * menu rather than a broken one.
+ * What it costs is closing itself, which `<details>` has no notion of. That is
+ * bought back with a pair of handlers: `closeOnLeave` when focus moves out,
+ * `closeOnNavigate` when a link inside is clicked. Where neither can tell -
+ * a tap that gives focus to nothing and lands on nothing - the panel stays
+ * open until the summary is pressed again, which is a mildly annoying menu
+ * rather than a broken one.
  *
  *   desktop  a row of triggers, each opening a panel below it
  *   tablet   the same row, with a narrower panel
@@ -84,6 +86,27 @@ type RenderLink = NonNullable<NavBarProps["renderLink"]>;
  */
 function closeOnLeave(event: React.FocusEvent<HTMLDetailsElement>): void {
 	if (event.currentTarget.contains(event.relatedTarget)) return;
+	/*
+	 * `relatedTarget` is null when focus went nowhere - and on a touch screen
+	 * that is every tap, because iOS gives links and buttons no focus. Closing
+	 * on it hides the drawer between the tap and the click the browser
+	 * synthesises from it, so the click lands on the page behind and the link
+	 * never navigates. That was the bug: every menu link dead on a phone.
+	 * Leave it open; a tap on a link closes through `closeOnNavigate` below.
+	 */
+	if (event.relatedTarget === null) return;
+	event.currentTarget.removeAttribute("open");
+}
+
+/*
+ * The other half of closing: a click that lands on a link means navigation is
+ * underway, so the menu's job is done. This fires after the anchor's default
+ * action is committed, which is what makes it safe where the blur was not -
+ * nothing here can run early enough to take the click away.
+ */
+function closeOnNavigate(event: React.MouseEvent<HTMLDetailsElement>): void {
+	if (!(event.target instanceof Element)) return;
+	if (!event.target.closest("a")) return;
 	event.currentTarget.removeAttribute("open");
 }
 
@@ -169,7 +192,12 @@ function Panel({
 	renderLink: RenderLink;
 }): ReactNode {
 	return (
-		<details className="nav-menu" onBlur={closeOnLeave}>
+		// biome-ignore lint/a11y/useKeyWithClickEvents: <details> is natively keyboard-operable (Enter/Space toggles, Escape closes); onClick only closes the panel after a link inside is activated, mouse or keyboard.
+		<details
+			className="nav-menu"
+			onBlur={closeOnLeave}
+			onClick={closeOnNavigate}
+		>
 			<summary className="nav-link flex items-center gap-2">
 				{entry.icon ? <Icon name={entry.icon} size={14} /> : null}
 				{entry.label}
@@ -185,6 +213,87 @@ function Panel({
 					className: "nav-panel-all",
 					children: `All ${entry.label.toLowerCase()}`,
 				})}
+			</div>
+		</details>
+	);
+}
+
+/*
+ * Narrow: one burger holding everything.
+ *
+ * The bars are drawn in CSS rather than as a glyph, because they become an X
+ * when the details is open and a glyph cannot morph.
+ *
+ * Its own function, not inlined in `NavBar`, because the `biome-ignore`
+ * comment below only attaches correctly to a `<details>` that is the sole
+ * expression right after `return (` - one JSX child among several siblings
+ * loses that attachment.
+ */
+function NavBurger({
+	entries,
+	renderLink,
+	menuLabel,
+}: {
+	entries: NavBarProps["entries"];
+	renderLink: RenderLink;
+	menuLabel: string;
+}): ReactNode {
+	return (
+		// biome-ignore lint/a11y/useKeyWithClickEvents: <details> is natively keyboard-operable (Enter/Space toggles, Escape closes); onClick only closes the panel after a link inside is activated, mouse or keyboard.
+		<details
+			className="nav-burger"
+			onBlur={closeOnLeave}
+			onClick={closeOnNavigate}
+		>
+			<summary className="nav-burger-toggle" aria-label={menuLabel}>
+				<span className="nav-burger-bars" />
+			</summary>
+
+			{/*
+			 * `data-lenis-prevent` hands scrolling inside the drawer back to the
+			 * browser.
+			 *
+			 * A smooth-scroll driver like Lenis intercepts wheel and touch for the
+			 * whole page and animates the scroll itself. An overlay with its own
+			 * overflow is invisible to it, so a drag inside this drawer moved the
+			 * article behind it instead. Lenis reads this attribute and leaves the
+			 * subtree alone; anyone not using Lenis gets an inert data attribute.
+			 */}
+			<div className="nav-sheet" data-lenis-prevent>
+				<p className="nav-sheet-title label m-0">{menuLabel}</p>
+
+				{entries.map((entry) =>
+					entry.items && entry.items.length > 0 ? (
+						<details className="nav-group" key={entry.href}>
+							<summary className="nav-group-summary flex items-center gap-3">
+								<GroupIcon icon={entry.icon} />
+								{entry.label}
+								<Icon name="chevron" size={13} className="nav-chevron" />
+							</summary>
+
+							<PanelItems items={entry.items} renderLink={renderLink} />
+
+							{renderLink({
+								href: entry.href,
+								className: "nav-panel-all",
+								children: `All ${entry.label.toLowerCase()}`,
+							})}
+						</details>
+					) : (
+						<span key={entry.href}>
+							{renderLink({
+								href: entry.href,
+								className: "nav-group-summary flex items-center gap-3",
+								children: (
+									<>
+										<GroupIcon icon={entry.icon} />
+										{entry.label}
+									</>
+								),
+							})}
+						</span>
+					),
+				)}
 			</div>
 		</details>
 	);
@@ -232,66 +341,11 @@ export function NavBar({
 
 				<div className="flex items-center gap-2 shrink-0">
 					{trailing}
-
-					{/*
-					 * Narrow: one burger holding everything.
-					 *
-					 * The bars are drawn in CSS rather than as a glyph, because they
-					 * become an X when the details is open and a glyph cannot morph.
-					 */}
-					<details className="nav-burger" onBlur={closeOnLeave}>
-						<summary className="nav-burger-toggle" aria-label={menuLabel}>
-							<span className="nav-burger-bars" />
-						</summary>
-
-						{/*
-						 * `data-lenis-prevent` hands scrolling inside the drawer back
-						 * to the browser.
-						 *
-						 * A smooth-scroll driver like Lenis intercepts wheel and touch
-						 * for the whole page and animates the scroll itself. An
-						 * overlay with its own overflow is invisible to it, so a drag
-						 * inside this drawer moved the article behind it instead. Lenis
-						 * reads this attribute and leaves the subtree alone; anyone not
-						 * using Lenis gets an inert data attribute.
-						 */}
-						<div className="nav-sheet" data-lenis-prevent>
-							<p className="nav-sheet-title label m-0">{menuLabel}</p>
-
-							{entries.map((entry) =>
-								entry.items && entry.items.length > 0 ? (
-									<details className="nav-group" key={entry.href}>
-										<summary className="nav-group-summary flex items-center gap-3">
-											<GroupIcon icon={entry.icon} />
-											{entry.label}
-											<Icon name="chevron" size={13} className="nav-chevron" />
-										</summary>
-
-										<PanelItems items={entry.items} renderLink={renderLink} />
-
-										{renderLink({
-											href: entry.href,
-											className: "nav-panel-all",
-											children: `All ${entry.label.toLowerCase()}`,
-										})}
-									</details>
-								) : (
-									<span key={entry.href}>
-										{renderLink({
-											href: entry.href,
-											className: "nav-group-summary flex items-center gap-3",
-											children: (
-												<>
-													<GroupIcon icon={entry.icon} />
-													{entry.label}
-												</>
-											),
-										})}
-									</span>
-								),
-							)}
-						</div>
-					</details>
+					<NavBurger
+						entries={entries}
+						renderLink={renderLink}
+						menuLabel={menuLabel}
+					/>
 				</div>
 			</nav>
 		</header>
