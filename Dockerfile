@@ -37,6 +37,7 @@ COPY packages/react-product-viewer/package.json packages/react-product-viewer/
 # hardcode one platform's service id into a Dockerfile that should build
 # anywhere. The manifest-only COPY above is what actually saves the time.
 COPY packages/assistant/package.json packages/assistant/
+COPY packages/adam-jurek/package.json packages/adam-jurek/
 
 RUN pnpm install --frozen-lockfile
 
