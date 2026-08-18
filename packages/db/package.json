@@ -7,12 +7,14 @@
 	"keywords": [
 		"drizzle",
 		"postgres",
-		"schema"
+		"schema",
+		"tanstack-intent"
 	],
 	"files": [
 		"dist",
 		"src",
-		"drizzle.config.ts"
+		"drizzle.config.ts",
+		"skills"
 	],
 	"scripts": {
 		"build": "tsdown",
@@ -26,6 +28,7 @@
 		"postgres": "3.4.9"
 	},
 	"devDependencies": {
+		"@tanstack/intent": "0.3.6",
 		"drizzle-kit": "0.31.10"
 	},
 	"exports": {
@@ -58,5 +61,11 @@
 				"require": "./dist/client.server.cjs"
 			}
 		}
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sushindustries/sushindustries.git",
+		"directory": "packages/db"
+	},
+	"homepage": "https://adamjurek.com/packages/db"
 }

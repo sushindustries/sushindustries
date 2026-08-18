@@ -6,10 +6,10 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/sushindustries/product-viewer.git",
+		"url": "git+https://github.com/sushindustries/sushindustries.git",
 		"directory": "packages/product-viewer"
 	},
-	"homepage": "https://github.com/sushindustries/product-viewer",
+	"homepage": "https://adamjurek.com/packages/product-viewer",
 	"keywords": [
 		"3d",
 		"gltf",

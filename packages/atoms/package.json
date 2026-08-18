@@ -4,18 +4,29 @@
 	"type": "module",
 	"description": "The design tokens and the atomic utilities built on them. One stylesheet, no build step, no framework.",
 	"license": "MIT",
+	"devDependencies": {
+		"@tanstack/intent": "0.3.6"
+	},
 	"keywords": [
 		"css",
 		"atomic",
-		"design-tokens"
+		"design-tokens",
+		"tanstack-intent"
 	],
 	"exports": {
 		"./atoms.css": "./src/atoms.css"
 	},
 	"files": [
-		"src"
+		"src",
+		"skills"
 	],
 	"sideEffects": [
 		"*.css"
-	]
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sushindustries/sushindustries.git",
+		"directory": "packages/atoms"
+	},
+	"homepage": "https://adamjurek.com/packages/atoms"
 }
