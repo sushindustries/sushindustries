@@ -40,3 +40,16 @@ Railway injects `DATABASE_URL` at runtime, not at build time. A module-scope
 connection would be constructed during the build with an undefined URL and take
 down the whole deploy, instead of failing the one route that actually needs a
 database.
+
+## Where the database lives
+
+The site's Postgres is a Railway service in the same project as the web
+service, built from Railway's own `postgres-ssl` image with a volume mounted
+at `/var/lib/postgresql/data`. The web service reads
+`DATABASE_URL=${{Postgres.DATABASE_URL}}` - a reference, not a copy, so
+rotating the password in one place rotates it everywhere.
+
+Migrations run from a developer machine against the service's TCP proxy,
+never from the app: the runtime image carries only the compiled server, and
+a deploy that can rewrite the schema is a deploy that can fail halfway
+through doing it.

@@ -1,7 +1,6 @@
 ---
 title: Cookies
 summary: The complete cookie inventory of this site. It is one cookie, and it remembers which theme you picked.
-updated: 2026-08-18
 ---
 
 This is the page where a site usually confesses to forty vendors. Here is the

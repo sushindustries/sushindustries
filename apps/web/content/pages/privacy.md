@@ -1,7 +1,6 @@
 ---
 title: Privacy
 summary: What this site measures, why, and the honest answer - almost nothing, and only if you say yes.
-updated: 2026-08-18
 ---
 
 The honest version first: I do not want your data. I want to know which pages

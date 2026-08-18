@@ -1,7 +1,6 @@
 ---
 title: Consent
 summary: A non-modal consent bar with equal-weight answers. It renders the question and reports the click; the host owns the SDK, the storage and the law.
-updated: 2026-08-18
 ---
 
 A privacy question docked to the corner of the screen, with both answers the
