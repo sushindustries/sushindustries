@@ -63,7 +63,9 @@ function Home(): ReactNode {
 			<Section id="built-on" label="Built on" title="Things I did not make">
 				<p className="fg-dim max-w-prose text-pretty m-0">
 					This site runs on other people's work. Everything below is theirs, not
-					mine.
+					mine - listed because I used it and it was excellent, not because
+					anyone here sponsors, endorses or is affiliated with this site. All
+					names and marks belong to their owners.
 				</p>
 
 				<div className="credit-grid mt-6">

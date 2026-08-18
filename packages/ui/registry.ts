@@ -1107,4 +1107,20 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		tags: ["markdown", "no-deps"],
 		preview: "No UI - it reads the metadata block off a file",
 	},
+	{
+		name: "consent",
+		schema: "SoftwareSourceCode",
+		version: "0.1.0",
+		title: "Consent",
+		description:
+			"A non-modal consent bar with equal-weight answers. Vendor-agnostic: it renders the question and reports the click; the host owns the SDK and the answer.",
+		files: ["consent.tsx"],
+		dependencies: {},
+		category: "layout",
+		subcategory: "Overlays",
+		tags: ["privacy", "gdpr", "analytics", "no-deps"],
+		kind: "block",
+		preview:
+			"A privacy question docked to the corner, both answers the same size",
+	},
 ];

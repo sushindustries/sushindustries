@@ -9,6 +9,8 @@ packages:
   - packages/*
 # esbuild ships a platform-specific binary and needs its postinstall to run.
 allowBuilds:
+  # posthog-js pulls it in; its postinstall only prints a funding note.
+  core-js: false
   esbuild: true
 
 # drizzle-kit still pulls the deprecated @esbuild-kit/* packages, which pin

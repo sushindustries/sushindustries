@@ -1,3 +1,4 @@
+import { usePostHog } from "@posthog/react";
 import { Icon } from "@sushindustries/ui";
 import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
@@ -23,6 +24,7 @@ import { PROFILE_URL, REPO_IS_PUBLIC, REPO_SLUG } from "../content/repo";
  */
 
 export function GithubStar(): ReactNode {
+	const posthog = usePostHog();
 	const { data } = useQuery({
 		queryKey: ["github-stars", REPO_SLUG],
 		queryFn: async (): Promise<number | null> => {
@@ -50,6 +52,7 @@ export function GithubStar(): ReactNode {
 			className="nav-link flex items-center gap-2"
 			target="_blank"
 			rel="noreferrer"
+			onClick={() => posthog.capture("github_profile_opened")}
 			aria-label="GitHub"
 		>
 			<Icon name="github" size={15} />

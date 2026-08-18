@@ -1,3 +1,4 @@
+import { usePostHog } from "@posthog/react";
 import { CopyButton, Icon } from "@sushindustries/ui";
 import { type ReactNode, useState } from "react";
 
@@ -18,9 +19,14 @@ export interface DocFeedbackProps {
 
 export function DocFeedback({ page, markdown }: DocFeedbackProps): ReactNode {
 	const [voted, setVoted] = useState(false);
+	const posthog = usePostHog();
 
 	function vote(value: "up" | "down"): void {
 		setVoted(true);
+		posthog.capture("documentation_feedback_submitted", {
+			page_path: page,
+			vote: value,
+		});
 		void fetch("/api/feedback", {
 			method: "POST",
 			headers: { "content-type": "application/json" },

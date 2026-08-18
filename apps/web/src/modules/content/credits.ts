@@ -34,25 +34,47 @@ export const CREDITS: readonly CreditProps[] = [
 	},
 	{
 		/*
-		 * DNS, and the reason the apex resolves at all.
-		 *
-		 * Not a CDN decision. `adamjurek.com` is a CNAME to Railway, DNS forbids
-		 * a CNAME at a zone apex, and the registrar supports neither flattening
-		 * nor ALIAS - so without this the site answers on `www` and nowhere else.
+		 * Cloudflare was listed here for a day, credited with resolving the
+		 * apex. It never got the chance: the domain turned out to be
+		 * Railway-registered, Railway's managed DNS answers an ANAME at the
+		 * apex itself, and the zone staged at Cloudflare was never made
+		 * authoritative. A credit is a statement of fact, so it left with the
+		 * architecture. Railway's role grew to what it actually is now.
 		 */
-		name: "Cloudflare",
-		by: "Cloudflare, Inc.",
-		href: "https://www.cloudflare.com",
-		role: "Resolves this domain, and flattens the apex CNAME that points at the server.",
-		docs: "https://developers.cloudflare.com/dns/",
-	},
-	{
 		name: "Railway",
 		by: "Railway",
 		href: "https://railway.com",
-		role: "Builds the Dockerfile and runs the server this page came from.",
+		role: "Registrar, DNS, CDN and the server this page came from - the whole path.",
 		logo: "/logos/railway.svg",
 		docs: "https://docs.railway.com",
+	},
+	{
+		/*
+		 * Their brand guidance permits saying a product "works with PostHog"
+		 * and using the logo unmodified as secondary branding - which is
+		 * exactly what this is. Used, not sponsoring: nobody here paid or
+		 * endorsed anything.
+		 */
+		name: "PostHog",
+		by: "PostHog",
+		href: "https://posthog.com",
+		role: "Counts the page views, and only after the consent bar hears a yes.",
+		logo: "/logos/posthog.svg",
+		docs: "https://posthog.com/docs",
+	},
+	{
+		/*
+		 * Transparency about tooling, stated the way trademark law asks it to
+		 * be: the name used factually, no logo - a mark is quotation and
+		 * quoting one needs permission this repo has not asked for - and no
+		 * wording that implies endorsement. Anthropic did not review, sponsor
+		 * or approve this site; it made the tool this site was built with.
+		 */
+		name: "Claude",
+		by: "Anthropic",
+		href: "https://claude.com/claude-code",
+		role: "The best tool I have ever worked with. This site was built in conversation with it.",
+		docs: "https://docs.claude.com",
 	},
 	{
 		/*

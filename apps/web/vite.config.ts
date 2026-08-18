@@ -4,6 +4,8 @@ import viteReact from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
 import { defineConfig } from "vite";
 
+const posthogHost = process.env.POSTHOG_HOST;
+
 /*
  * The whole site is one Start app. `tanstackStart()` owns the router plugin,
  * the SSR entry and the Nitro build, so there is no separate router-plugin
@@ -30,6 +32,20 @@ export default defineConfig({
 			"Cross-Origin-Opener-Policy": "same-origin",
 			"Cross-Origin-Embedder-Policy": "credentialless",
 		},
+		/*
+		 * The dev half of the analytics relay; production is the `/ingest`
+		 * route rule in `nitro.config.ts`. Same path, same destination, so
+		 * the client config never has to know which server it is behind.
+		 */
+		proxy: posthogHost
+			? {
+					"/ingest": {
+						target: posthogHost,
+						changeOrigin: true,
+						rewrite: (path: string) => path.replace(/^\/ingest/, ""),
+					},
+				}
+			: undefined,
 		/*
 		 * Transformed at server start instead of on the first request, so the
 		 * first page open does not pay the cold-transform tax for the module

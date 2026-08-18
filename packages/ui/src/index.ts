@@ -45,6 +45,7 @@ export {
 	type CommandPaletteProps,
 	type PaletteEntry,
 } from "./command-palette";
+export * from "./consent";
 export {
 	ContextMenu,
 	type ContextMenuProps,

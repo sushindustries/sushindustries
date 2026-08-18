@@ -16,6 +16,7 @@ import {
 	CodeBlock,
 	Collapsible,
 	CommandPalette,
+	Consent,
 	ContextMenu,
 	CopyButton,
 	Credit,
@@ -394,6 +395,37 @@ function ToggleDemo(): ReactNode {
 				{ value: "split", label: "Split" },
 			]}
 		/>
+	);
+}
+
+function ConsentDemo(): ReactNode {
+	const [status, setStatus] = useState<"pending" | "granted" | "denied">(
+		"pending",
+	);
+
+	return (
+		<div style={{ minHeight: "14rem" }} className="flex col gap-3">
+			<p className="fg-dim m-0">
+				{status === "pending"
+					? "The question is open, and the page stays usable while it is."
+					: `Recorded: ${status}. The host stores that, not the component.`}
+			</p>
+			{status !== "pending" && (
+				<div>
+					<Button variant="ghost" onClick={() => setStatus("pending")}>
+						Ask again
+					</Button>
+				</div>
+			)}
+			<Consent
+				open={status === "pending"}
+				onAccept={() => setStatus("granted")}
+				onDecline={() => setStatus("denied")}
+			>
+				I measure page views to see what is worth writing more of. Nothing
+				personal, nothing sold.
+			</Consent>
+		</div>
 	);
 }
 
@@ -784,6 +816,24 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 			</div>
 		),
 		...DEMO_SOURCES.reveal,
+	},
+
+	consent: {
+		/*
+		 * The poster wraps it in a transformed box: `transform` makes that box
+		 * the containing block for `position: fixed`, so the bar docks to the
+		 * thumbnail's corner instead of escaping to the card grid's viewport.
+		 */
+		poster: (
+			<div style={{ transform: "translate(0)", minHeight: "11rem" }}>
+				<Consent open onAccept={() => {}} onDecline={() => {}}>
+					I measure page views to see what is worth writing more of. Nothing
+					personal, nothing sold.
+				</Consent>
+			</div>
+		),
+		element: <ConsentDemo />,
+		...DEMO_SOURCES.consent,
 	},
 
 	questions: {

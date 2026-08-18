@@ -1,3 +1,4 @@
+import { usePostHog } from "@posthog/react";
 import {
 	type AssistantMessage,
 	AssistantPanel,
@@ -13,7 +14,7 @@ import { fetchServerSentEvents } from "@tanstack/ai-client";
 import { useChat } from "@tanstack/ai-react";
 import { useThrottledValue } from "@tanstack/react-pacer";
 import { useStore } from "@tanstack/react-store";
-import { type ReactNode, useEffect, useMemo } from "react";
+import { type ReactNode, useCallback, useEffect, useMemo } from "react";
 import { REFERENCES } from "../content/references.catalogue";
 import { BLOCKS } from "../markdown/blocks";
 import { askedQuestion, clearAskedQuestion } from "../markdown/questions.store";
@@ -67,6 +68,7 @@ export function SiteAssistant(): ReactNode {
 	const device = useDeviceKind();
 
 	const history = useConversations(HISTORY_KEY);
+	const posthog = usePostHog();
 
 	const chat = useChat({
 		connection: fetchServerSentEvents("/api/chat"),
@@ -96,13 +98,21 @@ export function SiteAssistant(): ReactNode {
 	 */
 	const pending = useStore(askedQuestion);
 	const streaming = chat.status === "streaming";
-	const send = chat.sendMessage;
+	const ask = useCallback(
+		(text: string): void => {
+			posthog.capture("assistant_question_sent", {
+				question_length: text.length,
+			});
+			chat.sendMessage({ content: text });
+		},
+		[chat.sendMessage, posthog],
+	);
 
 	useEffect(() => {
 		if (!pending || streaming) return;
 		clearAskedQuestion();
-		send({ content: pending });
-	}, [pending, streaming, send]);
+		ask(pending);
+	}, [ask, pending, streaming]);
 
 	const messages = useMemo<AssistantMessage[]>(
 		() =>
@@ -151,7 +161,7 @@ export function SiteAssistant(): ReactNode {
 			sendIcon={<Icon name="send" size={13} />}
 			mark={<TypedMark text="sushi industries" />}
 			streaming={streaming}
-			onSend={(text) => chat.sendMessage({ content: text })}
+			onSend={ask}
 			placeholder="Ask about this site"
 			greeting={
 				<>

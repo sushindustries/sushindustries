@@ -1,3 +1,4 @@
+import { usePostHog } from "@posthog/react";
 import { CommandPalette, Icon, type PaletteEntry } from "@sushindustries/ui";
 import { REGISTRY_ITEMS } from "@sushindustries/ui/registry";
 import { useRouter } from "@tanstack/react-router";
@@ -154,6 +155,7 @@ export function SiteSearchTrigger(): ReactNode {
 export function SiteSearch(): ReactNode {
 	const open = useStore(searchOpen);
 	const router = useRouter();
+	const posthog = usePostHog();
 
 	useEffect(() => {
 		function onKey(event: KeyboardEvent): void {
@@ -185,6 +187,9 @@ export function SiteSearch(): ReactNode {
 			open={open}
 			onClose={() => toggle(false)}
 			onSelect={(entry) => {
+				posthog.capture("site_search_result_selected", {
+					result_group: entry.group,
+				});
 				toggle(false);
 				void router.navigate({ href: entry.href });
 			}}

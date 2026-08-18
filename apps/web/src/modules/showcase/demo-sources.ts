@@ -28,6 +28,19 @@ export const DEMO_SOURCES = {
 </Reveal>`,
 		language: "tsx",
 	},
+	consent: {
+		source: `const [status, setStatus] = useState("pending")
+
+<Consent
+	open={status === "pending"}
+	onAccept={() => setStatus("granted")}
+	onDecline={() => setStatus("denied")}
+>
+	I measure page views to see what is worth writing
+	more of. Nothing personal, nothing sold.
+</Consent>`,
+		language: "tsx",
+	},
 	"product-variants": {
 		source: `const [variant, setVariant] = useState("Original")
 

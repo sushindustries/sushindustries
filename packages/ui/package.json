@@ -69,6 +69,7 @@
 		"./code-block": "./src/code-block.tsx",
 		"./collapsible": "./src/collapsible.tsx",
 		"./command-palette": "./src/command-palette.tsx",
+		"./consent": "./src/consent.tsx",
 		"./context-menu": "./src/context-menu.tsx",
 		"./copy-button": "./src/copy-button.tsx",
 		"./credit": "./src/credit.tsx",
@@ -204,6 +205,10 @@
 			"./command-palette": {
 				"import": "./dist/command-palette.js",
 				"require": "./dist/command-palette.cjs"
+			},
+			"./consent": {
+				"import": "./dist/consent.js",
+				"require": "./dist/consent.cjs"
 			},
 			"./context-menu": {
 				"import": "./dist/context-menu.js",

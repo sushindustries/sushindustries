@@ -1,6 +1,17 @@
 import { defineNitroConfig } from "nitro/config";
 
 /*
+ * Where the /ingest relay forwards. Absent, the relay is simply not mounted
+ * and the client (which checks its own variable) stays dark - analytics is
+ * decoration here, and a decoration must not be able to stop the server.
+ */
+const posthogHost = process.env.POSTHOG_HOST;
+
+if (!posthogHost) {
+	console.warn("POSTHOG_HOST unset - the /ingest relay is not mounted.");
+}
+
+/*
  * The production half of the cross-origin isolation pair; the dev half is
  * `server.headers` in `vite.config.ts`. The StackBlitz tab boots a
  * WebContainer, which needs SharedArrayBuffer, which a browser only grants to
@@ -23,9 +34,9 @@ export default defineNitroConfig({
 		 * (nothing three-shaped loads before idle), the hero model costs LCP
 		 * nothing on the first visit and bandwidth nothing on the rest.
 		 *
-		 * A CDN in front (Cloudflare on the Railway domain) would move the
-		 * first visit to an edge cache too; that is an infra change, not an
-		 * app change, and these headers are what it would respect.
+		 * Railway's CDN sits in front and honours exactly these headers, so
+		 * the first visit comes from an edge cache too - the headers are the
+		 * contract, the CDN is the one reading it.
 		 */
 		"/models/**": {
 			headers: { "cache-control": "public, max-age=31536000, immutable" },
@@ -33,5 +44,21 @@ export default defineNitroConfig({
 		"/logos/**": {
 			headers: { "cache-control": "public, max-age=31536000, immutable" },
 		},
+
+		/*
+		 * Analytics rides the site's own origin. The PostHog client is told
+		 * `api_host: "/ingest"`, this rule relays it to their EU cloud, and
+		 * two things fall out: the CSP's `connect-src 'self'` stays exactly
+		 * that, and the blocklists that key on posthog.com hostnames never
+		 * see one. Consent still gates every event - this is a route, not a
+		 * decision to track anybody.
+		 */
+		...(posthogHost
+			? {
+					"/ingest/**": {
+						proxy: `${posthogHost}/**`,
+					},
+				}
+			: {}),
 	},
 });

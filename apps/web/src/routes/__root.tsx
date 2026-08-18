@@ -9,6 +9,7 @@ import {
 	useRouterState,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { Measure } from "../integrations/posthog/provider";
 import { Devtools } from "../modules/chrome/devtools";
 import { SiteFooter } from "../modules/chrome/site-footer";
 import { SiteNav } from "../modules/chrome/site-nav";
@@ -209,11 +210,19 @@ function RootDocument({
 				 * is a correct component and installing it is a reasonable
 				 * choice. This site just does not make it.
 				 */}
-				<SiteNav theme={theme} />
-				<main id="main" className="flex-1">
-					{children}
-				</main>
-				<SiteFooter />
+				{/*
+				 * Measurement wraps the chrome but not the previews: the bare
+				 * branch above never mounts it, so the archive's eighteen
+				 * iframes ask nobody anything and count nothing. One page,
+				 * one question, one counter.
+				 */}
+				<Measure>
+					<SiteNav theme={theme} />
+					<main id="main" className="flex-1">
+						{children}
+					</main>
+					<SiteFooter />
+				</Measure>
 				<Devtools />
 				<Scripts />
 			</body>

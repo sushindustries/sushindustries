@@ -62,6 +62,17 @@ COPY . .
 # guarantees that happens before the app that imports them. Building only the
 # app succeeded locally purely because a previous manual build had left `dist`
 # behind.
+
+# Vite inlines `VITE_*` variables at build time, so the analytics key and the
+# relay path have to exist *here*, not just at runtime. Railway passes service
+# variables to Docker builds as build args - but only for names the Dockerfile
+# declares. The key is public by design (it can only write events); absent
+# args build a site that simply measures nothing.
+ARG VITE_POSTHOG_KEY
+ARG VITE_POSTHOG_HOST
+ENV VITE_POSTHOG_KEY=$VITE_POSTHOG_KEY
+ENV VITE_POSTHOG_HOST=$VITE_POSTHOG_HOST
+
 RUN pnpm build
 
 # ─── runtime ───────────────────────────────────────────────────────────
