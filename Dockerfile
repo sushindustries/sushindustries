@@ -35,7 +35,8 @@ COPY packages/react-product-viewer/package.json packages/react-product-viewer/
 # No BuildKit cache mount here on purpose. Railway's builder requires cache
 # mount ids to carry its own cache-key prefix (`s/<service-id>-…`), which would
 # hardcode one platform's service id into a Dockerfile that should build
-# anywhere. The manifest-only COPY above is what actually saves the time.COPY packages/assistant/package.json packages/assistant/
+# anywhere. The manifest-only COPY above is what actually saves the time.
+COPY packages/assistant/package.json packages/assistant/
 
 RUN pnpm install --frozen-lockfile
 
@@ -79,7 +80,7 @@ COPY . .
 
 # The one-line proof in every build log of whether the args arrived - "set"
 # or "unset", never the values.
-RUN echo "posthog build args: key=${VITE_POSTHOG_KEY:+set}${VITE_POSTHOG_KEY:-unset} relay=${VITE_POSTHOG_HOST:-unset} host=${POSTHOG_HOST:+set}${POSTHOG_HOST:-unset}"
+RUN echo "posthog build args: key=${VITE_POSTHOG_KEY:+set} relay=${VITE_POSTHOG_HOST:+set} host=${POSTHOG_HOST:+set}"
 
 RUN pnpm build
 

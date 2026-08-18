@@ -8,7 +8,12 @@
 		"build": {
 			"dependsOn": ["^build", "transit"],
 			"outputs": [".output/**", "dist/**", "src/routeTree.gen.ts"],
-			"env": ["NODE_ENV"]
+			"env": [
+				"NODE_ENV",
+				"POSTHOG_HOST",
+				"VITE_POSTHOG_HOST",
+				"VITE_POSTHOG_KEY"
+			]
 		},
 		"typecheck": {
 			"dependsOn": ["^build", "build"]
