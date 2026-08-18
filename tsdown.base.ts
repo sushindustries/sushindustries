@@ -39,19 +39,21 @@ const shared: UserConfig = {
 	shims: true,
 
 	/*
-	 * Not minified, on purpose.
+	 * Dead-code elimination only, never renaming.
 	 *
 	 * Everything here is consumed by a bundler that will minify it again, so
-	 * the bytes are saved twice and paid for once. What minification does cost
+	 * whitespace savings are paid for twice. What full minification does cost
 	 * is the function names: oxc turns `function Card` into `function r`, and
 	 * every component in this library then appears in somebody else's React
 	 * DevTools as a single letter. For a library whose entire premise is that
 	 * its components are readable in the projects that install them, that is
 	 * the wrong trade.
 	 *
-	 * `dce-only` is the middle option if dead code ever becomes the problem.
+	 * `dce-only` keeps the names and drops the branches nothing reaches -
+	 * compression that costs no readability, which is the only kind this
+	 * build is allowed.
 	 */
-	minify: false,
+	minify: "dce-only",
 
 	/*
 	 * Generated from the emitted chunks, including `main`/`module`/`types` for
