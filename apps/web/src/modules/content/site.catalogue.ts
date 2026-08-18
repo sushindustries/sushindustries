@@ -24,7 +24,7 @@ export const SITE: SiteIdentity = {
 	name: "Adam Jurek",
 	description:
 		"Small packages, built carefully. Tools, libraries and components from Adam Jurek.",
-	url: "https://www.adamjurek.com",
+	url: "https://adamjurek.com",
 	github: "https://github.com/sushindustries",
 };
 

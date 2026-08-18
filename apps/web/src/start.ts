@@ -4,6 +4,7 @@ import {
 	createStart,
 } from "@tanstack/react-start";
 import { edgeCacheControl } from "./modules/edge/cache";
+import { canonicalRedirect } from "./modules/edge/canonical";
 import { securityHeaders } from "./modules/security/csp";
 
 /*
@@ -22,6 +23,14 @@ import { securityHeaders } from "./modules/security/csp";
  */
 const withResponseHeaders = createMiddleware({ type: "request" }).server(
 	async ({ next, request }) => {
+		/*
+		 * Before any work: a request to the www twin of the canonical origin
+		 * gets its 301 and nothing else. Rendering a page in order to redirect
+		 * away from it would be work the response throws away.
+		 */
+		const redirect = canonicalRedirect(request);
+		if (redirect) return redirect;
+
 		const result = await next();
 
 		/*
