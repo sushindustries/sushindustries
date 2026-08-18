@@ -40,11 +40,24 @@ export default defineConfig([
 		},
 		exports: {
 			customExports(exports, { isPublish }) {
+				/*
+				 * Types per condition, not once at the top. A single `types`
+				 * resolves `.d.ts` - ESM declarations in a `"type": "module"`
+				 * package - against the CJS implementation on `require`, which
+				 * is the "false ESM" attw fails the build for. The second pass
+				 * emits `.d.cts` alongside `.d.ts`; this maps each to its own
+				 * format the same way the generated entries do.
+				 */
 				exports["./registry"] = isPublish
 					? {
-							types: "./dist/registry.d.ts",
-							import: "./dist/registry.js",
-							require: "./dist/registry.cjs",
+							import: {
+								types: "./dist/registry.d.ts",
+								default: "./dist/registry.js",
+							},
+							require: {
+								types: "./dist/registry.d.cts",
+								default: "./dist/registry.cjs",
+							},
 						}
 					: "./registry.ts";
 				return exports;
