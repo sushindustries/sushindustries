@@ -33,6 +33,20 @@ export const CREDITS: readonly CreditProps[] = [
 		docs: "https://tanstack.com/ai/latest/docs",
 	},
 	{
+		/*
+		 * DNS, and the reason the apex resolves at all.
+		 *
+		 * Not a CDN decision. `adamjurek.com` is a CNAME to Railway, DNS forbids
+		 * a CNAME at a zone apex, and the registrar supports neither flattening
+		 * nor ALIAS - so without this the site answers on `www` and nowhere else.
+		 */
+		name: "Cloudflare",
+		by: "Cloudflare, Inc.",
+		href: "https://www.cloudflare.com",
+		role: "Resolves this domain, and flattens the apex CNAME that points at the server.",
+		docs: "https://developers.cloudflare.com/dns/",
+	},
+	{
 		name: "Railway",
 		by: "Railway",
 		href: "https://railway.com",

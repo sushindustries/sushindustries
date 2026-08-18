@@ -222,6 +222,76 @@ for (const [id, value] of settings) {
 	done.push(`set ${id} = ${value}`);
 }
 
+/* ── the one cache rule worth having ─────────────────────────────────── */
+
+/*
+ * `.glb`, cached at the edge.
+ *
+ * Cloudflare caches by file extension, not by MIME type, and the default list
+ * is images, fonts, CSS and JS. HTML and JSON are deliberately absent, which is
+ * exactly right here - this site streams its HTML and sets per-request security
+ * headers, so caching a page would serve somebody else's. Leave that alone.
+ *
+ * `.glb` is absent too, and that one is a mistake in this site's favour to fix:
+ * the mark is 1.4 MB, it is on the front page, and it is the single largest
+ * thing anybody downloads. Uncached it crosses the Atlantic from `sfo` on every
+ * first visit.
+ *
+ * A month is safe because the file is immutable in practice - a changed model
+ * ships under a changed name.
+ */
+async function cacheRule(zoneId) {
+	const phase = "http_request_cache_settings";
+	const rule = {
+		expression: '(http.request.uri.path wildcard "*.glb")',
+		description: "Cache 3D models at the edge",
+		action: "set_cache_settings",
+		action_parameters: {
+			cache: true,
+			edge_ttl: { mode: "override_origin", default: 2592000 },
+			browser_ttl: { mode: "override_origin", default: 2592000 },
+		},
+	};
+
+	const rulesets = await cf(`/zones/${zoneId}/rulesets`);
+	const found = rulesets.find((one) => one.phase === phase);
+
+	const existing = found
+		? ((await cf(`/zones/${zoneId}/rulesets/${found.id}`)).rules ?? [])
+		: [];
+
+	if (existing.some((one) => one.description === rule.description)) {
+		console.log("ok     cache rule for .glb");
+		return;
+	}
+
+	if (!apply) {
+		todo.push("add the cache rule for .glb");
+		return;
+	}
+
+	if (found) {
+		await cf(`/zones/${zoneId}/rulesets/${found.id}/rules`, {
+			method: "POST",
+			body: JSON.stringify(rule),
+		});
+	} else {
+		await cf(`/zones/${zoneId}/rulesets`, {
+			method: "POST",
+			body: JSON.stringify({
+				name: "default",
+				kind: "zone",
+				phase,
+				rules: [rule],
+			}),
+		});
+	}
+
+	done.push("added the cache rule for .glb");
+}
+
+await cacheRule(zone.id);
+
 /* ── report ──────────────────────────────────────────────────────────── */
 
 if (done.length > 0) {
