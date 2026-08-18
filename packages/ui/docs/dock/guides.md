@@ -64,6 +64,15 @@ An inset shadow at the top edge and a fill darker than the desktop, so the light
 falls *into* the dock rather than off the front of it. That is the whole
 difference between a strip laid on top and a channel cut in.
 
+```css
+.dock {
+	background: color-mix(in srgb, var(--bg-3) 86%, transparent);
+	box-shadow:
+		inset 0 1px 0 color-mix(in srgb, var(--bg-3) 90%, transparent),
+		inset 0 2px 6px color-mix(in srgb, var(--bg-3) 60%, transparent);
+}
+```
+
 No blur: it sits on the desktop, which is a solid surface, so there is nothing
 behind it worth a GPU readback. Controls inside it have no borders either - the
 channel is already a boundary, and a border inside it is a second one saying the

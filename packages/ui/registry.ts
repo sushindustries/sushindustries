@@ -422,6 +422,20 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		preview: "A contents list tracking the heading you are under",
 	},
 	{
+		name: "doc-nav",
+		schema: "SiteNavigationElement",
+		version: "0.1.0",
+		title: "Doc Nav",
+		description:
+			"The left rail of a documentation page: the sections of a library, the elements in each, and the one that is open. A sticky column on a wide screen, a collapsed row below it.",
+		files: ["doc-nav.tsx", "icon.tsx"],
+		dependencies: {},
+		category: "docs",
+		subcategory: "Navigation",
+		tags: ["navigation", "responsive"],
+		preview: "A grouped list of elements with the open one marked",
+	},
+	{
 		name: "hero",
 		schema: "WPHeader",
 		version: "0.1.0",

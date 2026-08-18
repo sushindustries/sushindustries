@@ -1,16 +1,46 @@
 @layer blocks {
-	/* ── doc layout and aside ────────────────────────────────────── */
+	/* ── doc layout, nav and aside ───────────────────────────────── */
 
 	/*
-	 * Contents on the left, prose on the right. The sidebar column is fixed rather
-	 * than fractional so the measure of the prose does not change between a page
-	 * with three headings and a page with none.
+	 * The document in the middle, its rails either side.
+	 *
+	 * Named areas rather than source order, because the reading order and the
+	 * visual order are not the same thing: the contents list is written before
+	 * the prose so that on a phone it lands above the article, while on a wide
+	 * screen it belongs on the right. Areas let one markup order serve both
+	 * without a second component.
+	 *
+	 * The rails are fixed widths rather than fractions so the measure of the
+	 * prose does not change between a page with three headings and a page with
+	 * none.
+	 *
+	 * The third column is opt-in. Two of the pages built on this - a post and a
+	 * package README - have no library to navigate, and an empty 200px column
+	 * beside them would be a rail that means "there is nothing here".
 	 */
 	.doc-layout {
 		display: grid;
-		grid-template-columns: 200px minmax(0, 1fr);
+		grid-template-columns: minmax(0, 1fr) 200px;
+		grid-template-areas: "main aside";
 		gap: var(--s-7);
 		align-items: start;
+	}
+
+	/*
+	 * Three columns, and one step less air between them.
+	 *
+	 * Two rails and two `--s-7` gutters inside a 1180px container leave the
+	 * prose under its own measure, so the widest layout is the one that closes
+	 * up rather than the one that spreads out.
+	 */
+	.doc-layout[data-nav="true"] {
+		grid-template-columns: 200px minmax(0, 1fr) 200px;
+		grid-template-areas: "nav main aside";
+		gap: var(--s-6);
+	}
+
+	.doc-main {
+		grid-area: main;
 	}
 
 	/*
@@ -70,6 +100,7 @@
 	}
 
 	.doc-aside {
+		grid-area: aside;
 		position: sticky;
 		/* Clears the sticky site nav, which is about 52px tall. */
 		top: 72px;
@@ -150,6 +181,104 @@
 
 	/* The toggle only does anything at mobile width. */
 	.doc-aside-toggle:focus-visible + .doc-aside-summary {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+		border-radius: var(--r);
+	}
+
+	/*
+	 * The left rail: where this page sits in the library.
+	 *
+	 * Sticky at the same offset as the contents rail opposite it. The two are
+	 * one band across the top of the document, and a few pixels between them
+	 * reads as a mistake rather than as a margin - so the number is the same
+	 * number, written twice because they are two blocks that could be
+	 * installed apart.
+	 *
+	 * Its own scroll, so a library of sixty elements does not make every short
+	 * document sixty elements tall.
+	 */
+	.doc-nav {
+		grid-area: nav;
+		position: sticky;
+		top: 72px;
+		max-height: calc(100svh - 96px);
+		overflow-y: auto;
+		scrollbar-width: none;
+	}
+
+	.doc-nav::-webkit-scrollbar {
+		display: none;
+	}
+
+	/*
+	 * Wide: the label is a heading, not a control.
+	 *
+	 * Padded to the same left edge as the links below it, plus the 1px the
+	 * lists' borders occupy, for the same reason the contents rail is - a
+	 * heading at zero over rows indented by `--s-3` reads as two columns that
+	 * failed to line up.
+	 */
+	.doc-nav-summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--s-2);
+		padding-left: calc(var(--s-3) + 1px);
+		padding-bottom: var(--s-3);
+	}
+
+	.doc-nav-chevron {
+		display: none;
+	}
+
+	.doc-nav-body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-5);
+	}
+
+	.doc-nav-heading {
+		margin: 0 0 var(--s-2);
+		padding-left: calc(var(--s-3) + 1px);
+	}
+
+	.doc-nav-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		border-left: 1px solid var(--line-soft);
+	}
+
+	.doc-nav-link {
+		display: block;
+		padding: var(--s-2) var(--s-3);
+		margin-left: -1px;
+		border-left: 1px solid transparent;
+		font-size: var(--t-sm);
+		line-height: 1.35;
+		color: var(--fg-faint);
+		/* An element named `use-scroll-turn` is longer than a 200px rail. It
+		   wraps rather than overflowing the column it is holding open. */
+		overflow-wrap: anywhere;
+		transition:
+			color 160ms ease,
+			border-color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.doc-nav-link:hover {
+			color: var(--fg-dim);
+		}
+	}
+
+	.doc-nav-item[data-active="true"] .doc-nav-link {
+		color: var(--fg);
+		border-left-color: var(--accent);
+	}
+
+	/* The toggle only does anything once the rail is a collapsed row. */
+	.doc-nav-toggle:focus-visible + .doc-nav-summary {
 		outline: 2px solid var(--accent);
 		outline-offset: 2px;
 		border-radius: var(--r);

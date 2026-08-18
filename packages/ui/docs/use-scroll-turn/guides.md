@@ -9,6 +9,18 @@ summary: Why the measurement is a hook, what a revolution is measured in, and wh
 three.js object's rotation, because a CSS `rotateY` on a canvas spins the
 rendered image like a photograph rather than turning the model inside it.
 
+```ts
+// ScrollSpin: a transform, straight onto the node.
+useScrollTurn(({ turn, wobble }) => {
+	node.style.transform = `rotateX(${wobble}deg) rotateY(${turn * 360}deg)`;
+});
+
+// The 3D mark: a rotation, inside the scene.
+useScrollTurn(({ turn }) => {
+	group.rotation.y = turn * Math.PI * 2;
+});
+```
+
 Two completely different write targets, one question: how far has this page
 turned. Sharing the measurement means a screenful of scrolling turns the CSS
 mark and the GLB by the same amount, which is the sort of agreement that

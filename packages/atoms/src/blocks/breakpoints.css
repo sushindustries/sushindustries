@@ -1,10 +1,101 @@
 @layer blocks {
 	/* ── tablet ──────────────────────────────────────────────────── */
 
+	/*
+	 * Under 1200px the library rail gives up its column.
+	 *
+	 * Two 200px rails and a readable measure do not fit at once, and the one to
+	 * surrender is the one you use to leave the page rather than the one you
+	 * use to read it. It becomes the collapsed row it already is on a phone:
+	 * full width, above the document, shut until asked.
+	 *
+	 * Collapsed rather than hidden. The tab bar above the document only moves
+	 * between this element's own sections, so hiding this outright would cost
+	 * the whole middle band of screens its way to the next element.
+	 *
+	 * Restated for `[data-nav="true"]` rather than left to `.doc-layout`,
+	 * because the attribute wins on specificity from wherever it is written -
+	 * a breakpoint that only names the bare class is a breakpoint the three
+	 * column layout ignores.
+	 */
+	@media (max-width: 1199px) {
+		.doc-layout[data-nav="true"] {
+			grid-template-columns: minmax(0, 1fr) 200px;
+			grid-template-areas:
+				"nav nav"
+				"main aside";
+			gap: var(--s-7);
+		}
+
+		.doc-nav {
+			position: static;
+			max-height: none;
+			overflow: visible;
+			border: 1px solid var(--line-soft);
+			border-radius: var(--r-lg);
+			background: var(--bg-1);
+		}
+
+		.doc-nav-summary {
+			padding: var(--s-3) var(--s-4);
+			cursor: pointer;
+			min-height: 44px;
+		}
+
+		.doc-nav-chevron {
+			display: block;
+			color: var(--fg-faint);
+			transform: rotate(90deg);
+			transition: transform 200ms var(--ease-out);
+		}
+
+		.doc-nav-toggle:checked + .doc-nav-summary .doc-nav-chevron {
+			transform: rotate(-90deg);
+		}
+
+		/* Shut by default: the document is what the reader came for. */
+		.doc-nav-body {
+			display: none;
+			gap: var(--s-4);
+			padding: var(--s-3) var(--s-4);
+			border-top: 1px solid var(--line-soft);
+		}
+
+		.doc-nav-toggle:checked ~ .doc-nav-body {
+			display: flex;
+		}
+
+		/*
+		 * Open, the list is a directory rather than a rail, so it takes as many
+		 * columns as the row can fit. `min()` is what keeps that honest at 320px:
+		 * without it the track floor is wider than the panel and the panel
+		 * overflows the screen.
+		 */
+		.doc-nav-list {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
+			gap: var(--s-1);
+			border-left: 0;
+		}
+
+		.doc-nav-link {
+			margin-left: 0;
+			border-left: 0;
+			padding: var(--s-2) var(--s-3);
+			border-radius: var(--r);
+		}
+
+		.doc-nav-item[data-active="true"] .doc-nav-link {
+			border-left: 0;
+			background: var(--bg-2);
+		}
+	}
+
 	/* Narrower rail, same behaviour. Below this the rail stops paying for itself. */
 	@media (max-width: 1080px) and (min-width: 861px) {
-		.doc-layout {
-			grid-template-columns: 160px minmax(0, 1fr);
+		.doc-layout,
+		.doc-layout[data-nav="true"] {
+			grid-template-columns: minmax(0, 1fr) 160px;
 			gap: var(--s-5);
 		}
 	}
@@ -19,7 +110,32 @@
 	@media (max-width: 860px) {
 		.doc-layout {
 			grid-template-columns: minmax(0, 1fr);
+			grid-template-areas:
+				"aside"
+				"main";
 			gap: var(--s-4);
+		}
+
+		/*
+		 * Both rails above the prose, library first. A reader who is on the
+		 * wrong element wants out before they want a contents list, and neither
+		 * of them costs more than one shut row.
+		 */
+		.doc-layout[data-nav="true"] {
+			grid-template-columns: minmax(0, 1fr);
+			grid-template-areas:
+				"nav"
+				"aside"
+				"main";
+		}
+
+		.doc-nav-summary {
+			gap: var(--s-3);
+		}
+
+		.doc-nav-link {
+			padding: var(--s-3) var(--s-4);
+			min-height: 44px;
 		}
 
 		.doc-aside {

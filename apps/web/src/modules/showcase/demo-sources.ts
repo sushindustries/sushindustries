@@ -87,6 +87,25 @@ export const DEMO_SOURCES = {
 		source: `<DocAside headings={collectHeadings(markdown)} />`,
 		language: "tsx",
 	},
+	"doc-nav": {
+		source: `{/* Sections come from the loader; the router owns the link. */}
+<DocNav
+	sections={sections}
+	active={slug}
+	label="Components"
+	renderLink={({ id, className, children, ...rest }) => (
+		<Link
+			to="/components/$slug"
+			params={{ slug: id }}
+			className={className}
+			{...rest}
+		>
+			{children}
+		</Link>
+	)}
+/>`,
+		language: "tsx",
+	},
 	hero: {
 		source: `{/* The head of a documentation page. */}
 <Hero

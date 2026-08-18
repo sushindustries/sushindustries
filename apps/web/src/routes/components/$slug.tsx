@@ -2,8 +2,11 @@ import {
 	Breadcrumb,
 	collectHeadings,
 	DocAside,
+	DocNav,
+	type DocNavSection,
 	MarkdownView,
 } from "@sushindustries/ui";
+import { REGISTRY_CATEGORIES } from "@sushindustries/ui/registry";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import * as z from "zod";
@@ -20,7 +23,37 @@ import {
 	ldScript,
 } from "../../modules/content/structured-data";
 import { BLOCKS } from "../../modules/markdown/blocks";
+import { listRegistry } from "../../modules/registry/registry.catalogue";
 import { findDemoSource, hasDemo } from "../../modules/showcase/demo-sources";
+
+/*
+ * The library, grouped, for the rail on the left.
+ *
+ * Module scope rather than the loader, and the reason is what a loader return
+ * costs: it is serialised into the HTML of every component page, so putting
+ * sixty items there would ship the whole catalogue twice - once in the bundle
+ * that already contains it, once again as JSON under the document. The
+ * registry is a build-time constant, so this is computed identically on the
+ * server and in the browser and there is nothing to hand across.
+ *
+ * `listRegistry()` has already sorted by category and then title, so filtering
+ * it per category keeps the order `/components` shows - a reader who scanned
+ * the archive should find things in the same place here.
+ */
+const NAV_SECTIONS: readonly DocNavSection[] = REGISTRY_CATEGORIES.map(
+	(category) => ({
+		id: category.id,
+		label: category.label,
+		icon: category.icon,
+		items: listRegistry()
+			.filter((item) => item.category === category.id)
+			.map((item) => ({
+				id: item.name,
+				label: item.title,
+				href: `/components/${item.name}`,
+			})),
+	}),
+);
 
 /*
  * One component, its sections across the top.
@@ -184,7 +217,26 @@ function ComponentDocPage(): ReactNode {
 
 			<div className="container mt-7">
 				{active ? (
-					<div className="doc-layout">
+					<div className="doc-layout" data-nav="true">
+						{/*
+						 * The tab bar above moves between this element's sections; this
+						 * is the only thing on the page that moves between elements.
+						 */}
+						<DocNav
+							sections={NAV_SECTIONS}
+							active={doc.slug}
+							label="Components"
+							renderLink={({ id, className, children, ...rest }) => (
+								<Link
+									to="/components/$slug"
+									params={{ slug: id }}
+									className={className}
+									{...rest}
+								>
+									{children}
+								</Link>
+							)}
+						/>
 						<DocAside
 							headings={headings[active.id] ?? []}
 							footer={
@@ -196,7 +248,7 @@ function ComponentDocPage(): ReactNode {
 								/>
 							}
 						/>
-						<div className="min-w-0">
+						<div className="doc-main min-w-0">
 							<MarkdownView
 								source={active.body}
 								blocks={BLOCKS}

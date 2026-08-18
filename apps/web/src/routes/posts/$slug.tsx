@@ -55,7 +55,7 @@ function PostPage(): ReactNode {
 			<div className="mt-7">
 				<div className="doc-layout">
 					<DocAside headings={headings} />
-					<div className="min-w-0">
+					<div className="doc-main min-w-0">
 						<MarkdownView
 							source={post.body}
 							blocks={BLOCKS}

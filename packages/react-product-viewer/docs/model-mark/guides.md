@@ -8,6 +8,14 @@ summary: Using Model Mark well, and the mistakes that look like it is broken.
 `glyph` is not a placeholder that gets swapped out on load. It is drawn in the
 same grid cell and the canvas paints over it.
 
+```tsx
+<ModelMark
+	model={LOGO_MODEL}
+	glyph={<Icon name="sushi" size={30} />}
+	label="Sushindustries"
+/>
+```
+
 WebGL is the one part of a page that can fail for reasons the page does not
 control: a driver, a context the browser refused, a machine with no GPU worth
 the name. Left as a fallback that is *replaced*, every one of those is a blank

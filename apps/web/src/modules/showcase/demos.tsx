@@ -25,6 +25,7 @@ import {
 	Dialog,
 	DocAside,
 	Dock,
+	DocNav,
 	Empty,
 	Field,
 	FolderShelf,
@@ -846,6 +847,76 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 		...DEMO_SOURCES["smooth-scroll"],
 	},
 
+	"doc-nav": {
+		element: (
+			<div className="doc-layout" data-nav="true">
+				<DocNav
+					label="Components"
+					active="doc-nav"
+					sections={[
+						{
+							id: "motion",
+							label: "Motion",
+							icon: "motion",
+							items: [
+								{ id: "reveal", label: "Reveal", href: "#reveal" },
+								{ id: "scroll-spin", label: "Scroll Spin", href: "#spin" },
+							],
+						},
+						{
+							id: "docs",
+							label: "Docs",
+							icon: "book",
+							items: [
+								{ id: "doc-aside", label: "Doc Aside", href: "#aside" },
+								{ id: "doc-nav", label: "Doc Nav", href: "#nav" },
+								{ id: "showcase", label: "Showcase", href: "#showcase" },
+							],
+						},
+						{
+							id: "3d",
+							label: "3D",
+							icon: "cube",
+							items: [{ id: "model", label: "Model", href: "#model" }],
+						},
+					]}
+					/*
+					 * A plain anchor here, because a demo has no router to hand it.
+					 * The site passes a `Link` and spreads the same rest props.
+					 */
+					renderLink={({ href, className, children, ...rest }) => (
+						<a href={href} className={className} {...rest}>
+							{children}
+						</a>
+					)}
+				/>
+				<DocAside
+					headings={[
+						{ id: "nav-one", text: "What the rails do", level: 2 },
+						{ id: "nav-two", text: "Where they go", level: 2 },
+					]}
+				/>
+				<div className="doc-main min-w-0">
+					<h2 id="nav-one">What the rails do</h2>
+					<p className="fg-dim">
+						Three columns: the library on the left, the document here, the
+						headings of this page on the right.
+					</p>
+					<h2 id="nav-two" style={{ marginTop: "40vh" }}>
+						Where they go
+					</h2>
+					<p className="fg-dim">
+						Narrow the frame past 1200px and the left rail becomes a row above
+						this text that opens on tap. Narrow it past 860px and the right one
+						joins it.
+					</p>
+				</div>
+			</div>
+		),
+		poster: <p className="label text-center">A library beside the document</p>,
+		...DEMO_SOURCES["doc-nav"],
+	},
+
 	"doc-aside": {
 		element: (
 			<div className="doc-layout">
@@ -856,7 +927,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 						{ id: "three", text: "A nested one", level: 3 },
 					]}
 				/>
-				<div style={{ minHeight: "180vh" }}>
+				<div className="doc-main min-w-0" style={{ minHeight: "180vh" }}>
 					<h2 id="one">The first heading</h2>
 					<p className="fg-dim">
 						The rail tracks whichever heading you are under. Scroll the frame.

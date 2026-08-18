@@ -11,6 +11,21 @@ is deliberate: a component in this library must never know that this site has
 a `/components` route, and a component that took a `slug` and built its own
 links would know exactly that.
 
+```tsx
+<Hero
+	trail={<Breadcrumb items={trail} />}
+	name="avatar"
+	version="0.1.0"
+	title="Avatar"
+	summary="A face, its initials, or the tone of the group it belongs to."
+	actions={
+		<Button href="/components/avatar" variant="ghost">
+			Docs
+		</Button>
+	}
+/>
+```
+
 What it does own is the arrangement. Which things sit beside which, what wraps
 first, and what the layout does when there is no picture.
 

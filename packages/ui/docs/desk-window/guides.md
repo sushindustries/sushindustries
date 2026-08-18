@@ -24,6 +24,16 @@ properties, committing on release. It is `aria-hidden` and not focusable:
 resizing refines something that already works, so a keyboard user is missing a
 nicety rather than a capability.
 
+```tsx
+const next = {
+	w: Math.max(240, Math.min(parent.clientWidth - at.current.x, width)),
+	h: Math.max(160, Math.min(parent.clientHeight - at.current.y, height)),
+};
+
+node.style.setProperty("--w", `${next.w}px`);
+node.style.setProperty("--h", `${next.h}px`);
+```
+
 ## Small things that are not small
 
 The close button stops `pointerdown` from reaching the bar. Without that,
@@ -38,3 +48,18 @@ before the handler sees it.
 Below 620px the window fills the desk and the resize corner is hidden. There is
 nowhere to drag it to, and the corner would sit under a thumb that is trying to
 scroll.
+
+```css
+.desk-bar {
+	/* The bar is a handle. The browser must not claim the drag. */
+	touch-action: none;
+}
+
+@media (max-width: 620px) {
+	.desk-window {
+		width: 100%;
+		max-height: 100%;
+		translate: 0 0;
+	}
+}
+```

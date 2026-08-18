@@ -29,6 +29,20 @@ working", which is the one worth a screenful. The frames align to the top, so a
 short component does not stretch its frame to match the tallest one and hide
 the fact that it was short.
 
+```css
+.showcase-stage {
+	display: flex;
+	align-items: start;
+	justify-content: center;
+}
+
+/* Compare is a row that scrolls. One width at a time centres instead. */
+.showcase-stage[data-view="compare"] {
+	justify-content: start;
+	overflow-x: auto;
+}
+```
+
 There is no transition on the device toggle. It gets pressed a dozen times
 while reading one page, and on a control used that often an animation reads as
 lag rather than as polish - the state change is the feedback.
@@ -49,3 +63,18 @@ itself, for the same reason the code highlighter is: `packages/ui` has no
 business depending on the StackBlitz SDK. The Showcase component takes a
 `renderStackblitz` render prop and decides where it goes; the host builds the
 project and hands it to the SDK.
+
+```tsx
+<Showcase
+	src={`/preview/${id}?fit=full`}
+	code={code}
+	language={language}
+	renderStackblitz={(source, lang) => (
+		<StackblitzEmbed demoId={id} code={source} language={lang} />
+	)}
+/>
+```
+
+The tab only appears when both `code` and `renderStackblitz` are given. Leave
+either off and the reader gets Preview and Code, which is the right thing for a
+demo nobody can usefully edit.

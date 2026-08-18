@@ -8,6 +8,20 @@ summary: The rules that keep a remembered desk safe to render on a server, and w
 **The first render is always the empty desk**, on the server and on the client
 alike. Storage is read in an effect afterwards.
 
+```ts
+const [desk, setDesk] = useState<DeskState>(EMPTY_DESK);
+
+useEffect(() => {
+	try {
+		const stored = window.localStorage.getItem(key);
+		if (stored) setDesk({ ...EMPTY_DESK, ...JSON.parse(stored) });
+	} catch {
+		// A default desk is a working desk.
+	}
+	setReady(true);
+}, [key]);
+```
+
 Reading `localStorage` during render produces markup the server could not have
 sent. React answers a mismatch by discarding the tree and rebuilding it, and on
 a page of icons the cost of that is every icon briefly having no working click
@@ -28,6 +42,10 @@ stops an impatient double-click producing two windows.
 
 Minimised, it comes back and comes forward. Behind, it comes forward. Already in
 front, it goes away.
+
+```tsx
+<Dock tasks={tasks} onSelectTask={desk.toggle} onCloseTask={desk.close} />
+```
 
 That last case is what makes a taskbar a taskbar rather than a list of links,
 and it lives here rather than in the dock because it is a decision about state.

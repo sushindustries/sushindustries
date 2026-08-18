@@ -35,6 +35,15 @@ Previews are 16:9 and clipped, centred in their frame. Without that, a grid of
 ten components is ten screenshots of different sizes rather than a set, and the
 eye reads the variation as meaning something.
 
+```css
+.archive-preview {
+	aspect-ratio: 16 / 9;
+	display: grid;
+	place-items: center;
+	overflow: hidden;
+}
+```
+
 `previewSrc` is optional, because not everything is visual: a frontmatter
 parser has nothing to show, and a card that insists on a picture would invent a
 meaningless one. Items without it get their `preview` sentence instead, which

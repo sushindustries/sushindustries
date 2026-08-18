@@ -30,6 +30,12 @@ the size is forgotten the moment anything re-renders.
 
 `renderEntry` takes a leaf and returns its page, or nothing.
 
+```tsx
+import { renderShelfPage } from "./shelf-page";
+
+<FolderShelf entries={entries} renderEntry={renderShelfPage} />;
+```
+
 Return nothing and the leaf stays a link, which is the right default - this
 component has no idea what is at the other end of an href. Return something and
 the desktop stops being a directory of the site and becomes where the site is.

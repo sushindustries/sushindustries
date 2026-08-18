@@ -66,6 +66,12 @@ export {
 } from "./device-kinds";
 export { Dialog, type DialogProps } from "./dialog";
 export { DocAside, type DocAsideProps } from "./doc-aside";
+export {
+	DocNav,
+	type DocNavItem,
+	type DocNavProps,
+	type DocNavSection,
+} from "./doc-nav";
 export { Dock, type DockProps, type DockTask } from "./dock";
 export { Empty, type EmptyProps } from "./empty";
 export { Field, type FieldProps } from "./field";

@@ -77,6 +77,7 @@
 		"./device-kinds": "./src/device-kinds.ts",
 		"./dialog": "./src/dialog.tsx",
 		"./doc-aside": "./src/doc-aside.tsx",
+		"./doc-nav": "./src/doc-nav.tsx",
 		"./dock": "./src/dock.tsx",
 		"./empty": "./src/empty.tsx",
 		"./field": "./src/field.tsx",
@@ -235,6 +236,10 @@
 			"./doc-aside": {
 				"import": "./dist/doc-aside.js",
 				"require": "./dist/doc-aside.cjs"
+			},
+			"./doc-nav": {
+				"import": "./dist/doc-nav.js",
+				"require": "./dist/doc-nav.cjs"
 			},
 			"./dock": {
 				"import": "./dist/dock.js",

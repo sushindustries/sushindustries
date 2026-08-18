@@ -84,7 +84,7 @@ function PackagePage(): ReactNode {
 							/>
 						}
 					/>
-					<div className="min-w-0">
+					<div className="doc-main min-w-0">
 						{/* `body`, not `readme`: the h1 above is this page's title. */}
 						<MarkdownView
 							source={entry.body}

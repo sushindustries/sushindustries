@@ -19,6 +19,17 @@ looks interactive, and the first tap does nothing.
 expandable, and closes on Escape. All of that is the browser's, so it works on
 the server's first paint.
 
+```tsx
+function closeOnLeave(event: React.FocusEvent<HTMLDetailsElement>): void {
+	if (event.currentTarget.contains(event.relatedTarget)) return;
+	event.currentTarget.removeAttribute("open");
+}
+
+<details className="nav-menu" onBlur={closeOnLeave}>
+	<summary className="nav-link">Components</summary>
+</details>;
+```
+
 What it does not have is close-on-outside-click. That comes back as one `onBlur`
 handler that removes the `open` attribute when focus leaves the group. If that
 handler never runs, the menu stays open until you press the trigger again, which

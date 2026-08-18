@@ -7,6 +7,29 @@ summary: Why Theme Toggle is a radiogroup, how the checked state draws itself, a
 
 Three states, and a switch is a lie about two of them.
 
+```tsx
+<div
+	className="theme-toggle"
+	role="radiogroup"
+	aria-label={label}
+	onKeyDown={onKeyDown}
+>
+	{options.map((option) => (
+		<button
+			key={option.id}
+			type="button"
+			role="radio"
+			aria-checked={option.id === value}
+			aria-label={option.label}
+			tabIndex={option.id === value ? 0 : -1}
+			onClick={() => onChange(option.id)}
+		>
+			<Icon name={option.icon} size={15} />
+		</button>
+	))}
+</div>
+```
+
 Arrow keys move between radios for free - the behaviour a group of related
 choices should have, and the one a row of buttons has to be given by hand. That
 is the whole reason to reach for the role rather than three buttons and a
