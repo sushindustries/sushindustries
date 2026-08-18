@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
+	atomsAsShadcn,
 	findRegistryItem,
 	toShadcn,
 } from "../../../modules/registry/registry.catalogue";
@@ -26,6 +27,11 @@ export const Route = createFileRoute("/r/shadcn/$name")({
 		handlers: {
 			GET: ({ request, params }) => {
 				const name = params.name.replace(/\.json$/, "");
+
+				// The stylesheet is an item too - every component's payload
+				// depends on it, so it answers at the same address scheme.
+				if (name === "atoms") return json(atomsAsShadcn());
+
 				const item = findRegistryItem(name);
 
 				if (!item) return notFoundJson(`No component named "${name}"`);

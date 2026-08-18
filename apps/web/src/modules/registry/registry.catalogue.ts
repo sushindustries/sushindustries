@@ -29,6 +29,41 @@ const SOURCES = import.meta.glob<string>("../../../../../packages/ui/src/*", {
 	query: "?raw",
 });
 
+const ATOM_SOURCES = import.meta.glob<string>(
+	"../../../../../packages/atoms/src/**/*.css",
+	{ eager: true, import: "default", query: "?raw" },
+);
+
+/*
+ * The whole stylesheet, as one string.
+ *
+ * Every component in this registry styles itself with class names that live
+ * in `@sushindustries/atoms`, so a copied file without the stylesheet is a
+ * component that renders unstyled and says nothing about why. The npm route
+ * ships the CSS as a package; the copy-paste route has to carry it along.
+ *
+ * `atoms.css` is an @import manifest, and an installer writes one file, not
+ * a tree - so the imports are resolved here, each replaced by the file it
+ * names, in the order the manifest declares. Order is the cascade: tokens
+ * before base before blocks is not decoration.
+ */
+function bundledAtomsCss(): string {
+	const prefix = "../../../../../packages/atoms/src/";
+	const manifest = ATOM_SOURCES[`${prefix}atoms.css`] ?? "";
+
+	return manifest.replace(
+		/@import\s+"\.\/([^"]+)"(?:\s+layer\(([\w-]+)\))?;/g,
+		(_, file: string, layer: string | undefined) => {
+			const source = ATOM_SOURCES[`${prefix}${file}`] ?? "";
+
+			// `@import "x" layer(blocks)` assigns the file to a layer; the
+			// inlined equivalent is the same content wrapped in that layer,
+			// or the cascade order the manifest encodes quietly breaks.
+			return layer ? `@layer ${layer} {\n${source}\n}` : source;
+		},
+	);
+}
+
 /** Where a copied file lands in the consumer's project. */
 function targetPath(file: string): string {
 	return `src/components/sushindustries/${file}`;
@@ -53,12 +88,48 @@ function filesFor(item: RegistryItem): Record<string, string> {
 export interface ShadcnItem {
 	$schema: string;
 	name: string;
-	type: "registry:component";
+	type: "registry:component" | "registry:style";
 	title: string;
 	description: string;
-	dependencies: string[];
-	registryDependencies: string[];
-	files: Array<{ path: string; content: string; type: "registry:component" }>;
+	docs?: string;
+	dependencies?: string[];
+	registryDependencies?: string[];
+	files: Array<{
+		path: string;
+		content: string;
+		type: "registry:component" | "registry:file";
+		target?: string;
+	}>;
+}
+
+/*
+ * The stylesheet as a registry item of its own.
+ *
+ * Every component's shadcn payload depends on this by URL, so `shadcn add`
+ * fetches the CSS with the first component and writes it once -
+ * `registry:file` because it carries an explicit target, and shadcn skips a
+ * file it has already written byte-identically. The `docs` string is what
+ * the CLI prints after installing: the one manual step, said at the moment
+ * it applies.
+ */
+export function atomsAsShadcn(): ShadcnItem {
+	return {
+		$schema: "https://ui.shadcn.com/schema/registry-item.json",
+		name: "atoms",
+		type: "registry:style",
+		title: "Atoms",
+		description:
+			"The design tokens and atomic classes every component here styles itself with. One file, no build step.",
+		docs: "Import src/sushindustries/atoms.css once, at your app's root.",
+		files: [
+			{
+				path: "sushindustries/atoms.css",
+				content: bundledAtomsCss(),
+				type: "registry:file",
+				target: "src/sushindustries/atoms.css",
+			},
+		],
+	};
 }
 
 export function toShadcn(item: RegistryItem, origin: string): ShadcnItem {
@@ -73,10 +144,15 @@ export function toShadcn(item: RegistryItem, origin: string): ShadcnItem {
 		dependencies: Object.keys(item.dependencies),
 
 		// A registry dependency is a URL so it resolves without our registry
-		// being configured in the consumer's components.json.
-		registryDependencies: (item.registryDependencies ?? []).map(
-			(name) => `${origin}/r/shadcn/${name}.json`,
-		),
+		// being configured in the consumer's components.json. The stylesheet
+		// rides on every item: it is where all the class names point, and
+		// shadcn deduplicates a file it has already written.
+		registryDependencies: [
+			...(item.registryDependencies ?? []).map(
+				(name) => `${origin}/r/shadcn/${name}.json`,
+			),
+			`${origin}/r/shadcn/atoms.json`,
+		],
 
 		files: Object.entries(filesFor(item)).map(([path, content]) => ({
 			path,
@@ -131,6 +207,58 @@ export function toTanStackAddOn(
 	}
 
 	return addOn;
+}
+
+/*
+ * The shadcn index: what makes this a *registry* rather than a pile of item
+ * URLs. A consumer adds one line to components.json -
+ *
+ *   "registries": { "@adamjurek": "<origin>/r/shadcn/{name}.json" }
+ *
+ * - and installs by name: `pnpm dlx shadcn@latest add @adamjurek/consent`.
+ * The index itself lists names and metadata only; file contents stay in the
+ * per-item responses, because an index that inlines sixty-eight components'
+ * sources is a download nobody asked for.
+ */
+export function toShadcnIndex(origin: string): {
+	$schema: string;
+	name: string;
+	homepage: string;
+	items: Array<{
+		name: string;
+		type: "registry:component" | "registry:style";
+		title: string;
+		description: string;
+		files: Array<{ path: string; type: string }>;
+	}>;
+} {
+	return {
+		$schema: "https://ui.shadcn.com/schema/registry.json",
+		name: "adamjurek",
+		homepage: origin,
+		items: [
+			{
+				name: "atoms",
+				type: "registry:style",
+				title: "Atoms",
+				description:
+					"The design tokens and atomic classes every component here styles itself with.",
+				files: [{ path: "sushindustries/atoms.css", type: "registry:file" }],
+			},
+			...listRegistry()
+				.filter((item) => item.access !== "pro")
+				.map((item) => ({
+					name: item.name,
+					type: "registry:component" as const,
+					title: item.title,
+					description: item.description,
+					files: item.files.map((file) => ({
+						path: `src/components/sushindustries/${file}`,
+						type: "registry:component",
+					})),
+				})),
+		],
+	};
 }
 
 /** The index `tanstack create --add-ons <url>` and `CTA_REGISTRY` read. */

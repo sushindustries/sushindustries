@@ -110,8 +110,16 @@ function fileEntries(): ShelfEntry[] {
 		{
 			id: "file-registry",
 			label: "registry.json",
-			description: "Every component, in shadcn's registry format",
+			description: "Every component, as TanStack CLI add-ons",
 			href: "/r/registry.json",
+			icon: "file",
+			meta: "json",
+		},
+		{
+			id: "file-shadcn-registry",
+			label: "shadcn registry",
+			description: "The same components, as a shadcn registry index",
+			href: "/r/shadcn/registry.json",
 			icon: "file",
 			meta: "json",
 		},
