@@ -1,6 +1,6 @@
-import { threeDModelJsonLd } from '@sushindustries/product-viewer'
-import type { ThreeDModelJsonLdInput } from '@sushindustries/product-viewer'
-import type { ReactElement } from 'react'
+import type { ThreeDModelJsonLdInput } from "@sushindustries/product-viewer";
+import { threeDModelJsonLd } from "@sushindustries/product-viewer";
+import type { ReactElement } from "react";
 
 /**
  * Emits Schema.org `3DModel` structured data for the model on the page.
@@ -21,19 +21,19 @@ import type { ReactElement } from 'react'
  * flip. `ssr: false` belongs on the viewer, not on this.
  */
 export function ProductModelJsonLd(
-  props: ThreeDModelJsonLdInput,
+	props: ThreeDModelJsonLdInput,
 ): ReactElement {
-  const json = JSON.stringify(threeDModelJsonLd(props))
+	const json = JSON.stringify(threeDModelJsonLd(props));
 
-  return (
-    <script
-      type="application/ld+json"
-      // The content is JSON we just serialised from typed input, not markup
-      // from anywhere else. `</script>` inside a string value would still end
-      // the tag early, so the one sequence that can escape the element is
-      // neutralised rather than trusted.
-      // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD has no other insertion point
-      dangerouslySetInnerHTML={{ __html: json.replace(/</g, '\\u003c') }}
-    />
-  )
+	return (
+		<script
+			type="application/ld+json"
+			// The content is JSON we just serialised from typed input, not markup
+			// from anywhere else. `</script>` inside a string value would still end
+			// the tag early, so the one sequence that can escape the element is
+			// neutralised rather than trusted.
+			// biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD has no other insertion point
+			dangerouslySetInnerHTML={{ __html: json.replace(/</g, "\\u003c") }}
+		/>
+	);
 }

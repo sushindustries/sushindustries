@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
-import type { ButtonHTMLAttributes, ReactElement } from 'react'
-import type { GLTF } from 'three-stdlib'
+import type { ButtonHTMLAttributes, ReactElement } from "react";
+import { useEffect, useState } from "react";
+import type { GLTF } from "three-stdlib";
 
 /**
  * Option buttons that show the material, not a guess at it.
@@ -25,109 +25,108 @@ import type { GLTF } from 'three-stdlib'
  * ```
  */
 export function useVariantSwatches(
-  gltf: GLTF | undefined,
-  names: readonly string[],
-  options: { size?: number; pixelRatio?: number } = {},
+	gltf: GLTF | undefined,
+	names: readonly string[],
+	options: { size?: number; pixelRatio?: number } = {},
 ): Map<string, string> {
-  const [swatches, setSwatches] = useState<Map<string, string>>(new Map())
+	const [swatches, setSwatches] = useState<Map<string, string>>(new Map());
 
-  // Joined rather than passed as an array: a new array literal on every render
-  // would restart the render loop forever, and a caller writing
-  // `listVariants(gltf)` inline is the expected case, not the careless one.
-  const key = names.join('')
-  const { size, pixelRatio } = options
+	// Joined rather than passed as an array: a new array literal on every render
+	// would restart the render loop forever, and a caller writing
+	// `listVariants(gltf)` inline is the expected case, not the careless one.
+	const key = names.join("");
+	const { size, pixelRatio } = options;
 
-  useEffect(() => {
-    if (!gltf || key === '') return
-    let cancelled = false
+	useEffect(() => {
+		if (!gltf || key === "") return;
+		let cancelled = false;
 
-    void (async () => {
-      const { renderVariantSwatches } =
-        await import('@sushindustries/product-viewer/swatch')
-      if (cancelled) return
-      const rendered = await renderVariantSwatches(gltf, key.split(''), {
-        ...(size === undefined ? {} : { size }),
-        ...(pixelRatio === undefined ? {} : { pixelRatio }),
-      })
-      if (!cancelled) setSwatches(rendered)
-    })()
+		void (async () => {
+			const { renderVariantSwatches } = await import(
+				"@sushindustries/product-viewer/swatch"
+			);
+			if (cancelled) return;
+			const rendered = await renderVariantSwatches(gltf, key.split(""), {
+				...(size === undefined ? {} : { size }),
+				...(pixelRatio === undefined ? {} : { pixelRatio }),
+			});
+			if (!cancelled) setSwatches(rendered);
+		})();
 
-    return () => {
-      cancelled = true
-    }
-  }, [gltf, key, size, pixelRatio])
+		return () => {
+			cancelled = true;
+		};
+	}, [gltf, key, size, pixelRatio]);
 
-  return swatches
+	return swatches;
 }
 
-export interface VariantButtonProps extends Omit<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  'children'
-> {
-  /** The variant name, used as the accessible label. */
-  variant: string
-  /** Shown instead of the raw variant name. */
-  label?: string
-  /** Data URL from {@link useVariantSwatches}. */
-  swatch?: string
-  selected?: boolean
-  /**
-   * The asset does not carry this variant.
-   *
-   * Rendered as a visible state rather than hidden, because the failure this
-   * guards against is a control that looks like it works and does nothing.
-   */
-  missing?: boolean
-  /** Added after `pv-variant`. */
-  className?: string
-  /**
-   * Reserve the swatch's space while it renders.
-   *
-   * Swatches arrive an effect late, so without this a row of buttons shifts
-   * sideways the moment the pictures land.
-   */
-  showPendingSwatch?: boolean
+export interface VariantButtonProps
+	extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
+	/** The variant name, used as the accessible label. */
+	variant: string;
+	/** Shown instead of the raw variant name. */
+	label?: string;
+	/** Data URL from {@link useVariantSwatches}. */
+	swatch?: string;
+	selected?: boolean;
+	/**
+	 * The asset does not carry this variant.
+	 *
+	 * Rendered as a visible state rather than hidden, because the failure this
+	 * guards against is a control that looks like it works and does nothing.
+	 */
+	missing?: boolean;
+	/** Added after `pv-variant`. */
+	className?: string;
+	/**
+	 * Reserve the swatch's space while it renders.
+	 *
+	 * Swatches arrive an effect late, so without this a row of buttons shifts
+	 * sideways the moment the pictures land.
+	 */
+	showPendingSwatch?: boolean;
 }
 
 export function VariantButton({
-  variant,
-  label,
-  swatch,
-  selected = false,
-  missing = false,
-  className,
-  showPendingSwatch = false,
-  ...rest
+	variant,
+	label,
+	swatch,
+	selected = false,
+	missing = false,
+	className,
+	showPendingSwatch = false,
+	...rest
 }: VariantButtonProps): ReactElement {
-  return (
-    <button
-      type="button"
-      aria-pressed={selected}
-      // State as data attributes, not as class names. You can style
-      // `[data-selected]` from your own stylesheet without importing ours, and
-      // without us deciding what a selected button is called.
-      data-selected={selected || undefined}
-      data-missing={missing || undefined}
-      title={missing ? `${variant} is not in this model` : variant}
-      className={['pv-variant', className].filter(Boolean).join(' ')}
-      {...rest}
-    >
-      {swatch ? (
-        <img
-          className="pv-variant__swatch"
-          src={swatch}
-          alt=""
-          width={24}
-          height={24}
-        />
-      ) : showPendingSwatch ? (
-        <span
-          className="pv-variant__swatch pv-variant__swatch--pending"
-          aria-hidden="true"
-        />
-      ) : null}
-      <span className="pv-variant__label">{label ?? variant}</span>
-      {missing ? <span aria-hidden="true">⚠</span> : null}
-    </button>
-  )
+	return (
+		<button
+			type="button"
+			aria-pressed={selected}
+			// State as data attributes, not as class names. You can style
+			// `[data-selected]` from your own stylesheet without importing ours, and
+			// without us deciding what a selected button is called.
+			data-selected={selected || undefined}
+			data-missing={missing || undefined}
+			title={missing ? `${variant} is not in this model` : variant}
+			className={["pv-variant", className].filter(Boolean).join(" ")}
+			{...rest}
+		>
+			{swatch ? (
+				<img
+					className="pv-variant__swatch"
+					src={swatch}
+					alt=""
+					width={24}
+					height={24}
+				/>
+			) : showPendingSwatch ? (
+				<span
+					className="pv-variant__swatch pv-variant__swatch--pending"
+					aria-hidden="true"
+				/>
+			) : null}
+			<span className="pv-variant__label">{label ?? variant}</span>
+			{missing ? <span aria-hidden="true">⚠</span> : null}
+		</button>
+	);
 }

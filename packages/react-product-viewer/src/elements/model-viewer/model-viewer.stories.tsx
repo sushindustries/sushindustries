@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from "../../story";
 import { ModelViewer } from "./model-viewer";
 import type { ModelViewerProps } from "./model-viewer.types";
-import type { Meta, StoryObj } from "../../story";
 
 /**
  * Every story renders the same asset.

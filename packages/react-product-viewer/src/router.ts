@@ -1,5 +1,5 @@
-import { useCallback, useMemo } from 'react'
-import { useNavigate, useSearch } from '@tanstack/react-router'
+import { useNavigate, useSearch } from "@tanstack/react-router";
+import { useCallback, useMemo } from "react";
 
 /**
  * Configurator state that lives in the URL.
@@ -20,26 +20,26 @@ import { useNavigate, useSearch } from '@tanstack/react-router'
 
 /** The shape this module reads and writes. */
 export interface VariantSearch {
-  /**
-   * Selected variants, comma-separated, applied in order.
-   *
-   * A string rather than an array, and that is the whole design decision here.
-   * Router's default serialiser JSON-encodes arrays, so `['beach']` reaches the
-   * address bar as `?v=%5B%22beach%22%5D` - correct, round-trippable, and
-   * unusable as the shareable artefact this exists to produce. `?v=beach,street`
-   * survives being pasted into a message, read aloud, or printed on a quote.
-   */
-  v?: string
+	/**
+	 * Selected variants, comma-separated, applied in order.
+	 *
+	 * A string rather than an array, and that is the whole design decision here.
+	 * Router's default serialiser JSON-encodes arrays, so `['beach']` reaches the
+	 * address bar as `?v=%5B%22beach%22%5D` - correct, round-trippable, and
+	 * unusable as the shareable artefact this exists to produce. `?v=beach,street`
+	 * survives being pasted into a message, read aloud, or printed on a quote.
+	 */
+	v?: string;
 }
 
-const SEPARATOR = ','
+const SEPARATOR = ",";
 
 /** Splits the param into names, dropping empties. */
 export function variantsOf(search: VariantSearch): string[] {
-  return (search.v ?? '')
-    .split(SEPARATOR)
-    .map((name) => name.trim())
-    .filter(Boolean)
+	return (search.v ?? "")
+		.split(SEPARATOR)
+		.map((name) => name.trim())
+		.filter(Boolean);
 }
 
 /**
@@ -62,19 +62,19 @@ export function variantsOf(search: VariantSearch): string[] {
  * `?v=a&v=b` works and normalises to the comma form on the next navigation.
  */
 export function parseVariantSearch(
-  search: Record<string, unknown>,
+	search: Record<string, unknown>,
 ): VariantSearch {
-  const raw = search.v
-  if (raw === undefined || raw === null) return {}
+	const raw = search.v;
+	if (raw === undefined || raw === null) return {};
 
-  const names = (Array.isArray(raw) ? raw : [raw])
-    .flatMap((value) =>
-      typeof value === 'string' ? value.split(SEPARATOR) : [],
-    )
-    .map((name) => name.trim())
-    .filter(Boolean)
+	const names = (Array.isArray(raw) ? raw : [raw])
+		.flatMap((value) =>
+			typeof value === "string" ? value.split(SEPARATOR) : [],
+		)
+		.map((name) => name.trim())
+		.filter(Boolean);
 
-  return names.length ? { v: names.join(SEPARATOR) } : {}
+	return names.length ? { v: names.join(SEPARATOR) } : {};
 }
 
 /**
@@ -91,52 +91,55 @@ export function parseVariantSearch(
  * returning them to the catalogue.
  */
 export function useVariantSelection() {
-  const search = useSearch({ strict: false }) as VariantSearch
-  const navigate = useNavigate()
+	const search = useSearch({ strict: false }) as VariantSearch;
+	const navigate = useNavigate();
 
-  const variants = useMemo(() => variantsOf(search), [search.v])
+	// Captures only `v`, so the memo's dependency is exactly what it reads -
+	// the rest of the search object can churn without recomputing.
+	const v = search.v;
+	const variants = useMemo(() => variantsOf({ v }), [v]);
 
-  const set = useCallback(
-    (next: readonly string[]) => {
-      void navigate({
-        // @ts-expect-error - `to` is omitted so the current route is kept, which
-        // the typed navigate cannot express without knowing the route here.
-        search: (prev: Record<string, unknown>) => ({
-          ...prev,
-          v: next.length ? next.join(SEPARATOR) : undefined,
-        }),
-        replace: true,
-      })
-    },
-    [navigate],
-  )
+	const set = useCallback(
+		(next: readonly string[]) => {
+			void navigate({
+				// @ts-expect-error - `to` is omitted so the current route is kept, which
+				// the typed navigate cannot express without knowing the route here.
+				search: (prev: Record<string, unknown>) => ({
+					...prev,
+					v: next.length ? next.join(SEPARATOR) : undefined,
+				}),
+				replace: true,
+			});
+		},
+		[navigate],
+	);
 
-  /** Adds a variant, or removes it if already present. */
-  const toggle = useCallback(
-    (variant: string) => {
-      set(
-        variants.includes(variant)
-          ? variants.filter((v) => v !== variant)
-          : [...variants, variant],
-      )
-    },
-    [variants, set],
-  )
+	/** Adds a variant, or removes it if already present. */
+	const toggle = useCallback(
+		(variant: string) => {
+			set(
+				variants.includes(variant)
+					? variants.filter((v) => v !== variant)
+					: [...variants, variant],
+			);
+		},
+		[variants, set],
+	);
 
-  /**
-   * Replaces whichever variant is currently selected from `group` with `variant`.
-   *
-   * The common case a plain toggle gets wrong: cladding options are mutually
-   * exclusive, so choosing larch has to deselect spruce rather than apply both.
-   * The viewer would otherwise render whichever came last in the array and the
-   * picker would show two options lit.
-   */
-  const select = useCallback(
-    (group: readonly string[], variant: string) => {
-      set([...variants.filter((v) => !group.includes(v)), variant])
-    },
-    [variants, set],
-  )
+	/**
+	 * Replaces whichever variant is currently selected from `group` with `variant`.
+	 *
+	 * The common case a plain toggle gets wrong: cladding options are mutually
+	 * exclusive, so choosing larch has to deselect spruce rather than apply both.
+	 * The viewer would otherwise render whichever came last in the array and the
+	 * picker would show two options lit.
+	 */
+	const select = useCallback(
+		(group: readonly string[], variant: string) => {
+			set([...variants.filter((v) => !group.includes(v)), variant]);
+		},
+		[variants, set],
+	);
 
-  return { variants, set, toggle, select }
+	return { variants, set, toggle, select };
 }

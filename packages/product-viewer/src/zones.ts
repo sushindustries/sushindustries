@@ -1,5 +1,5 @@
-import { Box3, Float32BufferAttribute, Vector3 } from 'three'
-import type { BufferGeometry } from 'three'
+import type { BufferGeometry } from "three";
+import { Box3, Float32BufferAttribute, Vector3 } from "three";
 
 /**
  * Splits a single mesh into material zones by geometry rather than by UV.
@@ -21,12 +21,12 @@ import type { BufferGeometry } from 'three'
 
 /** One vertex, with the whole model's bounds for context. */
 export interface ZoneVertex {
-  /** Object-space position of this vertex. */
-  readonly position: Vector3
-  /** Object-space normal of this vertex. */
-  readonly normal: Vector3
-  /** Bounds of the geometry being classified, computed once per mesh. */
-  readonly bounds: Box3
+	/** Object-space position of this vertex. */
+	readonly position: Vector3;
+	/** Object-space normal of this vertex. */
+	readonly normal: Vector3;
+	/** Bounds of the geometry being classified, computed once per mesh. */
+	readonly bounds: Box3;
 }
 
 /**
@@ -39,16 +39,16 @@ export interface ZoneVertex {
  * interface is either.
  */
 export interface ZoneScheme<Z extends string = string> {
-  /**
-   * Zone names, in the order their indices are assigned.
-   *
-   * Order is part of the contract: it is what `aZone` stores and what the
-   * generated shader indexes. Reordering an existing scheme silently repaints
-   * every model using it, so append rather than insert.
-   */
-  readonly zones: readonly Z[]
-  /** Which zone this vertex belongs to. Must return a member of `zones`. */
-  classify(vertex: ZoneVertex): Z
+	/**
+	 * Zone names, in the order their indices are assigned.
+	 *
+	 * Order is part of the contract: it is what `aZone` stores and what the
+	 * generated shader indexes. Reordering an existing scheme silently repaints
+	 * every model using it, so append rather than insert.
+	 */
+	readonly zones: readonly Z[];
+	/** Which zone this vertex belongs to. Must return a member of `zones`. */
+	classify(vertex: ZoneVertex): Z;
 }
 
 /**
@@ -60,9 +60,9 @@ export interface ZoneScheme<Z extends string = string> {
  * `zoneTints.rooof` is a typo.
  */
 export function defineZoneScheme<const Z extends string>(
-  scheme: ZoneScheme<Z>,
+	scheme: ZoneScheme<Z>,
 ): ZoneScheme<Z> {
-  return scheme
+	return scheme;
 }
 
 /**
@@ -72,15 +72,17 @@ export function defineZoneScheme<const Z extends string>(
  * to not be a plain gable wall, which sits just as high.
  */
 export const wallRoofZones = defineZoneScheme({
-  zones: ['wall', 'roof'],
-  classify: ({ position, normal, bounds }) => {
-    const roofFloor = bounds.min.y + (bounds.max.y - bounds.min.y) * 0.55
-    return Math.abs(normal.y) > 0.35 && position.y > roofFloor ? 'roof' : 'wall'
-  },
-})
+	zones: ["wall", "roof"],
+	classify: ({ position, normal, bounds }) => {
+		const roofFloor = bounds.min.y + (bounds.max.y - bounds.min.y) * 0.55;
+		return Math.abs(normal.y) > 0.35 && position.y > roofFloor
+			? "roof"
+			: "wall";
+	},
+});
 
 /** The zone names of a scheme, as a union. */
-export type ZoneOf<S> = S extends ZoneScheme<infer Z> ? Z : never
+export type ZoneOf<S> = S extends ZoneScheme<infer Z> ? Z : never;
 
 /**
  * Writes the `aZone` attribute onto a geometry, in place.
@@ -95,34 +97,34 @@ export type ZoneOf<S> = S extends ZoneScheme<infer Z> ? Z : never
  * untinted is a better failure than one that renders nothing.
  */
 export function computeZoneAttribute(
-  geometry: BufferGeometry,
-  scheme: ZoneScheme,
+	geometry: BufferGeometry,
+	scheme: ZoneScheme,
 ): boolean {
-  if (geometry.getAttribute('aZone')) return false
+	if (geometry.getAttribute("aZone")) return false;
 
-  const position = geometry.getAttribute('position')
-  const normal = geometry.getAttribute('normal')
-  if (!position || !normal) return false
+	const position = geometry.getAttribute("position");
+	const normal = geometry.getAttribute("normal");
+	if (!position || !normal) return false;
 
-  const bounds = new Box3().setFromBufferAttribute(
-    position as Parameters<Box3['setFromBufferAttribute']>[0],
-  )
+	const bounds = new Box3().setFromBufferAttribute(
+		position as Parameters<Box3["setFromBufferAttribute"]>[0],
+	);
 
-  const index = new Map(scheme.zones.map((zone, i) => [zone, i]))
-  const count = position.count
-  const zones = new Float32Array(count)
+	const index = new Map(scheme.zones.map((zone, i) => [zone, i]));
+	const count = position.count;
+	const zones = new Float32Array(count);
 
-  // One vertex object reused across the loop rather than one allocated per
-  // vertex: a 300k-vertex model would otherwise allocate 600k Vector3s in a
-  // tight loop, and the classifier has no reason to retain them.
-  const vertex = { position: new Vector3(), normal: new Vector3(), bounds }
+	// One vertex object reused across the loop rather than one allocated per
+	// vertex: a 300k-vertex model would otherwise allocate 600k Vector3s in a
+	// tight loop, and the classifier has no reason to retain them.
+	const vertex = { position: new Vector3(), normal: new Vector3(), bounds };
 
-  for (let i = 0; i < count; i++) {
-    vertex.position.set(position.getX(i), position.getY(i), position.getZ(i))
-    vertex.normal.set(normal.getX(i), normal.getY(i), normal.getZ(i))
-    zones[i] = index.get(scheme.classify(vertex)) ?? 0
-  }
+	for (let i = 0; i < count; i++) {
+		vertex.position.set(position.getX(i), position.getY(i), position.getZ(i));
+		vertex.normal.set(normal.getX(i), normal.getY(i), normal.getZ(i));
+		zones[i] = index.get(scheme.classify(vertex)) ?? 0;
+	}
 
-  geometry.setAttribute('aZone', new Float32BufferAttribute(zones, 1))
-  return true
+	geometry.setAttribute("aZone", new Float32BufferAttribute(zones, 1));
+	return true;
 }

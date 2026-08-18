@@ -7,26 +7,26 @@
  */
 
 .pv-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background: var(--pv-bg-1);
-  border: 1px solid var(--pv-line);
-  border-radius: var(--pv-r-card);
-  /* Clips the poster to the card's own corners, so the image cannot square off
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background: var(--pv-bg-1);
+	border: 1px solid var(--pv-line);
+	border-radius: var(--pv-r-card);
+	/* Clips the poster to the card's own corners, so the image cannot square off
      the top two. `overflow: hidden` and not a matching radius on the image,
      because the image does not know what radius the card was given. */
-  overflow: hidden;
-  color: var(--pv-fg);
-  /*
+	overflow: hidden;
+	color: var(--pv-fg);
+	/*
    * Named properties, never `all`. `transition: all` animates things nobody
    * chose - a border colour arriving from a theme change, a height arriving
    * from a font load - and each one costs layout and paint on a page that may
    * be showing forty of these.
    */
-  transition:
-    transform var(--pv-dur-ui) var(--pv-ease-out),
-    border-color var(--pv-dur-ui) var(--pv-ease-out);
+	transition:
+		transform var(--pv-dur-ui) var(--pv-ease-out),
+		border-color var(--pv-dur-ui) var(--pv-ease-out);
 }
 
 /*
@@ -36,53 +36,53 @@
  * stays raised after the finger has gone and reads as a selected card.
  */
 @media (hover: hover) and (pointer: fine) {
-  .pv-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--pv-line);
-  }
+	.pv-card:hover {
+		transform: translateY(-2px);
+		border-color: var(--pv-line);
+	}
 
-  .pv-card:hover .pv-card__poster {
-    transform: scale(1.03);
-  }
+	.pv-card:hover .pv-card__poster {
+		transform: scale(1.03);
+	}
 }
 
 /* Focus belongs to the card, not the link, because the link is invisible. */
 .pv-card:focus-within {
-  border-color: var(--pv-accent);
+	border-color: var(--pv-accent);
 }
 
 /* --------------------------------------------------------------- visual -- */
 
 .pv-card__visual {
-  position: relative;
-  /* A ratio rather than a height: the same card keeps its shape in a narrow
+	position: relative;
+	/* A ratio rather than a height: the same card keeps its shape in a narrow
      column and a wide one. */
-  aspect-ratio: var(--pv-card-aspect, 4 / 3);
-  background: var(--pv-bg-0);
-  overflow: hidden;
+	aspect-ratio: var(--pv-card-aspect, 4 / 3);
+	background: var(--pv-bg-0);
+	overflow: hidden;
 }
 
 .pv-card__visual > .pv-viewer,
 .pv-card__poster,
 .pv-card__placeholder {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
 }
 
 .pv-card__poster {
-  object-fit: cover;
-  transition: transform var(--pv-dur-panel) var(--pv-ease-out);
+	object-fit: cover;
+	transition: transform var(--pv-dur-panel) var(--pv-ease-out);
 }
 
 .pv-card__placeholder {
-  background: linear-gradient(
-    135deg,
-    var(--pv-bg-0) 0%,
-    var(--pv-bg-2) 50%,
-    var(--pv-bg-0) 100%
-  );
+	background: linear-gradient(
+		135deg,
+		var(--pv-bg-0) 0%,
+		var(--pv-bg-2) 50%,
+		var(--pv-bg-0) 100%
+	);
 }
 
 /*
@@ -97,30 +97,30 @@
  * moving rather than a thing materialising.
  */
 .pv-card__visual > .pv-viewer {
-  opacity: 1;
-  transform: scale(1);
-  transition:
-    opacity var(--pv-dur-panel) var(--pv-ease-out),
-    transform var(--pv-dur-panel) var(--pv-ease-out);
+	opacity: 1;
+	transform: scale(1);
+	transition:
+		opacity var(--pv-dur-panel) var(--pv-ease-out),
+		transform var(--pv-dur-panel) var(--pv-ease-out);
 
-  @starting-style {
-    opacity: 0;
-    transform: scale(0.98);
-  }
+	@starting-style {
+		opacity: 0;
+		transform: scale(0.98);
+	}
 }
 
 .pv-card__badge {
-  position: absolute;
-  top: var(--pv-s-2);
-  left: var(--pv-s-2);
-  z-index: 2;
-  padding: var(--pv-s-1) var(--pv-s-2);
-  border-radius: var(--pv-r-pill);
-  background: var(--pv-bg-1);
-  color: var(--pv-fg);
-  font-size: var(--pv-t-xs);
-  line-height: 1.4;
-  box-shadow: var(--pv-shadow);
+	position: absolute;
+	top: var(--pv-s-2);
+	left: var(--pv-s-2);
+	z-index: 2;
+	padding: var(--pv-s-1) var(--pv-s-2);
+	border-radius: var(--pv-r-pill);
+	background: var(--pv-bg-1);
+	color: var(--pv-fg);
+	font-size: var(--pv-t-xs);
+	line-height: 1.4;
+	box-shadow: var(--pv-shadow);
 }
 
 /*
@@ -130,43 +130,43 @@
  * the card instead of navigating away from it.
  */
 .pv-card__activate {
-  position: absolute;
-  right: var(--pv-s-2);
-  bottom: var(--pv-s-2);
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--pv-s-2);
-  border-radius: var(--pv-r-pill);
-  background: var(--pv-bg-1);
-  color: var(--pv-fg);
-  box-shadow: var(--pv-shadow);
+	position: absolute;
+	right: var(--pv-s-2);
+	bottom: var(--pv-s-2);
+	z-index: 2;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--pv-s-2);
+	border-radius: var(--pv-r-pill);
+	background: var(--pv-bg-1);
+	color: var(--pv-fg);
+	box-shadow: var(--pv-shadow);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .pv-card__activate:hover {
-    color: var(--pv-accent);
-  }
+	.pv-card__activate:hover {
+		color: var(--pv-accent);
+	}
 }
 
 /* ----------------------------------------------------------------- body -- */
 
 .pv-card__body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--pv-s-2);
-  padding: var(--pv-s-3);
-  /* Pushes the footer to the bottom when cards in a row have different amounts
+	display: flex;
+	flex-direction: column;
+	gap: var(--pv-s-2);
+	padding: var(--pv-s-3);
+	/* Pushes the footer to the bottom when cards in a row have different amounts
      of text, so their prices line up across the grid. */
-  flex: 1;
+	flex: 1;
 }
 
 .pv-card__title {
-  margin: 0;
-  font-size: var(--pv-t-md);
-  font-weight: 600;
-  line-height: 1.35;
+	margin: 0;
+	font-size: var(--pv-t-md);
+	font-weight: 600;
+	line-height: 1.35;
 }
 
 /*
@@ -177,33 +177,33 @@
  * name stays the title instead of the entire card's text.
  */
 .pv-card__link {
-  color: inherit;
-  text-decoration: none;
-  padding: 0;
+	color: inherit;
+	text-decoration: none;
+	padding: 0;
 }
 
 .pv-card__link::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
 }
 
 /* Outline the card, not the invisible text box the link occupies. */
 .pv-card__link:focus-visible {
-  outline: none;
+	outline: none;
 }
 
 .pv-card:has(.pv-card__link:focus-visible) {
-  outline: 2px solid var(--pv-accent);
-  outline-offset: 2px;
+	outline: 2px solid var(--pv-accent);
+	outline-offset: 2px;
 }
 
 .pv-card__description {
-  margin: 0;
-  color: var(--pv-fg-dim);
-  font-size: var(--pv-t-sm);
-  line-height: 1.35;
+	margin: 0;
+	color: var(--pv-fg-dim);
+	font-size: var(--pv-t-sm);
+	line-height: 1.35;
 }
 
 /*
@@ -211,35 +211,35 @@
  * behaves like a button and not like part of the link.
  */
 .pv-card__footer {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--pv-s-2);
-  margin-top: auto;
-  padding-top: var(--pv-s-2);
-  font-size: var(--pv-t-sm);
+	position: relative;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--pv-s-2);
+	margin-top: auto;
+	padding-top: var(--pv-s-2);
+	font-size: var(--pv-t-sm);
 }
 
 /* --------------------------------------------------------------- motion -- */
 
 @media (prefers-reduced-motion: reduce) {
-  /* Opacity stays - it is what tells you the scene arrived. Movement goes. */
-  .pv-card,
-  .pv-card__poster,
-  .pv-card__visual > .pv-viewer {
-    transition-property: opacity, border-color;
-  }
+	/* Opacity stays - it is what tells you the scene arrived. Movement goes. */
+	.pv-card,
+	.pv-card__poster,
+	.pv-card__visual > .pv-viewer {
+		transition-property: opacity, border-color;
+	}
 
-  .pv-card:hover,
-  .pv-card:hover .pv-card__poster {
-    transform: none;
-  }
+	.pv-card:hover,
+	.pv-card:hover .pv-card__poster {
+		transform: none;
+	}
 
-  .pv-card__visual > .pv-viewer {
-    @starting-style {
-      transform: none;
-    }
-  }
+	.pv-card__visual > .pv-viewer {
+		@starting-style {
+			transform: none;
+		}
+	}
 }

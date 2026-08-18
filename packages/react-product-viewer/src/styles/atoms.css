@@ -49,11 +49,11 @@
  * and its label press together rather than the box pressing around them.
  */
 .pv-u-press {
-  transition: transform var(--pv-dur-press) var(--pv-ease-out);
+	transition: transform var(--pv-dur-press) var(--pv-ease-out);
 }
 
 .pv-u-press:active {
-  transform: scale(0.97);
+	transform: scale(0.97);
 }
 
 /*
@@ -64,8 +64,8 @@
  * `border-radius` in every current browser and does not affect layout.
  */
 .pv-u-focus:focus-visible {
-  outline: 2px solid var(--pv-accent);
-  outline-offset: 2px;
+	outline: 2px solid var(--pv-accent);
+	outline-offset: 2px;
 }
 
 /*
@@ -76,10 +76,10 @@
  * rather than `height` means a control with two lines of label still grows.
  */
 @media (pointer: coarse) {
-  .pv-u-tap {
-    min-height: var(--pv-tap);
-    min-width: var(--pv-tap);
-  }
+	.pv-u-tap {
+		min-height: var(--pv-tap);
+		min-width: var(--pv-tap);
+	}
 }
 
 /*
@@ -105,14 +105,14 @@
  * the sort.
  */
 .pv-u-control {
-  appearance: none;
-  margin: 0;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  text-align: inherit;
-  cursor: pointer;
+	appearance: none;
+	margin: 0;
+	border: 0;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	text-align: inherit;
+	cursor: pointer;
 }
 
 /* ---------------------------------------------------------------- shapes -- */
@@ -125,9 +125,9 @@
  * themselves.
  */
 .pv-u-surface {
-  background: var(--pv-bg-1);
-  border: 1px solid var(--pv-line);
-  border-radius: var(--pv-r-lg);
+	background: var(--pv-bg-1);
+	border: 1px solid var(--pv-line);
+	border-radius: var(--pv-r-lg);
 }
 
 /* ------------------------------------------------------------------ text -- */
@@ -146,21 +146,21 @@
  * to prevent.
  */
 .pv-u-clamp-1 {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  line-clamp: 1;
-  overflow: hidden;
-  min-height: 1.35em;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	line-clamp: 1;
+	overflow: hidden;
+	min-height: 1.35em;
 }
 
 .pv-u-clamp-2 {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  overflow: hidden;
-  min-height: 2.7em;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	overflow: hidden;
+	min-height: 2.7em;
 }
 
 /*
@@ -168,9 +168,9 @@
  * Distinct from clamping: this one never wraps at all.
  */
 .pv-u-truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 /* -------------------------------------------------------------- overflow -- */
@@ -186,9 +186,9 @@
  * row from becoming a browser back-navigation, which on iOS it otherwise does.
  */
 .pv-u-scroll-x {
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scrollbar-width: thin;
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	scrollbar-width: thin;
 }
 
 /* ---------------------------------------------------------------- motion -- */
@@ -203,11 +203,11 @@
  * which is a worse interface, not a more accessible one.
  */
 @media (prefers-reduced-motion: reduce) {
-  .pv-u-press {
-    transition: none;
-  }
+	.pv-u-press {
+		transition: none;
+	}
 
-  .pv-u-press:active {
-    transform: none;
-  }
+	.pv-u-press:active {
+		transform: none;
+	}
 }

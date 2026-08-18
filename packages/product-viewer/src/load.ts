@@ -1,6 +1,6 @@
-import { Material, Mesh, Texture } from 'three'
-import { GLTFLoader } from 'three-stdlib'
-import type { GLTF } from 'three-stdlib'
+import { Material, Mesh, Texture } from "three";
+import type { GLTF } from "three-stdlib";
+import { GLTFLoader } from "three-stdlib";
 
 /**
  * Loading a GLB, and - the part that usually gets left out - unloading one.
@@ -18,15 +18,15 @@ import type { GLTF } from 'three-stdlib'
  */
 
 export interface LoadOptions {
-  /**
-   * Called with the loader before it reads anything.
-   *
-   * The hook for Draco, Meshopt and KTX2 - all of which need a decoder wired in,
-   * all of which need a decoder path this package has no business choosing.
-   */
-  configureLoader?: (loader: GLTFLoader) => void
-  /** Aborts the fetch. Rejects with the signal's reason. */
-  signal?: AbortSignal
+	/**
+	 * Called with the loader before it reads anything.
+	 *
+	 * The hook for Draco, Meshopt and KTX2 - all of which need a decoder wired in,
+	 * all of which need a decoder path this package has no business choosing.
+	 */
+	configureLoader?: (loader: GLTFLoader) => void;
+	/** Aborts the fetch. Rejects with the signal's reason. */
+	signal?: AbortSignal;
 }
 
 /**
@@ -37,71 +37,71 @@ export interface LoadOptions {
  * reachable from the former. Any cache holding these must hold the whole thing.
  */
 export function loadProductModel(
-  url: string,
-  { configureLoader, signal }: LoadOptions = {},
+	url: string,
+	{ configureLoader, signal }: LoadOptions = {},
 ): Promise<GLTF> {
-  return new Promise<GLTF>((resolve, reject) => {
-    if (signal?.aborted) {
-      reject(signal.reason as Error)
-      return
-    }
+	return new Promise<GLTF>((resolve, reject) => {
+		if (signal?.aborted) {
+			reject(signal.reason as Error);
+			return;
+		}
 
-    const loader = new GLTFLoader()
-    configureLoader?.(loader)
+		const loader = new GLTFLoader();
+		configureLoader?.(loader);
 
-    let settled = false
-    const onAbort = () => {
-      if (settled) return
-      settled = true
-      reject(signal?.reason as Error)
-    }
-    signal?.addEventListener('abort', onAbort, { once: true })
+		let settled = false;
+		const onAbort = () => {
+			if (settled) return;
+			settled = true;
+			reject(signal?.reason as Error);
+		};
+		signal?.addEventListener("abort", onAbort, { once: true });
 
-    loader.load(
-      url,
-      (gltf) => {
-        signal?.removeEventListener('abort', onAbort)
-        if (settled) {
-          // Arrived after an abort. Nobody is waiting for it, and leaving it
-          // parsed would leak exactly the memory this module exists to reclaim.
-          disposeProductModel(gltf)
-          return
-        }
-        settled = true
-        resolve(gltf)
-      },
-      undefined,
-      (error) => {
-        signal?.removeEventListener('abort', onAbort)
-        if (settled) return
-        settled = true
-        reject(
-          error instanceof Error
-            ? error
-            : new Error(`Failed to load ${url}: ${String(error)}`),
-        )
-      },
-    )
-  })
+		loader.load(
+			url,
+			(gltf) => {
+				signal?.removeEventListener("abort", onAbort);
+				if (settled) {
+					// Arrived after an abort. Nobody is waiting for it, and leaving it
+					// parsed would leak exactly the memory this module exists to reclaim.
+					disposeProductModel(gltf);
+					return;
+				}
+				settled = true;
+				resolve(gltf);
+			},
+			undefined,
+			(error) => {
+				signal?.removeEventListener("abort", onAbort);
+				if (settled) return;
+				settled = true;
+				reject(
+					error instanceof Error
+						? error
+						: new Error(`Failed to load ${url}: ${String(error)}`),
+				);
+			},
+		);
+	});
 }
 
 /** Every texture referenced by a material, whatever the slot is called. */
 function texturesOf(material: Material): Texture[] {
-  const found: Texture[] = []
-  for (const value of Object.values(material as unknown as object)) {
-    if (value instanceof Texture) found.push(value)
-  }
-  // Custom shader materials hang their textures off uniforms instead.
-  const uniforms = (
-    material as unknown as { uniforms?: Record<string, unknown> }
-  ).uniforms
-  if (uniforms) {
-    for (const uniform of Object.values(uniforms)) {
-      const value = (uniform as { value?: unknown } | null)?.value
-      if (value instanceof Texture) found.push(value)
-    }
-  }
-  return found
+	const found: Texture[] = [];
+	for (const value of Object.values(material as unknown as object)) {
+		if (value instanceof Texture) found.push(value);
+	}
+	// Custom shader materials hang their textures off uniforms instead.
+	const uniforms = (
+		material as unknown as { uniforms?: Record<string, unknown> }
+	).uniforms;
+	if (uniforms) {
+		for (const uniform of Object.values(uniforms)) {
+			const value = (uniform as { value?: unknown } | null)?.value;
+			if (value instanceof Texture) found.push(value);
+		}
+	}
+	return found;
 }
 
 /**
@@ -120,39 +120,39 @@ function texturesOf(material: Material): Texture[] {
  * Safe to call twice; three's `dispose` is idempotent.
  */
 export function disposeProductModel(gltf: GLTF): void {
-  const materials = new Set<Material>()
-  const textures = new Set<Texture>()
+	const materials = new Set<Material>();
+	const textures = new Set<Texture>();
 
-  gltf.scene.traverse((object) => {
-    if (!(object instanceof Mesh)) return
-    object.geometry?.dispose()
-    const applied: unknown = object.material
-    for (const material of Array.isArray(applied) ? applied : [applied]) {
-      if (material instanceof Material) materials.add(material)
-    }
-    // Stashed by `applyVariant` so unmapped meshes can revert. Nothing else
-    // references it once the scene is gone.
-    const original: unknown = object.userData.originalMaterial
-    for (const material of Array.isArray(original) ? original : [original]) {
-      if (material instanceof Material) materials.add(material)
-    }
-  })
+	gltf.scene.traverse((object) => {
+		if (!(object instanceof Mesh)) return;
+		object.geometry?.dispose();
+		const applied: unknown = object.material;
+		for (const material of Array.isArray(applied) ? applied : [applied]) {
+			if (material instanceof Material) materials.add(material);
+		}
+		// Stashed by `applyVariant` so unmapped meshes can revert. Nothing else
+		// references it once the scene is gone.
+		const original: unknown = object.userData.originalMaterial;
+		for (const material of Array.isArray(original) ? original : [original]) {
+			if (material instanceof Material) materials.add(material);
+		}
+	});
 
-  // Everything the parser has created so far, including variant materials that
-  // were fetched and later swapped out of the scene.
-  const associations = (
-    gltf.parser as unknown as { associations?: Map<unknown, unknown> }
-  ).associations
-  if (associations) {
-    for (const created of associations.keys()) {
-      if (created instanceof Material) materials.add(created)
-      else if (created instanceof Texture) textures.add(created)
-    }
-  }
+	// Everything the parser has created so far, including variant materials that
+	// were fetched and later swapped out of the scene.
+	const associations = (
+		gltf.parser as unknown as { associations?: Map<unknown, unknown> }
+	).associations;
+	if (associations) {
+		for (const created of associations.keys()) {
+			if (created instanceof Material) materials.add(created);
+			else if (created instanceof Texture) textures.add(created);
+		}
+	}
 
-  for (const material of materials) {
-    for (const texture of texturesOf(material)) textures.add(texture)
-    material.dispose()
-  }
-  for (const texture of textures) texture.dispose()
+	for (const material of materials) {
+		for (const texture of texturesOf(material)) textures.add(texture);
+		material.dispose();
+	}
+	for (const texture of textures) texture.dispose();
 }

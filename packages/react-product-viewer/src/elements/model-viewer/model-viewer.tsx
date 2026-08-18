@@ -1,14 +1,14 @@
 import { Bounds, ContactShadows, Grid, OrbitControls } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
+import type { ZoneScheme } from "@sushindustries/product-viewer";
+import type { ReactElement, ReactNode, RefObject } from "react";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { PMREMGenerator } from "three";
 import { RoomEnvironment } from "three-stdlib";
-import { ProductModel } from "../../product-model";
 import { DefaultLoadingOverlay, LoadingOverlay } from "../../loading-overlay";
-import { useScrollMode } from "./use-scroll-mode";
+import { ProductModel } from "../../product-model";
 import type { ModelViewerProps } from "./model-viewer.types";
-import type { ZoneScheme } from "@sushindustries/product-viewer";
-import type { ReactElement, ReactNode, RefObject } from "react";
+import { useScrollMode } from "./use-scroll-mode";
 
 /**
  * The canvas, and nothing else.
@@ -250,9 +250,7 @@ export function ModelViewer<S extends ZoneScheme = ZoneScheme>({
 					alpha: transparent,
 				}}
 			>
-				{transparent ? null : (
-					<color attach="background" args={[background]} />
-				)}
+				{transparent ? null : <color attach="background" args={[background]} />}
 				{environment ?? <DefaultEnvironment />}
 				{snapshotRef ? <SnapshotCapture snapshotRef={snapshotRef} /> : null}
 

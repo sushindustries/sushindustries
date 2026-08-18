@@ -31,13 +31,25 @@
  * happened to open. The element won, the old file is gone, and the names below
  * are aliases so no consumer had to be rewritten to pay for an internal tidy.
  */
-export { ModelViewer, ModelViewer as ProductViewer, default } from './elements/model-viewer/model-viewer'
+export {
+	default,
+	ModelViewer,
+	ModelViewer as ProductViewer,
+} from "./elements/model-viewer/model-viewer";
 export type {
-  ModelViewerProps,
-  ModelViewerProps as ProductViewerProps,
-  ModelViewerScroll,
-} from './elements/model-viewer/model-viewer.types'
-export { ProductModel } from './product-model'
+	ModelViewerProps,
+	ModelViewerProps as ProductViewerProps,
+	ModelViewerScroll,
+} from "./elements/model-viewer/model-viewer.types";
+export { ProductModelJsonLd } from "./json-ld";
+export type {
+	LoadingOverlayProps,
+	LoadingOverlayRenderer,
+} from "./loading-overlay";
+export { DefaultLoadingOverlay } from "./loading-overlay";
+export type { ProductHeroProps } from "./product-hero";
+
+export { HeroInteractive, ProductHero } from "./product-hero";
 /*
  * `ModelMark` is deliberately NOT re-exported here.
  *
@@ -55,19 +67,11 @@ export { ProductModel } from './product-model'
  *
  *   import { ModelMark } from '@sushindustries/react-product-viewer/model-mark'
  */
-export type { ProductModelProps } from './product-model'
-export { DefaultLoadingOverlay } from './loading-overlay'
-export type {
-  LoadingOverlayProps,
-  LoadingOverlayRenderer,
-} from './loading-overlay'
-
-export { ProductHero, HeroInteractive } from './product-hero'
-export type { ProductHeroProps } from './product-hero'
-export { ViewIn3D } from './view-in-3d'
-export type { ViewIn3DProps } from './view-in-3d'
-export { VariantButton, useVariantSwatches } from './variant-swatch'
-export type { VariantButtonProps } from './variant-swatch'
-export { useViewIn3D } from './use-view-in-3d'
-export type { UseViewIn3DOptions, UseViewIn3DResult } from './use-view-in-3d'
-export { ProductModelJsonLd } from './json-ld'
+export type { ProductModelProps } from "./product-model";
+export { ProductModel } from "./product-model";
+export type { UseViewIn3DOptions, UseViewIn3DResult } from "./use-view-in-3d";
+export { useViewIn3D } from "./use-view-in-3d";
+export type { VariantButtonProps } from "./variant-swatch";
+export { useVariantSwatches, VariantButton } from "./variant-swatch";
+export type { ViewIn3DProps } from "./view-in-3d";
+export { ViewIn3D } from "./view-in-3d";

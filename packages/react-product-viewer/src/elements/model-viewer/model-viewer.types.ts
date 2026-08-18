@@ -3,9 +3,9 @@ import type {
 	ZoneScheme,
 	ZoneTints,
 } from "@sushindustries/product-viewer";
-import type { GLTF } from "three-stdlib";
 import type { ReactNode, RefObject } from "react";
 import type { Group } from "three";
+import type { GLTF } from "three-stdlib";
 import type { LoadingOverlayRenderer } from "../../loading-overlay";
 
 /**

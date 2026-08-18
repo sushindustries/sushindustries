@@ -1,14 +1,14 @@
+import type { Material } from "three";
 import {
-  Mesh,
-  PMREMGenerator,
-  PerspectiveCamera,
-  Scene,
-  SphereGeometry,
-  WebGLRenderer,
-} from 'three'
-import { RoomEnvironment } from 'three-stdlib'
-import type { Material } from 'three'
-import type { GLTF } from 'three-stdlib'
+	Mesh,
+	PerspectiveCamera,
+	PMREMGenerator,
+	Scene,
+	SphereGeometry,
+	WebGLRenderer,
+} from "three";
+import type { GLTF } from "three-stdlib";
+import { RoomEnvironment } from "three-stdlib";
 
 /**
  * Material swatches, rendered from the asset itself.
@@ -29,65 +29,65 @@ import type { GLTF } from 'three-stdlib'
  */
 
 export interface SwatchOptions {
-  /** Pixel size of the square swatch. @default 96 */
-  size?: number
-  /**
-   * Device pixel ratio to render at.
-   *
-   * Swatches are small and sit next to text, so a 1× swatch beside 2× type looks
-   * broken in a way a 1× photograph would not.
-   *
-   * @default 2
-   */
-  pixelRatio?: number
+	/** Pixel size of the square swatch. @default 96 */
+	size?: number;
+	/**
+	 * Device pixel ratio to render at.
+	 *
+	 * Swatches are small and sit next to text, so a 1× swatch beside 2× type looks
+	 * broken in a way a 1× photograph would not.
+	 *
+	 * @default 2
+	 */
+	pixelRatio?: number;
 }
 
 /** A rendered swatch, as a PNG data URL. */
-export type Swatch = string
+export type Swatch = string;
 
 function createRig(size: number, pixelRatio: number) {
-  const renderer = new WebGLRenderer({
-    alpha: true,
-    antialias: true,
-    // The swatch is read back with toDataURL, and without this the drawing
-    // buffer may be cleared before the read happens.
-    preserveDrawingBuffer: true,
-  })
-  renderer.setSize(size, size, false)
-  renderer.setPixelRatio(pixelRatio)
+	const renderer = new WebGLRenderer({
+		alpha: true,
+		antialias: true,
+		// The swatch is read back with toDataURL, and without this the drawing
+		// buffer may be cleared before the read happens.
+		preserveDrawingBuffer: true,
+	});
+	renderer.setSize(size, size, false);
+	renderer.setPixelRatio(pixelRatio);
 
-  const scene = new Scene()
-  const pmrem = new PMREMGenerator(renderer)
-  const environment = pmrem.fromScene(RoomEnvironment(), 0.04).texture
-  scene.environment = environment
+	const scene = new Scene();
+	const pmrem = new PMREMGenerator(renderer);
+	const environment = pmrem.fromScene(RoomEnvironment(), 0.04).texture;
+	scene.environment = environment;
 
-  const camera = new PerspectiveCamera(35, 1, 0.1, 10)
-  camera.position.set(0, 0, 3.1)
+	const camera = new PerspectiveCamera(35, 1, 0.1, 10);
+	camera.position.set(0, 0, 3.1);
 
-  // A sphere, not a cube or a plane. A flat plane hides everything that makes
-  // one material different from another - the roughness falloff, the sheen at
-  // grazing angles, the way a clearcoat separates from the base. Those all live
-  // in how the surface turns away from the light.
-  const geometry = new SphereGeometry(1, 48, 32)
-  const mesh = new Mesh(geometry)
-  scene.add(mesh)
+	// A sphere, not a cube or a plane. A flat plane hides everything that makes
+	// one material different from another - the roughness falloff, the sheen at
+	// grazing angles, the way a clearcoat separates from the base. Those all live
+	// in how the surface turns away from the light.
+	const geometry = new SphereGeometry(1, 48, 32);
+	const mesh = new Mesh(geometry);
+	scene.add(mesh);
 
-  return {
-    renderer,
-    scene,
-    camera,
-    mesh,
-    dispose() {
-      geometry.dispose()
-      environment.dispose()
-      pmrem.dispose()
-      renderer.dispose()
-      // Frees the WebGL context immediately rather than when the GC eventually
-      // notices. Browsers cap concurrent contexts at around sixteen, and a
-      // catalogue that renders swatches per product will hit that.
-      renderer.forceContextLoss()
-    },
-  }
+	return {
+		renderer,
+		scene,
+		camera,
+		mesh,
+		dispose() {
+			geometry.dispose();
+			environment.dispose();
+			pmrem.dispose();
+			renderer.dispose();
+			// Frees the WebGL context immediately rather than when the GC eventually
+			// notices. Browsers cap concurrent contexts at around sixteen, and a
+			// catalogue that renders swatches per product will hit that.
+			renderer.forceContextLoss();
+		},
+	};
 }
 
 /**
@@ -97,17 +97,17 @@ function createRig(size: number, pixelRatio: number) {
  * renderer across the whole set, which is the expensive part.
  */
 export function renderMaterialSwatch(
-  material: Material,
-  { size = 96, pixelRatio = 2 }: SwatchOptions = {},
+	material: Material,
+	{ size = 96, pixelRatio = 2 }: SwatchOptions = {},
 ): Swatch {
-  const rig = createRig(size, pixelRatio)
-  try {
-    rig.mesh.material = material
-    rig.renderer.render(rig.scene, rig.camera)
-    return rig.renderer.domElement.toDataURL('image/png')
-  } finally {
-    rig.dispose()
-  }
+	const rig = createRig(size, pixelRatio);
+	try {
+		rig.mesh.material = material;
+		rig.renderer.render(rig.scene, rig.camera);
+		return rig.renderer.domElement.toDataURL("image/png");
+	} finally {
+		rig.dispose();
+	}
 }
 
 /**
@@ -127,66 +127,67 @@ export function renderMaterialSwatch(
  * rendering of the whole product; that is what the viewer beside it is for.
  */
 export async function renderVariantSwatches(
-  gltf: GLTF,
-  names: readonly string[],
-  options: SwatchOptions = {},
+	gltf: GLTF,
+	names: readonly string[],
+	options: SwatchOptions = {},
 ): Promise<Map<string, Swatch>> {
-  const { size = 96, pixelRatio = 2 } = options
-  const result = new Map<string, Swatch>()
-  if (names.length === 0) return result
+	const { size = 96, pixelRatio = 2 } = options;
+	const result = new Map<string, Swatch>();
+	if (names.length === 0) return result;
 
-  const root = (
-    gltf.userData as {
-      gltfExtensions?: {
-        KHR_materials_variants?: { variants: Array<{ name: string }> }
-      }
-    }
-  ).gltfExtensions?.KHR_materials_variants
-  if (!root) return result
+	const root = (
+		gltf.userData as {
+			gltfExtensions?: {
+				KHR_materials_variants?: { variants: Array<{ name: string }> };
+			};
+		}
+	).gltfExtensions?.KHR_materials_variants;
+	if (!root) return result;
 
-  // Find, for each variant index, the first material any mesh maps to it.
-  const materialIndexFor = new Map<number, number>()
-  gltf.scene.traverse((object) => {
-    const mesh = object as Mesh
-    if (!mesh.isMesh) return
-    const def = (
-      mesh.userData.gltfExtensions as
-        | {
-            KHR_materials_variants?: {
-              mappings: Array<{ material: number; variants: number[] }>
-            }
-          }
-        | undefined
-    )?.KHR_materials_variants
-    if (!def) return
-    for (const mapping of def.mappings) {
-      for (const variant of mapping.variants) {
-        if (!materialIndexFor.has(variant)) {
-          materialIndexFor.set(variant, mapping.material)
-        }
-      }
-    }
-  })
+	// Find, for each variant index, the first material any mesh maps to it.
+	const materialIndexFor = new Map<number, number>();
+	gltf.scene.traverse((object) => {
+		const mesh = object as Mesh;
+		if (!mesh.isMesh) return;
+		const def = (
+			mesh.userData.gltfExtensions as
+				| {
+						KHR_materials_variants?: {
+							mappings: Array<{ material: number; variants: number[] }>;
+						};
+				  }
+				| undefined
+		)?.KHR_materials_variants;
+		if (!def) return;
+		for (const mapping of def.mappings) {
+			for (const variant of mapping.variants) {
+				if (!materialIndexFor.has(variant)) {
+					materialIndexFor.set(variant, mapping.material);
+				}
+			}
+		}
+	});
 
-  const rig = createRig(size, pixelRatio)
-  try {
-    for (const name of names) {
-      const index = root.variants.findIndex((v) => v.name === name)
-      const materialIndex = index >= 0 ? materialIndexFor.get(index) : undefined
-      if (materialIndex === undefined) continue
+	const rig = createRig(size, pixelRatio);
+	try {
+		for (const name of names) {
+			const index = root.variants.findIndex((v) => v.name === name);
+			const materialIndex =
+				index >= 0 ? materialIndexFor.get(index) : undefined;
+			if (materialIndex === undefined) continue;
 
-      const material = (await gltf.parser.getDependency(
-        'material',
-        materialIndex,
-      )) as Material
+			const material = (await gltf.parser.getDependency(
+				"material",
+				materialIndex,
+			)) as Material;
 
-      rig.mesh.material = material
-      rig.renderer.render(rig.scene, rig.camera)
-      result.set(name, rig.renderer.domElement.toDataURL('image/png'))
-    }
-  } finally {
-    rig.dispose()
-  }
+			rig.mesh.material = material;
+			rig.renderer.render(rig.scene, rig.camera);
+			result.set(name, rig.renderer.domElement.toDataURL("image/png"));
+		}
+	} finally {
+		rig.dispose();
+	}
 
-  return result
+	return result;
 }

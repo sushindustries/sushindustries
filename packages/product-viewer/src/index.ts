@@ -15,15 +15,15 @@
  * neither. Importing either subpath is the moment you opt in.
  */
 
-export { applyVariant, listVariants, missingVariants } from './variants'
-export { disposeProductModel, loadProductModel } from './load'
-export type { LoadOptions } from './load'
-export { computeZoneAttribute, defineZoneScheme, wallRoofZones } from './zones'
-export type { ZoneOf, ZoneScheme, ZoneVertex } from './zones'
-export type { ModelConfig, Tint, ZoneTints } from './types'
-export { threeDModelJsonLd, encodingFormatFor } from './json-ld'
 export type {
-  AgentRef,
-  ThreeDModelJsonLd,
-  ThreeDModelJsonLdInput,
-} from './json-ld'
+	AgentRef,
+	ThreeDModelJsonLd,
+	ThreeDModelJsonLdInput,
+} from "./json-ld";
+export { encodingFormatFor, threeDModelJsonLd } from "./json-ld";
+export type { LoadOptions } from "./load";
+export { disposeProductModel, loadProductModel } from "./load";
+export type { ModelConfig, Tint, ZoneTints } from "./types";
+export { applyVariant, listVariants, missingVariants } from "./variants";
+export type { ZoneOf, ZoneScheme, ZoneVertex } from "./zones";
+export { computeZoneAttribute, defineZoneScheme, wallRoofZones } from "./zones";

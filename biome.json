@@ -38,8 +38,6 @@
 			"!**/.output",
 			"!**/dist",
 			"!**/routeTree.gen.ts",
-			"!packages/product-viewer",
-			"!packages/react-product-viewer",
 			"!**/.turbo",
 			"!**/.nitro",
 			"!**/.tanstack",

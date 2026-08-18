@@ -1,6 +1,6 @@
 import type { ModelConfig } from "@sushindustries/product-viewer";
-import type { GLTF } from "three-stdlib";
 import type { ReactNode } from "react";
+import type { GLTF } from "three-stdlib";
 
 /**
  * When a card stops being a picture and becomes a running WebGL scene.

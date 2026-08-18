@@ -1,7 +1,7 @@
-import { Color } from 'three'
-import type { Material } from 'three'
-import CustomShaderMaterial from 'three-custom-shader-material/vanilla'
-import type { ZoneScheme } from './zones'
+import type { Material } from "three";
+import { Color } from "three";
+import CustomShaderMaterial from "three-custom-shader-material/vanilla";
+import type { ZoneScheme } from "./zones";
 
 /**
  * Wraps a PBR material in a shader that multiplies its colour per geometric
@@ -18,9 +18,9 @@ import type { ZoneScheme } from './zones'
 
 /** A material wrapped by {@link createZonedMaterial}. */
 export interface ZonedMaterial extends Material {
-  uniforms: {
-    uZoneTint: { value: Color[] }
-  }
+	uniforms: {
+		uZoneTint: { value: Color[] };
+	};
 }
 
 /**
@@ -37,13 +37,13 @@ export interface ZonedMaterial extends Material {
  * triangles therefore now change colour at the midpoint instead of fading.
  */
 function fragmentShader(count: number): string {
-  const branches = Array.from(
-    { length: count - 1 },
-    (_, i) =>
-      `  if (vZone > ${(i + 0.5).toFixed(1)} && vZone < ${(i + 1.5).toFixed(1)}) tint = uZoneTint[${i + 1}];`,
-  ).join('\n')
+	const branches = Array.from(
+		{ length: count - 1 },
+		(_, i) =>
+			`  if (vZone > ${(i + 0.5).toFixed(1)} && vZone < ${(i + 1.5).toFixed(1)}) tint = uZoneTint[${i + 1}];`,
+	).join("\n");
 
-  return /* glsl */ `
+	return /* glsl */ `
 uniform vec3 uZoneTint[${count}];
 varying float vZone;
 
@@ -52,7 +52,7 @@ void main() {
 ${branches}
   csm_DiffuseColor.rgb *= tint;
 }
-`
+`;
 }
 
 const vertexShader = /* glsl */ `
@@ -62,7 +62,7 @@ varying float vZone;
 void main() {
   vZone = aZone;
 }
-`
+`;
 
 /**
  * Wraps a material so each zone can be tinted independently.
@@ -71,27 +71,27 @@ void main() {
  * a material created but never tinted is visually identical to the one it wrapped.
  */
 export function createZonedMaterial(
-  baseMaterial: Material,
-  scheme: ZoneScheme,
+	baseMaterial: Material,
+	scheme: ZoneScheme,
 ): ZonedMaterial {
-  const count = scheme.zones.length
-  if (count < 1) {
-    throw new Error('A zone scheme needs at least one zone.')
-  }
+	const count = scheme.zones.length;
+	if (count < 1) {
+		throw new Error("A zone scheme needs at least one zone.");
+	}
 
-  return new CustomShaderMaterial({
-    // Cloned so two meshes sharing one material do not share one set of
-    // uniforms - without this, tinting a wall tints every mesh that happened to
-    // be authored with the same material.
-    baseMaterial: baseMaterial.clone(),
-    vertexShader,
-    fragmentShader: fragmentShader(count),
-    uniforms: {
-      uZoneTint: {
-        value: Array.from({ length: count }, () => new Color(1, 1, 1)),
-      },
-    },
-  }) as unknown as ZonedMaterial
+	return new CustomShaderMaterial({
+		// Cloned so two meshes sharing one material do not share one set of
+		// uniforms - without this, tinting a wall tints every mesh that happened to
+		// be authored with the same material.
+		baseMaterial: baseMaterial.clone(),
+		vertexShader,
+		fragmentShader: fragmentShader(count),
+		uniforms: {
+			uZoneTint: {
+				value: Array.from({ length: count }, () => new Color(1, 1, 1)),
+			},
+		},
+	}) as unknown as ZonedMaterial;
 }
 
 /**
@@ -103,15 +103,15 @@ export function createZonedMaterial(
  * saved configuration into a blank screen.
  */
 export function applyZoneTints(
-  material: ZonedMaterial,
-  scheme: ZoneScheme,
-  tints: Readonly<Record<string, readonly [number, number, number]>>,
+	material: ZonedMaterial,
+	scheme: ZoneScheme,
+	tints: Readonly<Record<string, readonly [number, number, number]>>,
 ): void {
-  scheme.zones.forEach((zone, i) => {
-    const tint = tints[zone]
-    const target = material.uniforms.uZoneTint.value[i]
-    if (!target) return
-    if (tint) target.setRGB(tint[0], tint[1], tint[2])
-    else target.setRGB(1, 1, 1)
-  })
+	scheme.zones.forEach((zone, i) => {
+		const tint = tints[zone];
+		const target = material.uniforms.uZoneTint.value[i];
+		if (!target) return;
+		if (tint) target.setRGB(tint[0], tint[1], tint[2]);
+		else target.setRGB(1, 1, 1);
+	});
 }

@@ -8,7 +8,7 @@
  * three.
  */
 
-export { ModelViewer, default } from "./model-viewer";
+export { default, ModelViewer } from "./model-viewer";
 export type {
 	ModelViewerProps,
 	ModelViewerScroll,

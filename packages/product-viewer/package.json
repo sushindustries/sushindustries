@@ -44,6 +44,7 @@
 	],
 	"scripts": {
 		"build": "tsdown",
+		"test": "vitest run",
 		"test:types": "tsc --noEmit"
 	},
 	"peerDependencies": {
@@ -66,6 +67,7 @@
 		"three": "0.185.1",
 		"three-custom-shader-material": "6.4.0",
 		"three-stdlib": "2.36.1",
+		"vitest": "4.1.10",
 		"zod": "4.4.3"
 	},
 	"publishConfig": {

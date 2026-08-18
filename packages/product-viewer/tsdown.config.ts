@@ -1,5 +1,5 @@
-import { defineConfig } from 'tsdown'
-import { library } from '../../tsdown.base.ts'
+import { defineConfig } from "tsdown";
+import { library } from "../../tsdown.base.ts";
 
 /**
  * Four entry points, because two of the dependencies are optional.
@@ -8,13 +8,13 @@ import { library } from '../../tsdown.base.ts'
  * the graph of every consumer, which is the opposite of declaring them optional.
  */
 export default defineConfig(
-  library({
-    entry: {
-      index: 'src/index.ts',
-      schema: 'src/schema.ts',
-      swatch: 'src/swatch.ts',
-      'zoned-material': 'src/zoned-material.ts',
-    },
-    platform: 'neutral',
-  }),
-)
+	library({
+		entry: {
+			index: "src/index.ts",
+			schema: "src/schema.ts",
+			swatch: "src/swatch.ts",
+			"zoned-material": "src/zoned-material.ts",
+		},
+		platform: "neutral",
+	}),
+);

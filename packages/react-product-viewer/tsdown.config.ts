@@ -1,5 +1,5 @@
-import { defineConfig } from 'tsdown'
-import { library } from '../../tsdown.base.ts'
+import { defineConfig } from "tsdown";
+import { library } from "../../tsdown.base.ts";
 
 /**
  * Four entry points, and every one of them is a graph somebody should be able
@@ -22,48 +22,48 @@ import { library } from '../../tsdown.base.ts'
  * moving the file would rename a public export.
  */
 export default defineConfig(
-  library({
-    entry: {
-      index: 'src/index.ts',
-      query: 'src/query.ts',
-      router: 'src/router.ts',
-      'model-mark': 'src/elements/model-mark/index.ts',
-    },
-    platform: 'browser',
-    exports: {
-      /*
-       * Shipped from source, not from `dist`.
-       *
-       * It is optional, so it has to stay a file a consumer chooses to import
-       * rather than something bundled into the JS - but it is also not one
-       * file. `src/styles.css` is a manifest of `@import "./styles/*.css"`,
-       * and copying only the entry into `dist/` produced a stylesheet whose
-       * every import resolved to nothing. `src` ships in `files`, the partials
-       * sit next to it there, and the imports resolve.
-       */
-      customExports: {
-        './styles.css': './src/styles.css',
-      },
-    },
+	library({
+		entry: {
+			index: "src/index.ts",
+			query: "src/query.ts",
+			router: "src/router.ts",
+			"model-mark": "src/elements/model-mark/index.ts",
+		},
+		platform: "browser",
+		exports: {
+			/*
+			 * Shipped from source, not from `dist`.
+			 *
+			 * It is optional, so it has to stay a file a consumer chooses to import
+			 * rather than something bundled into the JS - but it is also not one
+			 * file. `src/styles.css` is a manifest of `@import "./styles/*.css"`,
+			 * and copying only the entry into `dist/` produced a stylesheet whose
+			 * every import resolved to nothing. `src` ships in `files`, the partials
+			 * sit next to it there, and the imports resolve.
+			 */
+			customExports: {
+				"./styles.css": "./src/styles.css",
+			},
+		},
 
-    /*
-     * A stylesheet has no type declarations, and never will. attw resolves
-     * every subpath in `exports` looking for types and reports three failures
-     * for this one, which is a statement about CSS rather than about this
-     * package. Excluded by name so the check keeps its teeth everywhere else -
-     * `ignoreRules: ['no-resolution']` would have silenced a real missing
-     * entry point just as effectively.
-     */
-    attw: { excludeEntrypoints: ['./styles.css'] },
+		/*
+		 * A stylesheet has no type declarations, and never will. attw resolves
+		 * every subpath in `exports` looking for types and reports three failures
+		 * for this one, which is a statement about CSS rather than about this
+		 * package. Excluded by name so the check keeps its teeth everywhere else -
+		 * `ignoreRules: ['no-resolution']` would have silenced a real missing
+		 * entry point just as effectively.
+		 */
+		attw: { excludeEntrypoints: ["./styles.css"] },
 
-    /*
-     * `index` and `model-mark` each export a default alongside their named
-     * exports, so rolldown warns that CJS consumers reach the default through
-     * `.default`. They do, and that is the intended shape: `cjsDefault` only
-     * collapses to `module.exports =` for a lone default export, so nothing
-     * here is ambiguous - the warning describes the behaviour rather than a
-     * defect in it. Suppressed by name so `failOnWarn` stays useful.
-     */
-    suppressWarnings: [/MIXED_EXPORTS/],
-  }),
-)
+		/*
+		 * `index` and `model-mark` each export a default alongside their named
+		 * exports, so rolldown warns that CJS consumers reach the default through
+		 * `.default`. They do, and that is the intended shape: `cjsDefault` only
+		 * collapses to `module.exports =` for a lone default export, so nothing
+		 * here is ambiguous - the warning describes the behaviour rather than a
+		 * defect in it. Suppressed by name so `failOnWarn` stays useful.
+		 */
+		suppressWarnings: [/MIXED_EXPORTS/],
+	}),
+);

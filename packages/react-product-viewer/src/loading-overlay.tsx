@@ -1,5 +1,5 @@
-import { useProgress } from '@react-three/drei'
-import type { ReactElement, ReactNode } from 'react'
+import { useProgress } from "@react-three/drei";
+import type { ReactElement, ReactNode } from "react";
 
 /**
  * What sits between a click and a multi-megabyte download finishing.
@@ -19,69 +19,69 @@ import type { ReactElement, ReactNode } from 'react'
  */
 
 export interface LoadingOverlayProps {
-  /** 0-100. */
-  progress: number
-  /** Whether anything is still in flight. */
-  active: boolean
-  label: string
+	/** 0-100. */
+	progress: number;
+	/** Whether anything is still in flight. */
+	active: boolean;
+	label: string;
 }
 
 /** What `ProductViewer` accepts for `loadingOverlay`. */
 export type LoadingOverlayRenderer = (
-  props: LoadingOverlayProps,
-) => ReactNode | null
+	props: LoadingOverlayProps,
+) => ReactNode | null;
 
-const RADIUS = 30
-const CIRCUMFERENCE = 2 * Math.PI * RADIUS
+const RADIUS = 30;
+const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
 export function DefaultLoadingOverlay({
-  progress,
-  active,
-  label,
+	progress,
+	active,
+	label,
 }: LoadingOverlayProps): ReactElement | null {
-  if (!active && progress >= 100) return null
+	if (!active && progress >= 100) return null;
 
-  const pct = Math.round(progress)
+	const pct = Math.round(progress);
 
-  return (
-    <div className="pv-progress">
-      <svg
-        width="88"
-        height="88"
-        viewBox="0 0 88 88"
-        role="img"
-        aria-label={`${label} ${pct}%`}
-      >
-        <title>{`${label} ${pct}%`}</title>
-        <circle
-          className="pv-progress__track"
-          cx="44"
-          cy="44"
-          r={RADIUS}
-          fill="none"
-          strokeWidth="7"
-        />
-        <circle
-          className="pv-progress__bar"
-          cx="44"
-          cy="44"
-          r={RADIUS}
-          fill="none"
-          strokeWidth="7"
-          strokeLinecap="round"
-          strokeDasharray={CIRCUMFERENCE}
-          // A value, not a decision: it changes every frame and cannot live
-          // in a stylesheet. The colour and the easing both do.
-          strokeDashoffset={CIRCUMFERENCE * (1 - progress / 100)}
-          transform="rotate(-90 44 44)"
-        />
-        <text className="pv-progress__value" x="44" y="49" textAnchor="middle">
-          {pct}%
-        </text>
-      </svg>
-      <p className="pv-progress__label">{label}</p>
-    </div>
-  )
+	return (
+		<div className="pv-progress">
+			<svg
+				width="88"
+				height="88"
+				viewBox="0 0 88 88"
+				role="img"
+				aria-label={`${label} ${pct}%`}
+			>
+				<title>{`${label} ${pct}%`}</title>
+				<circle
+					className="pv-progress__track"
+					cx="44"
+					cy="44"
+					r={RADIUS}
+					fill="none"
+					strokeWidth="7"
+				/>
+				<circle
+					className="pv-progress__bar"
+					cx="44"
+					cy="44"
+					r={RADIUS}
+					fill="none"
+					strokeWidth="7"
+					strokeLinecap="round"
+					strokeDasharray={CIRCUMFERENCE}
+					// A value, not a decision: it changes every frame and cannot live
+					// in a stylesheet. The colour and the easing both do.
+					strokeDashoffset={CIRCUMFERENCE * (1 - progress / 100)}
+					transform="rotate(-90 44 44)"
+				/>
+				<text className="pv-progress__value" x="44" y="49" textAnchor="middle">
+					{pct}%
+				</text>
+			</svg>
+			<p className="pv-progress__label">{label}</p>
+		</div>
+	);
 }
 
 /**
@@ -92,12 +92,12 @@ export function DefaultLoadingOverlay({
  * - testable, and renderable in a story without a loader running.
  */
 export function LoadingOverlay({
-  label,
-  render,
+	label,
+	render,
 }: {
-  label: string
-  render: LoadingOverlayRenderer
+	label: string;
+	render: LoadingOverlayRenderer;
 }): ReactElement | null {
-  const { active, progress } = useProgress()
-  return <>{render({ progress, active, label })}</>
+	const { active, progress } = useProgress();
+	return <>{render({ progress, active, label })}</>;
 }

@@ -401,6 +401,61 @@ function checkGeneratedFilesAreOrdered() {
 	}
 }
 
+/**
+ * The push gate stays a delegation.
+ *
+ * `.husky/pre-push` runs `pnpm run check` and nothing else, so the hook, CI
+ * and a human typing `pnpm check` all run the same list and none of them can
+ * drift. The hook once carried its own copy of the steps; the copies were
+ * identical the day they were written and nothing kept them that way.
+ *
+ * `prepare` is what installs the hook on a fresh clone, so a prepare script
+ * that stopped running husky is a machine whose pushes skip the gate without
+ * anyone choosing to skip it.
+ */
+function checkPushGateDelegates() {
+	const hookPath = ".husky/pre-push";
+	if (!exists(hookPath)) {
+		report(
+			"push-gate",
+			hookPath,
+			"missing - pushes leave this machine unchecked",
+			"pnpm doctor --fix",
+		);
+		if (shouldFix) {
+			writeFileSync(join(root, hookPath), "#!/bin/sh\npnpm run check\n", {
+				mode: 0o755,
+			});
+			repaired(`${hookPath}: recreated as a delegation to pnpm run check`);
+		}
+	} else {
+		const hook = read(hookPath);
+		const commands = hook
+			.split("\n")
+			.filter((line) => line.trim() && !line.trim().startsWith("#"));
+		const delegates =
+			commands.length === 1 && commands[0].trim() === "pnpm run check";
+		if (!delegates) {
+			report(
+				"push-gate",
+				hookPath,
+				"carries its own command list instead of delegating to `pnpm run check` - a second copy of the gate is a copy that drifts",
+				"make the hook body exactly `pnpm run check`",
+			);
+		}
+	}
+
+	const prepare = readJson("package.json").scripts?.prepare ?? "";
+	if (!prepare.includes("husky")) {
+		report(
+			"push-gate",
+			"package.json",
+			`prepare script is "${prepare}" - a fresh clone never installs the pre-push hook`,
+			'scripts.prepare: "husky || true"',
+		);
+	}
+}
+
 /* ── the component pipeline ──────────────────────────────────────────── */
 
 /**
@@ -2379,6 +2434,7 @@ checkLicences(list);
 checkTypecheckHasConfig(list);
 checkBuildsShareTheBase(list);
 checkGeneratedFilesAreOrdered();
+checkPushGateDelegates();
 
 checkElementsDeclareSchemaType(registry);
 checkRegistryFilesExist(registry);

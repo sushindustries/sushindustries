@@ -1,7 +1,7 @@
+import type { RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 import type { Group } from "three";
 import { applyMotion, type MarkMotion } from "./mark-motions";
-import type { RefObject } from "react";
 
 export interface MarkSpin {
 	/** Hand to `modelRef`. Written to per frame, never through state. */

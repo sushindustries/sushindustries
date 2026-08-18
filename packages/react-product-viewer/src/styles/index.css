@@ -21,9 +21,9 @@
  * alongside `tokens.css` and `atoms.css` is a complete, working card.
  */
 
-@import './tokens.css';
-@import './atoms.css';
+@import "./tokens.css";
+@import "./atoms.css";
 
-@import '../elements/model-viewer/model-viewer.css';
-@import '../elements/model-card/model-card.css';
-@import '../elements/model-mark/model-mark.css';
+@import "../elements/model-viewer/model-viewer.css";
+@import "../elements/model-card/model-card.css";
+@import "../elements/model-mark/model-mark.css";

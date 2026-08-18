@@ -1,7 +1,7 @@
-import { lazy, Suspense, useRef } from "react";
-import { useCardActivation } from "./use-card-activation";
-import type { ModelCardProps } from "./model-card.types";
 import type { CSSProperties, ReactElement, ReactNode } from "react";
+import { lazy, Suspense, useRef } from "react";
+import type { ModelCardProps } from "./model-card.types";
+import { useCardActivation } from "./use-card-activation";
 
 /**
  * A product card whose picture is a 3D model.

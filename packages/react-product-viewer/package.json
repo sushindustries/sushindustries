@@ -47,6 +47,7 @@
 	],
 	"scripts": {
 		"build": "tsdown",
+		"test": "vitest run",
 		"test:types": "tsc --noEmit"
 	},
 	"dependencies": {
@@ -84,7 +85,8 @@
 		"react-dom": "19.2.0",
 		"three": "0.185.1",
 		"three-custom-shader-material": "6.4.0",
-		"three-stdlib": "2.36.1"
+		"three-stdlib": "2.36.1",
+		"vitest": "4.1.10"
 	},
 	"publishConfig": {
 		"access": "public",

@@ -1,4 +1,4 @@
-import type { ZoneOf, ZoneScheme } from './zones'
+import type { ZoneOf, ZoneScheme } from "./zones";
 
 /**
  * The viewer's types, written by hand rather than inferred from zod.
@@ -20,27 +20,27 @@ import type { ZoneOf, ZoneScheme } from './zones'
  * Not clamped to 0-1: values above 1 brighten, which is occasionally what you
  * want and never worth a validation error.
  */
-export type Tint = readonly [number, number, number]
+export type Tint = readonly [number, number, number];
 
 export interface ModelConfig {
-  /**
-   * Where the GLB lives. Any string a loader can fetch - a path, an absolute
-   * URL, a signed one.
-   */
-  url: string
+	/**
+	 * Where the GLB lives. Any string a loader can fetch - a path, an absolute
+	 * URL, a signed one.
+	 */
+	url: string;
 
-  /**
-   * The longest horizontal dimension, in whatever unit the scene works in.
-   *
-   * Generated and scanned models carry no reliable scale, so this is what
-   * calibrates the camera, the shadow and the grid. Omitted, the model is
-   * normalised to roughly two units - fine alone, wrong as soon as a grid square
-   * has to mean a metre or two products must look right side by side.
-   */
-  realLength?: number
+	/**
+	 * The longest horizontal dimension, in whatever unit the scene works in.
+	 *
+	 * Generated and scanned models carry no reliable scale, so this is what
+	 * calibrates the camera, the shadow and the grid. Omitted, the model is
+	 * normalised to roughly two units - fine alone, wrong as soon as a grid square
+	 * has to mean a metre or two products must look right side by side.
+	 */
+	realLength?: number;
 
-  /** Asset licence, carried rather than enforced. */
-  license?: string
+	/** Asset licence, carried rather than enforced. */
+	license?: string;
 }
 
 /**
@@ -51,5 +51,5 @@ export interface ModelConfig {
  * a zone that silently never tints.
  */
 export type ZoneTints<S extends ZoneScheme = ZoneScheme> = Partial<
-  Record<ZoneOf<S>, Tint>
->
+	Record<ZoneOf<S>, Tint>
+>;

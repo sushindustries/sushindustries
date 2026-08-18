@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config'
+import { defineConfig } from "vitest/config";
 
 /**
  * Tests live in `tests/`, never in `src/`.
@@ -7,11 +7,11 @@ import { defineConfig } from 'vitest/config'
  * up shipped, which is both a size problem and an information-leak one.
  */
 export default defineConfig({
-  test: {
-    name: '@sushindustries/product-viewer',
-    include: ['tests/**/*.test.ts'],
-    // Node, not jsdom: nothing in the core package touches the DOM, and a fake
-    // one here would hide an accidental dependency on it.
-    environment: 'node',
-  },
-})
+	test: {
+		name: "@sushindustries/product-viewer",
+		include: ["tests/**/*.test.ts"],
+		// Node, not jsdom: nothing in the core package touches the DOM, and a fake
+		// one here would hide an accidental dependency on it.
+		environment: "node",
+	},
+});

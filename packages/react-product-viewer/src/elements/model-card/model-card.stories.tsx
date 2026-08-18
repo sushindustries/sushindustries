@@ -1,6 +1,6 @@
+import type { Meta, StoryObj } from "../../story";
 import { ModelCard } from "./model-card";
 import type { ModelCardProps } from "./model-card.types";
-import type { Meta, StoryObj } from "../../story";
 
 /**
  * One asset for the whole lab, and it is ours.
@@ -80,8 +80,8 @@ export const Grid: StoryObj<ModelCardProps> = {
 				},
 				{ ...args, title: "Short", description: undefined, model: LOGO },
 				{ ...args, title: "The mark, no finish", model: LOGO },
-			].map((card, index) => (
-				<ModelCard key={index} {...card} />
+			].map((card) => (
+				<ModelCard key={card.title} {...card} />
 			))}
 		</div>
 	),

@@ -1,7 +1,7 @@
-import { lazy, Suspense } from "react";
-import { useMarkSpin } from "./use-mark-spin";
-import type { ModelMarkProps } from "./model-mark.types";
 import type { ReactElement } from "react";
+import { lazy, Suspense } from "react";
+import type { ModelMarkProps } from "./model-mark.types";
+import { useMarkSpin } from "./use-mark-spin";
 
 /**
  * A model at icon size: turning, uninteractive, and layered over a real icon.

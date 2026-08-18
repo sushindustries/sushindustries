@@ -6,12 +6,12 @@
  * splitting the elements were separated for.
  */
 
-export { ModelMark, default } from "./model-mark";
-export type { ModelMarkProps } from "./model-mark.types";
-export { useMarkSpin, type MarkSpin } from "./use-mark-spin";
 export {
 	applyMotion,
 	MARK_MOTIONS,
 	type MarkMotion,
 	type MarkMotionFn,
 } from "./mark-motions";
+export { default, ModelMark } from "./model-mark";
+export type { ModelMarkProps } from "./model-mark.types";
+export { type MarkSpin, useMarkSpin } from "./use-mark-spin";
