@@ -3,7 +3,7 @@ import { REGISTRY_CATEGORIES } from "@sushindustries/ui/registry";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import * as z from "zod";
-import { pageTitle } from "../../modules/content/site.catalogue";
+import { pageTitle, SITE } from "../../modules/content/site.catalogue";
 import { listRegistry } from "../../modules/registry/registry.catalogue";
 import { hasDemo } from "../../modules/showcase/demo-sources";
 
@@ -76,7 +76,7 @@ function ComponentsPage(): ReactNode {
 			<div className="mt-6 max-w-prose">
 				<p className="label m-0">Add the registry once</p>
 				<code className="code mt-3">
-					export CTA_REGISTRY=https://sushindustries.com/r/registry.json
+					{`export CTA_REGISTRY=${SITE.url}/r/registry.json`}
 				</code>
 			</div>
 

@@ -45,7 +45,7 @@ function PackagePage(): ReactNode {
 	return (
 		<article className="container" style={{ paddingBlock: "var(--s-8)" }}>
 			<Breadcrumb
-				origin="https://sushindustries.com"
+				origin={SITE.url}
 				items={[
 					{ label: SITE.name, href: "/" },
 					{ label: "Packages", href: "/packages" },
@@ -68,7 +68,7 @@ function PackagePage(): ReactNode {
 					title={entry.name}
 					markdown={entry.readme}
 					markdownUrl={`/r/md/packages/${entry.slug}`}
-					promptUrl={`https://sushindustries.com/r/prompt/packages/${entry.slug}`}
+					promptUrl={`${SITE.url}/r/prompt/packages/${entry.slug}`}
 					editPath={`packages/${entry.slug}/README.md`}
 				/>
 			</header>

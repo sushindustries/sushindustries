@@ -14,7 +14,7 @@ Every component page carries the exact command for that component. It fetches
 the source from this site and writes it into your project:
 
 ```bash
-npx shadcn@latest add https://sushindustries.com/r/button
+npx shadcn@latest add https://www.adamjurek.com/r/button
 ```
 
 Nothing is added to your dependency list by that command. What lands is the

@@ -1,5 +1,6 @@
 import { REGISTRY_ITEMS } from "@sushindustries/ui/registry";
 import { beforeAll, describe, expect, inject, test } from "vitest";
+import { SITE } from "../src/modules/content/site.catalogue";
 
 /*
  * The entity graph, and the guardrails it ships with.
@@ -46,8 +47,7 @@ describe("the site graph", () => {
 		const ids = new Set(graph.nodes.map((node) => node.id));
 
 		const missing = REGISTRY_ITEMS.filter(
-			(item) =>
-				!ids.has(`https://sushindustries.com/components/${item.name}#entity`),
+			(item) => !ids.has(`${SITE.url}/components/${item.name}#entity`),
 		).map((item) => item.name);
 
 		expect(missing).toStrictEqual([]);
@@ -57,9 +57,7 @@ describe("the site graph", () => {
 		const byId = new Map(graph.nodes.map((node) => [node.id, node]));
 
 		const wrong = REGISTRY_ITEMS.filter((item) => {
-			const node = byId.get(
-				`https://sushindustries.com/components/${item.name}#entity`,
-			);
+			const node = byId.get(`${SITE.url}/components/${item.name}#entity`);
 			return node?.type !== item.schema;
 		}).map((item) => `${item.name}: expected ${item.schema}`);
 
@@ -78,14 +76,14 @@ describe("the site graph", () => {
 
 		expect(archive).toBeDefined();
 		expect(archive?.edges.map((edge) => edge.to)).toContain(
-			"https://sushindustries.com/components/card#entity",
+			`${SITE.url}/components/card#entity`,
 		);
 	});
 });
 
 describe("querying it", () => {
 	test("returns one node with both directions of its edges", async () => {
-		const id = "https://sushindustries.com/components/card#entity";
+		const id = `${SITE.url}/components/card#entity`;
 		const response = await fetch(
 			`${base}/r/graph.json?node=${encodeURIComponent(id)}`,
 		);

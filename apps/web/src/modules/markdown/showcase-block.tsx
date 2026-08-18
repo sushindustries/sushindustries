@@ -4,6 +4,7 @@ import {
 	Showcase,
 } from "@sushindustries/ui";
 import type { ReactNode } from "react";
+import { SITE } from "../content/site.catalogue";
 import { findRegistryItem } from "../registry/registry.catalogue";
 import { findDemoSource } from "../showcase/demo-sources";
 import { StackblitzEmbed } from "../showcase/stackblitz-embed";
@@ -53,8 +54,8 @@ export function ShowcaseBlock({ attributes }: MarkdownBlockProps): ReactNode {
 			install={
 				item
 					? {
-							tanstack: `tanstack add https://sushindustries.com/r/tanstack/${item.name}.json`,
-							shadcn: `pnpm dlx shadcn@latest add https://sushindustries.com/r/shadcn/${item.name}.json`,
+							tanstack: `tanstack add ${SITE.url}/r/tanstack/${item.name}.json`,
+							shadcn: `pnpm dlx shadcn@latest add ${SITE.url}/r/shadcn/${item.name}.json`,
 						}
 					: undefined
 			}

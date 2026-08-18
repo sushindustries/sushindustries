@@ -38,13 +38,13 @@ Documentation here shows the component running, not a screenshot of it:
 ### TanStack
 
 ```shell
-tanstack add https://sushindustries.com/r/tanstack/card.json
+tanstack add https://www.adamjurek.com/r/tanstack/card.json
 ```
 
 ### shadcn
 
 ```shell
-pnpm dlx shadcn@latest add https://sushindustries.com/r/shadcn/card.json
+pnpm dlx shadcn@latest add https://www.adamjurek.com/r/shadcn/card.json
 ```
 
 <!-- ::end:tabs -->

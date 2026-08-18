@@ -130,7 +130,7 @@ function ComponentDocPage(): ReactNode {
 			<header className="doc-header">
 				<div className="container">
 					<Breadcrumb
-						origin="https://sushindustries.com"
+						origin={SITE.url}
 						items={[
 							{ label: SITE.name, href: "/" },
 							{ label: "Components", href: "/components" },
@@ -168,7 +168,7 @@ function ComponentDocPage(): ReactNode {
 						updated={doc.generated ? undefined : doc.updated}
 						markdown={doc.sections.map((section) => section.body).join("\n\n")}
 						markdownUrl={`/r/md/${doc.slug}`}
-						promptUrl={`https://sushindustries.com/r/prompt/${doc.slug}`}
+						promptUrl={`${SITE.url}/r/prompt/${doc.slug}`}
 						editPath={
 							doc.generated
 								? undefined

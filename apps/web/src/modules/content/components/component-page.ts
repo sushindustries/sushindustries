@@ -3,6 +3,7 @@ import {
 	findRegistryItem,
 	listRegistry,
 } from "../../registry/registry.catalogue";
+import { SITE } from "../site.catalogue";
 import {
 	type ComponentDoc,
 	findComponentDoc,
@@ -92,16 +93,14 @@ function generateSpec(item: RegistryItem): string {
 	lines.push("### TanStack");
 	lines.push("");
 	lines.push("```shell");
-	lines.push(
-		`tanstack add https://sushindustries.com/r/tanstack/${item.name}.json`,
-	);
+	lines.push(`tanstack add ${SITE.url}/r/tanstack/${item.name}.json`);
 	lines.push("```");
 	lines.push("");
 	lines.push("### shadcn");
 	lines.push("");
 	lines.push("```shell");
 	lines.push(
-		`pnpm dlx shadcn@latest add https://sushindustries.com/r/shadcn/${item.name}.json`,
+		`pnpm dlx shadcn@latest add ${SITE.url}/r/shadcn/${item.name}.json`,
 	);
 	lines.push("```");
 	lines.push("");

@@ -49,7 +49,7 @@ function BuiltPageView(): ReactNode {
 			 */}
 			<div className="max-w-prose">
 				<Breadcrumb
-					origin="https://sushindustries.com"
+					origin={SITE.url}
 					items={[{ label: SITE.name, href: "/" }, { label: page.title }]}
 				/>
 

@@ -1020,6 +1020,38 @@ function checkDocSectionsAreReal() {
 }
 
 /**
+ * The site's own address is written once.
+ *
+ * `SITE.url` exists and eleven files ignored it, hardcoding the origin into
+ * install commands, breadcrumb JSON-LD and prompt URLs. Moving the site to
+ * `adamjurek.com` meant finding all eleven, and the ones in Markdown could not
+ * be found by the type checker at all.
+ *
+ * Markdown is exempt: a content file cannot import a constant, so the literal
+ * is the only thing it can carry. Everything that compiles has no excuse.
+ */
+function checkOriginIsWrittenOnce() {
+	const home = "apps/web/src/modules/content/site.catalogue.ts";
+
+	for (const path of trackedFiles()) {
+		if (path === home) continue;
+		if (!/^apps\/web\/(src|tests)\/.*\.tsx?$/.test(path)) continue;
+
+		const found = read(path).match(
+			/https:\/\/[a-z0-9.-]*(?:adamjurek|sushindustries)\.com/,
+		);
+		if (!found) continue;
+
+		report(
+			"origin",
+			path,
+			`hardcodes ${found[0]} instead of reading it from SITE`,
+			"import { SITE } from the site catalogue and interpolate SITE.url",
+		);
+	}
+}
+
+/**
  * Every API tab matches the source it documents.
  *
  * The Props table is generated - names, types, defaults and the JSDoc line all
@@ -2351,6 +2383,8 @@ checkSkills();
 checkDocSectionsAreReal();
 checkDocsAreAddressable();
 checkDeskLabelsFit();
+checkOriginIsWrittenOnce();
+checkDocsFollowTheContract();
 await checkApiDocsMatchSource(registry);
 checkDocsHaveSummaries(registry);
 checkRegistryItemsAreAddressable(registry);

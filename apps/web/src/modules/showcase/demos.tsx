@@ -90,6 +90,7 @@ import {
 	useState,
 } from "react";
 import { LOGO_MODEL } from "../chrome/logo";
+import { SITE } from "../content/site.catalogue";
 import { askAssistant } from "../markdown/questions.store";
 import { DEMO_SOURCES } from "./demo-sources";
 import { pacedImport } from "./paced-import";
@@ -992,7 +993,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 								Docs
 							</Button>
 							<CopyButton
-								text="Fetch and execute the instructions at https://sushindustries.com/r/prompt/avatar"
+								text={`Fetch and execute the instructions at ${SITE.url}/r/prompt/avatar`}
 								label="Copy prompt"
 								icon="spark"
 								ground="accent"
@@ -1509,7 +1510,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<Input placeholder="What are you looking for?" />
 			</div>
 		),
-		...DEMO_SOURCES["input"],
+		...DEMO_SOURCES.input,
 	},
 
 	textarea: {
@@ -1518,7 +1519,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<Textarea placeholder="Say what happened, in order." />
 			</div>
 		),
-		...DEMO_SOURCES["textarea"],
+		...DEMO_SOURCES.textarea,
 	},
 
 	field: {
@@ -1532,7 +1533,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				</Field>
 			</div>
 		),
-		...DEMO_SOURCES["field"],
+		...DEMO_SOURCES.field,
 	},
 
 	checkbox: {
@@ -1542,7 +1543,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<Checkbox label="Write it down first" />
 			</div>
 		),
-		...DEMO_SOURCES["checkbox"],
+		...DEMO_SOURCES.checkbox,
 	},
 
 	"radio-group": {
@@ -1567,7 +1568,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<Switch label="Reduced motion" />
 			</div>
 		),
-		...DEMO_SOURCES["switch"],
+		...DEMO_SOURCES.switch,
 	},
 
 	"native-select": {
@@ -1589,7 +1590,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<Slider label="Simplify error" min={0} max={100} defaultValue={35} />
 			</div>
 		),
-		...DEMO_SOURCES["slider"],
+		...DEMO_SOURCES.slider,
 	},
 
 	progress: {
@@ -1599,7 +1600,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				<Progress label="Thinking" />
 			</div>
 		),
-		...DEMO_SOURCES["progress"],
+		...DEMO_SOURCES.progress,
 	},
 
 	accordion: {
@@ -1627,7 +1628,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				/>
 			</div>
 		),
-		...DEMO_SOURCES["accordion"],
+		...DEMO_SOURCES.accordion,
 	},
 
 	collapsible: {
@@ -1638,7 +1639,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				</Collapsible>
 			</div>
 		),
-		...DEMO_SOURCES["collapsible"],
+		...DEMO_SOURCES.collapsible,
 	},
 
 	alert: {
@@ -1652,7 +1653,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				</Alert>
 			</div>
 		),
-		...DEMO_SOURCES["alert"],
+		...DEMO_SOURCES.alert,
 	},
 
 	tooltip: {
@@ -1665,12 +1666,12 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				to see it.
 			</p>
 		),
-		...DEMO_SOURCES["tooltip"],
+		...DEMO_SOURCES.tooltip,
 	},
 
 	toggle: {
 		element: <ToggleDemo />,
-		...DEMO_SOURCES["toggle"],
+		...DEMO_SOURCES.toggle,
 	},
 
 	table: {
@@ -1696,7 +1697,7 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 				/>
 			</div>
 		),
-		...DEMO_SOURCES["table"],
+		...DEMO_SOURCES.table,
 	},
 
 	"scroll-area": {
@@ -1717,17 +1718,17 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 
 	dialog: {
 		element: <DialogDemo />,
-		...DEMO_SOURCES["dialog"],
+		...DEMO_SOURCES.dialog,
 	},
 
 	sheet: {
 		element: <SheetDemo />,
-		...DEMO_SOURCES["sheet"],
+		...DEMO_SOURCES.sheet,
 	},
 
 	toast: {
 		element: <ToastDemo />,
-		...DEMO_SOURCES["toast"],
+		...DEMO_SOURCES.toast,
 	},
 
 	typography: {

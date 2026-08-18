@@ -13,7 +13,7 @@ rendered from the same catalogues.
 ## The front door
 
 ```shell
-curl https://sushindustries.com/api/v1
+curl https://www.adamjurek.com/api/v1
 ```
 
 Returns the endpoint list with descriptions - the API documents itself before
@@ -25,20 +25,20 @@ Every registry item, with its version, kind, category, tags, files and
 dependencies:
 
 ```shell
-curl https://sushindustries.com/api/v1/components
+curl https://www.adamjurek.com/api/v1/components
 ```
 
 One item, with every address it answers at - page, Markdown, agent prompt and
 both installers:
 
 ```shell
-curl https://sushindustries.com/api/v1/components/code-block
+curl https://www.adamjurek.com/api/v1/components/code-block
 ```
 
 ## Packages
 
 ```shell
-curl https://sushindustries.com/api/v1/packages
+curl https://www.adamjurek.com/api/v1/packages
 ```
 
 ## Ground rules
