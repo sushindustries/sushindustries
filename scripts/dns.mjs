@@ -234,8 +234,9 @@ for (const [id, value] of settings) {
  *
  * `.glb` is absent too, and that one is a mistake in this site's favour to fix:
  * the mark is 1.4 MB, it is on the front page, and it is the single largest
- * thing anybody downloads. Uncached it crosses the Atlantic from `sfo` on every
- * first visit.
+ * thing anybody downloads. Railway's own CDN caches it at their edge now, so
+ * this rule matters only while Cloudflare's proxy is in front - but while it
+ * is, a copy at Cloudflare's edge is one fewer hop for the biggest file.
  *
  * A month is safe because the file is immutable in practice - a changed model
  * ships under a changed name.
