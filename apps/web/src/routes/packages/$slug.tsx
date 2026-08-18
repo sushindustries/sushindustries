@@ -16,6 +16,7 @@ import {
 	packageApplication,
 } from "../../modules/content/structured-data";
 import { BLOCKS } from "../../modules/markdown/blocks";
+import { countPackageView } from "../../modules/stats/stats.functions";
 
 /*
  * Kept as a flat route file rather than a `$slug/` directory. Converting a
@@ -24,11 +25,15 @@ import { BLOCKS } from "../../modules/markdown/blocks";
  */
 export const Route = createFileRoute("/packages/$slug")({
 	component: PackagePage,
-	loader: ({ params }) => {
+	loader: async ({ params }) => {
 		const entry = findPackage(params.slug);
 		if (!entry) throw notFound();
 
-		return { entry, headings: collectHeadings(entry.body) };
+		// Counted in the loader so a client-side navigation counts too, and
+		// awaited because the incremented total is the number shown.
+		const views = await countPackageView({ data: params.slug });
+
+		return { entry, headings: collectHeadings(entry.body), views };
 	},
 	head: ({ loaderData }) => ({
 		meta: [
@@ -40,7 +45,7 @@ export const Route = createFileRoute("/packages/$slug")({
 });
 
 function PackagePage(): ReactNode {
-	const { entry, headings } = Route.useLoaderData();
+	const { entry, headings, views } = Route.useLoaderData();
 
 	return (
 		<article className="container" style={{ paddingBlock: "var(--s-8)" }}>
@@ -57,6 +62,7 @@ function PackagePage(): ReactNode {
 				<div className="flex items-center gap-3 wrap">
 					<h1 className="h2 m-0">{entry.name}</h1>
 					<span className="label">{entry.version}</span>
+					{views ? <span className="label">{views} views</span> : null}
 				</div>
 				<p className="mt-3 fg-dim max-w-prose text-pretty">
 					{entry.description}
