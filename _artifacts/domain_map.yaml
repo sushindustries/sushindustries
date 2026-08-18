@@ -1,0 +1,79 @@
+# Domain map for the sushindustries monorepo's Agent Skills.
+#
+# Read by `intent stale` at the repo root: the skills list ties each shipped
+# SKILL.md to the workspace package it covers, and coverage.ignored_packages
+# records the public packages deliberately out of scope.
+library:
+  name: sushindustries
+  version: '0.1.0'
+
+domains:
+  - name: styling
+    packages: ['@sushindustries/atoms']
+    summary: Atomic CSS vocabulary and the token scale everything styles with.
+  - name: components
+    packages: ['@sushindustries/ui']
+    summary: The installable component library the site is made of.
+  - name: data
+    packages: ['@sushindustries/db']
+    summary: Drizzle schema/client split and the server-only connection rule.
+  - name: assistant
+    packages: ['@sushindustries/assistant']
+    summary: Props-in chat panel with no owned transport.
+  - name: three-d
+    packages:
+      - '@sushindustries/product-viewer'
+      - '@sushindustries/react-product-viewer'
+    summary: GLB loading, material variants, and the React viewer on top.
+
+skills:
+  - name: core
+    slug: '@sushindustries/atoms#core'
+    path: packages/atoms/skills/core/SKILL.md
+    package: packages/atoms
+    packages: ['@sushindustries/atoms']
+    sources:
+      - 'sushindustries/sushindustries:packages/atoms/README.md'
+  - name: core
+    slug: '@sushindustries/ui#core'
+    path: packages/ui/skills/core/SKILL.md
+    package: packages/ui
+    packages: ['@sushindustries/ui']
+    sources:
+      - 'sushindustries/sushindustries:packages/ui/README.md'
+      - 'sushindustries/sushindustries:.claude/skills/sushindustries-conventions/SKILL.md'
+  - name: core
+    slug: '@sushindustries/db#core'
+    path: packages/db/skills/core/SKILL.md
+    package: packages/db
+    packages: ['@sushindustries/db']
+    sources:
+      - 'sushindustries/sushindustries:packages/db/README.md'
+  - name: core
+    slug: '@sushindustries/assistant#core'
+    path: packages/assistant/skills/core/SKILL.md
+    package: packages/assistant
+    packages: ['@sushindustries/assistant']
+    sources:
+      - 'sushindustries/sushindustries:packages/assistant/README.md'
+      - 'sushindustries/sushindustries:packages/assistant/persona.md'
+  - name: core
+    slug: '@sushindustries/product-viewer#core'
+    path: packages/product-viewer/skills/core/SKILL.md
+    package: packages/product-viewer
+    packages: ['@sushindustries/product-viewer']
+    sources:
+      - 'sushindustries/sushindustries:packages/product-viewer/README.md'
+  - name: core
+    slug: '@sushindustries/react-product-viewer#core'
+    path: packages/react-product-viewer/skills/core/SKILL.md
+    package: packages/react-product-viewer
+    packages: ['@sushindustries/react-product-viewer']
+    sources:
+      - 'sushindustries/sushindustries:packages/react-product-viewer/README.md'
+      - 'sushindustries/sushindustries:packages/react-product-viewer/docs/model-mark/index.md'
+
+coverage:
+  ignored_packages:
+    - name: '@sushindustries/llms'
+      reason: llms.txt/robots/sitemap text generators; no agent-facing API surface worth a skill yet

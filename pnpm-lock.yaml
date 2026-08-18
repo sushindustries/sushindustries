@@ -23,6 +23,9 @@ importers:
       '@tanstack/cli':
         specifier: 0.70.2
         version: 0.70.2
+      '@tanstack/intent':
+        specifier: 0.3.6
+        version: 0.3.6
       '@types/node':
         specifier: 26.2.0
         version: 26.2.0
@@ -238,6 +241,9 @@ importers:
 
   packages/product-viewer:
     devDependencies:
+      '@tanstack/intent':
+        specifier: 0.3.6
+        version: 0.3.6
       '@types/three':
         specifier: 0.185.4
         version: 0.185.4

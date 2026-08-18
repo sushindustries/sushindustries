@@ -61,6 +61,7 @@
 		}
 	},
 	"devDependencies": {
+		"@tanstack/intent": "0.3.6",
 		"@types/three": "0.185.4",
 		"three": "0.185.1",
 		"three-custom-shader-material": "6.4.0",

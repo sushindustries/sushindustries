@@ -27,11 +27,24 @@
 		"@arethetypeswrong/core": "^0.18.5",
 		"@biomejs/biome": "2.5.8",
 		"@tanstack/cli": "0.70.2",
+		"@tanstack/intent": "0.3.6",
 		"@types/node": "26.2.0",
 		"publint": "^0.3.23",
 		"tsdown": "0.22.14",
 		"turbo": "2.10.10",
 		"typescript": "5.9.3"
 	},
-	"packageManager": "pnpm@11.21.0"
+	"packageManager": "pnpm@11.21.0",
+	"intent": {
+		"skills": [
+			"workspace:@sushindustries/*",
+			"@tanstack/*"
+		],
+		"exclude": [
+			"@tanstack/*devtools*",
+			"get-tsconfig",
+			"@tanstack/virtual-file-routes",
+			"@tanstack/router-plugin"
+		]
+	}
 }
