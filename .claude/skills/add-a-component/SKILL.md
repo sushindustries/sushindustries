@@ -218,7 +218,7 @@ in a client bundle.
 pnpm check     # doctor, biome, typecheck, build - the same order the hook runs
 ```
 
-This is what `.githooks/pre-push` runs, so a push either passes it or you chose
+This is what `.husky/pre-push` runs, so a push either passes it or you chose
 `--no-verify`. Cheapest first: the doctor reads the directory, biome reads the
 files, the build is last.
 

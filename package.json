@@ -18,7 +18,7 @@
 		"shots": "node scripts/shots.mjs",
 		"fix": "node scripts/doctor.mjs --fix && pnpm exec biome check --write .",
 		"new": "node scripts/new.mjs",
-		"prepare": "git config core.hooksPath .githooks || true",
+		"prepare": "husky || true",
 		"start": "pnpm --filter @sushindustries/web start",
 		"test": "turbo run test",
 		"typecheck": "turbo run typecheck"
@@ -29,6 +29,7 @@
 		"@tanstack/cli": "0.70.2",
 		"@tanstack/intent": "0.3.6",
 		"@types/node": "26.2.0",
+		"husky": "^9.1.7",
 		"publint": "^0.3.23",
 		"tsdown": "0.22.14",
 		"turbo": "2.10.10",

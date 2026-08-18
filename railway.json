@@ -7,7 +7,7 @@
 			"**",
 			"!.github/**",
 			"!.claude/**",
-			"!.githooks/**",
+			"!.husky/**",
 			"!templates/**",
 			"!scripts/**",
 			"!CLAUDE.md",

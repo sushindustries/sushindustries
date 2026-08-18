@@ -28,11 +28,10 @@ registry by category, and every check with its own first sentence. Read it
 before changing structure: it is current by construction, because it reads
 the same sources the checks read.
 
-`pnpm check` is what `.githooks/pre-push` runs. The hook installs itself: the
-root `prepare` script sets `core.hooksPath` to `.githooks`, so a clone gets it
-from `pnpm install` with no husky and no dependency. It can be bypassed with
-`git push --no-verify`, because a hook you cannot bypass is a hook people
-delete.
+`pnpm check` is what `.husky/pre-push` runs. The hook installs itself: the
+root `prepare` script runs `husky`, so a clone gets it from `pnpm install`.
+It can be bypassed with `git push --no-verify`, because a hook you cannot
+bypass is a hook people delete.
 
 ## Where the checking happens, and why there
 
