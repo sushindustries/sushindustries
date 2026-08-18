@@ -16,8 +16,26 @@ jobs:
   check:
     name: Lint, types, build
     runs-on: ubuntu-latest
+
+    # On a PR, turbo runs only the packages the diff can have affected; a push
+    # to main always runs everything, because main is what deploys.
+    env:
+      TURBO_FLAGS: ${{ github.event_name == 'pull_request' && '--affected' || '' }}
+
+    # Read by the image job: on a PR, the image is only rebuilt when the app it
+    # packages is affected or the Docker plumbing itself changed. A push to
+    # main ignores this and always builds.
+    outputs:
+      image: ${{ steps.image.outputs.needed }}
+
     steps:
+      # Full history, no blobs. `--affected` and `turbo query affected` need
+      # the merge base to exist in the checkout - a shallow clone makes every
+      # package look changed - and blob filtering keeps the full fetch cheap.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
 
       - uses: pnpm/action-setup@v4
 
@@ -40,6 +58,25 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # Whether the Docker job downstream has anything to verify. Two halves:
+      # `turbo query affected` answers "did the app the image packages change,
+      # counting its dependency graph" straight from the docs' skipping-tasks
+      # pattern (exit 1 = affected, 0 = not, 2 = error - errors build the
+      # image rather than skip it); the git diff answers for the files turbo
+      # does not track as package inputs, which is the Docker plumbing itself.
+      - name: Does the image need building
+        id: image
+        if: github.event_name == 'pull_request'
+        run: |
+          needed=false
+          if ! pnpm exec turbo query affected --packages @sushindustries/web --exit-code > /dev/null; then
+            needed=true
+          fi
+          if ! git diff --quiet "origin/$GITHUB_BASE_REF"...HEAD -- Dockerfile .dockerignore railway.json; then
+            needed=true
+          fi
+          echo "needed=$needed" >> "$GITHUB_OUTPUT"
+
       # Cheapest first. This reads the directory and nothing else, so a missing
       # Dockerfile line or a doc with no frontmatter fails in seconds rather
       # than after a build.
@@ -56,10 +93,10 @@ jobs:
       # `typecheck` depends on `build` in turbo.json, so this produces the
       # generated route tree and the build below is a cache hit.
       - name: Types
-        run: pnpm run typecheck
+        run: pnpm run typecheck $TURBO_FLAGS
 
       - name: Build
-        run: pnpm run build
+        run: pnpm run build $TURBO_FLAGS
 
       # The browser the layout tests measure in. Cached on the lockfile, since
       # the Playwright version is what decides which build gets downloaded.
@@ -76,7 +113,7 @@ jobs:
       # widths. Locally a machine without the browser skips the geometry half;
       # here nothing skips.
       - name: Pages
-        run: pnpm run test
+        run: pnpm run test $TURBO_FLAGS
 
       # `exports`, `main` and `module` are written by tsdown from the chunks it
       # actually emitted, so a manifest and its build cannot disagree here the
@@ -98,8 +135,10 @@ jobs:
     # These two used to run in parallel, which meant a typo in a type annotation
     # still paid for a full multi-stage image build every time. The image job is
     # the expensive one; it should only ever run on a commit that has already
-    # earned it.
+    # earned it - and on a PR, only when what it verifies could have changed:
+    # the app it packages (per `turbo query affected`) or the Docker plumbing.
     needs: check
+    if: github.event_name != 'pull_request' || needs.check.outputs.image == 'true'
 
     steps:
       - uses: actions/checkout@v4
