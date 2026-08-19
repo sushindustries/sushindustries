@@ -233,4 +233,86 @@ describe.runIf(browser !== null)("every page, measured", () => {
 		expect(sizes.h2).toBeGreaterThanOrEqual(sizes.body);
 		expect(sizes.body).toBeGreaterThanOrEqual(14);
 	});
+
+	/*
+	 * A chart that renders is not a chart that is readable.
+	 *
+	 * Bars stacked on each other, labels over bars, a scale that puts every
+	 * value at zero - all three produce a valid SVG, a 200, and markup that
+	 * every other test in this repository is happy with. Geometry is the only
+	 * thing that can tell them apart, which is why this one measures boxes
+	 * rather than reading the document.
+	 *
+	 * JavaScript is off, like the rest of this suite, so this also asserts the
+	 * chart is server-rendered: a bar that only exists after hydration is a
+	 * blank rectangle on first paint.
+	 */
+	test("the chart draws bars that do not sit on each other", async () => {
+		const context = await contextAt(DESKTOP);
+		const page = await context.newPage();
+		await page.goto(`${base}/preview/bar-chart`, { waitUntil: "load" });
+
+		const drawn = await page.evaluate(() => {
+			const chart = document.querySelector(".chart svg");
+			if (!chart) return null;
+
+			const box = (node: Element) => {
+				const { x, y, width, height } = node.getBoundingClientRect();
+				return { x, y, width, height };
+			};
+
+			const frame = box(chart);
+
+			return {
+				frame,
+				/*
+				 * Rects with a real area, minus the ones that are the plot itself.
+				 * A chart's background and its clip paths are rects too, and both
+				 * legitimately contain every bar - comparing against them would
+				 * report a collision for each one.
+				 */
+				bars: [...chart.querySelectorAll("rect")]
+					.map(box)
+					.filter((one) => one.width > 1 && one.height > 1)
+					.filter(
+						(one) =>
+							one.width < frame.width * 0.98 ||
+							one.height < frame.height * 0.98,
+					),
+				labels: [...chart.querySelectorAll("text")].map(box),
+			};
+		});
+		await context.close();
+
+		expect(drawn).not.toBeNull();
+		if (!drawn) return;
+
+		// One bar per datum in the demo, and the axis is labelled.
+		expect(drawn.bars.length).toBeGreaterThan(1);
+		expect(drawn.labels.length).toBeGreaterThan(0);
+
+		/* Overlap on both axes. A shared edge is not an overlap. */
+		const hits = (a: (typeof drawn.bars)[number], b: typeof a) =>
+			a.x < b.x + b.width - 0.5 &&
+			b.x < a.x + a.width - 0.5 &&
+			a.y < b.y + b.height - 0.5 &&
+			b.y < a.y + a.height - 0.5;
+
+		for (let a = 0; a < drawn.bars.length; a++) {
+			for (let b = a + 1; b < drawn.bars.length; b++) {
+				expect(
+					hits(drawn.bars[a], drawn.bars[b]),
+					`bars ${a} and ${b} overlap`,
+				).toBe(false);
+			}
+		}
+
+		/*
+		 * Different lengths, which is the assertion that catches a broken
+		 * scale. Five bars that do not overlap and are all identical is a chart
+		 * drawing its data as a constant, and it looks entirely fine.
+		 */
+		const lengths = new Set(drawn.bars.map((one) => Math.round(one.width)));
+		expect(lengths.size).toBeGreaterThan(1);
+	});
 });

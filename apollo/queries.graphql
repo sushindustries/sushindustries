@@ -320,3 +320,78 @@ extend type Query {
 	"""
 	collection(id: String!): Collection
 }
+
+# ── sharding ─────────────────────────────────────────────────────────────
+#
+# How the mirrored documentation is cut up, and the rules it is cut by.
+#
+# Worth asking about rather than an implementation detail: a client deciding
+# whether to fetch a provider's index needs to know it arrives as eleven files
+# of five hundred entries rather than one of five and a half thousand. The
+# sharding is the difference between a lookup and a download.
+#
+# The rules, stated once here because three things implement them - the `refs`
+# command that writes the shards, the MCP server that reads them, and this:
+#
+#   1. One shard per section, because a section is how the publisher already
+#      divided their own documentation, and a division somebody chose beats
+#      one computed from a byte count.
+#   2. A section over the limit splits into numbered parts. The limit is a cap
+#      on how much has to be read to answer one question, not a target.
+#   3. A shard holds links, titles, section names and each provider's own
+#      one-line descriptions. Never page content - that boundary is what makes
+#      mirroring thirty-five projects' indexes safe to store and to share.
+
+"One provider, and how its index is divided."
+type ShardedProvider {
+	provider: String!
+	title: String
+
+	"The published index this was cut from."
+	source: String!
+
+	"What in this repository it is kept for."
+	usedFor: String
+
+	"Sections the publisher divided their own documentation into."
+	sections: Int!
+
+	"Files it is stored as. More than `sections` when a section exceeded the limit."
+	shards: Int!
+
+	entries: Int!
+}
+
+"How the reference indexes are sharded, and by what rule."
+type Sharding {
+	"""
+	Entries per shard before a section is split.
+
+	A cap on how much has to be read to answer one question, not a target - most
+	shards are far under it, because a section is the unit and sections are
+	whatever size the publisher made them.
+	"""
+	limit: Int!
+
+	"""
+	Providers that produced at least one shard.
+
+	Lower than `providers` on Query, deliberately, and the difference is a
+	finding rather than a bug: a provider whose llms.txt fetched cleanly and
+	listed nothing is a provider whose index is broken at their end. Two of
+	them today. They appear in `providers` because they were fetched, and not
+	here because there is nothing to shard.
+	"""
+	providers: Int!
+
+	shards: Int!
+	entries: Int!
+
+	"Largest first, which is where the sharding is doing any work at all."
+	byProvider: [ShardedProvider!]!
+}
+
+extend type Query {
+	"How the mirrored documentation is divided, and the rule it is divided by."
+	sharding: Sharding!
+}

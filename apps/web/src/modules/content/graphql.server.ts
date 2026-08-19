@@ -345,6 +345,71 @@ export const resolvers = {
 			};
 		},
 
+		/*
+		 * Sharding, computed rather than read from the manifest.
+		 *
+		 * `packages/cli/references/index.json` records the same thing and is not
+		 * the answer to use here: it describes the shards as they were *written*,
+		 * and this graph serves the rows as they were *synced*. Reading the
+		 * manifest would report a shard count for a provider whose entries never
+		 * made it into the database, which is the one disagreement worth being
+		 * unable to have.
+		 *
+		 * The rule is reimplemented in one line - `ceil(entries / limit)` per
+		 * section - and the limit is stated in the schema beside it. Three things
+		 * implement this rule; that they agree is checked by the numbers matching,
+		 * not by them sharing code, because the writer runs in the CLI and cannot
+		 * be imported here.
+		 */
+		async sharding() {
+			const SHARD_LIMIT = 500;
+
+			const rows = await db().execute<{
+				provider: string;
+				title: string | null;
+				source: string;
+				used_for: string | null;
+				sections: number;
+				shards: number;
+				entries: number;
+			}>(sql`
+				select
+					p.provider,
+					p.title,
+					p.source,
+					p.used_for,
+					count(*)::int as sections,
+					sum(ceil(s.entries::numeric / ${SHARD_LIMIT}))::int as shards,
+					sum(s.entries)::int as entries
+				from ${referenceProviders} p
+				join (
+					select provider, section, count(*)::int as entries
+					from ${referencePages}
+					group by provider, section
+				) s on s.provider = p.provider
+				group by p.provider, p.title, p.source, p.used_for
+				order by sum(s.entries) desc
+			`);
+
+			const byProvider = [...rows].map((row) => ({
+				provider: row.provider,
+				title: row.title,
+				source: row.source,
+				usedFor: row.used_for,
+				sections: row.sections,
+				shards: row.shards,
+				entries: row.entries,
+			}));
+
+			return {
+				limit: SHARD_LIMIT,
+				providers: byProvider.length,
+				shards: byProvider.reduce((sum, one) => sum + one.shards, 0),
+				entries: byProvider.reduce((sum, one) => sum + one.entries, 0),
+				byProvider,
+			};
+		},
+
 		async providers() {
 			return db()
 				.select()
