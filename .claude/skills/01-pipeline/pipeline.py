@@ -84,18 +84,13 @@ def run(command: list[str], root: Path) -> tuple[int, str]:
 
 
 def stage_01_intake(root: Path, slug: str) -> Result:
-    kind = intake.detect_kind(root, slug)
-    if kind is None:
+    traced = intake.trace(root, slug)
+    if not traced.exists:
         return Result(
             1, "intake", False, False, "add-a-component", [f"no such slug: {slug}"]
         )
-    links = intake.links_for(root, slug, kind)
-    missing = [
-        f"{link.name}: {link.action}"
-        for link in links
-        if link.required and not link.present
-    ]
-    return Result(1, "intake", not missing, False, "add-a-component", missing)
+    detail = [f"{link.name}: {link.action}" for link in traced.missing]
+    return Result(1, "intake", traced.passed, False, "add-a-component", detail)
 
 
 def stage_02_document(root: Path, slug: str) -> Result:
@@ -164,15 +159,13 @@ def stage_05_prune(root: Path, slug: str) -> Result:
     `simplify` is a judgement about whether a page has become a manual, and a
     number cannot make that call. Reporting the size is the honest half.
     """
-    kind = intake.detect_kind(root, slug)
-    if kind != "component":
+    traced = intake.trace(root, slug)
+    if traced.kind != "component":
         return Result(
             5, "prune", True, True, "simplify", ["only components carry docs tabs"]
         )
-    owner = intake.owner_package(root, slug)
-    package = owner[0] if owner else "ui"
-    home = root / f"packages/{package}/docs/{slug}/index.md"
-    if not home.is_file():
+    home = traced.docs_home(root)
+    if home is None:
         return Result(5, "prune", True, True, "simplify", ["no docs home to measure"])
     words = len(home.read_text(encoding="utf-8").split())
     over = words > 350
@@ -243,7 +236,7 @@ def main() -> int:
     options = parser.parse_args()
 
     root = intake.repo_root()
-    if intake.detect_kind(root, options.slug) is None:
+    if not intake.trace(root, options.slug).exists:
         print(f"\n  {options.slug}: nothing by that name exists yet.")
         print(f"  start it: pnpm new <post|page|component|package> {options.slug}\n")
         return 2
