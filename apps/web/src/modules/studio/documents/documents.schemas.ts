@@ -118,11 +118,17 @@ export interface DocumentDetail extends DocumentRow {
  * and four chances to forget the permission check. There is one write path
  * from the studio into this repository and this is its shape.
  *
- * Notice what is absent. There is no "write arbitrary file", and there must
- * not be: this feature owns the *structure* - what exists, what it is called,
- * where it sits - and a text box that writes any bytes to any path is a remote
- * shell with a nicer font. Editing prose is what an editor and a pull request
- * are for.
+ * `edit` is the one that writes bytes, and it is bounded rather than open.
+ * The path has to already be a document in the index, which means it is a file
+ * this repository put there and not an arbitrary destination - so the worst a
+ * caller can do is rewrite a document that already exists, which is what a
+ * pull request against it would also do. What it deliberately cannot do is
+ * create a file at a path of its choosing; that is `create`, and `create` only
+ * ever writes a template to a path a template decides.
+ *
+ * That boundary is the whole safety argument, and it is worth being precise
+ * about because the obvious version - a textarea posting to a path - is a
+ * remote shell with a nicer font.
  */
 export const documentAction = z.discriminatedUnion("action", [
 	/**
@@ -159,6 +165,28 @@ export const documentAction = z.discriminatedUnion("action", [
 		path: repoPath,
 		title: z.string().min(1).max(200).optional(),
 		summary: z.string().max(400).optional(),
+	}),
+
+	/**
+	 * The whole document, frontmatter included.
+	 *
+	 * Separate from `retitle` rather than a superset of it, and the difference
+	 * is what the diff looks like. `retitle` rewrites one line and leaves every
+	 * other byte alone, so a title change reviews as a title change; this
+	 * replaces the file, so it reviews as whatever was actually altered. Using
+	 * one action for both would make every title change look like a rewrite.
+	 *
+	 * `sha` is the version the editor started from. If the file has moved since
+	 * - a sync ran, somebody committed, another tab saved - the write is
+	 * refused rather than applied on top. That is the only protection an editor
+	 * over a git repository can offer, and without it the second save silently
+	 * discards the first.
+	 */
+	z.object({
+		action: z.literal("edit"),
+		path: repoPath,
+		body: z.string().max(500_000),
+		sha: z.string().optional(),
 	}),
 
 	/**

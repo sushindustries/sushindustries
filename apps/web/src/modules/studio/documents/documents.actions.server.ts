@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { SITE } from "../../content/site.catalogue";
 import type { WriteResult } from "../studio.schemas";
 import { type Writer, writerFor } from "../writers/writers.server";
@@ -5,7 +6,11 @@ import type {
 	DocumentAction,
 	DocumentActionRequest,
 } from "./documents.schemas";
-import { getDocumentsBySlug, getDocumentsLinkingTo } from "./documents.server";
+import {
+	getDocument as getDocumentByPath,
+	getDocumentsBySlug,
+	getDocumentsLinkingTo,
+} from "./documents.server";
 
 /*
  * The documents feature, writing.
@@ -69,6 +74,18 @@ const TEMPLATES = {
  * the honest path for the other two, and the plan says so.
  */
 const MOVABLE = new Set(["post", "page", "desk"]);
+
+/**
+ * The content hash, computed the same way `sync` computes the one it stores.
+ *
+ * Same algorithm, same encoding, so an editor holding a `sha` from the
+ * projection can compare it against a file on disk and get a meaningful
+ * answer. Two hashes of the same bytes that disagree because one of them
+ * hashed a trimmed string is the kind of bug that only shows up as a save
+ * being refused for no visible reason.
+ */
+const sha256 = (value: string) =>
+	createHash("sha256").update(value).digest("hex");
 
 /** `{token}` substitution, the same one `scripts/templates.mjs` uses. */
 const fill = (text: string, tokens: Record<string, string>) =>
@@ -288,6 +305,76 @@ async function planRetitle(
 	};
 }
 
+/**
+ * The whole document, replaced.
+ *
+ * Two guards, and both matter. The path has to be a document the projection
+ * knows about, so this cannot create a file somewhere of the caller's
+ * choosing - that is `create`, and `create` only writes templates to paths a
+ * template decides. And the `sha` the editor started from has to still be the
+ * `sha` on disk, so a save cannot land on top of a change nobody has seen.
+ *
+ * The sha check compares against the *file*, not against the projection. The
+ * projection is as old as the last sync and would happily agree with an editor
+ * that is also out of date, which is exactly the case the check exists for.
+ */
+async function planEdit(
+	writer: Writer,
+	action: Extract<DocumentAction, { action: "edit" }>,
+): Promise<Plan> {
+	const known = await getDocumentByPath(action.path);
+	if (!known) {
+		throw new Error(
+			`${action.path} is not a document in the index. Create it with \`create\` - this only rewrites what already exists.`,
+		);
+	}
+
+	const current = await writer.read(action.path);
+	if (current === null) {
+		throw new Error(
+			`${action.path} is in the index but not in the repository. Run \`pnpm sushindustries sync\` and try again.`,
+		);
+	}
+
+	if (action.sha && sha256(current) !== action.sha) {
+		throw new Error(
+			"That file has changed since this editor opened it. Reload before saving, or the change you cannot see is the one that disappears.",
+		);
+	}
+
+	if (current === action.body) {
+		return {
+			changes: [],
+			breaks: [],
+			writes: [],
+			deletes: [],
+			message: "Nothing to change - it already says that.",
+			commitMessage: "",
+		};
+	}
+
+	/*
+	 * How much moved, in lines. A byte count is a number nobody can picture,
+	 * and "changed 3 lines" against "changed 240" is the difference between a
+	 * typo fix and a rewrite - which is the thing worth knowing before pressing
+	 * apply.
+	 */
+	const before = current.split("\n");
+	const after = action.body.split("\n");
+	const touched =
+		Math.abs(before.length - after.length) +
+		before.filter((line, at) => at < after.length && line !== after[at]).length;
+
+	return {
+		changes: [{ path: action.path, effect: "changed" }],
+		breaks: [],
+		writes: [{ path: action.path, text: action.body }],
+		deletes: [],
+		message: `Rewrites ${action.path}. ${touched} line${touched === 1 ? "" : "s"} differ.`,
+		commitMessage: `docs: edit ${action.path}`,
+	};
+}
+
 async function planRemove(
 	_writer: Writer,
 	action: Extract<DocumentAction, { action: "remove" }>,
@@ -346,15 +433,32 @@ export async function runDocumentAction(
 		);
 	}
 
+	/*
+	 * A switch rather than a chain of ternaries.
+	 *
+	 * It was a chain, and the fifth action is what made it worth changing: at
+	 * four it is dense and at five it is a shape you have to count brackets to
+	 * read. A switch over the discriminant also narrows the union member by
+	 * member, so each planner receives its own action type without a cast -
+	 * which the chain achieved only because the last branch happened to be
+	 * whatever was left, and stopped being true the moment a case was added
+	 * before it.
+	 */
 	const action = request.action;
-	const plan =
-		action.action === "create"
-			? await planCreate(writer, action)
-			: action.action === "move"
-				? await planMove(writer, action)
-				: action.action === "retitle"
-					? await planRetitle(writer, action)
-					: await planRemove(writer, action);
+	const plan = await (async () => {
+		switch (action.action) {
+			case "create":
+				return planCreate(writer, action);
+			case "move":
+				return planMove(writer, action);
+			case "retitle":
+				return planRetitle(writer, action);
+			case "edit":
+				return planEdit(writer, action);
+			case "remove":
+				return planRemove(writer, action);
+		}
+	})();
 
 	if (!request.apply || plan.changes.length === 0) {
 		return {

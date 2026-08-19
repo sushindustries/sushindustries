@@ -14,7 +14,8 @@ import { getDocuments } from "../../../../modules/studio/documents/documents.ser
  *
  *   GET     the collection, filtered and paged
  *   POST    create one from a template
- *   PUT     change one - its title, its summary, or its slug
+ *   PUT     change what one is called - its title, its summary, its slug
+ *   PATCH   replace what one says - the whole file, against the sha you read
  *   DELETE  remove one
  *
  * The verb is not decoration. Everything under `/api/v1` before this was read
@@ -201,6 +202,41 @@ export const Route = createFileRoute("/api/v1/studio/documents")({
 							path: body.path,
 							title: body.title,
 							summary: body.summary,
+						},
+					},
+					wantsApply(request),
+				);
+			},
+
+			/*
+			 * PATCH replaces the document's text, and PUT does not.
+			 *
+			 * They are split by what they replace rather than by how much. PUT
+			 * sets named fields - a title, a summary, a slug - and is idempotent
+			 * on each; PATCH sends the whole file and carries the `sha` it started
+			 * from, so a second send of the same body against a moved file is
+			 * *refused* rather than repeated. That conditional refusal is the
+			 * behaviour, and it is not what PUT means.
+			 *
+			 * `sha` is optional and should not be. It is optional because a script
+			 * generating a file from scratch has no version to have started from,
+			 * and sending one it invented would be worse than sending none. Any
+			 * client that read the document first has one and should send it.
+			 */
+			PATCH: async ({ request }) => {
+				const refused = guard(request);
+				if (refused) return refused;
+
+				const body = await readBody(request);
+				if (!body) return json({ error: "Send JSON." }, { status: 400 });
+
+				return run(
+					{
+						action: {
+							action: "edit",
+							path: body.path,
+							body: body.body,
+							sha: body.sha,
 						},
 					},
 					wantsApply(request),

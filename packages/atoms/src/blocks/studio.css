@@ -118,6 +118,36 @@
 	}
 
 	/*
+	 * A sort control: a word that lights up when it is the one in force.
+	 *
+	 * `aria-pressed` carries the state rather than a class, so what a screen
+	 * reader is told and what is drawn are the same attribute - two of them is
+	 * how a control ends up visually right and silently wrong.
+	 */
+	.studio-sort {
+		padding: var(--s-1) var(--s-2);
+		border: 1px solid transparent;
+		border-radius: var(--r);
+		background: transparent;
+		font: inherit;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--fg-faint);
+		cursor: pointer;
+	}
+
+	.studio-sort:hover {
+		color: var(--fg-dim);
+		border-color: var(--line-soft);
+	}
+
+	.studio-sort[aria-pressed="true"] {
+		border-color: var(--line);
+		background: var(--bg-2);
+		color: var(--fg);
+	}
+
+	/*
 	 * The form beside the preview. Inset rather than raised: it is part of the
 	 * panel it sits in, and a card with its own shadow inside a workbench reads
 	 * as a second surface floating on the first.
@@ -127,6 +157,28 @@
 		border: 1px solid var(--line-soft);
 		border-radius: var(--r-card);
 		background: var(--bg-0);
+	}
+
+	/*
+	 * The editor: a textarea holding a whole Markdown file.
+	 *
+	 * Tall by default and resizable vertically only. Horizontal resize would
+	 * let it out of the pane it is in, and a textarea wider than its container
+	 * inside a workbench is the fastest way to give the whole page a sideways
+	 * scrollbar.
+	 *
+	 * `tab-size: 2` so indented code in a document lines up with how the site
+	 * renders it, rather than at the browser's default of eight.
+	 */
+	.studio-editor {
+		min-height: 24rem;
+		resize: vertical;
+		line-height: 1.6;
+		tab-size: 2;
+		white-space: pre;
+		/* Long lines scroll rather than wrapping: a wrapped Markdown table is
+		   unreadable, and wrapping is what a preview is for. */
+		overflow-x: auto;
 	}
 
 	/*

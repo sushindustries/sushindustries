@@ -62,6 +62,8 @@ export const Route = createFileRoute("/api/v1/studio/")({
 								GET: "The collection, filtered and paged. Query: kind, slug, section, search, sort, direction, limit, offset.",
 								POST: "Create one from a template. Body: { kind, slug, title? }.",
 								PUT: "Change one. Body: { path, title?, summary? } to retitle, or { kind, from, slug } to move.",
+								PATCH:
+									"Replace one document's whole text. Body: { path, body, sha? }. `sha` is the version you read; the write is refused if the file has moved since.",
 								DELETE:
 									"Remove one. Body: { kind, slug, confirm } - confirm must equal slug.",
 							},

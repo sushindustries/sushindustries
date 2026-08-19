@@ -1,7 +1,22 @@
 import { Field, Input, NativeSelect } from "@sushindustries/ui";
 import type { ReactNode } from "react";
 import type { DocumentRow, DocumentSort } from "./documents.schemas";
-import { DOCUMENT_SORTS } from "./documents.schemas";
+
+/**
+ * The columns worth offering in a sidebar, out of the six the API takes.
+ *
+ * `words` sorts almost identically to `tokens` and `syncedAt` is the same for
+ * every row until a partial sync happens - so both are controls that look like
+ * choices and change nothing. They stay in `DOCUMENT_SORTS` because the API is
+ * for callers who know what they want; this list is for the four that answer a
+ * question somebody actually has.
+ */
+const VISIBLE_SORTS: readonly DocumentSort[] = [
+	"path",
+	"title",
+	"kind",
+	"tokens",
+];
 
 /*
  * The aside: search, filters, and the list they produce.
@@ -95,25 +110,49 @@ export function DocumentsAside({
 				</NativeSelect>
 			</Field>
 
-			<Field label="Order">
-				<NativeSelect
-					value={`${sort}:${direction}`}
-					onChange={(event) => {
-						const [next, way] = event.target.value.split(":");
-						onSort(next as DocumentSort);
-						onDirection(way as "asc" | "desc");
-					}}
-				>
-					{DOCUMENT_SORTS.flatMap((one) => [
-						<option key={`${one}:asc`} value={`${one}:asc`}>
-							{one} ↑
-						</option>,
-						<option key={`${one}:desc`} value={`${one}:desc`}>
-							{one} ↓
-						</option>,
-					])}
-				</NativeSelect>
-			</Field>
+			{/*
+			 * Sorting as buttons, not as a select of twelve.
+			 *
+			 * Six columns times two directions is twelve options in a dropdown, and
+			 * a dropdown is the wrong control for it twice over: you cannot see
+			 * which is active without opening it, and reversing the direction of
+			 * the sort you already have means finding its twin in the list.
+			 *
+			 * Four buttons where pressing the active one flips direction is the
+			 * pattern every table header already uses, and it is one press for the
+			 * common move rather than two. Four rather than six, because `words`
+			 * and `syncedAt` sort a list of documents into orders nobody has asked
+			 * for - the API still takes all six.
+			 */}
+			<div className="flex col gap-2">
+				<span className="label">Order</span>
+				<div className="flex items-center gap-1 wrap">
+					{VISIBLE_SORTS.map((one) => {
+						const active = sort === one;
+						return (
+							<button
+								key={one}
+								type="button"
+								className="studio-sort"
+								aria-pressed={active}
+								onClick={() => {
+									if (active) {
+										onDirection(direction === "asc" ? "desc" : "asc");
+										return;
+									}
+									onSort(one);
+									// A new column starts ascending, except the two that are
+									// only ever interesting largest-first.
+									onDirection(one === "tokens" ? "desc" : "asc");
+								}}
+							>
+								{one}
+								{active ? (direction === "asc" ? " ↑" : " ↓") : ""}
+							</button>
+						);
+					})}
+				</div>
+			</div>
 
 			<div className="flex col gap-2">
 				<p className="label">

@@ -30,13 +30,22 @@ import { documentQueryOptions } from "./documents-query-keys";
  * failure a CMS exists to prevent is a title changed against the wrong page,
  * and that is impossible when the page is on screen while you type it.
  *
- * The edit surface is deliberately small: title, summary, slug, and removal.
- * There is no body editor and there should not be one. A textarea over a
- * Markdown file that is checked into git, reviewed in pull requests and
- * rendered through a block dispatcher is a worse editor than the one everybody
- * already has open, and it would be the only write path here that could not be
- * described as a structural change. Prose belongs in an editor; *structure*
- * belongs here.
+ * Four things can change here: the title, the summary, the slug, and the whole
+ * document. The first three rewrite one line each and review as what they are;
+ * the fourth replaces the file, which is why it is a separate action rather
+ * than a superset of the others - one action for both would make every title
+ * change look like a rewrite in the diff.
+ *
+ * The body editor is a plain textarea over the whole file, frontmatter
+ * included, and that is a choice rather than a shortcut. This is a Markdown
+ * file that is checked into git, reviewed as a diff and rendered through a
+ * block dispatcher; a rich editor over it would have to round-trip every
+ * construct it does not understand, and the constructs it would not understand
+ * are this site's own blocks. A textarea round-trips everything by not trying.
+ *
+ * Every save carries the `sha` it opened with, and is refused if the file has
+ * moved since. That is the only protection an editor over a repository can
+ * offer, and without it the second save silently discards the first.
  *
  * Everything it can do produces a plan first. The dialog shows what would
  * change, including what would break, and only then offers to apply it.
@@ -71,6 +80,20 @@ export function DocumentViewer({
 	const [summary, setSummary] = useState<string | undefined>();
 	const [slug, setSlug] = useState<string | undefined>();
 
+	/*
+	 * The draft, and whether the editor is showing.
+	 *
+	 * `undefined` until somebody types, like the three fields above: it means
+	 * "whatever the document says", so the pane always shows the current file
+	 * without an effect to re-seed it when the selection changes. That effect
+	 * is the usual way an editor ends up holding the previous document's text.
+	 *
+	 * The workspace remounts this on every selection (`key={selected}`), so
+	 * there is no stale draft to carry across either.
+	 */
+	const [editing, setEditing] = useState(false);
+	const [edited, setEdited] = useState<string | undefined>();
+
 	if (document.isPending) {
 		return <p className="fg-dim">Reading {path}…</p>;
 	}
@@ -84,6 +107,10 @@ export function DocumentViewer({
 			</p>
 		);
 	}
+
+	const draft = edited ?? found.body;
+	const dirty = draft !== found.body;
+	const setDraft = setEdited;
 
 	const currentTitle = title ?? found.title ?? "";
 	const currentSummary = summary ?? found.summary ?? "";
@@ -253,23 +280,121 @@ export function DocumentViewer({
 			{/* ── what it says ──────────────────────────────────────────── */}
 
 			<section className="flex col gap-3">
-				<h3>Preview</h3>
+				<div className="flex items-center gap-3 wrap">
+					<h3 className="flex-1 m-0">{editing ? "Editing" : "Preview"}</h3>
+
+					{/*
+					 * Both panes at once when there is room, one at a time when there
+					 * is not. Which is which is a choice rather than a breakpoint,
+					 * because the useful arrangement depends on what you are doing -
+					 * writing wants the editor wide, reviewing wants the preview wide.
+					 */}
+					<div className="flex items-center gap-2">
+						<Button
+							variant={editing ? "ghost" : "pill"}
+							onClick={() => setEditing(false)}
+						>
+							Read
+						</Button>
+						<Button
+							variant={editing ? "pill" : "ghost"}
+							onClick={() => setEditing(true)}
+						>
+							Edit
+						</Button>
+					</div>
+				</div>
+
+				{editing ? (
+					<div className="flex col gap-3">
+						{/*
+						 * A plain textarea over the whole file, frontmatter included.
+						 *
+						 * Deliberately not a rich editor. This is a Markdown file that
+						 * is checked into git, reviewed as a diff and rendered through a
+						 * block dispatcher - a WYSIWYG surface over it would have to
+						 * round-trip every construct it does not understand, and the
+						 * ones it does not understand here are the site's own blocks.
+						 * A textarea round-trips everything by not trying.
+						 *
+						 * The frontmatter is in it because it is in the file. Hiding it
+						 * would mean two editors for one document and a merge between
+						 * them every time somebody used both.
+						 */}
+						<Textarea
+							value={draft}
+							rows={24}
+							spellCheck={false}
+							aria-label={`The full text of ${found.path}`}
+							className="mono studio-editor"
+							onChange={(event) => setDraft(event.target.value)}
+						/>
+
+						<div className="flex items-center gap-2 wrap">
+							<Button
+								disabled={!dirty}
+								onClick={() =>
+									onAction({
+										action: {
+											action: "edit",
+											path: found.path,
+											body: draft,
+											// The version this editor opened. The write is
+											// refused if the file has moved since, which is the
+											// only protection an editor over a repository can
+											// offer - without it the second save silently
+											// discards the first.
+											sha: found.sha,
+										},
+										apply: false,
+									})
+								}
+							>
+								Plan the save
+							</Button>
+
+							{dirty ? (
+								<Button variant="ghost" onClick={() => setDraft(found.body)}>
+									Discard changes
+								</Button>
+							) : (
+								<span className="fg-faint text-xs mono">
+									no changes · sha {found.sha.slice(0, 8)}
+								</span>
+							)}
+						</div>
+					</div>
+				) : null}
 
 				{/*
-				 * The document as it is stored, rendered by the same component the
-				 * site uses - so this is a preview rather than an approximation.
+				 * The document rendered by the same component the site uses, so this
+				 * is a preview rather than an approximation - and it renders the
+				 * *draft*, so what is on screen is what would be saved.
 				 *
 				 * No `blocks` map is passed, on purpose. The site's Markdown
 				 * vocabulary (`::start:showcase`, `::start:grid`) reaches live
-				 * components, and rendering a showcase inside the studio would boot
-				 * a 3D viewer and a StackBlitz frame to preview a title change.
-				 * Without the map those blocks render as the comments they are,
-				 * which is the honest thing for a structural editor to show.
+				 * components, and rendering a showcase here would boot a 3D viewer
+				 * and a StackBlitz frame to preview a sentence. Without the map they
+				 * render as the comments they are, which is the honest thing for an
+				 * editor to show.
 				 */}
 				<article className="prose studio-preview">
-					<MarkdownView source={found.body} />
+					<MarkdownView source={withoutFrontmatter(draft)} />
 				</article>
 			</section>
 		</div>
 	);
+}
+
+/**
+ * The body without its frontmatter block.
+ *
+ * The editor holds the whole file because that is what gets written; the
+ * preview shows what a reader would see, and a reader never sees the
+ * frontmatter. Rendering it would put a `---` rule and a list of key-value
+ * pairs at the top of every preview, which is not what the page looks like.
+ */
+function withoutFrontmatter(text: string): string {
+	const match = /^---\r?\n[\s\S]*?\r?\n---\r?\n?/.exec(text);
+	return match ? text.slice(match[0].length) : text;
 }

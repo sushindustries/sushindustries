@@ -35,7 +35,7 @@ import {
  */
 
 export interface PendingAction {
-	readonly action: "create" | "move" | "retitle" | "remove";
+	readonly action: "create" | "move" | "retitle" | "edit" | "remove";
 	readonly request?: DocumentActionRequest;
 }
 
@@ -56,6 +56,7 @@ const TITLES: Record<PendingAction["action"], string> = {
 	create: "New document",
 	move: "Change the slug",
 	retitle: "Change the title",
+	edit: "Save the document",
 	remove: "Remove it",
 };
 

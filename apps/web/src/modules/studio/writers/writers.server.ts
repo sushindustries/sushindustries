@@ -152,11 +152,24 @@ const API = "https://api.github.com";
 /**
  * Which branch a change lands on.
  *
- * Not `main` by default, and this is the one default in the file worth
- * arguing about. A studio that commits straight to the default branch is a
- * studio where a mistyped slug is deployed before anybody has looked at it.
- * `STUDIO_BRANCH` is where changes go, and merging it is a decision a person
- * makes with a pull request in front of them.
+ * Not `main`, and this is the one default in the file worth arguing about. It
+ * earns its place twice.
+ *
+ * The first reason is review: a studio that commits straight to the default
+ * branch is a studio where a mistyped slug is deployed before anybody has
+ * looked at it. Merging is a decision a person makes with a diff in front of
+ * them.
+ *
+ * The second is money, and it is the one that would otherwise be discovered
+ * from a bill. `.github/workflows/ci.yml` fires on `push: branches: [main]`
+ * and on `pull_request` - so a commit to this branch runs no jobs at all, and
+ * Railway, which builds from the default branch, does not deploy. A studio
+ * pointed at `main` would run the full pipeline and a container build for
+ * every title somebody fixed.
+ *
+ * That means the branch name here is not cosmetic: **setting `STUDIO_BRANCH`
+ * to `main` turns every edit into a CI run and a deploy.** If that is ever
+ * wanted, the commit messages want `[skip ci]` in them first.
  */
 const branch = () => process.env.STUDIO_BRANCH ?? "studio";
 

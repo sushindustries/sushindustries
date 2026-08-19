@@ -116,6 +116,22 @@ export function DocumentsWorkspace(): ReactNode {
 	 * away after one would refetch every row to redraw them identically.
 	 */
 	const act = useMutation({
+		/*
+		 * One write at a time, across the whole studio.
+		 *
+		 * A scope makes Query serialise every mutation sharing the id: a second
+		 * one queues rather than running beside the first. That matters here more
+		 * than in most apps, because these mutations are commits. Two writes in
+		 * flight against the same branch means the second builds its tree from a
+		 * ref the first is about to move, and the `force: false` on the ref
+		 * update turns that into a failure - a correct failure, and one nobody
+		 * should have to see.
+		 *
+		 * It also removes the whole class of "pressed apply twice": the second
+		 * press waits for the first to finish and then plans against the file the
+		 * first one wrote.
+		 */
+		scope: { id: "studio-writes" },
 		mutationFn: (request: DocumentActionRequest) =>
 			applyDocumentAction({ data: request }),
 		onSuccess: (answer) => {
