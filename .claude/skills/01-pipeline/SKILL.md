@@ -59,6 +59,34 @@ Stage 01 is written out in `stages/01-intake.md`. The rest route straight to
 the skill in the last column: a stage whose skill already says everything does
 not need a second page saying it again.
 
+## Which gates need a prepared repo, and which do not
+
+A hard dependency and a soft one are different things, and only the hard one
+earns a pointer.
+
+Stages **01 and 05 read the filesystem**. They work on a fresh clone with
+nothing installed, which is exactly the state a half-finished thing tends to
+be found in. Stages **02, 03, 04 and 06 shell out to pnpm scripts**, and
+without `node_modules` they fail with a resolution error that says nothing
+about the real problem. Those four, and only those four, check first and say
+`run pnpm install`.
+
+Putting that pointer on the other two would be a line nobody needs, in a
+place it is not load-bearing, which is how a caveat gets cargo-culted and
+then believed.
+
+## Using these skills from another project
+
+```shell
+pnpm skills:link            # symlink every skill here into ~/.claude/skills
+pnpm skills:link --unlink   # remove only the links it made
+```
+
+Symlinks rather than copies, because a copy is a second version of a skill
+that drifts from this one while both files still look authoritative. A name
+that collides with a real directory already in `~/.claude/skills` is skipped
+and reported, never deleted; `--force` is the way to say you meant it.
+
 ## Two commands that do not work as written
 
 `pnpm doctor` and `pnpm docs` collide with **pnpm's own builtins**, so the bare

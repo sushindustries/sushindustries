@@ -188,14 +188,27 @@ def stage_06_ship(root: Path, _slug: str) -> Result:
     )
 
 
+# (number, gate, is_slow, needs_install)
+#
+# `needs_install` is a hard dependency, not a soft one. Stages 01 and 05 read
+# the filesystem and work on a fresh clone with nothing installed at all. The
+# rest shell out to pnpm scripts, and without `node_modules` they fail with a
+# resolution error that says nothing about the actual problem. Only the hard
+# ones carry the explicit "run pnpm install" pointer; putting it on the others
+# would be cargo-culting a line that is not load-bearing there.
 STAGES = [
-    (1, stage_01_intake, False),
-    (2, stage_02_document, False),
-    (3, stage_03_conform, False),
-    (4, stage_04_verify, True),
-    (5, stage_05_prune, False),
-    (6, stage_06_ship, True),
+    (1, stage_01_intake, False, False),
+    (2, stage_02_document, False, True),
+    (3, stage_03_conform, False, True),
+    (4, stage_04_verify, True, True),
+    (5, stage_05_prune, False, False),
+    (6, stage_06_ship, True, True),
 ]
+
+
+def is_prepared(root: Path) -> bool:
+    """Has `pnpm install` run? Every pnpm-script gate depends on it."""
+    return (root / "node_modules").is_dir()
 
 
 def report(slug: str, results: list[Result]) -> None:
@@ -235,10 +248,23 @@ def main() -> int:
         print(f"  start it: pnpm new <post|page|component|package> {options.slug}\n")
         return 2
 
+    prepared = is_prepared(root)
     results: list[Result] = []
-    for number, gate, is_slow in STAGES:
+    for number, gate, is_slow, needs_install in STAGES:
         if options.stage is not None and number != options.stage:
             continue
+        if needs_install and not prepared:
+            results.append(
+                Result(
+                    number,
+                    gate.__name__.split("_", 2)[2],
+                    False,
+                    False,
+                    "",
+                    ["this gate runs a pnpm script - run `pnpm install` first"],
+                )
+            )
+            break
         if is_slow and not options.deep and options.stage is None:
             results.append(
                 Result(

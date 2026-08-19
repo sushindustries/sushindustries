@@ -151,12 +151,27 @@ class Gates(unittest.TestCase):
 
 class StageTable(unittest.TestCase):
     def test_stages_are_numbered_in_order_without_gaps(self) -> None:
-        numbers = [number for number, _, _ in pipeline.STAGES]
+        numbers = [number for number, _, _, _ in pipeline.STAGES]
         self.assertEqual(numbers, list(range(1, len(numbers) + 1)))
 
     def test_the_slow_gates_are_the_ones_that_build(self) -> None:
-        slow = {number for number, _, is_slow in pipeline.STAGES if is_slow}
+        slow = {number for number, _, is_slow, _ in pipeline.STAGES if is_slow}
         self.assertEqual(slow, {4, 6})
+
+    def test_only_the_pnpm_gates_hard_depend_on_an_install(self) -> None:
+        """01 and 05 read the filesystem, so a fresh clone can still run them.
+
+        The split is the point: a setup pointer on a gate that does not need
+        one is a line that gets cargo-culted and then believed.
+        """
+        hard = {number for number, _, _, needs in pipeline.STAGES if needs}
+        self.assertEqual(hard, {2, 3, 4, 6})
+
+    def test_a_prepared_repo_is_one_with_node_modules(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            self.assertFalse(pipeline.is_prepared(Path(directory)))
+            (Path(directory) / "node_modules").mkdir()
+            self.assertTrue(pipeline.is_prepared(Path(directory)))
 
 
 if __name__ == "__main__":
