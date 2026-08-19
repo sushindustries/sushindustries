@@ -2,7 +2,7 @@
 
 [<img src="media/buymeacoffee-button.svg" alt="Buy Me A Coffee" height="42" />](https://buymeacoffee.com/adamjurek)
 
-[![skills.sh](https://skills.sh/b/sushindustries/sushindustries)](https://skills.sh/sushindustries/sushindustries) · [Packages on GitHub](https://github.com/sushindustries?tab=packages)
+[![skills.sh](https://skills.sh/b/sushindustries/sushindustries)](https://skills.sh/sushindustries/sushindustries) · [![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/sushindustries/sushindustries?utm_source=oss&utm_medium=github&utm_campaign=sushindustries%2Fsushindustries&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)](https://coderabbit.ai) · [Packages on GitHub](https://github.com/sushindustries?tab=packages)
 
 <table>
 <tr>

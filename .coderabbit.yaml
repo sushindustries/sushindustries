@@ -3,6 +3,7 @@ language: en-US
 reviews:
   profile: chill
   high_level_summary: true
+  review_details: true
   poem: false
   path_filters:
     - "!**/node_modules/**"
