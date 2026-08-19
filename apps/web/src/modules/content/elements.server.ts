@@ -46,6 +46,67 @@ export interface ElementShard {
 /** One shard's worth of cost, keyed by `slug:section`. */
 type Weights = Map<string, { tokens: number; sha: string }>;
 
+/*
+ * ── the cache, and why it is not optional ──────────────────────────────
+ *
+ * `weights()` and `sourceWeights()` are each a full scan of a partition of
+ * `documents`, and `getElement` calls both. That was fine for one element and
+ * catastrophic the moment `parts` became a field resolver: asking
+ * `elements { parts { name } }` resolves seventy three elements and then one
+ * `getElement` per edge, so the same two scans ran over a hundred times.
+ *
+ * Measured before fixing, which is the only reason the numbers are here:
+ *
+ *   element(name:) { name }                    834ms
+ *   element { parts { name } }               2,003ms
+ *   element { parts { parts { name } } }     2,454ms
+ *   elements { parts { name } }              4,921ms
+ *
+ * The cache is keyed on the projection's own revision - the newest `syncedAt`
+ * across every document - so it invalidates itself the instant a sync writes
+ * new rows, and never serves a stale answer for longer than one cheap
+ * `max()`. A time-based TTL would have been fewer lines and would be wrong in
+ * exactly the window somebody runs a sync and reloads the page to check it.
+ *
+ * Not a DataLoader. The problem is not batching identical keys within a tick;
+ * it is that two whole-table reads are being repeated. One shared snapshot per
+ * revision is the smaller and more honest fix.
+ */
+let cached: {
+	revision: number;
+	docs: Weights;
+	source: Map<string, number>;
+} | null = null;
+
+/**
+ * The projection's revision, as the newest sync timestamp.
+ *
+ * One indexed `max()` rather than a hash of every row: this runs on every
+ * request that touches an element, so it has to be the cheapest question that
+ * still changes when the data does. A sync stamps every row it writes, so the
+ * maximum moving is exactly the event the cache needs to hear about.
+ */
+async function revision(): Promise<number> {
+	const [row] = await getDb()
+		.select({ at: sql<Date | null>`max(${documents.syncedAt})` })
+		.from(documents);
+
+	return row?.at ? new Date(row.at).getTime() : 0;
+}
+
+/** Both scans, shared across every element in one request and beyond. */
+async function snapshot(): Promise<{
+	docs: Weights;
+	source: Map<string, number>;
+}> {
+	const at = await revision();
+	if (cached?.revision === at) return cached;
+
+	const [docs, source] = await Promise.all([weights(), sourceWeights()]);
+	cached = { revision: at, docs, source };
+	return cached;
+}
+
 /**
  * Every component doc's weight, in one query.
  *
@@ -243,7 +304,7 @@ export async function getElements(args: {
 	kind?: string;
 	category?: string;
 }): Promise<readonly ShapedElement[]> {
-	const [docs, source] = await Promise.all([weights(), sourceWeights()]);
+	const { docs, source } = await snapshot();
 	const partOf = inverse();
 
 	return listRegistry()
@@ -261,7 +322,7 @@ export async function getElement(name: string): Promise<ShapedElement | null> {
 	const item = findRegistryItem(name);
 	if (!item) return null;
 
-	const [docs, source] = await Promise.all([weights(), sourceWeights()]);
+	const { docs, source } = await snapshot();
 	return shape(item, docs, source, inverse());
 }
 
@@ -288,7 +349,7 @@ export async function getElementShard(path: string) {
 	const [facet, section] = versioned ? rest.slice(1) : rest;
 	if (!facet) return null;
 
-	const [docs, source] = await Promise.all([weights(), sourceWeights()]);
+	const { docs, source } = await snapshot();
 
 	return (
 		shardsFor(item, docs, source).find(
