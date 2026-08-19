@@ -1012,6 +1012,32 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		preview: "A sortable, filtered table with its page controls under it",
 	},
 	{
+		name: "bar-chart",
+		schema: "ImageObject",
+		version: "0.1.0",
+		title: "Bar Chart",
+		description:
+			"One measure across a handful of categories, drawn by TanStack Charts and coloured from the site's own tones.",
+		files: ["bar-chart.tsx"],
+		/*
+		 * Three runtime dependencies, which is the most of anything here and is
+		 * the trade this item exists to make. Scales, layout, axis ticks and
+		 * accessible focus order in a chart are somebody else's tested code, and
+		 * `d3-scale` is already inside `@tanstack/charts` - naming it costs a
+		 * line and no extra bytes, because `defineChart` requires a scale per
+		 * axis and will not type-check without one.
+		 */
+		dependencies: {
+			"@tanstack/charts": "^0.14.0",
+			"@tanstack/react-charts": "^0.14.0",
+			"d3-scale": "^4.0.2",
+		},
+		category: "content",
+		subcategory: "Data",
+		tags: ["data", "chart", "tanstack", "theme-aware"],
+		preview: "Horizontal bars, one colour per category, on a token palette",
+	},
+	{
 		name: "workbench",
 		schema: "WebPageElement",
 		kind: "block",

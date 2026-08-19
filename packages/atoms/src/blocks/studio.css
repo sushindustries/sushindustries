@@ -32,6 +32,35 @@
 	}
 
 	/*
+	 * A hub card: a whole section, as one target.
+	 *
+	 * The card is the link rather than containing one, so the target is the
+	 * whole tile instead of the four words in its heading. That is the
+	 * difference between a card you can hit on a phone and one you have to aim
+	 * at, and it costs one rule.
+	 */
+	.studio-hub-card {
+		gap: var(--s-2);
+		text-decoration: none;
+		color: inherit;
+		border: 1px solid var(--line);
+		transition:
+			border-color 140ms var(--ease-out),
+			transform 140ms var(--ease-out);
+	}
+
+	.studio-hub-card:hover {
+		border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.studio-hub-card:hover {
+			/* A millimetre. Enough to read as liftable, not enough to reflow. */
+			transform: translateY(-2px);
+		}
+	}
+
+	/*
 	 * A short warning inside the studio: what an action would break, or why one
 	 * was refused.
 	 *

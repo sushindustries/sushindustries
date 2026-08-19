@@ -68,6 +68,13 @@ export const Route = createFileRoute("/api/v1/studio/")({
 									"Remove one. Body: { kind, slug, confirm } - confirm must equal slug.",
 							},
 						},
+						workflows: {
+							url: `${origin}/api/v1/studio/workflows`,
+							methods: {
+								GET: "What can be run here, and what each one writes.",
+								POST: "Run one. Body: { id, confirm } - confirm must be true for anything that writes.",
+							},
+						},
 						report: {
 							url: `${origin}/studio/report`,
 							methods: { GET: "What is in the database, in aggregates." },
@@ -86,7 +93,7 @@ export const Route = createFileRoute("/api/v1/studio/")({
 
 					notes: [
 						"Everything readable here is a projection of the repository, rebuilt by `pnpm sushindustries sync`. It can be older than the repository, never newer - `syncedAt` says how much older.",
-						"Every write goes to files, not to rows. The projection catches up on the next sync.",
+						'Every write goes to files, not to rows. The projection catches up on the next sync - POST { id: "sync", confirm: true } to /api/v1/studio/workflows to run one.',
 					],
 				});
 			},

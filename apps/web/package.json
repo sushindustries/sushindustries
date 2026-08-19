@@ -34,6 +34,7 @@
 		"@tanstack/highlight": "^0.0.10",
 		"@tanstack/markdown": "^0.0.13",
 		"@tanstack/query-db-collection": "^1.2.4",
+		"@tanstack/react-charts": "^0.14.0",
 		"@tanstack/react-db": "^0.2.1",
 		"@tanstack/react-pacer": "0.23.0",
 		"@tanstack/react-query": "5.101.4",

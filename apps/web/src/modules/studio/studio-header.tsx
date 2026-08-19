@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import type { StudioReport } from "./overview/overview.server";
+import { readySections } from "./studio.sections";
 
 /*
  * The dashboard's own header: what this is, who is looking, and the four
@@ -27,12 +28,6 @@ export interface StudioHeaderProps {
 	readonly report: StudioReport;
 	readonly login: string;
 }
-
-/** The tabs, as data, so the nav and the routes cannot disagree about what exists. */
-const TABS = [
-	{ to: "/studio", label: "Overview", exact: true },
-	{ to: "/studio/documents", label: "Documents", exact: false },
-] as const;
 
 const number = (value: number) => value.toLocaleString();
 
@@ -97,18 +92,31 @@ export function StudioHeader({ report, login }: StudioHeaderProps): ReactNode {
 				className="flex items-center gap-2 wrap"
 				aria-label="Studio sections"
 			>
-				{TABS.map((tab) => (
+				{/*
+				 * The nav is `studio.sections.ts` rendered. It was a literal here
+				 * and a second literal in the API description, and the two had
+				 * already started to disagree - a section in one and not in the
+				 * other, with nothing saying so.
+				 */}
+				<Link
+					to="/studio"
+					className="btn btn-ghost"
+					// `exact` on the hub only. Without it this stays lit on every
+					// child route, because `/studio` is a prefix of all of them.
+					activeOptions={{ exact: true }}
+					activeProps={{ "aria-current": "page" }}
+				>
+					Home
+				</Link>
+
+				{readySections().map((section) => (
 					<Link
-						key={tab.to}
-						to={tab.to}
+						key={section.path}
+						to={section.to}
 						className="btn btn-ghost"
-						// `exact` on the overview only. Without it the Overview tab stays
-						// lit on every child route, because `/studio` is a prefix of all
-						// of them.
-						activeOptions={{ exact: tab.exact }}
 						activeProps={{ "aria-current": "page" }}
 					>
-						{tab.label}
+						{section.title}
 					</Link>
 				))}
 			</nav>

@@ -1,0 +1,50 @@
+@layer blocks {
+	/* ── chart ───────────────────────────────────────────────────── */
+
+	/*
+	 * The frame a chart is drawn in, and the colours it draws with.
+	 *
+	 * A charting library cannot know about `data-theme`, so it is handed a
+	 * custom property rather than a colour: `--chart-fill` is read off the
+	 * rendered element at paint time, which means the same chart is one colour
+	 * on a pale palette and another on a dark one with nothing in JavaScript
+	 * deciding it. That is the one thing that is genuinely awkward to do any
+	 * other way, and it is why the wrapper passes a `var()` string as a fill.
+	 */
+	.chart {
+		--chart-fill: var(--accent);
+		--chart-line: var(--line);
+		--chart-text: var(--fg-faint);
+
+		width: 100%;
+		min-width: 0;
+	}
+
+	/*
+	 * The axes, styled by reaching into what the library renders.
+	 *
+	 * Normally a bad idea - it couples this stylesheet to somebody else's DOM -
+	 * and the alternative is worse: passing colours in from React means the
+	 * theme lives in two places and the chart is the one that lags a toggle by
+	 * a render. Selectors kept to element names, so a class rename upstream
+	 * cannot silently un-style it.
+	 */
+	.chart svg text {
+		fill: var(--chart-text);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+	}
+
+	.chart svg line,
+	.chart svg path[stroke] {
+		stroke: var(--chart-line);
+	}
+
+	.chart-empty {
+		margin: 0;
+		padding: var(--s-5) var(--s-3);
+		text-align: center;
+		font-size: var(--t-sm);
+		color: var(--fg-faint);
+	}
+}

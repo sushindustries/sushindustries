@@ -28,6 +28,11 @@ export {
 	type AvatarProps,
 } from "./avatar";
 export { Badge, type BadgeProps } from "./badge";
+export {
+	BarChart,
+	type BarChartDatum,
+	type BarChartProps,
+} from "./bar-chart";
 export { BootLoader, type BootLoaderProps } from "./boot-loader";
 export {
 	Breadcrumb,

@@ -7,6 +7,7 @@ import {
 	AspectRatio,
 	Avatar,
 	Badge,
+	BarChart,
 	BootLoader,
 	Breadcrumb,
 	Button,
@@ -1762,6 +1763,27 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 	toggle: {
 		element: <ToggleDemo />,
 		...DEMO_SOURCES.toggle,
+	},
+
+	"bar-chart": {
+		element: (
+			<div className="w-full">
+				<BarChart
+					label="Tokens per document kind"
+					description="Source files are two thirds of the index by weight."
+					rows={[
+						{ label: "source", value: 412_310 },
+						{ label: "component", value: 188_004 },
+						{ label: "note", value: 74_920 },
+						{ label: "skill", value: 14_367 },
+						{ label: "post", value: 9_140 },
+					]}
+					colorByCategory
+					height={180}
+				/>
+			</div>
+		),
+		...DEMO_SOURCES["bar-chart"],
 	},
 
 	"data-table": {

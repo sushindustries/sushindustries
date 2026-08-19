@@ -2,6 +2,7 @@ import { QueryClient } from "@tanstack/react-query";
 import { createRouter } from "@tanstack/react-router";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
 import { RouteError, RouteNotFound } from "./modules/chrome/route-fallbacks";
+import { rewriteInput, rewriteOutput } from "./modules/chrome/subdomains";
 import { routeTree } from "./routeTree.gen";
 
 /*
@@ -43,6 +44,26 @@ export function getRouter() {
 		context: { queryClient },
 		scrollRestoration: true,
 		defaultPreload: "intent",
+		/*
+		 * Subdomains, folded into paths on the way in and unfolded on the way
+		 * out. `studio.adamjurek.com/documents` and `/studio/documents` are the
+		 * same page, and both addresses work.
+		 *
+		 * Here rather than in Nitro, because a proxy-level rewrite only does
+		 * half the job: requests reach the right route and every `<Link>` on the
+		 * page still points at `/studio/...` on whatever host the visitor is on.
+		 * The address bar says one thing and the links say another, which is
+		 * what makes people stop trusting the subdomain. `output` is the half
+		 * that fixes it, and it only exists here.
+		 *
+		 * The table is `modules/chrome/subdomains.ts`, read by both directions,
+		 * so adding one is a line rather than an edit in two places that can
+		 * disagree.
+		 */
+		rewrite: {
+			input: ({ url }) => rewriteInput(url),
+			output: ({ url }) => rewriteOutput(url),
+		},
 		/*
 		 * The default preload stale time is kept, not zeroed. Zeroing it is the
 		 * documented pairing for loaders that delegate all caching to Query -

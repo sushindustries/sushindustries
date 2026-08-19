@@ -1,40 +1,27 @@
-import { createFileRoute, getRouteApi } from "@tanstack/react-router";
-import { StudioTables } from "../modules/studio/overview/overview-tables";
+import { createFileRoute } from "@tanstack/react-router";
+import { hubBarsQueryOptions } from "../modules/studio/overview/hub-query-keys";
+import { StudioHub } from "../modules/studio/studio-hub";
 
 /*
- * The overview: what is in the database, in aggregates.
+ * The hub: which part of the studio do you want.
  *
- * It renders the layout's loader data rather than fetching anything. The
- * report is one round trip, the layout already made it to decide whether to
- * let anybody in, and asking again here would be a second query for numbers
- * already on the screen above.
+ * It used to be the overview - every chart and every table - which made the
+ * landing page the longest one in the studio and the thing you scrolled past
+ * to get anywhere else. Those moved to `/studio/insights`, which is a section
+ * like the others, and this is a short index that cannot fall behind: the
+ * cards are `studio.sections.ts` rendered.
  *
- * `getRouteApi` rather than a second loader, which is the typed way to read a
- * parent's data: the string is checked against the route tree, so renaming the
- * layout breaks this at compile time instead of at render.
- *
- * Aggregates only - no row bodies, no page text - which keeps it small enough
- * to read whole and carrying nothing worth protecting beyond the fact that it
- * is production.
+ * No loader. The layout above already fetched the report to decide whether to
+ * let anybody in, and the hub needs nothing beyond the section table, which is
+ * a module rather than a query.
  */
-const studio = getRouteApi("/studio");
-
 export const Route = createFileRoute("/studio/")({
-	component: Overview,
+	/*
+	 * The chart's numbers, prefetched. The section cards need nothing - they
+	 * are a module, not a query - so this is the only thing the hub waits for,
+	 * and it arrives in the first paint rather than after it.
+	 */
+	loader: ({ context }) =>
+		context.queryClient.ensureQueryData(hubBarsQueryOptions()),
+	component: StudioHub,
 });
-
-function Overview() {
-	const { report } = studio.useLoaderData();
-
-	return (
-		<div className="flex col gap-5">
-			<p className="fg-dim">
-				Everything here is a projection rebuilt by{" "}
-				<code>pnpm sushindustries sync</code> - except <code>page_views</code>{" "}
-				and <code>page_feedback</code>, which are the two nothing rebuilds.
-			</p>
-
-			<StudioTables report={report} />
-		</div>
-	);
-}

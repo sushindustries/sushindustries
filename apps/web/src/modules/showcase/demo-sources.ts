@@ -574,6 +574,15 @@ readList(meta, "tags");      // ["tanstack", "css"]`,
 		source: `<Switch label="Smooth scrolling" defaultChecked />`,
 		language: "tsx",
 	},
+	"bar-chart": {
+		source: `<BarChart
+	label="Tokens per document kind"
+	description="Source files are two thirds of the index."
+	rows={rows}
+	colorByCategory
+/>`,
+		language: "tsx",
+	},
 	"data-table": {
 		source: `<DataTable
 	label="Documents by kind"

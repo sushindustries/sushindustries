@@ -46,6 +46,7 @@
 		"@tanstack/highlight": "^0.0.10",
 		"@tanstack/intent": "0.3.6",
 		"@tanstack/markdown": "^0.0.13",
+		"@types/d3-scale": "^4.0.9",
 		"@types/react": "19.2.18",
 		"@types/react-dom": "^19.2.4",
 		"lenis": "^1.3.26",
@@ -64,6 +65,7 @@
 		"./aspect-ratio": "./src/aspect-ratio.tsx",
 		"./avatar": "./src/avatar.tsx",
 		"./badge": "./src/badge.tsx",
+		"./bar-chart": "./src/bar-chart.tsx",
 		"./boot-loader": "./src/boot-loader.tsx",
 		"./breadcrumb": "./src/breadcrumb.tsx",
 		"./button": "./src/button.tsx",
@@ -154,6 +156,7 @@
 			"./aspect-ratio": "./dist/aspect-ratio.js",
 			"./avatar": "./dist/avatar.js",
 			"./badge": "./dist/badge.js",
+			"./bar-chart": "./dist/bar-chart.js",
 			"./boot-loader": "./dist/boot-loader.js",
 			"./breadcrumb": "./dist/breadcrumb.js",
 			"./button": "./dist/button.js",
@@ -239,6 +242,9 @@
 	},
 	"homepage": "https://adamjurek.com/packages/ui",
 	"dependencies": {
-		"@tanstack/react-table": "^9.1.2"
+		"@tanstack/charts": "^0.14.0",
+		"@tanstack/react-charts": "^0.14.0",
+		"@tanstack/react-table": "^9.1.2",
+		"d3-scale": "^4.0.2"
 	}
 }
