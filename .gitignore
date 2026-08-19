@@ -32,3 +32,12 @@ package-lock.json
 # doc examples tripped a secrets scanner as real credentials.
 .agents/
 skills-lock.json
+
+# `npx skills add` also drops a symlink into .claude/skills/ pointing at its
+# install in .agents/, which is ignored above. Committing the link ships a
+# dangling one: a fresh clone gets a skill directory resolving to nothing.
+# This repo's own skills are real directories and stay tracked.
+.claude/skills/autofix
+.claude/skills/ci-cd-and-automation
+.claude/skills/code-review
+.claude/skills/open-sourcing

@@ -11,6 +11,7 @@
 			"title": "Component pipeline",
 			"description": "Adding, documenting and verifying a component from source to the live registry.",
 			"skills": [
+				"01-pipeline",
 				"add-a-component",
 				"document-an-element",
 				"verify-component",

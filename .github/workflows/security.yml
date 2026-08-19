@@ -41,8 +41,12 @@ jobs:
         with:
           persist-credentials: false
 
+      # Pinned to a SHA, like everything else here, but the pin is only half
+      # the protection: v0.28.0 resolved `setup-trivy@v0.2.1` internally, and
+      # when that tag was deleted upstream the job failed before it ran a
+      # single step. A pinned action can still break on a tag it references.
       - name: Scan the repository
-        uses: aquasecurity/trivy-action@915b19bbe73b92a6cf82a1bc12b087c9a19a5fe2 # v0.28.0
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           scan-type: fs
           scan-ref: .
