@@ -1,0 +1,38 @@
+language: en-US
+
+reviews:
+  profile: chill
+  high_level_summary: true
+  poem: false
+  path_filters:
+    - "!**/node_modules/**"
+    - "!**/dist/**"
+    - "!**/.output/**"
+    - "!**/.tanstack/**"
+    - "!**/.turbo/**"
+    - "!pnpm-lock.yaml"
+    - "!**/routeTree.gen.ts"
+  path_instructions:
+    - path: "**/*.{md,mdx}"
+      instructions: >
+        No em dashes anywhere - a spaced hyphen instead. Written in the
+        first person singular ("I"), never "we" or "our team" - this is one
+        person's repository. Flag any generic or placeholder-sounding prose.
+    - path: "packages/ui/src/**/*.tsx"
+      instructions: >
+        A variant is a prop that writes a data-* attribute, never a second
+        CSS class or a BEM-style modifier. Every class the component uses
+        must be defined in packages/atoms, not written inline or in the
+        site. No `any`, explicit return types on exported functions.
+    - path: "apps/web/src/routes/**"
+      instructions: >
+        Dynamic route segments ($slug) must stay flat files, never a
+        $slug/index.tsx directory - converting one breaks URL matching.
+        Loaders must be isomorphic; anything reading secrets, a database,
+        or the filesystem belongs in a .server.ts file, never inline.
+    - path: "**/package.json"
+      instructions: >
+        package.json is partly a generated build artifact for compiling
+        workspaces (tsdown.base.ts writes exports/main/module) - flag
+        hand-edits to those fields as likely to be overwritten, not the
+        edit itself as wrong.
