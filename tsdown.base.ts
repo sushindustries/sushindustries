@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { mergeConfig, type UserConfig } from "tsdown";
 
 /*
@@ -23,7 +25,24 @@ import { mergeConfig, type UserConfig } from "tsdown";
  */
 
 const shared: UserConfig = {
-	format: ["esm", "cjs"],
+	/*
+	 * ESM only, which is also tsdown's own default.
+	 *
+	 * Dual output was costing 185 files and 602 kB across the workspace to
+	 * serve exactly one consumer: our own generated CJS, requiring our other
+	 * generated CJS. Nothing else in this repo or on any registry asked for
+	 * it, and the site that consumes every one of these packages is ESM.
+	 *
+	 * The saving is larger than the bytes. A second format is what forces the
+	 * shims, the `.d.cts` beside every `.d.ts`, attw's dual-resolution
+	 * profile, and the per-condition `types` mapping that `packages/ui` had to
+	 * hand-write to stop attw failing on "false ESM". All of that is one
+	 * decision, and this is the decision.
+	 *
+	 * Taken before publishing rather than after, because the day a consumer
+	 * exists this stops being free.
+	 */
+	format: ["esm"],
 
 	// The same floor `tsconfig.base.json` compiles to. One answer to "what
 	// syntax does this ship", rather than one per tool.
@@ -34,9 +53,12 @@ const shared: UserConfig = {
 	treeshake: true,
 	sourcemap: true,
 
-	// `__dirname` and `import.meta.url` both resolve in both formats. Cheap,
-	// and the alternative is a runtime error in whichever format was not tested.
-	shims: true,
+	/*
+	 * No shims. They exist to make `__dirname` and `import.meta.url` resolve
+	 * in whichever format lacks them natively, which with one format is
+	 * nothing to reconcile. tsdown's own default is off.
+	 */
+	shims: false,
 
 	/*
 	 * Dead-code elimination only, never renaming.
@@ -74,18 +96,63 @@ const shared: UserConfig = {
 	 * publishing happens. `publint` reads the manifest against the tarball;
 	 * `attw` resolves the types the way each consumer's TypeScript will.
 	 *
-	 * `node16` rather than `strict`: nothing here supports `node10` resolution
-	 * and pretending otherwise would mean failing a check for a configuration
-	 * no consumer of this repo runs.
+	 * `esm-only` rather than `node16` or `strict`: these packages emit one
+	 * format, so the resolutions worth checking are the ones an ESM consumer
+	 * actually takes. Checking `require` paths that no longer exist would fail
+	 * the build for a configuration nothing here offers.
 	 */
 	publint: "ci-only",
-	attw: { enabled: "ci-only", profile: "node16" },
+	attw: { enabled: "ci-only", profile: "esm-only" },
+
+	/*
+	 * The other direction from `deps.onlyImport`: that one fails a build for a
+	 * package the output imports and the manifest does not declare, this one
+	 * reports a package the manifest declares and nothing imports. Together
+	 * they keep the dependency list equal to what the code actually uses.
+	 *
+	 * `@sushindustries/atoms` is ignored because it is a stylesheet. Nothing
+	 * imports it from TypeScript - components wear its class names and the
+	 * consumer installs it for the CSS - so it is a real peer dependency that
+	 * this check has no way to see being used.
+	 */
+	unused: {
+		level: "warning",
+		ignore: ["@sushindustries/atoms"],
+	},
 
 	// A warning nobody has to act on is a warning nobody reads. Warnings fail
 	// the build where builds are gating - which means a genuinely acceptable
 	// one has to be suppressed by name, next to the reason it is acceptable.
 	failOnWarn: "ci-only",
 };
+
+/**
+ * Every package this build is allowed to import, read from its own manifest.
+ *
+ * A phantom dependency is the packaging bug that a monorepo hides best: an
+ * import resolves here because some *other* workspace installed it, the build
+ * externalises it happily, and the failure arrives on somebody else's machine
+ * as "cannot find module" after they install the tarball. Nothing local can
+ * see it, which is the same shape as every deploy failure this repo has
+ * already paid for.
+ *
+ * Derived rather than listed, so it cannot drift: the answer is already in
+ * `dependencies` and `peerDependencies`, and a list beside them would be a
+ * second copy to forget. Adding a dependency is what permits importing it.
+ */
+function declaredDependencies(): string[] {
+	const manifest = JSON.parse(
+		readFileSync(join(process.cwd(), "package.json"), "utf8"),
+	) as {
+		dependencies?: Record<string, string>;
+		peerDependencies?: Record<string, string>;
+	};
+
+	return [
+		...Object.keys(manifest.dependencies ?? {}),
+		...Object.keys(manifest.peerDependencies ?? {}),
+	];
+}
 
 /**
  * The shared build, plus whatever this package genuinely differs on - which in
@@ -97,5 +164,11 @@ const shared: UserConfig = {
  * package differs on, not the things it agrees with.
  */
 export function library(overrides: UserConfig = {}): UserConfig {
-	return mergeConfig(shared, overrides);
+	return mergeConfig(
+		{
+			...shared,
+			deps: { ...shared.deps, onlyImport: declaredDependencies() },
+		},
+		overrides,
+	);
 }

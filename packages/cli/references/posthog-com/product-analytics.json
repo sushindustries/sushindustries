@@ -1,0 +1,378 @@
+{
+	"provider": "posthog-com",
+	"section": "Product Analytics",
+	"entries": [
+		{
+			"name": ".NET Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/dotnet.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Aggregations - Docs",
+			"url": "https://posthog.com/docs/product-analytics/trends/aggregations.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "AI wizard Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/ai-wizard.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Analyze data with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/product-analytics/analyze-data-ai.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Android Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/android.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "API Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/api.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Autocapture - Docs",
+			"url": "https://posthog.com/docs/product-analytics/autocapture.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Breakdowns - Docs",
+			"url": "https://posthog.com/docs/product-analytics/trends/breakdowns.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Capturing events - Docs",
+			"url": "https://posthog.com/docs/product-analytics/capture-events.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Charts - Docs",
+			"url": "https://posthog.com/docs/product-analytics/trends/charts.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Correlation analysis - Docs",
+			"url": "https://posthog.com/docs/product-analytics/correlation.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Creating insights - Docs",
+			"url": "https://posthog.com/docs/product-analytics/insights.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Customizable chart colors - Docs",
+			"url": "https://posthog.com/docs/product-analytics/color-themes.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Cutting product analytics costs - Docs",
+			"url": "https://posthog.com/docs/product-analytics/cutting-costs.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Dashboards - Docs",
+			"url": "https://posthog.com/docs/product-analytics/dashboards.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Elixir Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/elixir.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Filters - Docs",
+			"url": "https://posthog.com/docs/product-analytics/trends/filters.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Flutter Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/flutter.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Formulas - Docs",
+			"url": "https://posthog.com/docs/product-analytics/trends/formulas.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Funnels - Docs",
+			"url": "https://posthog.com/docs/product-analytics/funnels.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Getting started with Product Analytics - Docs",
+			"url": "https://posthog.com/docs/product-analytics/start-here.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Go Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/go.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Group analytics - Docs",
+			"url": "https://posthog.com/docs/product-analytics/group-analytics.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Identifying users - Docs",
+			"url": "https://posthog.com/docs/product-analytics/identify.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Identity resolution - Docs",
+			"url": "https://posthog.com/docs/product-analytics/identity-resolution.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Insight tips and advanced features - Docs",
+			"url": "https://posthog.com/docs/product-analytics/trends/tips.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "iOS Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/ios.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Java Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/java.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Kotlin Multiplatform Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/kmp.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Lifecycle - Docs",
+			"url": "https://posthog.com/docs/product-analytics/lifecycle.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Node.js Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/nodejs.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Path cleaning - Docs",
+			"url": "https://posthog.com/docs/product-analytics/path-cleaning.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Person properties - Docs",
+			"url": "https://posthog.com/docs/product-analytics/person-properties.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "PHP Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/php.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Privacy controls - Docs",
+			"url": "https://posthog.com/docs/product-analytics/privacy.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Product analytics - Docs",
+			"url": "https://posthog.com/docs/product-analytics.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Product analytics API - Docs",
+			"url": "https://posthog.com/docs/product-analytics/surfaces/api.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Product analytics best practices - Docs",
+			"url": "https://posthog.com/docs/product-analytics/best-practices.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Product Analytics changelog - Docs",
+			"url": "https://posthog.com/docs/product-analytics/changelog.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Product analytics in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/product-analytics/surfaces/web-app.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Product Analytics pricing - Docs",
+			"url": "https://posthog.com/docs/product-analytics/pricing.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Product Analytics troubleshooting - Docs",
+			"url": "https://posthog.com/docs/product-analytics/troubleshooting.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Python Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/python.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "React Native Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/react-native.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "React Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/react.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "React Router Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/react-router.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Remix Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/remix.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Retention - Docs",
+			"url": "https://posthog.com/docs/product-analytics/retention.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Review metric regressions in PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/product-analytics/surfaces/desktop.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Ruby Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/ruby.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Rust Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/rust.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Schema management - Docs",
+			"url": "https://posthog.com/docs/product-analytics/schema-management.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Sharing and embedding insights and dashboards - Docs",
+			"url": "https://posthog.com/docs/product-analytics/sharing.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Statistical analysis - Docs",
+			"url": "https://posthog.com/docs/product-analytics/trends/statistical-analysis.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Stickiness - Docs",
+			"url": "https://posthog.com/docs/product-analytics/stickiness.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Subscriptions - Docs",
+			"url": "https://posthog.com/docs/product-analytics/subscriptions.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Trends - Docs",
+			"url": "https://posthog.com/docs/product-analytics/trends/overview.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Tutorials and guides - Docs",
+			"url": "https://posthog.com/docs/product-analytics/tutorials.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Use product analytics over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/product-analytics/surfaces/mcp.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "User paths - Docs",
+			"url": "https://posthog.com/docs/product-analytics/paths.md",
+			"description": "",
+			"section": "Product Analytics"
+		},
+		{
+			"name": "Web Product Analytics installation - Docs",
+			"url": "https://posthog.com/docs/product-analytics/installation/web.md",
+			"description": "",
+			"section": "Product Analytics"
+		}
+	]
+}

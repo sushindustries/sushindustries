@@ -1,0 +1,66 @@
+{
+	"provider": "posthog-com",
+	"section": "Metrics",
+	"entries": [
+		{
+			"name": "Getting started with metrics - Docs",
+			"url": "https://posthog.com/docs/metrics/start-here.md",
+			"description": "",
+			"section": "Metrics"
+		},
+		{
+			"name": "How metrics works - Docs",
+			"url": "https://posthog.com/docs/metrics/architecture.md",
+			"description": "",
+			"section": "Metrics"
+		},
+		{
+			"name": "Install metrics - Docs",
+			"url": "https://posthog.com/docs/metrics/installation.md",
+			"description": "",
+			"section": "Metrics"
+		},
+		{
+			"name": "JavaScript (web) metrics installation - Docs",
+			"url": "https://posthog.com/docs/metrics/installation/javascript.md",
+			"description": "",
+			"section": "Metrics"
+		},
+		{
+			"name": "Kubernetes metrics installation - Docs",
+			"url": "https://posthog.com/docs/metrics/installation/kubernetes.md",
+			"description": "",
+			"section": "Metrics"
+		},
+		{
+			"name": "Metrics - Docs",
+			"url": "https://posthog.com/docs/metrics.md",
+			"description": "",
+			"section": "Metrics"
+		},
+		{
+			"name": "Node.js metrics installation - Docs",
+			"url": "https://posthog.com/docs/metrics/installation/nodejs.md",
+			"description": "",
+			"section": "Metrics"
+		},
+		{
+			"name": "Other languages metrics installation - Docs",
+			"url": "https://posthog.com/docs/metrics/installation/other.md",
+			"description": "",
+			"section": "Metrics"
+		},
+		{
+			"name": "Python metrics installation - Docs",
+			"url": "https://posthog.com/docs/metrics/installation/python.md",
+			"description": "",
+			"section": "Metrics"
+		},
+		{
+			"name": "Why you need metrics - Docs",
+			"url": "https://posthog.com/docs/metrics/basics.md",
+			"description": "",
+			"section": "Metrics"
+		}
+	]
+}

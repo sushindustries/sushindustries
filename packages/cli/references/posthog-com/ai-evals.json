@@ -1,0 +1,24 @@
+{
+	"provider": "posthog-com",
+	"section": "Ai Evals",
+	"entries": [
+		{
+			"name": "Datasets - Docs",
+			"url": "https://posthog.com/docs/ai-evals/datasets.md",
+			"description": "",
+			"section": "Ai Evals"
+		},
+		{
+			"name": "Evaluations - Docs",
+			"url": "https://posthog.com/docs/ai-evals.md",
+			"description": "",
+			"section": "Ai Evals"
+		},
+		{
+			"name": "Taggers - Docs",
+			"url": "https://posthog.com/docs/ai-evals/taggers.md",
+			"description": "",
+			"section": "Ai Evals"
+		}
+	]
+}

@@ -1,27 +1,48 @@
 {
-	"version": "7",
-	"dialect": "postgresql",
-	"entries": [
-		{
-			"idx": 0,
-			"version": "7",
-			"when": 1786912755216,
-			"tag": "0000_numerous_goliath",
-			"breakpoints": true
-		},
-		{
-			"idx": 1,
-			"version": "7",
-			"when": 1786933293233,
-			"tag": "0001_right_stellaris",
-			"breakpoints": true
-		},
-		{
-			"idx": 2,
-			"version": "7",
-			"when": 1786959974841,
-			"tag": "0002_tidy_the_professor",
-			"breakpoints": true
-		}
-	]
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1786912755216,
+      "tag": "0000_numerous_goliath",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1786933293233,
+      "tag": "0001_right_stellaris",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1786959974841,
+      "tag": "0002_tidy_the_professor",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1787161713381,
+      "tag": "0003_page-views",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1787161722916,
+      "tag": "0004_carry-package-views",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1787161742476,
+      "tag": "0005_drop-legacy-tables",
+      "breakpoints": true
+    }
+  ]
 }

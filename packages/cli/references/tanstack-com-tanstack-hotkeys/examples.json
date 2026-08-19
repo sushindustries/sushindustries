@@ -1,0 +1,336 @@
+{
+	"provider": "tanstack-com-tanstack-hotkeys",
+	"section": "Examples",
+	"entries": [
+		{
+			"name": "formatForDisplay",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vanilla/examples/formatForDisplay.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/examples/useHotkey.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useHotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/examples/useHotkeys.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useHotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/examples/useHotkeySequence.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useHotkeySequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/examples/useHotkeySequences.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/examples/useHotkeyRecorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/examples/useHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useHeldKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/examples/useHeldKeys.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useKeyHold",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/examples/useKeyhold.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/examples/useHotkey.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useHotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/examples/useHotkeys.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useHotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/examples/useHotkeySequence.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useHotkeySequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/examples/useHotkeySequences.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/examples/useHotkeyRecorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/examples/useHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useHeldKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/examples/useHeldKeys.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useKeyHold",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/examples/useKeyhold.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/examples/createHotkey.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createHotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/examples/createHotkeys.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createHotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/examples/createHotkeySequence.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createHotkeySequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/examples/createHotkeySequences.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/examples/createHotkeyRecorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/examples/createHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createHeldKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/examples/createHeldKeys.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createKeyHold",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/examples/createKeyHold.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/examples/injectHotkey.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectHotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/examples/injectHotkeys.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectHotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/examples/injectHotkeySequence.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectHotkeySequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/examples/injectHotkeySequences.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/examples/injectHotkeyRecorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/examples/injectHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectHeldKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/examples/injectHeldKeys.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectKeyHold",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/examples/injectKeyHold.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: useHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/examples/useHotkey.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: useHotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/examples/useHotkeys.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: useHotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/examples/useHotkeySequence.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: useHotkeySequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/examples/useHotkeySequences.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: useHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/examples/useHotkeyRecorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: useHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/examples/useHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: useHeldKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/examples/useHeldKeys.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: useKeyHold",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/examples/useKeyhold.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: hotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/examples/hotkey.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: hotkey-sequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/examples/hotkey-sequence.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: hotkey-recorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/examples/hotkey-recorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: hotkey-sequence-recorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/examples/hotkey-sequence-recorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: held-keys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/examples/held-keys.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: key-hold",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/examples/key-hold.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: createHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/examples/create-hotkey.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: createHotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/examples/create-hotkeys.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: createHotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/examples/create-hotkey-sequence.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: createHotkeySequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/examples/create-hotkey-sequences.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: createHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/examples/create-hotkey-recorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: create-hotkey-sequence-recorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/examples/create-hotkey-sequence-recorder.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: getHeldKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/examples/get-held-keys.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: getIsKeyHeld",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/examples/get-is-key-held.md",
+			"description": "",
+			"section": "Examples"
+		}
+	]
+}

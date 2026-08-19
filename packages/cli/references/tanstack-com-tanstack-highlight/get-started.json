@@ -1,0 +1,30 @@
+{
+	"provider": "tanstack-com-tanstack-highlight",
+	"section": "Get Started",
+	"entries": [
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/highlight/latest/docs/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Installation",
+			"url": "https://tanstack.com/highlight/latest/docs/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start",
+			"url": "https://tanstack.com/highlight/latest/docs/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Comparison",
+			"url": "https://tanstack.com/highlight/latest/docs/comparison.md",
+			"description": "",
+			"section": "Get Started"
+		}
+	]
+}

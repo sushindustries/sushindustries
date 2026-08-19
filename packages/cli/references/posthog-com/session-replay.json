@@ -1,0 +1,264 @@
+{
+	"provider": "posthog-com",
+	"section": "Session Replay",
+	"entries": [
+		{
+			"name": "Android Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/android.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Angular Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/angular.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Astro Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/astro.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Bubble Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/bubble.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Canvas recording - Docs",
+			"url": "https://posthog.com/docs/session-replay/canvas-recording.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Console logs recording - Docs",
+			"url": "https://posthog.com/docs/session-replay/console-log-recording.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Find replays with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/session-replay/find-replays-ai.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Flutter Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/flutter.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Framer Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/framer.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Get started with Session Replay - Docs",
+			"url": "https://posthog.com/docs/session-replay/start-here.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "How to control which sessions you record - Docs",
+			"url": "https://posthog.com/docs/session-replay/how-to-control-which-sessions-you-record.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "How to watch recordings - Docs",
+			"url": "https://posthog.com/docs/session-replay/how-to-watch-recordings.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "HTML snippet Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/html-snippet.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Iframe recording - Docs",
+			"url": "https://posthog.com/docs/session-replay/iframes.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Integrations - Docs",
+			"url": "https://posthog.com/docs/session-replay/integrations.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "iOS Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/ios.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Kotlin Multiplatform Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/kmp.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Mobile session replay - Docs",
+			"url": "https://posthog.com/docs/session-replay/mobile.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Network performance recording - Docs",
+			"url": "https://posthog.com/docs/session-replay/network-recording.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Next.js Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/nextjs.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Nuxt Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/nuxt.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Privacy controls - Docs",
+			"url": "https://posthog.com/docs/session-replay/privacy.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "React Native Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/react-native.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "React Router Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/react-router.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "React Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/react.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Remix Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/remix.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Replay recording retention - Docs",
+			"url": "https://posthog.com/docs/session-replay/recording-retention.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Review session findings in PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/session-replay/surfaces/desktop.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Session recording snapshot API - Docs",
+			"url": "https://posthog.com/docs/session-replay/snapshot-api.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Session Replay - Docs",
+			"url": "https://posthog.com/docs/session-replay.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Session Replay changelog - Docs",
+			"url": "https://posthog.com/docs/session-replay/changelog.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Session replay in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/session-replay/surfaces/web-app.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Session Replay troubleshooting - Docs",
+			"url": "https://posthog.com/docs/session-replay/troubleshooting.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Sharing and embedding replays - Docs",
+			"url": "https://posthog.com/docs/session-replay/sharing.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Svelte Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/svelte.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Tutorials and guides - Docs",
+			"url": "https://posthog.com/docs/session-replay/tutorials.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Unity Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/unity.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Use Session Replay over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/session-replay/surfaces/mcp.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Use Session Replay over the API - Docs",
+			"url": "https://posthog.com/docs/session-replay/surfaces/api.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Vue Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/vue.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Web Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/web.md",
+			"description": "",
+			"section": "Session Replay"
+		},
+		{
+			"name": "Webflow Session Replay installation - Docs",
+			"url": "https://posthog.com/docs/session-replay/installation/webflow.md",
+			"description": "",
+			"section": "Session Replay"
+		}
+	]
+}

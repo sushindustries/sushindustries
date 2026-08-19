@@ -1,0 +1,37 @@
+{
+	"provider": "tanstack-com-tanstack-config",
+	"source": "https://tanstack.com/config/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Config docs",
+	"summary": "Opinionated tooling to lint, build, test, version, and publish JS/TS packages — minimal config, consistent results.",
+	"total": 10,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 1,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 5,
+			"file": "guides.json"
+		}
+	]
+}

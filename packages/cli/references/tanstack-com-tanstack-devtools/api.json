@@ -1,0 +1,48 @@
+{
+	"provider": "tanstack-com-tanstack-devtools",
+	"section": "API",
+	"entries": [
+		{
+			"name": "Core API Reference",
+			"url": "https://tanstack.com/devtools/latest/docs/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: React Reference",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/react/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Preact Reference",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/preact/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: Solid Reference",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/solid/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: Vue Reference",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/vue/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: Svelte Reference",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/svelte/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: Angular Reference",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/angular/reference/index.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

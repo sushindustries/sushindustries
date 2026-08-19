@@ -149,13 +149,13 @@ export const boundSkills = bindSkills(skills, {
 		}));
 	},
 
-	async site_stats({ slug }) {
+	async site_stats({ path }) {
 		/*
 		 * The one skill that can fail at runtime, and the only one that talks to
 		 * anything but the bundle. It returns null when there is no database, so
 		 * a deployment without one still answers every other question.
 		 */
-		if (slug) return await readViews(String(slug));
+		if (path) return await readViews(String(path));
 		return await readAllViews();
 	},
 });

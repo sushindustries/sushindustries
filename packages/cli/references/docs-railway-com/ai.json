@@ -1,0 +1,102 @@
+{
+	"provider": "docs-railway-com",
+	"section": "AI",
+	"entries": [
+		{
+			"name": "AI",
+			"url": "https://docs.railway.com/ai.md",
+			"description": "Integrate Railway with AI assistants using plugins, connectors, Agent Skills, and the Railway MCP Server.",
+			"section": "AI"
+		},
+		{
+			"name": "Railway Agent",
+			"url": "https://docs.railway.com/ai/railway-agent.md",
+			"description": "Chat with the Railway Agent to manage services, diagnose failures, and ship fixes directly from the Railway dashboard.",
+			"section": "AI"
+		},
+		{
+			"name": "Agent Connectors",
+			"url": "https://docs.railway.com/ai/agent-connectors.md",
+			"description": "Connect Notion, Linear, Sentry, or your own MCP server to Railway's agent, then attach them as context in dashboard chat and dev.new.",
+			"section": "AI"
+		},
+		{
+			"name": "Cloud agents",
+			"url": "https://docs.railway.com/cloud-agents.md",
+			"description": "Run Claude Code, Codex, or Grok CLI on a persistent Railway virtual machine. Hand off tasks, manage sessions from the terminal or dashboard, and reconnect with your work still in place.",
+			"section": "AI"
+		},
+		{
+			"name": "Agent skills",
+			"url": "https://docs.railway.com/ai/agent-skills.md",
+			"description": "Agent skills for interacting with Railway directly from your AI coding assistant.",
+			"section": "AI"
+		},
+		{
+			"name": "MCP server",
+			"url": "https://docs.railway.com/ai/mcp-server.md",
+			"description": "Connect AI coding agents to Railway through Local MCP or Remote MCP.",
+			"section": "AI"
+		},
+		{
+			"name": "Agent integrations",
+			"url": "https://docs.railway.com/ai/agent-integrations.md",
+			"description": "Bring the Railway Agent into your team chat — mention @Railway in Slack or Discord to work with your projects from the conversation.",
+			"section": "AI"
+		},
+		{
+			"name": "Slack",
+			"url": "https://docs.railway.com/ai/agent-integrations/slack.md",
+			"description": "Install the Railway Agent in your Slack workspace and work with your projects from chat.",
+			"section": "AI"
+		},
+		{
+			"name": "Discord",
+			"url": "https://docs.railway.com/ai/agent-integrations/discord.md",
+			"description": "Install the Railway Agent in your Discord server and work with your projects from chat.",
+			"section": "AI"
+		},
+		{
+			"name": "Plugins and connectors",
+			"url": "https://docs.railway.com/ai/plugins-and-connectors.md",
+			"description": "Choose a Railway integration for ChatGPT, Codex, Claude, Claude Code, Grok Build, or Cursor.",
+			"section": "AI"
+		},
+		{
+			"name": "ChatGPT plugin",
+			"url": "https://docs.railway.com/ai/chatgpt-plugin.md",
+			"description": "Install the Railway plugin for ChatGPT to deploy and manage Railway infrastructure through the hosted Railway MCP server.",
+			"section": "AI"
+		},
+		{
+			"name": "Codex plugin",
+			"url": "https://docs.railway.com/ai/codex-plugin.md",
+			"description": "Install the Railway plugin for OpenAI Codex to deploy and manage Railway infrastructure with Agent Skills and hosted MCP.",
+			"section": "AI"
+		},
+		{
+			"name": "Claude connector",
+			"url": "https://docs.railway.com/ai/claude-connector.md",
+			"description": "Connect Railway to Claude through OAuth and Railway's hosted MCP server.",
+			"section": "AI"
+		},
+		{
+			"name": "Claude Code plugin",
+			"url": "https://docs.railway.com/ai/claude-code-plugin.md",
+			"description": "Install the Railway plugin for Claude Code to manage your infrastructure with natural language.",
+			"section": "AI"
+		},
+		{
+			"name": "Grok Build plugin",
+			"url": "https://docs.railway.com/ai/grok-build-plugin.md",
+			"description": "Install the Railway plugin for Grok Build from xAI's official plugin marketplace.",
+			"section": "AI"
+		},
+		{
+			"name": "Cursor plugin",
+			"url": "https://docs.railway.com/ai/cursor-plugin.md",
+			"description": "Install the Railway plugin for Cursor to manage Railway infrastructure with Agent Skills and hosted MCP.",
+			"section": "AI"
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "mysql/meet drizzle",
+	"entries": [
+		{
+			"name": "Drizzle ORM",
+			"url": "https://orm.drizzle.team/docs/mysql/overview",
+			"description": "",
+			"section": "mysql/meet drizzle"
+		}
+	]
+}

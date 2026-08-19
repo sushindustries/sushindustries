@@ -1,0 +1,47 @@
+{
+	"provider": "tanstack-com-tanstack-query",
+	"source": "https://tanstack.com/query/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Query docs",
+	"summary": "Powerful asynchronous state management, server-state utilities and data fetching. Fetch, cache, update, and wrangle all forms of async data in your TS/JS, React, Vue, Solid, Svelte, Angular & Lit applications all without touching any \"global state\".",
+	"total": 422,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 43,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 194,
+			"file": "guides.json"
+		},
+		{
+			"name": "API",
+			"entries": 124,
+			"file": "api.json"
+		},
+		{
+			"name": "Examples",
+			"entries": 57,
+			"file": "examples.json"
+		}
+	]
+}

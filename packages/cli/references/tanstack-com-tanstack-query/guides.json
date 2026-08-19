@@ -1,0 +1,1170 @@
+{
+	"provider": "tanstack-com-tanstack-query",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "React: Important Defaults",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/important-defaults.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Query Keys",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Query Functions",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/query-functions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Query Options",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/query-options.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Network Mode",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/network-mode.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Parallel Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/parallel-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Dependent Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/dependent-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Background Fetching Indicators",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/background-fetching-indicators.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Window Focus Refetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/window-focus-refetching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Polling",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/polling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Disabling/Pausing Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/disabling-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Query Retries",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/query-retries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Paginated Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/paginated-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Infinite Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/infinite-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Initial Query Data",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/initial-query-data.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Placeholder Query Data",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/placeholder-query-data.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Mutations",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/mutations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Query Invalidation",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/query-invalidation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Invalidation from Mutations",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/invalidations-from-mutations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Updates from Mutation Responses",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/updates-from-mutation-responses.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Optimistic Updates",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Query Cancellation",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/query-cancellation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Scroll Restoration",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/scroll-restoration.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Filters",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/filters.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Performance & Request Waterfalls",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/request-waterfalls.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Prefetching & Router Integration",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/prefetching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Server Rendering & Hydration",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/ssr.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Advanced Server Rendering",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Caching",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/caching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Render Optimizations",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/render-optimizations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Default Query Fn",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/default-query-function.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Suspense",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/suspense.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Testing",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/testing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Migrating to v3",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/migrating-to-react-query-3.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Migrating to v4",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/migrating-to-react-query-4.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Migrating to v5",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/guides/migrating-to-v5.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Important Defaults",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/important-defaults.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Query Keys",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/query-keys.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Query Functions",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/query-functions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Query Options",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/query-options.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Network Mode",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/network-mode.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Parallel Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/parallel-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Dependent Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/dependent-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Background Fetching Indicators",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/background-fetching-indicators.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Window Focus Refetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/window-focus-refetching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Polling",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/polling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Disabling/Pausing Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/disabling-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Query Retries",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/query-retries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Paginated Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/paginated-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Infinite Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/infinite-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Initial Query Data",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/initial-query-data.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Placeholder Query Data",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/placeholder-query-data.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Mutations",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/mutations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Query Invalidation",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/query-invalidation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Invalidation from Mutations",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/invalidations-from-mutations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Updates from Mutation Responses",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/updates-from-mutation-responses.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Optimistic Updates",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/optimistic-updates.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Query Cancellation",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/query-cancellation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Scroll Restoration",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/scroll-restoration.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Filters",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/filters.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Request Waterfalls",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/request-waterfalls.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Prefetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/prefetching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: SSR",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/ssr.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Advanced SSR",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/advanced-ssr.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Caching",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/caching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Default Query Fn",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/default-query-function.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Suspense",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/suspense.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Testing",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/testing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Does this replace state managers?",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/guides/does-this-replace-client-state.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Important Defaults",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/important-defaults.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Query Keys",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/query-keys.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Query Functions",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/query-functions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Query Options",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/query-options.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Network Mode",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/network-mode.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Parallel Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/parallel-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Dependent Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/dependent-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Background Fetching Indicators",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/background-fetching-indicators.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Window Focus Refetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/window-focus-refetching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Polling",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/polling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Disabling/Pausing Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/disabling-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Query Retries",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/query-retries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Paginated Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/paginated-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Infinite Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/infinite-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Initial Query Data",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/initial-query-data.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Placeholder Query Data",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/placeholder-query-data.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Mutations",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/mutations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Query Invalidation",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/query-invalidation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Invalidation from Mutations",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/invalidations-from-mutations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Updates from Mutation Responses",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/updates-from-mutation-responses.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Optimistic Updates",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/optimistic-updates.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Query Cancellation",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/query-cancellation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Scroll Restoration",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/scroll-restoration.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Filters",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/filters.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Prefetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/prefetching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: SSR & Nuxt",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/ssr.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Caching",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/caching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Default Query Fn",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/default-query-function.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Suspense",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/suspense.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Testing",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/testing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Custom Client",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/custom-client.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Migrating to v5",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/guides/migrating-to-v5.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Important Defaults",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/important-defaults.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Query Keys",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/query-keys.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Query Functions",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/query-functions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Query Options",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/query-options.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Network Mode",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/network-mode.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Parallel Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/parallel-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Dependent Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/dependent-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Background Fetching Indicators",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/background-fetching-indicators.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Window Focus Refetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/window-focus-refetching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Disabling/Pausing Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/disabling-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Query Retries",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/query-retries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Paginated Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/paginated-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Infinite Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/infinite-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Initial Query Data",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/initial-query-data.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Placeholder Query Data",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/placeholder-query-data.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Mutations",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/mutations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Mutation Options",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/mutation-options.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Query Invalidation",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/query-invalidation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Invalidation from Mutations",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/invalidations-from-mutations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Optimistic Updates",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/optimistic-updates.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Query Cancellation",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/query-cancellation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Scroll Restoration",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/scroll-restoration.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Filters",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/filters.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Caching",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/caching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Default Query Fn",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/default-query-function.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Testing",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/testing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Does this replace state managers?",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/guides/does-this-replace-client-state.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Reactive Controllers vs Hooks",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/guides/reactive-controllers-vs-hooks.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/guides/queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Parallel Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/guides/parallel-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Query Keys",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/guides/query-keys.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Query Functions",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/guides/query-functions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Mutations",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/guides/mutations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Query Invalidation",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/guides/query-invalidation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Infinite Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/guides/infinite-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: SSR",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/guides/ssr.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Important Defaults",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/important-defaults.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Query Keys",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/query-keys.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Query Functions",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/query-functions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Query Options",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/query-options.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Network Mode",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/network-mode.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Parallel Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/parallel-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Dependent Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/dependent-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Background Fetching Indicators",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/background-fetching-indicators.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Window Focus Refetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/window-focus-refetching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Polling",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/polling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Disabling/Pausing Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/disabling-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Query Retries",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/query-retries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Paginated Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/paginated-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Infinite Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/infinite-queries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Initial Query Data",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/initial-query-data.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Placeholder Query Data",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/placeholder-query-data.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Mutations",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/mutations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Query Invalidation",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/query-invalidation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Invalidation from Mutations",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/invalidations-from-mutations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Updates from Mutation Responses",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/updates-from-mutation-responses.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Optimistic Updates",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/optimistic-updates.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Query Cancellation",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/query-cancellation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Scroll Restoration",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/scroll-restoration.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Filters",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/filters.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Performance & Request Waterfalls",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/request-waterfalls.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Prefetching & Router Integration",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/prefetching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Caching",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/caching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Render Optimizations",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/render-optimizations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Default Query Fn",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/guides/default-query-function.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "ESLint Plugin Query",
+			"url": "https://tanstack.com/query/latest/docs/eslint/eslint-plugin-query.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Exhaustive Deps",
+			"url": "https://tanstack.com/query/latest/docs/eslint/exhaustive-deps.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Stable Query Client",
+			"url": "https://tanstack.com/query/latest/docs/eslint/stable-query-client.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "No Rest Destructuring",
+			"url": "https://tanstack.com/query/latest/docs/eslint/no-rest-destructuring.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "No Unstable Deps",
+			"url": "https://tanstack.com/query/latest/docs/eslint/no-unstable-deps.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Infinite Query Property Order",
+			"url": "https://tanstack.com/query/latest/docs/eslint/infinite-query-property-order.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "No void Query Functions",
+			"url": "https://tanstack.com/query/latest/docs/eslint/no-void-query-fn.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Mutation Property Order",
+			"url": "https://tanstack.com/query/latest/docs/eslint/mutation-property-order.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Prefer Query Options",
+			"url": "https://tanstack.com/query/latest/docs/eslint/prefer-query-options.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: persistQueryClient",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/plugins/persistQueryClient.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: createSyncStoragePersister",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/plugins/createSyncStoragePersister.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: createAsyncStoragePersister",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/plugins/createAsyncStoragePersister.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: broadcastQueryClient (Experimental)",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/plugins/broadcastQueryClient.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: createPersister (Experimental)",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/plugins/createPersister.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: broadcastQueryClient (Experimental)",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/plugins/broadcastQueryClient.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: createPersister (Experimental)",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/plugins/createPersister.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: broadcastQueryClient (Experimental)",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/plugins/broadcastQueryClient.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: createPersister (Experimental)",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/plugins/createPersister.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: persistQueryClient",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/plugins/persistQueryClient.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: createSyncStoragePersister",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/plugins/createSyncStoragePersister.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: createAsyncStoragePersister",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/plugins/createAsyncStoragePersister.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: broadcastQueryClient (Experimental)",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/plugins/broadcastQueryClient.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: createPersister (Experimental)",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/plugins/createPersister.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

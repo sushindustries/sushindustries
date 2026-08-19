@@ -1,0 +1,126 @@
+{
+	"provider": "posthog-com",
+	"section": "Data",
+	"entries": [
+		{
+			"name": "Actions - Docs",
+			"url": "https://posthog.com/docs/data/actions.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Annotations - Docs",
+			"url": "https://posthog.com/docs/data/annotations.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Anonymous vs identified events - Docs",
+			"url": "https://posthog.com/docs/data/anonymous-vs-identified-events.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Channel type - Docs",
+			"url": "https://posthog.com/docs/data/channel-type.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Cohorts - Docs",
+			"url": "https://posthog.com/docs/data/cohorts.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Data management - Docs",
+			"url": "https://posthog.com/docs/data.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Ecommerce events specification - Docs",
+			"url": "https://posthog.com/docs/data/event-spec/ecommerce-events.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Event ingestion filtering - Docs",
+			"url": "https://posthog.com/docs/data/event-filtering.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Events - Docs",
+			"url": "https://posthog.com/docs/data/events.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Ingestion warnings - Docs",
+			"url": "https://posthog.com/docs/data/ingestion-warnings.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Internal and test users - Docs",
+			"url": "https://posthog.com/docs/data/test-accounts.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "People - Docs",
+			"url": "https://posthog.com/docs/data/persons.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Project setup for embedded analytics - Docs",
+			"url": "https://posthog.com/docs/data/embedded-analytics-projects.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Property filter operators - Docs",
+			"url": "https://posthog.com/docs/data/property-filters.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Query log - Docs",
+			"url": "https://posthog.com/docs/data/query-log.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Replay comments - Docs",
+			"url": "https://posthog.com/docs/data/comments.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Sessions - Docs",
+			"url": "https://posthog.com/docs/data/sessions.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Team collaboration - Docs",
+			"url": "https://posthog.com/docs/data/team-collaboration.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "Timestamps - Docs",
+			"url": "https://posthog.com/docs/data/timestamps.md",
+			"description": "",
+			"section": "Data"
+		},
+		{
+			"name": "UTM segmentation - Docs",
+			"url": "https://posthog.com/docs/data/utm-segmentation.md",
+			"description": "",
+			"section": "Data"
+		}
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"provider": "tanstack-com-notebook-authoring-guide",
+	"source": "https://tanstack.com/notebook/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Notebook",
+	"summary": "Author, run, edit, and share browser-only JavaScript, TypeScript, JSX, and TSX projects at https://tanstack.com/notebook.",
+	"total": 0,
+	"sections": []
+}

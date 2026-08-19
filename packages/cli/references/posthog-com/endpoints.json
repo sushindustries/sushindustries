@@ -1,0 +1,204 @@
+{
+	"provider": "posthog-com",
+	"section": "Endpoints",
+	"entries": [
+		{
+			"name": "Build customer-facing analytics - Docs",
+			"url": "https://posthog.com/docs/endpoints/customer-facing-analytics.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Caching - Docs",
+			"url": "https://posthog.com/docs/endpoints/caching.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Call endpoints from your app - Docs",
+			"url": "https://posthog.com/docs/endpoints/surfaces/api.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Create an endpoint - Docs",
+			"url": "https://posthog.com/docs/endpoints/start-here/create-endpoint.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Create an endpoint with variables - Docs",
+			"url": "https://posthog.com/docs/endpoints/guide-variables.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Create an insight-based endpoint with variables - Docs",
+			"url": "https://posthog.com/docs/endpoints/guide-breakdown.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Define the data for your endpoint - Docs",
+			"url": "https://posthog.com/docs/endpoints/start-here/define-your-data.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Endpoint types - Docs",
+			"url": "https://posthog.com/docs/endpoints/endpoint-types.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Endpoints - Docs",
+			"url": "https://posthog.com/docs/endpoints.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Endpoints changelog - Docs",
+			"url": "https://posthog.com/docs/endpoints/changelog.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Endpoints in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/endpoints/surfaces/web-app.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Endpoints troubleshooting - Docs",
+			"url": "https://posthog.com/docs/endpoints/troubleshooting.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Endpoints vs Query API - Docs",
+			"url": "https://posthog.com/docs/endpoints/endpoints-vs-query-api.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Enrich internal tools with data from endpoints - Docs",
+			"url": "https://posthog.com/docs/endpoints/internal-tools.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Execution - Docs",
+			"url": "https://posthog.com/docs/endpoints/execution.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Generate SDKs with OpenAPI - Docs",
+			"url": "https://posthog.com/docs/endpoints/openapi-sdk-generation.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Getting started with endpoints - Docs",
+			"url": "https://posthog.com/docs/endpoints/start-here.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Materialization - Docs",
+			"url": "https://posthog.com/docs/endpoints/materialization.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Pricing - Docs",
+			"url": "https://posthog.com/docs/endpoints/pricing.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Rate limits - Docs",
+			"url": "https://posthog.com/docs/endpoints/rate-limits.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Retrieve data from your endpoint - Docs",
+			"url": "https://posthog.com/docs/endpoints/start-here/retrieve-data.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Retrieve data from your endpoint with an OpenAPI SDK - Docs",
+			"url": "https://posthog.com/docs/endpoints/start-here/retrieve-data/openapi.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Retrieve data from your endpoint with cURL - Docs",
+			"url": "https://posthog.com/docs/endpoints/start-here/retrieve-data/api.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Retrieve data from your endpoint with Go - Docs",
+			"url": "https://posthog.com/docs/endpoints/start-here/retrieve-data/go.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Retrieve data from your endpoint with Node.js - Docs",
+			"url": "https://posthog.com/docs/endpoints/start-here/retrieve-data/nodejs.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Retrieve data from your endpoint with Python - Docs",
+			"url": "https://posthog.com/docs/endpoints/start-here/retrieve-data/python.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Retrieve data from your endpoint with TypeScript - Docs",
+			"url": "https://posthog.com/docs/endpoints/start-here/retrieve-data/typescript.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Usage and logs - Docs",
+			"url": "https://posthog.com/docs/endpoints/usage-analytics.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Use cases and tips - Docs",
+			"url": "https://posthog.com/docs/endpoints/best-practices.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Use endpoints in PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/endpoints/surfaces/desktop.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Use endpoints over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/endpoints/surfaces/mcp.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Variables in endpoints - Docs",
+			"url": "https://posthog.com/docs/endpoints/variables.md",
+			"description": "",
+			"section": "Endpoints"
+		},
+		{
+			"name": "Versioning - Docs",
+			"url": "https://posthog.com/docs/endpoints/versioning.md",
+			"description": "",
+			"section": "Endpoints"
+		}
+	]
+}

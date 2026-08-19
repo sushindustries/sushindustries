@@ -1,0 +1,60 @@
+{
+	"provider": "docs-railway-com",
+	"section": "General",
+	"entries": [
+		{
+			"name": "Quick start",
+			"url": "https://docs.railway.com/quick-start.md",
+			"description": "Get started with Railway in minutes! This Quick Start tutorial walks you through deploying your first app via GitHub, the CLI, a Docker image, or a template.",
+			"section": "General"
+		},
+		{
+			"name": "The basics",
+			"url": "https://docs.railway.com/overview/the-basics.md",
+			"description": "Learn about the core concepts of Railway.",
+			"section": "General"
+		},
+		{
+			"name": "Railway for Agents",
+			"url": "https://docs.railway.com/agents.md",
+			"description": "Set up Railway for AI coding agents — install the CLI, configure MCP, and add agent skills in one step.",
+			"section": "General"
+		},
+		{
+			"name": "Mobile app",
+			"url": "https://docs.railway.com/mobile-app.md",
+			"description": "Install the Railway mobile app on iOS and sign in to check on your projects from your phone.",
+			"section": "General"
+		},
+		{
+			"name": "Best practices",
+			"url": "https://docs.railway.com/overview/best-practices.md",
+			"description": "Learn the best practices to maximize performance, efficiency, and scalability of your apps on Railway.",
+			"section": "General"
+		},
+		{
+			"name": "Advanced concepts",
+			"url": "https://docs.railway.com/overview/advanced-concepts.md",
+			"description": "A guide that outlines the advanced concepts of Railway.",
+			"section": "General"
+		},
+		{
+			"name": "Production readiness checklist",
+			"url": "https://docs.railway.com/overview/production-readiness-checklist.md",
+			"description": "Ensure your app is production-ready with this comprehensive Railway checklist.",
+			"section": "General"
+		},
+		{
+			"name": "Guides",
+			"url": "https://docs.railway.com/guides.md",
+			"description": "",
+			"section": "General"
+		},
+		{
+			"name": "Keyboard shortcuts",
+			"url": "https://docs.railway.com/overview/keyboard-shortcuts.md",
+			"description": "A reference of keyboard shortcuts available in the Railway dashboard, canvas, and data views.",
+			"section": "General"
+		}
+	]
+}

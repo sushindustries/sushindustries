@@ -1,0 +1,42 @@
+{
+	"provider": "posthog-com",
+	"section": "SQL and ClickHouse",
+	"entries": [
+		{
+			"name": "Optimizing SQL queries - Docs",
+			"url": "https://posthog.com/docs/sql/optimizing-queries.md",
+			"description": "",
+			"section": "SQL and ClickHouse"
+		},
+		{
+			"name": "SQL access in PostHog - Docs",
+			"url": "https://posthog.com/docs/sql.md",
+			"description": "",
+			"section": "SQL and ClickHouse"
+		},
+		{
+			"name": "SQL expressions - Docs",
+			"url": "https://posthog.com/docs/sql/expressions.md",
+			"description": "",
+			"section": "SQL and ClickHouse"
+		},
+		{
+			"name": "SQL tutorials - Docs",
+			"url": "https://posthog.com/docs/sql/tutorials.md",
+			"description": "",
+			"section": "SQL and ClickHouse"
+		},
+		{
+			"name": "Supported aggregations - Docs",
+			"url": "https://posthog.com/docs/sql/aggregations.md",
+			"description": "",
+			"section": "SQL and ClickHouse"
+		},
+		{
+			"name": "Supported ClickHouse functions - Docs",
+			"url": "https://posthog.com/docs/sql/clickhouse-functions.md",
+			"description": "",
+			"section": "SQL and ClickHouse"
+		}
+	]
+}

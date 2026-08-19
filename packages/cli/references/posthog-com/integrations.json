@@ -1,0 +1,30 @@
+{
+	"provider": "posthog-com",
+	"section": "Integrations",
+	"entries": [
+		{
+			"name": "Lovable integration - Docs",
+			"url": "https://posthog.com/docs/integrations/lovable.md",
+			"description": "",
+			"section": "Integrations"
+		},
+		{
+			"name": "Replit integration - Docs",
+			"url": "https://posthog.com/docs/integrations/replit.md",
+			"description": "",
+			"section": "Integrations"
+		},
+		{
+			"name": "v0 integration - Docs",
+			"url": "https://posthog.com/docs/integrations/v0.md",
+			"description": "",
+			"section": "Integrations"
+		},
+		{
+			"name": "Vercel Marketplace integration - Docs",
+			"url": "https://posthog.com/docs/integrations/vercel-marketplace.md",
+			"description": "",
+			"section": "Integrations"
+		}
+	]
+}

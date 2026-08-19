@@ -1,0 +1,24 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "Migrations",
+	"entries": [
+		{
+			"name": "Drizzle migrations for teams",
+			"url": "https://orm.drizzle.team/docs/kit-migrations-for-teams",
+			"description": "",
+			"section": "Migrations"
+		},
+		{
+			"name": "Drizzle migrations in web and mobile environments",
+			"url": "https://orm.drizzle.team/docs/kit-web-mobile",
+			"description": "",
+			"section": "Migrations"
+		},
+		{
+			"name": "Drizzle Kit configuration file",
+			"url": "https://orm.drizzle.team/docs/drizzle-config-file",
+			"description": "",
+			"section": "Migrations"
+		}
+	]
+}

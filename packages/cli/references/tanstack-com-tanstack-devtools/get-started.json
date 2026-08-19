@@ -1,0 +1,126 @@
+{
+	"provider": "tanstack-com-tanstack-devtools",
+	"section": "Get Started",
+	"entries": [
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/devtools/latest/docs/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start",
+			"url": "https://tanstack.com/devtools/latest/docs/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Installation",
+			"url": "https://tanstack.com/devtools/latest/docs/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Configuration",
+			"url": "https://tanstack.com/devtools/latest/docs/configuration.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Plugin Configuration",
+			"url": "https://tanstack.com/devtools/latest/docs/plugin-configuration.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Plugin Workspace",
+			"url": "https://tanstack.com/devtools/latest/docs/plugin-workspace.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vite Plugin",
+			"url": "https://tanstack.com/devtools/latest/docs/vite-plugin.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Production",
+			"url": "https://tanstack.com/devtools/latest/docs/production.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Basic Setup",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/react/basic-setup.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: React Adapter",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/react/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Preact: Basic Setup",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/preact/basic-setup.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Preact: Preact Adapter",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/preact/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Basic Setup",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/solid/basic-setup.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Solid Adapter",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/solid/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: Basic Setup",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/vue/basic-setup.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: Vue Adapter",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/vue/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: Basic Setup",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/svelte/basic-setup.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: Svelte Adapter",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/svelte/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Basic Setup",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/angular/basic-setup.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Angular Adapter",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/angular/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		}
+	]
+}

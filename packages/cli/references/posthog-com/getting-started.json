@@ -1,0 +1,42 @@
+{
+	"provider": "posthog-com",
+	"section": "Getting Started",
+	"entries": [
+		{
+			"name": "Data import and export - Docs",
+			"url": "https://posthog.com/docs/getting-started/data-import-export.md",
+			"description": "",
+			"section": "Getting Started"
+		},
+		{
+			"name": "Enabling beta features - Docs",
+			"url": "https://posthog.com/docs/getting-started/enable-betas.md",
+			"description": "",
+			"section": "Getting Started"
+		},
+		{
+			"name": "Identify users - Docs",
+			"url": "https://posthog.com/docs/getting-started/identify-users.md",
+			"description": "",
+			"section": "Getting Started"
+		},
+		{
+			"name": "Install PostHog - Docs",
+			"url": "https://posthog.com/docs/getting-started/install.md",
+			"description": "",
+			"section": "Getting Started"
+		},
+		{
+			"name": "Next steps - Docs",
+			"url": "https://posthog.com/docs/getting-started/next-steps.md",
+			"description": "",
+			"section": "Getting Started"
+		},
+		{
+			"name": "Send events - Docs",
+			"url": "https://posthog.com/docs/getting-started/send-events.md",
+			"description": "",
+			"section": "Getting Started"
+		}
+	]
+}

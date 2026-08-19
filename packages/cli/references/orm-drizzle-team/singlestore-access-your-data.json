@@ -1,0 +1,60 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "singlestore/Access your data",
+	"entries": [
+		{
+			"name": "Drizzle Queries",
+			"url": "https://orm.drizzle.team/docs/singlestore/rqb-v2",
+			"description": "",
+			"section": "singlestore/Access your data"
+		},
+		{
+			"name": "SQL Select",
+			"url": "https://orm.drizzle.team/docs/singlestore/select",
+			"description": "",
+			"section": "singlestore/Access your data"
+		},
+		{
+			"name": "SQL Insert",
+			"url": "https://orm.drizzle.team/docs/singlestore/insert",
+			"description": "",
+			"section": "singlestore/Access your data"
+		},
+		{
+			"name": "SQL Update",
+			"url": "https://orm.drizzle.team/docs/singlestore/update",
+			"description": "",
+			"section": "singlestore/Access your data"
+		},
+		{
+			"name": "SQL Delete",
+			"url": "https://orm.drizzle.team/docs/singlestore/delete",
+			"description": "",
+			"section": "singlestore/Access your data"
+		},
+		{
+			"name": "Filter and conditional operators",
+			"url": "https://orm.drizzle.team/docs/singlestore/operators",
+			"description": "",
+			"section": "singlestore/Access your data"
+		},
+		{
+			"name": "Drizzle query utils",
+			"url": "https://orm.drizzle.team/docs/singlestore/query-utils",
+			"description": "",
+			"section": "singlestore/Access your data"
+		},
+		{
+			"name": "Magical `sql` operator 🪄",
+			"url": "https://orm.drizzle.team/docs/singlestore/sql",
+			"description": "",
+			"section": "singlestore/Access your data"
+		},
+		{
+			"name": "Drizzle Queries",
+			"url": "https://orm.drizzle.team/docs/singlestore/rqb",
+			"description": "",
+			"section": "singlestore/Access your data"
+		}
+	]
+}

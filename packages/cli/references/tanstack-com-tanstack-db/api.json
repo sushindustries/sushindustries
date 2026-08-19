@@ -1,0 +1,156 @@
+{
+	"provider": "tanstack-com-tanstack-db",
+	"section": "API",
+	"entries": [
+		{
+			"name": "Core API Reference",
+			"url": "https://tanstack.com/db/latest/docs/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Collection",
+			"url": "https://tanstack.com/db/latest/docs/reference/interfaces/Collection.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createCollection",
+			"url": "https://tanstack.com/db/latest/docs/reference/functions/createCollection.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "liveQueryCollectionOptions",
+			"url": "https://tanstack.com/db/latest/docs/reference/functions/liveQueryCollectionOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createLiveQueryCollection",
+			"url": "https://tanstack.com/db/latest/docs/reference/functions/createLiveQueryCollection.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createOptimisticAction",
+			"url": "https://tanstack.com/db/latest/docs/reference/functions/createOptimisticAction.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createTransaction",
+			"url": "https://tanstack.com/db/latest/docs/reference/functions/createTransaction.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Electric DB Collection",
+			"url": "https://tanstack.com/db/latest/docs/reference/electric-db-collection/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "electricCollectionOptions",
+			"url": "https://tanstack.com/db/latest/docs/reference/electric-db-collection/functions/electricCollectionOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Query DB Collection",
+			"url": "https://tanstack.com/db/latest/docs/reference/query-db-collection/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "queryCollectionOptions",
+			"url": "https://tanstack.com/db/latest/docs/reference/query-db-collection/functions/queryCollectionOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "RxDB DB Collection",
+			"url": "https://tanstack.com/db/latest/docs/reference/rxdb-db-collection/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "rxdbCollectionOptions",
+			"url": "https://tanstack.com/db/latest/docs/reference/rxdb-db-collection/functions/rxdbCollectionOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "PowerSync Collection",
+			"url": "https://tanstack.com/db/latest/docs/reference/powersync-db-collection/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "powerSyncCollectionOptions",
+			"url": "https://tanstack.com/db/latest/docs/reference/powersync-db-collection/functions/powerSyncCollectionOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: React Hooks",
+			"url": "https://tanstack.com/db/latest/docs/framework/react/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useLiveQuery",
+			"url": "https://tanstack.com/db/latest/docs/framework/react/reference/functions/useLiveQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: Solid Hooks",
+			"url": "https://tanstack.com/db/latest/docs/framework/solid/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useLiveQuery",
+			"url": "https://tanstack.com/db/latest/docs/framework/solid/reference/functions/useLiveQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: Vue Composables",
+			"url": "https://tanstack.com/db/latest/docs/framework/vue/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useLiveQuery",
+			"url": "https://tanstack.com/db/latest/docs/framework/vue/reference/functions/useLiveQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: UseLiveQueryReturn",
+			"url": "https://tanstack.com/db/latest/docs/framework/vue/reference/interfaces/UseLiveQueryReturn.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: UseLiveQueryReturnWithCollection",
+			"url": "https://tanstack.com/db/latest/docs/framework/vue/reference/interfaces/UseLiveQueryReturnWithCollection.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: Angular Functions",
+			"url": "https://tanstack.com/db/latest/docs/framework/angular/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectLiveQuery",
+			"url": "https://tanstack.com/db/latest/docs/framework/angular/reference/functions/injectLiveQuery.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

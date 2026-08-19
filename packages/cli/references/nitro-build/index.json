@@ -1,0 +1,18 @@
+{
+	"provider": "nitro-build",
+	"source": "https://nitro.build/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"Nitro"
+	],
+	"title": "Nitro",
+	"summary": "Add server API routes to any Vite apps and deploy with zero configuration on your favorite hosting platform.",
+	"total": 83,
+	"sections": [
+		{
+			"name": "Docs",
+			"entries": 83,
+			"file": "docs.json"
+		}
+	]
+}

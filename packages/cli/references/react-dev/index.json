@@ -1,0 +1,23 @@
+{
+	"provider": "react-dev",
+	"source": "https://react.dev/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"React"
+	],
+	"title": "React Documentation",
+	"summary": "The library for web and native user interfaces.",
+	"total": 178,
+	"sections": [
+		{
+			"name": "Learn React",
+			"entries": 51,
+			"file": "learn-react.json"
+		},
+		{
+			"name": "API Reference",
+			"entries": 127,
+			"file": "api-reference.json"
+		}
+	]
+}

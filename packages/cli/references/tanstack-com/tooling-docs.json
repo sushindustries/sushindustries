@@ -1,0 +1,30 @@
+{
+	"provider": "tanstack-com",
+	"section": "Tooling docs",
+	"entries": [
+		{
+			"name": "TanStack Devtools",
+			"url": "https://tanstack.com/devtools/latest/llms.txt",
+			"description": "Centralized devtools panel for TanStack libraries and other custom devtools. Frameworks: React, Preact, Solid, Vue, Svelte, Angular, Vanilla. Packages: @tanstack/devtools, @tanstack/react-devtools. GitHub: https://github.com/tanstack/devtools.",
+			"section": "Tooling docs"
+		},
+		{
+			"name": "TanStack Config",
+			"url": "https://tanstack.com/config/latest/llms.txt",
+			"description": "Configuration and tools for publishing and maintaining high-quality JavaScript packages. Packages: @tanstack/config. GitHub: https://github.com/tanstack/config.",
+			"section": "Tooling docs"
+		},
+		{
+			"name": "TanStack CLI",
+			"url": "https://tanstack.com/cli/latest/llms.txt",
+			"description": "CLI and project scaffolding toolkit for TanStack. Packages: @tanstack/cli. GitHub: https://github.com/tanstack/cli.",
+			"section": "Tooling docs"
+		},
+		{
+			"name": "TanStack Intent",
+			"url": "https://tanstack.com/intent/latest/llms.txt",
+			"description": "Ship Agent Skills with your npm Packages. Packages: @tanstack/intent. GitHub: https://github.com/tanstack/intent.",
+			"section": "Tooling docs"
+		}
+	]
+}

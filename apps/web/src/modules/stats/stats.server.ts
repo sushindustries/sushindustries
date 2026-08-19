@@ -1,8 +1,8 @@
 import { getDb } from "@sushindustries/db/client";
-import { eq, packageStats, sql } from "@sushindustries/db/schema";
+import { eq, type PageKind, pageViews, sql } from "@sushindustries/db/schema";
 
 /*
- * Read counts per package, and the rule that keeps them optional.
+ * Read counts per page, and the rule that keeps them optional.
  *
  * **Every function here returns rather than throws when there is no database.**
  * That is the whole design. This site renders every page from Markdown inlined
@@ -20,43 +20,62 @@ import { eq, packageStats, sql } from "@sushindustries/db/schema";
  * driver to a browser.
  */
 
-export interface PackageViews {
-	readonly slug: string;
+export interface PageStat {
+	/** Route path, e.g. `/components/button`. */
+	readonly path: string;
+	readonly kind: PageKind;
 	readonly views: number;
-	readonly updatedAt: string;
+	/** When this path was first opened by anybody. */
+	readonly firstSeen: string;
+	readonly lastSeen: string;
 }
 
-/** Every row, or nothing at all if there is no database to ask. */
-export async function readAllViews(): Promise<PackageViews[] | null> {
-	try {
-		const rows = await getDb().select().from(packageStats);
+function toStat(row: typeof pageViews.$inferSelect): PageStat {
+	return {
+		path: row.path,
+		kind: row.kind,
+		views: row.views,
+		firstSeen: row.firstSeen.toISOString(),
+		lastSeen: row.lastSeen.toISOString(),
+	};
+}
 
-		return rows.map((row) => ({
-			slug: row.slug,
-			views: row.views,
-			updatedAt: row.updatedAt.toISOString(),
-		}));
+/** Every counted page, or nothing at all if there is no database to ask. */
+export async function readAllViews(): Promise<PageStat[] | null> {
+	try {
+		const rows = await getDb().select().from(pageViews);
+		return rows.map(toStat);
 	} catch {
 		return null;
 	}
 }
 
-/** One row, or nothing. */
-export async function readViews(slug: string): Promise<PackageViews | null> {
+/** One page, or nothing. */
+export async function readViews(path: string): Promise<PageStat | null> {
 	try {
 		const [row] = await getDb()
 			.select()
-			.from(packageStats)
-			.where(eq(packageStats.slug, slug))
+			.from(pageViews)
+			.where(eq(pageViews.path, path))
 			.limit(1);
 
-		if (!row) return null;
+		return row ? toStat(row) : null;
+	} catch {
+		return null;
+	}
+}
 
-		return {
-			slug: row.slug,
-			views: row.views,
-			updatedAt: row.updatedAt.toISOString(),
-		};
+/** Every counted page of one kind, newest reads first. */
+export async function readViewsByKind(
+	kind: PageKind,
+): Promise<PageStat[] | null> {
+	try {
+		const rows = await getDb()
+			.select()
+			.from(pageViews)
+			.where(eq(pageViews.kind, kind));
+
+		return rows.map(toStat);
 	} catch {
 		return null;
 	}
@@ -67,24 +86,28 @@ export async function readViews(slug: string): Promise<PackageViews | null> {
  *
  * An upsert rather than a select-then-insert-or-update, and the difference
  * matters at exactly the moment this is worth having: two readers arriving at
- * the same package in the same instant both see no row, both insert, and one of
- * them hits the unique index on `slug`. `onConflictDoUpdate` makes the database
+ * the same page in the same instant both see no row, both insert, and one of
+ * them hits the primary key on `path`. `onConflictDoUpdate` makes the database
  * settle it, which is the thing databases are for.
  *
  * `views + 1` is computed in SQL rather than read into JavaScript and written
  * back, for the same reason: two increments read at once become one increment
  * written twice.
+ *
+ * `firstSeen` is only ever written by the insert. The update deliberately does
+ * not touch it - that column is the answer to "when did this page arrive", and
+ * a value that moves on every read answers nothing.
  */
-export async function countView(slug: string): Promise<void> {
+export async function countView(path: string, kind: PageKind): Promise<void> {
 	try {
 		await getDb()
-			.insert(packageStats)
-			.values({ slug, views: 1 })
+			.insert(pageViews)
+			.values({ path, kind, views: 1 })
 			.onConflictDoUpdate({
-				target: packageStats.slug,
+				target: pageViews.path,
 				set: {
-					views: sql`${packageStats.views} + 1`,
-					updatedAt: new Date(),
+					views: sql`${pageViews.views} + 1`,
+					lastSeen: new Date(),
 				},
 			});
 	} catch {

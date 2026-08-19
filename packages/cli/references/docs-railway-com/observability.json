@@ -1,0 +1,30 @@
+{
+	"provider": "docs-railway-com",
+	"section": "Observability",
+	"entries": [
+		{
+			"name": "Observability Dashboard",
+			"url": "https://docs.railway.com/observability.md",
+			"description": "Explore the built-in observability dashboard on Railway.",
+			"section": "Observability"
+		},
+		{
+			"name": "Logs",
+			"url": "https://docs.railway.com/observability/logs.md",
+			"description": "Learn how to view, filter, and search build, deployment, environment, HTTP, and DNS logs on Railway.",
+			"section": "Observability"
+		},
+		{
+			"name": "Metrics",
+			"url": "https://docs.railway.com/observability/metrics.md",
+			"description": "Discover resource usage for your services on Railway via the Metrics tab.",
+			"section": "Observability"
+		},
+		{
+			"name": "Webhooks",
+			"url": "https://docs.railway.com/observability/webhooks.md",
+			"description": "Learn how to set up webhooks on Railway to receive real-time updates for deployments and events.",
+			"section": "Observability"
+		}
+	]
+}

@@ -1,0 +1,42 @@
+{
+	"provider": "tanstack-com-tanstack-markdown",
+	"source": "https://tanstack.com/markdown/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Markdown docs",
+	"summary": "A deliberately bounded Markdown parser with a public serializable AST, safe defaults, deterministic React, HTML, and Octane output, and a stateless profile for accumulated AI streams.",
+	"total": 31,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 4,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 15,
+			"file": "guides.json"
+		},
+		{
+			"name": "API",
+			"entries": 8,
+			"file": "api.json"
+		}
+	]
+}

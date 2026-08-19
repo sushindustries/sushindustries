@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Glossary",
+	"entries": [
+		{
+			"name": "Glossary - Docs",
+			"url": "https://posthog.com/docs/glossary.md",
+			"description": "",
+			"section": "Glossary"
+		}
+	]
+}

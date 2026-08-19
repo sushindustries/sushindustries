@@ -1,0 +1,108 @@
+{
+	"provider": "posthog-com",
+	"section": "Posthog Ai",
+	"entries": [
+		{
+			"name": "Allow PostHog AI access - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/allow-access.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "Edit and save memory to PostHog AI - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/edit-memory.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "Getting started with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/start-here.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "Investigate web traffic with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/investigate-web-traffic.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "Plan mode - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/plan-mode.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "PostHog AI - Docs",
+			"url": "https://posthog.com/docs/posthog-ai.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "PostHog AI changelog - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/changelog.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "PostHog AI context and commands - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/context-and-commands.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "PostHog AI example prompts - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/example-prompts.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "PostHog AI FAQ - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/faq.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "PostHog AI modes - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/modes.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "PostHog AI pricing - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/pricing.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "PostHog AI tools and capabilities - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/tools.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "Research mode (Deep research) - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/research-mode.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "Use PostHog AI in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/surfaces/web-app.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "Use PostHog AI in Slack - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/surfaces/slack.md",
+			"description": "",
+			"section": "Posthog Ai"
+		},
+		{
+			"name": "Write and edit SQL with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/posthog-ai/write-and-edit-sql.md",
+			"description": "",
+			"section": "Posthog Ai"
+		}
+	]
+}

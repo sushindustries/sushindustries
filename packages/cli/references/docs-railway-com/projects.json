@@ -1,0 +1,30 @@
+{
+	"provider": "docs-railway-com",
+	"section": "Projects",
+	"entries": [
+		{
+			"name": "Projects",
+			"url": "https://docs.railway.com/projects.md",
+			"description": "Projects are containers for environments and services in Railway.",
+			"section": "Projects"
+		},
+		{
+			"name": "Project members",
+			"url": "https://docs.railway.com/projects/project-members.md",
+			"description": "Learn about the permissions for project members.",
+			"section": "Projects"
+		},
+		{
+			"name": "Project usage",
+			"url": "https://docs.railway.com/projects/project-usage.md",
+			"description": "Learn how users can see the resource usage of their projects.",
+			"section": "Projects"
+		},
+		{
+			"name": "Workspaces",
+			"url": "https://docs.railway.com/projects/workspaces.md",
+			"description": "Learn how you can manage a workspaces within Railway.",
+			"section": "Projects"
+		}
+	]
+}

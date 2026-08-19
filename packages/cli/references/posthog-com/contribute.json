@@ -1,0 +1,30 @@
+{
+	"provider": "posthog-com",
+	"section": "Contribute",
+	"entries": [
+		{
+			"name": "Code of conduct - Docs",
+			"url": "https://posthog.com/docs/contribute/code-of-conduct.md",
+			"description": "",
+			"section": "Contribute"
+		},
+		{
+			"name": "Contribute to PostHog - Docs",
+			"url": "https://posthog.com/docs/contribute.md",
+			"description": "",
+			"section": "Contribute"
+		},
+		{
+			"name": "PostHog badges - Docs",
+			"url": "https://posthog.com/docs/contribute/badge.md",
+			"description": "",
+			"section": "Contribute"
+		},
+		{
+			"name": "Recognizing contributions - Docs",
+			"url": "https://posthog.com/docs/contribute/recognizing-contributions.md",
+			"description": "",
+			"section": "Contribute"
+		}
+	]
+}

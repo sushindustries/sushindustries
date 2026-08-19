@@ -1,0 +1,36 @@
+{
+	"provider": "zod-dev",
+	"section": "Formatting errors",
+	"entries": [
+		{
+			"name": "Formatting errors",
+			"url": "https://zod.dev/error-formatting",
+			"description": "Utilities for formatting and displaying Zod errors",
+			"section": "Formatting errors"
+		},
+		{
+			"name": "z.treeifyError()",
+			"url": "https://zod.dev/error-formatting?id=ztreeifyerror",
+			"description": "",
+			"section": "Formatting errors"
+		},
+		{
+			"name": "z.prettifyError()",
+			"url": "https://zod.dev/error-formatting?id=zprettifyerror",
+			"description": "",
+			"section": "Formatting errors"
+		},
+		{
+			"name": "z.formatError()",
+			"url": "https://zod.dev/error-formatting?id=zformaterror",
+			"description": "",
+			"section": "Formatting errors"
+		},
+		{
+			"name": "z.flattenError()",
+			"url": "https://zod.dev/error-formatting?id=zflattenerror",
+			"description": "",
+			"section": "Formatting errors"
+		}
+	]
+}

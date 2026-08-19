@@ -1,0 +1,12 @@
+{
+	"provider": "tanstack-com-tanstack-cli",
+	"section": "Examples",
+	"entries": [
+		{
+			"name": "Examples",
+			"url": "https://tanstack.com/cli/latest/docs/examples.md",
+			"description": "",
+			"section": "Examples"
+		}
+	]
+}

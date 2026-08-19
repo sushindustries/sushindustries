@@ -1,0 +1,47 @@
+{
+	"provider": "tanstack-com-tanstack-form",
+	"source": "https://tanstack.com/form/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Form docs",
+	"summary": "Headless, performant, and type-safe form state management for TS/JS, React, Preact, Vue, Angular, Solid, Lit and Svelte.",
+	"total": 170,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 12,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 68,
+			"file": "guides.json"
+		},
+		{
+			"name": "API",
+			"entries": 47,
+			"file": "api.json"
+		},
+		{
+			"name": "Examples",
+			"entries": 39,
+			"file": "examples.json"
+		}
+	]
+}

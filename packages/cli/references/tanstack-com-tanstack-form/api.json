@@ -1,0 +1,288 @@
+{
+	"provider": "tanstack-com-tanstack-form",
+	"section": "API",
+	"entries": [
+		{
+			"name": "JavaScript Reference",
+			"url": "https://tanstack.com/form/latest/docs/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Classes / FieldApi",
+			"url": "https://tanstack.com/form/latest/docs/reference/classes/FieldApi.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Classes / FormApi",
+			"url": "https://tanstack.com/form/latest/docs/reference/classes/FormApi.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Functions / formOptions",
+			"url": "https://tanstack.com/form/latest/docs/reference/functions/formOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Functions / mergeForm",
+			"url": "https://tanstack.com/form/latest/docs/reference/functions/mergeForm.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Interfaces / FieldApiOptions",
+			"url": "https://tanstack.com/form/latest/docs/reference/interfaces/FieldApiOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Interfaces / FieldOptions",
+			"url": "https://tanstack.com/form/latest/docs/reference/interfaces/FieldOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Interfaces / FieldValidators",
+			"url": "https://tanstack.com/form/latest/docs/reference/interfaces/FieldValidators.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Interfaces / FormOptions",
+			"url": "https://tanstack.com/form/latest/docs/reference/interfaces/FormOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Interfaces / FormValidators",
+			"url": "https://tanstack.com/form/latest/docs/reference/interfaces/FormValidators.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Types / DeepKeys",
+			"url": "https://tanstack.com/form/latest/docs/reference/type-aliases/DeepKeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Types / DeepValue",
+			"url": "https://tanstack.com/form/latest/docs/reference/type-aliases/DeepValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Types / AnyFieldMeta",
+			"url": "https://tanstack.com/form/latest/docs/reference/type-aliases/AnyFieldMeta.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Types / BaseFormState",
+			"url": "https://tanstack.com/form/latest/docs/reference/type-aliases/BaseFormState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Types / DerivedFormState",
+			"url": "https://tanstack.com/form/latest/docs/reference/type-aliases/DerivedFormState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Types / Updater",
+			"url": "https://tanstack.com/form/latest/docs/reference/type-aliases/Updater.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Types / UpdaterFn",
+			"url": "https://tanstack.com/form/latest/docs/reference/type-aliases/UpdaterFn.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Types / ValidationError",
+			"url": "https://tanstack.com/form/latest/docs/reference/type-aliases/ValidationError.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Types / ValidationMeta",
+			"url": "https://tanstack.com/form/latest/docs/reference/type-aliases/ValidationMeta.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: React Reference",
+			"url": "https://tanstack.com/form/latest/docs/framework/react/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: Variables / Field",
+			"url": "https://tanstack.com/form/latest/docs/framework/react/reference/variables/Field.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: Functions / useField",
+			"url": "https://tanstack.com/form/latest/docs/framework/react/reference/functions/useField.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: Functions / useForm",
+			"url": "https://tanstack.com/form/latest/docs/framework/react/reference/functions/useForm.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: Types / FieldComponent",
+			"url": "https://tanstack.com/form/latest/docs/framework/react/reference/type-aliases/FieldComponent.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: Types / UseField",
+			"url": "https://tanstack.com/form/latest/docs/framework/react/reference/type-aliases/UseField.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Preact Reference",
+			"url": "https://tanstack.com/form/latest/docs/framework/preact/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Variables / Field",
+			"url": "https://tanstack.com/form/latest/docs/framework/preact/reference/variables/Field.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Functions / useField",
+			"url": "https://tanstack.com/form/latest/docs/framework/preact/reference/functions/useField.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Functions / useForm",
+			"url": "https://tanstack.com/form/latest/docs/framework/preact/reference/functions/useForm.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Types / FieldComponent",
+			"url": "https://tanstack.com/form/latest/docs/framework/preact/reference/type-aliases/FieldComponent.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Types / UseField",
+			"url": "https://tanstack.com/form/latest/docs/framework/preact/reference/type-aliases/UseField.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: Vue Reference",
+			"url": "https://tanstack.com/form/latest/docs/framework/vue/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: Variables / Field",
+			"url": "https://tanstack.com/form/latest/docs/framework/vue/reference/variables/Field.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: Functions / useField",
+			"url": "https://tanstack.com/form/latest/docs/framework/vue/reference/functions/useField.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: Functions / useForm",
+			"url": "https://tanstack.com/form/latest/docs/framework/vue/reference/functions/useForm.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: Types / FieldComponent",
+			"url": "https://tanstack.com/form/latest/docs/framework/vue/reference/type-aliases/FieldComponent.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: Solid Reference",
+			"url": "https://tanstack.com/form/latest/docs/framework/solid/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: Functions / createField",
+			"url": "https://tanstack.com/form/latest/docs/framework/solid/reference/functions/createField.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: Functions / createForm",
+			"url": "https://tanstack.com/form/latest/docs/framework/solid/reference/functions/createForm.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: Functions / Field",
+			"url": "https://tanstack.com/form/latest/docs/framework/solid/reference/functions/Field.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: Types / FieldComponent",
+			"url": "https://tanstack.com/form/latest/docs/framework/solid/reference/type-aliases/FieldComponent.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Lit Reference",
+			"url": "https://tanstack.com/form/latest/docs/framework/lit/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Classes / TanStackFormController",
+			"url": "https://tanstack.com/form/latest/docs/framework/lit/reference/classes/TanStackFormController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: Angular Reference",
+			"url": "https://tanstack.com/form/latest/docs/framework/angular/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: Classes / TanStackField",
+			"url": "https://tanstack.com/form/latest/docs/framework/angular/reference/classes/TanStackField.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: Functions / injectForm",
+			"url": "https://tanstack.com/form/latest/docs/framework/angular/reference/functions/injectForm.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: Functions / injectStore",
+			"url": "https://tanstack.com/form/latest/docs/framework/angular/reference/functions/injectStore.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

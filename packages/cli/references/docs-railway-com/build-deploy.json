@@ -1,0 +1,240 @@
+{
+	"provider": "docs-railway-com",
+	"section": "Build & deploy",
+	"entries": [
+		{
+			"name": "Build & Deploy",
+			"url": "https://docs.railway.com/build-deploy.md",
+			"description": "Learn how to build, configure, and deploy your applications on Railway with services, environments, variables, and more.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Services",
+			"url": "https://docs.railway.com/services.md",
+			"description": "Discover the different types of services available in your Railway projects.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Environments",
+			"url": "https://docs.railway.com/environments.md",
+			"description": "Manage complex development workflows via environments in your projects on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Feature flags",
+			"url": "https://docs.railway.com/feature-flags.md",
+			"description": "Define typed feature flags with targeting rules for a Railway project, and read them at runtime with the TypeScript SDK, CLI, or MCP.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Cron jobs",
+			"url": "https://docs.railway.com/cron-jobs.md",
+			"description": "Learn how to run cron jobs on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Functions",
+			"url": "https://docs.railway.com/functions.md",
+			"description": "Write and deploy code from the Railway canvas without managing infrastructure or creating a git repository.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Sandboxes",
+			"url": "https://docs.railway.com/sandboxes.md",
+			"description": "Provision ephemeral, isolated Linux environments on Railway. Create them from the dashboard, CLI, or TypeScript SDK, run commands in them, read and write their files, and tear them down when done.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Variables",
+			"url": "https://docs.railway.com/variables.md",
+			"description": "Learn how to use variables and secrets across services on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Reference",
+			"url": "https://docs.railway.com/variables/reference.md",
+			"description": "Reference documentation for Railway variables, including template syntax and all available system variables.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Config as code",
+			"url": "https://docs.railway.com/config-as-code.md",
+			"description": "Learn how to manage and deploy apps on Railway using config as code with toml and json files.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Reference",
+			"url": "https://docs.railway.com/config-as-code/reference.md",
+			"description": "Learn how to manage and deploy apps on Railway using config as code with toml and json files.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Infrastructure as Code (IaC)",
+			"url": "https://docs.railway.com/infrastructure-as-code.md",
+			"description": "Define, import, preview, and apply your Railway project configuration with .railway/railway.ts.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Reference",
+			"url": "https://docs.railway.com/infrastructure-as-code/reference.md",
+			"description": "Reference for the .railway/railway.ts TypeScript DSL.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Builds",
+			"url": "https://docs.railway.com/builds.md",
+			"description": "Understand Railway's build concepts.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Build configuration",
+			"url": "https://docs.railway.com/builds/build-configuration.md",
+			"description": "Learn how to configure Railpack, optimize build caching, and set up watchpaths.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Build and start commands",
+			"url": "https://docs.railway.com/builds/build-and-start-commands.md",
+			"description": "Learn how to configure build and start commands.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Skipped builds",
+			"url": "https://docs.railway.com/builds/skipped-builds.md",
+			"description": "Save build time by reusing previously built images when the source code has already been built.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Dockerfiles",
+			"url": "https://docs.railway.com/builds/dockerfiles.md",
+			"description": "Learn Dockerfile configuration on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Private registries",
+			"url": "https://docs.railway.com/builds/private-registries.md",
+			"description": "Learn how to deploy Docker images from private container registries on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Railpack",
+			"url": "https://docs.railway.com/builds/railpack.md",
+			"description": "Railway uses Railpack to build and deploy your code with zero configuration.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Deployments",
+			"url": "https://docs.railway.com/deployments.md",
+			"description": "Overview of deployment concepts and configuration on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Pre-deploy command",
+			"url": "https://docs.railway.com/deployments/pre-deploy-command.md",
+			"description": "Learn how to execute commands between building and deploying your application.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Start command",
+			"url": "https://docs.railway.com/deployments/start-command.md",
+			"description": "Learn how to set up a start command in your service to run your deployments on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Deployment actions",
+			"url": "https://docs.railway.com/deployments/deployment-actions.md",
+			"description": "Explore the full range of actions available on the Service Deployments tab to manage your deployments.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "GitHub autodeploys",
+			"url": "https://docs.railway.com/deployments/github-autodeploys.md",
+			"description": "Learn how to configure GitHub autodeployments.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Image auto updates",
+			"url": "https://docs.railway.com/deployments/image-auto-updates.md",
+			"description": "Learn how to automatically keep your Docker images up to date with scheduled maintenance windows.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Optimize performance",
+			"url": "https://docs.railway.com/deployments/optimize-performance.md",
+			"description": "Explore quick ways to optimize your app's performance on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Healthchecks",
+			"url": "https://docs.railway.com/deployments/healthchecks.md",
+			"description": "Learn how to configure health checks to guarantee zero-downtime deployments of services on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Restart policy",
+			"url": "https://docs.railway.com/deployments/restart-policy.md",
+			"description": "Learn how to configure the restart policy so that Railway can automatically restart your service if it crashes.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Deployment teardown",
+			"url": "https://docs.railway.com/deployments/deployment-teardown.md",
+			"description": "Learn how to configure the deployment lifecycle to create graceful deploys with zero downtime.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Monorepo",
+			"url": "https://docs.railway.com/deployments/monorepo.md",
+			"description": "Learn how to deploy monorepos on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Staged changes",
+			"url": "https://docs.railway.com/deployments/staged-changes.md",
+			"description": "Discover how to use staged changes in Railway to deploy updates gradually.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Serverless",
+			"url": "https://docs.railway.com/deployments/serverless.md",
+			"description": "Learn how Serverless reduces cost usage on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Regions",
+			"url": "https://docs.railway.com/deployments/regions.md",
+			"description": "Deploy your apps across multiple Railway regions worldwide.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Scaling",
+			"url": "https://docs.railway.com/deployments/scaling.md",
+			"description": "Learn how to scale your applications on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Reference",
+			"url": "https://docs.railway.com/deployments/reference.md",
+			"description": "Deployments are attempts to build and deliver your service. Learn how they work on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "Slow deployments",
+			"url": "https://docs.railway.com/deployments/troubleshooting/slow-deployments.md",
+			"description": "Learn how to diagnose and fix slow deployments and application performance issues on Railway.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "NodeJS SIGTERM handling",
+			"url": "https://docs.railway.com/deployments/troubleshooting/nodejs-sigterm-handling.md",
+			"description": "SIGTERM might sometimes fail to process on shutdown. Here's why.",
+			"section": "Build & deploy"
+		},
+		{
+			"name": "No start command could be found",
+			"url": "https://docs.railway.com/deployments/troubleshooting/no-start-command-could-be-found.md",
+			"description": "Learn how to troubleshoot and fix the 'No Start Command Could be Found' error.",
+			"section": "Build & deploy"
+		}
+	]
+}

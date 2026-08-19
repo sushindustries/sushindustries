@@ -1,0 +1,36 @@
+{
+	"provider": "zod-dev",
+	"section": "Basic usage",
+	"entries": [
+		{
+			"name": "Basic usage",
+			"url": "https://zod.dev/basics",
+			"description": "Basic usage guide covering schema definition, parsing data, error handling, and type inference",
+			"section": "Basic usage"
+		},
+		{
+			"name": "Defining a schema",
+			"url": "https://zod.dev/basics?id=defining-a-schema",
+			"description": "",
+			"section": "Basic usage"
+		},
+		{
+			"name": "Parsing data",
+			"url": "https://zod.dev/basics?id=parsing-data",
+			"description": "",
+			"section": "Basic usage"
+		},
+		{
+			"name": "Handling errors",
+			"url": "https://zod.dev/basics?id=handling-errors",
+			"description": "",
+			"section": "Basic usage"
+		},
+		{
+			"name": "Inferring types",
+			"url": "https://zod.dev/basics?id=inferring-types",
+			"description": "",
+			"section": "Basic usage"
+		}
+	]
+}

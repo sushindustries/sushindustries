@@ -44,23 +44,11 @@
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com",
 		"exports": {
-			"./client.server": {
-				"import": "./dist/client.server.mjs",
-				"require": "./dist/client.server.cjs"
-			},
-			"./schema": {
-				"import": "./dist/schema.mjs",
-				"require": "./dist/schema.cjs"
-			},
-			"./schema-org": {
-				"import": "./dist/schema-org.mjs",
-				"require": "./dist/schema-org.cjs"
-			},
+			"./client.server": "./dist/client.server.mjs",
+			"./schema": "./dist/schema.mjs",
+			"./schema-org": "./dist/schema-org.mjs",
 			"./package.json": "./package.json",
-			"./client": {
-				"import": "./dist/client.server.mjs",
-				"require": "./dist/client.server.cjs"
-			}
+			"./client": "./dist/client.server.mjs"
 		}
 	},
 	"repository": {
@@ -68,5 +56,9 @@
 		"url": "git+https://github.com/sushindustries/sushindustries.git",
 		"directory": "packages/db"
 	},
-	"homepage": "https://adamjurek.com/packages/db"
+	"homepage": "https://adamjurek.com/packages/db",
+	"inlinedDependencies": {
+		"drizzle-orm": "0.45.2",
+		"postgres": "3.4.9"
+	}
 }

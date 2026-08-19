@@ -1,0 +1,78 @@
+{
+	"provider": "posthog-com",
+	"section": "Migrate",
+	"entries": [
+		{
+			"name": "Historical migrations overview - Docs",
+			"url": "https://posthog.com/docs/migrate.md",
+			"description": "",
+			"section": "Migrate"
+		},
+		{
+			"name": "Managed migrations - Docs",
+			"url": "https://posthog.com/docs/migrate/managed-migrations.md",
+			"description": "",
+			"section": "Migrate"
+		},
+		{
+			"name": "Migrate from Amplitude to PostHog - Docs",
+			"url": "https://posthog.com/docs/migrate/migrate-from-amplitude.md",
+			"description": "",
+			"section": "Migrate"
+		},
+		{
+			"name": "Migrate from Google Analytics to PostHog - Docs",
+			"url": "https://posthog.com/docs/migrate/google-analytics.md",
+			"description": "",
+			"section": "Migrate"
+		},
+		{
+			"name": "Migrate from Heap to PostHog - Docs",
+			"url": "https://posthog.com/docs/migrate/heap.md",
+			"description": "",
+			"section": "Migrate"
+		},
+		{
+			"name": "Migrate from LaunchDarkly to PostHog - Docs",
+			"url": "https://posthog.com/docs/migrate/launchdarkly.md",
+			"description": "",
+			"section": "Migrate"
+		},
+		{
+			"name": "Migrate from Matomo to PostHog - Docs",
+			"url": "https://posthog.com/docs/migrate/matomo.md",
+			"description": "",
+			"section": "Migrate"
+		},
+		{
+			"name": "Migrate from Mixpanel to PostHog - Docs",
+			"url": "https://posthog.com/docs/migrate/mixpanel.md",
+			"description": "",
+			"section": "Migrate"
+		},
+		{
+			"name": "Migrate from Pendo to PostHog - Docs",
+			"url": "https://posthog.com/docs/migrate/pendo.md",
+			"description": "",
+			"section": "Migrate"
+		},
+		{
+			"name": "Migrate from Plausible to PostHog - Docs",
+			"url": "https://posthog.com/docs/migrate/plausible.md",
+			"description": "",
+			"section": "Migrate"
+		},
+		{
+			"name": "Migrate from Statsig to PostHog - Docs",
+			"url": "https://posthog.com/docs/migrate/statsig.md",
+			"description": "",
+			"section": "Migrate"
+		},
+		{
+			"name": "Migrate to PostHog Cloud - Docs",
+			"url": "https://posthog.com/docs/migrate/migrate-to-cloud.md",
+			"description": "",
+			"section": "Migrate"
+		}
+	]
+}

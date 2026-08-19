@@ -1,0 +1,2056 @@
+{
+	"generatedBy": "pnpm sushindustries refs",
+	"fetchedAt": "2026-08-19",
+	"shardLimit": 500,
+	"contains": "Links, titles, section names and each provider's own one-line descriptions, taken from the llms.txt they publish for this purpose. No page content.",
+	"providers": [
+		{
+			"provider": "react-dev",
+			"source": "https://react.dev/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"React"
+			],
+			"title": "React Documentation",
+			"summary": "The library for web and native user interfaces.",
+			"total": 178,
+			"sections": [
+				{
+					"name": "Learn React",
+					"entries": 51,
+					"file": "react-dev/learn-react.json"
+				},
+				{
+					"name": "API Reference",
+					"entries": 127,
+					"file": "react-dev/api-reference.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com",
+			"source": "https://tanstack.com/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack",
+			"summary": "TanStack is a set of open-source TypeScript libraries for routing, async state, server state, tables, forms, virtualization, data stores, full-stack apps, AI SDKs, and developer tooling.",
+			"total": 36,
+			"sections": [
+				{
+					"name": "Framework docs",
+					"entries": 2,
+					"file": "tanstack-com/framework-docs.json"
+				},
+				{
+					"name": "Data & State Management docs",
+					"entries": 4,
+					"file": "tanstack-com/data-state-management-docs.json"
+				},
+				{
+					"name": "UI & UX docs",
+					"entries": 6,
+					"file": "tanstack-com/ui-ux-docs.json"
+				},
+				{
+					"name": "Performance docs",
+					"entries": 2,
+					"file": "tanstack-com/performance-docs.json"
+				},
+				{
+					"name": "Tooling docs",
+					"entries": 4,
+					"file": "tanstack-com/tooling-docs.json"
+				},
+				{
+					"name": "Machine-readable data",
+					"entries": 3,
+					"file": "tanstack-com/machine-readable-data.json"
+				},
+				{
+					"name": "Optional",
+					"entries": 15,
+					"file": "tanstack-com/optional.json"
+				}
+			]
+		},
+		{
+			"provider": "lenis-darkroom-engineering",
+			"source": "https://lenis.darkroom.engineering/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"Lenis"
+			],
+			"title": "Lenis Codebase Overview",
+			"summary": "",
+			"total": 0,
+			"sections": []
+		},
+		{
+			"provider": "posthog-com",
+			"source": "https://posthog.com/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"PostHog"
+			],
+			"title": "PostHog",
+			"summary": "PostHog is the platform for self-driving products. It pairs the full context of your product's data (events, errors, logs, replays, and more) with agents that find problems and ship changes with you. It includes tools for product analytics, session replay, feature flags, A/B testing, error tracking, surveys, AI observability, web analytics, a data warehouse, and more. The fastest way to integrate PostHog is with the setup wizard: `npx @posthog/wizard@latest`",
+			"total": 3470,
+			"sections": [
+				{
+					"name": "Products and tools",
+					"entries": 21,
+					"file": "posthog-com/products-and-tools.json"
+				},
+				{
+					"name": "Changelog",
+					"entries": 2,
+					"file": "posthog-com/changelog.json"
+				},
+				{
+					"name": "Activity",
+					"entries": 1,
+					"file": "posthog-com/activity.json"
+				},
+				{
+					"name": "Advanced",
+					"entries": 22,
+					"file": "posthog-com/advanced.json"
+				},
+				{
+					"name": "AI Engineering",
+					"entries": 4,
+					"file": "posthog-com/ai-engineering.json"
+				},
+				{
+					"name": "Ai Evals",
+					"entries": 3,
+					"file": "posthog-com/ai-evals.json"
+				},
+				{
+					"name": "Ai Observability",
+					"entries": 88,
+					"file": "posthog-com/ai-observability.json"
+				},
+				{
+					"name": "Ai Research",
+					"entries": 1,
+					"file": "posthog-com/ai-research.json"
+				},
+				{
+					"name": "Alerts",
+					"entries": 1,
+					"file": "posthog-com/alerts.json"
+				},
+				{
+					"name": "API",
+					"entries": 4,
+					"file": "posthog-com/api.json"
+				},
+				{
+					"name": "Billing",
+					"entries": 5,
+					"file": "posthog-com/billing.json"
+				},
+				{
+					"name": "Customer Data Platform (CDP)",
+					"entries": 500,
+					"file": "posthog-com/customer-data-platform-cdp.json"
+				},
+				{
+					"name": "Customer Data Platform (CDP)",
+					"entries": 6,
+					"file": "posthog-com/customer-data-platform-cdp-2.json"
+				},
+				{
+					"name": "Cli",
+					"entries": 1,
+					"file": "posthog-com/cli.json"
+				},
+				{
+					"name": "Cmd K",
+					"entries": 1,
+					"file": "posthog-com/cmd-k.json"
+				},
+				{
+					"name": "Contribute",
+					"entries": 4,
+					"file": "posthog-com/contribute.json"
+				},
+				{
+					"name": "Csp Tracking",
+					"entries": 1,
+					"file": "posthog-com/csp-tracking.json"
+				},
+				{
+					"name": "Customer Analytics",
+					"entries": 13,
+					"file": "posthog-com/customer-analytics.json"
+				},
+				{
+					"name": "Data",
+					"entries": 20,
+					"file": "posthog-com/data.json"
+				},
+				{
+					"name": "Data Warehouse",
+					"entries": 31,
+					"file": "posthog-com/data-warehouse.json"
+				},
+				{
+					"name": "Discussion",
+					"entries": 1,
+					"file": "posthog-com/discussion.json"
+				},
+				{
+					"name": "Distributed Tracing",
+					"entries": 11,
+					"file": "posthog-com/distributed-tracing.json"
+				},
+				{
+					"name": "Endpoints",
+					"entries": 33,
+					"file": "posthog-com/endpoints.json"
+				},
+				{
+					"name": "Error Tracking",
+					"entries": 72,
+					"file": "posthog-com/error-tracking.json"
+				},
+				{
+					"name": "A/B Testing and Experiments",
+					"entries": 59,
+					"file": "posthog-com/a-b-testing-and-experiments.json"
+				},
+				{
+					"name": "Feature Flag Use Cases",
+					"entries": 1,
+					"file": "posthog-com/feature-flag-use-cases.json"
+				},
+				{
+					"name": "Feature Flags",
+					"entries": 55,
+					"file": "posthog-com/feature-flags.json"
+				},
+				{
+					"name": "Getting Started",
+					"entries": 6,
+					"file": "posthog-com/getting-started.json"
+				},
+				{
+					"name": "Glossary",
+					"entries": 1,
+					"file": "posthog-com/glossary.json"
+				},
+				{
+					"name": "Health Checks",
+					"entries": 13,
+					"file": "posthog-com/health-checks.json"
+				},
+				{
+					"name": "Hog (Query Language)",
+					"entries": 1,
+					"file": "posthog-com/hog-query-language.json"
+				},
+				{
+					"name": "How Posthog Works",
+					"entries": 6,
+					"file": "posthog-com/how-posthog-works.json"
+				},
+				{
+					"name": "Integrate",
+					"entries": 1,
+					"file": "posthog-com/integrate.json"
+				},
+				{
+					"name": "Integrations",
+					"entries": 4,
+					"file": "posthog-com/integrations.json"
+				},
+				{
+					"name": "Js Snippets",
+					"entries": 3,
+					"file": "posthog-com/js-snippets.json"
+				},
+				{
+					"name": "SDKs and Libraries",
+					"entries": 71,
+					"file": "posthog-com/sdks-and-libraries.json"
+				},
+				{
+					"name": "Logs",
+					"entries": 34,
+					"file": "posthog-com/logs.json"
+				},
+				{
+					"name": "Mcp Analytics",
+					"entries": 18,
+					"file": "posthog-com/mcp-analytics.json"
+				},
+				{
+					"name": "Metrics",
+					"entries": 10,
+					"file": "posthog-com/metrics.json"
+				},
+				{
+					"name": "Migrate",
+					"entries": 12,
+					"file": "posthog-com/migrate.json"
+				},
+				{
+					"name": "Model Context Protocol (MCP)",
+					"entries": 12,
+					"file": "posthog-com/model-context-protocol-mcp.json"
+				},
+				{
+					"name": "New To Posthog",
+					"entries": 8,
+					"file": "posthog-com/new-to-posthog.json"
+				},
+				{
+					"name": "Notebooks",
+					"entries": 1,
+					"file": "posthog-com/notebooks.json"
+				},
+				{
+					"name": "Posthog Ai",
+					"entries": 17,
+					"file": "posthog-com/posthog-ai.json"
+				},
+				{
+					"name": "Posthog Desktop",
+					"entries": 17,
+					"file": "posthog-com/posthog-desktop.json"
+				},
+				{
+					"name": "Privacy",
+					"entries": 8,
+					"file": "posthog-com/privacy.json"
+				},
+				{
+					"name": "Product Analytics",
+					"entries": 62,
+					"file": "posthog-com/product-analytics.json"
+				},
+				{
+					"name": "Prompt Management",
+					"entries": 2,
+					"file": "posthog-com/prompt-management.json"
+				},
+				{
+					"name": "Replay Vision",
+					"entries": 11,
+					"file": "posthog-com/replay-vision.json"
+				},
+				{
+					"name": "Revenue Analytics",
+					"entries": 11,
+					"file": "posthog-com/revenue-analytics.json"
+				},
+				{
+					"name": "Self Driving",
+					"entries": 17,
+					"file": "posthog-com/self-driving.json"
+				},
+				{
+					"name": "Self Host",
+					"entries": 12,
+					"file": "posthog-com/self-host.json"
+				},
+				{
+					"name": "Semantic Layer",
+					"entries": 8,
+					"file": "posthog-com/semantic-layer.json"
+				},
+				{
+					"name": "Session Replay",
+					"entries": 43,
+					"file": "posthog-com/session-replay.json"
+				},
+				{
+					"name": "Settings",
+					"entries": 12,
+					"file": "posthog-com/settings.json"
+				},
+				{
+					"name": "Skills",
+					"entries": 1,
+					"file": "posthog-com/skills.json"
+				},
+				{
+					"name": "Slack",
+					"entries": 4,
+					"file": "posthog-com/slack.json"
+				},
+				{
+					"name": "SQL and ClickHouse",
+					"entries": 6,
+					"file": "posthog-com/sql-and-clickhouse.json"
+				},
+				{
+					"name": "Support",
+					"entries": 16,
+					"file": "posthog-com/support.json"
+				},
+				{
+					"name": "Support Options",
+					"entries": 1,
+					"file": "posthog-com/support-options.json"
+				},
+				{
+					"name": "Surveys",
+					"entries": 36,
+					"file": "posthog-com/surveys.json"
+				},
+				{
+					"name": "Toolbar",
+					"entries": 4,
+					"file": "posthog-com/toolbar.json"
+				},
+				{
+					"name": "Vscode Extension",
+					"entries": 6,
+					"file": "posthog-com/vscode-extension.json"
+				},
+				{
+					"name": "Web Analytics",
+					"entries": 47,
+					"file": "posthog-com/web-analytics.json"
+				},
+				{
+					"name": "Workflows",
+					"entries": 24,
+					"file": "posthog-com/workflows.json"
+				},
+				{
+					"name": "Optional",
+					"entries": 500,
+					"file": "posthog-com/optional.json"
+				},
+				{
+					"name": "Optional",
+					"entries": 500,
+					"file": "posthog-com/optional-2.json"
+				},
+				{
+					"name": "Optional",
+					"entries": 500,
+					"file": "posthog-com/optional-3.json"
+				},
+				{
+					"name": "Optional",
+					"entries": 443,
+					"file": "posthog-com/optional-4.json"
+				}
+			]
+		},
+		{
+			"provider": "threejs-org",
+			"source": "https://threejs.org/docs/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"Three.js"
+			],
+			"title": "Three.js",
+			"summary": "Three.js is a cross-browser JavaScript library for creating 3D graphics using WebGL and WebGPU.",
+			"total": 44,
+			"sections": [
+				{
+					"name": "Getting Started",
+					"entries": 4,
+					"file": "threejs-org/getting-started.json"
+				},
+				{
+					"name": "Renderer Guides",
+					"entries": 1,
+					"file": "threejs-org/renderer-guides.json"
+				},
+				{
+					"name": "Core Concepts",
+					"entries": 9,
+					"file": "threejs-org/core-concepts.json"
+				},
+				{
+					"name": "Essential API",
+					"entries": 30,
+					"file": "threejs-org/essential-api.json"
+				}
+			]
+		},
+		{
+			"provider": "r3f-docs-pmnd-rs",
+			"source": "https://r3f.docs.pmnd.rs/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"React Three Fiber"
+			],
+			"title": "React Three Fiber",
+			"summary": "",
+			"total": 20,
+			"sections": [
+				{
+					"name": "Documentation",
+					"entries": 20,
+					"file": "r3f-docs-pmnd-rs/documentation.json"
+				}
+			]
+		},
+		{
+			"provider": "drei-docs-pmnd-rs",
+			"source": "https://drei.docs.pmnd.rs/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"Drei"
+			],
+			"title": "Drei",
+			"summary": "",
+			"total": 134,
+			"sections": [
+				{
+					"name": "Documentation",
+					"entries": 134,
+					"file": "drei-docs-pmnd-rs/documentation.json"
+				}
+			]
+		},
+		{
+			"provider": "nitro-build",
+			"source": "https://nitro.build/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"Nitro"
+			],
+			"title": "Nitro",
+			"summary": "Add server API routes to any Vite apps and deploy with zero configuration on your favorite hosting platform.",
+			"total": 83,
+			"sections": [
+				{
+					"name": "Docs",
+					"entries": 83,
+					"file": "nitro-build/docs.json"
+				}
+			]
+		},
+		{
+			"provider": "orm-drizzle-team",
+			"source": "https://orm.drizzle.team/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"Drizzle ORM",
+				"Drizzle Kit"
+			],
+			"title": "Drizzle",
+			"summary": "Drizzle is a modern TypeScript ORM developers wanna use in their next project. It is lightweight at only ~7.4kb minified+gzipped, and it's tree shakeable with exactly 0 dependencies. It supports every PostgreSQL, MySQL, SQLite and SingleStore database and is serverless-ready by design.",
+			"total": 436,
+			"sections": [
+				{
+					"name": "meet drizzle",
+					"entries": 58,
+					"file": "orm-drizzle-team/meet-drizzle.json"
+				},
+				{
+					"name": "Upgrade to v1.0 RC",
+					"entries": 1,
+					"file": "orm-drizzle-team/upgrade-to-v1-0-rc.json"
+				},
+				{
+					"name": "Fundamentals",
+					"entries": 2,
+					"file": "orm-drizzle-team/fundamentals.json"
+				},
+				{
+					"name": "Connect",
+					"entries": 1,
+					"file": "orm-drizzle-team/connect.json"
+				},
+				{
+					"name": "Manage schema",
+					"entries": 3,
+					"file": "orm-drizzle-team/manage-schema.json"
+				},
+				{
+					"name": "Migrations",
+					"entries": 3,
+					"file": "orm-drizzle-team/migrations.json"
+				},
+				{
+					"name": "Seeding",
+					"entries": 1,
+					"file": "orm-drizzle-team/seeding.json"
+				},
+				{
+					"name": "Performance",
+					"entries": 1,
+					"file": "orm-drizzle-team/performance.json"
+				},
+				{
+					"name": "Validations",
+					"entries": 6,
+					"file": "orm-drizzle-team/validations.json"
+				},
+				{
+					"name": "Extensions",
+					"entries": 2,
+					"file": "orm-drizzle-team/extensions.json"
+				},
+				{
+					"name": "cockroach/meet drizzle",
+					"entries": 1,
+					"file": "orm-drizzle-team/cockroach-meet-drizzle.json"
+				},
+				{
+					"name": "cockroach/Fundamentals",
+					"entries": 5,
+					"file": "orm-drizzle-team/cockroach-fundamentals.json"
+				},
+				{
+					"name": "cockroach/Connect",
+					"entries": 1,
+					"file": "orm-drizzle-team/cockroach-connect.json"
+				},
+				{
+					"name": "cockroach/Manage schema",
+					"entries": 7,
+					"file": "orm-drizzle-team/cockroach-manage-schema.json"
+				},
+				{
+					"name": "cockroach/Migrations",
+					"entries": 11,
+					"file": "orm-drizzle-team/cockroach-migrations.json"
+				},
+				{
+					"name": "cockroach/Seeding",
+					"entries": 3,
+					"file": "orm-drizzle-team/cockroach-seeding.json"
+				},
+				{
+					"name": "cockroach/Access your data",
+					"entries": 9,
+					"file": "orm-drizzle-team/cockroach-access-your-data.json"
+				},
+				{
+					"name": "cockroach/Performance",
+					"entries": 1,
+					"file": "orm-drizzle-team/cockroach-performance.json"
+				},
+				{
+					"name": "cockroach/Advanced",
+					"entries": 7,
+					"file": "orm-drizzle-team/cockroach-advanced.json"
+				},
+				{
+					"name": "cockroach/Validations",
+					"entries": 6,
+					"file": "orm-drizzle-team/cockroach-validations.json"
+				},
+				{
+					"name": "mssql/meet drizzle",
+					"entries": 1,
+					"file": "orm-drizzle-team/mssql-meet-drizzle.json"
+				},
+				{
+					"name": "mssql/Fundamentals",
+					"entries": 5,
+					"file": "orm-drizzle-team/mssql-fundamentals.json"
+				},
+				{
+					"name": "mssql/Connect",
+					"entries": 1,
+					"file": "orm-drizzle-team/mssql-connect.json"
+				},
+				{
+					"name": "mssql/Manage schema",
+					"entries": 6,
+					"file": "orm-drizzle-team/mssql-manage-schema.json"
+				},
+				{
+					"name": "mssql/Migrations",
+					"entries": 11,
+					"file": "orm-drizzle-team/mssql-migrations.json"
+				},
+				{
+					"name": "mssql/Seeding",
+					"entries": 3,
+					"file": "orm-drizzle-team/mssql-seeding.json"
+				},
+				{
+					"name": "mssql/Access your data",
+					"entries": 9,
+					"file": "orm-drizzle-team/mssql-access-your-data.json"
+				},
+				{
+					"name": "mssql/Performance",
+					"entries": 1,
+					"file": "orm-drizzle-team/mssql-performance.json"
+				},
+				{
+					"name": "mssql/Advanced",
+					"entries": 7,
+					"file": "orm-drizzle-team/mssql-advanced.json"
+				},
+				{
+					"name": "mssql/Validations",
+					"entries": 6,
+					"file": "orm-drizzle-team/mssql-validations.json"
+				},
+				{
+					"name": "mysql/meet drizzle",
+					"entries": 1,
+					"file": "orm-drizzle-team/mysql-meet-drizzle.json"
+				},
+				{
+					"name": "mysql/Upgrade to v1.0",
+					"entries": 3,
+					"file": "orm-drizzle-team/mysql-upgrade-to-v1-0.json"
+				},
+				{
+					"name": "mysql/Fundamentals",
+					"entries": 5,
+					"file": "orm-drizzle-team/mysql-fundamentals.json"
+				},
+				{
+					"name": "mysql/Connect",
+					"entries": 6,
+					"file": "orm-drizzle-team/mysql-connect.json"
+				},
+				{
+					"name": "mysql/Manage schema",
+					"entries": 6,
+					"file": "orm-drizzle-team/mysql-manage-schema.json"
+				},
+				{
+					"name": "mysql/Migrations",
+					"entries": 11,
+					"file": "orm-drizzle-team/mysql-migrations.json"
+				},
+				{
+					"name": "mysql/Seeding",
+					"entries": 3,
+					"file": "orm-drizzle-team/mysql-seeding.json"
+				},
+				{
+					"name": "mysql/Access your data",
+					"entries": 10,
+					"file": "orm-drizzle-team/mysql-access-your-data.json"
+				},
+				{
+					"name": "mysql/Performance",
+					"entries": 1,
+					"file": "orm-drizzle-team/mysql-performance.json"
+				},
+				{
+					"name": "mysql/Advanced",
+					"entries": 7,
+					"file": "orm-drizzle-team/mysql-advanced.json"
+				},
+				{
+					"name": "mysql/Validations",
+					"entries": 6,
+					"file": "orm-drizzle-team/mysql-validations.json"
+				},
+				{
+					"name": "pg/meet drizzle",
+					"entries": 1,
+					"file": "orm-drizzle-team/pg-meet-drizzle.json"
+				},
+				{
+					"name": "pg/Upgrade to v1.0",
+					"entries": 3,
+					"file": "orm-drizzle-team/pg-upgrade-to-v1-0.json"
+				},
+				{
+					"name": "pg/Fundamentals",
+					"entries": 5,
+					"file": "orm-drizzle-team/pg-fundamentals.json"
+				},
+				{
+					"name": "pg/Connect",
+					"entries": 14,
+					"file": "orm-drizzle-team/pg-connect.json"
+				},
+				{
+					"name": "pg/Manage schema",
+					"entries": 8,
+					"file": "orm-drizzle-team/pg-manage-schema.json"
+				},
+				{
+					"name": "pg/Migrations",
+					"entries": 11,
+					"file": "orm-drizzle-team/pg-migrations.json"
+				},
+				{
+					"name": "pg/Seeding",
+					"entries": 2,
+					"file": "orm-drizzle-team/pg-seeding.json"
+				},
+				{
+					"name": "pg/Access your data",
+					"entries": 10,
+					"file": "orm-drizzle-team/pg-access-your-data.json"
+				},
+				{
+					"name": "pg/Performance",
+					"entries": 1,
+					"file": "orm-drizzle-team/pg-performance.json"
+				},
+				{
+					"name": "pg/Advanced",
+					"entries": 9,
+					"file": "orm-drizzle-team/pg-advanced.json"
+				},
+				{
+					"name": "pg/Validations",
+					"entries": 6,
+					"file": "orm-drizzle-team/pg-validations.json"
+				},
+				{
+					"name": "singlestore/Upgrade to v1.0 RC",
+					"entries": 1,
+					"file": "orm-drizzle-team/singlestore-upgrade-to-v1-0-rc.json"
+				},
+				{
+					"name": "singlestore/Fundamentals",
+					"entries": 3,
+					"file": "orm-drizzle-team/singlestore-fundamentals.json"
+				},
+				{
+					"name": "singlestore/Connect",
+					"entries": 1,
+					"file": "orm-drizzle-team/singlestore-connect.json"
+				},
+				{
+					"name": "singlestore/Manage schema",
+					"entries": 5,
+					"file": "orm-drizzle-team/singlestore-manage-schema.json"
+				},
+				{
+					"name": "singlestore/Migrations",
+					"entries": 11,
+					"file": "orm-drizzle-team/singlestore-migrations.json"
+				},
+				{
+					"name": "singlestore/Seeding",
+					"entries": 3,
+					"file": "orm-drizzle-team/singlestore-seeding.json"
+				},
+				{
+					"name": "singlestore/Access your data",
+					"entries": 9,
+					"file": "orm-drizzle-team/singlestore-access-your-data.json"
+				},
+				{
+					"name": "singlestore/Performance",
+					"entries": 1,
+					"file": "orm-drizzle-team/singlestore-performance.json"
+				},
+				{
+					"name": "singlestore/Advanced",
+					"entries": 6,
+					"file": "orm-drizzle-team/singlestore-advanced.json"
+				},
+				{
+					"name": "singlestore/Validations",
+					"entries": 6,
+					"file": "orm-drizzle-team/singlestore-validations.json"
+				},
+				{
+					"name": "sqlite/meet drizzle",
+					"entries": 1,
+					"file": "orm-drizzle-team/sqlite-meet-drizzle.json"
+				},
+				{
+					"name": "sqlite/Upgrade to v1.0 RC",
+					"entries": 3,
+					"file": "orm-drizzle-team/sqlite-upgrade-to-v1-0-rc.json"
+				},
+				{
+					"name": "sqlite/Fundamentals",
+					"entries": 5,
+					"file": "orm-drizzle-team/sqlite-fundamentals.json"
+				},
+				{
+					"name": "sqlite/Connect",
+					"entries": 14,
+					"file": "orm-drizzle-team/sqlite-connect.json"
+				},
+				{
+					"name": "sqlite/Manage schema",
+					"entries": 5,
+					"file": "orm-drizzle-team/sqlite-manage-schema.json"
+				},
+				{
+					"name": "sqlite/Migrations",
+					"entries": 11,
+					"file": "orm-drizzle-team/sqlite-migrations.json"
+				},
+				{
+					"name": "sqlite/Seeding",
+					"entries": 3,
+					"file": "orm-drizzle-team/sqlite-seeding.json"
+				},
+				{
+					"name": "sqlite/Access your data",
+					"entries": 9,
+					"file": "orm-drizzle-team/sqlite-access-your-data.json"
+				},
+				{
+					"name": "sqlite/Performance",
+					"entries": 1,
+					"file": "orm-drizzle-team/sqlite-performance.json"
+				},
+				{
+					"name": "sqlite/Advanced",
+					"entries": 8,
+					"file": "orm-drizzle-team/sqlite-advanced.json"
+				},
+				{
+					"name": "sqlite/Validations",
+					"entries": 6,
+					"file": "orm-drizzle-team/sqlite-validations.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 1,
+					"file": "orm-drizzle-team/guides.json"
+				},
+				{
+					"name": "Tutorials",
+					"entries": 15,
+					"file": "orm-drizzle-team/tutorials.json"
+				}
+			]
+		},
+		{
+			"provider": "zod-dev",
+			"source": "https://zod.dev/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"Zod"
+			],
+			"title": "Zod",
+			"summary": "Zod is a TypeScript-first schema validation library with static type inference. This documentation provides comprehensive coverage of Zod 4's features, API, and usage patterns.",
+			"total": 324,
+			"sections": [
+				{
+					"name": "Defining schemas",
+					"entries": 92,
+					"file": "zod-dev/defining-schemas.json"
+				},
+				{
+					"name": "Basic usage",
+					"entries": 5,
+					"file": "zod-dev/basic-usage.json"
+				},
+				{
+					"name": "Codecs",
+					"entries": 30,
+					"file": "zod-dev/codecs.json"
+				},
+				{
+					"name": "AOT compilation",
+					"entries": 6,
+					"file": "zod-dev/aot-compilation.json"
+				},
+				{
+					"name": "Ecosystem",
+					"entries": 9,
+					"file": "zod-dev/ecosystem.json"
+				},
+				{
+					"name": "Customizing errors",
+					"entries": 8,
+					"file": "zod-dev/customizing-errors.json"
+				},
+				{
+					"name": "Formatting errors",
+					"entries": 5,
+					"file": "zod-dev/formatting-errors.json"
+				},
+				{
+					"name": "Intro",
+					"entries": 12,
+					"file": "zod-dev/intro.json"
+				},
+				{
+					"name": "JSON Schema",
+					"entries": 17,
+					"file": "zod-dev/json-schema.json"
+				},
+				{
+					"name": "For library authors",
+					"entries": 7,
+					"file": "zod-dev/for-library-authors.json"
+				},
+				{
+					"name": "Metadata and registries",
+					"entries": 10,
+					"file": "zod-dev/metadata-and-registries.json"
+				},
+				{
+					"name": "Joining Clerk as an OSS Fellow to work on Zod 4",
+					"entries": 5,
+					"file": "zod-dev/joining-clerk-as-an-oss-fellow-to-work-on-zod-4.json"
+				},
+				{
+					"name": "Migration guide",
+					"entries": 61,
+					"file": "zod-dev/migration-guide.json"
+				},
+				{
+					"name": "Release notes",
+					"entries": 31,
+					"file": "zod-dev/release-notes.json"
+				},
+				{
+					"name": "Versioning",
+					"entries": 5,
+					"file": "zod-dev/versioning.json"
+				},
+				{
+					"name": "Zod Core",
+					"entries": 7,
+					"file": "zod-dev/zod-core.json"
+				},
+				{
+					"name": "Zod Mini",
+					"entries": 13,
+					"file": "zod-dev/zod-mini.json"
+				},
+				{
+					"name": "Zod",
+					"entries": 1,
+					"file": "zod-dev/zod.json"
+				}
+			]
+		},
+		{
+			"provider": "modelcontextprotocol-io",
+			"source": "https://modelcontextprotocol.io/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"Model Context Protocol"
+			],
+			"title": "Model Context Protocol",
+			"summary": "",
+			"total": 144,
+			"sections": [
+				{
+					"name": "Docs",
+					"entries": 144,
+					"file": "modelcontextprotocol-io/docs.json"
+				}
+			]
+		},
+		{
+			"provider": "vite-dev",
+			"source": "https://vite.dev/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"Vite"
+			],
+			"title": "Vite",
+			"summary": "The Build Tool for the Web",
+			"total": 43,
+			"sections": [
+				{
+					"name": "Table of Contents",
+					"entries": 43,
+					"file": "vite-dev/table-of-contents.json"
+				}
+			]
+		},
+		{
+			"provider": "tsdown-dev",
+			"source": "https://tsdown.dev/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"tsdown"
+			],
+			"title": "tsdown",
+			"summary": "The Elegant Bundler for Libraries",
+			"total": 92,
+			"sections": [
+				{
+					"name": "Table of Contents",
+					"entries": 92,
+					"file": "tsdown-dev/table-of-contents.json"
+				}
+			]
+		},
+		{
+			"provider": "turborepo-com",
+			"source": "https://turborepo.com/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"Turborepo"
+			],
+			"title": "Turborepo documentation",
+			"summary": "Turborepo is the build system for coding agents.",
+			"total": 101,
+			"sections": [
+				{
+					"name": "Docs",
+					"entries": 101,
+					"file": "turborepo-com/docs.json"
+				}
+			]
+		},
+		{
+			"provider": "docs-railway-com",
+			"source": "https://docs.railway.com/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"Railway"
+			],
+			"title": "Railway Documentation",
+			"summary": "Railway is an all-in-one intelligent cloud provider that makes it easy to provision infrastructure, develop locally, and deploy to the cloud. These docs cover deploying applications, configuring services, managing data, networking, observability, the CLI, and integrating with Railway's API.",
+			"total": 382,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 9,
+					"file": "docs-railway-com/general.json"
+				},
+				{
+					"name": "Platform",
+					"entries": 25,
+					"file": "docs-railway-com/platform.json"
+				},
+				{
+					"name": "Pricing",
+					"entries": 10,
+					"file": "docs-railway-com/pricing.json"
+				},
+				{
+					"name": "Enterprise",
+					"entries": 7,
+					"file": "docs-railway-com/enterprise.json"
+				},
+				{
+					"name": "AI",
+					"entries": 16,
+					"file": "docs-railway-com/ai.json"
+				},
+				{
+					"name": "Templates & open source",
+					"entries": 10,
+					"file": "docs-railway-com/templates-open-source.json"
+				},
+				{
+					"name": "Languages & frameworks",
+					"entries": 37,
+					"file": "docs-railway-com/languages-frameworks.json"
+				},
+				{
+					"name": "CLI",
+					"entries": 60,
+					"file": "docs-railway-com/cli.json"
+				},
+				{
+					"name": "Projects",
+					"entries": 4,
+					"file": "docs-railway-com/projects.json"
+				},
+				{
+					"name": "Build & deploy",
+					"entries": 39,
+					"file": "docs-railway-com/build-deploy.json"
+				},
+				{
+					"name": "Data & storage",
+					"entries": 21,
+					"file": "docs-railway-com/data-storage.json"
+				},
+				{
+					"name": "Networking",
+					"entries": 18,
+					"file": "docs-railway-com/networking.json"
+				},
+				{
+					"name": "Observability",
+					"entries": 4,
+					"file": "docs-railway-com/observability.json"
+				},
+				{
+					"name": "Access",
+					"entries": 4,
+					"file": "docs-railway-com/access.json"
+				},
+				{
+					"name": "Integrations",
+					"entries": 21,
+					"file": "docs-railway-com/integrations.json"
+				},
+				{
+					"name": "Community",
+					"entries": 4,
+					"file": "docs-railway-com/community.json"
+				},
+				{
+					"name": "More guides",
+					"entries": 92,
+					"file": "docs-railway-com/more-guides.json"
+				},
+				{
+					"name": "More pages",
+					"entries": 1,
+					"file": "docs-railway-com/more-pages.json"
+				}
+			]
+		},
+		{
+			"provider": "vitest-dev",
+			"source": "https://vitest.dev/llms.txt",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"Vitest"
+			],
+			"title": "Vitest",
+			"summary": "Next generation testing framework powered by Vite",
+			"total": 191,
+			"sections": [
+				{
+					"name": "Table of Contents",
+					"entries": 191,
+					"file": "vitest-dev/table-of-contents.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-start",
+			"source": "https://tanstack.com/start/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Start docs",
+			"summary": "Full-document SSR, Streaming, Server Functions, bundling and more, powered by TanStack Router and Vite - Ready to deploy to your favorite hosting provider.",
+			"total": 104,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-start/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 9,
+					"file": "tanstack-com-tanstack-start/get-started.json"
+				},
+				{
+					"name": "Tutorial",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-start/tutorial.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 65,
+					"file": "tanstack-com-tanstack-start/guides.json"
+				},
+				{
+					"name": "Examples",
+					"entries": 22,
+					"file": "tanstack-com-tanstack-start/examples.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-router",
+			"source": "https://tanstack.com/router/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Router docs",
+			"summary": "A powerful React router for client-side and full-stack react applications. Fully type-safe APIs, first-class search-params for managing state in the URL and seamless integration with the existing React ecosystem.",
+			"total": 107,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-router/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 14,
+					"file": "tanstack-com-tanstack-router/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 41,
+					"file": "tanstack-com-tanstack-router/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 2,
+					"file": "tanstack-com-tanstack-router/api.json"
+				},
+				{
+					"name": "Examples",
+					"entries": 46,
+					"file": "tanstack-com-tanstack-router/examples.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-query",
+			"source": "https://tanstack.com/query/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Query docs",
+			"summary": "Powerful asynchronous state management, server-state utilities and data fetching. Fetch, cache, update, and wrangle all forms of async data in your TS/JS, React, Vue, Solid, Svelte, Angular & Lit applications all without touching any \"global state\".",
+			"total": 422,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-query/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 43,
+					"file": "tanstack-com-tanstack-query/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 194,
+					"file": "tanstack-com-tanstack-query/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 124,
+					"file": "tanstack-com-tanstack-query/api.json"
+				},
+				{
+					"name": "Examples",
+					"entries": 57,
+					"file": "tanstack-com-tanstack-query/examples.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-db",
+			"source": "https://tanstack.com/db/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack DB docs",
+			"summary": "TanStack DB gives you a reactive, client-first store for your API data with collections, live queries and optimistic mutations that keep your UI reactive, consistent and blazing fast 🔥.",
+			"total": 51,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-db/general.json"
+				},
+				{
+					"name": "Home",
+					"entries": 1,
+					"file": "tanstack-com-tanstack-db/home.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 3,
+					"file": "tanstack-com-tanstack-db/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 18,
+					"file": "tanstack-com-tanstack-db/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 25,
+					"file": "tanstack-com-tanstack-db/api.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-store",
+			"source": "https://tanstack.com/store/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Store docs",
+			"summary": "The immutable-reactive data store that powers the core of TanStack libraries and their framework adapters.",
+			"total": 142,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-store/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 11,
+					"file": "tanstack-com-tanstack-store/get-started.json"
+				},
+				{
+					"name": "API",
+					"entries": 91,
+					"file": "tanstack-com-tanstack-store/api.json"
+				},
+				{
+					"name": "Examples",
+					"entries": 36,
+					"file": "tanstack-com-tanstack-store/examples.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-ai",
+			"source": "https://tanstack.com/ai/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack AI docs",
+			"summary": "The headless agent framework for TypeScript. TanStack AI runs the agent loop as typed primitives you compose yourself: tool calls, reasoning, human-in-the-loop interrupts, memory, and streaming state. Eleven provider adapters, seven UI framework bindings, sandboxed code execution, MCP, and coding-agent harnesses behind one interface. Native AG-UI over the wire, MIT licensed, no hosted gateway and no platform to buy into.",
+			"total": 266,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-ai/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 9,
+					"file": "tanstack-com-tanstack-ai/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 131,
+					"file": "tanstack-com-tanstack-ai/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 122,
+					"file": "tanstack-com-tanstack-ai/api.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-table",
+			"source": "https://tanstack.com/table/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Table docs",
+			"summary": "Build tables and data grids with feature-level tree shaking, reactive state, fast row models, and complete control over markup and styles.",
+			"total": 931,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-table/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 23,
+					"file": "tanstack-com-tanstack-table/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 248,
+					"file": "tanstack-com-tanstack-table/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 267,
+					"file": "tanstack-com-tanstack-table/api.json"
+				},
+				{
+					"name": "Examples",
+					"entries": 389,
+					"file": "tanstack-com-tanstack-table/examples.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-charts",
+			"source": "https://tanstack.com/charts/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Charts docs",
+			"summary": "A typed, tree-shakable chart grammar for SVG and Canvas. Compose marks, views, scales, transforms, interactions, and motion with compact primitives or D3-compatible inputs.",
+			"total": 294,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-charts/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 15,
+					"file": "tanstack-com-tanstack-charts/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 25,
+					"file": "tanstack-com-tanstack-charts/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 46,
+					"file": "tanstack-com-tanstack-charts/api.json"
+				},
+				{
+					"name": "Examples",
+					"entries": 204,
+					"file": "tanstack-com-tanstack-charts/examples.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-form",
+			"source": "https://tanstack.com/form/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Form docs",
+			"summary": "Headless, performant, and type-safe form state management for TS/JS, React, Preact, Vue, Angular, Solid, Lit and Svelte.",
+			"total": 170,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-form/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 12,
+					"file": "tanstack-com-tanstack-form/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 68,
+					"file": "tanstack-com-tanstack-form/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 47,
+					"file": "tanstack-com-tanstack-form/api.json"
+				},
+				{
+					"name": "Examples",
+					"entries": 39,
+					"file": "tanstack-com-tanstack-form/examples.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-hotkeys",
+			"source": "https://tanstack.com/hotkeys/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Hotkeys docs",
+			"summary": "A type-safe, cross-platform hotkey library with sequence detection, key state tracking, hotkey recording, and framework adapters for React and more.",
+			"total": 311,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-hotkeys/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 8,
+					"file": "tanstack-com-tanstack-hotkeys/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 42,
+					"file": "tanstack-com-tanstack-hotkeys/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 202,
+					"file": "tanstack-com-tanstack-hotkeys/api.json"
+				},
+				{
+					"name": "Examples",
+					"entries": 55,
+					"file": "tanstack-com-tanstack-hotkeys/examples.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-markdown",
+			"source": "https://tanstack.com/markdown/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Markdown docs",
+			"summary": "A deliberately bounded Markdown parser with a public serializable AST, safe defaults, deterministic React, HTML, and Octane output, and a stateless profile for accumulated AI streams.",
+			"total": 31,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-markdown/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-markdown/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 15,
+					"file": "tanstack-com-tanstack-markdown/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 8,
+					"file": "tanstack-com-tanstack-markdown/api.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-highlight",
+			"source": "https://tanstack.com/highlight/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Highlight docs",
+			"summary": "A synchronous syntax highlighter with selective language imports, context-aware web scanners, semantic CSS themes, precise annotations, and compact deterministic output.",
+			"total": 36,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-highlight/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-highlight/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 17,
+					"file": "tanstack-com-tanstack-highlight/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 11,
+					"file": "tanstack-com-tanstack-highlight/api.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-virtual",
+			"source": "https://tanstack.com/virtual/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Virtual docs",
+			"summary": "Virtualize only the visible content for massive scrollable DOM nodes at 60FPS in TS/JS, React, Vue, Solid, Svelte, Lit, Angular & Marko while retaining 100% control over markup and styles.",
+			"total": 74,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-virtual/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 9,
+					"file": "tanstack-com-tanstack-virtual/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 1,
+					"file": "tanstack-com-tanstack-virtual/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 2,
+					"file": "tanstack-com-tanstack-virtual/api.json"
+				},
+				{
+					"name": "Examples",
+					"entries": 58,
+					"file": "tanstack-com-tanstack-virtual/examples.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-pacer",
+			"source": "https://tanstack.com/pacer/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Pacer docs",
+			"summary": "Optimize your application's performance with TanStack Pacer's core primitives: Debouncing, Throttling, Rate Limiting, Queuing, and Batching.",
+			"total": 437,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-pacer/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 8,
+					"file": "tanstack-com-tanstack-pacer/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 56,
+					"file": "tanstack-com-tanstack-pacer/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 217,
+					"file": "tanstack-com-tanstack-pacer/api.json"
+				},
+				{
+					"name": "Examples",
+					"entries": 152,
+					"file": "tanstack-com-tanstack-pacer/examples.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-devtools",
+			"source": "https://tanstack.com/devtools/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Devtools docs",
+			"summary": "A unified devtools panel that houses all TanStack devtools and allows you to create and integrate your own custom devtools.",
+			"total": 54,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-devtools/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 20,
+					"file": "tanstack-com-tanstack-devtools/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 14,
+					"file": "tanstack-com-tanstack-devtools/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 7,
+					"file": "tanstack-com-tanstack-devtools/api.json"
+				},
+				{
+					"name": "Examples",
+					"entries": 9,
+					"file": "tanstack-com-tanstack-devtools/examples.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-config",
+			"source": "https://tanstack.com/config/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Config docs",
+			"summary": "Opinionated tooling to lint, build, test, version, and publish JS/TS packages — minimal config, consistent results.",
+			"total": 10,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-config/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 1,
+					"file": "tanstack-com-tanstack-config/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 5,
+					"file": "tanstack-com-tanstack-config/guides.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-cli",
+			"source": "https://tanstack.com/cli/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack CLI docs",
+			"summary": "A CLI toolkit for TanStack. Create and customize TanStack Start apps, search docs, inspect add-ons, and generate project changes with current TanStack context.",
+			"total": 14,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-cli/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 3,
+					"file": "tanstack-com-tanstack-cli/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 6,
+					"file": "tanstack-com-tanstack-cli/guides.json"
+				},
+				{
+					"name": "Examples",
+					"entries": 1,
+					"file": "tanstack-com-tanstack-cli/examples.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-tanstack-intent",
+			"source": "https://tanstack.com/intent/latest/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Intent docs",
+			"summary": "Generate, validate, and ship Agent Skills alongside your library — versioned knowledge that agents discover automatically from node_modules. Skills live in each library's repo and update when the package updates.",
+			"total": 20,
+			"sections": [
+				{
+					"name": "General",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-intent/general.json"
+				},
+				{
+					"name": "Get Started",
+					"entries": 4,
+					"file": "tanstack-com-tanstack-intent/get-started.json"
+				},
+				{
+					"name": "Guides",
+					"entries": 2,
+					"file": "tanstack-com-tanstack-intent/guides.json"
+				},
+				{
+					"name": "API",
+					"entries": 10,
+					"file": "tanstack-com-tanstack-intent/api.json"
+				}
+			]
+		},
+		{
+			"provider": "tanstack-com-notebook-authoring-guide",
+			"source": "https://tanstack.com/notebook/llms.txt",
+			"parent": "tanstack-com",
+			"fetchedAt": "2026-08-19",
+			"usedFor": [
+				"TanStack Start",
+				"TanStack Router",
+				"TanStack Query",
+				"TanStack Markdown",
+				"TanStack Store",
+				"TanStack Pacer",
+				"TanStack DB",
+				"TanStack AI",
+				"TanStack Highlight"
+			],
+			"title": "TanStack Notebook",
+			"summary": "Author, run, edit, and share browser-only JavaScript, TypeScript, JSX, and TSX projects at https://tanstack.com/notebook.",
+			"total": 0,
+			"sections": []
+		}
+	]
+}

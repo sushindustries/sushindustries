@@ -1,0 +1,66 @@
+{
+	"provider": "zod-dev",
+	"section": "Metadata and registries",
+	"entries": [
+		{
+			"name": "Metadata and registries",
+			"url": "https://zod.dev/metadata",
+			"description": "Attaching and manipulatinvg metadata on Zod schemas",
+			"section": "Metadata and registries"
+		},
+		{
+			"name": "Registries",
+			"url": "https://zod.dev/metadata?id=registries",
+			"description": "",
+			"section": "Metadata and registries"
+		},
+		{
+			"name": ".register()",
+			"url": "https://zod.dev/metadata?id=register",
+			"description": "",
+			"section": "Metadata and registries"
+		},
+		{
+			"name": "Metadata",
+			"url": "https://zod.dev/metadata?id=metadata",
+			"description": "",
+			"section": "Metadata and registries"
+		},
+		{
+			"name": "z.globalRegistry",
+			"url": "https://zod.dev/metadata?id=zglobalregistry",
+			"description": "",
+			"section": "Metadata and registries"
+		},
+		{
+			"name": ".meta()",
+			"url": "https://zod.dev/metadata?id=meta",
+			"description": "",
+			"section": "Metadata and registries"
+		},
+		{
+			"name": ".describe()",
+			"url": "https://zod.dev/metadata?id=describe",
+			"description": "",
+			"section": "Metadata and registries"
+		},
+		{
+			"name": "Custom registries",
+			"url": "https://zod.dev/metadata?id=custom-registries",
+			"description": "",
+			"section": "Metadata and registries"
+		},
+		{
+			"name": "Referencing inferred types",
+			"url": "https://zod.dev/metadata?id=referencing-inferred-types",
+			"description": "",
+			"section": "Metadata and registries"
+		},
+		{
+			"name": "Constraining schema types",
+			"url": "https://zod.dev/metadata?id=constraining-schema-types",
+			"description": "",
+			"section": "Metadata and registries"
+		}
+	]
+}

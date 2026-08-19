@@ -1,0 +1,36 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "singlestore/Manage schema",
+	"entries": [
+		{
+			"name": "SingleStore column types",
+			"url": "https://orm.drizzle.team/docs/singlestore/column-types",
+			"description": "",
+			"section": "singlestore/Manage schema"
+		},
+		{
+			"name": "Indexes & Constraints",
+			"url": "https://orm.drizzle.team/docs/singlestore/indexes-constraints",
+			"description": "",
+			"section": "singlestore/Manage schema"
+		},
+		{
+			"name": "Table schemas",
+			"url": "https://orm.drizzle.team/docs/singlestore/schemas",
+			"description": "",
+			"section": "singlestore/Manage schema"
+		},
+		{
+			"name": "Drizzle relations",
+			"url": "https://orm.drizzle.team/docs/singlestore/relations-v2",
+			"description": "",
+			"section": "singlestore/Manage schema"
+		},
+		{
+			"name": "SingleStore extensions",
+			"url": "https://orm.drizzle.team/docs/singlestore/extensions",
+			"description": "",
+			"section": "singlestore/Manage schema"
+		}
+	]
+}

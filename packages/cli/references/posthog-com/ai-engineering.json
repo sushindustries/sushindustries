@@ -1,0 +1,30 @@
+{
+	"provider": "posthog-com",
+	"section": "AI Engineering",
+	"entries": [
+		{
+			"name": "AI engineering with PostHog - Docs",
+			"url": "https://posthog.com/docs/ai-engineering.md",
+			"description": "",
+			"section": "AI Engineering"
+		},
+		{
+			"name": "AI wizard - Docs",
+			"url": "https://posthog.com/docs/ai-engineering/ai-wizard.md",
+			"description": "",
+			"section": "AI Engineering"
+		},
+		{
+			"name": "Markdown and llms.txt - Docs",
+			"url": "https://posthog.com/docs/ai-engineering/markdown-llms-txt.md",
+			"description": "",
+			"section": "AI Engineering"
+		},
+		{
+			"name": "Sign up with the wizard - Docs",
+			"url": "https://posthog.com/docs/ai-engineering/wizard-signup.md",
+			"description": "",
+			"section": "AI Engineering"
+		}
+	]
+}

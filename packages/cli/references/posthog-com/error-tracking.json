@@ -1,0 +1,438 @@
+{
+	"provider": "posthog-com",
+	"section": "Error Tracking",
+	"entries": [
+		{
+			"name": ".NET Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/dotnet.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Android Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/android.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Angular Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/angular.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Assign issues to teammates - Docs",
+			"url": "https://posthog.com/docs/error-tracking/assigning-issues.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Capture exceptions for error tracking - Docs",
+			"url": "https://posthog.com/docs/error-tracking/capture.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Code variables - Docs",
+			"url": "https://posthog.com/docs/error-tracking/code-variables.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Code variables in Python - Docs",
+			"url": "https://posthog.com/docs/error-tracking/code-variables/python.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Detect spikes in exception volume - Docs",
+			"url": "https://posthog.com/docs/error-tracking/spikes.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Elixir Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/elixir.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Error tracking - Docs",
+			"url": "https://posthog.com/docs/error-tracking.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Error Tracking changelog - Docs",
+			"url": "https://posthog.com/docs/error-tracking/changelog.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Error tracking in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/error-tracking/surfaces/web-app.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Error Tracking pricing - Docs",
+			"url": "https://posthog.com/docs/error-tracking/pricing.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Error Tracking troubleshooting - Docs",
+			"url": "https://posthog.com/docs/error-tracking/troubleshooting.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Fingerprints - Docs",
+			"url": "https://posthog.com/docs/error-tracking/fingerprints.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Flutter Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/flutter.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Getting started with Error Tracking - Docs",
+			"url": "https://posthog.com/docs/error-tracking/start-here.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Go Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/go.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Grouping exceptions into issues - Docs",
+			"url": "https://posthog.com/docs/error-tracking/grouping-issues.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Hono Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/hono.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Install Error Tracking with PostHog - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "iOS Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/ios.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Issues and exceptions - Docs",
+			"url": "https://posthog.com/docs/error-tracking/issues-and-exceptions.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Kotlin Multiplatform Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/kmp.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Manage and resolve issues - Docs",
+			"url": "https://posthog.com/docs/error-tracking/managing-issues.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Manual Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/manual.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Monitor and search issues - Docs",
+			"url": "https://posthog.com/docs/error-tracking/monitoring.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "NestJS Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/nestjs.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Next.js Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/nextjs.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Node.js Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/node.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Nuxt Error Tracking installation (v3.6 and below) - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/nuxt-3-6.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Nuxt Error Tracking installation (v3.7 and above) - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/nuxt-3-7.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "PHP Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/php.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Python Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/python.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Rate limiting - Docs",
+			"url": "https://posthog.com/docs/error-tracking/rate-limiting.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "React Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/react.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "React Native Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/react-native.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Releases - Docs",
+			"url": "https://posthog.com/docs/error-tracking/releases.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Roblox Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/roblox.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Ruby Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/ruby.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Ruby on Rails Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/ruby-on-rails.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Rust Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/rust.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "SDK and API references for error tracking - Docs",
+			"url": "https://posthog.com/docs/error-tracking/references.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Send error tracking alerts - Docs",
+			"url": "https://posthog.com/docs/error-tracking/alerts.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Set up integrations - Docs",
+			"url": "https://posthog.com/docs/error-tracking/integrations.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Stack traces - Docs",
+			"url": "https://posthog.com/docs/error-tracking/stack-traces.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "SvelteKit Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/svelte.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Tutorials and guides - Docs",
+			"url": "https://posthog.com/docs/error-tracking/tutorials.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Unity Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/unity.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload debug symbols for Flutter - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/flutter.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload debug symbols for Go - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/go.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload debug symbols for Kotlin Multiplatform - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-debug-symbols/kmp.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload debug symbols for Rust - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/rust.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload dSYMs for iOS - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/ios.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload mappings for Android - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-mappings/android.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload source maps - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload source maps for Angular - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/angular.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload source maps for Next.js - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/nextjs.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload source maps for Node.js - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/node.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload source maps for Nuxt - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/nuxt.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload source maps for React - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/react.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload source maps for React Native - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/react-native.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload source maps for Rollup - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/rollup.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload source maps for Vite - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/vite.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload source maps for web - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/web.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload source maps for Webpack - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/webpack.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload source maps with CLI - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/cli.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Upload source maps with GitHub Actions - Docs",
+			"url": "https://posthog.com/docs/error-tracking/upload-source-maps/github-actions.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Use Error Tracking from PostHog CLI - Docs",
+			"url": "https://posthog.com/docs/error-tracking/surfaces/cli.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Use Error Tracking in PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/error-tracking/surfaces/desktop.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Use Error Tracking over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/error-tracking/surfaces/mcp.md",
+			"description": "",
+			"section": "Error Tracking"
+		},
+		{
+			"name": "Web Error Tracking installation - Docs",
+			"url": "https://posthog.com/docs/error-tracking/installation/web.md",
+			"description": "",
+			"section": "Error Tracking"
+		}
+	]
+}

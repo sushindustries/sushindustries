@@ -1,0 +1,48 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "cockroach/Advanced",
+	"entries": [
+		{
+			"name": "Set Operations",
+			"url": "https://orm.drizzle.team/docs/cockroach/set-operations",
+			"description": "",
+			"section": "cockroach/Advanced"
+		},
+		{
+			"name": "Generated Columns",
+			"url": "https://orm.drizzle.team/docs/cockroach/generated-columns",
+			"description": "",
+			"section": "cockroach/Advanced"
+		},
+		{
+			"name": "Transactions",
+			"url": "https://orm.drizzle.team/docs/cockroach/transactions",
+			"description": "",
+			"section": "cockroach/Advanced"
+		},
+		{
+			"name": "Cache",
+			"url": "https://orm.drizzle.team/docs/cockroach/cache",
+			"description": "",
+			"section": "cockroach/Advanced"
+		},
+		{
+			"name": "Dynamic query building",
+			"url": "https://orm.drizzle.team/docs/cockroach/dynamic-query-building",
+			"description": "",
+			"section": "cockroach/Advanced"
+		},
+		{
+			"name": "Read Replicas",
+			"url": "https://orm.drizzle.team/docs/cockroach/read-replicas",
+			"description": "",
+			"section": "cockroach/Advanced"
+		},
+		{
+			"name": "Custom types",
+			"url": "https://orm.drizzle.team/docs/cockroach/custom-types",
+			"description": "",
+			"section": "cockroach/Advanced"
+		}
+	]
+}

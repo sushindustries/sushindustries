@@ -19,6 +19,23 @@ if (!posthogHost) {
  * subresources loading without a CORP header on each.
  */
 export default defineNitroConfig({
+	/*
+	 * Both default to off, and both are free here.
+	 *
+	 * `minify` is the server bundle Railway actually runs. Nothing reads it,
+	 * nothing debugs against it - a stack trace resolves through the source
+	 * maps the build already emits - so shipping it unminified was paying to
+	 * transfer and parse whitespace on every cold start.
+	 *
+	 * `compressPublicAssets` writes a `.gz` and a `.br` beside every public
+	 * file over a kilobyte, once, at build time. A CDN compressing on the fly
+	 * spends CPU per request to reach a worse ratio than brotli at maximum
+	 * effort does once - and Railway's CDN serves a precompressed file when
+	 * one is sitting there.
+	 */
+	minify: true,
+	compressPublicAssets: { gzip: true, brotli: true },
+
 	routeRules: {
 		"/**": {
 			headers: {

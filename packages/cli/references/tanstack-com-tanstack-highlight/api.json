@@ -1,0 +1,72 @@
+{
+	"provider": "tanstack-com-tanstack-highlight",
+	"section": "API",
+	"entries": [
+		{
+			"name": "Reference Overview",
+			"url": "https://tanstack.com/highlight/latest/docs/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Default Entry",
+			"url": "https://tanstack.com/highlight/latest/docs/reference/default-entry.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Core",
+			"url": "https://tanstack.com/highlight/latest/docs/reference/core.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Markdown",
+			"url": "https://tanstack.com/highlight/latest/docs/reference/markdown.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Remark",
+			"url": "https://tanstack.com/highlight/latest/docs/reference/remark.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Rehype",
+			"url": "https://tanstack.com/highlight/latest/docs/reference/rehype.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React",
+			"url": "https://tanstack.com/highlight/latest/docs/reference/react.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane",
+			"url": "https://tanstack.com/highlight/latest/docs/reference/octane.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Theme",
+			"url": "https://tanstack.com/highlight/latest/docs/reference/theme.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Languages",
+			"url": "https://tanstack.com/highlight/latest/docs/reference/languages.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Themes",
+			"url": "https://tanstack.com/highlight/latest/docs/reference/themes.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

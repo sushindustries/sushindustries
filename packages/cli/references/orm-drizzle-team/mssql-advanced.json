@@ -1,0 +1,48 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "mssql/Advanced",
+	"entries": [
+		{
+			"name": "Set Operations",
+			"url": "https://orm.drizzle.team/docs/mssql/set-operations",
+			"description": "",
+			"section": "mssql/Advanced"
+		},
+		{
+			"name": "Generated Columns",
+			"url": "https://orm.drizzle.team/docs/mssql/generated-columns",
+			"description": "",
+			"section": "mssql/Advanced"
+		},
+		{
+			"name": "Transactions",
+			"url": "https://orm.drizzle.team/docs/mssql/transactions",
+			"description": "",
+			"section": "mssql/Advanced"
+		},
+		{
+			"name": "Cache",
+			"url": "https://orm.drizzle.team/docs/mssql/cache",
+			"description": "",
+			"section": "mssql/Advanced"
+		},
+		{
+			"name": "Dynamic query building",
+			"url": "https://orm.drizzle.team/docs/mssql/dynamic-query-building",
+			"description": "",
+			"section": "mssql/Advanced"
+		},
+		{
+			"name": "Read Replicas",
+			"url": "https://orm.drizzle.team/docs/mssql/read-replicas",
+			"description": "",
+			"section": "mssql/Advanced"
+		},
+		{
+			"name": "Custom types",
+			"url": "https://orm.drizzle.team/docs/mssql/custom-types",
+			"description": "",
+			"section": "mssql/Advanced"
+		}
+	]
+}

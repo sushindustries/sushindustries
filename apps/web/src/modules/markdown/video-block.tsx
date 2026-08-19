@@ -1,4 +1,5 @@
 import { thingLd } from "@sushindustries/db/schema";
+import { EMBED_PROVIDERS } from "@sushindustries/http";
 import {
 	type MarkdownBlockProps,
 	VideoPlayer,
@@ -7,7 +8,6 @@ import {
 } from "@sushindustries/ui";
 import { useStore } from "@tanstack/react-store";
 import { lazy, type ReactNode, Suspense, useId } from "react";
-import { EMBED_PROVIDERS } from "../security/embeds";
 import { playingVideo, playVideo, stopVideo } from "./video.store";
 
 /*
@@ -38,7 +38,7 @@ const MuxPlayer = lazy(() => import("@mux/mux-player-react"));
 
 /*
  * The player URL and the poster both come from the provider declaration in
- * `modules/security/embeds.ts`, which is the same object `frame-src` is built
+ * `@sushindustries/http`, which is the same object `frame-src` is built
  * from. That is the whole arrangement: a frame this block can point at is a
  * frame the policy already allows, because neither is written twice.
  */

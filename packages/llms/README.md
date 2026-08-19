@@ -121,3 +121,27 @@ sitemap. Useful for pages that exist to be embedded rather than found.
 
 `extraPaths` covers URLs with no entry of their own - the home page, section
 listings - so the sitemap is complete without inventing entries for them.
+
+## Sharded sitemaps
+
+For a site whose sections change on different clocks, the flat sitemap has a
+sharded form: an index pointing at one urlset per section.
+
+```ts
+import {
+	renderSitemapIndex,
+	renderSitemapShard,
+	renderUrlset,
+	sitemapShards,
+} from "@sushindustries/llms";
+
+renderSitemapIndex(site); // <sitemapindex> of /sitemap-0.xml, /sitemap-1.xml, ...
+renderSitemapShard(site, 0); // one shard as a <urlset>, undefined past the end
+sitemapShards(site); // the shard list itself: path + the page paths in it
+renderUrlset(site.origin, ["/a", "/b"]); // a urlset for any list of paths
+```
+
+Shard 0 is the paths only `extraPaths` knows about; each section with
+indexable entries gets the next number. Shards are numbered rather than named
+so a section can be renamed without invalidating the URL a crawler already
+holds, and a section whose entries are all `noindex` gets no shard at all.

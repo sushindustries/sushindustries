@@ -1,0 +1,96 @@
+{
+	"provider": "tanstack-com-tanstack-markdown",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "Syntax Profile",
+			"url": "https://tanstack.com/markdown/latest/docs/core-concepts/syntax-profile.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Document Model",
+			"url": "https://tanstack.com/markdown/latest/docs/core-concepts/document-model.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Parsing",
+			"url": "https://tanstack.com/markdown/latest/docs/core-concepts/parsing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Rendering",
+			"url": "https://tanstack.com/markdown/latest/docs/core-concepts/rendering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Security",
+			"url": "https://tanstack.com/markdown/latest/docs/core-concepts/security.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React",
+			"url": "https://tanstack.com/markdown/latest/docs/guides/react.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane",
+			"url": "https://tanstack.com/markdown/latest/docs/guides/octane.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "AI Streaming",
+			"url": "https://tanstack.com/markdown/latest/docs/guides/ai-streaming.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Syntax Highlighting",
+			"url": "https://tanstack.com/markdown/latest/docs/guides/syntax-highlighting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Extensions",
+			"url": "https://tanstack.com/markdown/latest/docs/guides/extensions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Docs Preset",
+			"url": "https://tanstack.com/markdown/latest/docs/guides/docs-preset.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Performance",
+			"url": "https://tanstack.com/markdown/latest/docs/guides/performance.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Testing",
+			"url": "https://tanstack.com/markdown/latest/docs/guides/testing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Architecture",
+			"url": "https://tanstack.com/markdown/latest/docs/project/architecture.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "FAQ",
+			"url": "https://tanstack.com/markdown/latest/docs/project/faq.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "singlestore/Performance",
+	"entries": [
+		{
+			"name": "Query performance",
+			"url": "https://orm.drizzle.team/docs/singlestore/perf-queries",
+			"description": "",
+			"section": "singlestore/Performance"
+		}
+	]
+}

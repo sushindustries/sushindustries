@@ -1,0 +1,312 @@
+{
+	"provider": "react-dev",
+	"section": "Learn React",
+	"entries": [
+		{
+			"name": "Quick Start",
+			"url": "https://react.dev/learn.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Tutorial: Tic-Tac-Toe",
+			"url": "https://react.dev/learn/tutorial-tic-tac-toe.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Thinking in React",
+			"url": "https://react.dev/learn/thinking-in-react.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Installation",
+			"url": "https://react.dev/learn/installation.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Creating a React App",
+			"url": "https://react.dev/learn/creating-a-react-app.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Build a React App from Scratch",
+			"url": "https://react.dev/learn/build-a-react-app-from-scratch.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Add React to an Existing Project",
+			"url": "https://react.dev/learn/add-react-to-an-existing-project.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Setup",
+			"url": "https://react.dev/learn/setup.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Editor Setup",
+			"url": "https://react.dev/learn/editor-setup.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Using TypeScript",
+			"url": "https://react.dev/learn/typescript.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "React Developer Tools",
+			"url": "https://react.dev/learn/react-developer-tools.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "React Compiler",
+			"url": "https://react.dev/learn/react-compiler.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Introduction",
+			"url": "https://react.dev/learn/react-compiler/introduction.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Installation",
+			"url": "https://react.dev/learn/react-compiler/installation.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Incremental Adoption",
+			"url": "https://react.dev/learn/react-compiler/incremental-adoption.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Debugging and Troubleshooting",
+			"url": "https://react.dev/learn/react-compiler/debugging.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Describing the UI",
+			"url": "https://react.dev/learn/describing-the-ui.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Your First Component",
+			"url": "https://react.dev/learn/your-first-component.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Importing and Exporting Components",
+			"url": "https://react.dev/learn/importing-and-exporting-components.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Writing Markup with JSX",
+			"url": "https://react.dev/learn/writing-markup-with-jsx.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "JavaScript in JSX with Curly Braces",
+			"url": "https://react.dev/learn/javascript-in-jsx-with-curly-braces.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Passing Props to a Component",
+			"url": "https://react.dev/learn/passing-props-to-a-component.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Conditional Rendering",
+			"url": "https://react.dev/learn/conditional-rendering.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Rendering Lists",
+			"url": "https://react.dev/learn/rendering-lists.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Keeping Components Pure",
+			"url": "https://react.dev/learn/keeping-components-pure.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Your UI as a Tree",
+			"url": "https://react.dev/learn/understanding-your-ui-as-a-tree.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Adding Interactivity",
+			"url": "https://react.dev/learn/adding-interactivity.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Responding to Events",
+			"url": "https://react.dev/learn/responding-to-events.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "State: A Component's Memory",
+			"url": "https://react.dev/learn/state-a-components-memory.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Render and Commit",
+			"url": "https://react.dev/learn/render-and-commit.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "State as a Snapshot",
+			"url": "https://react.dev/learn/state-as-a-snapshot.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Queueing a Series of State Updates",
+			"url": "https://react.dev/learn/queueing-a-series-of-state-updates.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Updating Objects in State",
+			"url": "https://react.dev/learn/updating-objects-in-state.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Updating Arrays in State",
+			"url": "https://react.dev/learn/updating-arrays-in-state.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Managing State",
+			"url": "https://react.dev/learn/managing-state.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Reacting to Input with State",
+			"url": "https://react.dev/learn/reacting-to-input-with-state.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Choosing the State Structure",
+			"url": "https://react.dev/learn/choosing-the-state-structure.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Sharing State Between Components",
+			"url": "https://react.dev/learn/sharing-state-between-components.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Preserving and Resetting State",
+			"url": "https://react.dev/learn/preserving-and-resetting-state.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Extracting State Logic into a Reducer",
+			"url": "https://react.dev/learn/extracting-state-logic-into-a-reducer.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Passing Data Deeply with Context",
+			"url": "https://react.dev/learn/passing-data-deeply-with-context.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Scaling Up with Reducer and Context",
+			"url": "https://react.dev/learn/scaling-up-with-reducer-and-context.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Escape Hatches",
+			"url": "https://react.dev/learn/escape-hatches.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Referencing Values with Refs",
+			"url": "https://react.dev/learn/referencing-values-with-refs.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Manipulating the DOM with Refs",
+			"url": "https://react.dev/learn/manipulating-the-dom-with-refs.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Synchronizing with Effects",
+			"url": "https://react.dev/learn/synchronizing-with-effects.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "You Might Not Need an Effect",
+			"url": "https://react.dev/learn/you-might-not-need-an-effect.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Lifecycle of Reactive Effects",
+			"url": "https://react.dev/learn/lifecycle-of-reactive-effects.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Separating Events from Effects",
+			"url": "https://react.dev/learn/separating-events-from-effects.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Removing Effect Dependencies",
+			"url": "https://react.dev/learn/removing-effect-dependencies.md",
+			"description": "",
+			"section": "Learn React"
+		},
+		{
+			"name": "Reusing Logic with Custom Hooks",
+			"url": "https://react.dev/learn/reusing-logic-with-custom-hooks.md",
+			"description": "",
+			"section": "Learn React"
+		}
+	]
+}

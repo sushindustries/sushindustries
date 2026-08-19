@@ -1,0 +1,90 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "pg/Connect",
+	"entries": [
+		{
+			"name": "Drizzle \\<\\> PostgreSQL",
+			"url": "https://orm.drizzle.team/docs/pg/get-started-postgresql",
+			"description": "",
+			"section": "pg/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> PlanetScale Postgres",
+			"url": "https://orm.drizzle.team/docs/pg/connect-planetscale-postgres",
+			"description": "",
+			"section": "pg/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> Neon Postgres",
+			"url": "https://orm.drizzle.team/docs/pg/connect-neon",
+			"description": "",
+			"section": "pg/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> Vercel Postgres",
+			"url": "https://orm.drizzle.team/docs/pg/connect-vercel-postgres",
+			"description": "",
+			"section": "pg/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> Prisma Postgres",
+			"url": "https://orm.drizzle.team/docs/pg/connect-prisma-postgres",
+			"description": "",
+			"section": "pg/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> Supabase",
+			"url": "https://orm.drizzle.team/docs/pg/connect-supabase",
+			"description": "",
+			"section": "pg/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> Xata",
+			"url": "https://orm.drizzle.team/docs/pg/connect-xata",
+			"description": "",
+			"section": "pg/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> PGlite",
+			"url": "https://orm.drizzle.team/docs/pg/connect-pglite",
+			"description": "",
+			"section": "pg/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> Nile",
+			"url": "https://orm.drizzle.team/docs/pg/connect-nile",
+			"description": "",
+			"section": "pg/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> Bun SQL",
+			"url": "https://orm.drizzle.team/docs/pg/connect-bun-sql",
+			"description": "",
+			"section": "pg/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> Effect Postgres",
+			"url": "https://orm.drizzle.team/docs/pg/connect-effect-postgres",
+			"description": "",
+			"section": "pg/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> Netlify Database",
+			"url": "https://orm.drizzle.team/docs/pg/connect-netlify-db",
+			"description": "",
+			"section": "pg/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> AWS Data API Postgres",
+			"url": "https://orm.drizzle.team/docs/pg/connect-aws-data-api-pg",
+			"description": "",
+			"section": "pg/Connect"
+		},
+		{
+			"name": "Drizzle HTTP proxy",
+			"url": "https://orm.drizzle.team/docs/pg/connect-drizzle-proxy",
+			"description": "",
+			"section": "pg/Connect"
+		}
+	]
+}

@@ -1,0 +1,18 @@
+{
+	"provider": "tanstack-com-tanstack-virtual",
+	"section": "API",
+	"entries": [
+		{
+			"name": "Virtualizer",
+			"url": "https://tanstack.com/virtual/latest/docs/api/virtualizer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "VirtualItem",
+			"url": "https://tanstack.com/virtual/latest/docs/api/virtual-item.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

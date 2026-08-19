@@ -1,0 +1,18 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "Fundamentals",
+	"entries": [
+		{
+			"name": "Drizzle Relations Fundamentals",
+			"url": "https://orm.drizzle.team/docs/relations-schema-declaration",
+			"description": "",
+			"section": "Fundamentals"
+		},
+		{
+			"name": "Drizzle Queries + CRUD",
+			"url": "https://orm.drizzle.team/docs/data-querying",
+			"description": "",
+			"section": "Fundamentals"
+		}
+	]
+}

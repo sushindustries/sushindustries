@@ -1,0 +1,12 @@
+{
+	"provider": "lenis-darkroom-engineering",
+	"source": "https://lenis.darkroom.engineering/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"Lenis"
+	],
+	"title": "Lenis Codebase Overview",
+	"summary": "",
+	"total": 0,
+	"sections": []
+}

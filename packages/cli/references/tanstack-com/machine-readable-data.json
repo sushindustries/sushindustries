@@ -1,0 +1,24 @@
+{
+	"provider": "tanstack-com",
+	"section": "Machine-readable data",
+	"entries": [
+		{
+			"name": "Libraries JSON",
+			"url": "https://tanstack.com/api/data/libraries",
+			"description": "Current library metadata including ids, docs URLs, GitHub repositories, framework support, versions, and package names.",
+			"section": "Machine-readable data"
+		},
+		{
+			"name": "NPM Stats",
+			"url": "https://tanstack.com/stats/npm",
+			"description": "Compare npm package download statistics across TanStack packages and related ecosystem packages.",
+			"section": "Machine-readable data"
+		},
+		{
+			"name": "Notebook authoring guide",
+			"url": "https://tanstack.com/notebook/llms.txt",
+			"description": "Create shareable client-side TypeScript and JSX modules with the supported runtime, import aliases, and URL protocol.",
+			"section": "Machine-readable data"
+		}
+	]
+}

@@ -1,0 +1,72 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "mssql/Migrations",
+	"entries": [
+		{
+			"name": "Migrations with Drizzle Kit",
+			"url": "https://orm.drizzle.team/docs/mssql/kit-overview",
+			"description": "",
+			"section": "mssql/Migrations"
+		},
+		{
+			"name": "`drizzle-kit generate`",
+			"url": "https://orm.drizzle.team/docs/mssql/drizzle-kit-generate",
+			"description": "",
+			"section": "mssql/Migrations"
+		},
+		{
+			"name": "`drizzle-kit migrate`",
+			"url": "https://orm.drizzle.team/docs/mssql/drizzle-kit-migrate",
+			"description": "",
+			"section": "mssql/Migrations"
+		},
+		{
+			"name": "`drizzle-kit push`",
+			"url": "https://orm.drizzle.team/docs/mssql/drizzle-kit-push",
+			"description": "",
+			"section": "mssql/Migrations"
+		},
+		{
+			"name": "`drizzle-kit pull`",
+			"url": "https://orm.drizzle.team/docs/mssql/drizzle-kit-pull",
+			"description": "",
+			"section": "mssql/Migrations"
+		},
+		{
+			"name": "`drizzle-kit export`",
+			"url": "https://orm.drizzle.team/docs/mssql/drizzle-kit-export",
+			"description": "",
+			"section": "mssql/Migrations"
+		},
+		{
+			"name": "`drizzle-kit check`",
+			"url": "https://orm.drizzle.team/docs/mssql/drizzle-kit-check",
+			"description": "",
+			"section": "mssql/Migrations"
+		},
+		{
+			"name": "`drizzle-kit up`",
+			"url": "https://orm.drizzle.team/docs/mssql/drizzle-kit-up",
+			"description": "",
+			"section": "mssql/Migrations"
+		},
+		{
+			"name": "`drizzle-kit studio`",
+			"url": "https://orm.drizzle.team/docs/mssql/drizzle-kit-studio",
+			"description": "",
+			"section": "mssql/Migrations"
+		},
+		{
+			"name": "Migrations with Drizzle Kit",
+			"url": "https://orm.drizzle.team/docs/mssql/kit-custom-migrations",
+			"description": "",
+			"section": "mssql/Migrations"
+		},
+		{
+			"name": "Drizzle Kit configuration file",
+			"url": "https://orm.drizzle.team/docs/mssql/drizzle-config-file",
+			"description": "",
+			"section": "mssql/Migrations"
+		}
+	]
+}

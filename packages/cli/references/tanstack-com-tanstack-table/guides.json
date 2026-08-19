@@ -1,0 +1,1494 @@
+{
+	"provider": "tanstack-com-tanstack-table",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "Features",
+			"url": "https://tanstack.com/table/latest/docs/guide/features.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Data",
+			"url": "https://tanstack.com/table/latest/docs/guide/data.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Client-Side vs Server-Side",
+			"url": "https://tanstack.com/table/latest/docs/guide/client-side-vs-server-side.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Column Definitions",
+			"url": "https://tanstack.com/table/latest/docs/guide/column-defs.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Table Instance",
+			"url": "https://tanstack.com/table/latest/docs/guide/tables.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Row Models",
+			"url": "https://tanstack.com/table/latest/docs/guide/row-models.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Worker Row Models (Experimental)",
+			"url": "https://tanstack.com/table/latest/docs/guide/worker-row-models.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Rows",
+			"url": "https://tanstack.com/table/latest/docs/guide/rows.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Cells",
+			"url": "https://tanstack.com/table/latest/docs/guide/cells.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Header Groups",
+			"url": "https://tanstack.com/table/latest/docs/guide/header-groups.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Headers",
+			"url": "https://tanstack.com/table/latest/docs/guide/headers.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Columns",
+			"url": "https://tanstack.com/table/latest/docs/guide/columns.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Table and Column Meta",
+			"url": "https://tanstack.com/table/latest/docs/guide/table-and-column-meta.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Type Helpers",
+			"url": "https://tanstack.com/table/latest/docs/guide/helpers.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Table State",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/table-state.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/composable-tables.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/flex-render.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Custom Plugins",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/custom-features.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Table State",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/table-state.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/composable-tables.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/flex-render.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Custom Plugins",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/custom-features.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Table State",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/table-state.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/composable-tables.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/flex-render.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Custom Plugins",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/custom-features.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Table State",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/table-state.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/composable-tables.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/flex-render.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Custom Plugins",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/custom-features.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Table State",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/table-state.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: React Compiler",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/react-compiler.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/composable-tables.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Table Context",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/table-context.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/flex-render.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Custom Plugins",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/custom-features.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Table State",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/table-state.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/composable-tables.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Table Context",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/table-context.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/flex-render.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Custom Plugins",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/custom-features.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Table State",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/table-state.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/composable-tables.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Table Context",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/table-context.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/flex-render.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Custom Plugins",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/custom-features.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Table State",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/table-state.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/composable-tables.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/flex-render.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Custom Plugins",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/custom-features.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Table State",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/table-state.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/composable-tables.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/flex-render.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Custom Plugins",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/custom-features.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Table State",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/table-state.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/composable-tables.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/flex-render.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Custom Plugins",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/custom-features.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: Table State",
+			"url": "https://tanstack.com/table/latest/docs/framework/vanilla/guide/table-state.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/vanilla/guide/flex-render.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/cell-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/cell-spanning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/column-ordering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/column-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/column-sizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/column-resizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/column-visibility.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Column Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/column-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Global Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/global-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Fuzzy Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/fuzzy-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Faceting",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/column-faceting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/aggregation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/grouping.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/expanding.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/pagination.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/row-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/row-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Alpine: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/guide/sorting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/cell-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/cell-spanning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/column-ordering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/column-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/column-sizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/column-resizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/column-visibility.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Column Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/column-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Global Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/global-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Fuzzy Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/fuzzy-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Faceting",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/column-faceting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/aggregation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/grouping.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/expanding.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/pagination.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/row-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/row-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/sorting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Virtualization",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/virtualization.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/cell-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/cell-spanning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/column-ordering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/column-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/column-sizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/column-resizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/column-visibility.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Column Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/column-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Global Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/global-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Fuzzy Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/fuzzy-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Faceting",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/column-faceting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/aggregation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/grouping.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/expanding.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/pagination.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/row-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/row-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Ember: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/guide/sorting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/cell-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/cell-spanning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/column-ordering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/column-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/column-sizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/column-resizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/column-visibility.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Column Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/column-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Global Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/global-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Fuzzy Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/fuzzy-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Faceting",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/column-faceting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/aggregation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/grouping.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/expanding.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/pagination.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/row-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/row-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/sorting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Virtualization",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/virtualization.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/cell-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/cell-spanning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/column-ordering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/column-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/column-sizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/column-resizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/column-visibility.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Column Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/column-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Global Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/global-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Fuzzy Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/fuzzy-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Faceting",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/column-faceting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/aggregation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/grouping.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/expanding.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/pagination.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/row-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/row-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/sorting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Virtualization",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/virtualization.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/cell-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/cell-spanning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/column-ordering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/column-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/column-sizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/column-resizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/column-visibility.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Column Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/column-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Global Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/global-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Fuzzy Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/fuzzy-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Faceting",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/column-faceting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/aggregation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/grouping.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/expanding.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/pagination.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/row-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/row-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/sorting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Virtualization",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/virtualization.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/cell-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/cell-spanning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/column-ordering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/column-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/column-sizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/column-resizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/column-visibility.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Column Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/column-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Global Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/global-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Fuzzy Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/fuzzy-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Faceting",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/column-faceting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/aggregation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/grouping.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/expanding.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/pagination.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/row-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/row-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/guide/sorting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/cell-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/cell-spanning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/column-ordering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/column-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/column-sizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/column-resizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/column-visibility.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Column Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/column-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Global Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/global-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Fuzzy Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/fuzzy-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Faceting",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/column-faceting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/aggregation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/grouping.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/expanding.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/pagination.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/row-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/row-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/sorting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Virtualization",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/virtualization.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/cell-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/cell-spanning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/column-ordering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/column-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/column-sizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/column-resizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/column-visibility.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Column Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/column-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Global Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/global-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Fuzzy Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/fuzzy-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Faceting",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/column-faceting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/aggregation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/grouping.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/expanding.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/pagination.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/row-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/row-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/sorting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Virtualization",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/virtualization.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/cell-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/cell-spanning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/column-ordering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/column-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/column-sizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/column-resizing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/column-visibility.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Column Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/column-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Global Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/global-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Fuzzy Filtering",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/fuzzy-filtering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Faceting",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/column-faceting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/aggregation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/grouping.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/expanding.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/pagination.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/row-pinning.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/row-selection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/sorting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Virtualization",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/virtualization.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/vanilla/guide/aggregation.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

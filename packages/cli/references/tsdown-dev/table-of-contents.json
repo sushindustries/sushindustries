@@ -1,0 +1,558 @@
+{
+	"provider": "tsdown-dev",
+	"section": "Table of Contents",
+	"entries": [
+		{
+			"name": "Auto-Generating Package Exports",
+			"url": "https://tsdown.dev/options/package-exports.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Benchmark",
+			"url": "https://tsdown.dev/advanced/benchmark.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "CI Environment Support",
+			"url": "https://tsdown.dev/advanced/ci.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "CJS Default Export",
+			"url": "https://tsdown.dev/options/cjs-default.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Cleaning",
+			"url": "https://tsdown.dev/options/cleaning.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Command Line Interface",
+			"url": "https://tsdown.dev/reference/cli.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Config File",
+			"url": "https://tsdown.dev/options/config-file.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Copy Files",
+			"url": "https://tsdown.dev/options/copy.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "CSS Support",
+			"url": "https://tsdown.dev/options/css.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Customizing Rolldown Options",
+			"url": "https://tsdown.dev/advanced/rolldown-options.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Declaration Files (dts)",
+			"url": "https://tsdown.dev/options/dts.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Dependencies",
+			"url": "https://tsdown.dev/options/dependencies.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Entry",
+			"url": "https://tsdown.dev/options/entry.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Executable",
+			"url": "https://tsdown.dev/options/exe.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Frequently Asked Questions",
+			"url": "https://tsdown.dev/guide/faq.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Function: build()",
+			"url": "https://tsdown.dev/reference/api/Function.build.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Function: defineConfig()",
+			"url": "https://tsdown.dev/reference/api/Function.defineConfig.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Function: enableDebug()",
+			"url": "https://tsdown.dev/reference/api/Function.enableDebug.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Function: mergeConfig()",
+			"url": "https://tsdown.dev/reference/api/Function.mergeConfig.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Getting Started",
+			"url": "https://tsdown.dev/guide/getting-started.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Hooks",
+			"url": "https://tsdown.dev/advanced/hooks.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "How It Works",
+			"url": "https://tsdown.dev/guide/how-it-works.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: AttwOptions",
+			"url": "https://tsdown.dev/reference/api/Interface.AttwOptions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: BuildContext",
+			"url": "https://tsdown.dev/reference/api/Interface.BuildContext.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: ChunkAddonObject",
+			"url": "https://tsdown.dev/reference/api/Interface.ChunkAddonObject.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: CopyEntry",
+			"url": "https://tsdown.dev/reference/api/Interface.CopyEntry.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: DepsConfig",
+			"url": "https://tsdown.dev/reference/api/Interface.DepsConfig.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: DevtoolsOptions",
+			"url": "https://tsdown.dev/reference/api/Interface.DevtoolsOptions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: DtsOptions",
+			"url": "https://tsdown.dev/reference/api/Interface.DtsOptions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: ExeOptions",
+			"url": "https://tsdown.dev/reference/api/Interface.ExeOptions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: ExportsOptions",
+			"url": "https://tsdown.dev/reference/api/Interface.ExportsOptions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: InlineConfig",
+			"url": "https://tsdown.dev/reference/api/Interface.InlineConfig.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: Logger",
+			"url": "https://tsdown.dev/reference/api/Interface.Logger.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: OutExtensionContext",
+			"url": "https://tsdown.dev/reference/api/Interface.OutExtensionContext.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: OutExtensionObject",
+			"url": "https://tsdown.dev/reference/api/Interface.OutExtensionObject.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: PackageJsonWithPath",
+			"url": "https://tsdown.dev/reference/api/Interface.PackageJsonWithPath.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: PublintOptions",
+			"url": "https://tsdown.dev/reference/api/Interface.PublintOptions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: ReportOptions",
+			"url": "https://tsdown.dev/reference/api/Interface.ReportOptions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: ResolvedDepsConfig",
+			"url": "https://tsdown.dev/reference/api/Interface.ResolvedDepsConfig.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: RolldownContext",
+			"url": "https://tsdown.dev/reference/api/Interface.RolldownContext.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: SeaConfig",
+			"url": "https://tsdown.dev/reference/api/Interface.SeaConfig.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: TsdownBundle",
+			"url": "https://tsdown.dev/reference/api/Interface.TsdownBundle.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: TsdownHooks",
+			"url": "https://tsdown.dev/reference/api/Interface.TsdownHooks.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: TsdownPlugin\\<A>",
+			"url": "https://tsdown.dev/reference/api/Interface.TsdownPlugin.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: UnusedOptions",
+			"url": "https://tsdown.dev/reference/api/Interface.UnusedOptions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: UserConfig",
+			"url": "https://tsdown.dev/reference/api/Interface.UserConfig.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interface: Workspace",
+			"url": "https://tsdown.dev/reference/api/Interface.Workspace.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Introduction",
+			"url": "https://tsdown.dev/guide.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Log Level",
+			"url": "https://tsdown.dev/options/log-level.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Migrate from tsup",
+			"url": "https://tsdown.dev/guide/migrate-from-tsup.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Minification",
+			"url": "https://tsdown.dev/options/minification.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Output Directory",
+			"url": "https://tsdown.dev/options/output-directory.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Output Format",
+			"url": "https://tsdown.dev/options/output-format.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Package Validation (publint & attw)",
+			"url": "https://tsdown.dev/options/lint.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Platform",
+			"url": "https://tsdown.dev/options/platform.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Plugins",
+			"url": "https://tsdown.dev/advanced/plugins.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Programmatic Usage",
+			"url": "https://tsdown.dev/advanced/programmatic-usage.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "React Support",
+			"url": "https://tsdown.dev/recipes/react-support.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Root Directory",
+			"url": "https://tsdown.dev/options/root.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Shims",
+			"url": "https://tsdown.dev/options/shims.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Solid Support",
+			"url": "https://tsdown.dev/recipes/solid-support.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Source Maps",
+			"url": "https://tsdown.dev/options/sourcemap.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Svelte Support",
+			"url": "https://tsdown.dev/recipes/svelte-support.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Target",
+			"url": "https://tsdown.dev/options/target.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Tree-shaking",
+			"url": "https://tsdown.dev/options/tree-shaking.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "tsdown v0.23.0-rc.0",
+			"url": "https://tsdown.dev/reference/api/globals.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: ChunkAddon",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.ChunkAddon.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: ChunkAddonFunction",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.ChunkAddonFunction.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: CIOption",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.CIOption.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: CopyOptions",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.CopyOptions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: CopyOptionsFn",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.CopyOptionsFn.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: Format",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.Format.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: NoExternalFn",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.NoExternalFn.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: NormalizedFormat",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.NormalizedFormat.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: OutExtensionFactory",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.OutExtensionFactory.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: PackageType",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.PackageType.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: ResolvedConfig",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.ResolvedConfig.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: RolldownChunk",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.RolldownChunk.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: Sourcemap",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.Sourcemap.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: TreeshakingOptions",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.TreeshakingOptions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: TsdownInputOption",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.TsdownInputOption.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: TsdownPluginOption\\<A>",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.TsdownPluginOption.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: UserConfigExport",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.UserConfigExport.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: UserConfigFn",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.UserConfigFn.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Type Alias: WithEnabled\\<T>",
+			"url": "https://tsdown.dev/reference/api/TypeAlias.WithEnabled.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Unbundle Mode",
+			"url": "https://tsdown.dev/options/unbundle.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Variable: globalLogger",
+			"url": "https://tsdown.dev/reference/api/Variable.globalLogger.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Variable: version",
+			"url": "https://tsdown.dev/reference/api/Variable.version.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Vue Support",
+			"url": "https://tsdown.dev/recipes/vue-support.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "WASM Support",
+			"url": "https://tsdown.dev/recipes/wasm-support.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Watch Mode",
+			"url": "https://tsdown.dev/options/watch-mode.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Work with AI",
+			"url": "https://tsdown.dev/guide/skills.md",
+			"description": "",
+			"section": "Table of Contents"
+		}
+	]
+}

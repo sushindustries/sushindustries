@@ -1,0 +1,66 @@
+{
+	"provider": "docs-railway-com",
+	"section": "Pricing",
+	"entries": [
+		{
+			"name": "Pricing",
+			"url": "https://docs.railway.com/pricing.md",
+			"description": "Learn how Railway's pricing works - usage-based pricing with plans designed to scale with your needs.",
+			"section": "Pricing"
+		},
+		{
+			"name": "Plans",
+			"url": "https://docs.railway.com/pricing/plans.md",
+			"description": "Learn about Railway's plans and pricing.",
+			"section": "Pricing"
+		},
+		{
+			"name": "Free trial",
+			"url": "https://docs.railway.com/pricing/free-trial.md",
+			"description": "Learn about Railway's free trial plan.",
+			"section": "Pricing"
+		},
+		{
+			"name": "Understanding your bill",
+			"url": "https://docs.railway.com/pricing/understanding-your-bill.md",
+			"description": "Learn how Railway billing works, why you're charged when idle, and how to read your invoice.",
+			"section": "Pricing"
+		},
+		{
+			"name": "FAQs",
+			"url": "https://docs.railway.com/pricing/faqs.md",
+			"description": "General common Questions & Answers related to Railway's pricing.",
+			"section": "Pricing"
+		},
+		{
+			"name": "Refunds",
+			"url": "https://docs.railway.com/pricing/refunds.md",
+			"description": "Learn about Railway’s refund policy and how to request a refund if eligible.",
+			"section": "Pricing"
+		},
+		{
+			"name": "Cost control",
+			"url": "https://docs.railway.com/pricing/cost-control.md",
+			"description": "Optimize your Railway projects for budget-friendly billing by setting limits and activating serverless.",
+			"section": "Pricing"
+		},
+		{
+			"name": "Committed spend",
+			"url": "https://docs.railway.com/pricing/committed-spend.md",
+			"description": "Learn about Railway's committed spend tier system.",
+			"section": "Pricing"
+		},
+		{
+			"name": "AWS Marketplace",
+			"url": "https://docs.railway.com/pricing/aws-marketplace.md",
+			"description": "Learn about Railway's AWS Marketplace offering and pricing.",
+			"section": "Pricing"
+		},
+		{
+			"name": "Credits",
+			"url": "https://docs.railway.com/pricing/credits.md",
+			"description": "Learn how credits apply to your Railway account if part of a promotion.",
+			"section": "Pricing"
+		}
+	]
+}

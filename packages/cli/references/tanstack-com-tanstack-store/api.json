@@ -1,0 +1,552 @@
+{
+	"provider": "tanstack-com-tanstack-store",
+	"section": "API",
+	"entries": [
+		{
+			"name": "Core API Reference",
+			"url": "https://tanstack.com/store/latest/docs/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: React Hooks",
+			"url": "https://tanstack.com/store/latest/docs/framework/react/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: Vue Hooks",
+			"url": "https://tanstack.com/store/latest/docs/framework/vue/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: Solid Hooks",
+			"url": "https://tanstack.com/store/latest/docs/framework/solid/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: Angular Inject API",
+			"url": "https://tanstack.com/store/latest/docs/framework/angular/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: Svelte Hooks",
+			"url": "https://tanstack.com/store/latest/docs/framework/svelte/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Preact Hooks",
+			"url": "https://tanstack.com/store/latest/docs/framework/preact/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Lit Reactive Controllers",
+			"url": "https://tanstack.com/store/latest/docs/framework/lit/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: Octane Hooks",
+			"url": "https://tanstack.com/store/latest/docs/framework/octane/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Store",
+			"url": "https://tanstack.com/store/latest/docs/reference/classes/Store.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ReadonlyStore",
+			"url": "https://tanstack.com/store/latest/docs/reference/classes/ReadonlyStore.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Atom",
+			"url": "https://tanstack.com/store/latest/docs/reference/interfaces/Atom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AtomOptions",
+			"url": "https://tanstack.com/store/latest/docs/reference/interfaces/AtomOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "BaseAtom",
+			"url": "https://tanstack.com/store/latest/docs/reference/interfaces/BaseAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "InternalBaseAtom",
+			"url": "https://tanstack.com/store/latest/docs/reference/interfaces/InternalBaseAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "InternalReadonlyAtom",
+			"url": "https://tanstack.com/store/latest/docs/reference/interfaces/InternalReadonlyAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "InteropSubscribable",
+			"url": "https://tanstack.com/store/latest/docs/reference/interfaces/InteropSubscribable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Readable",
+			"url": "https://tanstack.com/store/latest/docs/reference/interfaces/Readable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ReadonlyAtom",
+			"url": "https://tanstack.com/store/latest/docs/reference/interfaces/ReadonlyAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "StoreActionsApi",
+			"url": "https://tanstack.com/store/latest/docs/reference/interfaces/StoreActionsApi.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Subscribable",
+			"url": "https://tanstack.com/store/latest/docs/reference/interfaces/Subscribable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Subscription",
+			"url": "https://tanstack.com/store/latest/docs/reference/interfaces/Subscription.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AnyAtom",
+			"url": "https://tanstack.com/store/latest/docs/reference/type-aliases/AnyAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Observer",
+			"url": "https://tanstack.com/store/latest/docs/reference/type-aliases/Observer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Selection",
+			"url": "https://tanstack.com/store/latest/docs/reference/type-aliases/Selection.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "StoreAction",
+			"url": "https://tanstack.com/store/latest/docs/reference/type-aliases/StoreAction.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "StoreActionMap",
+			"url": "https://tanstack.com/store/latest/docs/reference/type-aliases/StoreActionMap.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "StoreActionsFactory",
+			"url": "https://tanstack.com/store/latest/docs/reference/type-aliases/StoreActionsFactory.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "batch",
+			"url": "https://tanstack.com/store/latest/docs/reference/functions/batch.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createAsyncAtom",
+			"url": "https://tanstack.com/store/latest/docs/reference/functions/createAsyncAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createAtom",
+			"url": "https://tanstack.com/store/latest/docs/reference/functions/createAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createStore",
+			"url": "https://tanstack.com/store/latest/docs/reference/functions/createStore.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "flush",
+			"url": "https://tanstack.com/store/latest/docs/reference/functions/flush.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "shallow",
+			"url": "https://tanstack.com/store/latest/docs/reference/functions/shallow.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "toObserver",
+			"url": "https://tanstack.com/store/latest/docs/reference/functions/toObserver.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: createStoreContext",
+			"url": "https://tanstack.com/store/latest/docs/framework/react/reference/functions/createStoreContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useCreateAtom",
+			"url": "https://tanstack.com/store/latest/docs/framework/react/reference/functions/useCreateAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useCreateStore",
+			"url": "https://tanstack.com/store/latest/docs/framework/react/reference/functions/useCreateStore.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useSelector",
+			"url": "https://tanstack.com/store/latest/docs/framework/react/reference/functions/useSelector.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useSetValue",
+			"url": "https://tanstack.com/store/latest/docs/framework/react/reference/functions/useSetValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useAtom",
+			"url": "https://tanstack.com/store/latest/docs/framework/react/reference/functions/useAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useStoreActions",
+			"url": "https://tanstack.com/store/latest/docs/framework/react/reference/functions/useStoreActions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: _useStore (experimental)",
+			"url": "https://tanstack.com/store/latest/docs/framework/react/reference/functions/useStore.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useStore (deprecated)",
+			"url": "https://tanstack.com/store/latest/docs/framework/react/reference/functions/useStore-1.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: UseSelectorOptions",
+			"url": "https://tanstack.com/store/latest/docs/framework/react/reference/interfaces/UseSelectorOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useSelector",
+			"url": "https://tanstack.com/store/latest/docs/framework/vue/reference/functions/useSelector.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useSetValue",
+			"url": "https://tanstack.com/store/latest/docs/framework/vue/reference/functions/useSetValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useAtom",
+			"url": "https://tanstack.com/store/latest/docs/framework/vue/reference/functions/useAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useStoreActions",
+			"url": "https://tanstack.com/store/latest/docs/framework/vue/reference/functions/useStoreActions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: _useStore (experimental)",
+			"url": "https://tanstack.com/store/latest/docs/framework/vue/reference/functions/useStore.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useStore (deprecated)",
+			"url": "https://tanstack.com/store/latest/docs/framework/vue/reference/functions/useStore-1.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: UseSelectorOptions",
+			"url": "https://tanstack.com/store/latest/docs/framework/vue/reference/interfaces/UseSelectorOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useSelector",
+			"url": "https://tanstack.com/store/latest/docs/framework/solid/reference/functions/useSelector.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useSetValue",
+			"url": "https://tanstack.com/store/latest/docs/framework/solid/reference/functions/useSetValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useAtom",
+			"url": "https://tanstack.com/store/latest/docs/framework/solid/reference/functions/useAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useStoreActions",
+			"url": "https://tanstack.com/store/latest/docs/framework/solid/reference/functions/useStoreActions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: _useStore (experimental)",
+			"url": "https://tanstack.com/store/latest/docs/framework/solid/reference/functions/useStore.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useStore (deprecated)",
+			"url": "https://tanstack.com/store/latest/docs/framework/solid/reference/functions/useStore-1.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: UseSelectorOptions",
+			"url": "https://tanstack.com/store/latest/docs/framework/solid/reference/interfaces/UseSelectorOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectSelector",
+			"url": "https://tanstack.com/store/latest/docs/framework/angular/reference/functions/injectSelector.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectSetValue",
+			"url": "https://tanstack.com/store/latest/docs/framework/angular/reference/functions/injectSetValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectAtom",
+			"url": "https://tanstack.com/store/latest/docs/framework/angular/reference/functions/injectAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectStoreActions",
+			"url": "https://tanstack.com/store/latest/docs/framework/angular/reference/functions/injectStoreActions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectStore (deprecated)",
+			"url": "https://tanstack.com/store/latest/docs/framework/angular/reference/functions/injectStore.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: InjectSelectorOptions",
+			"url": "https://tanstack.com/store/latest/docs/framework/angular/reference/interfaces/InjectSelectorOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: useSelector",
+			"url": "https://tanstack.com/store/latest/docs/framework/svelte/reference/functions/useSelector.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: useSetValue",
+			"url": "https://tanstack.com/store/latest/docs/framework/svelte/reference/functions/useSetValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: useAtom",
+			"url": "https://tanstack.com/store/latest/docs/framework/svelte/reference/functions/useAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: useStoreActions",
+			"url": "https://tanstack.com/store/latest/docs/framework/svelte/reference/functions/useStoreActions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: _useStore (experimental)",
+			"url": "https://tanstack.com/store/latest/docs/framework/svelte/reference/functions/useStore.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: useStore (deprecated)",
+			"url": "https://tanstack.com/store/latest/docs/framework/svelte/reference/functions/useStore-1.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: UseSelectorOptions",
+			"url": "https://tanstack.com/store/latest/docs/framework/svelte/reference/interfaces/UseSelectorOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: createStoreContext",
+			"url": "https://tanstack.com/store/latest/docs/framework/preact/reference/functions/createStoreContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useCreateAtom",
+			"url": "https://tanstack.com/store/latest/docs/framework/preact/reference/functions/useCreateAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useCreateStore",
+			"url": "https://tanstack.com/store/latest/docs/framework/preact/reference/functions/useCreateStore.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useSelector",
+			"url": "https://tanstack.com/store/latest/docs/framework/preact/reference/functions/useSelector.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useSetValue",
+			"url": "https://tanstack.com/store/latest/docs/framework/preact/reference/functions/useSetValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useAtom",
+			"url": "https://tanstack.com/store/latest/docs/framework/preact/reference/functions/useAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useStoreActions",
+			"url": "https://tanstack.com/store/latest/docs/framework/preact/reference/functions/useStoreActions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: _useStore (experimental)",
+			"url": "https://tanstack.com/store/latest/docs/framework/preact/reference/functions/useStore.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useStore (deprecated)",
+			"url": "https://tanstack.com/store/latest/docs/framework/preact/reference/functions/useStore-1.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: UseSelectorOptions",
+			"url": "https://tanstack.com/store/latest/docs/framework/preact/reference/interfaces/UseSelectorOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: TanStackStoreSelector",
+			"url": "https://tanstack.com/store/latest/docs/framework/lit/reference/classes/TanStackStoreSelector.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: TanStackStoreAtom",
+			"url": "https://tanstack.com/store/latest/docs/framework/lit/reference/classes/TanStackStoreAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: UseSelectorOptions",
+			"url": "https://tanstack.com/store/latest/docs/framework/lit/reference/interfaces/UseSelectorOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: createStoreContext",
+			"url": "https://tanstack.com/store/latest/docs/framework/octane/reference/functions/createStoreContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: useCreateAtom",
+			"url": "https://tanstack.com/store/latest/docs/framework/octane/reference/functions/useCreateAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: useCreateStore",
+			"url": "https://tanstack.com/store/latest/docs/framework/octane/reference/functions/useCreateStore.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: useSelector",
+			"url": "https://tanstack.com/store/latest/docs/framework/octane/reference/functions/useSelector.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: useAtom",
+			"url": "https://tanstack.com/store/latest/docs/framework/octane/reference/functions/useAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: UseSelectorOptions",
+			"url": "https://tanstack.com/store/latest/docs/framework/octane/reference/interfaces/UseSelectorOptions.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

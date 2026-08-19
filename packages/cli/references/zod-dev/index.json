@@ -1,0 +1,103 @@
+{
+	"provider": "zod-dev",
+	"source": "https://zod.dev/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"Zod"
+	],
+	"title": "Zod",
+	"summary": "Zod is a TypeScript-first schema validation library with static type inference. This documentation provides comprehensive coverage of Zod 4's features, API, and usage patterns.",
+	"total": 324,
+	"sections": [
+		{
+			"name": "Defining schemas",
+			"entries": 92,
+			"file": "defining-schemas.json"
+		},
+		{
+			"name": "Basic usage",
+			"entries": 5,
+			"file": "basic-usage.json"
+		},
+		{
+			"name": "Codecs",
+			"entries": 30,
+			"file": "codecs.json"
+		},
+		{
+			"name": "AOT compilation",
+			"entries": 6,
+			"file": "aot-compilation.json"
+		},
+		{
+			"name": "Ecosystem",
+			"entries": 9,
+			"file": "ecosystem.json"
+		},
+		{
+			"name": "Customizing errors",
+			"entries": 8,
+			"file": "customizing-errors.json"
+		},
+		{
+			"name": "Formatting errors",
+			"entries": 5,
+			"file": "formatting-errors.json"
+		},
+		{
+			"name": "Intro",
+			"entries": 12,
+			"file": "intro.json"
+		},
+		{
+			"name": "JSON Schema",
+			"entries": 17,
+			"file": "json-schema.json"
+		},
+		{
+			"name": "For library authors",
+			"entries": 7,
+			"file": "for-library-authors.json"
+		},
+		{
+			"name": "Metadata and registries",
+			"entries": 10,
+			"file": "metadata-and-registries.json"
+		},
+		{
+			"name": "Joining Clerk as an OSS Fellow to work on Zod 4",
+			"entries": 5,
+			"file": "joining-clerk-as-an-oss-fellow-to-work-on-zod-4.json"
+		},
+		{
+			"name": "Migration guide",
+			"entries": 61,
+			"file": "migration-guide.json"
+		},
+		{
+			"name": "Release notes",
+			"entries": 31,
+			"file": "release-notes.json"
+		},
+		{
+			"name": "Versioning",
+			"entries": 5,
+			"file": "versioning.json"
+		},
+		{
+			"name": "Zod Core",
+			"entries": 7,
+			"file": "zod-core.json"
+		},
+		{
+			"name": "Zod Mini",
+			"entries": 13,
+			"file": "zod-mini.json"
+		},
+		{
+			"name": "Zod",
+			"entries": 1,
+			"file": "zod.json"
+		}
+	]
+}

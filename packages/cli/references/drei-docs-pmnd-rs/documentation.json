@@ -1,0 +1,810 @@
+{
+	"provider": "drei-docs-pmnd-rs",
+	"section": "Documentation",
+	"entries": [
+		{
+			"name": "Introduction",
+			"url": "https://drei.docs.pmnd.rs/getting-started/introduction",
+			"description": "Useful helpers for @react-three/fiber",
+			"section": "Documentation"
+		},
+		{
+			"name": "AsciiRenderer",
+			"url": "https://drei.docs.pmnd.rs/abstractions/ascii-renderer",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Billboard",
+			"url": "https://drei.docs.pmnd.rs/abstractions/billboard",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Clone",
+			"url": "https://drei.docs.pmnd.rs/abstractions/clone",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "ComputedAttribute",
+			"url": "https://drei.docs.pmnd.rs/abstractions/computed-attribute",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Decal",
+			"url": "https://drei.docs.pmnd.rs/abstractions/decal",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Edges",
+			"url": "https://drei.docs.pmnd.rs/abstractions/edges",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Effects",
+			"url": "https://drei.docs.pmnd.rs/abstractions/effects",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "GradientTexture",
+			"url": "https://drei.docs.pmnd.rs/abstractions/gradient-texture",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Image",
+			"url": "https://drei.docs.pmnd.rs/abstractions/image",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "MarchingCubes",
+			"url": "https://drei.docs.pmnd.rs/abstractions/marching-cubes",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Outlines",
+			"url": "https://drei.docs.pmnd.rs/abstractions/outlines",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "PositionalAudio",
+			"url": "https://drei.docs.pmnd.rs/abstractions/positional-audio",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Sampler",
+			"url": "https://drei.docs.pmnd.rs/abstractions/sampler",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "ScreenSizer",
+			"url": "https://drei.docs.pmnd.rs/abstractions/screen-sizer",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "ScreenSpace",
+			"url": "https://drei.docs.pmnd.rs/abstractions/screen-space",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Splat",
+			"url": "https://drei.docs.pmnd.rs/abstractions/splat",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Svg",
+			"url": "https://drei.docs.pmnd.rs/abstractions/svg",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Text",
+			"url": "https://drei.docs.pmnd.rs/abstractions/text",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Text3D",
+			"url": "https://drei.docs.pmnd.rs/abstractions/text3d",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Trail",
+			"url": "https://drei.docs.pmnd.rs/abstractions/trail",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "useAnimations",
+			"url": "https://drei.docs.pmnd.rs/abstractions/use-animations",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "CubeCamera",
+			"url": "https://drei.docs.pmnd.rs/cameras/cube-camera",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "OrthographicCamera",
+			"url": "https://drei.docs.pmnd.rs/cameras/orthographic-camera",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "PerspectiveCamera",
+			"url": "https://drei.docs.pmnd.rs/cameras/perspective-camera",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "CameraControls",
+			"url": "https://drei.docs.pmnd.rs/controls/camera-controls",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "FaceControls",
+			"url": "https://drei.docs.pmnd.rs/controls/face-controls",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Controls",
+			"url": "https://drei.docs.pmnd.rs/controls/introduction",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "KeyboardControls",
+			"url": "https://drei.docs.pmnd.rs/controls/keyboard-controls",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "MotionPathControls",
+			"url": "https://drei.docs.pmnd.rs/controls/motion-path-controls",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "PresentationControls",
+			"url": "https://drei.docs.pmnd.rs/controls/presentation-controls",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "ScrollControls",
+			"url": "https://drei.docs.pmnd.rs/controls/scroll-controls",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "DragControls",
+			"url": "https://drei.docs.pmnd.rs/gizmos/drag-controls",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "GizmoHelper",
+			"url": "https://drei.docs.pmnd.rs/gizmos/gizmo-helper",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Grid",
+			"url": "https://drei.docs.pmnd.rs/gizmos/grid",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Helper / useHelper",
+			"url": "https://drei.docs.pmnd.rs/gizmos/helper-use-helper",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "PivotControls",
+			"url": "https://drei.docs.pmnd.rs/gizmos/pivot-controls",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "TransformControls",
+			"url": "https://drei.docs.pmnd.rs/gizmos/transform-controls",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "CubeTexture / useCubeTexture",
+			"url": "https://drei.docs.pmnd.rs/loaders/cube-texture-use-cube-texture",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Fbx / useFBX",
+			"url": "https://drei.docs.pmnd.rs/loaders/fbx-use-fbx",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Gltf / useGLTF",
+			"url": "https://drei.docs.pmnd.rs/loaders/gltf-use-gltf",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Ktx2 / useKTX2",
+			"url": "https://drei.docs.pmnd.rs/loaders/ktx2-use-ktx2",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Loader",
+			"url": "https://drei.docs.pmnd.rs/loaders/loader",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Progress / useProgress",
+			"url": "https://drei.docs.pmnd.rs/loaders/progress-use-progress",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "ScreenVideoTexture",
+			"url": "https://drei.docs.pmnd.rs/loaders/screen-video-texture",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Texture / useTexture",
+			"url": "https://drei.docs.pmnd.rs/loaders/texture-use-texture",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "TrailTexture / useTrailTexture",
+			"url": "https://drei.docs.pmnd.rs/loaders/trail-texture-use-trail-texture",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "useFont",
+			"url": "https://drei.docs.pmnd.rs/loaders/use-font",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "useSpriteLoader",
+			"url": "https://drei.docs.pmnd.rs/loaders/use-sprite-loader",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "VideoTexture / useVideoTexture",
+			"url": "https://drei.docs.pmnd.rs/loaders/video-texture-use-video-texture",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "WebcamVideoTexture",
+			"url": "https://drei.docs.pmnd.rs/loaders/webcam-video-texture",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "CubeCamera / useCubeCamera",
+			"url": "https://drei.docs.pmnd.rs/misc/cube-camera-use-cube-camera",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "CycleRaycast",
+			"url": "https://drei.docs.pmnd.rs/misc/cycle-raycast",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "DetectGPU / useDetectGPU",
+			"url": "https://drei.docs.pmnd.rs/misc/detect-gpu-use-detect-gpu",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Example",
+			"url": "https://drei.docs.pmnd.rs/misc/example",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "FaceLandmarker",
+			"url": "https://drei.docs.pmnd.rs/misc/face-landmarker",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Fbo / useFBO",
+			"url": "https://drei.docs.pmnd.rs/misc/fbo-use-fbo",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Html",
+			"url": "https://drei.docs.pmnd.rs/misc/html",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Select",
+			"url": "https://drei.docs.pmnd.rs/misc/select",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Sprite Animator",
+			"url": "https://drei.docs.pmnd.rs/misc/sprite-animator",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "StatsGl",
+			"url": "https://drei.docs.pmnd.rs/misc/stats-gl",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Stats",
+			"url": "https://drei.docs.pmnd.rs/misc/stats",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Trail / useTrail",
+			"url": "https://drei.docs.pmnd.rs/misc/trail-use-trail",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "useAspect",
+			"url": "https://drei.docs.pmnd.rs/misc/use-aspect",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "useBoxProjectedEnv",
+			"url": "https://drei.docs.pmnd.rs/misc/use-box-projected-env",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "useCamera",
+			"url": "https://drei.docs.pmnd.rs/misc/use-camera",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "useContextBridge",
+			"url": "https://drei.docs.pmnd.rs/misc/use-context-bridge",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "useCursor",
+			"url": "https://drei.docs.pmnd.rs/misc/use-cursor",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "useDepthBuffer",
+			"url": "https://drei.docs.pmnd.rs/misc/use-depth-buffer",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "useIntersect",
+			"url": "https://drei.docs.pmnd.rs/misc/use-intersect",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "useSurfaceSampler",
+			"url": "https://drei.docs.pmnd.rs/misc/use-surface-sampler",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Wireframe",
+			"url": "https://drei.docs.pmnd.rs/misc/wireframe",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "CurveModifier",
+			"url": "https://drei.docs.pmnd.rs/modifiers/curve-modifier",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "AdaptiveDpr",
+			"url": "https://drei.docs.pmnd.rs/performances/adaptive-dpr",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "AdaptiveEvents",
+			"url": "https://drei.docs.pmnd.rs/performances/adaptive-events",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "BakeShadows",
+			"url": "https://drei.docs.pmnd.rs/performances/bake-shadows",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Bvh",
+			"url": "https://drei.docs.pmnd.rs/performances/bvh",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Detailed",
+			"url": "https://drei.docs.pmnd.rs/performances/detailed",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Instances",
+			"url": "https://drei.docs.pmnd.rs/performances/instances",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Merged",
+			"url": "https://drei.docs.pmnd.rs/performances/merged",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "meshBounds",
+			"url": "https://drei.docs.pmnd.rs/performances/mesh-bounds",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "PerformanceMonitor",
+			"url": "https://drei.docs.pmnd.rs/performances/performance-monitor",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Points",
+			"url": "https://drei.docs.pmnd.rs/performances/points",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Preload",
+			"url": "https://drei.docs.pmnd.rs/performances/preload",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Segments",
+			"url": "https://drei.docs.pmnd.rs/performances/segments",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Fisheye",
+			"url": "https://drei.docs.pmnd.rs/portals/fisheye",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Hud",
+			"url": "https://drei.docs.pmnd.rs/portals/hud",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Mask",
+			"url": "https://drei.docs.pmnd.rs/portals/mask",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "MeshPortalMaterial",
+			"url": "https://drei.docs.pmnd.rs/portals/mesh-portal-material",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "RenderCubeTexture",
+			"url": "https://drei.docs.pmnd.rs/portals/render-cube-texture",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "RenderTexture",
+			"url": "https://drei.docs.pmnd.rs/portals/render-texture",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "View",
+			"url": "https://drei.docs.pmnd.rs/portals/view",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "MeshDiscardMaterial",
+			"url": "https://drei.docs.pmnd.rs/shaders/mesh-discard-material",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "MeshDistortMaterial",
+			"url": "https://drei.docs.pmnd.rs/shaders/mesh-distort-material",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "MeshReflectorMaterial",
+			"url": "https://drei.docs.pmnd.rs/shaders/mesh-reflector-material",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "MeshRefractionMaterial",
+			"url": "https://drei.docs.pmnd.rs/shaders/mesh-refraction-material",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "MeshTransmissionMaterial",
+			"url": "https://drei.docs.pmnd.rs/shaders/mesh-transmission-material",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "MeshWobbleMaterial",
+			"url": "https://drei.docs.pmnd.rs/shaders/mesh-wobble-material",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "PointMaterial",
+			"url": "https://drei.docs.pmnd.rs/shaders/point-material",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "shaderMaterial",
+			"url": "https://drei.docs.pmnd.rs/shaders/shader-material",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "SoftShadows",
+			"url": "https://drei.docs.pmnd.rs/shaders/soft-shadows",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "CatmullRomLine",
+			"url": "https://drei.docs.pmnd.rs/shapes/catmull-rom-line",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "CubicBezierLine",
+			"url": "https://drei.docs.pmnd.rs/shapes/cubic-bezier-line",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Facemesh",
+			"url": "https://drei.docs.pmnd.rs/shapes/facemesh",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Line",
+			"url": "https://drei.docs.pmnd.rs/shapes/line",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Mesh",
+			"url": "https://drei.docs.pmnd.rs/shapes/mesh",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "QuadraticBezierLine",
+			"url": "https://drei.docs.pmnd.rs/shapes/quadratic-bezier-line",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "RoundedBox",
+			"url": "https://drei.docs.pmnd.rs/shapes/rounded-box",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "ScreenQuad",
+			"url": "https://drei.docs.pmnd.rs/shapes/screen-quad",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "AccumulativeShadows",
+			"url": "https://drei.docs.pmnd.rs/staging/accumulative-shadows",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Backdrop",
+			"url": "https://drei.docs.pmnd.rs/staging/backdrop",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "BBAnchor",
+			"url": "https://drei.docs.pmnd.rs/staging/bb-anchor",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Bounds",
+			"url": "https://drei.docs.pmnd.rs/staging/bounds",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "CameraShake",
+			"url": "https://drei.docs.pmnd.rs/staging/camera-shake",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Caustics",
+			"url": "https://drei.docs.pmnd.rs/staging/caustics",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Center",
+			"url": "https://drei.docs.pmnd.rs/staging/center",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Cloud",
+			"url": "https://drei.docs.pmnd.rs/staging/cloud",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "ContactShadows",
+			"url": "https://drei.docs.pmnd.rs/staging/contact-shadows",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Environment",
+			"url": "https://drei.docs.pmnd.rs/staging/environment",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Float",
+			"url": "https://drei.docs.pmnd.rs/staging/float",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Lightformer",
+			"url": "https://drei.docs.pmnd.rs/staging/lightformer",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "MatcapTexture / useMatcapTexture",
+			"url": "https://drei.docs.pmnd.rs/staging/matcap-texture-use-matcap-texture",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "NormalTexture / useNormalTexture",
+			"url": "https://drei.docs.pmnd.rs/staging/normal-texture-use-normal-texture",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "RandomizedLight",
+			"url": "https://drei.docs.pmnd.rs/staging/randomized-light",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Resize",
+			"url": "https://drei.docs.pmnd.rs/staging/resize",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "ShadowAlpha",
+			"url": "https://drei.docs.pmnd.rs/staging/shadow-alpha",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Shadow",
+			"url": "https://drei.docs.pmnd.rs/staging/shadow",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Sky",
+			"url": "https://drei.docs.pmnd.rs/staging/sky",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Sparkles",
+			"url": "https://drei.docs.pmnd.rs/staging/sparkles",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "SpotLightShadow",
+			"url": "https://drei.docs.pmnd.rs/staging/spot-light-shadow",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "SpotLight",
+			"url": "https://drei.docs.pmnd.rs/staging/spot-light",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Stage",
+			"url": "https://drei.docs.pmnd.rs/staging/stage",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "Stars",
+			"url": "https://drei.docs.pmnd.rs/staging/stars",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "useEnvironment",
+			"url": "https://drei.docs.pmnd.rs/staging/use-environment",
+			"description": "",
+			"section": "Documentation"
+		}
+	]
+}

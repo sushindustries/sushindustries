@@ -30,4 +30,4 @@ API) still returns 400 on a bad body and 204 on a good one, and
 renders 200 with no server error. Record:
 `.claude/hypothesis-testing/records/server-fn-validator-api.md`.
 
-**Source:** `references/01-tanstack-official-safety.md`.
+**Source:** `.claude/skills/sushindustries-conventions/references/01-tanstack-official.md`.

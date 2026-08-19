@@ -1,0 +1,47 @@
+{
+	"provider": "tanstack-com-tanstack-router",
+	"source": "https://tanstack.com/router/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Router docs",
+	"summary": "A powerful React router for client-side and full-stack react applications. Fully type-safe APIs, first-class search-params for managing state in the URL and seamless integration with the existing React ecosystem.",
+	"total": 107,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 14,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 41,
+			"file": "guides.json"
+		},
+		{
+			"name": "API",
+			"entries": 2,
+			"file": "api.json"
+		},
+		{
+			"name": "Examples",
+			"entries": 46,
+			"file": "examples.json"
+		}
+	]
+}

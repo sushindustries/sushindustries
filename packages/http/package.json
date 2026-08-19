@@ -1,0 +1,16 @@
+{
+	"name": "@sushindustries/http",
+	"version": "0.1.0",
+	"description": "The five things a server decides about a response before it decides what is in it: canonical origin, cache lifetime, content security policy, embed allowlist, and content negotiation.",
+	"type": "module",
+	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	},
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"files": [
+		"src"
+	]
+}

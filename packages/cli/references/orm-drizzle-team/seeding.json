@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "Seeding",
+	"entries": [
+		{
+			"name": "Generators",
+			"url": "https://orm.drizzle.team/docs/seed-functions",
+			"description": "",
+			"section": "Seeding"
+		}
+	]
+}

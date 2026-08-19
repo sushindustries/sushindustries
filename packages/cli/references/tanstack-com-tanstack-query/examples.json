@@ -1,0 +1,348 @@
+{
+	"provider": "tanstack-com-tanstack-query",
+	"section": "Examples",
+	"entries": [
+		{
+			"name": "React: Simple",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/simple.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic w/ GraphQL-Request",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/basic-graphql-request.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Auto Refetching / Polling / Realtime",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/auto-refetching.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Optimistic Updates",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/nextjs-app-optimistic-updates.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Pagination",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Load-More & Infinite Scroll",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/load-more-infinite-scroll.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Infinite query with Max pages",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/infinite-query-with-max-pages.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Suspense",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/suspense.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Default Query Function",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/default-query-function.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Playground",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/playground.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Prefetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/prefetching.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Star Wars",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/star-wars.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Rick And Morty",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/rick-morty.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Next.js Pages",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/nextjs.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Next.js app with prefetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/nextjs-app-prefetching.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Next.js app with streaming",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/nextjs-suspense-streaming.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: React Native",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/react-native.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: React Router",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/react-router.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Offline Queries and Mutations",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/offline.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Algolia",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/algolia.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Shadow DOM",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/shadow-dom.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Devtools Embedded Panel",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/devtools-panel.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Chat example (streaming)",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/examples/chat.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Simple",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/examples/simple.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Basic",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/examples/basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Basic w/ GraphQL-Request",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/examples/basic-graphql-request.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Default Query Function",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/examples/default-query-function.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Solid Start",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/examples/solid-start-streaming.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Astro",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/examples/astro.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Offline Queries and Mutations",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/examples/offline.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Basic",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/examples/basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Vue 2.6",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/examples/2.6-basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Vue 2.7",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/examples/2.7-basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Nuxt 3",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/examples/nuxt3.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Persister",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/examples/persister.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Simple",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/examples/simple.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Basic",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/examples/basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Auto Refetching / Polling / Realtime",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/examples/auto-refetching.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: SSR",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/examples/ssr.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Optimistic Updates",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/examples/optimistic-updates.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Playground",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/examples/playground.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Star Wars",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/examples/star-wars.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Infinite Queries",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/examples/load-more-infinite-scroll.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Basic",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/examples/basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Pagination",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: SSR",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/examples/ssr.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Simple",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/examples/simple.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Basic",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/examples/basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Auto Refetching / Polling / Realtime",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/examples/auto-refetching.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Optimistic Updates",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/examples/optimistic-updates.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Pagination",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Infinite query with maxPages",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/examples/infinite-query-with-max-pages.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Angular Router",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/examples/router.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: RxJS autocomplete",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/examples/rxjs.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Query options from a service",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/examples/query-options-from-a-service.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Devtools embedded panel",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/examples/devtools-panel.md",
+			"description": "",
+			"section": "Examples"
+		}
+	]
+}

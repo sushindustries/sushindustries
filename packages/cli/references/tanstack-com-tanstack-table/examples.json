@@ -1,0 +1,2340 @@
+{
+	"provider": "tanstack-com-tanstack-table",
+	"section": "Examples",
+	"entries": [
+		{
+			"name": "Alpine: Basic (createTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/basic-create-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Basic (createAppTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/basic-app-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Basic (External State)",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/basic-external-state.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Basic (External Atoms)",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/basic-external-atoms.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Basic (Dynamic Columns)",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/basic-dynamic-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Header Groups",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/header-groups.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Basic (injectTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/basic-inject-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Basic (createAppTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/basic-app-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Basic (External State)",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/basic-external-state.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Basic (External Atoms)",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/basic-external-atoms.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Basic (Dynamic Columns)",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/basic-dynamic-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Header Groups",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/header-groups.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Basic (useTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/basic-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Basic (createAppTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/basic-app-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Basic (External State)",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/basic-external-state.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Basic (External Atoms)",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/basic-external-atoms.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Header Groups",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/header-groups.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Basic (TableController)",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/basic-table-controller.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Basic (useAppTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/basic-app-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Basic (External State)",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/basic-external-state.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Basic (External Atoms)",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/basic-external-atoms.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Basic (Subscribe)",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/basic-subscribe.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Basic (Dynamic Columns)",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/basic-dynamic-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Header Groups",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/header-groups.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic (useTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/basic-use-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic (useAppTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/basic-use-app-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic (useLegacyTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/basic-use-legacy-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic (External State)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/basic-external-state.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic (External Atoms)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/basic-external-atoms.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic (Subscribe)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/basic-subscribe.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic (Dynamic Columns)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/basic-dynamic-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Header Groups",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/header-groups.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Basic (createTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/basic-use-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Basic (createAppTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/basic-app-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Basic (External State)",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/basic-external-state.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Basic (External Atoms)",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/basic-external-atoms.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Basic (Dynamic Columns)",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/basic-dynamic-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Header Groups",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/header-groups.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Basic (createTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/basic-create-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Basic (createAppTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/basic-app-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Basic (Snippets)",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/basic-snippets.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Basic (External State)",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/basic-external-state.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Basic (External Atoms)",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/basic-external-atoms.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Basic (Dynamic Columns)",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/basic-dynamic-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Header Groups",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/header-groups.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Basic (useTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/basic-use-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Basic (useAppTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/basic-use-app-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Basic (External State)",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/basic-external-state.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Basic (External Atoms)",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/basic-external-atoms.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Basic (Dynamic Columns)",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/basic-dynamic-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Header Groups",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/header-groups.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Basic (useTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/basic-use-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Basic (useAppTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/basic-use-app-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Basic (External State)",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/basic-external-state.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Basic (External Atoms)",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/basic-external-atoms.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Basic (Subscribe)",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/basic-subscribe.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Basic (Dynamic Columns)",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/basic-dynamic-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Header Groups",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/header-groups.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Basic (useTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/basic-use-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Basic (useAppTable)",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/basic-use-app-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Basic (External State)",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/basic-external-state.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Basic (External Atoms)",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/basic-external-atoms.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Basic (Subscribe)",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/basic-subscribe.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Basic (Dynamic Columns)",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/basic-dynamic-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Header Groups",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/header-groups.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vanilla: Basic",
+			"url": "https://tanstack.com/table/latest/docs/framework/vanilla/examples/basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/cell-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/cell-spanning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Column Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/filters.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Column Filters (Faceted)",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/filters-faceted.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Bucketed Faceted Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/filters-faceted-bucketed.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/column-ordering.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/column-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Column Pinning (Split)",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/column-pinning-split.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Sticky Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/column-pinning-sticky.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/column-sizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/column-resizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Performant Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/column-resizing-performant.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/column-visibility.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/expanding.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Expanding Sub Components",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/sub-components.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/grouping.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Grouped Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/grouped-aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/row-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/row-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/sorting.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Sorting (Dynamic Data)",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/sorting-dynamic-data.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Kitchen Sink (All Features)",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/kitchen-sink.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/cell-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/cell-spanning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Column Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/filters.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Column Filters (Faceted)",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/filters-faceted.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Bucketed Faceted Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/filters-faceted-bucketed.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Fuzzy Search Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/filters-fuzzy.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/column-ordering.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/column-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Column Pinning (Split)",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/column-pinning-split.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Sticky Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/column-pinning-sticky.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/column-sizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/column-resizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Performant Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/column-resizing-performant.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/column-visibility.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/expanding.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Expanding Sub Components",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/sub-components.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/grouping.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Grouped Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/grouped-aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/row-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/row-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/sorting.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Kitchen Sink (All Features)",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/kitchen-sink.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/cell-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/cell-spanning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Column Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/filters.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Column Filters (Faceted)",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/filters-faceted.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Bucketed Faceted Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/filters-faceted-bucketed.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Fuzzy Search Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/filters-fuzzy.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/column-ordering.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/column-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Column Pinning (Split)",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/column-pinning-split.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Sticky Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/column-pinning-sticky.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/column-sizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/column-resizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Performant Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/column-resizing-performant.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/column-visibility.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/expanding.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Expanding Sub Components",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/sub-components.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/grouping.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Grouped Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/grouped-aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/row-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/row-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/sorting.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Kitchen Sink (All Features)",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/kitchen-sink.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/cell-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/cell-spanning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Column Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/filters.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Column Filters (Faceted)",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/filters-faceted.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Bucketed Faceted Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/filters-faceted-bucketed.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Fuzzy Search Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/filters-fuzzy.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/column-ordering.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/column-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Column Pinning (Split)",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/column-pinning-split.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Sticky Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/column-pinning-sticky.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/column-sizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/column-resizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Performant Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/column-resizing-performant.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/column-visibility.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/expanding.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Expanding Sub Components",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/sub-components.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/grouping.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Grouped Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/grouped-aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/row-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/row-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/sorting.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Sorting (Dynamic Data)",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/sorting-dynamic-data.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Kitchen Sink (All Features)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/kitchen-sink.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/cell-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/cell-spanning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Column Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/filters.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Column Filters (Faceted)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/filters-faceted.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Bucketed Faceted Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/filters-faceted-bucketed.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Fuzzy Search Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/filters-fuzzy.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/column-ordering.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Column Ordering (DnD)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/column-dnd.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/column-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Column Pinning (Split)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/column-pinning-split.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Sticky Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/column-pinning-sticky.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/column-sizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/column-resizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Performant Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/column-resizing-performant.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/column-visibility.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/expanding.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Expanding Sub Components",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/sub-components.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/grouping.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Grouped Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/grouped-aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Row DnD",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/row-dnd.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/row-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/row-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/sorting.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Kitchen Sink (All Features)",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/kitchen-sink.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/cell-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/cell-spanning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Column Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/filters.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Column Filters (Faceted)",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/filters-faceted.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Bucketed Faceted Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/filters-faceted-bucketed.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Fuzzy Search Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/filters-fuzzy.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/column-ordering.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/column-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Column Pinning (Split)",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/column-pinning-split.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Sticky Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/column-pinning-sticky.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/column-sizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/column-resizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Performant Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/column-resizing-performant.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/column-visibility.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/expanding.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Expanding Sub Components",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/sub-components.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/grouping.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Grouped Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/grouped-aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/row-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/row-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/sorting.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Kitchen Sink (All Features)",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/kitchen-sink.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/cell-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/cell-spanning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Column Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/filtering.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Column Filters (Faceted)",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/filters-faceted.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Bucketed Faceted Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/filters-faceted-bucketed.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Fuzzy Search Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/filters-fuzzy.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/column-ordering.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/column-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Column Pinning (Split)",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/column-pinning-split.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Sticky Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/column-pinning-sticky.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/column-sizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/column-resizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Performant Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/column-resizing-performant.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/column-visibility.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/expanding.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Expanding Sub Components",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/sub-components.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/grouping.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Grouped Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/grouped-aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/row-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/row-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/sorting.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Kitchen Sink (All Features)",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/kitchen-sink.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/cell-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/cell-spanning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Column Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/filters.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Column Filters (Faceted)",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/filters-faceted.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Bucketed Faceted Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/filters-faceted-bucketed.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Fuzzy Search Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/filters-fuzzy.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/column-ordering.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/column-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Column Pinning (Split)",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/column-pinning-split.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Sticky Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/column-pinning-sticky.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/column-sizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/column-resizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Performant Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/column-resizing-performant.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/column-visibility.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/expanding.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Expanding Sub Components",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/sub-components.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/grouping.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Grouped Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/grouped-aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/row-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/row-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/sorting.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Kitchen Sink (All Features)",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/kitchen-sink.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Cell Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/cell-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/cell-spanning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Column Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/filters.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Column Filters (Faceted)",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/filters-faceted.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Bucketed Faceted Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/filters-faceted-bucketed.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Fuzzy Search Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/filters-fuzzy.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/column-ordering.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/column-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Column Pinning (Split)",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/column-pinning-split.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Sticky Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/column-pinning-sticky.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/column-sizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/column-resizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Performant Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/column-resizing-performant.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/column-visibility.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/expanding.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Expanding Sub Components",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/sub-components.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/grouping.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Grouped Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/grouped-aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/row-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/row-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/sorting.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Kitchen Sink (All Features)",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/kitchen-sink.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Cell Spanning",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/cell-spanning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Column Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/filters.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Column Filters (Faceted)",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/filters-faceted.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Bucketed Faceted Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/filters-faceted-bucketed.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Fuzzy Search Filters",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/filters-fuzzy.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Column Ordering",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/column-ordering.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/column-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Column Pinning (Split)",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/column-pinning-split.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Sticky Column Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/column-pinning-sticky.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Column Sizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/column-sizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/column-resizing.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Performant Column Resizing",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/column-resizing-performant.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Column Visibility",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/column-visibility.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Expanding",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/expanding.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Expanding Sub Components",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/sub-components.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Grouping",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/grouping.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Grouped Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/grouped-aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Row Pinning",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/row-pinning.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Row Selection",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/row-selection.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/sorting.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vanilla: Aggregation",
+			"url": "https://tanstack.com/table/latest/docs/framework/vanilla/examples/aggregation.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vanilla: Pagination",
+			"url": "https://tanstack.com/table/latest/docs/framework/vanilla/examples/pagination.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vanilla: Sorting",
+			"url": "https://tanstack.com/table/latest/docs/framework/vanilla/examples/sorting.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Alpine: Custom Plugin",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/examples/custom-plugin.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/composable-tables.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Custom Plugin",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/custom-plugin.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: With TanStack Virtual - Columns",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/virtualized-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: With TanStack Virtual - Rows",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/virtualized-rows.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: With TanStack Virtual - Infinite Scrolling",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/virtualized-infinite-scrolling.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: With TanStack Form",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/with-tanstack-form.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: With TanStack Query",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/with-tanstack-query.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Fetch API data (SPA / SSR)",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/remote-data.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Signal Input",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/signal-input.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Row Selection (Signal)",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/row-selection-signal.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Editable data",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/editable.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: Row Drag & Drop",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/examples/row-dnd.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Custom Plugin",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/custom-plugin.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Editable data",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/editable.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Fetch API data (SPA / SSR)",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/remote-data.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ember: Row Drag & Drop",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/examples/row-dnd.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/composable-tables.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: With TanStack Virtual - Columns",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/virtualized-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: With TanStack Virtual - Rows",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/virtualized-rows.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lit: With TanStack Virtual - Infinite Scrolling",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/examples/virtualized-infinite-scrolling.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/composable-tables.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Custom Plugin",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/custom-plugin.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Experimental Web Workers Plugin",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/web-worker-row-models.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Experimental Spreadsheet",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/spreadsheet.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: With TanStack Virtual - Columns",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/virtualized-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: With TanStack Virtual - Columns (Exp)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/virtualized-columns-experimental.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: With TanStack Virtual - Rows",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/virtualized-rows.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: With TanStack Virtual - Rows (Exp)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/virtualized-rows-experimental.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: With TanStack Virtual - Infinite Scrolling",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/virtualized-infinite-scrolling.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: With TanStack Form",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/with-tanstack-form.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: With TanStack Query",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/with-tanstack-query.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: With TanStack Router",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/with-tanstack-router.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/composable-tables.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Experimental Spreadsheet",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/spreadsheet.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: With TanStack Virtual - Columns",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/virtualized-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: With TanStack Virtual - Rows",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/virtualized-rows.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: With TanStack Virtual - Infinite Scrolling",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/virtualized-infinite-scrolling.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: With TanStack Form",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/with-tanstack-form.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: With TanStack Query",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/with-tanstack-query.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: With TanStack Router",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/examples/with-tanstack-router.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/composable-tables.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Experimental Spreadsheet",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/spreadsheet.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: With TanStack Virtual - Columns",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/virtualized-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: With TanStack Virtual - Rows",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/virtualized-rows.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: With TanStack Virtual - Infinite Scrolling",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/virtualized-infinite-scrolling.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: With TanStack Form",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/with-tanstack-form.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: With TanStack Query",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/with-tanstack-query.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/composable-tables.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: With TanStack Virtual - Columns",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/virtualized-columns.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: With TanStack Virtual - Rows",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/virtualized-rows.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: With TanStack Virtual - Infinite Scrolling",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/virtualized-infinite-scrolling.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: With TanStack Form",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/with-tanstack-form.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: With TanStack Query",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/with-tanstack-query.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/composable-tables.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Custom Plugin",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/custom-plugin.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: With TanStack Query",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/examples/with-tanstack-query.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Composable Tables (createTableHook)",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/composable-tables.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Octane: Custom Plugin",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/examples/custom-plugin.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic - Shadcn (Base UI)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/lib-shadcn-base.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic - Shadcn (Radix)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/lib-shadcn-radix.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic - React Aria",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/lib-react-aria.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic - Hero UI",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/lib-hero-ui.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic - Material UI",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/lib-material-ui.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic - Mantine",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/lib-mantine.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic - Chakra UI",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/lib-chakra-ui.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Kitchen Sink - Shadcn (Base UI)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/kitchen-sink-shadcn-base.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Kitchen Sink - Shadcn (Radix)",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/kitchen-sink-shadcn-radix.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Kitchen Sink - React Aria",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/kitchen-sink-react-aria.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Kitchen Sink - Hero UI",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/kitchen-sink-hero-ui.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Kitchen Sink - Material UI",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/kitchen-sink-material-ui.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Kitchen Sink - Mantine",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/kitchen-sink-mantine.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Kitchen Sink - Chakra UI",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/kitchen-sink-chakra-ui.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Material React Table",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/material-react-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Mantine React Table",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/examples/mantine-react-table.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Basic - Shadcn",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/lib-shadcn.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Svelte: Kitchen Sink - Shadcn",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/examples/kitchen-sink-shadcn.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Basic - Shadcn",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/lib-shadcn.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Kitchen Sink - Shadcn",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/examples/kitchen-sink-shadcn.md",
+			"description": "",
+			"section": "Examples"
+		}
+	]
+}

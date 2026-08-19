@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "sqlite/Performance",
+	"entries": [
+		{
+			"name": "Query performance",
+			"url": "https://orm.drizzle.team/docs/sqlite/perf-queries",
+			"description": "",
+			"section": "sqlite/Performance"
+		}
+	]
+}

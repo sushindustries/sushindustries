@@ -1,6 +1,12 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
+		// oxc generates the .d.ts instead of tsc, which is faster and only
+		// possible when every export states its own type. That second half is
+		// the point: it turns this repo's explicit-return-type rule from
+		// something remembered into something the compiler refuses.
+		"declaration": true,
+		"isolatedDeclarations": true,
 		"lib": ["ES2023"]
 	},
 	"include": ["src/**/*.ts"]

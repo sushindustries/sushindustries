@@ -1,0 +1,60 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "sqlite/Access your data",
+	"entries": [
+		{
+			"name": "Drizzle Queries",
+			"url": "https://orm.drizzle.team/docs/sqlite/rqb",
+			"description": "",
+			"section": "sqlite/Access your data"
+		},
+		{
+			"name": "SQL Select",
+			"url": "https://orm.drizzle.team/docs/sqlite/select",
+			"description": "",
+			"section": "sqlite/Access your data"
+		},
+		{
+			"name": "SQL Insert",
+			"url": "https://orm.drizzle.team/docs/sqlite/insert",
+			"description": "",
+			"section": "sqlite/Access your data"
+		},
+		{
+			"name": "SQL Update",
+			"url": "https://orm.drizzle.team/docs/sqlite/update",
+			"description": "",
+			"section": "sqlite/Access your data"
+		},
+		{
+			"name": "SQL Delete",
+			"url": "https://orm.drizzle.team/docs/sqlite/delete",
+			"description": "",
+			"section": "sqlite/Access your data"
+		},
+		{
+			"name": "Filter and conditional operators",
+			"url": "https://orm.drizzle.team/docs/sqlite/operators",
+			"description": "",
+			"section": "sqlite/Access your data"
+		},
+		{
+			"name": "Drizzle query utils",
+			"url": "https://orm.drizzle.team/docs/sqlite/query-utils",
+			"description": "",
+			"section": "sqlite/Access your data"
+		},
+		{
+			"name": "Aliases",
+			"url": "https://orm.drizzle.team/docs/sqlite/aliases",
+			"description": "",
+			"section": "sqlite/Access your data"
+		},
+		{
+			"name": "Magical `sql` operator 🪄",
+			"url": "https://orm.drizzle.team/docs/sqlite/sql",
+			"description": "",
+			"section": "sqlite/Access your data"
+		}
+	]
+}

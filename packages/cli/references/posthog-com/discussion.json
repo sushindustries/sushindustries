@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Discussion",
+	"entries": [
+		{
+			"name": "Discussion - Docs",
+			"url": "https://posthog.com/docs/discussion.md",
+			"description": "",
+			"section": "Discussion"
+		}
+	]
+}

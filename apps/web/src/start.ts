@@ -1,12 +1,15 @@
 import {
+	cacheControl,
+	canonicalRedirect,
+	markdownRedirect,
+	securityHeaders,
+} from "@sushindustries/http";
+import {
 	createCsrfMiddleware,
 	createMiddleware,
 	createStart,
 } from "@tanstack/react-start";
-import { edgeCacheControl } from "./modules/edge/cache";
-import { canonicalRedirect } from "./modules/edge/canonical";
-import { markdownRedirect } from "./modules/edge/markdown-negotiation";
-import { securityHeaders } from "./modules/security/csp";
+import { SITE } from "./modules/content/site.catalogue";
 
 /*
  * The site's server entry.
@@ -29,15 +32,15 @@ const withResponseHeaders = createMiddleware({ type: "request" }).server(
 		 * gets its 301 and nothing else. Rendering a page in order to redirect
 		 * away from it would be work the response throws away.
 		 */
-		const redirect = canonicalRedirect(request);
+		const redirect = canonicalRedirect(request, SITE.url);
 		if (redirect) return redirect;
 
 		/*
-		 * `Accept: text/markdown` on a component or package page, sent to the
-		 * one representation this server actually has for it - the two
-		 * content families with a `/r/md/*` counterpart, see
-		 * `markdown-negotiation.ts`. Everything else with an unsatisfiable
-		 * `Accept` still falls through to the 406 correction below `next()`.
+		 * `Accept: text/markdown` on any page, sent to the Markdown mirror at
+		 * the page's own path plus `index.md` - see `markdown-negotiation.ts`.
+		 * Machine endpoints are excluded there; anything else with an
+		 * unsatisfiable `Accept` still falls through to the 406 correction
+		 * below `next()`.
 		 */
 		const markdown = markdownRedirect(request);
 		if (markdown) return markdown;
@@ -88,16 +91,16 @@ const withResponseHeaders = createMiddleware({ type: "request" }).server(
 		}
 
 		/*
-		 * The edge cache policy rides the same middleware, for the same
-		 * reason the security headers do: a policy set anywhere else is a
-		 * policy some route forgets. `edgeCacheControl` returns nothing for
-		 * anything that should not be cached, including any response where a
-		 * route already chose its own header.
+		 * The cache policy rides the same middleware, for the same reason the
+		 * security headers do: a policy set anywhere else is a policy some
+		 * route forgets. `cacheControl` returns nothing for anything that
+		 * should not be cached, including any response where a route already
+		 * chose its own header.
 		 */
-		const cacheControl = edgeCacheControl(request, result.response);
+		const cachePolicy = cacheControl(request, result.response);
 
-		if (cacheControl) {
-			result.response.headers.set("cache-control", cacheControl);
+		if (cachePolicy) {
+			result.response.headers.set("cache-control", cachePolicy);
 		}
 
 		/*

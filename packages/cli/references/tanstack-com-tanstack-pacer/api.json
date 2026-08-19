@@ -1,0 +1,1308 @@
+{
+	"provider": "tanstack-com-tanstack-pacer",
+	"section": "API",
+	"entries": [
+		{
+			"name": "Core API Reference",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: React Hooks",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: Solid Hooks",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Preact Hooks",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: Angular inject API",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "DebouncerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/DebouncerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "DebouncerState",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/DebouncerState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncDebouncerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/AsyncDebouncerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncDebouncerState",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/AsyncDebouncerState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "debounce",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/functions/debounce.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "asyncDebounce",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/functions/asyncDebounce.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Debouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/classes/Debouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/classes/AsyncDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactDebouncerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactDebouncerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactAsyncDebouncerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactAsyncDebouncerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactAsyncDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactAsyncDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useDebouncedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useDebouncedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useDebouncedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useDebouncedState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useDebouncedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useDebouncedValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useAsyncDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useAsyncDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useAsyncDebouncedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useAsyncDebouncedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidDebouncerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidDebouncerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidAsyncDebouncerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidAsyncDebouncerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidAsyncDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidAsyncDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createDebouncedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createDebouncedSignal.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createDebouncedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createDebouncedValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createAsyncDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createAsyncDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactDebouncerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactDebouncerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactAsyncDebouncerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactAsyncDebouncerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactAsyncDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactAsyncDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useDebouncedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useDebouncedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useDebouncedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useDebouncedState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useDebouncedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useDebouncedValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useAsyncDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useAsyncDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useAsyncDebouncedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useAsyncDebouncedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularDebouncerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularDebouncerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularAsyncDebouncerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularAsyncDebouncerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularAsyncDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularAsyncDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectDebouncedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectDebouncedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectDebouncedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectDebouncedSignal.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectDebouncedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectDebouncedValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectAsyncDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectAsyncDebouncer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectAsyncDebouncedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectAsyncDebouncedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ThrottlerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/ThrottlerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ThrottlerState",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/ThrottlerState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncThrottlerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/AsyncThrottlerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncThrottlerState",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/AsyncThrottlerState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "throttle",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/functions/throttle.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "asyncThrottle",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/functions/asyncThrottle.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Throttler",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/classes/Throttler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/classes/AsyncThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactThrottlerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactThrottlerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactAsyncThrottlerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactAsyncThrottlerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactAsyncThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactAsyncThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useThrottledCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useThrottledCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useThrottledState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useThrottledState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useThrottledValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useThrottledValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useAsyncThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useAsyncThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useAsyncThrottledCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useAsyncThrottledCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidThrottlerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidThrottlerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidAsyncThrottlerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidAsyncThrottlerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidAsyncThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidAsyncThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createThrottledSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createThrottledSignal.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createThrottledValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createThrottledValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createAsyncThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createAsyncThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactThrottlerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactThrottlerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactAsyncThrottlerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactAsyncThrottlerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactAsyncThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactAsyncThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useThrottledCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useThrottledCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useThrottledState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useThrottledState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useThrottledValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useThrottledValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useAsyncThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useAsyncThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useAsyncThrottledCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useAsyncThrottledCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularThrottlerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularThrottlerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularAsyncThrottlerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularAsyncThrottlerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularAsyncThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularAsyncThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectThrottledCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectThrottledCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectThrottledSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectThrottledSignal.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectThrottledValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectThrottledValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectAsyncThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectAsyncThrottler.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectAsyncThrottledCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectAsyncThrottledCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "RateLimiterOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/RateLimiterOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "RateLimiterState",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/RateLimiterState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncRateLimiterOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/AsyncRateLimiterOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncRateLimiterState",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/AsyncRateLimiterState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "rateLimit",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/functions/rateLimit.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "asyncRateLimit",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/functions/asyncRateLimit.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "RateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/classes/RateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/classes/AsyncRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactAsyncRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactAsyncRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useRateLimitedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useRateLimitedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useRateLimitedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useRateLimitedState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useRateLimitedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useRateLimitedValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useAsyncRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useAsyncRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useAsyncRateLimitedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useAsyncRateLimitedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidAsyncRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidAsyncRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createRateLimitedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createRateLimitedSignal.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createRateLimitedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createRateLimitedValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createAsyncRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createAsyncRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactAsyncRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactAsyncRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useRateLimitedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useRateLimitedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useRateLimitedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useRateLimitedState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useRateLimitedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useRateLimitedValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useAsyncRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useAsyncRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useAsyncRateLimitedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useAsyncRateLimitedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularRateLimiterOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularRateLimiterOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularAsyncRateLimiterOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularAsyncRateLimiterOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularAsyncRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularAsyncRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectRateLimitedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectRateLimitedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectRateLimitedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectRateLimitedSignal.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectRateLimitedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectRateLimitedValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectAsyncRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectAsyncRateLimiter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectAsyncRateLimitedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectAsyncRateLimitedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "QueuerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/QueuerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "QueuerState",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/QueuerState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncQueuerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/AsyncQueuerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncQueuerState",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/AsyncQueuerState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "queue",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/functions/queue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "asyncQueue",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/functions/asyncQueue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Queuer",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/classes/Queuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/classes/AsyncQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactQueuerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactQueuerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactAsyncQueuerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactAsyncQueuerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactAsyncQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactAsyncQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useQueuedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useQueuedState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useQueuedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useQueuedValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useAsyncQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useAsyncQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useAsyncQueuedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useAsyncQueuedState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidQueuerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidQueuerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidAsyncQueuerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidAsyncQueuerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidAsyncQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidAsyncQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createAsyncQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createAsyncQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createQueuedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createQueuedSignal.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactQueuerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactQueuerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactAsyncQueuerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactAsyncQueuerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactAsyncQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactAsyncQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useQueuedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useQueuedState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useQueuedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useQueuedValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useAsyncQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useAsyncQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useAsyncQueuedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useAsyncQueuedState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularQueuerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularQueuerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularAsyncQueuerOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularAsyncQueuerOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularAsyncQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularAsyncQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectQueuedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectQueuedSignal.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectQueuedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectQueuedValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectAsyncQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectAsyncQueuer.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectAsyncQueuedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectAsyncQueuedSignal.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "BatcherOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/BatcherOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "BatcherState",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/BatcherState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncBatcherOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/AsyncBatcherOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncBatcherState",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/interfaces/AsyncBatcherState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "batch",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/functions/batch.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "asyncBatch",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/functions/asyncBatch.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Batcher",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/classes/Batcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AsyncBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/reference/classes/AsyncBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactBatcherOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactBatcherOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactAsyncBatcherOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactAsyncBatcherOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactAsyncBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/interfaces/ReactAsyncBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useAsyncBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useAsyncBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useBatchedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useBatchedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useAsyncBatchedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/reference/functions/useAsyncBatchedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidBatcherOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidBatcherOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidAsyncBatcherOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidAsyncBatcherOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidAsyncBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/interfaces/SolidAsyncBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createAsyncBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/reference/functions/createAsyncBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactBatcherOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactBatcherOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactAsyncBatcherOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactAsyncBatcherOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactAsyncBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/interfaces/PreactAsyncBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useAsyncBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useAsyncBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useBatchedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useBatchedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useAsyncBatchedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/reference/functions/useAsyncBatchedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularBatcherOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularBatcherOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularAsyncBatcherOptions",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularAsyncBatcherOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularAsyncBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/interfaces/AngularAsyncBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectBatchedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectBatchedCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectAsyncBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectAsyncBatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectAsyncBatchedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/reference/functions/injectAsyncBatchedCallback.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

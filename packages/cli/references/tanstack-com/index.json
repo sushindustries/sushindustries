@@ -1,0 +1,56 @@
+{
+	"provider": "tanstack-com",
+	"source": "https://tanstack.com/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack",
+	"summary": "TanStack is a set of open-source TypeScript libraries for routing, async state, server state, tables, forms, virtualization, data stores, full-stack apps, AI SDKs, and developer tooling.",
+	"total": 36,
+	"sections": [
+		{
+			"name": "Framework docs",
+			"entries": 2,
+			"file": "framework-docs.json"
+		},
+		{
+			"name": "Data & State Management docs",
+			"entries": 4,
+			"file": "data-state-management-docs.json"
+		},
+		{
+			"name": "UI & UX docs",
+			"entries": 6,
+			"file": "ui-ux-docs.json"
+		},
+		{
+			"name": "Performance docs",
+			"entries": 2,
+			"file": "performance-docs.json"
+		},
+		{
+			"name": "Tooling docs",
+			"entries": 4,
+			"file": "tooling-docs.json"
+		},
+		{
+			"name": "Machine-readable data",
+			"entries": 3,
+			"file": "machine-readable-data.json"
+		},
+		{
+			"name": "Optional",
+			"entries": 15,
+			"file": "optional.json"
+		}
+	]
+}

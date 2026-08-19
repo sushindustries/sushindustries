@@ -1,0 +1,60 @@
+{
+	"provider": "tanstack-com-tanstack-start",
+	"section": "Get Started",
+	"entries": [
+		{
+			"name": "React: Overview",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Getting Started",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/getting-started.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Build from Scratch",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/build-from-scratch.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Comparison",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/comparison.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Start vs Next.js",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/start-vs-nextjs.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Migrate from Next.js",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/migrate-from-next-js.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Overview",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Getting Started",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/getting-started.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Build from Scratch",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/build-from-scratch.md",
+			"description": "",
+			"section": "Get Started"
+		}
+	]
+}

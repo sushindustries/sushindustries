@@ -58,6 +58,30 @@ export function BootLoader({
 	done.current = onDone;
 
 	useEffect(() => {
+		/*
+		 * Reduced motion drops the count and keeps the loader. Animating a
+		 * number from nothing to a hundred is the flourish; "something is
+		 * happening, and now it has arrived" is the information, and it still
+		 * has to be delivered - a loader that respects the preference by
+		 * showing nothing is a blank screen with a preference.
+		 *
+		 * So the number goes straight to where the animation would have
+		 * stalled: 90 while waiting, 100 once `ready`, and the same beat
+		 * before leaving so the finish is still seen.
+		 */
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+			setPercent(ready ? 100 : 90);
+
+			if (!ready) return;
+
+			const beat = window.setTimeout(() => {
+				setGone(true);
+				done.current?.();
+			}, 260);
+
+			return () => window.clearTimeout(beat);
+		}
+
 		let frame = 0;
 		const started = performance.now();
 

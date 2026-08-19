@@ -1,0 +1,252 @@
+{
+	"provider": "tanstack-com-tanstack-router",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "Routing Concepts",
+			"url": "https://tanstack.com/router/latest/docs/routing/routing-concepts.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Route Trees",
+			"url": "https://tanstack.com/router/latest/docs/routing/route-trees.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Route Matching",
+			"url": "https://tanstack.com/router/latest/docs/routing/route-matching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "File-Based Routing",
+			"url": "https://tanstack.com/router/latest/docs/routing/file-based-routing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Virtual File Routes",
+			"url": "https://tanstack.com/router/latest/docs/routing/virtual-file-routes.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Code-Based Routing",
+			"url": "https://tanstack.com/router/latest/docs/routing/code-based-routing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "File Naming Conventions",
+			"url": "https://tanstack.com/router/latest/docs/routing/file-naming-conventions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "URL Rewrites",
+			"url": "https://tanstack.com/router/latest/docs/guide/url-rewrites.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Navigation",
+			"url": "https://tanstack.com/router/latest/docs/guide/navigation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Link Options",
+			"url": "https://tanstack.com/router/latest/docs/guide/link-options.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Custom Links",
+			"url": "https://tanstack.com/router/latest/docs/guide/custom-link.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Path Params",
+			"url": "https://tanstack.com/router/latest/docs/guide/path-params.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Search Params",
+			"url": "https://tanstack.com/router/latest/docs/guide/search-params.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Custom Search Param Serialization",
+			"url": "https://tanstack.com/router/latest/docs/guide/custom-search-param-serialization.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Route Masking",
+			"url": "https://tanstack.com/router/latest/docs/guide/route-masking.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Navigation Blocking",
+			"url": "https://tanstack.com/router/latest/docs/guide/navigation-blocking.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "History Types",
+			"url": "https://tanstack.com/router/latest/docs/guide/history-types.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Scroll Restoration",
+			"url": "https://tanstack.com/router/latest/docs/guide/scroll-restoration.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Internationalization",
+			"url": "https://tanstack.com/router/latest/docs/guide/internationalization-i18n.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Code Splitting",
+			"url": "https://tanstack.com/router/latest/docs/guide/code-splitting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Automatic Code Splitting",
+			"url": "https://tanstack.com/router/latest/docs/guide/automatic-code-splitting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Data Loading",
+			"url": "https://tanstack.com/router/latest/docs/guide/data-loading.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Deferred Data Loading",
+			"url": "https://tanstack.com/router/latest/docs/guide/deferred-data-loading.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "External Data Loading",
+			"url": "https://tanstack.com/router/latest/docs/guide/external-data-loading.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Data Mutations",
+			"url": "https://tanstack.com/router/latest/docs/guide/data-mutations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preloading",
+			"url": "https://tanstack.com/router/latest/docs/guide/preloading.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Document Head Management",
+			"url": "https://tanstack.com/router/latest/docs/guide/document-head-management.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "SSR",
+			"url": "https://tanstack.com/router/latest/docs/guide/ssr.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Render Optimizations",
+			"url": "https://tanstack.com/router/latest/docs/guide/render-optimizations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Creating a Router",
+			"url": "https://tanstack.com/router/latest/docs/guide/creating-a-router.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Outlets",
+			"url": "https://tanstack.com/router/latest/docs/guide/outlets.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Router Events",
+			"url": "https://tanstack.com/router/latest/docs/guide/router-events.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Type Safety",
+			"url": "https://tanstack.com/router/latest/docs/guide/type-safety.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Type Utilities",
+			"url": "https://tanstack.com/router/latest/docs/guide/type-utilities.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Router Context",
+			"url": "https://tanstack.com/router/latest/docs/guide/router-context.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Not Found Errors",
+			"url": "https://tanstack.com/router/latest/docs/guide/not-found-errors.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Authenticated Routes",
+			"url": "https://tanstack.com/router/latest/docs/guide/authenticated-routes.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Static Route Data",
+			"url": "https://tanstack.com/router/latest/docs/guide/static-route-data.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "TanStack Query",
+			"url": "https://tanstack.com/router/latest/docs/integrations/query.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "ESLint Plugin Router",
+			"url": "https://tanstack.com/router/latest/docs/eslint/eslint-plugin-router.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Create Route Property Order",
+			"url": "https://tanstack.com/router/latest/docs/eslint/create-route-property-order.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

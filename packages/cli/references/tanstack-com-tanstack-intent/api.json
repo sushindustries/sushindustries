@@ -1,0 +1,66 @@
+{
+	"provider": "tanstack-com-tanstack-intent",
+	"section": "API",
+	"entries": [
+		{
+			"name": "intent install",
+			"url": "https://tanstack.com/intent/latest/docs/cli/intent-install.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "intent hooks",
+			"url": "https://tanstack.com/intent/latest/docs/cli/intent-hooks.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "intent exclude",
+			"url": "https://tanstack.com/intent/latest/docs/cli/intent-exclude.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "intent list",
+			"url": "https://tanstack.com/intent/latest/docs/cli/intent-list.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "intent load",
+			"url": "https://tanstack.com/intent/latest/docs/cli/intent-load.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "intent meta",
+			"url": "https://tanstack.com/intent/latest/docs/cli/intent-meta.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "intent scaffold",
+			"url": "https://tanstack.com/intent/latest/docs/cli/intent-scaffold.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "intent validate",
+			"url": "https://tanstack.com/intent/latest/docs/cli/intent-validate.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "intent setup",
+			"url": "https://tanstack.com/intent/latest/docs/cli/intent-setup.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "intent stale",
+			"url": "https://tanstack.com/intent/latest/docs/cli/intent-stale.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

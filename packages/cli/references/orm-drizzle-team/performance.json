@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "Performance",
+	"entries": [
+		{
+			"name": "Drizzle Serverless performance",
+			"url": "https://orm.drizzle.team/docs/perf-serverless",
+			"description": "",
+			"section": "Performance"
+		}
+	]
+}

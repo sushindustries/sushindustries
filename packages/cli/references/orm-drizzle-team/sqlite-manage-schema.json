@@ -1,0 +1,36 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "sqlite/Manage schema",
+	"entries": [
+		{
+			"name": "SQLite column types",
+			"url": "https://orm.drizzle.team/docs/sqlite/column-types",
+			"description": "",
+			"section": "sqlite/Manage schema"
+		},
+		{
+			"name": "Indexes & Constraints",
+			"url": "https://orm.drizzle.team/docs/sqlite/indexes-constraints",
+			"description": "",
+			"section": "sqlite/Manage schema"
+		},
+		{
+			"name": "Views",
+			"url": "https://orm.drizzle.team/docs/sqlite/views",
+			"description": "",
+			"section": "sqlite/Manage schema"
+		},
+		{
+			"name": "Drizzle relations",
+			"url": "https://orm.drizzle.team/docs/sqlite/relations",
+			"description": "",
+			"section": "sqlite/Manage schema"
+		},
+		{
+			"name": "SQLite extensions",
+			"url": "https://orm.drizzle.team/docs/sqlite/extensions",
+			"description": "",
+			"section": "sqlite/Manage schema"
+		}
+	]
+}

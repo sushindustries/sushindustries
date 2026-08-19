@@ -1,0 +1,282 @@
+{
+	"provider": "tanstack-com-tanstack-router",
+	"section": "Examples",
+	"entries": [
+		{
+			"name": "React: Quickstart (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/quickstart-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Quickstart (code-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/quickstart.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/basic-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic (code-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic + React Query (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/basic-react-query-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic + React Query (code-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/basic-react-query.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic + SSR (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/basic-ssr-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Basic + SSR Streaming (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/basic-ssr-streaming-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Kitchen Sink (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/kitchen-sink-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Kitchen Sink (code-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/kitchen-sink.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Kitchen Sink + React Query (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/kitchen-sink-react-query-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Kitchen Sink + React Query (code-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/kitchen-sink-react-query.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Location Masking",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/location-masking.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Authenticated Routes",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/authenticated-routes.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Scroll Restoration",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/scroll-restoration.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Deferred Data",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/deferred-data.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Navigation Blocking",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/navigation-blocking.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: View Transitions",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/view-transitions.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Framer Motion",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/with-framer-motion.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: With tRPC",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/with-trpc.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: With tRPC + React Query",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/with-trpc-react-query.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Monorepo basic",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/router-monorepo-simple.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Monorepo basic (with lazy loading)",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/router-monorepo-simple-lazy.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Monorepo with React Query",
+			"url": "https://tanstack.com/router/latest/docs/framework/react/examples/router-monorepo-react-query.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Quickstart (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/quickstart-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Quickstart (code-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/quickstart.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Basic (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/basic-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Basic + Solid Query (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/basic-solid-query-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Basic + Solid Query (code-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/basic-solid-query.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Basic + SSR (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/basic-ssr-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Basic + SSR Streaming (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/basic-ssr-streaming-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Kitchen Sink (code-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/kitchen-sink.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Kitchen Sink (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/kitchen-sink-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Kitchen Sink + Solid Query (file-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/kitchen-sink-solid-query-file-based.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Kitchen Sink + Solid Query (code-based)",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/kitchen-sink-solid-query.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Location Masking",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/location-masking.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Authenticated Routes",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/authenticated-routes.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Scroll Restoration",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/scroll-restoration.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Deferred Data",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/deferred-data.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Navigation Blocking",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/navigation-blocking.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: View Transitions",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/view-transitions.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Framer Motion",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/with-framer-motion.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: With tRPC",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/with-trpc.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Monorepo basic",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/router-monorepo-simple.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Monorepo basic (with lazy loading)",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/router-monorepo-simple-lazy.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Monorepo with Solid Query",
+			"url": "https://tanstack.com/router/latest/docs/framework/solid/examples/router-monorepo-solid-query.md",
+			"description": "",
+			"section": "Examples"
+		}
+	]
+}

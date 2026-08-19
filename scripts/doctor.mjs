@@ -1906,6 +1906,14 @@ function checkNoEmDashes() {
 		if (!text.test(path)) continue;
 		if (path.startsWith("packages/product-viewer/")) continue;
 		if (path.startsWith("packages/react-product-viewer/")) continue;
+		/*
+		 * Other people's sentences. These shards are each provider's own
+		 * published description of their own pages, and this is a house style
+		 * rule about prose I write. Worse than out of scope, `--fix` would
+		 * silently edit a quotation, which turns an accurate citation into an
+		 * inaccurate one - and nothing downstream would ever notice.
+		 */
+		if (path.startsWith("packages/cli/references/")) continue;
 
 		const body = read(path);
 		if (!body.includes(EM_DASH)) continue;

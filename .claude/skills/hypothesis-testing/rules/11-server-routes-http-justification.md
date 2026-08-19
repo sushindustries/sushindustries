@@ -22,4 +22,4 @@ response... a server function would wrap the same bytes in an RPC envelope
 the client would have to unwrap before it could stream anything"). No
 internal RPC misplaced here - see also rule `05-no-duplicate-server-route-methods.md`.
 
-**Source:** `references/01-tanstack-official-safety.md`.
+**Source:** `.claude/skills/sushindustries-conventions/references/01-tanstack-official.md`.

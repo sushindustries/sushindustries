@@ -1,0 +1,84 @@
+{
+	"provider": "zod-dev",
+	"section": "Zod Mini",
+	"entries": [
+		{
+			"name": "Zod Mini",
+			"url": "https://zod.dev/packages/mini",
+			"description": "Zod Mini - a tree-shakable Zod",
+			"section": "Zod Mini"
+		},
+		{
+			"name": "Tree-shaking",
+			"url": "https://zod.dev/packages/mini?id=tree-shaking",
+			"description": "",
+			"section": "Zod Mini"
+		},
+		{
+			"name": "When (not) to use Zod Mini",
+			"url": "https://zod.dev/packages/mini?id=when-not-to-use-zod-mini",
+			"description": "",
+			"section": "Zod Mini"
+		},
+		{
+			"name": "DX",
+			"url": "https://zod.dev/packages/mini?id=dx",
+			"description": "",
+			"section": "Zod Mini"
+		},
+		{
+			"name": "Backend development",
+			"url": "https://zod.dev/packages/mini?id=backend-development",
+			"description": "",
+			"section": "Zod Mini"
+		},
+		{
+			"name": "Internet speed",
+			"url": "https://zod.dev/packages/mini?id=internet-speed",
+			"description": "",
+			"section": "Zod Mini"
+		},
+		{
+			"name": "ZodMiniType",
+			"url": "https://zod.dev/packages/mini?id=zodminitype",
+			"description": "",
+			"section": "Zod Mini"
+		},
+		{
+			"name": ".parse",
+			"url": "https://zod.dev/packages/mini?id=parse",
+			"description": "",
+			"section": "Zod Mini"
+		},
+		{
+			"name": ".check()",
+			"url": "https://zod.dev/packages/mini?id=check",
+			"description": "",
+			"section": "Zod Mini"
+		},
+		{
+			"name": ".register()",
+			"url": "https://zod.dev/packages/mini?id=register",
+			"description": "",
+			"section": "Zod Mini"
+		},
+		{
+			"name": ".brand()",
+			"url": "https://zod.dev/packages/mini?id=brand",
+			"description": "",
+			"section": "Zod Mini"
+		},
+		{
+			"name": ".clone(def)",
+			"url": "https://zod.dev/packages/mini?id=clonedef",
+			"description": "",
+			"section": "Zod Mini"
+		},
+		{
+			"name": "No default locale",
+			"url": "https://zod.dev/packages/mini?id=no-default-locale",
+			"description": "",
+			"section": "Zod Mini"
+		}
+	]
+}

@@ -1,0 +1,78 @@
+{
+	"provider": "zod-dev",
+	"section": "Intro",
+	"entries": [
+		{
+			"name": "Intro",
+			"url": "https://zod.dev/",
+			"description": "Introduction to Zod - TypeScript-first schema validation library with static type inference",
+			"section": "Intro"
+		},
+		{
+			"name": "Introduction",
+			"url": "https://zod.dev/?id=introduction",
+			"description": "",
+			"section": "Intro"
+		},
+		{
+			"name": "Features",
+			"url": "https://zod.dev/?id=features",
+			"description": "",
+			"section": "Intro"
+		},
+		{
+			"name": "Installation",
+			"url": "https://zod.dev/?id=installation",
+			"description": "",
+			"section": "Intro"
+		},
+		{
+			"name": "Requirements",
+			"url": "https://zod.dev/?id=requirements",
+			"description": "",
+			"section": "Intro"
+		},
+		{
+			"name": "\"strict\"",
+			"url": "https://zod.dev/?id=strict",
+			"description": "",
+			"section": "Intro"
+		},
+		{
+			"name": "Ecosystem",
+			"url": "https://zod.dev/?id=ecosystem",
+			"description": "",
+			"section": "Intro"
+		},
+		{
+			"name": "Sponsors",
+			"url": "https://zod.dev/?id=sponsors",
+			"description": "",
+			"section": "Intro"
+		},
+		{
+			"name": "Platinum",
+			"url": "https://zod.dev/?id=platinum",
+			"description": "",
+			"section": "Intro"
+		},
+		{
+			"name": "Gold",
+			"url": "https://zod.dev/?id=gold",
+			"description": "",
+			"section": "Intro"
+		},
+		{
+			"name": "Silver",
+			"url": "https://zod.dev/?id=silver",
+			"description": "",
+			"section": "Intro"
+		},
+		{
+			"name": "Bronze",
+			"url": "https://zod.dev/?id=bronze",
+			"description": "",
+			"section": "Intro"
+		}
+	]
+}

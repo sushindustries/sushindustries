@@ -1,0 +1,114 @@
+{
+	"provider": "docs-railway-com",
+	"section": "Networking",
+	"entries": [
+		{
+			"name": "Networking",
+			"url": "https://docs.railway.com/networking.md",
+			"description": "Overview of networking options on Railway.",
+			"section": "Networking"
+		},
+		{
+			"name": "TCP proxy",
+			"url": "https://docs.railway.com/networking/tcp-proxy.md",
+			"description": "Learn how to proxy TCP traffic to a service on Railway.",
+			"section": "Networking"
+		},
+		{
+			"name": "Outbound networking",
+			"url": "https://docs.railway.com/networking/outbound-networking.md",
+			"description": "Learn about outbound networking features and email delivery options on Railway.",
+			"section": "Networking"
+		},
+		{
+			"name": "Static outbound IPs",
+			"url": "https://docs.railway.com/networking/static-outbound-ips.md",
+			"description": "Learn how to enable static outbound IPs on Railway.",
+			"section": "Networking"
+		},
+		{
+			"name": "Edge networking",
+			"url": "https://docs.railway.com/networking/edge-networking.md",
+			"description": "Learn how Railway's global edge network routes traffic to your deployments",
+			"section": "Networking"
+		},
+		{
+			"name": "CDN",
+			"url": "https://docs.railway.com/networking/cdn.md",
+			"description": "Cache static assets and HTML at the edge with Railway's built-in CDN to reduce latency and origin load.",
+			"section": "Networking"
+		},
+		{
+			"name": "WAF",
+			"url": "https://docs.railway.com/networking/waf.md",
+			"description": "Protect your Railway service from malicious traffic at the edge with Railway's web application firewall (WAF).",
+			"section": "Networking"
+		},
+		{
+			"name": "Public networking",
+			"url": "https://docs.railway.com/networking/public-networking.md",
+			"description": "Expose your Railway services to the internet.",
+			"section": "Networking"
+		},
+		{
+			"name": "Specs & limits",
+			"url": "https://docs.railway.com/networking/public-networking/specs-and-limits.md",
+			"description": "Technical specifications and rate limits for Railway's public networking.",
+			"section": "Networking"
+		},
+		{
+			"name": "Private networking",
+			"url": "https://docs.railway.com/networking/private-networking.md",
+			"description": "Secure service-to-service communication within your Railway project.",
+			"section": "Networking"
+		},
+		{
+			"name": "Library configuration",
+			"url": "https://docs.railway.com/networking/private-networking/library-configuration.md",
+			"description": "Configure libraries and frameworks for Railway's private networking.",
+			"section": "Networking"
+		},
+		{
+			"name": "Domains",
+			"url": "https://docs.railway.com/networking/domains.md",
+			"description": "Learn how to configure domains for your Railway services.",
+			"section": "Networking"
+		},
+		{
+			"name": "Working with Domains",
+			"url": "https://docs.railway.com/networking/domains/working-with-domains.md",
+			"description": "Learn how to configure public and private domains for your Railway services.",
+			"section": "Networking"
+		},
+		{
+			"name": "Railway Domains",
+			"url": "https://docs.railway.com/networking/domains/railway-domains.md",
+			"description": "Purchase and manage domains directly within Railway.",
+			"section": "Networking"
+		},
+		{
+			"name": "SSL",
+			"url": "https://docs.railway.com/networking/troubleshooting/ssl.md",
+			"description": "Learn how to diagnose and fix common SSL certificate issues on Railway.",
+			"section": "Networking"
+		},
+		{
+			"name": "Network diagnostics",
+			"url": "https://docs.railway.com/networking/troubleshooting/network-diagnostics.md",
+			"description": "Troubleshoot network issues using Railway's network diagnostic tool",
+			"section": "Networking"
+		},
+		{
+			"name": "Application failed to respond",
+			"url": "https://docs.railway.com/networking/troubleshooting/application-failed-to-respond.md",
+			"description": "Learn how to troubleshoot and fix the 'Application Failed to Respond' error.",
+			"section": "Networking"
+		},
+		{
+			"name": "405 method not allowed",
+			"url": "https://docs.railway.com/networking/troubleshooting/405-method-not-allowed.md",
+			"description": "Learn how to troubleshoot and fix the '405 Method Not Allowed' error.",
+			"section": "Networking"
+		}
+	]
+}

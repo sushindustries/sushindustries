@@ -1,0 +1,42 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "mysql/Manage schema",
+	"entries": [
+		{
+			"name": "MySQL column types",
+			"url": "https://orm.drizzle.team/docs/mysql/column-types",
+			"description": "",
+			"section": "mysql/Manage schema"
+		},
+		{
+			"name": "Indexes & Constraints",
+			"url": "https://orm.drizzle.team/docs/mysql/indexes-constraints",
+			"description": "",
+			"section": "mysql/Manage schema"
+		},
+		{
+			"name": "Views",
+			"url": "https://orm.drizzle.team/docs/mysql/views",
+			"description": "",
+			"section": "mysql/Manage schema"
+		},
+		{
+			"name": "Table schemas",
+			"url": "https://orm.drizzle.team/docs/mysql/schemas",
+			"description": "",
+			"section": "mysql/Manage schema"
+		},
+		{
+			"name": "Drizzle relations",
+			"url": "https://orm.drizzle.team/docs/mysql/relations",
+			"description": "",
+			"section": "mysql/Manage schema"
+		},
+		{
+			"name": "MySQL extensions",
+			"url": "https://orm.drizzle.team/docs/mysql/extensions",
+			"description": "",
+			"section": "mysql/Manage schema"
+		}
+	]
+}

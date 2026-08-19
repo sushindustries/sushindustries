@@ -1,0 +1,42 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "pg/Validations",
+	"entries": [
+		{
+			"name": "zod",
+			"url": "https://orm.drizzle.team/docs/pg/zod",
+			"description": "",
+			"section": "pg/Validations"
+		},
+		{
+			"name": "valibot",
+			"url": "https://orm.drizzle.team/docs/pg/valibot",
+			"description": "",
+			"section": "pg/Validations"
+		},
+		{
+			"name": "typebox",
+			"url": "https://orm.drizzle.team/docs/pg/typebox",
+			"description": "",
+			"section": "pg/Validations"
+		},
+		{
+			"name": "arktype",
+			"url": "https://orm.drizzle.team/docs/pg/arktype",
+			"description": "",
+			"section": "pg/Validations"
+		},
+		{
+			"name": "typebox-legacy",
+			"url": "https://orm.drizzle.team/docs/pg/typebox-legacy",
+			"description": "",
+			"section": "pg/Validations"
+		},
+		{
+			"name": "effect-schema",
+			"url": "https://orm.drizzle.team/docs/pg/effect-schema",
+			"description": "",
+			"section": "pg/Validations"
+		}
+	]
+}

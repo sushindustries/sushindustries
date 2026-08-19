@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Activity",
+	"entries": [
+		{
+			"name": "Activity tab - Docs",
+			"url": "https://posthog.com/docs/activity.md",
+			"description": "",
+			"section": "Activity"
+		}
+	]
+}

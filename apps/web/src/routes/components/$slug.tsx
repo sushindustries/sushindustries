@@ -179,7 +179,7 @@ function ComponentDocPage(): ReactNode {
 						title={doc.title}
 						updated={doc.generated ? undefined : doc.updated}
 						markdown={doc.sections.map((section) => section.body).join("\n\n")}
-						markdownUrl={`/r/md/${doc.slug}`}
+						markdownUrl={`/components/${doc.slug}/index.md`}
 						promptUrl={`${SITE.url}/r/prompt/${doc.slug}`}
 						editPath={
 							doc.generated

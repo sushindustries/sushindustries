@@ -1,0 +1,42 @@
+{
+	"provider": "tanstack-com-tanstack-intent",
+	"source": "https://tanstack.com/intent/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Intent docs",
+	"summary": "Generate, validate, and ship Agent Skills alongside your library — versioned knowledge that agents discover automatically from node_modules. Skills live in each library's repo and update when the package updates.",
+	"total": 20,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 4,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 2,
+			"file": "guides.json"
+		},
+		{
+			"name": "API",
+			"entries": 10,
+			"file": "api.json"
+		}
+	]
+}

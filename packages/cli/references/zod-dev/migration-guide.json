@@ -1,0 +1,372 @@
+{
+	"provider": "zod-dev",
+	"section": "Migration guide",
+	"entries": [
+		{
+			"name": "Migration guide",
+			"url": "https://zod.dev/v4/changelog",
+			"description": "Complete changelog and migration guide for upgrading from Zod 3 to Zod 4",
+			"section": "Migration guide"
+		},
+		{
+			"name": "Error customization",
+			"url": "https://zod.dev/v4/changelog?id=error-customization",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "deprecates message parameter",
+			"url": "https://zod.dev/v4/changelog?id=deprecates-message-parameter",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops invalid_type_error and required_error",
+			"url": "https://zod.dev/v4/changelog?id=drops-invalid_type_error-and-required_error",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops errorMap",
+			"url": "https://zod.dev/v4/changelog?id=drops-errormap",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "ZodError",
+			"url": "https://zod.dev/v4/changelog?id=zoderror",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "updates issue formats",
+			"url": "https://zod.dev/v4/changelog?id=updates-issue-formats",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "changes error map precedence",
+			"url": "https://zod.dev/v4/changelog?id=changes-error-map-precedence",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "deprecates .format()",
+			"url": "https://zod.dev/v4/changelog?id=deprecates-format",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "deprecates .flatten()",
+			"url": "https://zod.dev/v4/changelog?id=deprecates-flatten",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops .formErrors",
+			"url": "https://zod.dev/v4/changelog?id=drops-formerrors",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops .errors",
+			"url": "https://zod.dev/v4/changelog?id=drops-errors",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "deprecates .addIssue() and .addIssues()",
+			"url": "https://zod.dev/v4/changelog?id=deprecates-addissue-and-addissues",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "z.number()",
+			"url": "https://zod.dev/v4/changelog?id=znumber",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "no infinite values",
+			"url": "https://zod.dev/v4/changelog?id=no-infinite-values",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": ".safe() no longer accepts floats",
+			"url": "https://zod.dev/v4/changelog?id=safe-no-longer-accepts-floats",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": ".int() accepts safe integers only",
+			"url": "https://zod.dev/v4/changelog?id=int-accepts-safe-integers-only",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "z.string() updates",
+			"url": "https://zod.dev/v4/changelog?id=zstring-updates",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "deprecates .email() etc",
+			"url": "https://zod.dev/v4/changelog?id=deprecates-email-etc",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "stricter .uuid()",
+			"url": "https://zod.dev/v4/changelog?id=stricter-uuid",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "no padding in .base64url()",
+			"url": "https://zod.dev/v4/changelog?id=no-padding-in-base64url",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops z.string().ip()",
+			"url": "https://zod.dev/v4/changelog?id=drops-zstringip",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "updates z.string().ipv6()",
+			"url": "https://zod.dev/v4/changelog?id=updates-zstringipv6",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops z.string().cidr()",
+			"url": "https://zod.dev/v4/changelog?id=drops-zstringcidr",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "z.coerce updates",
+			"url": "https://zod.dev/v4/changelog?id=zcoerce-updates",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": ".default() updates",
+			"url": "https://zod.dev/v4/changelog?id=default-updates",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "z.object()",
+			"url": "https://zod.dev/v4/changelog?id=zobject",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "defaults applied within optional fields",
+			"url": "https://zod.dev/v4/changelog?id=defaults-applied-within-optional-fields",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "deprecates .strict() and .passthrough()",
+			"url": "https://zod.dev/v4/changelog?id=deprecates-strict-and-passthrough",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "deprecates .strip()",
+			"url": "https://zod.dev/v4/changelog?id=deprecates-strip",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops .nonstrict()",
+			"url": "https://zod.dev/v4/changelog?id=drops-nonstrict",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops .deepPartial()",
+			"url": "https://zod.dev/v4/changelog?id=drops-deeppartial",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "changes z.unknown() optionality",
+			"url": "https://zod.dev/v4/changelog?id=changes-zunknown-optionality",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "deprecates .merge()",
+			"url": "https://zod.dev/v4/changelog?id=deprecates-merge",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "z.nativeEnum() deprecated",
+			"url": "https://zod.dev/v4/changelog?id=znativeenum-deprecated",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "z.array()",
+			"url": "https://zod.dev/v4/changelog?id=zarray",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "changes .nonempty() type",
+			"url": "https://zod.dev/v4/changelog?id=changes-nonempty-type",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "z.promise() deprecated",
+			"url": "https://zod.dev/v4/changelog?id=zpromise-deprecated",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "z.function()",
+			"url": "https://zod.dev/v4/changelog?id=zfunction",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "adds .implementAsync()",
+			"url": "https://zod.dev/v4/changelog?id=adds-implementasync",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": ".refine()",
+			"url": "https://zod.dev/v4/changelog?id=refine",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "ignores type predicates",
+			"url": "https://zod.dev/v4/changelog?id=ignores-type-predicates",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops ctx.path",
+			"url": "https://zod.dev/v4/changelog?id=drops-ctxpath",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops function as second argument",
+			"url": "https://zod.dev/v4/changelog?id=drops-function-as-second-argument",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "z.ostring(), etc dropped",
+			"url": "https://zod.dev/v4/changelog?id=zostring-etc-dropped",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "z.literal()",
+			"url": "https://zod.dev/v4/changelog?id=zliteral",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops symbol support",
+			"url": "https://zod.dev/v4/changelog?id=drops-symbol-support",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "static .create() factories dropped",
+			"url": "https://zod.dev/v4/changelog?id=static-create-factories-dropped",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "z.record()",
+			"url": "https://zod.dev/v4/changelog?id=zrecord",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops single argument usage",
+			"url": "https://zod.dev/v4/changelog?id=drops-single-argument-usage",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "improves enum support",
+			"url": "https://zod.dev/v4/changelog?id=improves-enum-support",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "z.intersection()",
+			"url": "https://zod.dev/v4/changelog?id=zintersection",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "throws Error on merge conflict",
+			"url": "https://zod.dev/v4/changelog?id=throws-error-on-merge-conflict",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "Internal changes",
+			"url": "https://zod.dev/v4/changelog?id=internal-changes",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "updates generics",
+			"url": "https://zod.dev/v4/changelog?id=updates-generics",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "adds z.core",
+			"url": "https://zod.dev/v4/changelog?id=adds-zcore",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "moves ._def",
+			"url": "https://zod.dev/v4/changelog?id=moves-_def",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops ZodEffects",
+			"url": "https://zod.dev/v4/changelog?id=drops-zodeffects",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "adds ZodTransform",
+			"url": "https://zod.dev/v4/changelog?id=adds-zodtransform",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops ZodPreprocess",
+			"url": "https://zod.dev/v4/changelog?id=drops-zodpreprocess",
+			"description": "",
+			"section": "Migration guide"
+		},
+		{
+			"name": "drops ZodBranded",
+			"url": "https://zod.dev/v4/changelog?id=drops-zodbranded",
+			"description": "",
+			"section": "Migration guide"
+		}
+	]
+}

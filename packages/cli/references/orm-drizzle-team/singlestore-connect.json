@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "singlestore/Connect",
+	"entries": [
+		{
+			"name": "Drizzle \\<\\> SingleStore",
+			"url": "https://orm.drizzle.team/docs/singlestore/get-started-singlestore",
+			"description": "",
+			"section": "singlestore/Connect"
+		}
+	]
+}

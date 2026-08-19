@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Feature Flag Use Cases",
+	"entries": [
+		{
+			"name": "Feature Flag Use Cases - Docs",
+			"url": "https://posthog.com/docs/feature-flag-use-cases.md",
+			"description": "",
+			"section": "Feature Flag Use Cases"
+		}
+	]
+}

@@ -1,0 +1,358 @@
+{
+	"provider": "posthog-com",
+	"source": "https://posthog.com/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"PostHog"
+	],
+	"title": "PostHog",
+	"summary": "PostHog is the platform for self-driving products. It pairs the full context of your product's data (events, errors, logs, replays, and more) with agents that find problems and ship changes with you. It includes tools for product analytics, session replay, feature flags, A/B testing, error tracking, surveys, AI observability, web analytics, a data warehouse, and more. The fastest way to integrate PostHog is with the setup wizard: `npx @posthog/wizard@latest`",
+	"total": 3470,
+	"sections": [
+		{
+			"name": "Products and tools",
+			"entries": 21,
+			"file": "products-and-tools.json"
+		},
+		{
+			"name": "Changelog",
+			"entries": 2,
+			"file": "changelog.json"
+		},
+		{
+			"name": "Activity",
+			"entries": 1,
+			"file": "activity.json"
+		},
+		{
+			"name": "Advanced",
+			"entries": 22,
+			"file": "advanced.json"
+		},
+		{
+			"name": "AI Engineering",
+			"entries": 4,
+			"file": "ai-engineering.json"
+		},
+		{
+			"name": "Ai Evals",
+			"entries": 3,
+			"file": "ai-evals.json"
+		},
+		{
+			"name": "Ai Observability",
+			"entries": 88,
+			"file": "ai-observability.json"
+		},
+		{
+			"name": "Ai Research",
+			"entries": 1,
+			"file": "ai-research.json"
+		},
+		{
+			"name": "Alerts",
+			"entries": 1,
+			"file": "alerts.json"
+		},
+		{
+			"name": "API",
+			"entries": 4,
+			"file": "api.json"
+		},
+		{
+			"name": "Billing",
+			"entries": 5,
+			"file": "billing.json"
+		},
+		{
+			"name": "Customer Data Platform (CDP)",
+			"entries": 500,
+			"file": "customer-data-platform-cdp.json"
+		},
+		{
+			"name": "Customer Data Platform (CDP)",
+			"entries": 6,
+			"file": "customer-data-platform-cdp-2.json"
+		},
+		{
+			"name": "Cli",
+			"entries": 1,
+			"file": "cli.json"
+		},
+		{
+			"name": "Cmd K",
+			"entries": 1,
+			"file": "cmd-k.json"
+		},
+		{
+			"name": "Contribute",
+			"entries": 4,
+			"file": "contribute.json"
+		},
+		{
+			"name": "Csp Tracking",
+			"entries": 1,
+			"file": "csp-tracking.json"
+		},
+		{
+			"name": "Customer Analytics",
+			"entries": 13,
+			"file": "customer-analytics.json"
+		},
+		{
+			"name": "Data",
+			"entries": 20,
+			"file": "data.json"
+		},
+		{
+			"name": "Data Warehouse",
+			"entries": 31,
+			"file": "data-warehouse.json"
+		},
+		{
+			"name": "Discussion",
+			"entries": 1,
+			"file": "discussion.json"
+		},
+		{
+			"name": "Distributed Tracing",
+			"entries": 11,
+			"file": "distributed-tracing.json"
+		},
+		{
+			"name": "Endpoints",
+			"entries": 33,
+			"file": "endpoints.json"
+		},
+		{
+			"name": "Error Tracking",
+			"entries": 72,
+			"file": "error-tracking.json"
+		},
+		{
+			"name": "A/B Testing and Experiments",
+			"entries": 59,
+			"file": "a-b-testing-and-experiments.json"
+		},
+		{
+			"name": "Feature Flag Use Cases",
+			"entries": 1,
+			"file": "feature-flag-use-cases.json"
+		},
+		{
+			"name": "Feature Flags",
+			"entries": 55,
+			"file": "feature-flags.json"
+		},
+		{
+			"name": "Getting Started",
+			"entries": 6,
+			"file": "getting-started.json"
+		},
+		{
+			"name": "Glossary",
+			"entries": 1,
+			"file": "glossary.json"
+		},
+		{
+			"name": "Health Checks",
+			"entries": 13,
+			"file": "health-checks.json"
+		},
+		{
+			"name": "Hog (Query Language)",
+			"entries": 1,
+			"file": "hog-query-language.json"
+		},
+		{
+			"name": "How Posthog Works",
+			"entries": 6,
+			"file": "how-posthog-works.json"
+		},
+		{
+			"name": "Integrate",
+			"entries": 1,
+			"file": "integrate.json"
+		},
+		{
+			"name": "Integrations",
+			"entries": 4,
+			"file": "integrations.json"
+		},
+		{
+			"name": "Js Snippets",
+			"entries": 3,
+			"file": "js-snippets.json"
+		},
+		{
+			"name": "SDKs and Libraries",
+			"entries": 71,
+			"file": "sdks-and-libraries.json"
+		},
+		{
+			"name": "Logs",
+			"entries": 34,
+			"file": "logs.json"
+		},
+		{
+			"name": "Mcp Analytics",
+			"entries": 18,
+			"file": "mcp-analytics.json"
+		},
+		{
+			"name": "Metrics",
+			"entries": 10,
+			"file": "metrics.json"
+		},
+		{
+			"name": "Migrate",
+			"entries": 12,
+			"file": "migrate.json"
+		},
+		{
+			"name": "Model Context Protocol (MCP)",
+			"entries": 12,
+			"file": "model-context-protocol-mcp.json"
+		},
+		{
+			"name": "New To Posthog",
+			"entries": 8,
+			"file": "new-to-posthog.json"
+		},
+		{
+			"name": "Notebooks",
+			"entries": 1,
+			"file": "notebooks.json"
+		},
+		{
+			"name": "Posthog Ai",
+			"entries": 17,
+			"file": "posthog-ai.json"
+		},
+		{
+			"name": "Posthog Desktop",
+			"entries": 17,
+			"file": "posthog-desktop.json"
+		},
+		{
+			"name": "Privacy",
+			"entries": 8,
+			"file": "privacy.json"
+		},
+		{
+			"name": "Product Analytics",
+			"entries": 62,
+			"file": "product-analytics.json"
+		},
+		{
+			"name": "Prompt Management",
+			"entries": 2,
+			"file": "prompt-management.json"
+		},
+		{
+			"name": "Replay Vision",
+			"entries": 11,
+			"file": "replay-vision.json"
+		},
+		{
+			"name": "Revenue Analytics",
+			"entries": 11,
+			"file": "revenue-analytics.json"
+		},
+		{
+			"name": "Self Driving",
+			"entries": 17,
+			"file": "self-driving.json"
+		},
+		{
+			"name": "Self Host",
+			"entries": 12,
+			"file": "self-host.json"
+		},
+		{
+			"name": "Semantic Layer",
+			"entries": 8,
+			"file": "semantic-layer.json"
+		},
+		{
+			"name": "Session Replay",
+			"entries": 43,
+			"file": "session-replay.json"
+		},
+		{
+			"name": "Settings",
+			"entries": 12,
+			"file": "settings.json"
+		},
+		{
+			"name": "Skills",
+			"entries": 1,
+			"file": "skills.json"
+		},
+		{
+			"name": "Slack",
+			"entries": 4,
+			"file": "slack.json"
+		},
+		{
+			"name": "SQL and ClickHouse",
+			"entries": 6,
+			"file": "sql-and-clickhouse.json"
+		},
+		{
+			"name": "Support",
+			"entries": 16,
+			"file": "support.json"
+		},
+		{
+			"name": "Support Options",
+			"entries": 1,
+			"file": "support-options.json"
+		},
+		{
+			"name": "Surveys",
+			"entries": 36,
+			"file": "surveys.json"
+		},
+		{
+			"name": "Toolbar",
+			"entries": 4,
+			"file": "toolbar.json"
+		},
+		{
+			"name": "Vscode Extension",
+			"entries": 6,
+			"file": "vscode-extension.json"
+		},
+		{
+			"name": "Web Analytics",
+			"entries": 47,
+			"file": "web-analytics.json"
+		},
+		{
+			"name": "Workflows",
+			"entries": 24,
+			"file": "workflows.json"
+		},
+		{
+			"name": "Optional",
+			"entries": 500,
+			"file": "optional.json"
+		},
+		{
+			"name": "Optional",
+			"entries": 500,
+			"file": "optional-2.json"
+		},
+		{
+			"name": "Optional",
+			"entries": 500,
+			"file": "optional-3.json"
+		},
+		{
+			"name": "Optional",
+			"entries": 443,
+			"file": "optional-4.json"
+		}
+	]
+}

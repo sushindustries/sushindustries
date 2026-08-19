@@ -1,0 +1,42 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "mssql/Validations",
+	"entries": [
+		{
+			"name": "zod",
+			"url": "https://orm.drizzle.team/docs/mssql/zod",
+			"description": "",
+			"section": "mssql/Validations"
+		},
+		{
+			"name": "valibot",
+			"url": "https://orm.drizzle.team/docs/mssql/valibot",
+			"description": "",
+			"section": "mssql/Validations"
+		},
+		{
+			"name": "typebox",
+			"url": "https://orm.drizzle.team/docs/mssql/typebox",
+			"description": "",
+			"section": "mssql/Validations"
+		},
+		{
+			"name": "arktype",
+			"url": "https://orm.drizzle.team/docs/mssql/arktype",
+			"description": "",
+			"section": "mssql/Validations"
+		},
+		{
+			"name": "typebox-legacy",
+			"url": "https://orm.drizzle.team/docs/mssql/typebox-legacy",
+			"description": "",
+			"section": "mssql/Validations"
+		},
+		{
+			"name": "effect-schema",
+			"url": "https://orm.drizzle.team/docs/mssql/effect-schema",
+			"description": "",
+			"section": "mssql/Validations"
+		}
+	]
+}

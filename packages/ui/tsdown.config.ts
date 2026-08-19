@@ -41,36 +41,47 @@ export default defineConfig([
 		exports: {
 			customExports(exports, { isPublish }) {
 				/*
-				 * Types per condition, not once at the top. A single `types`
-				 * resolves `.d.ts` - ESM declarations in a `"type": "module"`
-				 * package - against the CJS implementation on `require`, which
-				 * is the "false ESM" attw fails the build for. The second pass
-				 * emits `.d.cts` alongside `.d.ts`; this maps each to its own
-				 * format the same way the generated entries do.
+				 * One format, so one mapping. This used to split `types` per
+				 * condition, because a single `types` resolved the ESM
+				 * declarations against the CJS implementation on `require` -
+				 * the "false ESM" attw fails a build for. With no `require`
+				 * condition to get wrong, the shape is what it looks like.
 				 */
 				exports["./registry"] = isPublish
 					? {
-							import: {
-								types: "./dist/registry.d.ts",
-								default: "./dist/registry.js",
-							},
-							require: {
-								types: "./dist/registry.d.cts",
-								default: "./dist/registry.cjs",
-							},
+							types: "./dist/registry.d.ts",
+							default: "./dist/registry.js",
 						}
 					: "./registry.ts";
 				return exports;
 			},
 		},
 	}),
-	{
+	library({
 		entry: { registry: "./registry.ts" },
-		format: ["esm", "cjs"],
 		platform: "browser",
-		target: "es2023",
-		dts: true,
+		/*
+		 * `clean: false`, or this pass wipes the one before it. `exports:
+		 * false`, because the first pass's `customExports` already wrote the
+		 * `./registry` mapping for both the workspace and the tarball.
+		 *
+		 * Through `library()` rather than as a plain object, so format, target
+		 * and dts come from the base like every other build here. Spelled out
+		 * literally, this chunk kept its own `es2023` and its own format list,
+		 * and the day the base changed either one it would have gone on
+		 * emitting the old answer with nothing to say so. Restating them is
+		 * also what would concat the format array into `["esm", "cjs", "esm",
+		 * "cjs"]`, so the safe version and the correct version are the same
+		 * version: name only what differs.
+		 *
+		 * `unused` is off here because it reads the whole manifest against one
+		 * pass's imports. This pass builds `registry.ts` alone, which does not
+		 * import `zod`, so every dependency the components use looks unused
+		 * from inside it. The first pass is the one that sees all the source
+		 * and is the one whose answer means anything.
+		 */
 		clean: false,
 		exports: false,
-	},
+		unused: false,
+	}),
 ]);

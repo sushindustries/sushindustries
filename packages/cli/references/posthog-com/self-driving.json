@@ -1,0 +1,108 @@
+{
+	"provider": "posthog-com",
+	"section": "Self Driving",
+	"entries": [
+		{
+			"name": "Anatomy of a pull request - Docs",
+			"url": "https://posthog.com/docs/self-driving/anatomy-of-a-pr.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Context - Docs",
+			"url": "https://posthog.com/docs/self-driving/context.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Implementation - Docs",
+			"url": "https://posthog.com/docs/self-driving/inbox/implementation.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Inbox - Docs",
+			"url": "https://posthog.com/docs/self-driving/inbox.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Reports - Docs",
+			"url": "https://posthog.com/docs/self-driving/reports.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Research tasks - Docs",
+			"url": "https://posthog.com/docs/self-driving/inbox/research.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Scout examples - Docs",
+			"url": "https://posthog.com/docs/self-driving/scout-examples.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Scouts - Docs",
+			"url": "https://posthog.com/docs/self-driving/scouts.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Self-driving - Docs",
+			"url": "https://posthog.com/docs/self-driving.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Self-driving FAQ - Docs",
+			"url": "https://posthog.com/docs/self-driving/faq.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Self-driving pricing - Docs",
+			"url": "https://posthog.com/docs/self-driving/pricing.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Set up self-driving - Docs",
+			"url": "https://posthog.com/docs/self-driving/setup.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Signal sources - Docs",
+			"url": "https://posthog.com/docs/self-driving/inbox/sources.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Signals - Docs",
+			"url": "https://posthog.com/docs/self-driving/signals.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "The self-improving loop - Docs",
+			"url": "https://posthog.com/docs/self-driving/self-improving-loop.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Troubleshooting - Docs",
+			"url": "https://posthog.com/docs/self-driving/inbox/troubleshooting.md",
+			"description": "",
+			"section": "Self Driving"
+		},
+		{
+			"name": "Web app - Docs",
+			"url": "https://posthog.com/docs/self-driving/web.md",
+			"description": "",
+			"section": "Self Driving"
+		}
+	]
+}

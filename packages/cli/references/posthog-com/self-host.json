@@ -1,0 +1,78 @@
+{
+	"provider": "posthog-com",
+	"section": "Self Host",
+	"entries": [
+		{
+			"name": "Configuring email - Docs",
+			"url": "https://posthog.com/docs/self-host/configure/email.md",
+			"description": "",
+			"section": "Self Host"
+		},
+		{
+			"name": "Configuring Slack - Docs",
+			"url": "https://posthog.com/docs/self-host/configure/slack.md",
+			"description": "",
+			"section": "Self Host"
+		},
+		{
+			"name": "Data egress from self-hosted instances - Docs",
+			"url": "https://posthog.com/docs/self-host/configure/egress.md",
+			"description": "",
+			"section": "Self Host"
+		},
+		{
+			"name": "Disclaimer for open-source self-hosted PostHog - Docs",
+			"url": "https://posthog.com/docs/self-host/open-source/disclaimer.md",
+			"description": "",
+			"section": "Self Host"
+		},
+		{
+			"name": "Environment variables - Docs",
+			"url": "https://posthog.com/docs/self-host/configure/environment-variables.md",
+			"description": "",
+			"section": "Self Host"
+		},
+		{
+			"name": "Instance settings - Docs",
+			"url": "https://posthog.com/docs/self-host/configure/instance-settings.md",
+			"description": "",
+			"section": "Self Host"
+		},
+		{
+			"name": "Open-source self-hosted support - Docs",
+			"url": "https://posthog.com/docs/self-host/open-source/support.md",
+			"description": "",
+			"section": "Self Host"
+		},
+		{
+			"name": "Running behind a proxy - Docs",
+			"url": "https://posthog.com/docs/self-host/configure/running-behind-proxy.md",
+			"description": "",
+			"section": "Self Host"
+		},
+		{
+			"name": "Securing PostHog - Docs",
+			"url": "https://posthog.com/docs/self-host/configure/securing-posthog.md",
+			"description": "",
+			"section": "Self Host"
+		},
+		{
+			"name": "Self-host PostHog - Docs",
+			"url": "https://posthog.com/docs/self-host.md",
+			"description": "",
+			"section": "Self Host"
+		},
+		{
+			"name": "Session replay storage configuration - Docs",
+			"url": "https://posthog.com/docs/self-host/configure/session-replay-storage.md",
+			"description": "",
+			"section": "Self Host"
+		},
+		{
+			"name": "Troubleshooting and debugging your PostHog instance - Docs",
+			"url": "https://posthog.com/docs/self-host/deploy/troubleshooting.md",
+			"description": "",
+			"section": "Self Host"
+		}
+	]
+}

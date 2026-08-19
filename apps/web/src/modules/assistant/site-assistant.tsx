@@ -103,7 +103,14 @@ export function SiteAssistant(): ReactNode {
 			posthog.capture("assistant_question_sent", {
 				question_length: text.length,
 			});
-			chat.sendMessage({ content: text });
+			/*
+			 * `void` because the chat client owns the outcome: a failure
+			 * lands in `chat.status`, which the transcript below already
+			 * renders. Awaiting here would make this handler async for a
+			 * result nothing reads, and dropping the marker would leave a
+			 * rejection with no handler at all.
+			 */
+			void chat.sendMessage({ content: text });
 		},
 		[chat.sendMessage, posthog],
 	);

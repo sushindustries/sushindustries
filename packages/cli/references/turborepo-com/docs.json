@@ -1,0 +1,612 @@
+{
+	"provider": "turborepo-com",
+	"section": "Docs",
+	"entries": [
+		{
+			"name": "Introduction",
+			"url": "https://turborepo.com/docs/index.md",
+			"description": "Welcome to the Turborepo documentation!",
+			"section": "Docs"
+		},
+		{
+			"name": "Acknowledgements",
+			"url": "https://turborepo.com/docs/acknowledgments.md",
+			"description": "Thank you to all these developers, build systems, and monorepo tools for their support and assistance.",
+			"section": "Docs"
+		},
+		{
+			"name": "Community",
+			"url": "https://turborepo.com/docs/community.md",
+			"description": "Learn about the Turborepo community.",
+			"section": "Docs"
+		},
+		{
+			"name": "Core concepts",
+			"url": "https://turborepo.com/docs/core-concepts.md",
+			"description": "Learn about the core concepts behind Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Internal Packages",
+			"url": "https://turborepo.com/docs/core-concepts/internal-packages.md",
+			"description": "Learn how to build Internal Packages in your monorepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Package and Task Graphs",
+			"url": "https://turborepo.com/docs/core-concepts/package-and-task-graph.md",
+			"description": "Turborepo builds a Task Graph based on your configuration and repository structure.",
+			"section": "Docs"
+		},
+		{
+			"name": "Package types",
+			"url": "https://turborepo.com/docs/core-concepts/package-types.md",
+			"description": "Learn about the different types of packages in a workspace.",
+			"section": "Docs"
+		},
+		{
+			"name": "Remote Caching",
+			"url": "https://turborepo.com/docs/core-concepts/remote-caching.md",
+			"description": "Share cache artifacts across machines for even faster builds.",
+			"section": "Docs"
+		},
+		{
+			"name": "Crafting your repository",
+			"url": "https://turborepo.com/docs/crafting-your-repository.md",
+			"description": "Design and build your Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Caching",
+			"url": "https://turborepo.com/docs/crafting-your-repository/caching.md",
+			"description": "Learn about caching in Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Configuring tasks",
+			"url": "https://turborepo.com/docs/crafting-your-repository/configuring-tasks.md",
+			"description": "Learn how to describe the workflows in your repository to get them done as fast as possible.",
+			"section": "Docs"
+		},
+		{
+			"name": "Constructing CI",
+			"url": "https://turborepo.com/docs/crafting-your-repository/constructing-ci.md",
+			"description": "Learn how Turborepo can help you efficiently complete all the necessary tasks and accelerate your development workflow.",
+			"section": "Docs"
+		},
+		{
+			"name": "Creating an Internal Package",
+			"url": "https://turborepo.com/docs/crafting-your-repository/creating-an-internal-package.md",
+			"description": "Learn how to create an Internal Package for your monorepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Developing applications",
+			"url": "https://turborepo.com/docs/crafting-your-repository/developing-applications.md",
+			"description": "Learn how to develop applications in your repository.",
+			"section": "Docs"
+		},
+		{
+			"name": "Managing dependencies",
+			"url": "https://turborepo.com/docs/crafting-your-repository/managing-dependencies.md",
+			"description": "Learn how to manage dependencies in your monorepo's workspace.",
+			"section": "Docs"
+		},
+		{
+			"name": "Running tasks",
+			"url": "https://turborepo.com/docs/crafting-your-repository/running-tasks.md",
+			"description": "Learn how to run tasks in your repository through the `turbo` CLI.",
+			"section": "Docs"
+		},
+		{
+			"name": "Structuring a repository",
+			"url": "https://turborepo.com/docs/crafting-your-repository/structuring-a-repository.md",
+			"description": "Start by creating a repository using the conventions of the ecosystem.",
+			"section": "Docs"
+		},
+		{
+			"name": "Understanding your repository",
+			"url": "https://turborepo.com/docs/crafting-your-repository/understanding-your-repository.md",
+			"description": "Learn how to understand your repository structure using Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Upgrading",
+			"url": "https://turborepo.com/docs/crafting-your-repository/upgrading.md",
+			"description": "Learn how to upgrade `turbo` to get the latest improvements to your repository.",
+			"section": "Docs"
+		},
+		{
+			"name": "Using environment variables",
+			"url": "https://turborepo.com/docs/crafting-your-repository/using-environment-variables.md",
+			"description": "Learn how to handle environments for your applications.",
+			"section": "Docs"
+		},
+		{
+			"name": "Getting started",
+			"url": "https://turborepo.com/docs/getting-started.md",
+			"description": "Get started with Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Add to an existing repository",
+			"url": "https://turborepo.com/docs/getting-started/add-to-existing-repository.md",
+			"description": "Using Turborepo with your existing repository",
+			"section": "Docs"
+		},
+		{
+			"name": "Editor integration",
+			"url": "https://turborepo.com/docs/getting-started/editor-integration.md",
+			"description": "Making the most of Turborepo",
+			"section": "Docs"
+		},
+		{
+			"name": "Start with an example",
+			"url": "https://turborepo.com/docs/getting-started/examples.md",
+			"description": "Start with an example Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Installation",
+			"url": "https://turborepo.com/docs/getting-started/installation.md",
+			"description": "Learn how to get started with Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Guides",
+			"url": "https://turborepo.com/docs/guides.md",
+			"description": "Learn how to use your favorite tooling in a Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Using AI with Turborepo",
+			"url": "https://turborepo.com/docs/guides/ai.md",
+			"description": "Get the most out of AI coding assistants in your Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Continuous Integration",
+			"url": "https://turborepo.com/docs/guides/ci-vendors.md",
+			"description": "Recipes for using Turborepo with Vercel, GitHub Actions, and other continuous integration providers.",
+			"section": "Docs"
+		},
+		{
+			"name": "Buildkite",
+			"url": "https://turborepo.com/docs/guides/ci-vendors/buildkite.md",
+			"description": "Learn how to use Buildkite with Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "CircleCI",
+			"url": "https://turborepo.com/docs/guides/ci-vendors/circleci.md",
+			"description": "Learn how to use CircleCI with Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "GitHub Actions",
+			"url": "https://turborepo.com/docs/guides/ci-vendors/github-actions.md",
+			"description": "Learn how to use GitHub Actions with Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "GitLab CI",
+			"url": "https://turborepo.com/docs/guides/ci-vendors/gitlab-ci.md",
+			"description": "Learn how to use GitLab CI with Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Travis CI",
+			"url": "https://turborepo.com/docs/guides/ci-vendors/travis-ci.md",
+			"description": "How to use Travis CI with Turborepo to optimize your CI workflow",
+			"section": "Docs"
+		},
+		{
+			"name": "Vercel",
+			"url": "https://turborepo.com/docs/guides/ci-vendors/vercel.md",
+			"description": "Learn how to use Turborepo on Vercel.",
+			"section": "Docs"
+		},
+		{
+			"name": "Coordinating development runtime dependencies",
+			"url": "https://turborepo.com/docs/guides/coordinating-runtime-dependencies.md",
+			"description": "Learn how to coordinate development services that depend on each other at runtime.",
+			"section": "Docs"
+		},
+		{
+			"name": "Frameworks",
+			"url": "https://turborepo.com/docs/guides/frameworks.md",
+			"description": "Integrate your favorite framework into Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Framework bindings in libraries",
+			"url": "https://turborepo.com/docs/guides/frameworks/framework-bindings.md",
+			"description": "Learn how to create framework bindings in packages.",
+			"section": "Docs"
+		},
+		{
+			"name": "Next.js",
+			"url": "https://turborepo.com/docs/guides/frameworks/nextjs.md",
+			"description": "Learn how to use Next.js in a monorepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Nuxt",
+			"url": "https://turborepo.com/docs/guides/frameworks/nuxt.md",
+			"description": "Learn more about using Nuxt in your monorepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Rsbuild",
+			"url": "https://turborepo.com/docs/guides/frameworks/rsbuild.md",
+			"description": "Learn more about using Rsbuild in your monorepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "SvelteKit",
+			"url": "https://turborepo.com/docs/guides/frameworks/sveltekit.md",
+			"description": "Learn more about using SvelteKit in your monorepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Vite",
+			"url": "https://turborepo.com/docs/guides/frameworks/vite.md",
+			"description": "Learn more about using Vite in your monorepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Generating code",
+			"url": "https://turborepo.com/docs/guides/generating-code.md",
+			"description": "Learn how to generate code using Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Handling platforms",
+			"url": "https://turborepo.com/docs/guides/handling-platforms.md",
+			"description": "Learn how to handle caching around operating systems, architectures, and other arbitrary conditions for Turborepo tasks.",
+			"section": "Docs"
+		},
+		{
+			"name": "Microfrontends",
+			"url": "https://turborepo.com/docs/guides/microfrontends.md",
+			"description": "Learn how to use Turborepo's built-in microfrontends proxy for local development.",
+			"section": "Docs"
+		},
+		{
+			"name": "Migrating from Nx",
+			"url": "https://turborepo.com/docs/guides/migrating-from-nx.md",
+			"description": "Learn how to migrate to Turborepo from Nx.",
+			"section": "Docs"
+		},
+		{
+			"name": "Multi-language support",
+			"url": "https://turborepo.com/docs/guides/multi-language.md",
+			"description": "Integrate unsupported languages with package scripts and workspace boundaries.",
+			"section": "Docs"
+		},
+		{
+			"name": "Publishing libraries",
+			"url": "https://turborepo.com/docs/guides/publishing-libraries.md",
+			"description": "Learn how to publish libraries to the npm registry from a monorepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Single-package workspaces",
+			"url": "https://turborepo.com/docs/guides/single-package-workspaces.md",
+			"description": "Learn how to use Turborepo in a single-package workspace.",
+			"section": "Docs"
+		},
+		{
+			"name": "Skipping tasks",
+			"url": "https://turborepo.com/docs/guides/skipping-tasks.md",
+			"description": "Never do the same work twice.",
+			"section": "Docs"
+		},
+		{
+			"name": "Tools",
+			"url": "https://turborepo.com/docs/guides/tools.md",
+			"description": "Learn how to use your favorite tools in a monorepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Biome",
+			"url": "https://turborepo.com/docs/guides/tools/biome.md",
+			"description": "Learn how to use Biome in your Turborepo projects.",
+			"section": "Docs"
+		},
+		{
+			"name": "Docker",
+			"url": "https://turborepo.com/docs/guides/tools/docker.md",
+			"description": "Learn how to use Docker in a monorepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "ESLint",
+			"url": "https://turborepo.com/docs/guides/tools/eslint.md",
+			"description": "Learn how to use ESLint in a monorepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Jest",
+			"url": "https://turborepo.com/docs/guides/tools/jest.md",
+			"description": "Learn how to use Jest in a Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Oxc (oxlint and oxfmt)",
+			"url": "https://turborepo.com/docs/guides/tools/oxc.md",
+			"description": "Learn how to use oxlint and oxfmt in your Turborepo projects.",
+			"section": "Docs"
+		},
+		{
+			"name": "Playwright",
+			"url": "https://turborepo.com/docs/guides/tools/playwright.md",
+			"description": "Learn how to use Playwright in a Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Prisma",
+			"url": "https://turborepo.com/docs/guides/tools/prisma.md",
+			"description": "Learn how to use Prisma in a Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Python (Experimental)",
+			"url": "https://turborepo.com/docs/guides/tools/python.md",
+			"description": "Use experimental native uv workspace support with Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Rust (Experimental)",
+			"url": "https://turborepo.com/docs/guides/tools/rust.md",
+			"description": "Use experimental native Cargo workspace support with Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "shadcn/ui",
+			"url": "https://turborepo.com/docs/guides/tools/shadcn-ui.md",
+			"description": "Learn how to use shadcn/ui in a Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Storybook",
+			"url": "https://turborepo.com/docs/guides/tools/storybook.md",
+			"description": "Learn how to use Storybook in a Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Tailwind CSS",
+			"url": "https://turborepo.com/docs/guides/tools/tailwind.md",
+			"description": "Learn how to use Tailwind CSS in a Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "TypeScript",
+			"url": "https://turborepo.com/docs/guides/tools/typescript.md",
+			"description": "Learn how to use TypeScript in a monorepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Vitest",
+			"url": "https://turborepo.com/docs/guides/tools/vitest.md",
+			"description": "Learn how to use Vitest in a monorepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Invalid environment variable prefix",
+			"url": "https://turborepo.com/docs/messages/invalid-env-prefix.md",
+			"description": "Learn more about errors with invalid environment variable prefixes in Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Missing root task in turbo.json",
+			"url": "https://turborepo.com/docs/messages/missing-root-task-in-turbo-json.md",
+			"description": "Learn more about errors for missing root tasks in turbo.json in Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Package task in single-package workspace error",
+			"url": "https://turborepo.com/docs/messages/package-task-in-single-package-workspace.md",
+			"description": "Learn more about errors with package tasks in single-package workspaces.",
+			"section": "Docs"
+		},
+		{
+			"name": "Recursive `turbo` invocations",
+			"url": "https://turborepo.com/docs/messages/recursive-turbo-invocations.md",
+			"description": "Learn more about errors with recursive scripts and tasks in Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Unnecessary package task syntax error",
+			"url": "https://turborepo.com/docs/messages/unnecessary-package-task-syntax.md",
+			"description": "Learn more about errors with unnecessary package task syntax in Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "Turborepo API reference",
+			"url": "https://turborepo.com/docs/reference.md",
+			"description": "Learn about Turborepo's APIs using the reference.",
+			"section": "Docs"
+		},
+		{
+			"name": "bin",
+			"url": "https://turborepo.com/docs/reference/bin.md",
+			"description": "API reference for the `turbo bin` command",
+			"section": "Docs"
+		},
+		{
+			"name": "boundaries",
+			"url": "https://turborepo.com/docs/reference/boundaries.md",
+			"description": "API reference for the `turbo boundaries` command",
+			"section": "Docs"
+		},
+		{
+			"name": "Configuring turbo.json",
+			"url": "https://turborepo.com/docs/reference/configuration.md",
+			"description": "Learn how to configure Turborepo through `turbo.json`.",
+			"section": "Docs"
+		},
+		{
+			"name": "create-turbo",
+			"url": "https://turborepo.com/docs/reference/create-turbo.md",
+			"description": "Quickly set up a new Turborepo repository from scratch.",
+			"section": "Docs"
+		},
+		{
+			"name": "devtools",
+			"url": "https://turborepo.com/docs/reference/devtools.md",
+			"description": "API reference for the `turbo devtools` command",
+			"section": "Docs"
+		},
+		{
+			"name": "docs",
+			"url": "https://turborepo.com/docs/reference/docs.md",
+			"description": "API reference for the `turbo docs` command",
+			"section": "Docs"
+		},
+		{
+			"name": "eslint-config-turbo",
+			"url": "https://turborepo.com/docs/reference/eslint-config-turbo.md",
+			"description": "Learn more about eslint-config-turbo.",
+			"section": "Docs"
+		},
+		{
+			"name": "eslint-plugin-turbo",
+			"url": "https://turborepo.com/docs/reference/eslint-plugin-turbo.md",
+			"description": "Learn more about eslint-plugin-turbo.",
+			"section": "Docs"
+		},
+		{
+			"name": "generate",
+			"url": "https://turborepo.com/docs/reference/generate.md",
+			"description": "API reference for the `turbo generate` command",
+			"section": "Docs"
+		},
+		{
+			"name": "File glob specification",
+			"url": "https://turborepo.com/docs/reference/globs.md",
+			"description": "Learn about the file glob specification used by `turbo`.",
+			"section": "Docs"
+		},
+		{
+			"name": "info",
+			"url": "https://turborepo.com/docs/reference/info.md",
+			"description": "API reference for the `turbo info` command",
+			"section": "Docs"
+		},
+		{
+			"name": "link",
+			"url": "https://turborepo.com/docs/reference/link.md",
+			"description": "API reference for the `turbo link` command",
+			"section": "Docs"
+		},
+		{
+			"name": "login",
+			"url": "https://turborepo.com/docs/reference/login.md",
+			"description": "API reference for the `turbo login` command",
+			"section": "Docs"
+		},
+		{
+			"name": "logout",
+			"url": "https://turborepo.com/docs/reference/logout.md",
+			"description": "API reference for the `turbo logout` command",
+			"section": "Docs"
+		},
+		{
+			"name": "ls",
+			"url": "https://turborepo.com/docs/reference/ls.md",
+			"description": "API reference for the `turbo ls` command",
+			"section": "Docs"
+		},
+		{
+			"name": "Options overview",
+			"url": "https://turborepo.com/docs/reference/options-overview.md",
+			"description": "Flags, configurations, and System Environment Variables for Turborepo",
+			"section": "Docs"
+		},
+		{
+			"name": "Package Configurations",
+			"url": "https://turborepo.com/docs/reference/package-configurations.md",
+			"description": "Learn how to use Package Configurations to bring greater task flexibility to your monorepo's package.",
+			"section": "Docs"
+		},
+		{
+			"name": "prune",
+			"url": "https://turborepo.com/docs/reference/prune.md",
+			"description": "API reference for the `turbo prune` command",
+			"section": "Docs"
+		},
+		{
+			"name": "query",
+			"url": "https://turborepo.com/docs/reference/query.md",
+			"description": "API reference for the `turbo query` command",
+			"section": "Docs"
+		},
+		{
+			"name": "run",
+			"url": "https://turborepo.com/docs/reference/run.md",
+			"description": "API reference for the `turbo run` command",
+			"section": "Docs"
+		},
+		{
+			"name": "scan (Deprecated)",
+			"url": "https://turborepo.com/docs/reference/scan.md",
+			"description": "API reference for the deprecated `turbo scan` command",
+			"section": "Docs"
+		},
+		{
+			"name": "System environment variables",
+			"url": "https://turborepo.com/docs/reference/system-environment-variables.md",
+			"description": "Learn about system variables used by Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "telemetry",
+			"url": "https://turborepo.com/docs/reference/telemetry.md",
+			"description": "API reference for the `turbo telemetry` command",
+			"section": "Docs"
+		},
+		{
+			"name": "@turbo/codemod",
+			"url": "https://turborepo.com/docs/reference/turbo-codemod.md",
+			"description": "Learn more about how Turborepo uses codemods to make version migrations easy.",
+			"section": "Docs"
+		},
+		{
+			"name": "@turbo/gen",
+			"url": "https://turborepo.com/docs/reference/turbo-gen.md",
+			"description": "Quickly generate new code in your Turborepo.",
+			"section": "Docs"
+		},
+		{
+			"name": "turbo-ignore",
+			"url": "https://turborepo.com/docs/reference/turbo-ignore.md",
+			"description": "Learn how to use turbo-ignore to skip tasks in CI.",
+			"section": "Docs"
+		},
+		{
+			"name": "unlink",
+			"url": "https://turborepo.com/docs/reference/unlink.md",
+			"description": "API reference for the `turbo unlink` command",
+			"section": "Docs"
+		},
+		{
+			"name": "watch",
+			"url": "https://turborepo.com/docs/reference/watch.md",
+			"description": "API reference for the `watch` command",
+			"section": "Docs"
+		},
+		{
+			"name": "Support policy",
+			"url": "https://turborepo.com/docs/support-policy.md",
+			"description": "Learn about Turborepo's Support policy.",
+			"section": "Docs"
+		},
+		{
+			"name": "Telemetry",
+			"url": "https://turborepo.com/docs/telemetry.md",
+			"description": "Learn more about Turborepo's anonymous telemetry.",
+			"section": "Docs"
+		}
+	]
+}

@@ -6,7 +6,8 @@ write copy in the first person singular - never "we", "our team", or "us".
 ## Read first
 
 - `.claude/skills/sushindustries-conventions/SKILL.md` - the layout and naming
-  rules this repo actually enforces. Read it before adding a file.
+  rules this repo actually enforces. Read it before adding a file. Topic rules
+  are in its `rules/`; read the one that matches the change, not all six.
 - `.claude/pipeline.md` - how a post, a component or a package gets added, and
   which layer of checking catches what. Read it before pushing.
 - The global `tanstack-start-architecture` skill - Official and Safety layers
@@ -31,8 +32,26 @@ apps/web/          the site. TanStack Start on Vite + Nitro.
 packages/atoms/    design tokens + atomic CSS. No build step.
 packages/ui/       the components the site is made of. All installable.
 packages/db/       Drizzle schema + client. Postgres.
+packages/cli/      the adam-jurek command line, and the MCP server it serves.
+plugins/           the Claude Code plugin this repo publishes. Not a workspace.
 tsdown.base.ts     the one build every compiling package extends.
 ```
+
+`plugins/` and `.claude-plugin/marketplace.json` are the one layout in this
+repo not chosen by me: Claude Code requires the manifest at the root and the
+plugin beside it, so neither can move into `packages/`. They are not pnpm
+workspaces and `pnpm-workspace.yaml` deliberately does not glob them.
+
+**`scripts/` and `packages/cli/` are not the same thing, and neither absorbs
+the other.** `scripts/` checks and generates *this* repository - the doctor,
+the scaffolder, the screenshot and glyph generators. None of it is published,
+all of it must run on a bare `pnpm install` with no build, and the doctor in
+particular is the gate every push goes through, so it stays plain Node with
+nothing between it and the filesystem. `packages/cli/` is the opposite: an
+installable program with dependencies, carrying data other people can use.
+Merging them would either ship the doctor to npm or make the gate depend on a
+build. The test for a new file is whether anyone outside this repo would run
+it.
 
 Every package that compiles does it through `tsdown.base.ts`, which also
 generates that package's `exports`, `main` and `module` from the chunks the

@@ -1,0 +1,42 @@
+{
+	"provider": "tanstack-com-tanstack-highlight",
+	"source": "https://tanstack.com/highlight/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Highlight docs",
+	"summary": "A synchronous syntax highlighter with selective language imports, context-aware web scanners, semantic CSS themes, precise annotations, and compact deterministic output.",
+	"total": 36,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 4,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 17,
+			"file": "guides.json"
+		},
+		{
+			"name": "API",
+			"entries": 11,
+			"file": "api.json"
+		}
+	]
+}

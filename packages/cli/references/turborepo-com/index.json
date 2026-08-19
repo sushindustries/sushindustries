@@ -1,0 +1,18 @@
+{
+	"provider": "turborepo-com",
+	"source": "https://turborepo.com/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"Turborepo"
+	],
+	"title": "Turborepo documentation",
+	"summary": "Turborepo is the build system for coding agents.",
+	"total": 101,
+	"sections": [
+		{
+			"name": "Docs",
+			"entries": 101,
+			"file": "docs.json"
+		}
+	]
+}

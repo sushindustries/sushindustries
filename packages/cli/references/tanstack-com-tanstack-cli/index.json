@@ -1,0 +1,42 @@
+{
+	"provider": "tanstack-com-tanstack-cli",
+	"source": "https://tanstack.com/cli/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack CLI docs",
+	"summary": "A CLI toolkit for TanStack. Create and customize TanStack Start apps, search docs, inspect add-ons, and generate project changes with current TanStack context.",
+	"total": 14,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 3,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 6,
+			"file": "guides.json"
+		},
+		{
+			"name": "Examples",
+			"entries": 1,
+			"file": "examples.json"
+		}
+	]
+}

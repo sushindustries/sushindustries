@@ -1,0 +1,66 @@
+{
+	"provider": "docs-railway-com",
+	"section": "Templates & open source",
+	"entries": [
+		{
+			"name": "Templates & Open Source",
+			"url": "https://docs.railway.com/templates.md",
+			"description": "Everything you need to know about Railway templates and the open source partner program.",
+			"section": "Templates & open source"
+		},
+		{
+			"name": "Open source technology partners",
+			"url": "https://docs.railway.com/templates/partners.md",
+			"description": "Grow your open source projects and products on Railway.",
+			"section": "Templates & open source"
+		},
+		{
+			"name": "Deploy",
+			"url": "https://docs.railway.com/templates/deploy.md",
+			"description": "Learn how to deploy Railway templates.",
+			"section": "Templates & open source"
+		},
+		{
+			"name": "Create",
+			"url": "https://docs.railway.com/templates/create.md",
+			"description": "Learn how to create reusable templates on Railway to enable effortless one-click deploys.",
+			"section": "Templates & open source"
+		},
+		{
+			"name": "Updates",
+			"url": "https://docs.railway.com/templates/updates.md",
+			"description": "Learn how template updates work for authors and consumers.",
+			"section": "Templates & open source"
+		},
+		{
+			"name": "Best practices",
+			"url": "https://docs.railway.com/templates/best-practices.md",
+			"description": "Learn the best practices for template creation.",
+			"section": "Templates & open source"
+		},
+		{
+			"name": "Publish and share",
+			"url": "https://docs.railway.com/templates/publish-and-share.md",
+			"description": "Learn how to publish and share your Railway templates.",
+			"section": "Templates & open source"
+		},
+		{
+			"name": "Kickbacks",
+			"url": "https://docs.railway.com/templates/kickbacks.md",
+			"description": "Earn revenue from your templates through Railway's kickback program.",
+			"section": "Templates & open source"
+		},
+		{
+			"name": "Private Docker images",
+			"url": "https://docs.railway.com/templates/private-docker-images.md",
+			"description": "Create templates with private Docker images to distribute proprietary code through Railway and uniquely monetize.",
+			"section": "Templates & open source"
+		},
+		{
+			"name": "Metrics",
+			"url": "https://docs.railway.com/templates/metrics.md",
+			"description": "Track deployments, earnings, and health metrics for your published templates.",
+			"section": "Templates & open source"
+		}
+	]
+}

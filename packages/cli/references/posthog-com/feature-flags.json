@@ -1,0 +1,336 @@
+{
+	"provider": "posthog-com",
+	"section": "Feature Flags",
+	"entries": [
+		{
+			"name": ".NET Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/dotnet.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Adding feature flag code - Docs",
+			"url": "https://posthog.com/docs/feature-flags/adding-feature-flag-code.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Android Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/android.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "API Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/api.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Best practices for production-ready flags - Docs",
+			"url": "https://posthog.com/docs/feature-flags/best-practices.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Bootstrap Feature Flags - Docs",
+			"url": "https://posthog.com/docs/feature-flags/bootstrapping.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Cleaning up stale feature flags - Docs",
+			"url": "https://posthog.com/docs/feature-flags/cleaning-up-stale-flags.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Creating Feature Flags - Docs",
+			"url": "https://posthog.com/docs/feature-flags/creating-feature-flags.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Cutting feature flag costs - Docs",
+			"url": "https://posthog.com/docs/feature-flags/cutting-costs.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Device bucketing - Docs",
+			"url": "https://posthog.com/docs/feature-flags/device-bucketing.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Early access feature management - Docs",
+			"url": "https://posthog.com/docs/feature-flags/early-access-feature-management.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Elixir Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/elixir.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Evaluation contexts - Docs",
+			"url": "https://posthog.com/docs/feature-flags/evaluation-contexts.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Feature flag dependencies - Docs",
+			"url": "https://posthog.com/docs/feature-flags/dependencies.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Feature flags - Docs",
+			"url": "https://posthog.com/docs/feature-flags.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Feature flags API - Docs",
+			"url": "https://posthog.com/docs/feature-flags/surfaces/api.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Feature Flags changelog - Docs",
+			"url": "https://posthog.com/docs/feature-flags/changelog.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Feature flags in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/feature-flags/surfaces/web-app.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Feature Flags troubleshooting - Docs",
+			"url": "https://posthog.com/docs/feature-flags/troubleshooting.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Fix flag issues in PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/feature-flags/surfaces/desktop.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Flutter Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/flutter.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Getting started with feature flags - Docs",
+			"url": "https://posthog.com/docs/feature-flags/start-here.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Go Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/go.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "How to do a canary release with feature flags - Docs",
+			"url": "https://posthog.com/docs/feature-flags/canary-release.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "How to do a phased rollout - Docs",
+			"url": "https://posthog.com/docs/feature-flags/phased-rollout.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Install Feature Flags with PostHog - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "iOS Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/ios.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Java Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/java.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Keeping flag evaluations stable - Docs",
+			"url": "https://posthog.com/docs/feature-flags/stable-identity-for-flags.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Kotlin Multiplatform Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/kmp.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Local evaluation in distributed or stateless environments - Docs",
+			"url": "https://posthog.com/docs/feature-flags/local-evaluation/distributed-environments.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Manage feature flags over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/feature-flags/surfaces/mcp.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Manage Feature Flags with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/feature-flags/manage-flags-ai.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Multi-project feature flags - Docs",
+			"url": "https://posthog.com/docs/feature-flags/multi-project-feature-flags.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Node.js Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/nodejs.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "OpenFeature (JavaScript) - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/openfeature-js.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "OpenFeature (Python) - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/openfeature.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "PHP Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/php.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Project-wide settings - Docs",
+			"url": "https://posthog.com/docs/feature-flags/project-wide-settings.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Property overrides for flag evaluation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/property-overrides.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Python Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/python.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "React Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/react.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "React Native Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/react-native.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "React Router Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/react-router.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Remix Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/remix.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Remote config - Docs",
+			"url": "https://posthog.com/docs/feature-flags/remote-config.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Ruby Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/ruby.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Rust Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/rust.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Scheduled flag changes - Docs",
+			"url": "https://posthog.com/docs/feature-flags/scheduled-flag-changes.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Server-side local evaluation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/local-evaluation.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Targeting feature flags on groups, pages, machines, and more - Docs",
+			"url": "https://posthog.com/docs/feature-flags/targeting-groups.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Testing your feature flag - Docs",
+			"url": "https://posthog.com/docs/feature-flags/testing.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Tutorials and guides - Docs",
+			"url": "https://posthog.com/docs/feature-flags/tutorials.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "User and group targeting - Docs",
+			"url": "https://posthog.com/docs/feature-flags/user-and-group-targeting.md",
+			"description": "",
+			"section": "Feature Flags"
+		},
+		{
+			"name": "Web Feature Flags installation - Docs",
+			"url": "https://posthog.com/docs/feature-flags/installation/web.md",
+			"description": "",
+			"section": "Feature Flags"
+		}
+	]
+}

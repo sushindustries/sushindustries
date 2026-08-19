@@ -1,0 +1,84 @@
+{
+	"provider": "posthog-com",
+	"section": "Customer Analytics",
+	"entries": [
+		{
+			"name": "B2B mode - Docs",
+			"url": "https://posthog.com/docs/customer-analytics/b2b-mode.md",
+			"description": "",
+			"section": "Customer Analytics"
+		},
+		{
+			"name": "Configure dashboard with AI - Docs",
+			"url": "https://posthog.com/docs/customer-analytics/configure-dashboard-with-ai.md",
+			"description": "",
+			"section": "Customer Analytics"
+		},
+		{
+			"name": "Configure your dashboard - Docs",
+			"url": "https://posthog.com/docs/customer-analytics/configure-your-dashboard.md",
+			"description": "",
+			"section": "Customer Analytics"
+		},
+		{
+			"name": "Create customer journeys - Docs",
+			"url": "https://posthog.com/docs/customer-analytics/create-customer-journeys.md",
+			"description": "",
+			"section": "Customer Analytics"
+		},
+		{
+			"name": "Create usage metrics - Docs",
+			"url": "https://posthog.com/docs/customer-analytics/create-usage-metrics.md",
+			"description": "",
+			"section": "Customer Analytics"
+		},
+		{
+			"name": "Customer Analytics changelog - Docs",
+			"url": "https://posthog.com/docs/customer-analytics/changelog.md",
+			"description": "",
+			"section": "Customer Analytics"
+		},
+		{
+			"name": "Customer Analytics troubleshooting - Docs",
+			"url": "https://posthog.com/docs/customer-analytics/troubleshooting.md",
+			"description": "",
+			"section": "Customer Analytics"
+		},
+		{
+			"name": "Customer journeys - Docs",
+			"url": "https://posthog.com/docs/customer-analytics/customer-journeys.md",
+			"description": "",
+			"section": "Customer Analytics"
+		},
+		{
+			"name": "Customer profiles - Docs",
+			"url": "https://posthog.com/docs/customer-analytics/customer-profiles.md",
+			"description": "",
+			"section": "Customer Analytics"
+		},
+		{
+			"name": "Dashboard metrics - Docs",
+			"url": "https://posthog.com/docs/customer-analytics/dashboard-metrics.md",
+			"description": "",
+			"section": "Customer Analytics"
+		},
+		{
+			"name": "Getting started with customer analytics - Docs",
+			"url": "https://posthog.com/docs/customer-analytics/start-here.md",
+			"description": "",
+			"section": "Customer Analytics"
+		},
+		{
+			"name": "Saved views - Docs",
+			"url": "https://posthog.com/docs/customer-analytics/saved-views.md",
+			"description": "",
+			"section": "Customer Analytics"
+		},
+		{
+			"name": "Usage metrics - Docs",
+			"url": "https://posthog.com/docs/customer-analytics/usage-metrics.md",
+			"description": "",
+			"section": "Customer Analytics"
+		}
+	]
+}

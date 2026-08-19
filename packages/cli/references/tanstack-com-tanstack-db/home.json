@@ -1,0 +1,12 @@
+{
+	"provider": "tanstack-com-tanstack-db",
+	"section": "Home",
+	"entries": [
+		{
+			"name": "Resources & Packages",
+			"url": "https://tanstack.com/db/latest/docs/community/resources.md",
+			"description": "",
+			"section": "Home"
+		}
+	]
+}

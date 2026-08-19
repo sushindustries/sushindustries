@@ -1,5 +1,6 @@
 import { parseHTML } from "linkedom";
 import { beforeAll, describe, expect, inject, test } from "vitest";
+import { sitemapPagePaths } from "./setup/roster";
 
 /*
  * The document, checked page by page.
@@ -47,10 +48,7 @@ async function fetchAll<T, R>(
 beforeAll(async () => {
 	base = inject("baseUrl");
 
-	const sitemap = await (await fetch(`${base}/sitemap.xml`)).text();
-	const paths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
-		(match) => new URL(match[1] ?? "").pathname,
-	);
+	const paths = await sitemapPagePaths(base);
 	expect(paths.length).toBeGreaterThan(0);
 
 	pages = await fetchAll(paths, 10, async (path) => {

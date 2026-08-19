@@ -1,0 +1,48 @@
+{
+	"provider": "zod-dev",
+	"section": "Zod Core",
+	"entries": [
+		{
+			"name": "Zod Core",
+			"url": "https://zod.dev/packages/core",
+			"description": "Zod Core package - minimal core functionality for custom implementations",
+			"section": "Zod Core"
+		},
+		{
+			"name": "Schemas",
+			"url": "https://zod.dev/packages/core?id=schemas",
+			"description": "",
+			"section": "Zod Core"
+		},
+		{
+			"name": "Internals",
+			"url": "https://zod.dev/packages/core?id=internals",
+			"description": "",
+			"section": "Zod Core"
+		},
+		{
+			"name": "Parsing",
+			"url": "https://zod.dev/packages/core?id=parsing",
+			"description": "",
+			"section": "Zod Core"
+		},
+		{
+			"name": "Checks",
+			"url": "https://zod.dev/packages/core?id=checks",
+			"description": "",
+			"section": "Zod Core"
+		},
+		{
+			"name": "Errors",
+			"url": "https://zod.dev/packages/core?id=errors",
+			"description": "",
+			"section": "Zod Core"
+		},
+		{
+			"name": "Issues",
+			"url": "https://zod.dev/packages/core?id=issues",
+			"description": "",
+			"section": "Zod Core"
+		}
+	]
+}

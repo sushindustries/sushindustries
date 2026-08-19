@@ -1,0 +1,18 @@
+{
+	"provider": "tanstack-com-tanstack-intent",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "Trust Model",
+			"url": "https://tanstack.com/intent/latest/docs/concepts/trust-model.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Configuration",
+			"url": "https://tanstack.com/intent/latest/docs/concepts/configuration.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

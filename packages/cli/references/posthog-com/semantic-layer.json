@@ -1,0 +1,54 @@
+{
+	"provider": "posthog-com",
+	"section": "Semantic Layer",
+	"entries": [
+		{
+			"name": "Certifications and relationships - Docs",
+			"url": "https://posthog.com/docs/semantic-layer/certifications-and-relationships.md",
+			"description": "",
+			"section": "Semantic Layer"
+		},
+		{
+			"name": "Getting started with the semantic layer - Docs",
+			"url": "https://posthog.com/docs/semantic-layer/start-here.md",
+			"description": "",
+			"section": "Semantic Layer"
+		},
+		{
+			"name": "Governance - Docs",
+			"url": "https://posthog.com/docs/semantic-layer/governance.md",
+			"description": "",
+			"section": "Semantic Layer"
+		},
+		{
+			"name": "Metrics - Docs",
+			"url": "https://posthog.com/docs/semantic-layer/metrics.md",
+			"description": "",
+			"section": "Semantic Layer"
+		},
+		{
+			"name": "Query the semantic layer with SQL - Docs",
+			"url": "https://posthog.com/docs/semantic-layer/query.md",
+			"description": "",
+			"section": "Semantic Layer"
+		},
+		{
+			"name": "Semantic layer - Docs",
+			"url": "https://posthog.com/docs/semantic-layer.md",
+			"description": "",
+			"section": "Semantic Layer"
+		},
+		{
+			"name": "Semantic layer MCP tools - Docs",
+			"url": "https://posthog.com/docs/semantic-layer/mcp-tools.md",
+			"description": "",
+			"section": "Semantic Layer"
+		},
+		{
+			"name": "Troubleshooting and limitations - Docs",
+			"url": "https://posthog.com/docs/semantic-layer/troubleshooting.md",
+			"description": "",
+			"section": "Semantic Layer"
+		}
+	]
+}

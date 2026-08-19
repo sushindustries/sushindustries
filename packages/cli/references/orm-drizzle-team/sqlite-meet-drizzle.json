@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "sqlite/meet drizzle",
+	"entries": [
+		{
+			"name": "Drizzle ORM",
+			"url": "https://orm.drizzle.team/docs/sqlite/overview",
+			"description": "",
+			"section": "sqlite/meet drizzle"
+		}
+	]
+}

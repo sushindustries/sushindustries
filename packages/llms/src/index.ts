@@ -9,7 +9,8 @@
  *
  *   llms.txt        the map - one line per page, with a description
  *   llms-full.txt   the territory - every page's text, inlined
- *   sitemap.xml     the canonical URL list, for search crawlers
+ *   sitemap.xml     the canonical URL list, for search crawlers - flat, or
+ *                   as an index of per-section shards
  *   robots.txt      the rules, pointing at the other three
  *
  * A reader that only needs to know what exists fetches the index and stops.
@@ -130,20 +131,56 @@ export function renderLlmsFull(
 		if (section.entries.length === 0) continue;
 
 		for (const entry of section.entries) {
-			lines.push("---");
-			lines.push(`title: ${entry.title}`);
-			lines.push(`section: ${section.title}`);
-			if (entry.description) {
-				lines.push(`description: ${entry.description}`);
-			}
-			lines.push(`source: ${url(site.origin, entry.path)}`);
-			lines.push("---", "");
-
-			if (entry.body) lines.push(entry.body.trim(), "");
+			lines.push(renderPageDocument(site, entry, { section: section.title }));
 		}
 	}
 
 	return `${lines.join("\n")}\n`;
+}
+
+/**
+ * One page as a standalone document: the frontmatter block that names it,
+ * then its text.
+ *
+ * Exported because a site that also mirrors each page at its own URL needs
+ * exactly one page's worth of this, and a second implementation of a wire
+ * format is a second thing to keep in step. `renderLlmsFull` is now this
+ * function in a loop.
+ */
+export function renderPageDocument(
+	site: SiteDescription,
+	entry: SiteEntry,
+	options: { section?: string } = {},
+): string {
+	const lines = ["---", `title: ${entry.title}`];
+
+	if (options.section) lines.push(`section: ${options.section}`);
+	if (entry.description) lines.push(`description: ${entry.description}`);
+
+	lines.push(`source: ${url(site.origin, entry.path)}`);
+	lines.push("---", "");
+
+	if (entry.body) lines.push(entry.body.trim(), "");
+
+	return lines.join("\n");
+}
+
+/**
+ * One section as a Markdown listing: its heading, its description, and one
+ * line per entry in the same shape `llms.txt` uses.
+ */
+export function renderSectionIndex(
+	site: SiteDescription,
+	section: SiteSection,
+): string {
+	const lines = [`# ${section.title}`, ""];
+
+	if (section.description) lines.push(section.description, "");
+
+	for (const entry of section.entries) lines.push(entryLine(site, entry));
+	lines.push("");
+
+	return lines.join("\n");
 }
 
 /** The five characters that are not legal as XML text. */
@@ -156,6 +193,23 @@ function escapeXml(value: string): string {
 		.replace(/'/g, "&apos;");
 }
 
+/** One `<urlset>` for a list of paths. The shared shape of every shard. */
+export function renderUrlset(origin: string, paths: readonly string[]): string {
+	// A duplicate <loc> is not an error, but it is a sign the caller's lists
+	// overlap, and deduping here is cheaper than every caller remembering.
+	const unique = [...new Set(paths)];
+
+	const body = unique
+		.map((path) => `\t<url><loc>${escapeXml(url(origin, path))}</loc></url>`)
+		.join("\n");
+
+	return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${body}
+</urlset>
+`;
+}
+
 export function renderSitemap(site: SiteDescription): string {
 	const paths = [
 		...(site.extraPaths ?? []),
@@ -166,21 +220,103 @@ export function renderSitemap(site: SiteDescription): string {
 		),
 	];
 
-	// A duplicate <loc> is not an error, but it is a sign the caller's lists
-	// overlap, and deduping here is cheaper than every caller remembering.
-	const unique = [...new Set(paths)];
+	return renderUrlset(site.origin, paths);
+}
 
-	const body = unique
+export interface SitemapShard {
+	/** Site-relative path the shard is served at, e.g. `/sitemap-0.xml`. */
+	readonly path: string;
+	/** The page paths this shard lists, deduped, `noindex` already dropped. */
+	readonly paths: readonly string[];
+}
+
+/*
+ * The sharded form of the same sitemap: one shard per section, so a crawler
+ * that saw one section change refetches one small file rather than the whole
+ * roster, and adding a section adds a shard without touching any route.
+ *
+ * Shard 0 carries the paths only `extraPaths` knows about - the home page and
+ * the section indexes. Entry paths repeated in `extraPaths` are dropped there
+ * rather than deduped later, so no URL appears in two shards.
+ *
+ * Shards are numbered, not named: the number scheme lets a section be renamed
+ * without invalidating the shard URL a crawler already holds. A section whose
+ * entries are all `noindex` gets no shard - an empty urlset in the index is a
+ * crawl request that returns nothing.
+ */
+export function sitemapShards(site: SiteDescription): readonly SitemapShard[] {
+	/*
+	 * Only indexable entries claim their path: a `noindex` entry appears in no
+	 * shard, so letting it knock the same path out of the extras would drop
+	 * that URL from the sitemap entirely. The home page sat behind exactly
+	 * this - capability entries pointing at `/` are noindex, and `/` still has
+	 * to be published by shard 0.
+	 */
+	const entryPaths = new Set(
+		site.sections.flatMap((section) =>
+			section.entries
+				.filter((entry) => !entry.noindex)
+				.map((entry) => entry.path),
+		),
+	);
+	const extras = [
+		...new Set((site.extraPaths ?? []).filter((path) => !entryPaths.has(path))),
+	];
+
+	const groups: (readonly string[])[] = [];
+	if (extras.length > 0) groups.push(extras);
+
+	for (const section of site.sections) {
+		const paths = [
+			...new Set(
+				section.entries
+					.filter((entry) => !entry.noindex)
+					.map((entry) => entry.path),
+			),
+		];
+		if (paths.length > 0) groups.push(paths);
+	}
+
+	return groups.map((paths, index) => ({
+		path: `/sitemap-${index}.xml`,
+		paths,
+	}));
+}
+
+/**
+ * The `<sitemapindex>` pointing at the shards.
+ *
+ * `shardPaths` overrides the derived list, which is how a second index (say,
+ * one for a site's Markdown mirrors) reuses the rendering without pretending
+ * its shards come from the sections.
+ */
+export function renderSitemapIndex(
+	site: SiteDescription,
+	shardPaths?: readonly string[],
+): string {
+	const paths = shardPaths ?? sitemapShards(site).map((shard) => shard.path);
+
+	const body = paths
 		.map(
-			(path) => `\t<url><loc>${escapeXml(url(site.origin, path))}</loc></url>`,
+			(path) =>
+				`\t<sitemap><loc>${escapeXml(url(site.origin, path))}</loc></sitemap>`,
 		)
 		.join("\n");
 
 	return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${body}
-</urlset>
+</sitemapindex>
 `;
+}
+
+/** One shard as a urlset, or undefined when the number names no shard. */
+export function renderSitemapShard(
+	site: SiteDescription,
+	shard: number,
+): string | undefined {
+	const found = sitemapShards(site)[shard];
+	return found ? renderUrlset(site.origin, found.paths) : undefined;
 }
 
 export interface RobotsOptions {
@@ -240,4 +376,198 @@ export function renderRobots(
 	}
 
 	return `${lines.join("\n")}\n`;
+}
+
+/* ── reading a document back ─────────────────────────────────────────── */
+
+export interface DocHeading {
+	readonly level: number;
+	readonly title: string;
+	/** The text under this heading, up to the next one of the same level or higher. */
+	readonly body: string;
+}
+
+export interface DocFence {
+	readonly language: string;
+	readonly code: string;
+}
+
+export interface ParsedDoc {
+	readonly frontmatter: Readonly<Record<string, string>>;
+	readonly title?: string;
+	readonly summary?: string;
+	/** Everything before the first heading. What the page opens with. */
+	readonly lead: string;
+	readonly headings: readonly DocHeading[];
+	readonly fences: readonly DocFence[];
+	/** Site-relative links, deduplicated, in the order they appear. */
+	readonly links: readonly string[];
+	readonly words: number;
+}
+
+/**
+ * A Markdown document, read as structure rather than as a blob.
+ *
+ * Every surface above renders documents outwards; this reads one back in, and
+ * it exists because handing an agent nine kilobytes of Markdown to answer
+ * "what props does this take" is the expensive way to say something short.
+ * With the sections named, a caller can ask for the one it wants.
+ *
+ * Deliberately not a Markdown parser. It recognises frontmatter, ATX
+ * headings, fenced code and links, and it ignores everything else - which is
+ * enough to describe a document and far less than enough to render one. The
+ * moment this needs to understand emphasis, the answer is that the caller
+ * wanted the raw text and should have asked for it.
+ *
+ * Fenced code is cut out before headings are scanned. A `#` at the start of a
+ * line inside a shell block is a comment, and counting it as a section is the
+ * failure this ordering exists to avoid.
+ */
+export function parseDoc(source: string): ParsedDoc {
+	const { frontmatter, body } = splitFrontmatter(source);
+
+	const fences: DocFence[] = [];
+	// Replaced by blank lines of the same count, so every line number below
+	// still corresponds to the line it came from.
+	const withoutFences = body.replace(
+		/^```([\w-]*)[^\n]*\n([\s\S]*?)^```[^\n]*$/gm,
+		(whole, language: string, code: string) => {
+			fences.push({
+				language: language || "text",
+				code: code.replace(/\n$/, ""),
+			});
+			return "\n".repeat(whole.split("\n").length - 1);
+		},
+	);
+
+	const lines = withoutFences.split("\n");
+	const marks: { level: number; title: string; at: number }[] = [];
+	for (const [at, line] of lines.entries()) {
+		const heading = /^(#{1,6})\s+(.*)$/.exec(line);
+		if (heading) {
+			marks.push({
+				level: (heading[1] ?? "").length,
+				title: (heading[2] ?? "").trim(),
+				at,
+			});
+		}
+	}
+
+	const headings = marks.map((mark, index) => ({
+		level: mark.level,
+		title: mark.title,
+		body: lines
+			.slice(mark.at + 1, marks[index + 1]?.at ?? lines.length)
+			.join("\n")
+			.trim(),
+	}));
+
+	const lead = lines
+		.slice(0, marks[0]?.at ?? lines.length)
+		.join("\n")
+		.trim();
+
+	const links = [
+		...new Set(
+			[...body.matchAll(/\]\((\/[^)\s]*)\)/g)].flatMap(
+				([, href]) => href ?? [],
+			),
+		),
+	];
+
+	return {
+		frontmatter,
+		title: frontmatter.title ?? marks.find((mark) => mark.level === 1)?.title,
+		summary: frontmatter.summary,
+		lead,
+		headings,
+		fences,
+		links,
+		words: withoutFences.split(/\s+/).filter(Boolean).length,
+	};
+}
+
+/**
+ * The `---` block at the top, as flat key/value pairs.
+ *
+ * Flat because that is all this repo's frontmatter ever is: a title, a
+ * summary, a date, a tag list left as its literal text. Parsing YAML properly
+ * would be a dependency bought to read six keys.
+ */
+function splitFrontmatter(source: string): {
+	frontmatter: Record<string, string>;
+	body: string;
+} {
+	const match = /^---\n([\s\S]*?)\n---\n?/.exec(source);
+	if (!match) return { frontmatter: {}, body: source };
+
+	const frontmatter: Record<string, string> = {};
+	for (const line of (match[1] ?? "").split("\n")) {
+		const at = line.indexOf(":");
+		if (at === -1 || line.startsWith("#")) continue;
+		frontmatter[line.slice(0, at).trim()] = line
+			.slice(at + 1)
+			.trim()
+			.replace(/^"(.*)"$/, "$1");
+	}
+
+	return { frontmatter, body: source.slice(match[0].length) };
+}
+
+/* ── what a reply costs ──────────────────────────────────────────────── */
+
+/**
+ * Roughly how many tokens a string will cost the model reading it.
+ *
+ * Four characters per token, which is the usual approximation for English
+ * prose and close enough for the only decision it informs: whether to send a
+ * document or to send its outline instead. A real tokeniser would be a
+ * dependency, a model-specific answer, and a more precise number than a
+ * threshold needs.
+ *
+ * It errs high on code and on anything with a lot of punctuation, which is the
+ * direction to err in when the cost of being wrong is a blown context window.
+ */
+export function estimateTokens(value: string): number {
+	return Math.ceil(value.length / 4);
+}
+
+export interface BudgetResult {
+	readonly text: string;
+	readonly tokens: number;
+	readonly truncated: boolean;
+}
+
+/**
+ * A reply cut to fit, with the cut declared in the reply itself.
+ *
+ * The failure this exists to prevent is quiet: a tool returns a document far
+ * larger than anybody intended, the window fills, and the earliest and most
+ * important part of the conversation is what gets dropped to make room. The
+ * caller never sees a cause, only worse answers.
+ *
+ * So the truncation is loud. What is returned always says how much was cut and
+ * what to do instead, because a reply that stops mid-sentence with no note is
+ * indistinguishable from a document that simply ends there - and acting on a
+ * half-read API table is worse than not reading it.
+ */
+export function withinBudget(
+	value: string,
+	maxTokens: number,
+	advice = "Narrow the request and ask again.",
+): BudgetResult {
+	const tokens = estimateTokens(value);
+	if (tokens <= maxTokens) return { text: value, tokens, truncated: false };
+
+	const keep = maxTokens * 4;
+	// Cut at a line, not mid-word: a truncated fence or table row reads as
+	// malformed content rather than as a truncation.
+	const cut = value.slice(0, keep);
+	const text = cut.slice(0, Math.max(cut.lastIndexOf("\n"), 0) || keep);
+
+	return {
+		text: `${text}\n\n[cut here: this reply was about ${tokens.toLocaleString()} tokens, over the ${maxTokens.toLocaleString()} limit. ${advice}]`,
+		tokens,
+		truncated: true,
+	};
 }

@@ -1,0 +1,54 @@
+{
+	"provider": "posthog-com",
+	"section": "New To Posthog",
+	"entries": [
+		{
+			"name": "Getting HogPilled: Winning with PostHog - Docs",
+			"url": "https://posthog.com/docs/new-to-posthog/getting-hogpilled.md",
+			"description": "",
+			"section": "New To Posthog"
+		},
+		{
+			"name": "Planning your pilot - Docs",
+			"url": "https://posthog.com/docs/new-to-posthog/switch-guide/planning-your-pilot.md",
+			"description": "",
+			"section": "New To Posthog"
+		},
+		{
+			"name": "See the money: Capturing revenue with PostHog - Docs",
+			"url": "https://posthog.com/docs/new-to-posthog/revenue.md",
+			"description": "",
+			"section": "New To Posthog"
+		},
+		{
+			"name": "Switching to PostHog - Docs",
+			"url": "https://posthog.com/docs/new-to-posthog/switch-guide/switching-to-posthog.md",
+			"description": "",
+			"section": "New To Posthog"
+		},
+		{
+			"name": "Users getting value: Measuring activation with PostHog - Docs",
+			"url": "https://posthog.com/docs/new-to-posthog/activation.md",
+			"description": "",
+			"section": "New To Posthog"
+		},
+		{
+			"name": "Users who come back: Tracking retention with PostHog - Docs",
+			"url": "https://posthog.com/docs/new-to-posthog/retention.md",
+			"description": "",
+			"section": "New To Posthog"
+		},
+		{
+			"name": "What to expect as you migrate - Docs",
+			"url": "https://posthog.com/docs/new-to-posthog/switch-guide/migration-planning.md",
+			"description": "",
+			"section": "New To Posthog"
+		},
+		{
+			"name": "Your data in PostHog - Docs",
+			"url": "https://posthog.com/docs/new-to-posthog/understand-posthog.md",
+			"description": "",
+			"section": "New To Posthog"
+		}
+	]
+}

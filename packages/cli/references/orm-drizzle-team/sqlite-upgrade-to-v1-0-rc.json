@@ -1,0 +1,24 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "sqlite/Upgrade to v1.0 RC",
+	"entries": [
+		{
+			"name": "Upgrading to Drizzle v1",
+			"url": "https://orm.drizzle.team/docs/sqlite/upgrade-v1",
+			"description": "",
+			"section": "sqlite/Upgrade to v1.0 RC"
+		},
+		{
+			"name": "Changes in v1",
+			"url": "https://orm.drizzle.team/docs/sqlite/v0-v1-changes",
+			"description": "",
+			"section": "sqlite/Upgrade to v1.0 RC"
+		},
+		{
+			"name": "Migrating to Relational Queries version 2",
+			"url": "https://orm.drizzle.team/docs/sqlite/relations-v1-v2",
+			"description": "",
+			"section": "sqlite/Upgrade to v1.0 RC"
+		}
+	]
+}

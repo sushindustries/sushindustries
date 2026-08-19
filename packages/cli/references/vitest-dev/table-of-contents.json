@@ -1,0 +1,1152 @@
+{
+	"provider": "vitest-dev",
+	"section": "Table of Contents",
+	"entries": [
+		{
+			"name": "Configuring Vitest",
+			"url": "https://vitest.dev/config.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "include | Config",
+			"url": "https://vitest.dev/config/include.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "exclude | Config",
+			"url": "https://vitest.dev/config/exclude.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "includeSource | Config",
+			"url": "https://vitest.dev/config/include-source.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "name | Config",
+			"url": "https://vitest.dev/config/name.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "server | Config",
+			"url": "https://vitest.dev/config/server.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "deps | Config",
+			"url": "https://vitest.dev/config/deps.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "runner | Config",
+			"url": "https://vitest.dev/config/runner.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "benchmark | Config",
+			"url": "https://vitest.dev/config/benchmark.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "alias | Config",
+			"url": "https://vitest.dev/config/alias.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "globals | Config",
+			"url": "https://vitest.dev/config/globals.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "environment | Config",
+			"url": "https://vitest.dev/config/environment.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "environmentOptions | Config",
+			"url": "https://vitest.dev/config/environmentoptions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "watch | Config",
+			"url": "https://vitest.dev/config/watch.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "watchTriggerPatterns | Config",
+			"url": "https://vitest.dev/config/watchtriggerpatterns.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "root | Config",
+			"url": "https://vitest.dev/config/root.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "dir | Config",
+			"url": "https://vitest.dev/config/dir.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "reporters | Config",
+			"url": "https://vitest.dev/config/reporters.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "outputFile | Config",
+			"url": "https://vitest.dev/config/outputfile.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "pool | Config",
+			"url": "https://vitest.dev/config/pool.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "execArgv | Config",
+			"url": "https://vitest.dev/config/execargv.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "vmMemoryLimit | Config",
+			"url": "https://vitest.dev/config/vmmemorylimit.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "fileParallelism | Config",
+			"url": "https://vitest.dev/config/fileparallelism.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "maxWorkers | Config",
+			"url": "https://vitest.dev/config/maxworkers.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "testTimeout | Config",
+			"url": "https://vitest.dev/config/testtimeout.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "hookTimeout | Config",
+			"url": "https://vitest.dev/config/hooktimeout.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "teardownTimeout | Config",
+			"url": "https://vitest.dev/config/teardowntimeout.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "silent | Config",
+			"url": "https://vitest.dev/config/silent.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "setupFiles | Config",
+			"url": "https://vitest.dev/config/setupfiles.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "provide | Config",
+			"url": "https://vitest.dev/config/provide.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "globalSetup | Config",
+			"url": "https://vitest.dev/config/globalsetup.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "forceRerunTriggers | Config",
+			"url": "https://vitest.dev/config/forcereruntriggers.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "coverage | Config",
+			"url": "https://vitest.dev/config/coverage.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "testNamePattern | Config",
+			"url": "https://vitest.dev/config/testnamepattern.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "ui | Config",
+			"url": "https://vitest.dev/config/ui.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "open | Config",
+			"url": "https://vitest.dev/config/open.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "api | Config",
+			"url": "https://vitest.dev/config/api.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "clearMocks | Config",
+			"url": "https://vitest.dev/config/clearmocks.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "mockReset | Config",
+			"url": "https://vitest.dev/config/mockreset.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "restoreMocks | Config",
+			"url": "https://vitest.dev/config/restoremocks.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "unstubEnvs | Config",
+			"url": "https://vitest.dev/config/unstubenvs.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "unstubGlobals | Config",
+			"url": "https://vitest.dev/config/unstubglobals.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "snapshotFormat | Config",
+			"url": "https://vitest.dev/config/snapshotformat.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "snapshotSerializers | Config",
+			"url": "https://vitest.dev/config/snapshotserializers.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "resolveSnapshotPath | Config",
+			"url": "https://vitest.dev/config/resolvesnapshotpath.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "allowOnly | Config",
+			"url": "https://vitest.dev/config/allowonly.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "passWithNoTests | Config",
+			"url": "https://vitest.dev/config/passwithnotests.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "logHeapUsage | Config",
+			"url": "https://vitest.dev/config/logheapusage.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "css | Config",
+			"url": "https://vitest.dev/config/css.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "maxConcurrency | Config",
+			"url": "https://vitest.dev/config/maxconcurrency.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "cache | Config",
+			"url": "https://vitest.dev/config/cache.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "sequence | Config",
+			"url": "https://vitest.dev/config/sequence.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "tags | Config",
+			"url": "https://vitest.dev/config/tags.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "strictTags | Config",
+			"url": "https://vitest.dev/config/stricttags.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "typecheck | Config",
+			"url": "https://vitest.dev/config/typecheck.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "slowTestThreshold | Config",
+			"url": "https://vitest.dev/config/slowtestthreshold.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "chaiConfig | Config",
+			"url": "https://vitest.dev/config/chaiconfig.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "bail | Config",
+			"url": "https://vitest.dev/config/bail.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "retry | Config",
+			"url": "https://vitest.dev/config/retry.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "onConsoleLog | Config",
+			"url": "https://vitest.dev/config/onconsolelog.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "onStackTrace | Config",
+			"url": "https://vitest.dev/config/onstacktrace.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "onUnhandledError | Config",
+			"url": "https://vitest.dev/config/onunhandlederror.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "dangerouslyIgnoreUnhandledErrors | Config",
+			"url": "https://vitest.dev/config/dangerouslyignoreunhandlederrors.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "diff | Config",
+			"url": "https://vitest.dev/config/diff.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "fakeTimers | Config",
+			"url": "https://vitest.dev/config/faketimers.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "projects | Config",
+			"url": "https://vitest.dev/config/projects.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "isolate | Config",
+			"url": "https://vitest.dev/config/isolate.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "includeTaskLocation | Config",
+			"url": "https://vitest.dev/config/includetasklocation.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "snapshotEnvironment | Config",
+			"url": "https://vitest.dev/config/snapshotenvironment.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "env | Config",
+			"url": "https://vitest.dev/config/env.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "expect | Config",
+			"url": "https://vitest.dev/config/expect.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "printConsoleTrace | Config",
+			"url": "https://vitest.dev/config/printconsoletrace.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "attachmentsDir | Config",
+			"url": "https://vitest.dev/config/attachmentsdir.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "hideSkippedTests | Config",
+			"url": "https://vitest.dev/config/hideskippedtests.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "mode | Config",
+			"url": "https://vitest.dev/config/mode.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "expandSnapshotDiff | Config",
+			"url": "https://vitest.dev/config/expandsnapshotdiff.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "disableConsoleIntercept | Config",
+			"url": "https://vitest.dev/config/disableconsoleintercept.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "experimental | Config",
+			"url": "https://vitest.dev/config/experimental.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.enabled | Config",
+			"url": "https://vitest.dev/config/browser/enabled.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.instances | Config",
+			"url": "https://vitest.dev/config/browser/instances.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.headless | Config",
+			"url": "https://vitest.dev/config/browser/headless.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.isolate | Config",
+			"url": "https://vitest.dev/config/browser/isolate.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.testerHtmlPath | Config",
+			"url": "https://vitest.dev/config/browser/testerhtmlpath.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.api | Config",
+			"url": "https://vitest.dev/config/browser/api.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.provider | Config",
+			"url": "https://vitest.dev/config/browser/provider.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.ui | Config",
+			"url": "https://vitest.dev/config/browser/ui.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.detailsPanelPosition | Config",
+			"url": "https://vitest.dev/config/browser/detailspanelposition.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.viewport | Config",
+			"url": "https://vitest.dev/config/browser/viewport.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.locators | Config",
+			"url": "https://vitest.dev/config/browser/locators.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.screenshotDirectory | Config",
+			"url": "https://vitest.dev/config/browser/screenshotdirectory.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.screenshotFailures | Config",
+			"url": "https://vitest.dev/config/browser/screenshotfailures.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.orchestratorScripts | Config",
+			"url": "https://vitest.dev/config/browser/orchestratorscripts.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.commands | Config",
+			"url": "https://vitest.dev/config/browser/commands.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.connectTimeout | Config",
+			"url": "https://vitest.dev/config/browser/connecttimeout.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.trace | Config",
+			"url": "https://vitest.dev/config/browser/trace.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.trackUnhandledErrors | Config",
+			"url": "https://vitest.dev/config/browser/trackunhandlederrors.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "browser.expect | Config",
+			"url": "https://vitest.dev/config/browser/expect.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Configuring Playwright",
+			"url": "https://vitest.dev/config/browser/playwright.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Configuring WebdriverIO",
+			"url": "https://vitest.dev/config/browser/webdriverio.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Configuring Preview",
+			"url": "https://vitest.dev/config/browser/preview.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Why Vitest | Guide",
+			"url": "https://vitest.dev/guide/why.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Getting Started | Guide",
+			"url": "https://vitest.dev/guide.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Features | Guide",
+			"url": "https://vitest.dev/guide/features.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Writing Tests | Guide",
+			"url": "https://vitest.dev/guide/learn/writing-tests.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Using Matchers | Guide",
+			"url": "https://vitest.dev/guide/learn/matchers.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Testing Asynchronous Code | Guide",
+			"url": "https://vitest.dev/guide/learn/async.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Setup and Teardown | Guide",
+			"url": "https://vitest.dev/guide/learn/setup-teardown.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Mock Functions | Guide",
+			"url": "https://vitest.dev/guide/learn/mock-functions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Snapshot Testing | Guide",
+			"url": "https://vitest.dev/guide/learn/snapshots.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Testing in Practice | Guide",
+			"url": "https://vitest.dev/guide/learn/testing-in-practice.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Debugging Failing Tests | Guide",
+			"url": "https://vitest.dev/guide/learn/debugging-tests.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Writing Tests with AI | Guide",
+			"url": "https://vitest.dev/guide/learn/writing-tests-with-ai.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Why Browser Mode | Browser Mode",
+			"url": "https://vitest.dev/guide/browser/why.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Browser Mode | Guide",
+			"url": "https://vitest.dev/guide/browser.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Multiple Setups",
+			"url": "https://vitest.dev/guide/browser/multiple-setups.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Component Testing | Guide",
+			"url": "https://vitest.dev/guide/browser/component-testing.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Visual Regression Testing",
+			"url": "https://vitest.dev/guide/browser/visual-regression-testing.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Trace View",
+			"url": "https://vitest.dev/guide/browser/trace-view.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "ARIA Snapshots | Guide",
+			"url": "https://vitest.dev/guide/browser/aria-snapshots.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Command Line Interface | Guide",
+			"url": "https://vitest.dev/guide/cli.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Test Filtering | Guide",
+			"url": "https://vitest.dev/guide/filtering.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Test Tags | Guide",
+			"url": "https://vitest.dev/guide/test-tags.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Test Context | Guide",
+			"url": "https://vitest.dev/guide/test-context.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Test Environment | Guide",
+			"url": "https://vitest.dev/guide/environment.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Test Run Lifecycle | Guide",
+			"url": "https://vitest.dev/guide/lifecycle.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Snapshot | Guide",
+			"url": "https://vitest.dev/guide/snapshot.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Mocking | Guide",
+			"url": "https://vitest.dev/guide/mocking.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Parallelism | Guide",
+			"url": "https://vitest.dev/guide/parallelism.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Test Projects | Guide",
+			"url": "https://vitest.dev/guide/projects.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Reporters | Guide",
+			"url": "https://vitest.dev/guide/reporters.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Coverage | Guide",
+			"url": "https://vitest.dev/guide/coverage.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Testing Types | Guide",
+			"url": "https://vitest.dev/guide/testing-types.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Vitest UI | Guide",
+			"url": "https://vitest.dev/guide/ui.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "In-Source Testing | Guide",
+			"url": "https://vitest.dev/guide/in-source.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Test Annotations | Guide",
+			"url": "https://vitest.dev/guide/test-annotations.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Extending Matchers | Guide",
+			"url": "https://vitest.dev/guide/extending-matchers.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "IDE Integrations | Guide",
+			"url": "https://vitest.dev/guide/ide.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Debugging | Guide",
+			"url": "https://vitest.dev/guide/debugging.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Common Errors | Guide",
+			"url": "https://vitest.dev/guide/common-errors.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Migration Guide | Guide",
+			"url": "https://vitest.dev/guide/migration.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Open Telemetry Support  {#open-telemetry-support}",
+			"url": "https://vitest.dev/guide/open-telemetry.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Mocking Dates",
+			"url": "https://vitest.dev/guide/mocking/dates.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Mocking Functions",
+			"url": "https://vitest.dev/guide/mocking/functions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Mocking Globals",
+			"url": "https://vitest.dev/guide/mocking/globals.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Mocking Modules",
+			"url": "https://vitest.dev/guide/mocking/modules.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Mocking the File System",
+			"url": "https://vitest.dev/guide/mocking/file-system.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Mocking Requests",
+			"url": "https://vitest.dev/guide/mocking/requests.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Timers",
+			"url": "https://vitest.dev/guide/mocking/timers.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Mocking Classes",
+			"url": "https://vitest.dev/guide/mocking/classes.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Profiling Test Performance",
+			"url": "https://vitest.dev/guide/profiling-test-performance.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Improving Performance",
+			"url": "https://vitest.dev/guide/improving-performance.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Advanced API",
+			"url": "https://vitest.dev/guide/advanced.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Running Tests advanced {#running-tests}",
+			"url": "https://vitest.dev/guide/advanced/tests.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Extending Reporters advanced {#extending-reporters}",
+			"url": "https://vitest.dev/guide/advanced/reporters.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Custom Pool advanced {#custom-pool}",
+			"url": "https://vitest.dev/guide/advanced/pool.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Recipes | Guide",
+			"url": "https://vitest.dev/guide/recipes.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Comparisons with Other Test Runners | Guide",
+			"url": "https://vitest.dev/guide/comparisons.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Test",
+			"url": "https://vitest.dev/api/test.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "describe",
+			"url": "https://vitest.dev/api/describe.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Hooks",
+			"url": "https://vitest.dev/api/hooks.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Context API | Browser Mode",
+			"url": "https://vitest.dev/api/browser/context.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Interactivity API | Browser Mode",
+			"url": "https://vitest.dev/api/browser/interactivity.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Locators | Browser Mode",
+			"url": "https://vitest.dev/api/browser/locators.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Assertion API | Browser Mode",
+			"url": "https://vitest.dev/api/browser/assertions.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Commands | Browser Mode",
+			"url": "https://vitest.dev/api/browser/commands.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "vitest-browser-react",
+			"url": "https://vitest.dev/api/browser/react.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "vitest-browser-vue",
+			"url": "https://vitest.dev/api/browser/vue.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "vitest-browser-svelte",
+			"url": "https://vitest.dev/api/browser/svelte.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Vitest API",
+			"url": "https://vitest.dev/api/advanced/vitest.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "TestProject",
+			"url": "https://vitest.dev/api/advanced/test-project.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "TestSpecification",
+			"url": "https://vitest.dev/api/advanced/test-specification.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "TestCase",
+			"url": "https://vitest.dev/api/advanced/test-case.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "TestSuite",
+			"url": "https://vitest.dev/api/advanced/test-suite.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "TestModule",
+			"url": "https://vitest.dev/api/advanced/test-module.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "TestCollection",
+			"url": "https://vitest.dev/api/advanced/test-collection.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Plugin API",
+			"url": "https://vitest.dev/api/advanced/plugin.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Runner API advanced",
+			"url": "https://vitest.dev/api/advanced/runner.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Reporters",
+			"url": "https://vitest.dev/api/advanced/reporters.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Task Metadata advanced",
+			"url": "https://vitest.dev/api/advanced/metadata.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Test Artifacts",
+			"url": "https://vitest.dev/api/advanced/artifacts.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "assert",
+			"url": "https://vitest.dev/api/assert.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "assertType",
+			"url": "https://vitest.dev/api/assert-type.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "detectAsyncLeaks | Config",
+			"url": "https://vitest.dev/config/detectasyncleaks.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "expect",
+			"url": "https://vitest.dev/api/expect.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "expectTypeOf",
+			"url": "https://vitest.dev/api/expect-typeof.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Mocks",
+			"url": "https://vitest.dev/api/mock.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Remove UnoCSS - Migration Complete",
+			"url": "https://vitest.dev/todo.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Untitled",
+			"url": "https://vitest.dev/api/advanced/import-example.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "update | Config",
+			"url": "https://vitest.dev/config/update.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Using Plugins | Guide",
+			"url": "https://vitest.dev/guide/using-plugins.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Vi",
+			"url": "https://vitest.dev/api/vi.md",
+			"description": "",
+			"section": "Table of Contents"
+		}
+	]
+}

@@ -1,0 +1,30 @@
+{
+	"provider": "tanstack-com",
+	"section": "Data & State Management docs",
+	"entries": [
+		{
+			"name": "TanStack Query",
+			"url": "https://tanstack.com/query/latest/llms.txt",
+			"description": "Powerful asynchronous state management, server-state utilities and data fetching. Frameworks: React, Preact, Solid, Vue, Svelte, Angular, Lit. Packages: @tanstack/query-core, react-query. GitHub: https://github.com/tanstack/query.",
+			"section": "Data & State Management docs"
+		},
+		{
+			"name": "TanStack DB",
+			"url": "https://tanstack.com/db/latest/llms.txt",
+			"description": "The reactive client-first store for your API. Frameworks: React, Vue, Solid, Svelte, Vanilla. Packages: @tanstack/db, @tanstack/react-db. GitHub: https://github.com/tanstack/db.",
+			"section": "Data & State Management docs"
+		},
+		{
+			"name": "TanStack Store",
+			"url": "https://tanstack.com/store/latest/llms.txt",
+			"description": "Framework agnostic data store with reactive framework adapters. Frameworks: React, Preact, Solid, Svelte, Vue, Angular, Lit, Octane. Packages: @tanstack/store. GitHub: https://github.com/tanstack/store.",
+			"section": "Data & State Management docs"
+		},
+		{
+			"name": "TanStack AI",
+			"url": "https://tanstack.com/ai/latest/llms.txt",
+			"description": "The headless agent framework for TypeScript. Bring your own stack. Frameworks: React, Vue, Solid, Svelte, Preact, Angular, Vanilla. Packages: @tanstack/ai-client. GitHub: https://github.com/tanstack/ai.",
+			"section": "Data & State Management docs"
+		}
+	]
+}

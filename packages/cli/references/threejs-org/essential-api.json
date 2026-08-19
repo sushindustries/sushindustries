@@ -1,0 +1,186 @@
+{
+	"provider": "threejs-org",
+	"section": "Essential API",
+	"entries": [
+		{
+			"name": "Object3D",
+			"url": "https://threejs.org/docs/#api/en/core/Object3D",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "BufferGeometry",
+			"url": "https://threejs.org/docs/#api/en/core/BufferGeometry",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "BufferAttribute",
+			"url": "https://threejs.org/docs/#api/en/core/BufferAttribute",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "Scene",
+			"url": "https://threejs.org/docs/#api/en/scenes/Scene",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "PerspectiveCamera",
+			"url": "https://threejs.org/docs/#api/en/cameras/PerspectiveCamera",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "OrthographicCamera",
+			"url": "https://threejs.org/docs/#api/en/cameras/OrthographicCamera",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "WebGLRenderer",
+			"url": "https://threejs.org/docs/#api/en/renderers/WebGLRenderer",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "WebGPURenderer",
+			"url": "https://threejs.org/docs/#api/en/renderers/webgpu/WebGPURenderer",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "Mesh",
+			"url": "https://threejs.org/docs/#api/en/objects/Mesh",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "InstancedMesh",
+			"url": "https://threejs.org/docs/#api/en/objects/InstancedMesh",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "Group",
+			"url": "https://threejs.org/docs/#api/en/objects/Group",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "MeshBasicMaterial",
+			"url": "https://threejs.org/docs/#api/en/materials/MeshBasicMaterial",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "MeshStandardMaterial",
+			"url": "https://threejs.org/docs/#api/en/materials/MeshStandardMaterial",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "MeshPhysicalMaterial",
+			"url": "https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "BoxGeometry",
+			"url": "https://threejs.org/docs/#api/en/geometries/BoxGeometry",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "SphereGeometry",
+			"url": "https://threejs.org/docs/#api/en/geometries/SphereGeometry",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "PlaneGeometry",
+			"url": "https://threejs.org/docs/#api/en/geometries/PlaneGeometry",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "AmbientLight",
+			"url": "https://threejs.org/docs/#api/en/lights/AmbientLight",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "DirectionalLight",
+			"url": "https://threejs.org/docs/#api/en/lights/DirectionalLight",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "PointLight",
+			"url": "https://threejs.org/docs/#api/en/lights/PointLight",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "SpotLight",
+			"url": "https://threejs.org/docs/#api/en/lights/SpotLight",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "TextureLoader",
+			"url": "https://threejs.org/docs/#api/en/loaders/TextureLoader",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "GLTFLoader",
+			"url": "https://threejs.org/docs/#examples/en/loaders/GLTFLoader",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "OrbitControls",
+			"url": "https://threejs.org/docs/#examples/en/controls/OrbitControls",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "TransformControls",
+			"url": "https://threejs.org/docs/#examples/en/controls/TransformControls",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "Vector2",
+			"url": "https://threejs.org/docs/#api/en/math/Vector2",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "Vector3",
+			"url": "https://threejs.org/docs/#api/en/math/Vector3",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "Matrix4",
+			"url": "https://threejs.org/docs/#api/en/math/Matrix4",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "Quaternion",
+			"url": "https://threejs.org/docs/#api/en/math/Quaternion",
+			"description": "",
+			"section": "Essential API"
+		},
+		{
+			"name": "Color",
+			"url": "https://threejs.org/docs/#api/en/math/Color",
+			"description": "",
+			"section": "Essential API"
+		}
+	]
+}

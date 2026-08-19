@@ -25,4 +25,4 @@ in a `.functions.ts` `createServerFn`, and have the loader call the wrapper.
 (`apps/web/src/routes/packages/$slug.tsx`) goes through
 `stats.functions.ts` -> `stats.server.ts`, exactly the intended shape.
 
-**Source:** `references/01-tanstack-official-safety.md`.
+**Source:** `.claude/skills/sushindustries-conventions/references/01-tanstack-official.md`.

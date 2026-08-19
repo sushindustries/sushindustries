@@ -1,0 +1,30 @@
+{
+	"provider": "docs-railway-com",
+	"section": "Access",
+	"entries": [
+		{
+			"name": "Access",
+			"url": "https://docs.railway.com/access.md",
+			"description": "Manage your Railway account, secure it with multi-factor authentication, and enforce security policies across your team.",
+			"section": "Access"
+		},
+		{
+			"name": "Accounts",
+			"url": "https://docs.railway.com/access/accounts.md",
+			"description": "Learn about Railway Accounts",
+			"section": "Access"
+		},
+		{
+			"name": "Two-factor enforcement",
+			"url": "https://docs.railway.com/access/two-factor-enforcement.md",
+			"description": "Learn how workspace admins can require two-factor authentication for all workspace members.",
+			"section": "Access"
+		},
+		{
+			"name": "Multi-factor authentication",
+			"url": "https://docs.railway.com/access/multi-factor-authentication.md",
+			"description": "Secure your Railway account with multi-factor authentication using authenticator apps or passkeys.",
+			"section": "Access"
+		}
+	]
+}

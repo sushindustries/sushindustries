@@ -1,0 +1,12 @@
+{
+	"provider": "docs-railway-com",
+	"section": "More pages",
+	"entries": [
+		{
+			"name": "How Private Networking Works",
+			"url": "https://docs.railway.com/networking/private-networking/how-it-works.md",
+			"description": "Technical deep-dive into Railway's private networking architecture.",
+			"section": "More pages"
+		}
+	]
+}

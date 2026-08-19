@@ -1,0 +1,18 @@
+{
+	"provider": "tanstack-com",
+	"section": "Framework docs",
+	"entries": [
+		{
+			"name": "TanStack Start",
+			"url": "https://tanstack.com/start/latest/llms.txt",
+			"description": "Full-stack Framework powered by TanStack Router for React and Solid. Frameworks: React, Solid. Packages: @tanstack/start-client-core. GitHub: https://github.com/tanstack/router.",
+			"section": "Framework docs"
+		},
+		{
+			"name": "TanStack Router",
+			"url": "https://tanstack.com/router/latest/llms.txt",
+			"description": "Type-safe Routing for React and Solid applications. Frameworks: React, Solid. Packages: @tanstack/router-core, react-location. GitHub: https://github.com/tanstack/router.",
+			"section": "Framework docs"
+		}
+	]
+}

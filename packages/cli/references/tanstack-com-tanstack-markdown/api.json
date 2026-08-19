@@ -1,0 +1,54 @@
+{
+	"provider": "tanstack-com-tanstack-markdown",
+	"section": "API",
+	"entries": [
+		{
+			"name": "API Index",
+			"url": "https://tanstack.com/markdown/latest/docs/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Default Entry",
+			"url": "https://tanstack.com/markdown/latest/docs/reference/default-entry.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Parser",
+			"url": "https://tanstack.com/markdown/latest/docs/reference/parser.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HTML",
+			"url": "https://tanstack.com/markdown/latest/docs/reference/html.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React",
+			"url": "https://tanstack.com/markdown/latest/docs/reference/react.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane",
+			"url": "https://tanstack.com/markdown/latest/docs/reference/octane.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Types",
+			"url": "https://tanstack.com/markdown/latest/docs/reference/types.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Extensions",
+			"url": "https://tanstack.com/markdown/latest/docs/reference/extensions.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

@@ -1,0 +1,210 @@
+{
+	"provider": "posthog-com",
+	"section": "Logs",
+	"entries": [
+		{
+			"name": ".NET Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/dotnet.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Android Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/android.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Datadog Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/datadog.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Explain a log with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/logs/explain-logs-ai.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Flutter Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/flutter.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Getting started with Logs - Docs",
+			"url": "https://posthog.com/docs/logs/start-here.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Go Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/go.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Install OpenTelemetry logging - Docs",
+			"url": "https://posthog.com/docs/logs/installation.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "iOS Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/ios.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Java Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/java.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "JavaScript web Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/javascript.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Link logs to a person - Docs",
+			"url": "https://posthog.com/docs/logs/link-person.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Link session replay - Docs",
+			"url": "https://posthog.com/docs/logs/link-session-replay.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Log patterns - Docs",
+			"url": "https://posthog.com/docs/logs/patterns.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Logging best practices - Docs",
+			"url": "https://posthog.com/docs/logs/best-practices.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Logs - Docs",
+			"url": "https://posthog.com/docs/logs.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Logs changelog - Docs",
+			"url": "https://posthog.com/docs/logs/changelog.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Logs pricing - Docs",
+			"url": "https://posthog.com/docs/logs/pricing.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Logs troubleshooting - Docs",
+			"url": "https://posthog.com/docs/logs/troubleshooting.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Next.js Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/nextjs.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Node.js Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/nodejs.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Other languages Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/other.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "PII scrubbing - Docs",
+			"url": "https://posthog.com/docs/logs/pii-scrubbing.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Python Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/python.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "React Native Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/react-native.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Ruby on Rails Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/ruby-on-rails.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Rust Logs installation - Docs",
+			"url": "https://posthog.com/docs/logs/installation/rust.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Search logs - Docs",
+			"url": "https://posthog.com/docs/logs/search.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Set up log alerts - Docs",
+			"url": "https://posthog.com/docs/logs/alerts.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Use Logs in PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/logs/surfaces/desktop.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Use Logs in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/logs/surfaces/web-app.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Use Logs over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/logs/surfaces/mcp.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Use the Logs API - Docs",
+			"url": "https://posthog.com/docs/logs/surfaces/api.md",
+			"description": "",
+			"section": "Logs"
+		},
+		{
+			"name": "Why you need logs - Docs",
+			"url": "https://posthog.com/docs/logs/basics.md",
+			"description": "",
+			"section": "Logs"
+		}
+	]
+}

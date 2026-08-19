@@ -1,0 +1,792 @@
+{
+	"provider": "tanstack-com-tanstack-ai",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "TanStack AI vs Vercel AI SDK",
+			"url": "https://tanstack.com/ai/latest/docs/comparison/vercel-ai-sdk.md",
+			"description": "(added 2026-04-15, updated 2026-08-12)",
+			"section": "Guides"
+		},
+		{
+			"name": "Tools",
+			"url": "https://tanstack.com/ai/latest/docs/tools/tools.md",
+			"description": "(added 2026-04-15, updated 2026-07-08)",
+			"section": "Guides"
+		},
+		{
+			"name": "Provider Tools",
+			"url": "https://tanstack.com/ai/latest/docs/tools/provider-tools.md",
+			"description": "(added 2026-04-21, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "Provider Skills",
+			"url": "https://tanstack.com/ai/latest/docs/tools/provider-skills.md",
+			"description": "(added 2026-06-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Tool Architecture",
+			"url": "https://tanstack.com/ai/latest/docs/tools/tool-architecture.md",
+			"description": "(added 2026-04-15, updated 2026-08-17)",
+			"section": "Guides"
+		},
+		{
+			"name": "Server Tools",
+			"url": "https://tanstack.com/ai/latest/docs/tools/server-tools.md",
+			"description": "(added 2026-04-15, updated 2026-08-17)",
+			"section": "Guides"
+		},
+		{
+			"name": "Client Tools",
+			"url": "https://tanstack.com/ai/latest/docs/tools/client-tools.md",
+			"description": "(added 2026-04-15, updated 2026-07-21)",
+			"section": "Guides"
+		},
+		{
+			"name": "Tool Approval Flow",
+			"url": "https://tanstack.com/ai/latest/docs/tools/tool-approval.md",
+			"description": "(added 2026-04-15, updated 2026-07-24)",
+			"section": "Guides"
+		},
+		{
+			"name": "Lazy Tool Discovery",
+			"url": "https://tanstack.com/ai/latest/docs/tools/lazy-tool-discovery.md",
+			"description": "(added 2026-04-15, updated 2026-06-08)",
+			"section": "Guides"
+		},
+		{
+			"name": "MCP Server Tools",
+			"url": "https://tanstack.com/ai/latest/docs/tools/mcp.md",
+			"description": "(added 2026-06-05, updated 2026-07-31)",
+			"section": "Guides"
+		},
+		{
+			"name": "Managed MCP with chat()",
+			"url": "https://tanstack.com/ai/latest/docs/tools/mcp-managed.md",
+			"description": "(added 2026-06-05)",
+			"section": "Guides"
+		},
+		{
+			"name": "Manual MCP",
+			"url": "https://tanstack.com/ai/latest/docs/tools/mcp-manual.md",
+			"description": "(added 2026-06-05)",
+			"section": "Guides"
+		},
+		{
+			"name": "MCP Type Generation",
+			"url": "https://tanstack.com/ai/latest/docs/tools/mcp-codegen.md",
+			"description": "(added 2026-06-05)",
+			"section": "Guides"
+		},
+		{
+			"name": "MCP Apps",
+			"url": "https://tanstack.com/ai/latest/docs/mcp/apps.md",
+			"description": "(added 2026-06-24, updated 2026-07-03)",
+			"section": "Guides"
+		},
+		{
+			"name": "Agentic Cycle",
+			"url": "https://tanstack.com/ai/latest/docs/chat/agentic-cycle.md",
+			"description": "(added 2026-04-15, updated 2026-07-21)",
+			"section": "Guides"
+		},
+		{
+			"name": "Streaming",
+			"url": "https://tanstack.com/ai/latest/docs/chat/streaming.md",
+			"description": "(added 2026-04-15, updated 2026-07-30)",
+			"section": "Guides"
+		},
+		{
+			"name": "Connection Adapters",
+			"url": "https://tanstack.com/ai/latest/docs/chat/connection-adapters.md",
+			"description": "(added 2026-04-15, updated 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "Thinking & Reasoning",
+			"url": "https://tanstack.com/ai/latest/docs/chat/thinking-content.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		},
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/ai/latest/docs/interrupts/overview.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Tool Approval",
+			"url": "https://tanstack.com/ai/latest/docs/interrupts/tool-approval.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Multiple Interrupts",
+			"url": "https://tanstack.com/ai/latest/docs/interrupts/multiple.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Generic Interrupts",
+			"url": "https://tanstack.com/ai/latest/docs/interrupts/generic.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Migration",
+			"url": "https://tanstack.com/ai/latest/docs/interrupts/migration.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/ai/latest/docs/resumable-streams/overview.md",
+			"description": "(added 2026-08-04, updated 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "Advanced",
+			"url": "https://tanstack.com/ai/latest/docs/resumable-streams/advanced.md",
+			"description": "(added 2026-08-04, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "WebSockets",
+			"url": "https://tanstack.com/ai/latest/docs/resumable-streams/websockets.md",
+			"description": "(added 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "Custom Durability Adapter",
+			"url": "https://tanstack.com/ai/latest/docs/resumable-streams/custom-adapter.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/overview.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Chat Persistence",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/chat-persistence.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Client Persistence",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/client-persistence.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Generation Persistence",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/generation-persistence.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Controls",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/controls.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Build Your Own Adapter",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/build-your-own-adapter.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Migrations",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/migrations.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Id Map",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/id-map.md",
+			"description": "(added 2026-08-04, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "Keep Generated Files",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/keep-generated-files.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Build a Chat Adapter",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/build-your-own-chat-adapter.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Build a Generation Adapter",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/build-your-own-generation-adapter.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Build a Sandbox Adapter",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/build-a-sandbox-adapter.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Store Reference",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/store-reference.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "How Persistence Works",
+			"url": "https://tanstack.com/ai/latest/docs/persistence/internals.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Custom Events Reference",
+			"url": "https://tanstack.com/ai/latest/docs/protocol/custom-events.md",
+			"description": "(added 2026-07-03, updated 2026-08-14)",
+			"section": "Guides"
+		},
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/ai/latest/docs/structured-outputs/overview.md",
+			"description": "(added 2026-05-19, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "One-Shot Extraction",
+			"url": "https://tanstack.com/ai/latest/docs/structured-outputs/one-shot.md",
+			"description": "(added 2026-05-19, updated 2026-08-14)",
+			"section": "Guides"
+		},
+		{
+			"name": "Streaming UIs",
+			"url": "https://tanstack.com/ai/latest/docs/structured-outputs/streaming.md",
+			"description": "(added 2026-05-19, updated 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "Multi-Turn Chat",
+			"url": "https://tanstack.com/ai/latest/docs/structured-outputs/multi-turn.md",
+			"description": "(added 2026-05-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "With Tools",
+			"url": "https://tanstack.com/ai/latest/docs/structured-outputs/with-tools.md",
+			"description": "(added 2026-05-19, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "Harness Agents",
+			"url": "https://tanstack.com/ai/latest/docs/structured-outputs/harnesses.md",
+			"description": "(added 2026-08-14, updated 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "Code Mode",
+			"url": "https://tanstack.com/ai/latest/docs/code-mode/code-mode.md",
+			"description": "(added 2026-04-15, updated 2026-06-11)",
+			"section": "Guides"
+		},
+		{
+			"name": "Showing Code Mode in the UI",
+			"url": "https://tanstack.com/ai/latest/docs/code-mode/client-integration.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		},
+		{
+			"name": "Code Mode with Snippets",
+			"url": "https://tanstack.com/ai/latest/docs/code-mode/code-mode-with-snippets.md",
+			"description": "(added 2026-04-15, updated 2026-08-14)",
+			"section": "Guides"
+		},
+		{
+			"name": "Code Mode Isolate Drivers",
+			"url": "https://tanstack.com/ai/latest/docs/code-mode/code-mode-isolates.md",
+			"description": "(added 2026-04-15, updated 2026-08-13)",
+			"section": "Guides"
+		},
+		{
+			"name": "Lazy Tools",
+			"url": "https://tanstack.com/ai/latest/docs/code-mode/lazy-tools.md",
+			"description": "(added 2026-06-08)",
+			"section": "Guides"
+		},
+		{
+			"name": "Generations",
+			"url": "https://tanstack.com/ai/latest/docs/media/generations.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "Realtime Voice Chat",
+			"url": "https://tanstack.com/ai/latest/docs/media/realtime-chat.md",
+			"description": "(added 2026-04-15, updated 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Text-to-Speech",
+			"url": "https://tanstack.com/ai/latest/docs/media/text-to-speech.md",
+			"description": "(added 2026-04-15, updated 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Transcription",
+			"url": "https://tanstack.com/ai/latest/docs/media/transcription.md",
+			"description": "(added 2026-04-15, updated 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Audio Recording",
+			"url": "https://tanstack.com/ai/latest/docs/media/audio-recording.md",
+			"description": "(added 2026-06-23, updated 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Audio Generation",
+			"url": "https://tanstack.com/ai/latest/docs/media/audio-generation.md",
+			"description": "(added 2026-04-23, updated 2026-08-08)",
+			"section": "Guides"
+		},
+		{
+			"name": "Image Generation",
+			"url": "https://tanstack.com/ai/latest/docs/media/image-generation.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "Video Generation",
+			"url": "https://tanstack.com/ai/latest/docs/media/video-generation.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "Generation Hooks",
+			"url": "https://tanstack.com/ai/latest/docs/media/generation-hooks.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "Embeddings",
+			"url": "https://tanstack.com/ai/latest/docs/embeddings.md",
+			"description": "(added 2026-07-10, updated 2026-08-12)",
+			"section": "Guides"
+		},
+		{
+			"name": "Reranking",
+			"url": "https://tanstack.com/ai/latest/docs/rerank/rerank.md",
+			"description": "(added 2026-06-25, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "Middleware",
+			"url": "https://tanstack.com/ai/latest/docs/advanced/middleware.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "Built-in Middleware",
+			"url": "https://tanstack.com/ai/latest/docs/advanced/built-in-middleware.md",
+			"description": "(added 2026-06-03, updated 2026-07-21)",
+			"section": "Guides"
+		},
+		{
+			"name": "Locks",
+			"url": "https://tanstack.com/ai/latest/docs/advanced/locks.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "OpenTelemetry",
+			"url": "https://tanstack.com/ai/latest/docs/advanced/otel.md",
+			"description": "(added 2026-05-08, updated 2026-08-08)",
+			"section": "Guides"
+		},
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/overview.md",
+			"description": "(added 2026-06-16, updated 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "Quick Start",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/quick-start.md",
+			"description": "(added 2026-06-29, updated 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "Providers",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/providers.md",
+			"description": "(added 2026-06-29, updated 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "Harnesses",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/harnesses.md",
+			"description": "(added 2026-06-30, updated 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "Harness Auth",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/auth.md",
+			"description": "(added 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "Workspace",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/workspace.md",
+			"description": "(added 2026-06-29, updated 2026-08-12)",
+			"section": "Guides"
+		},
+		{
+			"name": "Tools",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/tools.md",
+			"description": "(added 2026-06-29, updated 2026-08-12)",
+			"section": "Guides"
+		},
+		{
+			"name": "Policy",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/policy.md",
+			"description": "(added 2026-06-29, updated 2026-08-12)",
+			"section": "Guides"
+		},
+		{
+			"name": "Lifecycle & Snapshots",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/lifecycle.md",
+			"description": "(added 2026-06-29, updated 2026-08-12)",
+			"section": "Guides"
+		},
+		{
+			"name": "Instance Durability",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/durability.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Durable Runs",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/durable-runs.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Events",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/events.md",
+			"description": "(added 2026-06-29, updated 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "The Run Journal",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/journal.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Takeover & Detached Runs",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/takeover.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Reaping & Retention",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/reaping.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Provisioning",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/provisioning.md",
+			"description": "(added 2026-06-29, updated 2026-08-12)",
+			"section": "Guides"
+		},
+		{
+			"name": "Observability",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/observability.md",
+			"description": "(added 2026-06-29, updated 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Cloudflare (Edge)",
+			"url": "https://tanstack.com/ai/latest/docs/sandbox/cloudflare.md",
+			"description": "(added 2026-06-29, updated 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/ai/latest/docs/memory/overview.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Quickstart",
+			"url": "https://tanstack.com/ai/latest/docs/memory/quickstart.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Adapters",
+			"url": "https://tanstack.com/ai/latest/docs/memory/adapters.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Custom Adapter",
+			"url": "https://tanstack.com/ai/latest/docs/memory/custom-adapter.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Operating",
+			"url": "https://tanstack.com/ai/latest/docs/memory/operating.md",
+			"description": "(added 2026-08-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Runtime Context",
+			"url": "https://tanstack.com/ai/latest/docs/advanced/runtime-context.md",
+			"description": "(added 2026-06-01, updated 2026-07-08)",
+			"section": "Guides"
+		},
+		{
+			"name": "Debug Logging",
+			"url": "https://tanstack.com/ai/latest/docs/advanced/debug-logging.md",
+			"description": "(added 2026-04-22)",
+			"section": "Guides"
+		},
+		{
+			"name": "Multimodal Content",
+			"url": "https://tanstack.com/ai/latest/docs/advanced/multimodal-content.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		},
+		{
+			"name": "Per-Model Type Safety",
+			"url": "https://tanstack.com/ai/latest/docs/advanced/per-model-type-safety.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		},
+		{
+			"name": "Runtime Adapter Switching",
+			"url": "https://tanstack.com/ai/latest/docs/advanced/runtime-adapter-switching.md",
+			"description": "(added 2026-04-15, updated 2026-08-14)",
+			"section": "Guides"
+		},
+		{
+			"name": "Tree-Shaking",
+			"url": "https://tanstack.com/ai/latest/docs/advanced/tree-shaking.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		},
+		{
+			"name": "Extend Adapter",
+			"url": "https://tanstack.com/ai/latest/docs/advanced/extend-adapter.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		},
+		{
+			"name": "Typed Pre-Configured Options",
+			"url": "https://tanstack.com/ai/latest/docs/advanced/typed-options.md",
+			"description": "(added 2026-05-25)",
+			"section": "Guides"
+		},
+		{
+			"name": "Approval Flow Processing",
+			"url": "https://tanstack.com/ai/latest/docs/architecture/approval-flow-processing.md",
+			"description": "(added 2026-04-15, updated 2026-07-21)",
+			"section": "Guides"
+		},
+		{
+			"name": "Migration Guide",
+			"url": "https://tanstack.com/ai/latest/docs/migration/migration.md",
+			"description": "(added 2026-04-15, updated 2026-07-22)",
+			"section": "Guides"
+		},
+		{
+			"name": "From Vercel AI SDK",
+			"url": "https://tanstack.com/ai/latest/docs/migration/migration-from-vercel-ai.md",
+			"description": "(added 2026-04-20, updated 2026-07-22)",
+			"section": "Guides"
+		},
+		{
+			"name": "AG-UI Client Compliance",
+			"url": "https://tanstack.com/ai/latest/docs/migration/ag-ui-compliance.md",
+			"description": "(added 2026-05-16, updated 2026-07-31)",
+			"section": "Guides"
+		},
+		{
+			"name": "Sampling â†’ modelOptions",
+			"url": "https://tanstack.com/ai/latest/docs/migration/sampling-options-to-model-options.md",
+			"description": "(added 2026-06-03)",
+			"section": "Guides"
+		},
+		{
+			"name": "OpenAI",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/openai.md",
+			"description": "(added 2026-04-15, updated 2026-07-22)",
+			"section": "Guides"
+		},
+		{
+			"name": "Anthropic",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/anthropic.md",
+			"description": "(added 2026-04-15, updated 2026-07-04)",
+			"section": "Guides"
+		},
+		{
+			"name": "Google Gemini",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/gemini.md",
+			"description": "(added 2026-04-15, updated 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "Ollama",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/ollama.md",
+			"description": "(added 2026-04-15, updated 2026-07-22)",
+			"section": "Guides"
+		},
+		{
+			"name": "Grok (xAI)",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/grok.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "Groq",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/groq.md",
+			"description": "(added 2026-04-15, updated 2026-08-07)",
+			"section": "Guides"
+		},
+		{
+			"name": "Mistral",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/mistral.md",
+			"description": "(added 2026-06-30, updated 2026-07-22)",
+			"section": "Guides"
+		},
+		{
+			"name": "Cohere",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/cohere.md",
+			"description": "(added 2026-06-25, updated 2026-08-10)",
+			"section": "Guides"
+		},
+		{
+			"name": "ElevenLabs",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/elevenlabs.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		},
+		{
+			"name": "fal.ai",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/fal.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		},
+		{
+			"name": "OpenRouter Adapter",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/openrouter.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "Perplexity Search",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/perplexity.md",
+			"description": "(added 2026-08-13)",
+			"section": "Guides"
+		},
+		{
+			"name": "Vercel AI Gateway",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/vercel-gateway.md",
+			"description": "(added 2026-08-12, updated 2026-08-12)",
+			"section": "Guides"
+		},
+		{
+			"name": "OpenAI-Compatible",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/openai-compatible.md",
+			"description": "(added 2026-06-01, updated 2026-08-13)",
+			"section": "Guides"
+		},
+		{
+			"name": "Claude Code",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/claude-code.md",
+			"description": "(added 2026-06-12, updated 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "Codex",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/codex.md",
+			"description": "(added 2026-06-12, updated 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "OpenCode",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/opencode.md",
+			"description": "(added 2026-06-12, updated 2026-08-17)",
+			"section": "Guides"
+		},
+		{
+			"name": "Grok Build",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/grok-build.md",
+			"description": "(added 2026-06-29, updated 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "ACP-Compatible",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/acp-compatible.md",
+			"description": "(added 2026-06-30, updated 2026-08-18)",
+			"section": "Guides"
+		},
+		{
+			"name": "Amazon Bedrock",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/bedrock.md",
+			"description": "(added 2026-06-25, updated 2026-07-22)",
+			"section": "Guides"
+		},
+		{
+			"name": "BytePlus",
+			"url": "https://tanstack.com/ai/latest/docs/adapters/byteplus.md",
+			"description": "(added 2026-08-04, updated 2026-08-19)",
+			"section": "Guides"
+		},
+		{
+			"name": "Community Adapters Guide",
+			"url": "https://tanstack.com/ai/latest/docs/community-adapters/guide.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		},
+		{
+			"name": "Decart",
+			"url": "https://tanstack.com/ai/latest/docs/community-adapters/decart.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		},
+		{
+			"name": "Cencori",
+			"url": "https://tanstack.com/ai/latest/docs/community-adapters/cencori.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		},
+		{
+			"name": "Cloudflare",
+			"url": "https://tanstack.com/ai/latest/docs/community-adapters/cloudflare.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		},
+		{
+			"name": "Soniox",
+			"url": "https://tanstack.com/ai/latest/docs/community-adapters/soniox.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		},
+		{
+			"name": "Mynth",
+			"url": "https://tanstack.com/ai/latest/docs/community-adapters/mynth.md",
+			"description": "(added 2026-04-15)",
+			"section": "Guides"
+		}
+	]
+}

@@ -1,0 +1,30 @@
+{
+	"provider": "tanstack-com-tanstack-pacer",
+	"section": "General",
+	"entries": [
+		{
+			"name": "Docs index",
+			"url": "https://tanstack.com/pacer/latest/docs/index.md",
+			"description": "This same Markdown index.",
+			"section": "General"
+		},
+		{
+			"name": "LLMs index",
+			"url": "https://tanstack.com/pacer/latest/llms.txt",
+			"description": "This same Markdown index.",
+			"section": "General"
+		},
+		{
+			"name": "Library home",
+			"url": "https://tanstack.com/pacer/latest",
+			"description": "",
+			"section": "General"
+		},
+		{
+			"name": "GitHub",
+			"url": "https://github.com/tanstack/pacer",
+			"description": "",
+			"section": "General"
+		}
+	]
+}

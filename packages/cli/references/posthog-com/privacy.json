@@ -1,0 +1,54 @@
+{
+	"provider": "posthog-com",
+	"section": "Privacy",
+	"entries": [
+		{
+			"name": "Controlling data collection - Docs",
+			"url": "https://posthog.com/docs/privacy/data-collection.md",
+			"description": "",
+			"section": "Privacy"
+		},
+		{
+			"name": "Controlling data storage - Docs",
+			"url": "https://posthog.com/docs/privacy/data-storage.md",
+			"description": "",
+			"section": "Privacy"
+		},
+		{
+			"name": "PostHog &amp; CCPA compliance - Docs",
+			"url": "https://posthog.com/docs/privacy/ccpa-compliance.md",
+			"description": "",
+			"section": "Privacy"
+		},
+		{
+			"name": "PostHog &amp; GDPR compliance - Docs",
+			"url": "https://posthog.com/docs/privacy/gdpr-compliance.md",
+			"description": "",
+			"section": "Privacy"
+		},
+		{
+			"name": "PostHog &amp; HIPAA compliance - Docs",
+			"url": "https://posthog.com/docs/privacy/hipaa-compliance.md",
+			"description": "",
+			"section": "Privacy"
+		},
+		{
+			"name": "PostHog &amp; SOC 2 compliance - Docs",
+			"url": "https://posthog.com/docs/privacy/soc2.md",
+			"description": "",
+			"section": "Privacy"
+		},
+		{
+			"name": "Privacy compliance - Docs",
+			"url": "https://posthog.com/docs/privacy.md",
+			"description": "",
+			"section": "Privacy"
+		},
+		{
+			"name": "Tracking endpoints and ad blockers - Docs",
+			"url": "https://posthog.com/docs/privacy/ad-blockers.md",
+			"description": "",
+			"section": "Privacy"
+		}
+	]
+}

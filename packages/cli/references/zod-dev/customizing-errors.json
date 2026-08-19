@@ -1,0 +1,54 @@
+{
+	"provider": "zod-dev",
+	"section": "Customizing errors",
+	"entries": [
+		{
+			"name": "Customizing errors",
+			"url": "https://zod.dev/error-customization",
+			"description": "Guide to customizing validation error messages and error handling patterns",
+			"section": "Customizing errors"
+		},
+		{
+			"name": "The error param",
+			"url": "https://zod.dev/error-customization?id=the-error-param",
+			"description": "",
+			"section": "Customizing errors"
+		},
+		{
+			"name": "Per-parse error customization",
+			"url": "https://zod.dev/error-customization?id=per-parse-error-customization",
+			"description": "",
+			"section": "Customizing errors"
+		},
+		{
+			"name": "Include input in issues",
+			"url": "https://zod.dev/error-customization?id=include-input-in-issues",
+			"description": "",
+			"section": "Customizing errors"
+		},
+		{
+			"name": "Global error customization",
+			"url": "https://zod.dev/error-customization?id=global-error-customization",
+			"description": "",
+			"section": "Customizing errors"
+		},
+		{
+			"name": "Internationalization",
+			"url": "https://zod.dev/error-customization?id=internationalization",
+			"description": "",
+			"section": "Customizing errors"
+		},
+		{
+			"name": "Locales",
+			"url": "https://zod.dev/error-customization?id=locales",
+			"description": "",
+			"section": "Customizing errors"
+		},
+		{
+			"name": "Error precedence",
+			"url": "https://zod.dev/error-customization?id=error-precedence",
+			"description": "",
+			"section": "Customizing errors"
+		}
+	]
+}

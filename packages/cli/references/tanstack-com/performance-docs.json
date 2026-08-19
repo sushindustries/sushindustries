@@ -1,0 +1,18 @@
+{
+	"provider": "tanstack-com",
+	"section": "Performance docs",
+	"entries": [
+		{
+			"name": "TanStack Virtual",
+			"url": "https://tanstack.com/virtual/latest/llms.txt",
+			"description": "Headless UI for Virtualizing Large Element Lists. Frameworks: React, Solid, Vue, Svelte, Lit, Angular, Marko. Packages: @tanstack/virtual-core, react-virtual. GitHub: https://github.com/tanstack/virtual.",
+			"section": "Performance docs"
+		},
+		{
+			"name": "TanStack Pacer",
+			"url": "https://tanstack.com/pacer/latest/llms.txt",
+			"description": "Framework agnostic debouncing, throttling, rate limiting, queuing, and batching utilities. Frameworks: React, Preact, Solid, Angular, Vanilla. Packages: @tanstack/pacer, @tanstack/pacer-lite. GitHub: https://github.com/tanstack/pacer.",
+			"section": "Performance docs"
+		}
+	]
+}

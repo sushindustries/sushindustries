@@ -97,8 +97,22 @@ export default defineConfig({
 
 		tanstackStart({
 			// Import protection is on by default and is what keeps
-			// `@sushindustries/db`'s client.server.ts out of the browser bundle, so
-			// there is nothing to configure there.
+			// `@sushindustries/db`'s client.server.ts out of the browser bundle.
+			// The default client pattern is `**/*.server.*`, which needs a segment
+			// before `.server.` - so a file named plainly `server.ts` matches
+			// nothing and is not protected at all. Measured rather than assumed on
+			// 2026-08-19: a bare `server.ts` reading `process.env.DATABASE_URL`,
+			// imported from a route component, built clean with zero diagnostics,
+			// while the same module named `probe.server.ts` failed the build.
+			//
+			// `files` replaces the defaults rather than appending to them, so the
+			// original pattern is restated here. Dropping it would trade one blind
+			// spot for a much larger one.
+			importProtection: {
+				client: {
+					files: ["**/*.server.*", "**/server.ts"],
+				},
+			},
 			//
 			// Prerendering, because almost everything this site renders is fixed
 			// at build time and identical for every visitor - posts, built pages,

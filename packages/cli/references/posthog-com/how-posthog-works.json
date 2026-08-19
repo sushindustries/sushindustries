@@ -1,0 +1,42 @@
+{
+	"provider": "posthog-com",
+	"section": "How Posthog Works",
+	"entries": [
+		{
+			"name": "ClickHouse - Docs",
+			"url": "https://posthog.com/docs/how-posthog-works/clickhouse.md",
+			"description": "",
+			"section": "How Posthog Works"
+		},
+		{
+			"name": "Data model: fields - Docs",
+			"url": "https://posthog.com/docs/how-posthog-works/data-model.md",
+			"description": "",
+			"section": "How Posthog Works"
+		},
+		{
+			"name": "Ingestion pipeline - Docs",
+			"url": "https://posthog.com/docs/how-posthog-works/ingestion-pipeline.md",
+			"description": "",
+			"section": "How Posthog Works"
+		},
+		{
+			"name": "PostHog&#x27;s architecture - Docs",
+			"url": "https://posthog.com/docs/how-posthog-works.md",
+			"description": "",
+			"section": "How Posthog Works"
+		},
+		{
+			"name": "Querying data - Docs",
+			"url": "https://posthog.com/docs/how-posthog-works/queries.md",
+			"description": "",
+			"section": "How Posthog Works"
+		},
+		{
+			"name": "Session replay ingestion - Docs",
+			"url": "https://posthog.com/docs/how-posthog-works/recordings-ingestion.md",
+			"description": "",
+			"section": "How Posthog Works"
+		}
+	]
+}

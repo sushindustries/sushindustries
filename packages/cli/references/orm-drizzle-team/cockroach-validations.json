@@ -1,0 +1,42 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "cockroach/Validations",
+	"entries": [
+		{
+			"name": "zod",
+			"url": "https://orm.drizzle.team/docs/cockroach/zod",
+			"description": "",
+			"section": "cockroach/Validations"
+		},
+		{
+			"name": "valibot",
+			"url": "https://orm.drizzle.team/docs/cockroach/valibot",
+			"description": "",
+			"section": "cockroach/Validations"
+		},
+		{
+			"name": "typebox",
+			"url": "https://orm.drizzle.team/docs/cockroach/typebox",
+			"description": "",
+			"section": "cockroach/Validations"
+		},
+		{
+			"name": "arktype",
+			"url": "https://orm.drizzle.team/docs/cockroach/arktype",
+			"description": "",
+			"section": "cockroach/Validations"
+		},
+		{
+			"name": "typebox-legacy",
+			"url": "https://orm.drizzle.team/docs/cockroach/typebox-legacy",
+			"description": "",
+			"section": "cockroach/Validations"
+		},
+		{
+			"name": "effect-schema",
+			"url": "https://orm.drizzle.team/docs/cockroach/effect-schema",
+			"description": "",
+			"section": "cockroach/Validations"
+		}
+	]
+}

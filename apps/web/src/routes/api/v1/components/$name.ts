@@ -19,7 +19,7 @@ export const Route = createFileRoute("/api/v1/components/$name")({
 				return json({
 					...item,
 					url: `${origin}/components/${item.name}`,
-					markdown: `${origin}/r/md/${item.name}`,
+					markdown: `${origin}/components/${item.name}/index.md`,
 					prompt: `${origin}/r/prompt/${item.name}`,
 					install: {
 						tanstack: `${origin}/r/tanstack/${item.name}.json`,

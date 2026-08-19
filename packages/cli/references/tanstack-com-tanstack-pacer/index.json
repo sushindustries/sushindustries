@@ -1,0 +1,47 @@
+{
+	"provider": "tanstack-com-tanstack-pacer",
+	"source": "https://tanstack.com/pacer/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Pacer docs",
+	"summary": "Optimize your application's performance with TanStack Pacer's core primitives: Debouncing, Throttling, Rate Limiting, Queuing, and Batching.",
+	"total": 437,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 8,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 56,
+			"file": "guides.json"
+		},
+		{
+			"name": "API",
+			"entries": 217,
+			"file": "api.json"
+		},
+		{
+			"name": "Examples",
+			"entries": 152,
+			"file": "examples.json"
+		}
+	]
+}

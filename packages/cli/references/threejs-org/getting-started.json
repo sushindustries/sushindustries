@@ -1,0 +1,30 @@
+{
+	"provider": "threejs-org",
+	"section": "Getting Started",
+	"entries": [
+		{
+			"name": "Installation",
+			"url": "https://threejs.org/manual/#en/installation",
+			"description": "",
+			"section": "Getting Started"
+		},
+		{
+			"name": "Creating a Scene",
+			"url": "https://threejs.org/manual/#en/creating-a-scene",
+			"description": "",
+			"section": "Getting Started"
+		},
+		{
+			"name": "Fundamentals",
+			"url": "https://threejs.org/manual/#en/fundamentals",
+			"description": "",
+			"section": "Getting Started"
+		},
+		{
+			"name": "Responsive Design",
+			"url": "https://threejs.org/manual/#en/responsive",
+			"description": "",
+			"section": "Getting Started"
+		}
+	]
+}

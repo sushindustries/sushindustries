@@ -1,0 +1,72 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "singlestore/Migrations",
+	"entries": [
+		{
+			"name": "Migrations with Drizzle Kit",
+			"url": "https://orm.drizzle.team/docs/singlestore/kit-overview",
+			"description": "",
+			"section": "singlestore/Migrations"
+		},
+		{
+			"name": "`drizzle-kit generate`",
+			"url": "https://orm.drizzle.team/docs/singlestore/drizzle-kit-generate",
+			"description": "",
+			"section": "singlestore/Migrations"
+		},
+		{
+			"name": "`drizzle-kit migrate`",
+			"url": "https://orm.drizzle.team/docs/singlestore/drizzle-kit-migrate",
+			"description": "",
+			"section": "singlestore/Migrations"
+		},
+		{
+			"name": "`drizzle-kit push`",
+			"url": "https://orm.drizzle.team/docs/singlestore/drizzle-kit-push",
+			"description": "",
+			"section": "singlestore/Migrations"
+		},
+		{
+			"name": "`drizzle-kit pull`",
+			"url": "https://orm.drizzle.team/docs/singlestore/drizzle-kit-pull",
+			"description": "",
+			"section": "singlestore/Migrations"
+		},
+		{
+			"name": "`drizzle-kit export`",
+			"url": "https://orm.drizzle.team/docs/singlestore/drizzle-kit-export",
+			"description": "",
+			"section": "singlestore/Migrations"
+		},
+		{
+			"name": "`drizzle-kit check`",
+			"url": "https://orm.drizzle.team/docs/singlestore/drizzle-kit-check",
+			"description": "",
+			"section": "singlestore/Migrations"
+		},
+		{
+			"name": "`drizzle-kit up`",
+			"url": "https://orm.drizzle.team/docs/singlestore/drizzle-kit-up",
+			"description": "",
+			"section": "singlestore/Migrations"
+		},
+		{
+			"name": "`drizzle-kit studio`",
+			"url": "https://orm.drizzle.team/docs/singlestore/drizzle-kit-studio",
+			"description": "",
+			"section": "singlestore/Migrations"
+		},
+		{
+			"name": "Migrations with Drizzle Kit",
+			"url": "https://orm.drizzle.team/docs/singlestore/kit-custom-migrations",
+			"description": "",
+			"section": "singlestore/Migrations"
+		},
+		{
+			"name": "Drizzle Kit configuration file",
+			"url": "https://orm.drizzle.team/docs/singlestore/drizzle-config-file",
+			"description": "",
+			"section": "singlestore/Migrations"
+		}
+	]
+}

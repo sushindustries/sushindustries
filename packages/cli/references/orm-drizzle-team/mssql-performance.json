@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "mssql/Performance",
+	"entries": [
+		{
+			"name": "Query performance",
+			"url": "https://orm.drizzle.team/docs/mssql/perf-queries",
+			"description": "",
+			"section": "mssql/Performance"
+		}
+	]
+}

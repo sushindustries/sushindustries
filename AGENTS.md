@@ -9,7 +9,8 @@ quietly going stale.
 The short version, if you read nothing else:
 
 - `.claude/skills/sushindustries-conventions/SKILL.md` is the layout and
-  naming authority - read it before adding a file.
+  naming authority - read it before adding a file, then the one file in its
+  `rules/` that matches what you are changing.
 - `.claude/pipeline.md` explains how a post, component or package gets
   added, and what checks it.
 - Every visible element of the site is a component in `packages/ui`. If

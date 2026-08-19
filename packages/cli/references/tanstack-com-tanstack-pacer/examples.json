@@ -1,0 +1,918 @@
+{
+	"provider": "tanstack-com-tanstack-pacer",
+	"section": "Examples",
+	"entries": [
+		{
+			"name": "Vanilla: liteDebounce",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/examples/liteDebounce.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vanilla: LiteDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/examples/LiteDebouncer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: debounce",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/debounce.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: asyncDebounce",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/asyncDebounce.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useDebouncer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useDebouncedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useDebouncedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useDebouncedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useDebouncedState.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useDebouncedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useDebouncedValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useAsyncDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useAsyncDebouncer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useAsyncDebouncedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useAsyncDebouncedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: debounce",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/debounce.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: asyncDebounce",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/asyncDebounce.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createDebouncer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createDebouncedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createDebouncedSignal.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createDebouncedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createDebouncedValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createAsyncDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createAsyncDebouncer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: debounce",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/debounce.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: asyncDebounce",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/asyncDebounce.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useDebouncer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useDebouncedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useDebouncedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useDebouncedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useDebouncedState.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useDebouncedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useDebouncedValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useAsyncDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useAsyncDebouncer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useAsyncDebouncedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useAsyncDebouncedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: debounce",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/debounce.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: asyncDebounce",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/asyncDebounce.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectDebouncer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectDebouncedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectDebouncedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectDebouncedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectDebouncedSignal.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectDebouncedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectDebouncedValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectAsyncDebouncer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectAsyncDebouncer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectAsyncDebouncedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectAsyncDebouncedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vanilla: liteThrottle",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/examples/liteThrottle.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vanilla: LiteThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/examples/LiteThrottler.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: throttle",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/throttle.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: asyncThrottle",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/asyncThrottle.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useThrottler.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useThrottledCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useThrottledCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useThrottledState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useThrottledState.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useThrottledValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useThrottledValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useAsyncThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useAsyncThrottler.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: throttle",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/throttle.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: asyncThrottle",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/asyncThrottle.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createThrottler.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createThrottledSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createThrottledSignal.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createThrottledValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createThrottledValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createAsyncThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createAsyncThrottler.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: throttle",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/throttle.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: asyncThrottle",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/asyncThrottle.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useThrottler.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useThrottledCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useThrottledCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useThrottledState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useThrottledState.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useThrottledValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useThrottledValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useAsyncThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useAsyncThrottler.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useAsyncThrottledCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useAsyncThrottledCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: throttle",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/throttle.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: asyncThrottle",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/asyncThrottle.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectThrottler.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectThrottledCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectThrottledCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectThrottledSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectThrottledSignal.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectThrottledValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectThrottledValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectAsyncThrottler",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectAsyncThrottler.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectAsyncThrottledCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectAsyncThrottledCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vanilla: liteRateLimit",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/examples/liteRateLimit.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vanilla: LiteRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/examples/LiteRateLimiter.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: rateLimit",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/rateLimit.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: asyncRateLimit",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/asyncRateLimit.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useRateLimiter.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useRateLimiterWithPersister",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useRateLimiterWithPersister.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useRateLimitedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useRateLimitedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useRateLimitedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useRateLimitedState.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useRateLimitedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useRateLimitedValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useAsyncRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useAsyncRateLimiter.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useAsyncRateLimiterWithPersister",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useAsyncRateLimiterWithPersister.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: rateLimit",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/rateLimit.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: asyncRateLimit",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/asyncRateLimit.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createRateLimiter.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createRateLimitedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createRateLimitedSignal.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createRateLimitedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createRateLimitedValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createAsyncRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createAsyncRateLimiter.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: rateLimit",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/rateLimit.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: asyncRateLimit",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/asyncRateLimit.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useRateLimiter.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useRateLimiterWithPersister",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useRateLimiterWithPersister.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useRateLimitedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useRateLimitedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useRateLimitedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useRateLimitedState.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useRateLimitedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useRateLimitedValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useAsyncRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useAsyncRateLimiter.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useAsyncRateLimiterWithPersister",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useAsyncRateLimiterWithPersister.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: rateLimit",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/rateLimit.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: asyncRateLimit",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/asyncRateLimit.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectRateLimiter.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectRateLimitedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectRateLimitedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectRateLimitedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectRateLimitedSignal.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectRateLimitedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectRateLimitedValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectRateLimiterWithPersister",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectRateLimiterWithPersister.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectAsyncRateLimiter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectAsyncRateLimiter.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectAsyncRateLimitedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectAsyncRateLimitedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectAsyncRateLimiterWithPersister",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectAsyncRateLimiterWithPersister.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vanilla: liteQueue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/examples/liteQueue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vanilla: LiteQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/examples/LiteQueuer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: queue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/queue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useQueuer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useQueuerWithPersister",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useQueuerWithPersister.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useQueuedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useQueuedState.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useQueuedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useQueuedValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useAsyncQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useAsyncQueuer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useAsyncQueuedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useAsyncQueuedState.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: queue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/queue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createQueuer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createAsyncQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createAsyncQueuer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createQueuedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createQueuedSignal.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: queue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/queue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useQueuer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useQueuerWithPersister",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useQueuerWithPersister.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useQueuedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useQueuedState.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useQueuedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useQueuedValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useAsyncQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useAsyncQueuer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useAsyncQueuedState",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useAsyncQueuedState.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: queue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/queue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectQueuer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectQueuedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectQueuedSignal.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectQueuedValue",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectQueuedValue.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectQueuerWithPersister",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectQueuerWithPersister.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectAsyncQueuer",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectAsyncQueuer.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectAsyncQueuedSignal",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectAsyncQueuedSignal.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vanilla: liteBatch",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/examples/liteBatch.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vanilla: LiteBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/examples/LiteBatcher.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: batch",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/batch.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: asyncBatch",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/asyncBatch.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useBatcher.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useAsyncBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useAsyncBatcher.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useBatchedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useBatchedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: useAsyncBatchedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/useAsyncBatchedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: batch",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/batch.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createBatcher.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: createAsyncBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/examples/createAsyncBatcher.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: batch",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/batch.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: asyncBatch",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/asyncBatch.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useBatcher.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useAsyncBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useAsyncBatcher.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useBatchedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useBatchedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: useAsyncBatchedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/examples/useAsyncBatchedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: batch",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/batch.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: asyncBatch",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/asyncBatch.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectBatcher.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectBatchedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectBatchedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectAsyncBatcher",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectAsyncBatcher.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Angular: injectAsyncBatchedCallback",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/examples/injectAsyncBatchedCallback.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: React Query Debounced Prefetch",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/react-query-debounced-prefetch.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: React Query Throttled Prefetch",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/react-query-throttled-prefetch.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: React Query Queued Prefetch",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/examples/react-query-queued-prefetch.md",
+			"description": "",
+			"section": "Examples"
+		}
+	]
+}

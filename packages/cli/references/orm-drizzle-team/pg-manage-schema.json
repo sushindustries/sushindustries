@@ -1,0 +1,54 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "pg/Manage schema",
+	"entries": [
+		{
+			"name": "PostgreSQL column types",
+			"url": "https://orm.drizzle.team/docs/pg/column-types",
+			"description": "",
+			"section": "pg/Manage schema"
+		},
+		{
+			"name": "Indexes & Constraints",
+			"url": "https://orm.drizzle.team/docs/pg/indexes-constraints",
+			"description": "",
+			"section": "pg/Manage schema"
+		},
+		{
+			"name": "Sequences",
+			"url": "https://orm.drizzle.team/docs/pg/sequences",
+			"description": "",
+			"section": "pg/Manage schema"
+		},
+		{
+			"name": "Views",
+			"url": "https://orm.drizzle.team/docs/pg/views",
+			"description": "",
+			"section": "pg/Manage schema"
+		},
+		{
+			"name": "Table schemas",
+			"url": "https://orm.drizzle.team/docs/pg/schemas",
+			"description": "",
+			"section": "pg/Manage schema"
+		},
+		{
+			"name": "Drizzle relations",
+			"url": "https://orm.drizzle.team/docs/pg/relations",
+			"description": "",
+			"section": "pg/Manage schema"
+		},
+		{
+			"name": "Row-Level Security (RLS)",
+			"url": "https://orm.drizzle.team/docs/pg/rls",
+			"description": "",
+			"section": "pg/Manage schema"
+		},
+		{
+			"name": "PostgreSQL extensions",
+			"url": "https://orm.drizzle.team/docs/pg/extensions",
+			"description": "",
+			"section": "pg/Manage schema"
+		}
+	]
+}

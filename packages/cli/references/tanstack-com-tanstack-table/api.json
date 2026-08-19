@@ -1,0 +1,1608 @@
+{
+	"provider": "tanstack-com-tanstack-table",
+	"section": "API",
+	"entries": [
+		{
+			"name": "Core API Reference",
+			"url": "https://tanstack.com/table/latest/docs/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Alpine: Alpine API Reference",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: Angular API Reference",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: Ember API Reference",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: React API Reference",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Preact API Reference",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: Octane API Reference",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: Solid API Reference",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: Svelte API Reference",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: Vue API Reference",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Lit API Reference",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Table",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/Table.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "TableOptions",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/TableOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "TableState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/TableState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "TableMeta",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/TableMeta.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "TableFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/TableFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "TableFeatures",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/TableFeatures.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "StockFeatures",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/StockFeatures.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "CoreFeatures",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/CoreFeatures.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "BaseAtoms",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/BaseAtoms.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Atoms",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/Atoms.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ExternalAtoms",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/ExternalAtoms.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "constructTable",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/constructTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "tableOptions",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/tableOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "tableFeatures",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/tableFeatures.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "getInitialTableState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/getInitialTableState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "OnChangeFn",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/OnChangeFn.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Updater",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/Updater.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "DebugOptions",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/DebugOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Alpine: createTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/reference/functions/createTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Alpine: createTableHook",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/reference/functions/createTableHook.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Alpine: AlpineTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/reference/type-aliases/AlpineTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Alpine: AppAlpineTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/reference/type-aliases/AppAlpineTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Alpine: CreateTableHookOptions",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/reference/type-aliases/CreateTableHookOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Alpine: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/reference/functions/FlexRender-1.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Alpine: flexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/reference/functions/flexRender.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/index/functions/useTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: createTableHook",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/index/functions/createTableHook.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/index/type-aliases/ReactTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: AppReactTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/index/type-aliases/AppReactTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: CreateTableHookOptions",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/index/type-aliases/CreateTableHookOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: Subscribe",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/index/functions/Subscribe.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/index/functions/FlexRender-1.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: flexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/index/functions/flexRender.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/functions/injectTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: createTableHook",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/functions/createTableHook.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/type-aliases/AngularTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AppAngularTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/type-aliases/AppAngularTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: CreateTableHookResult",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/type-aliases/CreateTableHookResult.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: CreateTableContextOptions",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/type-aliases/CreateTableContextOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: flexRenderComponent",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/functions/flexRenderComponent.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/variables/FlexRender.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: TanStackTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/classes/TanStackTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectTableContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/functions/injectTableContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: useTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/functions/useTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: createTableHook",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/functions/createTableHook.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: AppEmberTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/type-aliases/AppEmberTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: CreateTableHookOptions",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/type-aliases/CreateTableHookOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: FlexRenderCell",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/classes/FlexRenderCell.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: FlexRenderHeader",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/classes/FlexRenderHeader.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: FlexRenderFooter",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/classes/FlexRenderFooter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: flexRenderComponent",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/functions/flexRenderComponent.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: FlexRenderableSignature",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/interfaces/FlexRenderableSignature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: CellRenderableSignature",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/interfaces/CellRenderableSignature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: emberReactivity",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/functions/emberReactivity.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: createAtom",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/functions/createAtom.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: signal",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/functions/signal.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: computed",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/functions/computed.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/reference/functions/useTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: createTableHook",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/reference/functions/createTableHook.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/reference/type-aliases/PreactTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: AppPreactTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/reference/type-aliases/AppPreactTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: CreateTableHookOptions",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/reference/type-aliases/CreateTableHookOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Subscribe",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/reference/functions/Subscribe.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/reference/functions/FlexRender-1.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: flexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/reference/functions/flexRender.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: useTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/reference/functions/useTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: createTableHook",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/reference/functions/createTableHook.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: createTableHookContexts",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/reference/functions/createTableHookContexts.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: OctaneTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/reference/type-aliases/OctaneTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: AppOctaneTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/reference/type-aliases/AppOctaneTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: CreateTableHookOptions",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/reference/type-aliases/CreateTableHookOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: Subscribe",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/reference/variables/Subscribe.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/reference/functions/FlexRender-1.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: flexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/reference/functions/flexRender.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/reference/functions/createTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createTableHook",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/reference/functions/createTableHook.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/reference/type-aliases/SolidTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: AppSolidTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/reference/type-aliases/AppSolidTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: CreateTableHookOptions",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/reference/type-aliases/CreateTableHookOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/reference/functions/FlexRender-1.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: flexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/reference/functions/flexRender.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/reference/functions/createTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createTableHook",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/reference/functions/createTableHook.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createTableState",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/reference/functions/createTableState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: SvelteTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/reference/type-aliases/SvelteTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: AppSvelteTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/reference/type-aliases/AppSvelteTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: renderComponent",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/reference/functions/renderComponent.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: renderSnippet",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/reference/functions/renderSnippet.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/reference/variables/FlexRender.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/reference/functions/useTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: createTableHook",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/reference/functions/createTableHook.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: VueTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/reference/type-aliases/VueTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: AppVueTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/reference/type-aliases/AppVueTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: CreateTableHookOptions",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/reference/type-aliases/CreateTableHookOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/reference/variables/FlexRender.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: flexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/reference/functions/flexRender.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: TableController",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/classes/TableController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: createTableHook",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/functions/createTableHook.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: LitTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/type-aliases/LitTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: AppLitTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/type-aliases/AppLitTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: CreateTableHookOptions",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/type-aliases/CreateTableHookOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: subscribe",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/variables/subscribe.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: SubscribeDirective",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/classes/SubscribeDirective.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: SelectionSource",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/type-aliases/SelectionSource.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: FlexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/functions/FlexRender-1.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: flexRender",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/functions/flexRender.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Column",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/Column.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnDef",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/ColumnDef.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnDefBase",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/ColumnDefBase.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AccessorColumnDef",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/AccessorColumnDef.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "DisplayColumnDef",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/DisplayColumnDef.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "GroupColumnDef",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/GroupColumnDef.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnDefTemplate",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/ColumnDefTemplate.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnHelper",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/ColumnHelper.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnMeta",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/ColumnMeta.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createColumnHelper",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/createColumnHelper.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "constructColumn",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/constructColumn.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AccessorFn",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/AccessorFn.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "DeepKeys",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/DeepKeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "DeepValue",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/DeepValue.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Alpine: AppColumnHelper",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/reference/type-aliases/AppColumnHelper.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: AppColumnHelper",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/index/type-aliases/AppColumnHelper.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AppColumnHelper",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/type-aliases/AppColumnHelper.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ember: AppColumnHelper",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/reference/type-aliases/AppColumnHelper.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: AppColumnHelper",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/reference/type-aliases/AppColumnHelper.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: AppColumnHelper",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/reference/interfaces/AppColumnHelper.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: AppColumnHelper",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/reference/type-aliases/AppColumnHelper.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: AppColumnHelper",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/reference/type-aliases/AppColumnHelper.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: AppColumnHelper",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/reference/type-aliases/AppColumnHelper.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: AppColumnHelper",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/type-aliases/AppColumnHelper.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Row",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/Row.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "RowData",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/RowData.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "RowModel",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/RowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "constructRow",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/constructRow.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createCoreRowModel",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/createCoreRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createFilteredRowModel",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/createFilteredRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createSortedRowModel",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/createSortedRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createGroupedRowModel",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/createGroupedRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createExpandedRowModel",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/createExpandedRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createPaginatedRowModel",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/createPaginatedRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createFacetedRowModel",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/createFacetedRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createFacetedMinMaxValues",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/createFacetedMinMaxValues.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createFacetedUniqueValues",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/createFacetedUniqueValues.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "expandRows",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/expandRows.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "RowModelFns",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/RowModelFns.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "CreateRowModels",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/CreateRowModels.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "CachedRowModels",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/CachedRowModels.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Cell",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/Cell.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "CellContext",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/CellContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "CellData",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/CellData.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "constructCell",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/constructCell.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: AppCellContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/index/type-aliases/AppCellContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AppCellContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/type-aliases/AppCellContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: AppCellContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/reference/type-aliases/AppCellContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: AppCellContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/reference/interfaces/AppCellContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: AppCellContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/reference/type-aliases/AppCellContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: AppCellContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/reference/type-aliases/AppCellContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: AppCellContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/reference/type-aliases/AppCellContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: AppCellContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/type-aliases/AppCellContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Header",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/Header.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HeaderGroup",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/HeaderGroup.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HeaderContext",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/HeaderContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "constructHeader",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/constructHeader.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "buildHeaderGroups",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/buildHeaderGroups.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: AppHeaderContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/index/type-aliases/AppHeaderContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AppHeaderContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/reference/type-aliases/AppHeaderContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: AppHeaderContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/reference/type-aliases/AppHeaderContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: AppHeaderContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/reference/interfaces/AppHeaderContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: AppHeaderContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/reference/type-aliases/AppHeaderContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: AppHeaderContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/reference/type-aliases/AppHeaderContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: AppHeaderContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/reference/type-aliases/AppHeaderContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: AppHeaderContext",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/reference/type-aliases/AppHeaderContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "stockFeatures",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/stockFeatures.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "coreFeatures",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/coreFeatures.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "coreCellsFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/coreCellsFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "coreColumnsFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/coreColumnsFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "coreHeadersFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/coreHeadersFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "coreRowModelsFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/coreRowModelsFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "coreRowsFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/coreRowsFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "coreTablesFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/coreTablesFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "cellSpanningFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/cellSpanningFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "columnFilteringFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/columnFilteringFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "columnFacetingFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/columnFacetingFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "rowAggregationFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/rowAggregationFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "columnGroupingFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/columnGroupingFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "columnOrderingFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/columnOrderingFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "columnPinningFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/columnPinningFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "columnResizingFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/columnResizingFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "columnSizingFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/columnSizingFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "columnVisibilityFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/columnVisibilityFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "globalFilteringFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/globalFilteringFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "rowExpandingFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/rowExpandingFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "rowPaginationFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/rowPaginationFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "rowPinningFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/rowPinningFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "rowSelectionFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/rowSelectionFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "rowSortingFeature",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/rowSortingFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "filterFns",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/filterFns.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "sortFns",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/sortFns.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "aggregationFns",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/variables/aggregationFns.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnFilter",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/ColumnFilter.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnPinningState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/ColumnPinningState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnSort",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/ColumnSort.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "PaginationState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/PaginationState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "RowPinningState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/RowPinningState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "columnResizingState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/columnResizingState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "FilterFn",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/FilterFn.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "FilterFns",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/FilterFns.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "FilterMeta",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/FilterMeta.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "SortFn",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/SortFn.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "SortFns",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/SortFns.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AggregationFns",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/AggregationFns.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AggregationContext",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/AggregationContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AggregationMergeContext",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/AggregationMergeContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AggregationFnDef",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/AggregationFnDef.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AggregationFnDescriptor",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/AggregationFnDescriptor.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AggregationValueContext",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/AggregationValueContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AggregationValueResult",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/interfaces/AggregationValueResult.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "constructAggregationFn",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/functions/constructAggregationFn.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnFiltersState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/ColumnFiltersState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnOrderState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/ColumnOrderState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnPinningPosition",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/ColumnPinningPosition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnResizeDirection",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/ColumnResizeDirection.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnResizeMode",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/ColumnResizeMode.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnSizingState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/ColumnSizingState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ColumnVisibilityState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/ColumnVisibilityState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ExpandedState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/ExpandedState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "GroupingState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/GroupingState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "RowPinningPosition",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/RowPinningPosition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "RowSelectionState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/RowSelectionState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "SortDirection",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/SortDirection.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "SortingState",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/SortingState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AggregationFnOption",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/AggregationFnOption.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "AggregationResult",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/AggregationResult.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "FilterFnOption",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/FilterFnOption.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "SortFnOption",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/SortFnOption.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "BuiltInAggregationFn",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/BuiltInAggregationFn.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "BuiltInFilterFn",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/BuiltInFilterFn.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "BuiltInSortFn",
+			"url": "https://tanstack.com/table/latest/docs/reference/index/type-aliases/BuiltInSortFn.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Static Functions Overview",
+			"url": "https://tanstack.com/table/latest/docs/reference/static-functions/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: Legacy API Overview",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useLegacyTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/functions/useLegacyTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: legacyCreateColumnHelper",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/functions/legacyCreateColumnHelper.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: getCoreRowModel",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/functions/getCoreRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: getFilteredRowModel",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/functions/getFilteredRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: getSortedRowModel",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/functions/getSortedRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: getGroupedRowModel",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/functions/getGroupedRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: getExpandedRowModel",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/functions/getExpandedRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: getPaginationRowModel",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/functions/getPaginationRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: getFacetedRowModel",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/functions/getFacetedRowModel.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: getFacetedMinMaxValues",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/functions/getFacetedMinMaxValues.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: getFacetedUniqueValues",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/functions/getFacetedUniqueValues.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: LegacyRowModelOptions",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/interfaces/LegacyRowModelOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: LegacyTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/type-aliases/LegacyTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: LegacyTableOptions",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/type-aliases/LegacyTableOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: LegacyReactTable",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/type-aliases/LegacyReactTable.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: LegacyColumnDef",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/reference/legacy/type-aliases/LegacyColumnDef.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

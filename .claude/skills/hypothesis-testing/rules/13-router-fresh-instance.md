@@ -17,4 +17,4 @@ scope.
 `QueryClient` and a fresh `createRouter` call every invocation, with the
 reasoning written directly into the file's own comment.
 
-**Source:** `references/01-tanstack-official-safety.md`.
+**Source:** `.claude/skills/sushindustries-conventions/references/01-tanstack-official.md`.

@@ -1,0 +1,558 @@
+{
+	"provider": "docs-railway-com",
+	"section": "More guides",
+	"entries": [
+		{
+			"name": "Build an AI API on Hosted Inference Providers",
+			"url": "https://docs.railway.com/guides/ai-api-hosted-inference.md",
+			"description": "Build and deploy an AI API on Railway that calls hosted inference providers for model output. Covers provider selection, OpenAI-compatible endpoints, streaming, timeouts, and provider fallback.",
+			"section": "More guides"
+		},
+		{
+			"name": "Build an LLM Gateway in TypeScript",
+			"url": "https://docs.railway.com/guides/llm-gateway.md",
+			"description": "Build and deploy an LLM gateway on Railway that issues its own API keys, enforces per-key token budgets, and tracks spend across teams. One place to hold provider keys instead of scattering them across services.",
+			"section": "More guides"
+		},
+		{
+			"name": "Build and Deploy Your Own MCP Server",
+			"url": "https://docs.railway.com/guides/mcp-server.md",
+			"description": "Build a remote MCP server in TypeScript with Streamable HTTP transport and deploy it on Railway. Expose your app's data as tools that AI assistants like Claude and Cursor can call over the network.",
+			"section": "More guides"
+		},
+		{
+			"name": "Choose Between Local and Remote MCP Servers",
+			"url": "https://docs.railway.com/guides/local-vs-remote-mcp-servers.md",
+			"description": "When an MCP server should run locally over stdio and when it should be a remote Streamable HTTP service. Decision factors, what the 2026 spec changed, and how to deploy the remote kind on Railway.",
+			"section": "More guides"
+		},
+		{
+			"name": "Connect the Best MCP Servers to Your Coding Agent",
+			"url": "https://docs.railway.com/guides/best-mcp-servers-coding-agents.md",
+			"description": "Config snippets for connecting nine widely used MCP servers to Claude Code, Cursor, and VS Code, covering GitHub, Postgres, browser automation, docs lookup, error tracking, and deployment.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy a Claude Agent SDK App",
+			"url": "https://docs.railway.com/guides/claude-agent-sdk-app.md",
+			"description": "Deploy a Claude Agent SDK service on Railway that runs agent tasks over HTTP, streams progress as NDJSON, and stays inside the platform's request limits.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy a LangGraph Agent Backend",
+			"url": "https://docs.railway.com/guides/langgraph-agent-backend.md",
+			"description": "Run a LangGraph agent as a FastAPI service on Railway with Postgres checkpointing for durable conversation state and Claude as the LLM.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy a Multi-Agent System on Railway",
+			"url": "https://docs.railway.com/guides/multi-agent-system.md",
+			"description": "Deploy multiple AI agents as separate Railway services that communicate via Redis and Postgres. Includes working orchestrator and agent code, inter-service communication, and independent scaling.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy a RAG Pipeline with pgvector",
+			"url": "https://docs.railway.com/guides/rag-pipeline-pgvector.md",
+			"description": "Build a retrieval-augmented generation pipeline on Railway using Postgres with pgvector for vector storage, an external embedding API, and an LLM for generation. Covers document ingestion, similarity search, and deployment.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy a Vibe-Coded App on Railway",
+			"url": "https://docs.railway.com/guides/vibe-coding-deploy.md",
+			"description": "Deploy an application built with AI coding tools like Cursor, Claude Code, Bolt, or Lovable on Railway. Covers common deployment issues with AI-generated code and how to fix them.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy an AI Agent with Async Workers",
+			"url": "https://docs.railway.com/guides/ai-agent-workers.md",
+			"description": "Run AI agent workflows on Railway with an API service, async workers via Redis queue, and Postgres for state persistence. Covers CPU-based agent patterns without GPU.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy an AI Chatbot with Streaming Responses",
+			"url": "https://docs.railway.com/guides/ai-chatbot-streaming.md",
+			"description": "Deploy a chatbot on Railway that streams LLM responses token by token using Server-Sent Events. Covers Next.js with the AI SDK, API key management, and optional conversation persistence with Postgres.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy an AI-Powered Bot for Discord or Telegram",
+			"url": "https://docs.railway.com/guides/ai-discord-telegram-bot.md",
+			"description": "Deploy a Discord or Telegram bot on Railway that uses LLM APIs for conversational responses. Covers always-on deployment, API key management, conversation memory with Postgres, and rate limit handling.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy an AI-Powered SaaS App on Railway",
+			"url": "https://docs.railway.com/guides/deploy-ai-saas.md",
+			"description": "Deploy a production AI-powered SaaS application on Railway with an Express backend, Postgres database, and external LLM API integration. Covers API key management, request caching, rate limiting, and async processing for longer tasks.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy an LLM Gateway with LiteLLM",
+			"url": "https://docs.railway.com/guides/ai-api-proxy.md",
+			"description": "Deploy LiteLLM Proxy on Railway as an LLM gateway for multiple providers. Covers model routing, cost tracking, API key management, caching with Redis, and private networking.",
+			"section": "More guides"
+		},
+		{
+			"name": "Estimate the Cost of Running AI Agents",
+			"url": "https://docs.railway.com/guides/estimate-ai-agent-costs.md",
+			"description": "What an always-on AI agent costs to run. How to calculate LLM API spend per run, what the hosting compute actually costs on Railway's usage-based pricing, and where the money goes as you scale.",
+			"section": "More guides"
+		},
+		{
+			"name": "Run an Embeddings Pipeline with an External API and pgvector",
+			"url": "https://docs.railway.com/guides/embeddings-pipeline.md",
+			"description": "Deploy a batch worker on Railway that generates embeddings through an external API and stores them in Postgres with pgvector. Covers schema design, safe concurrent processing, and the psycopg2 vector adaptation gotcha.",
+			"section": "More guides"
+		},
+		{
+			"name": "Run Code-Execution Sandboxes for AI Agents",
+			"url": "https://docs.railway.com/guides/code-execution-sandboxes.md",
+			"description": "Run AI-generated code in isolated, disposable sandboxes on Railway. What a code-execution sandbox is, why agents need one, and how to create, checkpoint, fork, and destroy sandboxes from the CLI or the TypeScript SDK.",
+			"section": "More guides"
+		},
+		{
+			"name": "Running Agents on Railway",
+			"url": "https://docs.railway.com/guides/running-agents-on-railway.md",
+			"description": "Learn how to deploy always-on, autonomous AI agents on Railway by building a Claude-powered GitHub DevBot that opens pull requests in response to new issues.",
+			"section": "More guides"
+		},
+		{
+			"name": "Self-Host Dify",
+			"url": "https://docs.railway.com/guides/dify.md",
+			"description": "Deploy Dify on Railway with Postgres, Redis, and persistent storage. Build AI applications, RAG pipelines, and agent workflows through Dify's visual interface.",
+			"section": "More guides"
+		},
+		{
+			"name": "Self-Host Flowise",
+			"url": "https://docs.railway.com/guides/flowise.md",
+			"description": "Deploy Flowise on Railway with persistent storage and authentication. Build LLM chains, agents, and chatbots through a visual drag-and-drop interface without managing servers.",
+			"section": "More guides"
+		},
+		{
+			"name": "Self-Host Open WebUI",
+			"url": "https://docs.railway.com/guides/open-webui.md",
+			"description": "Deploy Open WebUI on Railway to get a ChatGPT-like interface that connects to OpenAI, Anthropic, and other LLM providers. Includes persistent storage and authentication setup.",
+			"section": "More guides"
+		},
+		{
+			"name": "Use Agents in Railway Sandboxes",
+			"url": "https://docs.railway.com/guides/agents-in-sandboxes.md",
+			"description": "Drive Railway sandboxes from your local AI coding agent. Spin up isolated environments for development, run agents against your real infrastructure, and use the create, configure, checkpoint, and fork loop to move fast.",
+			"section": "More guides"
+		},
+		{
+			"name": "Use Object Storage for AI Agent Outputs",
+			"url": "https://docs.railway.com/guides/object-storage-for-ai-agents.md",
+			"description": "Store AI agent artifacts in S3-compatible object storage on Railway. Where generated files, transcripts, and reports should live, how to write them from a worker, and how to share them with presigned URLs.",
+			"section": "More guides"
+		},
+		{
+			"name": "Add Authentication to a Frontend Application",
+			"url": "https://docs.railway.com/guides/frontend-authentication.md",
+			"description": "Implement authentication in a frontend application deployed on Railway. Covers third-party providers (Clerk, Supabase Auth), session-based auth with Postgres, and common deployment pitfalls.",
+			"section": "More guides"
+		},
+		{
+			"name": "Build Hybrid Search with Postgres Full-Text Search and pgvector",
+			"url": "https://docs.railway.com/guides/hybrid-search-postgres-pgvector.md",
+			"description": "Combine Postgres full-text search and pgvector similarity search in one database, then merge results with Reciprocal Rank Fusion. Includes schema, SQL, and a deployable Node API.",
+			"section": "More guides"
+		},
+		{
+			"name": "Choose Between Cron Jobs, Background Workers, and Queues",
+			"url": "https://docs.railway.com/guides/cron-workers-queues.md",
+			"description": "When to use cron jobs, always-on workers, and message queues for background processing. Covers tradeoffs, failure modes, and how to run each pattern on Railway.",
+			"section": "More guides"
+		},
+		{
+			"name": "Choose Between SSE and WebSockets",
+			"url": "https://docs.railway.com/guides/sse-vs-websockets.md",
+			"description": "When to use Server-Sent Events vs WebSockets for real-time data. Covers protocol differences, reconnection handling, and how to deploy both on Railway.",
+			"section": "More guides"
+		},
+		{
+			"name": "Choose Between SSR, SSG, and ISR for Your Frontend",
+			"url": "https://docs.railway.com/guides/ssr-ssg-isr.md",
+			"description": "When to use server-side rendering, static site generation, or incremental static regeneration. Covers Railway deployment implications, cost tradeoffs, and framework support.",
+			"section": "More guides"
+		},
+		{
+			"name": "Configure Client-Side Routing for Single-Page Applications",
+			"url": "https://docs.railway.com/guides/spa-routing-configuration.md",
+			"description": "Set up Caddy or Nginx to handle client-side routing for single-page applications on Railway. Avoid blank pages on refresh and configure fallback routes.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy a Full-Stack Next.js App with Postgres, Background Jobs, and File Uploads",
+			"url": "https://docs.railway.com/guides/fullstack-nextjs.md",
+			"description": "Deploy a production Next.js application on Railway with a Postgres database, Redis-backed background workers, and file uploads via storage buckets. Covers multi-service architecture and production hardening.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy a SaaS Backend with Postgres, Workers, and Webhooks",
+			"url": "https://docs.railway.com/guides/saas-backend.md",
+			"description": "Set up a production SaaS backend on Railway with an API service, Postgres database, background worker, and cron job for webhook processing.",
+			"section": "More guides"
+		},
+		{
+			"name": "GitHub Actions Post-Deploy",
+			"url": "https://docs.railway.com/guides/github-actions-post-deploy.md",
+			"description": "Learn how to use GitHub Actions to run post-deployment commands.",
+			"section": "More guides"
+		},
+		{
+			"name": "GitHub Actions PR Environment",
+			"url": "https://docs.railway.com/guides/github-actions-pr-environment.md",
+			"description": "Learn how to use the CLI in a GitHub Action to create environments for PRs",
+			"section": "More guides"
+		},
+		{
+			"name": "GitHub Actions Self Hosted Runners",
+			"url": "https://docs.railway.com/guides/github-actions-runners.md",
+			"description": "Learn how to deploy your own scalable self hosted GitHub Actions Runners on Railway. Build your own fleet of runners for your Enterprise and then scale your self-hosted runners with Railway replicas for blazing fast builds.",
+			"section": "More guides"
+		},
+		{
+			"name": "Isolate Staging from Production for Compliance",
+			"url": "https://docs.railway.com/guides/isolate-staging-production.md",
+			"description": "Separate staging and production on Railway with per-environment networks, per-environment bucket instances, and environment-scoped credentials.",
+			"section": "More guides"
+		},
+		{
+			"name": "Manage Environment Variables in Frontend Builds",
+			"url": "https://docs.railway.com/guides/frontend-environment-variables.md",
+			"description": "Understand build-time vs runtime environment variables in frontend frameworks. Covers Vite, Next.js, Nuxt, SvelteKit, Astro, and Angular prefix conventions and how Railway handles each.",
+			"section": "More guides"
+		},
+		{
+			"name": "Receive Webhooks at Scale",
+			"url": "https://docs.railway.com/guides/webhooks-at-scale.md",
+			"description": "Build a webhook receiver that verifies signatures, responds fast, and queues work for a background worker. Covers idempotency keys, retries, and how to run the pattern on Railway.",
+			"section": "More guides"
+		},
+		{
+			"name": "Run Redis as a Cache vs a Persistent Store",
+			"url": "https://docs.railway.com/guides/redis-cache-vs-store.md",
+			"description": "Configure Redis as a cache or as a durable store on Railway. Covers the persistence settings, eviction policies, and start commands for each mode.",
+			"section": "More guides"
+		},
+		{
+			"name": "Schedule, Retry, and Dead-Letter Jobs with BullMQ",
+			"url": "https://docs.railway.com/guides/bullmq-jobs-retry-dlq.md",
+			"description": "Run BullMQ on Railway with a Redis service and an always-on worker. Covers repeatable job schedules, retries with exponential backoff, and a dead-letter queue pattern.",
+			"section": "More guides"
+		},
+		{
+			"name": "Serve a Multi-Region API with Failover",
+			"url": "https://docs.railway.com/guides/multi-region-api-failover.md",
+			"description": "Run one API service across multiple Railway regions with replicas, nearest-region routing, and automatic replica restarts. Covers routing behavior, health checks, and what failover Railway gives you.",
+			"section": "More guides"
+		},
+		{
+			"name": "Stream AI Responses to a Frontend with Server-Sent Events",
+			"url": "https://docs.railway.com/guides/streaming-ai-responses.md",
+			"description": "Stream LLM tokens from an API service to a frontend using Server-Sent Events on Railway. Covers Express and Hono server implementations, client-side consumption, and reconnection handling.",
+			"section": "More guides"
+		},
+		{
+			"name": "Use Storage Buckets for Uploads, Exports, and Assets",
+			"url": "https://docs.railway.com/guides/storage-buckets-guide.md",
+			"description": "Set up Railway storage buckets for file uploads via presigned URLs, background export generation, and asset serving through a backend proxy.",
+			"section": "More guides"
+		},
+		{
+			"name": "Host a Documentation Site with Astro Starlight",
+			"url": "https://docs.railway.com/guides/host-documentation-site.md",
+			"description": "Build a documentation site with Astro Starlight and deploy it to Railway, with full-text search, a structured sidebar, and a custom domain.",
+			"section": "More guides"
+		},
+		{
+			"name": "Add Connection Pooling to Postgres with PgBouncer",
+			"url": "https://docs.railway.com/guides/connection-pooling-pgbouncer.md",
+			"description": "Why Postgres needs a connection pooler, how to add PgBouncer to a Railway Postgres service, and how to configure your application for pooled and unpooled connections.",
+			"section": "More guides"
+		},
+		{
+			"name": "Autoscale a Service Horizontally Based on Load",
+			"url": "https://docs.railway.com/guides/autoscale-horizontally.md",
+			"description": "Build an autoscaler on Railway that measures load in your application and adjusts replica counts through the Public API, the CLI, or a cron schedule.",
+			"section": "More guides"
+		},
+		{
+			"name": "Back Up and Restore Postgres",
+			"url": "https://docs.railway.com/guides/postgres-backups-restores.md",
+			"description": "Set up volume backups and point-in-time recovery for Postgres on Railway, take logical dumps with pg_dump, and run a restore drill so you know recovery works before you need it.",
+			"section": "More guides"
+		},
+		{
+			"name": "Cut Idle Costs with Serverless Mode",
+			"url": "https://docs.railway.com/guides/cut-idle-costs-serverless.md",
+			"description": "Enable Serverless on Railway to sleep idle services and stop paying for compute they do not use. Covers the outbound-traffic sleep trigger and the cold boot tradeoff.",
+			"section": "More guides"
+		},
+		{
+			"name": "Debug a Production Incident with Logs, Metrics, and Traces",
+			"url": "https://docs.railway.com/guides/debug-production-incident.md",
+			"description": "A step-by-step incident debugging workflow using Railway's built-in observability surfaces. Confirm scope with metrics, find the failure in HTTP and deployment logs, correlate requests, and mitigate with a rollback.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy an OpenTelemetry Collector and Backend on Railway",
+			"url": "https://docs.railway.com/guides/deploy-an-otel-collector-stack.md",
+			"description": "Monitor and trace your applications by deploying an OpenTelemetry Collector and backend on Railway.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy from a Private Container Registry",
+			"url": "https://docs.railway.com/guides/private-container-registry.md",
+			"description": "Deploy Docker images from private registries (GHCR, Docker Hub, GitLab, ECR, Google Artifact Registry) on Railway, from credential setup to CI-driven redeploys.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy Node.js & Express API with Autoscaling, Secrets, and Zero Downtime",
+			"url": "https://docs.railway.com/guides/deploy-node-express-api-with-auto-scaling-secrets-and-zero-downtime.md",
+			"description": "Learn how to deploy Node.js and Express applications with automatic scaling, environment secrets, zero-downtime updates, and preview environments, all without managing servers or learning Kubernetes/container orchestration.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy on Merge with PR Environments as Canaries",
+			"url": "https://docs.railway.com/guides/ship-on-merge-pr-canaries.md",
+			"description": "Set up a trunk-based promotion workflow on Railway. Every pull request gets a canary environment; every merge to main deploys production automatically.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy Static Sites with Zero Configuration and Custom Domains",
+			"url": "https://docs.railway.com/guides/static-hosting.md",
+			"description": "Learn how to deploy static websites to Railway with automatic GitHub builds, SSL certificates, custom domains, and integrate with a CDN. Perfect for marketing sites, blogs, and documentation.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploying a Monorepo to Railway",
+			"url": "https://docs.railway.com/guides/deploying-a-monorepo.md",
+			"description": "Learn how to deploy a monorepo to Railway.",
+			"section": "More guides"
+		},
+		{
+			"name": "Handle Build-Time vs Runtime Secrets in Docker Builds",
+			"url": "https://docs.railway.com/guides/build-time-vs-runtime-secrets.md",
+			"description": "When Docker builds on Railway can see your variables, how to pass build secrets with ARG, and why runtime secrets should never be baked into the image.",
+			"section": "More guides"
+		},
+		{
+			"name": "Instrument an App with OpenTelemetry",
+			"url": "https://docs.railway.com/guides/instrument-app-opentelemetry.md",
+			"description": "Add OpenTelemetry traces and metrics to a Node.js or Python app on Railway, and send them to a collector over the private network.",
+			"section": "More guides"
+		},
+		{
+			"name": "Load Test an App Before Launch with k6",
+			"url": "https://docs.railway.com/guides/load-test-k6.md",
+			"description": "Write a k6 load test, run it locally or as a Railway service, set realistic performance targets, and read Railway metrics while the test runs.",
+			"section": "More guides"
+		},
+		{
+			"name": "Lock Down a Production Railway Project",
+			"url": "https://docs.railway.com/guides/lock-down-production-project.md",
+			"description": "Harden a production Railway project with Under Attack Mode, private networking, scoped API tokens, sealed variables, and workspace-level access controls.",
+			"section": "More guides"
+		},
+		{
+			"name": "Managing Secrets on Railway",
+			"url": "https://docs.railway.com/guides/managing-secrets-on-railway.md",
+			"description": "How to store API keys, database URLs, and other secrets on Railway using service, shared, reference, and sealed variables, with no separate secrets manager.",
+			"section": "More guides"
+		},
+		{
+			"name": "Migrate a Production Database into Railway with Minimal Downtime",
+			"url": "https://docs.railway.com/guides/migrate-database-minimal-downtime.md",
+			"description": "Move a production PostgreSQL database into Railway using dump and restore or logical replication, with a cutover checklist that keeps downtime to seconds.",
+			"section": "More guides"
+		},
+		{
+			"name": "Preview Deployments with PR Environments",
+			"url": "https://docs.railway.com/guides/preview-deployments-with-pr-environments.md",
+			"description": "Learn how to use Railway PR Environments to spin up isolated, ephemeral preview deployments for every pull request, including Focused and Bot PR Environments.",
+			"section": "More guides"
+		},
+		{
+			"name": "Right-Size CPU and Memory from Real Metrics",
+			"url": "https://docs.railway.com/guides/right-size-cpu-memory.md",
+			"description": "How to read the Metrics tab on Railway, translate real CPU and memory usage into a monthly cost, and set replica and usage limits that cap spend without crashing your service.",
+			"section": "More guides"
+		},
+		{
+			"name": "Roll Back a Bad Deploy Fast",
+			"url": "https://docs.railway.com/guides/roll-back-bad-deploy.md",
+			"description": "How to revert a broken deployment on Railway in under a minute. Covers rollback vs redeploy vs restart, image retention limits, and healthcheck-gated deploys that stop bad code before it goes live.",
+			"section": "More guides"
+		},
+		{
+			"name": "Rotate API Keys and Database Credentials Without Downtime",
+			"url": "https://docs.railway.com/guides/rotate-credentials-zero-downtime.md",
+			"description": "Use the dual-key overlap pattern, staged redeploys, and reference variables to rotate secrets on Railway with zero downtime.",
+			"section": "More guides"
+		},
+		{
+			"name": "Scaling Your Application",
+			"url": "https://docs.railway.com/guides/scaling-your-application.md",
+			"description": "Learn how to scale applications on Railway with vertical autoscaling and horizontal replicas, and how to read metrics to right-size each service.",
+			"section": "More guides"
+		},
+		{
+			"name": "Set Up Alerts for Crashes, Restarts, and Failed Deploys",
+			"url": "https://docs.railway.com/guides/alerts-crashes-failed-deploys.md",
+			"description": "Configure Railway webhooks and monitors to get notified in Slack, Discord, or your own service when a deployment fails, crashes, or a resource threshold is crossed.",
+			"section": "More guides"
+		},
+		{
+			"name": "Set Up Structured Logging for a Production App",
+			"url": "https://docs.railway.com/guides/structured-logging-production.md",
+			"description": "Emit JSON logs from your Railway services so the Log Explorer can parse, color, and filter them by level and custom attributes.",
+			"section": "More guides"
+		},
+		{
+			"name": "Speed Up a Global App with Cache-Control Headers and a CDN",
+			"url": "https://docs.railway.com/guides/cache-headers-cdn.md",
+			"description": "Set Cache-Control headers correctly for static assets, HTML, and API responses, then put a CDN in front of your Railway service to serve users from the nearest edge.",
+			"section": "More guides"
+		},
+		{
+			"name": "Add a CDN using Amazon CloudFront",
+			"url": "https://docs.railway.com/guides/add-a-cdn-using-cloudfront.md",
+			"description": "Learn how to integrate Amazon CloudFront as a CDN for your Fastify app in this step-by-step guide.",
+			"section": "More guides"
+		},
+		{
+			"name": "Connect a Third-Party Observability Tool",
+			"url": "https://docs.railway.com/guides/third-party-observability.md",
+			"description": "Send telemetry from your Railway services to third-party observability tools. Covers vendor SDKs (Datadog, New Relic, Sentry), OpenTelemetry (OTLP), and common deployment pitfalls.",
+			"section": "More guides"
+		},
+		{
+			"name": "Create a Bridge from Railway to AWS RDS with Tailscale",
+			"url": "https://docs.railway.com/guides/bridge-railway-to-rds-with-tailscale.md",
+			"description": "Learn how to securely access your AWS RDS database from Railway using a Tailscale subnet router.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy a Docker Compose App to Production",
+			"url": "https://docs.railway.com/guides/docker-compose.md",
+			"description": "Map a Docker Compose configuration to Railway services. Covers service mapping, networking, volumes, environment variables, and databases.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy a Jupyter Server for Team Data Work",
+			"url": "https://docs.railway.com/guides/jupyter-server-team.md",
+			"description": "Run a shared JupyterLab server on Railway with token authentication, a persistent volume for notebooks, and health checks for zero-downtime deploys.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy a Lovable App on Railway",
+			"url": "https://docs.railway.com/guides/lovable.md",
+			"description": "Learn how to deploy applications generated by Lovable.dev to Railway. This guide covers the workflow from prompt-based generation to continuous deployment.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy a WebSocket Application with Socket.IO",
+			"url": "https://docs.railway.com/guides/socketio.md",
+			"description": "Deploy a Socket.IO server and client on Railway. Covers CORS configuration, reconnection handling, and scaling with a Redis adapter.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy Caddy",
+			"url": "https://docs.railway.com/guides/caddy.md",
+			"description": "Learn how to deploy Caddy on Railway with one-click templates or CLI. This guide covers how to choose plugins, and configure static sites and reverse proxies.",
+			"section": "More guides"
+		},
+		{
+			"name": "Deploy RabbitMQ and Wire Up Producers and Consumers",
+			"url": "https://docs.railway.com/guides/rabbitmq-producers-consumers.md",
+			"description": "Run RabbitMQ on Railway, expose the management UI, and connect producer and consumer services over private networking with Node.js and amqplib.",
+			"section": "More guides"
+		},
+		{
+			"name": "Run ClickHouse for Product Analytics",
+			"url": "https://docs.railway.com/guides/clickhouse-analytics.md",
+			"description": "Deploy ClickHouse on Railway from the template or the official Docker image, size its volume for event data, and ingest and query analytics events from a Node.js service.",
+			"section": "More guides"
+		},
+		{
+			"name": "Run Playwright in a Docker Container",
+			"url": "https://docs.railway.com/guides/playwright.md",
+			"description": "Deploy Playwright scripts on Railway using a Docker container with browser dependencies, font packages, and memory configuration.",
+			"section": "More guides"
+		},
+		{
+			"name": "Self-host Ghost with MySQL and Custom Themes",
+			"url": "https://docs.railway.com/guides/ghost.md",
+			"description": "Deploy Ghost on Railway from the official Docker image with a MySQL database, persistent content storage, and custom domain configuration.",
+			"section": "More guides"
+		},
+		{
+			"name": "Self-Host Keycloak for Authentication",
+			"url": "https://docs.railway.com/guides/keycloak-authentication.md",
+			"description": "Deploy Keycloak on Railway with a Postgres database, an admin account, and a public domain. Configure a realm and an OIDC client for your applications.",
+			"section": "More guides"
+		},
+		{
+			"name": "Self-Host Langfuse for LLM Observability",
+			"url": "https://docs.railway.com/guides/langfuse-llm-observability.md",
+			"description": "Deploy Langfuse v3 on Railway with Postgres, ClickHouse, Redis, and object storage. Trace, debug, and evaluate your LLM applications on infrastructure you control.",
+			"section": "More guides"
+		},
+		{
+			"name": "Self-host n8n",
+			"url": "https://docs.railway.com/guides/n8n.md",
+			"description": "Deploy n8n on Railway with persistent storage and webhook configuration. Run your own workflow automation instance without managing servers.",
+			"section": "More guides"
+		},
+		{
+			"name": "Self-host Payload CMS with Postgres",
+			"url": "https://docs.railway.com/guides/payload-cms.md",
+			"description": "Deploy Payload CMS 3.x on Railway inside a Next.js application. Covers database setup, media storage with buckets, and production configuration.",
+			"section": "More guides"
+		},
+		{
+			"name": "Self-host Strapi with Postgres and File Uploads",
+			"url": "https://docs.railway.com/guides/strapi.md",
+			"description": "Deploy Strapi on Railway with a Postgres database and persistent file storage. Covers one-click template deployment, environment configuration, and upload provider setup.",
+			"section": "More guides"
+		},
+		{
+			"name": "Self-host Supabase with Postgres, Auth, and Storage",
+			"url": "https://docs.railway.com/guides/supabase.md",
+			"description": "Deploy the Supabase stack on Railway with Postgres, GoTrue auth, PostgREST API, storage, and the Studio dashboard. Covers multi-service setup and JWT configuration.",
+			"section": "More guides"
+		},
+		{
+			"name": "Self-Host Uptime Kuma for Uptime Monitoring",
+			"url": "https://docs.railway.com/guides/uptime-kuma.md",
+			"description": "Deploy Uptime Kuma on Railway with a volume for persistent monitor history. Monitor public sites and internal services, and publish status pages.",
+			"section": "More guides"
+		},
+		{
+			"name": "Set Up a Datadog Agent in Railway",
+			"url": "https://docs.railway.com/guides/set-up-a-datadog-agent.md",
+			"description": "Learn how to set up a Datadog agent in Railway.",
+			"section": "More guides"
+		},
+		{
+			"name": "Set up a Tailscale Forwarder",
+			"url": "https://docs.railway.com/guides/set-up-a-tailscale-forwarder.md",
+			"description": "Learn how to access services on your private network on Railway by using a Tailscale Forwarder.",
+			"section": "More guides"
+		},
+		{
+			"name": "Ship Application Logs to a Third-Party Aggregator",
+			"url": "https://docs.railway.com/guides/ship-logs-third-party.md",
+			"description": "Build a log drain on Railway with a Vector forwarder service. Apps send logs over private networking, and Vector fans them out to any aggregator.",
+			"section": "More guides"
+		},
+		{
+			"name": "Sync Secrets from an External Secrets Manager",
+			"url": "https://docs.railway.com/guides/external-secrets-manager.md",
+			"description": "Keep Doppler, Infisical, or Vault as your source of truth and push secrets into Railway variables with the Public API, a sync script, or a vendor integration.",
+			"section": "More guides"
+		}
+	]
+}

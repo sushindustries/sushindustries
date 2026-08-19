@@ -1,0 +1,60 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "mssql/Access your data",
+	"entries": [
+		{
+			"name": "Drizzle Queries",
+			"url": "https://orm.drizzle.team/docs/mssql/rqb",
+			"description": "",
+			"section": "mssql/Access your data"
+		},
+		{
+			"name": "SQL Select",
+			"url": "https://orm.drizzle.team/docs/mssql/select",
+			"description": "",
+			"section": "mssql/Access your data"
+		},
+		{
+			"name": "SQL Insert",
+			"url": "https://orm.drizzle.team/docs/mssql/insert",
+			"description": "",
+			"section": "mssql/Access your data"
+		},
+		{
+			"name": "SQL Update",
+			"url": "https://orm.drizzle.team/docs/mssql/update",
+			"description": "",
+			"section": "mssql/Access your data"
+		},
+		{
+			"name": "SQL Delete",
+			"url": "https://orm.drizzle.team/docs/mssql/delete",
+			"description": "",
+			"section": "mssql/Access your data"
+		},
+		{
+			"name": "Filter and conditional operators",
+			"url": "https://orm.drizzle.team/docs/mssql/operators",
+			"description": "",
+			"section": "mssql/Access your data"
+		},
+		{
+			"name": "Drizzle query utils",
+			"url": "https://orm.drizzle.team/docs/mssql/query-utils",
+			"description": "",
+			"section": "mssql/Access your data"
+		},
+		{
+			"name": "Aliases",
+			"url": "https://orm.drizzle.team/docs/mssql/aliases",
+			"description": "",
+			"section": "mssql/Access your data"
+		},
+		{
+			"name": "Magical `sql` operator 🪄",
+			"url": "https://orm.drizzle.team/docs/mssql/sql",
+			"description": "",
+			"section": "mssql/Access your data"
+		}
+	]
+}

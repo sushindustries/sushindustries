@@ -1,0 +1,18 @@
+{
+	"provider": "tsdown-dev",
+	"source": "https://tsdown.dev/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"tsdown"
+	],
+	"title": "tsdown",
+	"summary": "The Elegant Bundler for Libraries",
+	"total": 92,
+	"sections": [
+		{
+			"name": "Table of Contents",
+			"entries": 92,
+			"file": "table-of-contents.json"
+		}
+	]
+}

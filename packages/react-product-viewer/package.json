@@ -26,8 +26,8 @@
 		"tanstack",
 		"tanstack-intent"
 	],
-	"types": "./dist/index.d.cts",
-	"main": "./dist/index.cjs",
+	"types": "./dist/index.d.ts",
+	"main": "./dist/index.js",
 	"module": "./dist/index.js",
 	"exports": {
 		".": "./src/index.ts",
@@ -92,22 +92,10 @@
 		"registry": "https://npm.pkg.github.com",
 		"access": "public",
 		"exports": {
-			".": {
-				"import": "./dist/index.js",
-				"require": "./dist/index.cjs"
-			},
-			"./model-mark": {
-				"import": "./dist/model-mark.js",
-				"require": "./dist/model-mark.cjs"
-			},
-			"./query": {
-				"import": "./dist/query.js",
-				"require": "./dist/query.cjs"
-			},
-			"./router": {
-				"import": "./dist/router.js",
-				"require": "./dist/router.cjs"
-			},
+			".": "./dist/index.js",
+			"./model-mark": "./dist/model-mark.js",
+			"./query": "./dist/query.js",
+			"./router": "./dist/router.js",
 			"./package.json": "./package.json",
 			"./styles.css": "./src/styles.css"
 		}

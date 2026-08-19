@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Cmd K",
+	"entries": [
+		{
+			"name": "Command palette - Docs",
+			"url": "https://posthog.com/docs/cmd-k.md",
+			"description": "",
+			"section": "Cmd K"
+		}
+	]
+}

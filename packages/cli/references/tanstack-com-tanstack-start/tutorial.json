@@ -1,0 +1,30 @@
+{
+	"provider": "tanstack-com-tanstack-start",
+	"section": "Tutorial",
+	"entries": [
+		{
+			"name": "React: Reading and Writing a File",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/tutorial/reading-writing-file.md",
+			"description": "",
+			"section": "Tutorial"
+		},
+		{
+			"name": "React: Fetching Data from External API",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/tutorial/fetching-external-api.md",
+			"description": "",
+			"section": "Tutorial"
+		},
+		{
+			"name": "Solid: Reading and Writing a File",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/tutorial/reading-writing-file.md",
+			"description": "",
+			"section": "Tutorial"
+		},
+		{
+			"name": "Solid: Fetching Data from External API",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/tutorial/fetching-external-api.md",
+			"description": "",
+			"section": "Tutorial"
+		}
+	]
+}

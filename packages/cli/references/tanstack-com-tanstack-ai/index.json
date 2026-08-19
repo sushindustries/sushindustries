@@ -1,0 +1,42 @@
+{
+	"provider": "tanstack-com-tanstack-ai",
+	"source": "https://tanstack.com/ai/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack AI docs",
+	"summary": "The headless agent framework for TypeScript. TanStack AI runs the agent loop as typed primitives you compose yourself: tool calls, reasoning, human-in-the-loop interrupts, memory, and streaming state. Eleven provider adapters, seven UI framework bindings, sandboxed code execution, MCP, and coding-agent harnesses behind one interface. Native AG-UI over the wire, MIT licensed, no hosted gateway and no platform to buy into.",
+	"total": 266,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 9,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 131,
+			"file": "guides.json"
+		},
+		{
+			"name": "API",
+			"entries": 122,
+			"file": "api.json"
+		}
+	]
+}

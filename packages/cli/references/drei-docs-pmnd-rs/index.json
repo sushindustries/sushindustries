@@ -1,0 +1,18 @@
+{
+	"provider": "drei-docs-pmnd-rs",
+	"source": "https://drei.docs.pmnd.rs/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"Drei"
+	],
+	"title": "Drei",
+	"summary": "",
+	"total": 134,
+	"sections": [
+		{
+			"name": "Documentation",
+			"entries": 134,
+			"file": "documentation.json"
+		}
+	]
+}

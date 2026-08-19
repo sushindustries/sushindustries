@@ -1,0 +1,738 @@
+{
+	"provider": "tanstack-com-tanstack-ai",
+	"section": "API",
+	"entries": [
+		{
+			"name": "@tanstack/ai",
+			"url": "https://tanstack.com/ai/latest/docs/api/ai.md",
+			"description": "(added 2026-04-15, updated 2026-07-21)",
+			"section": "API"
+		},
+		{
+			"name": "@tanstack/ai-client",
+			"url": "https://tanstack.com/ai/latest/docs/api/ai-client.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "API"
+		},
+		{
+			"name": "@tanstack/ai-react",
+			"url": "https://tanstack.com/ai/latest/docs/api/ai-react.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "API"
+		},
+		{
+			"name": "@tanstack/ai-solid",
+			"url": "https://tanstack.com/ai/latest/docs/api/ai-solid.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "API"
+		},
+		{
+			"name": "@tanstack/ai-preact",
+			"url": "https://tanstack.com/ai/latest/docs/api/ai-preact.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "API"
+		},
+		{
+			"name": "@tanstack/ai-vue",
+			"url": "https://tanstack.com/ai/latest/docs/api/ai-vue.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "API"
+		},
+		{
+			"name": "@tanstack/ai-svelte",
+			"url": "https://tanstack.com/ai/latest/docs/api/ai-svelte.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "API"
+		},
+		{
+			"name": "@tanstack/ai-angular",
+			"url": "https://tanstack.com/ai/latest/docs/api/ai-angular.md",
+			"description": "(added 2026-06-15, updated 2026-08-19)",
+			"section": "API"
+		},
+		{
+			"name": "BaseAdapter",
+			"url": "https://tanstack.com/ai/latest/docs/reference/classes/BaseAdapter.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "BatchStrategy",
+			"url": "https://tanstack.com/ai/latest/docs/reference/classes/BatchStrategy.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "CompositeStrategy",
+			"url": "https://tanstack.com/ai/latest/docs/reference/classes/CompositeStrategy.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ImmediateStrategy",
+			"url": "https://tanstack.com/ai/latest/docs/reference/classes/ImmediateStrategy.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "PartialJSONParser",
+			"url": "https://tanstack.com/ai/latest/docs/reference/classes/PartialJSONParser.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "PunctuationStrategy",
+			"url": "https://tanstack.com/ai/latest/docs/reference/classes/PunctuationStrategy.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "StreamProcessor",
+			"url": "https://tanstack.com/ai/latest/docs/reference/classes/StreamProcessor.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ToolCallManager",
+			"url": "https://tanstack.com/ai/latest/docs/reference/classes/ToolCallManager.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "RealtimeClient",
+			"url": "https://tanstack.com/ai/latest/docs/reference/classes/RealtimeClient.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "WordBoundaryStrategy",
+			"url": "https://tanstack.com/ai/latest/docs/reference/classes/WordBoundaryStrategy.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "text",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/text.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "textOptions",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/textOptions.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "combineStrategies",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/combineStrategies.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "convertMessagesToModelMessages",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/convertMessagesToModelMessages.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "convertZodToJsonSchema",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/convertZodToJsonSchema.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "createReplayStream",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/createReplayStream.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "embedding",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/embedding.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "generateMessageId",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/generateMessageId.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "maxIterations",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/maxIterations.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "messages",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/messages.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "modelMessageToUIMessage",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/modelMessageToUIMessage.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "modelMessagesToUIMessages",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/modelMessagesToUIMessages.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "normalizeToUIMessage",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/normalizeToUIMessage.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "parsePartialJSON",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/parsePartialJSON.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "summarize",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/summarize.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "toServerSentEventsStream",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/toServerSentEventsStream.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "toServerSentEventsResponse",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/toServerSentEventsResponse.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "toolDefinition",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/toolDefinition.md",
+			"description": "(added 2026-04-15, updated 2026-07-14)",
+			"section": "API"
+		},
+		{
+			"name": "uiMessageToModelMessages",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/uiMessageToModelMessages.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "realtimeToken",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/realtimeToken.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "untilFinishReason",
+			"url": "https://tanstack.com/ai/latest/docs/reference/functions/untilFinishReason.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "AIAdapter",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/AIAdapter.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "AIAdapterConfig",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/AIAdapterConfig.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "AgentLoopState",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/AgentLoopState.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ApprovalRequestedStreamChunk",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ApprovalRequestedStreamChunk.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "AudioPart",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/AudioPart.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "AudioVisualization",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/AudioVisualization.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "BaseStreamChunk",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/BaseStreamChunk.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "TextCompletionChunk",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/TextCompletionChunk.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "TextOptions",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/TextOptions.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ChunkRecording",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ChunkRecording.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ChunkStrategy",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ChunkStrategy.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ClientTool",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ClientTool.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ContentPartSource",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ContentPartSource.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ContentStreamChunk",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ContentStreamChunk.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "DefaultMessageMetadataByModality",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/DefaultMessageMetadataByModality.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "DocumentPart",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/DocumentPart.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "DoneStreamChunk",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/DoneStreamChunk.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "EmbeddingOptions",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/EmbeddingOptions.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "EmbeddingResult",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/EmbeddingResult.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ErrorStreamChunk",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ErrorStreamChunk.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ImagePart",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ImagePart.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "InternalToolCallState",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/InternalToolCallState.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "JSONParser",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/JSONParser.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ModelMessage",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ModelMessage.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ProcessorResult",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ProcessorResult.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ProcessorState",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ProcessorState.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "RealtimeAdapter",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/RealtimeAdapter.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "RealtimeClientOptions",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/RealtimeClientOptions.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "RealtimeConnection",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/RealtimeConnection.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "RealtimeMessage",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/RealtimeMessage.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "RealtimeSessionConfig",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/RealtimeSessionConfig.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "RealtimeToken",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/RealtimeToken.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "RealtimeTokenAdapter",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/RealtimeTokenAdapter.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "RealtimeTokenOptions",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/RealtimeTokenOptions.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ResponseFormat",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ResponseFormat.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ServerTool",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ServerTool.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "StreamProcessorEvents",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/StreamProcessorEvents.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "StreamProcessorHandlers",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/StreamProcessorHandlers.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "StreamProcessorOptions",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/StreamProcessorOptions.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "SummarizationOptions",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/SummarizationOptions.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "SummarizationResult",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/SummarizationResult.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "TextPart",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/TextPart.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ThinkingPart",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ThinkingPart.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ThinkingStreamChunk",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ThinkingStreamChunk.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "Tool",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/Tool.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ToolCall",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ToolCall.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ToolCallPart",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ToolCallPart.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ToolCallStreamChunk",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ToolCallStreamChunk.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ToolConfig",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ToolConfig.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ToolDefinition",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ToolDefinition.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ToolDefinitionConfig",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ToolDefinitionConfig.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ToolDefinitionInstance",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ToolDefinitionInstance.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ToolInputAvailableStreamChunk",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ToolInputAvailableStreamChunk.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ToolResultPart",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ToolResultPart.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ToolResultStreamChunk",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/ToolResultStreamChunk.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "UIMessage",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/UIMessage.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "VideoPart",
+			"url": "https://tanstack.com/ai/latest/docs/reference/interfaces/VideoPart.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "AgentLoopStrategy",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/AgentLoopStrategy.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "AnyClientTool",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/AnyClientTool.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "TextStreamOptionsForModel",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/TextStreamOptionsForModel.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "TextStreamOptionsUnion",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/TextStreamOptionsUnion.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ConstrainedContent",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/ConstrainedContent.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ConstrainedModelMessage",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/ConstrainedModelMessage.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ContentPart",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/ContentPart.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ContentPartForModalities",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/ContentPartForModalities.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ExtractModalitiesForModel",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/ExtractModalitiesForModel.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ExtractModelsFromAdapter",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/ExtractModelsFromAdapter.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "InferToolInput",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/InferToolInput.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "InferToolName",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/InferToolName.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "InferToolOutput",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/InferToolOutput.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "MessagePart",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/MessagePart.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "RealtimeEvent",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/RealtimeEvent.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "RealtimeMessagePart",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/RealtimeMessagePart.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "RealtimeMode",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/RealtimeMode.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "RealtimeStatus",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/RealtimeStatus.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ModalitiesArrayToUnion",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/ModalitiesArrayToUnion.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "Modality",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/Modality.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "StreamChunk",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/StreamChunk.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "StreamChunkType",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/StreamChunkType.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ToolCallState",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/ToolCallState.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "ToolResultState",
+			"url": "https://tanstack.com/ai/latest/docs/reference/type-aliases/ToolResultState.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "aiEventClient",
+			"url": "https://tanstack.com/ai/latest/docs/reference/variables/aiEventClient.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		},
+		{
+			"name": "defaultJSONParser",
+			"url": "https://tanstack.com/ai/latest/docs/reference/variables/defaultJSONParser.md",
+			"description": "(added 2026-04-15)",
+			"section": "API"
+		}
+	]
+}
