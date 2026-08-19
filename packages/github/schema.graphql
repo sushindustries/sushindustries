@@ -1,0 +1,238 @@
+# Note to AI Friends: This is an Apollo Connectors schema. You should use your connectors-spec MCP tool if you have it available before editing this file.
+#
+# GitHub, as a provider.
+#
+# No resolvers. The whole thing is the mapping from GitHub's REST responses to
+# a graph, which is what makes it a provider rather than an integration: a
+# schema file composes into somebody else's supergraph and starts answering,
+# with nothing to install and nothing to run.
+#
+# Public endpoints only, and no authorization header at all.
+#
+# That is deliberate and it was nearly wrong. The first version carried
+# `authorization: Bearer {$env.GITHUB_TOKEN}` so a token could raise the rate
+# limit when one happened to be set. It composed cleanly and then returned 401
+# Bad credentials on every call, because Connectors have no way to omit a
+# header conditionally: with the variable unset the header still goes, as
+# `Bearer ` with nothing after it, and an empty credential is worse than none.
+#
+# So there is no header. Sixty requests an hour is the unauthenticated
+# ceiling; a deployment that needs more should add the header in its own
+# router configuration, where it can be sure the value exists.
+
+extend schema
+	@link(url: "https://specs.apollo.dev/federation/v2.12")
+	@link(
+		url: "https://specs.apollo.dev/connect/v0.3"
+		import: ["@source", "@connect"]
+	)
+	@source(
+		name: "github"
+		http: {
+			baseURL: "https://api.github.com"
+			headers: [
+				{ name: "accept", value: "application/vnd.github+json" }
+				{ name: "x-github-api-version", value: "2022-11-28" }
+				# GitHub returns 403 without one, so this is not optional decoration.
+				{ name: "user-agent", value: "apollo-connectors" }
+			]
+		}
+	)
+
+"""
+A repository.
+
+An entity, because `owner` and `name` uniquely identify one and there is an
+endpoint that resolves it from exactly those two. Anything else in a
+supergraph that knows an owner and a name can hand over a stub and get the
+rest of this back.
+"""
+type Repository
+	@connect(
+		source: "github"
+		http: { GET: "/repos/{$this.owner}/{$this.name}" }
+		selection: """
+		owner: owner.login
+		name
+		nameWithOwner: full_name
+		description
+		url: html_url
+		defaultBranch: default_branch
+		stars: stargazers_count
+		forks: forks_count
+		openIssues: open_issues_count
+		pushedAt: pushed_at
+		isPrivate: private
+		"""
+	)
+{
+	owner: String!
+	name: String!
+
+	"`owner/name`, as GitHub writes it."
+	nameWithOwner: String
+
+	description: String
+	url: String
+	defaultBranch: String
+	stars: Int
+	forks: Int
+	openIssues: Int
+
+	"When anything was last pushed. The cheapest signal that work happened."
+	pushedAt: String
+
+	isPrivate: Boolean
+
+	"Recent commits on the default branch, newest first."
+	commits(limit: Int = 10): [Commit]
+		@connect(
+			source: "github"
+			http: {
+				GET: "/repos/{$this.owner}/{$this.name}/commits"
+				queryParams: "per_page: $args.limit"
+			}
+			selection: """
+			sha
+			url: html_url
+			message: commit.message
+			author: commit.author.name
+			committedAt: commit.author.date
+			"""
+		)
+
+	"Open pull requests, newest first."
+	pullRequests(limit: Int = 10): [PullRequest]
+		@connect(
+			source: "github"
+			http: {
+				GET: "/repos/{$this.owner}/{$this.name}/pulls"
+				queryParams: """
+				state: $("open")
+				per_page: $args.limit
+				"""
+			}
+			selection: """
+			number
+			title
+			url: html_url
+			draft
+			author: user.login
+			createdAt: created_at
+			"""
+		)
+
+	"Recent workflow runs, newest first. Where a red build shows up."
+	workflowRuns(limit: Int = 10): [WorkflowRun]
+		@connect(
+			source: "github"
+			http: {
+				GET: "/repos/{$this.owner}/{$this.name}/actions/runs"
+				queryParams: "per_page: $args.limit"
+			}
+			selection: """
+			$.workflow_runs {
+			  name
+			  status
+			  conclusion
+			  branch: head_branch
+			  url: html_url
+			  startedAt: run_started_at
+			}
+			"""
+		)
+}
+
+"""
+A commit.
+
+`message` is the whole message, not its first line. The mapping language has
+no split, and truncating in the schema would throw away the half of a commit
+message that says why - which in a well-written history is the useful half.
+Take the first line in the client if a list is what you are drawing.
+"""
+type Commit {
+	sha: String
+	message: String
+	author: String
+	committedAt: String
+	url: String
+}
+
+"An open pull request."
+type PullRequest {
+	number: Int
+	title: String
+	author: String
+	draft: Boolean
+	createdAt: String
+	url: String
+}
+
+"One run of a GitHub Actions workflow."
+type WorkflowRun {
+	name: String
+
+	"queued, in_progress or completed."
+	status: String
+
+	"success, failure, cancelled, skipped. Null while it is still running."
+	conclusion: String
+
+	branch: String
+	startedAt: String
+	url: String
+}
+
+type Query {
+	"One repository, by owner and name."
+	repository(owner: String!, name: String!): Repository
+		@connect(
+			source: "github"
+			http: { GET: "/repos/{$args.owner}/{$args.name}" }
+			selection: """
+			owner: owner.login
+			name
+			nameWithOwner: full_name
+			description
+			url: html_url
+			defaultBranch: default_branch
+			stars: stargazers_count
+			forks: forks_count
+			openIssues: open_issues_count
+			pushedAt: pushed_at
+			isPrivate: private
+			"""
+		)
+
+	"""
+	Every public repository an owner has, most recently pushed first.
+
+	A user or an organisation - GitHub answers both from this path, so the
+	schema does not need to know which one it was handed.
+	"""
+	repositories(owner: String!, limit: Int = 30): [Repository]
+		@connect(
+			source: "github"
+			http: {
+				GET: "/users/{$args.owner}/repos"
+				queryParams: """
+				sort: $("pushed")
+				per_page: $args.limit
+				"""
+			}
+			selection: """
+			owner: owner.login
+			name
+			nameWithOwner: full_name
+			description
+			url: html_url
+			defaultBranch: default_branch
+			stars: stargazers_count
+			forks: forks_count
+			openIssues: open_issues_count
+			pushedAt: pushed_at
+			isPrivate: private
+			"""
+		)
+}

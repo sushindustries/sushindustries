@@ -34,6 +34,10 @@ const COMMANDS = {
 		const { refs } = await import("./commands/refs.mjs");
 		await refs();
 	},
+	async connectors() {
+		const { connectors } = await import("./commands/connectors.mjs");
+		await connectors();
+	},
 	async setup() {
 		const { setup } = await import("./commands/setup.mjs");
 		await setup();
@@ -91,6 +95,7 @@ adam-jurek - the command line for adamjurek.com
   pnpm sushindustries refs             shard every provider's llms.txt locally
   pnpm sushindustries refs --force     re-fetch shards that already exist
 
+  pnpm sushindustries connectors       compose and test every provider package
   pnpm sushindustries graphql          write the GraphQL schema from the tables
   pnpm sushindustries studio           browse the deployed database
   pnpm sushindustries sync             write the index into Postgres

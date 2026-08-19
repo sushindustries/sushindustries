@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
 	completeSignIn,
 	sessionCookie,
-} from "../../../modules/content/github-auth.server";
-import { originFrom } from "../../../modules/registry/registry.server";
+} from "../modules/content/github-auth.server";
+import { originFrom } from "../modules/registry/registry.server";
 
 /*
  * Where GitHub sends you back.

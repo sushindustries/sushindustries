@@ -1,0 +1,11 @@
+# What `rover supergraph compose` reads to check this provider composes.
+#
+# One subgraph, because this package is one. The routing_url is a placeholder
+# and is ignored for a connectors subgraph - the @source is where requests
+# actually go.
+federation_version: =2.12.0
+subgraphs:
+  github:
+    routing_url: http://localhost
+    schema:
+      file: schema.graphql

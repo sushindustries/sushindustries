@@ -2,8 +2,8 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import {
 	authorizeUrl,
 	githubConfigured,
-} from "../../modules/content/github-auth.server";
-import { originFrom } from "../../modules/registry/registry.server";
+} from "../modules/content/github-auth.server";
+import { originFrom } from "../modules/registry/registry.server";
 
 /*
  * The start of signing in: a redirect to GitHub, and nothing else.

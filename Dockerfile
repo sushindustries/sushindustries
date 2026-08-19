@@ -39,6 +39,7 @@ COPY packages/cli/package.json packages/cli/
 # mount ids to carry its own cache-key prefix (`s/<service-id>-…`), which would
 # hardcode one platform's service id into a Dockerfile that should build
 # anywhere. The manifest-only COPY above is what actually saves the time.
+COPY packages/github/package.json packages/github/
 
 RUN pnpm install --frozen-lockfile
 

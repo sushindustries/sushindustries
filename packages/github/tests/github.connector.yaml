@@ -1,0 +1,221 @@
+# What each connector does to a response it did not fetch.
+#
+# Mocked bodies rather than live calls, because a test that hits GitHub tests
+# GitHub: it goes red when somebody else deploys, and it burns the sixty
+# requests an hour this provider is built around. `rover connector run` is
+# there for checking against the real thing; these check the mapping.
+#
+# Every body below is trimmed from a real response, keeping the fields the
+# selection reads plus a few it ignores - because ignoring them is part of
+# what is being tested.
+
+config:
+  schema: schema.graphql
+
+tests:
+  - name: "A repository maps to its entity fields"
+    target: "Query.repository"
+    variables:
+      $args:
+        owner: "sushindustries"
+        name: "sushindustries"
+    apiResponseBody: |
+      {
+        "id": 1336080106,
+        "name": "sushindustries",
+        "full_name": "sushindustries/sushindustries",
+        "private": false,
+        "owner": { "login": "sushindustries", "type": "User" },
+        "html_url": "https://github.com/sushindustries/sushindustries",
+        "description": "My portfolio, and the packages it is built from.",
+        "default_branch": "main",
+        "stargazers_count": 1,
+        "forks_count": 0,
+        "open_issues_count": 0,
+        "pushed_at": "2026-08-19T19:56:49Z"
+      }
+    expect:
+      connectorRequest:
+        url: https://api.github.com/repos/sushindustries/sushindustries
+      connectorResponse: |
+        {
+          "owner": "sushindustries",
+          "name": "sushindustries",
+          "nameWithOwner": "sushindustries/sushindustries",
+          "description": "My portfolio, and the packages it is built from.",
+          "url": "https://github.com/sushindustries/sushindustries",
+          "defaultBranch": "main",
+          "stars": 1,
+          "forks": 0,
+          "openIssues": 0,
+          "pushedAt": "2026-08-19T19:56:49Z",
+          "isPrivate": false
+        }
+
+  # The interesting part is the depth: GitHub nests the author and the date two
+  # levels inside `commit`, and the whole point of the mapping is that the
+  # schema does not have to.
+  - name: "Commits flatten author and date out of the nested commit object"
+    target: "Repository.commits"
+    variables:
+      $this:
+        owner: "sushindustries"
+        name: "sushindustries"
+      $args:
+        limit: "2"
+    apiResponseBody: |
+      [
+        {
+          "sha": "825f2ab",
+          "html_url": "https://github.com/sushindustries/sushindustries/commit/825f2ab",
+          "commit": {
+            "message": "feat(studio): the state of the projection",
+            "author": { "name": "sushindustries", "date": "2026-08-19T19:56:00Z" }
+          }
+        }
+      ]
+    expect:
+      connectorRequest:
+        url: https://api.github.com/repos/sushindustries/sushindustries/commits?per_page=2
+      connectorResponse: |
+        [
+          {
+            "sha": "825f2ab",
+            "url": "https://github.com/sushindustries/sushindustries/commit/825f2ab",
+            "message": "feat(studio): the state of the projection",
+            "author": "sushindustries",
+            "committedAt": "2026-08-19T19:56:00Z"
+          }
+        ]
+
+  - name: "Open pull requests carry the author from the nested user"
+    target: "Repository.pullRequests"
+    variables:
+      $this:
+        owner: "sushindustries"
+        name: "sushindustries"
+      $args:
+        limit: "2"
+    apiResponseBody: |
+      [
+        {
+          "number": 7,
+          "title": "Add the connectors provider",
+          "draft": false,
+          "created_at": "2026-08-19T18:00:00Z",
+          "html_url": "https://github.com/sushindustries/sushindustries/pull/7",
+          "user": { "login": "sushindustries" }
+        }
+      ]
+    expect:
+      connectorRequest:
+        url: https://api.github.com/repos/sushindustries/sushindustries/pulls?state=open&per_page=2
+      connectorResponse: |
+        [
+          {
+            "number": 7,
+            "title": "Add the connectors provider",
+            "url": "https://github.com/sushindustries/sushindustries/pull/7",
+            "draft": false,
+            "author": "sushindustries",
+            "createdAt": "2026-08-19T18:00:00Z"
+          }
+        ]
+
+  # This one is wrapped: the runs are under `workflow_runs`, so the selection
+  # has to unwrap before it can map. A null conclusion is kept rather than
+  # dropped, because "still running" is an answer.
+  - name: "Workflow runs unwrap, and a running one keeps its null conclusion"
+    target: "Repository.workflowRuns"
+    variables:
+      $this:
+        owner: "sushindustries"
+        name: "sushindustries"
+      $args:
+        limit: "2"
+    apiResponseBody: |
+      {
+        "total_count": 2,
+        "workflow_runs": [
+          {
+            "name": "CI",
+            "status": "in_progress",
+            "conclusion": null,
+            "head_branch": "main",
+            "run_started_at": "2026-08-19T19:57:00Z",
+            "html_url": "https://github.com/sushindustries/sushindustries/actions/runs/1"
+          },
+          {
+            "name": "Security",
+            "status": "completed",
+            "conclusion": "success",
+            "head_branch": "main",
+            "run_started_at": "2026-08-19T19:10:00Z",
+            "html_url": "https://github.com/sushindustries/sushindustries/actions/runs/2"
+          }
+        ]
+      }
+    expect:
+      connectorRequest:
+        url: https://api.github.com/repos/sushindustries/sushindustries/actions/runs?per_page=2
+      connectorResponse: |
+        [
+          {
+            "name": "CI",
+            "status": "in_progress",
+            "conclusion": null,
+            "branch": "main",
+            "url": "https://github.com/sushindustries/sushindustries/actions/runs/1",
+            "startedAt": "2026-08-19T19:57:00Z"
+          },
+          {
+            "name": "Security",
+            "status": "completed",
+            "conclusion": "success",
+            "branch": "main",
+            "url": "https://github.com/sushindustries/sushindustries/actions/runs/2",
+            "startedAt": "2026-08-19T19:10:00Z"
+          }
+        ]
+
+  - name: "An owner's repositories map with the same shape as one repository"
+    target: "Query.repositories"
+    variables:
+      $args:
+        owner: "sushindustries"
+        limit: "1"
+    apiResponseBody: |
+      [
+        {
+          "name": "sushindustries",
+          "full_name": "sushindustries/sushindustries",
+          "private": false,
+          "owner": { "login": "sushindustries" },
+          "html_url": "https://github.com/sushindustries/sushindustries",
+          "description": "My portfolio.",
+          "default_branch": "main",
+          "stargazers_count": 1,
+          "forks_count": 0,
+          "open_issues_count": 0,
+          "pushed_at": "2026-08-19T19:56:49Z"
+        }
+      ]
+    expect:
+      connectorRequest:
+        url: https://api.github.com/users/sushindustries/repos?sort=pushed&per_page=1
+      connectorResponse: |
+        [
+          {
+            "owner": "sushindustries",
+            "name": "sushindustries",
+            "nameWithOwner": "sushindustries/sushindustries",
+            "description": "My portfolio.",
+            "url": "https://github.com/sushindustries/sushindustries",
+            "defaultBranch": "main",
+            "stars": 1,
+            "forks": 0,
+            "openIssues": 0,
+            "pushedAt": "2026-08-19T19:56:49Z",
+            "isPrivate": false
+          }
+        ]

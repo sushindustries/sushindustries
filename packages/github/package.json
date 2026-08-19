@@ -1,0 +1,28 @@
+{
+	"name": "@sushindustries/github",
+	"version": "0.1.0",
+	"type": "module",
+	"description": "GitHub as an Apollo Connectors provider: a schema that composes into any supergraph and answers from GitHub's public REST API, with no resolvers and no token.",
+	"license": "MIT",
+	"keywords": [
+		"apollo",
+		"connectors",
+		"graphql",
+		"github",
+		"provider"
+	],
+	"files": [
+		"schema.graphql",
+		"supergraph.yaml",
+		"tests"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sushindustries/sushindustries.git",
+		"directory": "packages/github"
+	},
+	"homepage": "https://adamjurek.com/packages/github",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	}
+}
