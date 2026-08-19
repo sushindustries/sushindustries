@@ -63,6 +63,35 @@ export const REGISTRY_CATEGORIES: ReadonlyArray<{
 	},
 ];
 
+/**
+ * One way an element can be told to look or behave differently.
+ *
+ * Declared here rather than only in the props, because a variant is a fact
+ * about the *library* and props are a fact about one file. Three surfaces need
+ * this list and none of them can read a TypeScript union at runtime: the
+ * component page shows every variant side by side, the MCP server answers
+ * "what can this look like" without a checkout, and the registry endpoints
+ * hand it to whatever installs the item.
+ *
+ * The discipline that keeps it honest: **a variant listed here must be a value
+ * a prop actually accepts.** `pnpm run doctor` cannot check that yet, so it is
+ * the kind of rule that holds because somebody remembers - which means the
+ * list stays short and every entry stays boring.
+ */
+export interface RegistryVariant {
+	/** The prop this is a value of. `variant`, `tone`, `density`, `kind`. */
+	readonly prop: string;
+
+	/** The value itself, exactly as it is written in code. */
+	readonly value: string;
+
+	/** What it changes, in one line. Not what it looks like - what it is for. */
+	readonly about: string;
+
+	/** True for the value you get by leaving the prop off. At most one per prop. */
+	readonly default?: boolean;
+}
+
 export interface RegistryItem {
 	/** Install id and URL segment. Matches the source filename. */
 	readonly name: string;
@@ -94,6 +123,14 @@ export interface RegistryItem {
 	readonly subcategory?: string;
 	/** Cross-cutting labels. These are filterable. */
 	readonly tags?: readonly string[];
+	/**
+	 * The looks and behaviours this element can be switched between.
+	 *
+	 * Absent means one look, which is true of most of them and is the honest
+	 * default - an element with a variants list of one is an element pretending
+	 * to have a choice.
+	 */
+	readonly variants?: readonly RegistryVariant[];
 	/**
 	 * What the preview shows, for readers who cannot see it. A card in a grid
 	 * has no room to explain itself twice.
@@ -457,6 +494,19 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		category: "docs",
 		subcategory: "Page furniture",
 		tags: ["container-query", "responsive", "no-deps"],
+		variants: [
+			{
+				prop: "variant",
+				value: "doc",
+				about: "A documentation page's opening.",
+				default: true,
+			},
+			{
+				prop: "variant",
+				value: "landing",
+				about: "A page whose first screen is the argument.",
+			},
+		],
 		preview: "A page head with its name, its facts and a picture of itself",
 		kind: "block",
 	},
@@ -671,6 +721,19 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		category: "layout",
 		subcategory: "Page structure",
 		tags: ["divider", "no-deps"],
+		variants: [
+			{
+				prop: "orientation",
+				value: "horizontal",
+				about: "Between stacked things.",
+				default: true,
+			},
+			{
+				prop: "orientation",
+				value: "vertical",
+				about: "Between things in a row. Takes its height from the row.",
+			},
+		],
 		preview: "A horizontal rule and a vertical one, holding things apart",
 	},
 	{
@@ -685,6 +748,11 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		category: "content",
 		subcategory: "Loading",
 		tags: ["loading", "no-deps"],
+		variants: [
+			{ prop: "shape", value: "line", about: "A line of text.", default: true },
+			{ prop: "shape", value: "block", about: "A card, an image, a panel." },
+			{ prop: "shape", value: "circle", about: "An avatar." },
+		],
 		preview: "Three placeholder shapes, sweeping",
 	},
 	{
@@ -741,6 +809,20 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		category: "content",
 		subcategory: "Actions",
 		tags: ["action", "no-deps"],
+		variants: [
+			{
+				prop: "variant",
+				value: "pill",
+				about: "The one action a section wants taken.",
+				default: true,
+			},
+			{
+				prop: "variant",
+				value: "ghost",
+				about:
+					"The alternative beside it. There is no third, because a row of three button styles is a menu in costume.",
+			},
+		],
 		preview: "A filled pill beside a ghost outline",
 	},
 	{
@@ -942,6 +1024,20 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		category: "content",
 		subcategory: "Feedback",
 		tags: ["callout", "no-deps"],
+		variants: [
+			{
+				prop: "tone",
+				value: "note",
+				about: "Context worth having.",
+				default: true,
+			},
+			{ prop: "tone", value: "tip", about: "A shortcut, or a better way." },
+			{
+				prop: "tone",
+				value: "caution",
+				about: "Something that will cost you if ignored.",
+			},
+		],
 		preview: "A note, a tip and a caution in their tints",
 	},
 	{
@@ -1009,6 +1105,26 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		category: "content",
 		subcategory: "Data",
 		tags: ["data", "sorting", "filtering", "pagination", "tanstack"],
+		variants: [
+			{
+				prop: "density",
+				value: "comfortable",
+				about: "Room to read a few rows.",
+				default: true,
+			},
+			{
+				prop: "density",
+				value: "compact",
+				about:
+					"Half the padding, same type size. For scanning fifty rows rather than reading five.",
+			},
+			{
+				prop: "striped",
+				value: "true",
+				about:
+					"Bands alternate rows. Earns its place on a wide table and is decoration on a narrow one.",
+			},
+		],
 		preview: "A sortable, filtered table with its page controls under it",
 	},
 	{
@@ -1035,6 +1151,26 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		category: "content",
 		subcategory: "Data",
 		tags: ["data", "chart", "tanstack", "theme-aware"],
+		variants: [
+			{
+				prop: "direction",
+				value: "bar",
+				about: "Runs left to right, so category labels read straight across.",
+				default: true,
+			},
+			{
+				prop: "direction",
+				value: "column",
+				about:
+					"Runs bottom to top. For a few short labels, or a sequence people read as time.",
+			},
+			{
+				prop: "colorByCategory",
+				value: "true",
+				about:
+					"One tone per category. For comparing kinds, never for a ranking - there colour looks like meaning and is not.",
+			},
+		],
 		preview: "Horizontal bars, one colour per category, on a token palette",
 	},
 	{
@@ -1050,6 +1186,27 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		category: "layout",
 		subcategory: "Containers",
 		tags: ["block", "shell", "panel", "container-query", "no-deps"],
+		variants: [
+			{
+				prop: "variant",
+				value: "machine",
+				about:
+					"A case with a screen sunk into it. For when the workbench is the page's content.",
+				default: true,
+			},
+			{
+				prop: "variant",
+				value: "panel",
+				about:
+					"One border, no case. For a workbench inside a card or a dialog, where a second material would float on the first.",
+			},
+			{
+				prop: "variant",
+				value: "bare",
+				about:
+					"The layout with nothing drawn around it. For filling a container edge to edge.",
+			},
+		],
 		preview:
 			"A bordered panel with a title strip above and a status line below",
 	},
@@ -1067,6 +1224,19 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		category: "layout",
 		subcategory: "Overlays",
 		tags: ["block", "menu", "popover", "keyboard", "no-deps"],
+		variants: [
+			{
+				prop: "align",
+				value: "start",
+				about: "The menu's left edge lines up with the button's.",
+				default: true,
+			},
+			{
+				prop: "align",
+				value: "end",
+				about: "Right edges line up. For a menu in the last column of a table.",
+			},
+		],
 		preview: "A button with an open menu of four actions beneath it",
 	},
 	{

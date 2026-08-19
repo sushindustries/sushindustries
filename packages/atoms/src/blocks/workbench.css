@@ -85,6 +85,52 @@
 	}
 
 	/*
+	 * ── variants ────────────────────────────────────────────────────
+	 *
+	 * Three, and they differ only in how much frame is drawn. The layout - the
+	 * strip, the rail, the scrolling body, the status line - is identical in
+	 * all three, which is what makes switching between them cosmetic rather
+	 * than structural: a variant can never move a slot or break a scroll
+	 * container.
+	 *
+	 * `panel` drops the case, because a case is a second *material* and a
+	 * second material inside a first reads as a surface floating on a surface.
+	 * A workbench inside a card or a dialog wants a border, not a machine.
+	 */
+	.workbench[data-variant="panel"] {
+		--workbench-bezel: 0px;
+		padding: 0;
+		background: none;
+		box-shadow: none;
+	}
+
+	.workbench[data-variant="panel"] > .workbench-screen {
+		border: 1px solid var(--line);
+		border-radius: var(--workbench-corner);
+		box-shadow: none;
+	}
+
+	/*
+	 * `bare` is the layout and nothing else. For a workbench that fills its
+	 * container edge to edge, where any border would be a line drawn against
+	 * the window rather than around anything.
+	 */
+	.workbench[data-variant="bare"] {
+		--workbench-bezel: 0px;
+		--workbench-corner: 0px;
+		padding: 0;
+		background: none;
+		box-shadow: none;
+	}
+
+	.workbench[data-variant="bare"] > .workbench-screen {
+		border: 0;
+		border-radius: 0;
+		background: none;
+		box-shadow: none;
+	}
+
+	/*
 	 * Three columns, so the title is centred on the screen rather than on
 	 * whatever is left beside the toolbar - the same reasoning as the device
 	 * strip, and the same failure if it were `space-between`: it looks right

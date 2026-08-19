@@ -108,6 +108,11 @@ export async function graphql() {
 		"desk",
 		"skill",
 		"note",
+		"collection",
+		"task",
+		"template",
+		"config",
+		"plugin",
 		"repo",
 		"source",
 	];

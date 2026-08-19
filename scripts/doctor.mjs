@@ -536,6 +536,77 @@ function checkRegistryFilesExist(items) {
 	}
 }
 
+/**
+ * Every declared variant is a value a prop actually accepts.
+ *
+ * A variant list is read by three surfaces that cannot check it - the
+ * component page, the MCP server and the registry endpoints - so a value that
+ * no prop takes is a value all three advertise and none can deliver. The
+ * failure is somebody copying it out of documentation and getting a type
+ * error, or worse, a `string` prop that silently accepts it and does nothing.
+ *
+ * The check is textual rather than a type read: the source is TypeScript and
+ * this script is plain Node with nothing between it and the filesystem, which
+ * is the trade the pipeline document describes. So it looks for the value in
+ * the file's props - inside a union, or as a boolean when the declared value
+ * is `true` - and reports what it could not find.
+ *
+ * That means it can miss a variant whose prop is typed through an alias. It
+ * cannot report one that is simply invented, which is the failure worth
+ * catching and the one that actually happened.
+ */
+function checkRegistryVariantsExist(items) {
+	for (const item of items) {
+		if (!item.variants?.length) continue;
+
+		const source = item.files
+			.map((file) => read(`packages/ui/src/${file}`) ?? "")
+			.join("\n");
+
+		if (!source) continue;
+
+		for (const variant of item.variants) {
+			if (!new RegExp(`\\b${variant.prop}\\??:`).test(source)) {
+				report(
+					"variants",
+					"packages/ui/registry.ts",
+					`"${item.name}" declares a ${variant.prop} variant, and no prop called ${variant.prop} exists`,
+					"remove it from `variants`, or add the prop",
+				);
+				continue;
+			}
+
+			// `true` is a boolean prop's only interesting value, and a boolean is
+			// not written as a quoted union - so its presence is all there is to
+			// check once the prop itself has been found.
+			if (variant.value === "true") continue;
+
+			if (!source.includes(`"${variant.value}"`)) {
+				report(
+					"variants",
+					"packages/ui/registry.ts",
+					`"${item.name}" declares ${variant.prop}="${variant.value}", which does not appear in ${item.files.join(", ")}`,
+					"a variant has to be a value the prop takes",
+				);
+			}
+		}
+
+		const defaults = new Map();
+		for (const variant of item.variants) {
+			if (!variant.default) continue;
+			if (defaults.has(variant.prop)) {
+				report(
+					"variants",
+					"packages/ui/registry.ts",
+					`"${item.name}" marks two defaults for ${variant.prop}`,
+					"a prop has one value you get by leaving it off",
+				);
+			}
+			defaults.set(variant.prop, variant.value);
+		}
+	}
+}
+
 function checkRegistryDependenciesResolve(items) {
 	const names = new Set(items.map((item) => item.name));
 
@@ -2566,6 +2637,7 @@ checkPushGateDelegates();
 
 checkElementsDeclareSchemaType(registry);
 checkRegistryFilesExist(registry);
+checkRegistryVariantsExist(registry);
 checkRegistryDependenciesResolve(registry);
 checkComponentImportsAreDeclared(registry);
 checkAtomsAreLayered();

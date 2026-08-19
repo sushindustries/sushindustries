@@ -91,6 +91,41 @@
 		color: var(--fg-faint);
 	}
 
+	/*
+	 * ── variants ────────────────────────────────────────────────────
+	 *
+	 * Density changes the padding and nothing else. The type stays the same
+	 * size in both, because shrinking text to fit more of it is the point where
+	 * a dense table stops being readable and becomes a screenshot of a table.
+	 */
+	.data-table[data-density="compact"] thead th,
+	.data-table[data-density="compact"] tbody td {
+		padding: var(--s-1) var(--s-2);
+	}
+
+	/*
+	 * Banding, for wide tables. It exists to stop the eye slipping a row
+	 * between the first column and the last, so it earns its place at six
+	 * columns and is decoration at three - which is why it is opt-in rather
+	 * than a default somebody would have to turn off.
+	 *
+	 * `--bg-2` at a fraction rather than a second grey, so the band is the same
+	 * colour as the header at lower strength and the table stays two tones in
+	 * both themes rather than three in one of them.
+	 */
+	.data-table[data-striped] tbody tr:nth-child(even) {
+		background: color-mix(in srgb, var(--bg-2) 45%, transparent);
+	}
+
+	/*
+	 * Hover still wins over the band. Without this the hovered row on an even
+	 * index looks identical to its neighbours, which is the one row that has to
+	 * be distinguishable.
+	 */
+	.data-table[data-striped] tbody tr:hover {
+		background: var(--bg-2);
+	}
+
 	/* A cell holding a path or a hash. Long, and not prose. */
 	.data-table-mono {
 		font-family: var(--mono);

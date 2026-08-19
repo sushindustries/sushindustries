@@ -59,6 +59,54 @@ const KINDS = [
 		match: (path) => path.startsWith("apps/web/content/desks/"),
 	},
 	/*
+	 * Both of these fell through to `repo` for as long as they existed, which
+	 * is what the catch-all at the bottom does to anything ending in `.md` that
+	 * nothing above claimed. Nobody noticed, because `repo` is four files
+	 * nobody filters on - so nineteen documents were filed under the one kind
+	 * whose list is never read. A catch-all is only safe while every real kind
+	 * is above it.
+	 */
+	/*
+	 * The files `pnpm new` writes from. They are documents in every sense that
+	 * matters here - Markdown, a path, a token cost - and they are the answer
+	 * to "what does a new post look like", which is a question worth being able
+	 * to ask without a checkout.
+	 */
+	{
+		kind: "template",
+		about: "What `pnpm new` writes from. A working preview of its own output.",
+		match: (path) => /^templates\/[^/]+\.md$/.test(path),
+	},
+	/*
+	 * Configuration written as content: the nav, the footer, the shelf, the
+	 * assistant's openers, the studio's hub chart. Each is a Markdown file the
+	 * site reads at build time, which is what makes them editable in the studio
+	 * - and filing them as `repo` hid that.
+	 */
+	{
+		kind: "config",
+		about: "Configuration authored as Markdown: the nav, the shelf, the hub.",
+		match: (path) =>
+			/^apps\/web\/content\/(?:[^/]+\.md|studio\/[^/]+\.md)$/.test(path),
+	},
+	{
+		kind: "plugin",
+		about:
+			"The Claude Code plugin this repository publishes: its commands and its skills.",
+		match: (path) => path.startsWith("plugins/"),
+	},
+	{
+		kind: "collection",
+		about:
+			"A saved filter over the documents index. Membership is computed, never stored.",
+		match: (path) => path.startsWith("apps/web/content/collections/"),
+	},
+	{
+		kind: "task",
+		about: "A piece of work worth doing, with why it is worth doing it.",
+		match: (path) => path.startsWith("apps/web/content/tasks/"),
+	},
+	/*
 	 * A skill is a SKILL.md, and nothing else.
 	 *
 	 * `.claude/` also holds the rules a skill points at, the records of what was
@@ -66,10 +114,24 @@ const KINDS = [
 	 * skill list mostly not-skills, and an index built over that list numbered
 	 * things nobody can invoke.
 	 */
+	/*
+	 * A skill is a SKILL.md, wherever it lives.
+	 *
+	 * This matched `.claude/skills/` only, and six real skills - the ones each
+	 * package publishes for `@tanstack/intent` to load - fell through to `repo`
+	 * as a result. Nobody noticed because `repo` is the catch-all and nothing
+	 * filters on it, so `skills` in the graph and the skills collection were
+	 * both quietly short by six.
+	 *
+	 * Still `SKILL.md` exactly. `.claude/` also holds the rules a skill points
+	 * at and `packages/assistant/skills/` holds tool descriptions that are not
+	 * skills at all; matching the directory rather than the filename is what
+	 * made the skill list mostly not-skills the first time.
+	 */
 	{
 		kind: "skill",
 		about: "One SKILL.md each: what to do, and when.",
-		match: (path) => /^\.claude\/skills\/.+\/SKILL\.md$/.test(path),
+		match: (path) => /(^|\/)skills\/.+\/SKILL\.md$/.test(path),
 	},
 	{
 		kind: "note",
@@ -190,7 +252,77 @@ function locate({ path, slug, section }) {
 	return found;
 }
 
+/**
+ * The registry, read the same way the doctor and the site read it.
+ *
+ * Imported from `scripts/docs.mjs` rather than parsed again here. A second
+ * parser over `registry.ts` would be a second thing to fix when the file's
+ * shape changes, and the two would disagree exactly once - silently, in
+ * whichever of them somebody forgot.
+ */
+const { readRegistry } = await import(
+	new URL("../../../scripts/docs.mjs", import.meta.url)
+);
+
 export function registerDocsTools(server) {
+	server.registerTool(
+		"list-variants",
+		{
+			title: "List element variants",
+			description:
+				"Every way an element in this library can be told to look or behave differently: the prop, the value, what it is for, and which value you get by leaving the prop off. Read this before writing markup against a component - a variant is the difference between using the library and rebuilding half of it with utility classes.",
+			inputSchema: z.object({
+				name: z
+					.string()
+					.optional()
+					.describe(
+						"One element, e.g. workbench. Omitted, every element that has variants.",
+					),
+			}),
+		},
+		async ({ name }) => {
+			const all = readRegistry().filter((item) => item.variants?.length);
+			const wanted = name ? all.filter((item) => item.name === name) : all;
+
+			if (wanted.length === 0) {
+				return text(
+					name
+						? `"${name}" has no variants. It has one look, which is true of most of them.`
+						: "No element declares variants.",
+				);
+			}
+
+			const lines = wanted.map((item) => {
+				const props = [...new Set(item.variants.map((one) => one.prop))];
+
+				return [
+					`## ${item.title}  (${item.name})`,
+					...props.map((prop) => {
+						const values = item.variants.filter((one) => one.prop === prop);
+						return [
+							`### ${prop}`,
+							...values.map(
+								(one) =>
+									`- \`${one.value}\`${one.default ? " (default)" : ""} - ${one.about}`,
+							),
+						].join("\n");
+					}),
+				].join("\n\n");
+			});
+
+			return {
+				...text(["# Variants", "", ...lines].join("\n\n")),
+				structuredContent: {
+					elements: wanted.map((item) => ({
+						name: item.name,
+						title: item.title,
+						variants: item.variants,
+					})),
+				},
+			};
+		},
+	);
+
 	server.registerTool(
 		"list-docs",
 		{

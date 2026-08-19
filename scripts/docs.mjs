@@ -86,12 +86,47 @@ export function readRegistry() {
 				block.match(/description:\s*\n?\s*"((?:[^"\\]|\\.)*)"/)?.[1] ?? ""
 			).replace(/\\"/g, '"'),
 			category: block.match(/category:\s*"([^"]+)"/)?.[1],
+			/*
+			 * The one nested structure in an item, so it gets its own parse.
+			 *
+			 * `list()` above cannot read it: that helper stops at the first `]`,
+			 * and a variants array is objects with their own braces. Matching the
+			 * block to its closing `\n\t\t]` and then splitting on the inner
+			 * braces is the smallest thing that works, and the indentation is the
+			 * anchor - which is what a formatter guarantees and content cannot
+			 * imitate.
+			 *
+			 * A parser rather than an import, like everything else here: this
+			 * script must run on a bare `pnpm install` with nothing built, so it
+			 * cannot import a `.ts` file to read one field out of it.
+			 */
+			variants: variantsIn(block),
 			kind: block.match(/kind:\s*"([^"]+)"/)?.[1] ?? "component",
 			schema: block.match(/schema:\s*"([^"]+)"/)?.[1],
 		});
 	}
 
 	return items;
+}
+
+/**
+ * The `variants` of one registry item, out of its source block.
+ *
+ * Returns an empty array for an item with none, which is most of them - a
+ * variants list of one is an element pretending to have a choice.
+ */
+function variantsIn(block) {
+	const list = block.match(/\n\t\tvariants:\s*\[\n([\s\S]*?)\n\t\t\],/)?.[1];
+	if (!list) return [];
+
+	return [...list.matchAll(/\{([^{}]*)\}/g)]
+		.map(([, body]) => ({
+			prop: body.match(/prop:\s*"([^"]+)"/)?.[1],
+			value: body.match(/value:\s*"([^"]+)"/)?.[1],
+			about: body.match(/about:\s*\n?\s*"((?:[^"\\]|\\.)*)"/)?.[1] ?? "",
+			default: /default:\s*true/.test(body),
+		}))
+		.filter((one) => one.prop && one.value);
 }
 
 /**

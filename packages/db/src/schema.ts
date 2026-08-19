@@ -132,6 +132,11 @@ export type DocumentKind =
 	| "desk"
 	| "skill"
 	| "note"
+	| "collection"
+	| "task"
+	| "template"
+	| "config"
+	| "plugin"
 	| "repo"
 	| "source";
 

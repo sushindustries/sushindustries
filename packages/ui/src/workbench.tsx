@@ -48,6 +48,28 @@ export interface WorkbenchProps {
 
 	/** Announced as a region with this name, for anyone navigating by landmark. */
 	readonly label?: string;
+
+	/**
+	 * How much frame to draw.
+	 *
+	 * `machine` is the case and the sunken screen - an object sitting on the
+	 * page, which is right when the workbench *is* the page's content.
+	 *
+	 * `panel` is one border and no case. It exists because the case is a second
+	 * material, and a second material inside a first one reads as a surface
+	 * floating on a surface - so a workbench inside a card, a dialog or another
+	 * workbench wants this rather than the full machine.
+	 *
+	 * `bare` is the layout with no frame at all: the strip, the rail, the
+	 * scrolling body and the status line, and nothing drawn around them. For a
+	 * workbench that fills its container edge to edge, where a border would be
+	 * a line against the window.
+	 *
+	 * All three are the same markup. Only the case and the screen change, which
+	 * is what keeps the choice cosmetic rather than structural - switching
+	 * variants can never move a slot or break a scroll container.
+	 */
+	readonly variant?: "machine" | "panel" | "bare";
 }
 
 export function Workbench({
@@ -58,10 +80,15 @@ export function Workbench({
 	status,
 	maxHeight,
 	label,
+	variant = "machine",
 }: WorkbenchProps): ReactNode {
 	return (
 		<section
 			className="workbench"
+			// An attribute rather than a class, so the stylesheet selects on
+			// `[data-variant="panel"]` and a caller cannot half-apply a variant by
+			// passing one of its two class names.
+			data-variant={variant}
 			aria-label={label ?? title}
 			// Set as a property rather than as a height, so the body can be
 			// shorter than this and only starts scrolling when it is not.

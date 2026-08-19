@@ -125,6 +125,11 @@ const CREATES = [
 	["create-post", "post", "A written piece under /posts."],
 	["create-page", "page", "A standing page at the top level, like /about."],
 	[
+		"create-task",
+		"task",
+		"A piece of work worth doing, as a document. The backlog lives in the repository like everything else, so the studio searches it, collections group it, and this server reads it - rather than in a tracker that would be a second place work lives.",
+	],
+	[
 		"create-collection",
 		"collection",
 		"A saved query over the documents index - a named filter, not a list. Membership is computed when somebody asks, so anything added later that matches joins it on its own. Use this when a set of documents is worth naming: `skills`, `conventions`, `component-api`.",

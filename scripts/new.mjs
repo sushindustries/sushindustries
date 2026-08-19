@@ -391,12 +391,38 @@ async function newCollection() {
 	);
 }
 
+/* ── task ────────────────────────────────────────────────────────────── */
+
+/*
+ * A task is a document, which is the whole reason to keep the backlog here
+ * rather than in an issue tracker: the studio already searches documents,
+ * collections already group them, the MCP server already reads them, and the
+ * graph already serves them. A tracker would be a second place work lives and
+ * a fifth surface to keep in step.
+ */
+async function newTask() {
+	const target = `apps/web/content/tasks/${slug}.md`;
+
+	await writeFrom("task", target, {
+		slug,
+		title: titleCase(slug),
+		date: new Date().toISOString().slice(0, 10),
+	});
+
+	written.push(target);
+	todo.push(
+		`say why it is worth doing in ${target} - the reason is the part that is expensive to reconstruct`,
+	);
+	todo.push(`set \`area:\` - it is what the collections group on`);
+}
+
 /* ── run ─────────────────────────────────────────────────────────────── */
 
 const kinds = {
 	post: newPost,
 	page: newPage,
 	collection: newCollection,
+	task: newTask,
 	desk: newDesk,
 	docs: newDocs,
 	component: newComponent,

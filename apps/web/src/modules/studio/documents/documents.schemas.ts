@@ -28,6 +28,11 @@ export const DOCUMENT_KINDS = [
 	"desk",
 	"skill",
 	"note",
+	"collection",
+	"task",
+	"template",
+	"config",
+	"plugin",
 	"repo",
 	"source",
 ] as const;

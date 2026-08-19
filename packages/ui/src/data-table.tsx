@@ -82,6 +82,30 @@ export interface DataTableProps<TRow> {
 
 	/** Announced to screen readers, and never drawn. */
 	readonly label: string;
+
+	/**
+	 * How much room each row gets.
+	 *
+	 * `comfortable` is a table somebody reads a few rows of. `compact` is one
+	 * they scan fifty rows of, which is a genuinely different job: at fifty
+	 * rows the padding is most of the height, and a table that needs two
+	 * screens to show what fits on one is a table people stop scrolling.
+	 *
+	 * Only the padding and the line height change. The type stays the same size
+	 * in both, because shrinking text to fit more of it is where a dense table
+	 * stops being readable and starts being a screenshot.
+	 */
+	readonly density?: "comfortable" | "compact";
+
+	/**
+	 * Shades alternate rows.
+	 *
+	 * Off by default and worth turning on for wide tables specifically: banding
+	 * exists to stop the eye slipping a row between the first column and the
+	 * last, and a three-column table has no such distance to slip across. On a
+	 * narrow table it is decoration that makes every second row look selected.
+	 */
+	readonly striped?: boolean;
 }
 
 export function DataTable<TRow extends object>({
@@ -91,6 +115,8 @@ export function DataTable<TRow extends object>({
 	descending = false,
 	empty = "Nothing here.",
 	label,
+	density = "comfortable",
+	striped = false,
 }: DataTableProps<TRow>): ReactNode {
 	/*
 	 * Both type parameters, given rather than inferred.
@@ -143,7 +169,13 @@ export function DataTable<TRow extends object>({
 		 * than redeclaring guarantees.
 		 */
 		<div className="overflow-x-auto max-w-full border rounded-xl bg-1">
-			<table className="data-table">
+			<table
+				className="data-table"
+				// Attributes rather than classes, so a caller cannot half-apply a
+				// variant, and so the stylesheet reads as a table of states.
+				data-density={density}
+				data-striped={striped ? "" : undefined}
+			>
 				<caption className="sr-only">{label}</caption>
 				<thead>
 					{table.getHeaderGroups().map((group) => (
