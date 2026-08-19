@@ -101,13 +101,40 @@ jobs:
       - name: Format and lint
         run: pnpm exec biome check .
 
+      # Valid YAML is not a valid workflow. A space before a `#` inside an
+      # unquoted `${{ }}` scalar is a YAML comment, so the expression is
+      # silently truncated: the file parses, GitHub refuses it, and the run
+      # reports "a workflow file issue" with no jobs started and nothing to
+      # read. actionlint knows the Actions schema and the expression grammar,
+      # so it is the only thing here that catches that. A step in this job
+      # rather than a job of its own, because a separate job bills a whole
+      # minute to run something that takes three seconds.
+      # Pinned by version and checksum rather than an action, so nothing here
+      # runs a binary it did not verify first.
+      - name: Workflows
+        env:
+          ACTIONLINT_VERSION: 1.7.7
+          ACTIONLINT_SHA256: 023070a287cd8cccd71515fedc843f1985bf96c436b7effaecce67290e7e0757
+        run: |
+          set -euo pipefail
+          curl -fsSLo actionlint.tar.gz \
+            "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
+          echo "${ACTIONLINT_SHA256}  actionlint.tar.gz" | sha256sum -c -
+          tar -xzf actionlint.tar.gz actionlint
+          ./actionlint -color
+          rm -f actionlint actionlint.tar.gz
+
       # `typecheck` depends on `build` in turbo.json, so this produces the
       # generated route tree and the build below is a cache hit.
       - name: Types
-        run: pnpm run typecheck $TURBO_FLAGS
+        run: |
+          # shellcheck disable=SC2086
+          pnpm run typecheck $TURBO_FLAGS
 
       - name: Build
-        run: pnpm run build $TURBO_FLAGS
+        run: |
+          # shellcheck disable=SC2086
+          pnpm run build $TURBO_FLAGS
 
       # The browser the layout tests measure in. Cached on the lockfile, since
       # the Playwright version is what decides which build gets downloaded.
@@ -124,7 +151,9 @@ jobs:
       # widths. Locally a machine without the browser skips the geometry half;
       # here nothing skips.
       - name: Pages
-        run: pnpm run test $TURBO_FLAGS
+        run: |
+          # shellcheck disable=SC2086
+          pnpm run test $TURBO_FLAGS
 
       # `exports`, `main` and `module` are written by tsdown from the chunks it
       # actually emitted, so a manifest and its build cannot disagree here the
