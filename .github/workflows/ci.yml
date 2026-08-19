@@ -1,0 +1,186 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Nothing here writes to the repo, so the token cannot either. The image job
+# reuses the same read-only grant; GHA build cache uses its own scoped token.
+permissions:
+  contents: read
+
+# A second push supersedes the first: nothing is learned from finishing a run
+# for a commit that is already behind, and every cancelled minute is a minute
+# not paid for.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Lint, types, build
+    runs-on: ubuntu-latest
+
+    # On a PR, turbo runs only the packages the diff can have affected; a push
+    # to main always runs everything, because main is what deploys.
+    env:
+      TURBO_FLAGS: ${{ github.event_name == 'pull_request' && '--affected' || '' }}
+
+    # Read by the image job: on a PR, the image is only rebuilt when the app it
+    # packages is affected or the Docker plumbing itself changed. A push to
+    # main ignores this and always builds.
+    outputs:
+      image: ${{ steps.image.outputs.needed }}
+
+    steps:
+      # Full history, no blobs. `--affected` and `turbo query affected` need
+      # the merge base to exist in the checkout - a shallow clone makes every
+      # package look changed - and blob filtering keeps the full fetch cheap.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+
+      # The version lives in `engines.node` in package.json - one declaration,
+      # read here rather than repeated here.
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: package.json
+          cache: pnpm
+
+      # Turbo's cache, keyed on the lockfile and the commit. A run that changes
+      # only Markdown restores the previous build instead of repeating it.
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .turbo
+          key: turbo-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
+          restore-keys: |
+            turbo-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-
+            turbo-${{ runner.os }}-
+
+      - run: pnpm install --frozen-lockfile
+
+      # Whether the Docker job downstream has anything to verify. Two halves:
+      # `turbo query affected` answers "did the app the image packages change,
+      # counting its dependency graph" straight from the docs' skipping-tasks
+      # pattern (exit 1 = affected, 0 = not, 2 = error - errors build the
+      # image rather than skip it); the git diff answers for the files turbo
+      # does not track as package inputs, which is the Docker plumbing itself.
+      - name: Does the image need building
+        id: image
+        if: github.event_name == 'pull_request'
+        run: |
+          needed=false
+          if ! pnpm exec turbo query affected --packages @sushindustries/web --exit-code > /dev/null; then
+            needed=true
+          fi
+          if ! git diff --quiet "origin/$GITHUB_BASE_REF"...HEAD -- Dockerfile .dockerignore railway.json; then
+            needed=true
+          fi
+          echo "needed=$needed" >> "$GITHUB_OUTPUT"
+
+      # Cheapest first. This reads the directory and nothing else, so a missing
+      # Dockerfile line or a doc with no frontmatter fails in seconds rather
+      # than after a build.
+      # `pnpm run doctor`, not `pnpm doctor`: pnpm has a builtin `doctor`
+      # command, and a bare `pnpm doctor` runs that one instead. It checks the
+      # pnpm installation, passes, and this step has been green without ever
+      # executing scripts/doctor.mjs.
+      - name: Doctor
+        run: pnpm run doctor
+
+      - name: Format and lint
+        run: pnpm exec biome check .
+
+      # `typecheck` depends on `build` in turbo.json, so this produces the
+      # generated route tree and the build below is a cache hit.
+      - name: Types
+        run: pnpm run typecheck $TURBO_FLAGS
+
+      - name: Build
+        run: pnpm run build $TURBO_FLAGS
+
+      # The browser the layout tests measure in. Cached on the lockfile, since
+      # the Playwright version is what decides which build gets downloaded.
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Chromium
+        run: pnpm --filter @sushindustries/web exec playwright install --with-deps chromium
+
+      # Every sitemap page, twice over: document semantics over HTTP against
+      # the built server, then geometry in Chromium at phone and desktop
+      # widths. Locally a machine without the browser skips the geometry half;
+      # here nothing skips.
+      - name: Pages
+        run: pnpm run test $TURBO_FLAGS
+
+      # `exports`, `main` and `module` are written by tsdown from the chunks it
+      # actually emitted, so a manifest and its build cannot disagree here the
+      # way they did when the map was maintained by hand. The cost of that is
+      # that `package.json` is partly a build artefact: if the build rewrites
+      # one, the rewrite belongs in the commit, and this is what says so.
+      #
+      # It also runs publint and attw, which the configs mark `ci-only` - so a
+      # tarball whose types resolve wrongly fails here rather than on install.
+      - name: Manifests match the build
+        run: git diff --exit-code -- '**/package.json'
+
+  image:
+    name: Docker image
+    runs-on: ubuntu-latest
+
+    # Only after the cheap checks pass.
+    #
+    # These two used to run in parallel, which meant a typo in a type annotation
+    # still paid for a full multi-stage image build every time. The image job is
+    # the expensive one; it should only ever run on a commit that has already
+    # earned it - and on a PR, only when what it verifies could have changed:
+    # the app it packages (per `turbo query affected`) or the Docker plumbing.
+    needs: check
+    if: github.event_name != 'pull_request' || needs.check.outputs.image == 'true'
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+
+      # The check that matters. Three deploys failed on things only a real
+      # image build catches: a workspace whose dist was never built, a COPY of
+      # a node_modules that does not exist, and a cache mount the host rejects.
+      # `pnpm build` on a developer machine passes through all of them.
+      - name: Build the image
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: .
+          push: false
+          load: true
+          tags: sushindustries:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # An image that builds and then exits on boot is still a failed deploy.
+      - name: Boot it and hit the healthcheck
+        run: |
+          docker run -d --name web -p 3000:3000 -e PORT=3000 sushindustries:ci
+          for i in $(seq 1 30); do
+            if curl -fsS http://localhost:3000/health > /dev/null; then
+              echo "healthy after ${i}s"
+              curl -fsS http://localhost:3000/ > /dev/null && echo "home ok"
+              docker rm -f web
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "never became healthy:"
+          docker logs web
+          docker rm -f web
+          exit 1

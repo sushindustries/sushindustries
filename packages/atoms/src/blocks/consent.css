@@ -1,0 +1,73 @@
+@layer blocks {
+	/* ── consent bar ─────────────────────────────────────────────────── */
+
+	/*
+	 * A question at the bottom of the screen, not a wall in front of it.
+	 *
+	 * Fixed and non-modal on purpose: the law this block exists for says a
+	 * visitor may ignore the question and keep reading, so nothing dims, no
+	 * focus is trapped, and the page behind stays fully usable. A consent
+	 * dialog that blocks the content is answering "may I track you" with a
+	 * hostage.
+	 *
+	 * `inset-inline` with auto margins rather than full width: on a phone it
+	 * spans the screen minus a gutter, on a desktop it is a card in the
+	 * corner - the difference between a notice and a cookie curtain.
+	 */
+	.consent {
+		container-type: inline-size;
+		position: fixed;
+		inset-inline: var(--s-4);
+		bottom: calc(var(--s-4) + env(safe-area-inset-bottom, 0px));
+		/* Above panels, under menus and toasts: the question should never
+		   cover the control somebody is actually using. */
+		z-index: var(--z-overlay-over);
+		margin-inline-start: auto;
+		max-width: 26rem;
+		padding: var(--s-4);
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-3);
+		background: var(--bg-0);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-card);
+		box-shadow: var(--lift-3);
+	}
+
+	/*
+	 * Both answers, the same size as each other - declining must cost the
+	 * same click as accepting, a shrunken "no" is the dark pattern the
+	 * regulation names - but sized to their own content, not stretched to
+	 * fill the row. Right-aligned: a question reads left to right and its
+	 * answers belong at the end of that reading line, the way a dialog's
+	 * actions do.
+	 *
+	 * `container-type` on `.consent` makes this a property of the bar's own
+	 * width, not the viewport's - the bar is already narrower on some hosts
+	 * than others (the 26rem cap, a card thumbnail, a future embed), and the
+	 * buttons should react to the box they are actually in.
+	 */
+	.consent-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: var(--s-2);
+	}
+
+	.consent-actions > * {
+		flex: 0 0 auto;
+		justify-content: center;
+		padding-inline: var(--s-3);
+	}
+
+	/*
+	 * Below this, "sized to content" leaves too little to tap - two answers
+	 * that share the row here read as one continuous button. Full width and
+	 * stacked-in-a-row keeps both the same size and both easy to hit.
+	 */
+	@container (max-width: 20rem) {
+		.consent-actions > * {
+			flex: 1 1 0;
+			padding-inline: var(--s-2);
+		}
+	}
+}

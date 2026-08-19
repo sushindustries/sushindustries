@@ -1,0 +1,85 @@
+@layer blocks {
+	/* ── page rhythm ─────────────────────────────────────────────── */
+
+	/*
+	 * `min()` rather than `max-width` plus padding.
+	 *
+	 * One declaration says the whole rule: as wide as the content box allows, less
+	 * a gutter on each side, and never wider than the measure. There is no second
+	 * value to keep in step, and it cannot produce the classic bug where the
+	 * padding is inside the max-width and the container is narrower than it claims.
+	 *
+	 * `100%`, never `100vw`. `vw` includes the scrollbar, so `width: 100vw` on a
+	 * page that scrolls is about fifteen pixels wider than the space available and
+	 * the whole document gains a horizontal scrollbar.
+	 */
+	.container {
+		width: min(100% - var(--gutter) * 2, var(--container));
+		margin-inline: auto;
+	}
+
+	/*
+	 * Opt a subtree into container queries.
+	 *
+	 * This is the unit that actually matters for a component library. A media
+	 * query asks how wide the window is; a component three levels inside a sidebar
+	 * does not care, and cannot be correct in both places from one answer. With
+	 * `container-type: inline-size` on an ancestor, `cqi` and `@container` ask how
+	 * much room this component was given, which is the question it can answer.
+	 *
+	 * `inline-size` rather than `size`: querying the block axis requires the
+	 * container to have a height that does not depend on its content, and almost
+	 * nothing on a page does.
+	 */
+	.cq {
+		container-type: inline-size;
+	}
+
+	/*
+	 * Fluid, so the breakpoint that used to switch this between two fixed values
+	 * is gone. The distance between sections is a proportion of the page rather
+	 * than a measurement, and a `clamp` says that in one line instead of in two
+	 * rules that have to be kept in step.
+	 */
+	.section {
+		padding-block: var(--space-page);
+		border-top: 1px solid var(--line-soft);
+	}
+
+	/*
+	 * Rhythm inside a section, from the same fluid scale as the space around it.
+	 *
+	 * Owned by the section rather than set as a margin on each child: a heading
+	 * that knows how far it sits from the paragraph under it has to be told again
+	 * every time it is used somewhere else, and the two answers drift.
+	 */
+	.section > * + * {
+		margin-top: var(--space-block);
+	}
+
+	/* The heading group is one thing, so it keeps its own tighter spacing. */
+	.section > .label + * {
+		margin-top: var(--s-3);
+	}
+
+	/*
+	 * The gap between a page and the footer under it.
+	 *
+	 * The footer carried a top border and its own padding but no margin, so a
+	 * page whose last element had no bottom spacing of its own ran straight
+	 * into the rule - which is most documentation pages, because a docs article
+	 * ends on whatever its last section ended on.
+	 *
+	 * `--space-section` rather than a step off the fixed scale: this is the
+	 * distance between two regions of a page, which is the one measurement that
+	 * should grow with the viewport, and it is the same token the gap above a
+	 * section already uses.
+	 *
+	 * `margin-top: auto` pins it to the bottom on a page too short to fill the
+	 * screen, so a sparse page does not leave the footer floating halfway up.
+	 */
+	.site-footer {
+		margin-top: auto;
+		padding-top: var(--space-section);
+	}
+}

@@ -1,0 +1,89 @@
+/*
+ * Model mark.
+ *
+ * A square that holds a lit model at icon size, with a flat glyph underneath
+ * it. Unlike the viewer, this one *does* have an opinion about its size - the
+ * whole point of it is to be small, and a mark that inherits its size from a
+ * flex parent takes the whole parent and then keeps taking it.
+ */
+
+.pv-mark {
+	position: relative;
+	display: grid;
+	flex: 0 0 auto;
+	width: var(--pv-mark-size, 3rem);
+	height: var(--pv-mark-size, 3rem);
+
+	/*
+   * A model whose bounding box is larger than its silhouette would otherwise
+   * paint over whatever is under it - on a desktop icon, the label.
+   */
+	overflow: clip;
+}
+
+/*
+ * Both children in the same grid cell, so the canvas draws over the glyph.
+ *
+ * Stacked with `grid-area` rather than by absolutely positioning the canvas,
+ * because the glyph is the only child on the path where there is no canvas -
+ * and an absolutely positioned canvas would leave nothing in flow for the box
+ * to size itself from on exactly the path that has to work.
+ *
+ * `place-self: stretch` is the load-bearing half, and getting it wrong is a
+ * silent, total failure rather than a visual one. A grid item that is *centred*
+ * is sized to its content; the viewer inside asks for `width: 100%` of that
+ * item; and a percentage of a shrink-to-fit box that is waiting on its own
+ * content resolves to **zero**. The canvas is then 0x0, WebGL initialises
+ * happily, nothing is logged, and the element renders as an empty square that
+ * looks exactly like a model that failed to load.
+ */
+.pv-mark > * {
+	grid-area: 1 / 1;
+	place-self: stretch;
+	min-width: 0;
+	min-height: 0;
+}
+
+/*
+ * The glyph is the one child that *should* be centred, so it centres itself
+ * inside the stretched cell rather than being centred by the grid.
+ */
+.pv-mark__glyph {
+	display: grid;
+	place-items: center;
+	color: var(--pv-mark-glyph, currentColor);
+}
+
+/* Stretched, and a positioning context for the canvas's own overlay. */
+.pv-mark__canvas {
+	position: relative;
+	display: block;
+}
+
+/*
+ * The viewer fills the square exactly.
+ *
+ * `min-height: 0` is the load-bearing half: a `min-height` inherited from
+ * anywhere is the usual reason a canvas refuses to be small, and it fails by
+ * growing the box rather than by erroring.
+ */
+.pv-mark__canvas > .pv-viewer {
+	width: 100%;
+	height: 100%;
+	min-height: 0;
+}
+
+/*
+ * The progress label and value, dropped at this size.
+ *
+ * There is no room for either at 48px, and both are already in the element's
+ * `aria-label` - so what is lost is a caption nobody could read.
+ *
+ * The scrim is not mentioned here on purpose. A mark is always `transparent`,
+ * and the viewer already withholds its scrim in that mode, so saying it again
+ * would be a second rule that has to be kept in step with the first.
+ */
+.pv-mark .pv-progress__label,
+.pv-mark .pv-progress__value {
+	display: none;
+}

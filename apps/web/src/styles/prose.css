@@ -1,0 +1,143 @@
+/*
+ * Long-form prose and page furniture that is genuinely this site's.
+ *
+ * The code theme used to live here as a hundred lines of unlayered `.th-*`
+ * rules, which silently outranked every `@layer` rule in atoms - the terminal
+ * slab shipped and this file kept painting fences paper. Code material and
+ * syntax colour now live where every other component style lives:
+ * `packages/atoms`, as `--code-*` and `--syn-*` tokens.
+ */
+
+/* ── embedded 3D viewer ──────────────────────────────────────── */
+
+/*
+ * The box is sized before the canvas exists. three and R3F arrive after the
+ * document has already painted, and without a reserved height the prose below
+ * jumps by 400px the moment they do.
+ */
+.viewer-frame {
+	position: relative;
+	margin-top: var(--s-5);
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-lg);
+	background: var(--bg-1);
+	overflow: hidden;
+	contain: layout paint;
+}
+
+.viewer-frame canvas {
+	display: block;
+	width: 100%;
+	height: 100%;
+	/* The model is the control; let it take the drag. */
+	touch-action: none;
+}
+
+/* ── doc header and tabs ─────────────────────────────────────── */
+
+.doc-header {
+	padding-block: var(--s-7) 0;
+	border-bottom: 1px solid var(--line-soft);
+	background: var(--bg-1);
+}
+
+/*
+ * A row that scrolls rather than wraps. Wrapping tabs move the content down by
+ * a line at one specific width, which reads as a layout bug every time.
+ */
+.doc-tabs {
+	display: flex;
+	gap: var(--s-1);
+	overflow-x: auto;
+	scrollbar-width: none;
+}
+
+.doc-tabs::-webkit-scrollbar {
+	display: none;
+}
+
+.doc-tab {
+	position: relative;
+	padding: var(--s-3) var(--s-4);
+	white-space: nowrap;
+	font-family: var(--mono);
+	font-size: var(--t-xs);
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--fg-faint);
+	border-bottom: 2px solid transparent;
+	transition:
+		color 160ms ease,
+		border-color 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.doc-tab:hover {
+		color: var(--fg-dim);
+	}
+}
+
+.doc-tab[data-active="true"] {
+	color: var(--fg);
+	border-bottom-color: var(--accent);
+}
+
+/* ── desktop wallpaper ───────────────────────────────────────── */
+
+/*
+ * The laptop's wallpaper, on this site.
+ *
+ * Two soft lights rather than an image: an image is a request, a decode and a
+ * decision about resolution, and this is behind a folder grid at a size nobody
+ * looks at directly. A gradient is none of those things and reads as the same
+ * amount of depth.
+ *
+ * It lives in the app rather than in atoms because it is this site's wallpaper.
+ * `Laptop` takes whatever it is given, which is the reusable half.
+ */
+.desk-glow {
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(
+			ellipse 70% 55% at 28% 18%,
+			color-mix(in srgb, var(--folder) 16%, transparent),
+			transparent 70%
+		),
+		radial-gradient(
+			ellipse 60% 50% at 78% 82%,
+			color-mix(in srgb, var(--accent) 12%, transparent),
+			transparent 70%
+		),
+		linear-gradient(160deg, var(--nori-800), var(--nori-900));
+}
+
+/* The status line under the laptop. Empty until an action says something. */
+.shelf-status {
+	min-height: 1.2em;
+	color: var(--fg-faint);
+}
+
+/* ── StackBlitz embed ─────────────────────────────────────────── */
+
+/*
+ * The StackBlitz frame fills its container. The SDK injects an iframe into
+ * the div, so the div needs a real height and a border to sit in.
+ */
+.showcase-stackblitz {
+	margin-top: var(--s-3);
+	border: 1px solid var(--line-soft);
+	border-radius: var(--r-lg);
+	overflow: hidden;
+}
+
+.showcase-stackblitz-frame {
+	width: 100%;
+	height: 100%;
+}
+
+.showcase-stackblitz-frame iframe {
+	width: 100%;
+	height: 100%;
+	border: 0;
+}

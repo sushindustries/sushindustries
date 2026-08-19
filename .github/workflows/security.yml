@@ -1,0 +1,56 @@
+# Adapted from the github-actions-templates skill's security-scan pattern,
+# cut to what this repo actually is: Trivy scans the filesystem - lockfile
+# CVEs, Dockerfile misconfigurations, leaked secrets - and files findings in
+# the repo's Security tab as SARIF. The skill's Snyk half is dropped: it
+# needs a paid token, and pnpm audit in the doctor pipeline already covers
+# the advisory feed it would add.
+#
+# Weekly on a schedule plus every push to main: PRs are already gated by CI,
+# and a CVE published on a Tuesday should not wait for the next commit.
+
+name: Security
+
+on:
+  # Pushes only scan when what Trivy reads has changed - dependencies, the
+  # Dockerfile, or this workflow. Everything else is covered by the weekly
+  # schedule, which exists precisely so a CVE published between pushes still
+  # surfaces without paying for a scan on every docs commit.
+  push:
+    branches: [main]
+    paths:
+      - pnpm-lock.yaml
+      - "**/package.json"
+      - Dockerfile
+      - .dockerignore
+      - .github/workflows/security.yml
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  scan:
+    name: Trivy scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Scan the repository
+        uses: aquasecurity/trivy-action@915b19bbe73b92a6cf82a1bc12b087c9a19a5fe2 # v0.28.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          format: sarif
+          output: trivy-results.sarif
+          severity: CRITICAL,HIGH
+
+      - name: Upload findings to the Security tab
+        uses: github/codeql-action/upload-sarif@f3712979fa5f215279b101dd0a2e3bdfb4353324 # v3
+        with:
+          sarif_file: trivy-results.sarif

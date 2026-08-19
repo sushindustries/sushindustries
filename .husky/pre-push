@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# The gate that runs before anything leaves this machine.
+#
+# One line on purpose: the list of checks lives in the root `check` script,
+# so the hook, CI and a human typing `pnpm check` all run the same gate and
+# none of them can drift from the others. The doctor asserts this file stays
+# a delegation and does not grow its own list again.
+#
+# Skip deliberately with `git push --no-verify` when you know what you are
+# doing - a hook you cannot bypass is a hook people delete.
+
+pnpm run check

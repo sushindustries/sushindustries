@@ -1,0 +1,36 @@
+{
+	"$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+	"notGrouped": "bottom",
+	"groupings": [
+		{
+			"title": "Conventions",
+			"description": "Where a file goes, what it is called, and the rules that are enforced rather than aspirational.",
+			"skills": ["sushindustries-conventions"]
+		},
+		{
+			"title": "Component pipeline",
+			"description": "Adding, documenting and verifying a component from source to the live registry.",
+			"skills": [
+				"add-a-component",
+				"document-an-element",
+				"verify-component",
+				"toolset"
+			]
+		},
+		{
+			"title": "Repo maintenance",
+			"description": "Keeping a repo honest over time - removing excess, checking claims before acting on them, and going from private to public.",
+			"skills": [
+				"simplify",
+				"hypothesis-testing",
+				"going-public",
+				"gh-repo-admin"
+			]
+		},
+		{
+			"title": "Reuse the design system",
+			"description": "Building a different project the way adamjurek.com is built.",
+			"skills": ["adam-jurek"]
+		}
+	]
+}

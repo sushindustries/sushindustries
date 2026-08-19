@@ -1,0 +1,116 @@
+@layer blocks {
+	/* ── cards ───────────────────────────────────────────────────── */
+
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(
+				auto-fit,
+				minmax(clamp(260px, 30vw, 320px), 1fr)
+			);
+		gap: var(--s-4);
+	}
+
+	/*
+	 * Glass by fill and edge, and no `backdrop-filter`.
+	 *
+	 * A card is a surface on the page, not an overlay above it, so there is
+	 * nothing behind it worth blurring - and there are a dozen of them in a grid.
+	 * A dozen backdrop roots is a dozen GPU readbacks a frame, which is the cost
+	 * that crashed the renderer when it was tried on the nav's icon tiles.
+	 *
+	 * The lit top edge is what carries the material. It is the same gradient the
+	 * header uses, at a lower strength, so a card and the nav read as the same
+	 * substance at different thicknesses.
+	 */
+	.card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-3);
+		padding: var(--s-5);
+		background:
+			linear-gradient(to bottom, var(--glass-edge), transparent 42%),
+			var(--bg-1);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-card);
+		/*
+		 * A card is a thing resting on the page, and on a pale ground that is the
+		 * only way to say so. The dark theme separated surfaces by making them
+		 * lighter, which is a direction that does not exist here - everything is
+		 * already light. So depth moved from brightness to shadow, which is what
+		 * it is made of in the world.
+		 */
+		box-shadow: var(--lift-1);
+		transition:
+			border-color 200ms ease,
+			background 200ms ease,
+			box-shadow 200ms ease,
+			transform 260ms var(--ease-out);
+	}
+
+	/*
+	 * The image card. The picture bleeds to the card's own edge - the padding
+	 * is carved out with negative margins rather than a second wrapper - and
+	 * is cropped to a fixed ratio so a grid of these holds one line whatever
+	 * was uploaded.
+	 */
+	.card-media {
+		display: block;
+		width: calc(100% + 2 * var(--s-5));
+		margin: calc(-1 * var(--s-5)) calc(-1 * var(--s-5)) 0;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		border-radius: var(--r-card) var(--r-card) 0 0;
+	}
+
+	/* The category card's glyph tile, in the same tones as the nav panel. */
+	.card-icon {
+		display: grid;
+		place-items: center;
+		width: 26px;
+		height: 26px;
+		flex-shrink: 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		background: var(--bg-2);
+		color: var(--fg-faint);
+	}
+
+	.card-icon[data-tone="motion"] {
+		background: var(--tone-motion);
+		color: var(--tone-motion-ink);
+	}
+
+	.card-icon[data-tone="layout"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+	}
+
+	.card-icon[data-tone="content"] {
+		background: var(--tone-content);
+		color: var(--tone-content-ink);
+	}
+
+	.card-icon[data-tone="docs"] {
+		background: var(--tone-docs);
+		color: var(--tone-docs-ink);
+	}
+
+	.card-icon[data-tone="3d"] {
+		background: var(--tone-3d);
+		color: var(--tone-3d-ink);
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.card:hover {
+			background: var(--bg-2);
+			border-color: var(--line);
+			/*
+			 * Rises in shadow as well as in position. A `translateY` on its own
+			 * reads as a slide; it is the shadow growing underneath that makes it
+			 * read as lifting off the page.
+			 */
+			box-shadow: var(--lift-2);
+			transform: translateY(-3px);
+		}
+	}
+}

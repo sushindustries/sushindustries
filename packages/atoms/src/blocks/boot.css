@@ -1,0 +1,100 @@
+@layer blocks {
+	/* ── boot ─────────────────────────────────────────── */
+
+	/*
+	 * A machine booting, drawn inside whatever box it was given.
+	 *
+	 * It fills its parent rather than the viewport, because on this site it
+	 * boots a *screen* - the thing loading is the desktop inside a device, not
+	 * the page around it. A loader that covered the browser window would hide
+	 * the article somebody is already reading in order to announce that a
+	 * decoration further down is not ready.
+	 */
+	.boot {
+		position: absolute;
+		inset: 0;
+		z-index: var(--z-boot);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: clamp(var(--s-3), 3cqi, var(--s-5));
+		background: var(--bg-0);
+		animation: boot-out 260ms var(--ease-out) 1.4s forwards;
+	}
+
+	/*
+	 * Where the mark goes. A square, so a canvas inside it has an aspect ratio
+	 * to work with before it has decided anything about the model in it.
+	 */
+	.boot-stage {
+		width: clamp(5rem, 22cqi, 9rem);
+		aspect-ratio: 1;
+	}
+
+	/*
+	 * `tabular-nums` is the whole rule.
+	 *
+	 * Proportional digits make 1 narrower than 8, so a counter running from 000
+	 * to 100 shifts sideways on almost every frame. It is the single most
+	 * noticeable thing about a number that lacks it, and nobody can say what is
+	 * wrong - only that it looks cheap.
+	 */
+	.boot-count {
+		margin: 0;
+		font-family: var(--mono);
+		font-size: clamp(var(--t-sm), 5cqi, var(--t-lg));
+		font-variant-numeric: tabular-nums;
+		letter-spacing: 0.24em;
+		color: var(--accent);
+	}
+
+	.boot-rail {
+		width: clamp(8rem, 44cqi, 18rem);
+		height: 2px;
+		border-radius: 999px;
+		background: var(--bg-3);
+		overflow: hidden;
+	}
+
+	/*
+	 * `scaleX` from the left, not `width`.
+	 *
+	 * A transform composites on its own layer; a width relays out the rail and
+	 * everything after it on every frame. At sixty frames a second that is the
+	 * difference between a loader that costs nothing and a loader that competes
+	 * with the WebGL context starting up two elements away - which is precisely
+	 * what it is covering for.
+	 */
+	.boot-fill {
+		width: 100%;
+		height: 100%;
+		transform-origin: left;
+		background: var(--accent);
+		transition: transform 180ms linear;
+	}
+
+	@keyframes boot-out {
+		to {
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+
+	/*
+	 * Reduced motion keeps the loader and drops the flourish.
+	 *
+	 * Removing it entirely would be worse than useless: somebody who asked for
+	 * less motion still needs to know something is happening, and a blank screen
+	 * with no explanation is not less motion, it is less information.
+	 */
+	@media (prefers-reduced-motion: reduce) {
+		.boot {
+			animation: none;
+		}
+
+		.boot-fill {
+			transition: none;
+		}
+	}
+}

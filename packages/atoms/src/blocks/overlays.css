@@ -1,0 +1,321 @@
+@layer blocks {
+	/* ── disclosure and overlays ─────────────────────────────────── */
+
+	/* details, stacked. The chevron turns because [open] says so. */
+	.accordion {
+		display: flex;
+		flex-direction: column;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+	}
+
+	.accordion-item + .accordion-item {
+		border-top: 1px solid var(--line-soft);
+	}
+
+	.accordion-summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--s-3);
+		padding: var(--s-3) var(--s-4);
+		font-weight: 600;
+		font-size: var(--t-sm);
+		cursor: pointer;
+		list-style: none;
+	}
+
+	.accordion-summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.accordion-chevron {
+		display: flex;
+		color: var(--fg-faint);
+		transition: rotate 180ms var(--ease-out);
+	}
+
+	.accordion-item[open] > .accordion-summary .accordion-chevron {
+		rotate: 180deg;
+	}
+
+	.accordion-body {
+		padding: 0 var(--s-4) var(--s-4);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.accordion-chevron {
+			transition: none;
+		}
+	}
+
+	/*
+	 * The one-line tooltip, revealed by CSS on hover and focus-within. It is
+	 * one line by contract; anything richer is the reference hover card.
+	 */
+	.tooltip {
+		position: relative;
+		display: inline-block;
+	}
+
+	.tooltip-bubble {
+		position: absolute;
+		bottom: calc(100% + var(--s-2));
+		left: 50%;
+		translate: -50% 0;
+		z-index: var(--z-overlay);
+		width: max-content;
+		max-width: 16rem;
+		padding: var(--s-1) var(--s-3);
+		border-radius: var(--r);
+		background: var(--ink);
+		color: var(--bg-0);
+		font-size: var(--t-xs);
+		opacity: 0;
+		visibility: hidden;
+		transition:
+			opacity 140ms ease,
+			visibility 0s 140ms;
+		pointer-events: none;
+	}
+
+	.tooltip:hover .tooltip-bubble,
+	.tooltip:focus-within .tooltip-bubble {
+		opacity: 1;
+		visibility: visible;
+		transition-delay: 350ms, 350ms;
+	}
+
+	/* A button that stays down. data-active is the pressed look. */
+	.toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-1);
+		padding: var(--s-2) var(--s-3);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+		color: var(--fg-dim);
+		font: 500 var(--t-sm) / 1 var(--sans);
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			color 140ms ease,
+			border-color 140ms ease;
+	}
+
+	.toggle[data-active="true"] {
+		background: var(--bg-3);
+		border-color: var(--line);
+		color: var(--fg);
+	}
+
+	.toggle-group {
+		display: inline-flex;
+		gap: var(--s-1);
+		margin: 0;
+		padding: var(--s-1);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+	}
+
+	.toggle-group .toggle {
+		border-color: transparent;
+		background: transparent;
+	}
+
+	.toggle-group .toggle[data-active="true"] {
+		background: var(--bg-3);
+	}
+
+	/* A real table, in the site's rhythm, scrolling in its own frame. */
+	.table-frame {
+		overflow-x: auto;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+	}
+
+	.table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: var(--t-sm);
+	}
+
+	.table th {
+		padding: var(--s-3) var(--s-4);
+		border-bottom: 1px solid var(--line);
+		text-align: left;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+		white-space: nowrap;
+	}
+
+	.table td {
+		padding: var(--s-3) var(--s-4);
+		border-bottom: 1px solid var(--line-soft);
+	}
+
+	.table tbody tr:last-child td {
+		border-bottom: 0;
+	}
+
+	.table th[data-align="right"],
+	.table td[data-align="right"] {
+		text-align: right;
+		font-variant-numeric: tabular-nums;
+	}
+
+	/* The named inner scroll: thin bar, lenis handed back by the component. */
+	.scroll-area {
+		overflow-y: auto;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		padding: var(--s-3);
+		background: var(--bg-0);
+	}
+
+	/* The dialog and its edge-docked sibling. */
+	.dialog {
+		width: min(28rem, calc(100vw - 2 * var(--s-4)));
+		margin: auto;
+		padding: 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-card);
+		background: var(--bg-0);
+		box-shadow: var(--lift-3);
+		color: inherit;
+	}
+
+	.dialog::backdrop,
+	.sheet::backdrop {
+		background: var(--scrim);
+	}
+
+	.dialog-box {
+		padding: var(--s-5);
+	}
+
+	.dialog-close {
+		display: grid;
+		place-items: center;
+		width: 30px;
+		height: 30px;
+		border: 1px solid transparent;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-faint);
+		cursor: pointer;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.dialog-close:hover {
+			border-color: var(--line-soft);
+			color: var(--fg);
+		}
+	}
+
+	.sheet {
+		position: fixed;
+		inset: 0 0 0 auto;
+		height: 100dvh;
+		max-height: none;
+		width: min(24rem, 92vw);
+		margin: 0;
+		padding: 0;
+		border: 0;
+		border-left: 1px solid var(--line-soft);
+		background: var(--bg-0);
+		box-shadow: var(--lift-3);
+		color: inherit;
+		animation: sheet-in 260ms var(--ease-out);
+	}
+
+	.sheet[data-side="left"] {
+		inset: 0 auto 0 0;
+		border-left: 0;
+		border-right: 1px solid var(--line-soft);
+	}
+
+	@keyframes sheet-in {
+		from {
+			translate: 24px 0;
+			opacity: 0;
+		}
+	}
+
+	.sheet[data-side="left"] {
+		animation-name: sheet-in-left;
+	}
+
+	@keyframes sheet-in-left {
+		from {
+			translate: -24px 0;
+			opacity: 0;
+		}
+	}
+
+	.sheet-box {
+		height: 100%;
+		overflow-y: auto;
+		padding: var(--s-5);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.sheet {
+			animation: none;
+		}
+	}
+
+	/* Toasts: bottom corner, one at a time in practice, polite always. */
+	.toasts {
+		position: fixed;
+		bottom: var(--s-5);
+		right: var(--s-5);
+		z-index: var(--z-top);
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-2);
+	}
+
+	.toast {
+		padding: var(--s-3) var(--s-4);
+		border: 1px solid var(--line);
+		border-radius: var(--r-lg);
+		background: var(--bg-0);
+		box-shadow: var(--lift-2);
+		font-size: var(--t-sm);
+		animation: toast-in 200ms var(--ease-out);
+	}
+
+	@keyframes toast-in {
+		from {
+			translate: 0 8px;
+			opacity: 0;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.toast {
+			animation: none;
+		}
+	}
+
+	/* Faces, stacked; the border is what keeps each face legible over the last. */
+	.avatar-group {
+		display: inline-flex;
+	}
+
+	.avatar-group .avatar {
+		border: 2px solid var(--bg-0);
+	}
+
+	.avatar-group > * + * {
+		margin-left: -8px;
+	}
+}

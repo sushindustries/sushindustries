@@ -1,0 +1,87 @@
+@layer blocks {
+	/* ── typed mark ───────────────────────────────────── */
+
+	/*
+	 * A word revealed one character at a time, by stylesheet.
+	 *
+	 * Each character carries its position as `--i`, and every rule below is a
+	 * function of it. That is the whole mechanism: no timer, no state, no
+	 * second render. The markup is final from the first byte the server sends,
+	 * which is what lets this animate with JavaScript switched off and stops
+	 * it flashing the finished word before an effect has run.
+	 */
+	.typed {
+		display: inline-flex;
+		/* The mark keeps its spaces; an inline-flex row would eat them. */
+		white-space: pre;
+	}
+
+	/*
+	 * `both` is doing the work. The fill holds the character at `opacity: 0`
+	 * through its delay and at `1` after, so a 1ms duration behaves as a
+	 * switch thrown at `--i` steps rather than as a fade.
+	 */
+	.typed-char {
+		animation: typed-in 1ms linear both;
+		animation-delay: calc(var(--i) * var(--typed-step, 55ms));
+	}
+
+	@keyframes typed-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	/*
+	 * The cycle: the CLI palette, in the order it reads best.
+	 *
+	 * Nine hues and `9n` so the sequence never lands on its own colour twice
+	 * running. These are the `--syn-*` tokens rather than the page's tones
+	 * because this mark lives on the terminal slab, and they are the set that
+	 * was checked against it - all nine clear 4.5:1 on `--code-bg`, where the
+	 * page accent manages 2.71:1.
+	 */
+	.typed-char:nth-child(9n + 1) {
+		color: var(--syn-literal);
+	}
+	.typed-char:nth-child(9n + 2) {
+		color: var(--syn-number);
+	}
+	.typed-char:nth-child(9n + 3) {
+		color: var(--syn-variable);
+	}
+	.typed-char:nth-child(9n + 4) {
+		color: var(--syn-string);
+	}
+	.typed-char:nth-child(9n + 5) {
+		color: var(--syn-property);
+	}
+	.typed-char:nth-child(9n + 6) {
+		color: var(--syn-type);
+	}
+	.typed-char:nth-child(9n + 7) {
+		color: var(--syn-keyword);
+	}
+	.typed-char:nth-child(9n + 8) {
+		color: var(--syn-function);
+	}
+	.typed-char:nth-child(9n + 9) {
+		color: var(--syn-tag);
+	}
+
+	/*
+	 * Reduced motion gets the word, not a blank space.
+	 *
+	 * Removing the animation restores the default `opacity: 1`, so the mark is
+	 * simply there, in full colour, immediately. Leaving the fill in place
+	 * would turn the preference into an invisible heading.
+	 */
+	@media (prefers-reduced-motion: reduce) {
+		.typed-char {
+			animation: none;
+		}
+	}
+}

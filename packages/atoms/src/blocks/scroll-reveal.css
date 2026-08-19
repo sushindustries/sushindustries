@@ -1,0 +1,29 @@
+@layer blocks {
+	/* ── scroll reveal ───────────────────────────────────────────── */
+
+	[data-reveal] {
+		transition:
+			opacity 700ms var(--ease-out),
+			transform 700ms var(--ease-out);
+	}
+
+	[data-reveal="out"] {
+		opacity: 0;
+		transform: translateY(18px);
+	}
+
+	[data-reveal="in"] {
+		opacity: 1;
+		transform: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		[data-reveal] {
+			transition: none;
+		}
+		[data-reveal="out"] {
+			opacity: 1;
+			transform: none;
+		}
+	}
+}

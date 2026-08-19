@@ -1,0 +1,52 @@
+name: Publish
+
+# Manual on purpose. Publishing is a decision, not a side effect of merging:
+# run it from the Actions tab when a version bump is ready. GitHub Packages
+# refuses a version it has already seen, so a re-run without a bump fails
+# loudly instead of silently shipping the same bytes twice.
+on:
+  workflow_dispatch:
+
+# The one workflow allowed to write packages. The GITHUB_TOKEN publishes to
+# this repo's own registry namespace; no PAT, no external secret.
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Build and publish to GitHub Packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+
+      # registry-url writes the runner's .npmrc: the registry line plus an
+      # authToken entry that reads NODE_AUTH_TOKEN at publish time.
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: package.json
+          cache: pnpm
+          registry-url: https://npm.pkg.github.com
+
+      - run: pnpm install --frozen-lockfile
+
+      # The tarball map in publishConfig points at dist, so the artefacts
+      # must exist before pack. publint and attw run here (ci-only).
+      - run: pnpm build
+
+      # Recursive publish honours each package's publishConfig.registry and
+      # rewrites workspace:* to the real versions at pack time. The app is
+      # private and is skipped; --no-git-checks because dispatch runs from a
+      # ref, not a clean release branch.
+      - run: pnpm -r publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,241 @@
+@layer blocks {
+	/* ── terminal ─────────────────────────────────────── */
+
+	/*
+	 * The assistant, drawn as a terminal.
+	 *
+	 * Two columns where there is room for two, one where there is not, and
+	 * `100%` of whatever box it was handed. It lives inside a window somebody
+	 * drags the corner of, so a panel with an opinion about its own height would
+	 * either overflow the window or leave a gap beneath itself.
+	 */
+	/*
+	 * ── The slab remaps the roles, once ──────────────────────────────────
+	 *
+	 * Everything below keeps reading `--fg`, `--bg-1`, `--line` and `--accent`.
+	 * Redefining those four families here points all of it at the terminal
+	 * palette without touching a single rule underneath, because a custom
+	 * property set on an element is what every descendant resolves against.
+	 *
+	 * The alternative was editing forty rules to say `--code-*` by hand, and
+	 * then editing them again the next time a rule was added and forgot.
+	 *
+	 * Why a slab at all: this panel was paper, on `--bg-3`, which is the
+	 * darkest surface in the light theme and the one nothing else was measured
+	 * against. Quiet text on it came out at 4.00:1 and the accent at 2.71:1,
+	 * both under AA, which is why the assistant read as washed out in the
+	 * light theme while looking fine in the dark one. The palette was checked
+	 * against `--sheet-0`, and this panel sits on `--sheet-3`.
+	 *
+	 * A terminal is also what it already was in every other respect: monospace,
+	 * a `>` for the reader and a `$` for the answer. The house rule for code is
+	 * that it is a terminal in both themes, and this is code's neighbour.
+	 */
+	.term {
+		--bg-0: var(--code-bg-deep);
+		--bg-1: var(--code-bg);
+		--bg-2: var(--code-bg-deep);
+		--bg-3: var(--code-bg);
+		--fg: var(--code-ink);
+		--fg-dim: var(--code-ink-dim);
+		--fg-faint: var(--code-ink-dim);
+		--line: var(--code-line);
+		--line-soft: var(--code-line);
+		/*
+		 * The CLI's own salmon, not the page's. `--salmon` is darkened for
+		 * paper and measures 2.71:1 on charcoal; this is the same hue picked
+		 * for this exact background, at 6.79:1.
+		 */
+		--accent: var(--syn-literal);
+		--on-accent: var(--code-bg-deep);
+
+		display: flex;
+		height: 100%;
+		min-height: 0;
+		background: var(--code-bg);
+		color: var(--code-ink);
+		font-family: var(--mono);
+	}
+
+	/*
+	 * A fence inside the terminal drops to the deeper slab.
+	 *
+	 * `.code-block` paints itself `--code-bg`, which is exactly what the panel
+	 * around it is now - so a code block arrived as an unbordered rectangle of
+	 * the same colour as its background and simply disappeared. On a page that
+	 * separation is free, because there the fence is dark and the page is
+	 * paper.
+	 *
+	 * `--code-bg-deep` is the token that already exists for this: the fence
+	 * recedes rather than lifts, which is the right direction for something
+	 * inset into a surface rather than laid on top of one.
+	 */
+	.term .code-block,
+	.term pre {
+		background: var(--code-bg-deep);
+		border: 1px solid var(--code-line);
+	}
+
+	/*
+	 * Inline code is a word in a sentence, so it gets weight rather than a box.
+	 * A bordered chip per identifier turns a paragraph into a ransom note.
+	 */
+	.term :not(pre) > code {
+		padding: 1px var(--s-1);
+		border-radius: var(--r-sm);
+		background: var(--code-bg-deep);
+		color: var(--syn-property);
+	}
+
+	/*
+	 * The history, and the rule that decides whether it exists.
+	 *
+	 * A container query, not a media query. This is inside a window that is
+	 * resized by dragging a corner, which changes nothing `@media` can see - so
+	 * the sidebar has to be a question about the panel and not about the browser.
+	 * Below 30rem of panel there is no room for a list of titles beside a column
+	 * of answers, and the answers are what somebody opened this for.
+	 */
+	.term-aside {
+		display: none;
+		flex-direction: column;
+		flex: 0 0 13rem;
+		min-height: 0;
+		border-right: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--bg-3) 60%, transparent);
+	}
+
+	@container pane (min-width: 30rem) {
+		.term[data-aside="true"] .term-aside {
+			display: flex;
+		}
+	}
+
+	.term-aside-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--s-2);
+		flex: 0 0 auto;
+		padding: var(--s-3);
+		border-bottom: 1px solid var(--line-soft);
+	}
+
+	.term-aside-title {
+		font-size: var(--t-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+	}
+
+	.term-new {
+		padding: 2px var(--s-2);
+		border: 1px solid var(--line);
+		border-radius: var(--r-sm);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		font-size: var(--t-xs);
+		cursor: pointer;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.term-new:hover {
+			border-color: var(--accent);
+			color: var(--accent);
+		}
+	}
+
+	.term-threads {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-height: 0;
+		margin: 0;
+		padding: var(--s-2);
+		list-style: none;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+	}
+
+	/*
+	 * A title that is one line, always.
+	 *
+	 * These are the first thing somebody asked, so they are sentences of any
+	 * length. Wrapping them turns a list of chats into a wall of prose and makes
+	 * the row heights uneven, which is what makes a list hard to scan.
+	 */
+	.term-thread-face {
+		flex: 1;
+		min-width: 0;
+		padding: var(--s-2);
+		border: 0;
+		border-radius: var(--r-sm);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		font-size: var(--t-xs);
+		text-align: left;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		cursor: pointer;
+	}
+
+	.term-thread-face[data-active="true"] {
+		background: var(--bg-2);
+		color: var(--fg);
+		box-shadow: inset 2px 0 0 var(--accent);
+	}
+
+	.term-thread-drop {
+		flex: 0 0 auto;
+		width: 22px;
+		border: 0;
+		background: transparent;
+		color: var(--fg-faint);
+		font: inherit;
+		cursor: pointer;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.term-thread-face:hover {
+			background: var(--bg-2);
+			color: var(--fg);
+		}
+
+		.term-thread-drop:hover {
+			color: var(--accent);
+		}
+	}
+
+	/* The log and the composer, in that order and no other. */
+	.term-main {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-width: 0;
+		min-height: 0;
+	}
+
+	/*
+	 * `min-height: 0` is the line that makes this scroll.
+	 *
+	 * A flex child will not shrink below its content without it, so a long
+	 * transcript pushes the composer off the bottom of the window instead of
+	 * scrolling inside this box. It is the usual reason an `overflow` that is
+	 * set appears to do nothing, and it is now the fourth place in this
+	 * stylesheet where that was the answer.
+	 */
+	.term-log {
+		display: flex;
+		flex-direction: column;
+		gap: clamp(var(--s-3), 3cqi, var(--s-4));
+		flex: 1;
+		min-height: 0;
+		padding: clamp(var(--s-3), 3cqi, var(--s-4));
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		touch-action: pan-y;
+	}
+}

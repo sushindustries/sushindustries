@@ -1,0 +1,34 @@
+import type { MarkdownBlocks } from "@sushindustries/ui";
+import { CardBlock } from "./card-block";
+import { DeviceBlock } from "./device-block";
+import { PersonBlock, ReviewBlock } from "./entity-blocks";
+import { HeroBlock } from "./hero-block";
+import { GridBlock, SpacerBlock } from "./layout-blocks";
+import { QuestionsBlock } from "./questions-block";
+import { ShelfBlock } from "./shelf-block";
+import { ShowcaseBlock } from "./showcase-block";
+import { VideoBlock } from "./video-block";
+import { ViewerBlock } from "./viewer-block";
+
+/*
+ * The custom blocks any document on this site may use.
+ *
+ * One map, passed to every `MarkdownView`, so a block works the same in a post,
+ * in a component doc and in a package README. Adding a block here makes it
+ * available everywhere at once - which is the point, because a block that only
+ * works on one page is a page, not a block.
+ */
+export const BLOCKS: MarkdownBlocks = {
+	card: CardBlock,
+	device: DeviceBlock,
+	hero: HeroBlock,
+	showcase: ShowcaseBlock,
+	viewer: ViewerBlock,
+	video: VideoBlock,
+	grid: GridBlock,
+	spacer: SpacerBlock,
+	shelf: ShelfBlock,
+	person: PersonBlock,
+	review: ReviewBlock,
+	questions: QuestionsBlock,
+};

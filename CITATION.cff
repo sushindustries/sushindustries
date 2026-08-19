@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: If you use this project or its packages, please cite it as below.
+title: sushindustries
+type: software
+authors:
+  - given-names: Adam
+    family-names: Jurek
+repository-code: https://github.com/sushindustries/sushindustries
+url: https://adamjurek.com
+abstract: >-
+  A portfolio site and the component library it is built from - TanStack
+  Start on Vite and Nitro, with every visible element installable on its
+  own from packages/ui.
+license: MIT
+date-released: 2026-08-19

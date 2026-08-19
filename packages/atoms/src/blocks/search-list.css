@@ -1,0 +1,24 @@
+@layer blocks {
+	/*
+	 * The search window's list.
+	 *
+	 * Rows rather than the icon grid a folder gets. A folder is a place and its
+	 * contents are things you point at; a result is an answer, and the useful
+	 * half of it is which folder it came from - which is text, and text under an
+	 * icon in a grid is a caption nobody reads.
+	 */
+	.search-results {
+		flex: 1;
+		min-height: 0;
+		margin: 0;
+		padding: var(--s-2);
+		list-style: none;
+		overflow-y: auto;
+	}
+
+	/* The field sits above the list and does not scroll with it. */
+	.window-frame > .search-field {
+		flex: 0 0 auto;
+		margin: var(--s-3) var(--s-3) 0;
+	}
+}

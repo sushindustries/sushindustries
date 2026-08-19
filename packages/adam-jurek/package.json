@@ -1,0 +1,26 @@
+{
+	"name": "@sushindustries/adam-jurek",
+	"version": "0.1.0",
+	"description": "The whole system in one install: every component, the stylesheet they are built on, and nothing else. Private on purpose - the pieces publish, the bundle does not.",
+	"type": "module",
+	"license": "MIT",
+	"private": true,
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"files": [
+		"src"
+	],
+	"dependencies": {
+		"@sushindustries/atoms": "workspace:*",
+		"@sushindustries/ui": "workspace:*"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sushindustries/sushindustries.git",
+		"directory": "packages/adam-jurek"
+	}
+}

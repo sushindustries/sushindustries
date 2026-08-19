@@ -1,0 +1,96 @@
+{
+	"name": "@sushindustries/product-viewer",
+	"version": "0.1.0",
+	"description": "Runtime material swapping and geometric zone tinting for a single GLB product. Framework-free.",
+	"author": "Adam Jurek",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sushindustries/sushindustries.git",
+		"directory": "packages/product-viewer"
+	},
+	"homepage": "https://adamjurek.com/packages/product-viewer",
+	"keywords": [
+		"3d",
+		"gltf",
+		"glb",
+		"three",
+		"configurator",
+		"material-variants",
+		"khr-materials-variants",
+		"webgl",
+		"tanstack-intent"
+	],
+	"type": "module",
+	"engines": {
+		"node": ">=20.17.0"
+	},
+	"types": "./dist/index.d.cts",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"exports": {
+		".": "./src/index.ts",
+		"./schema": "./src/schema.ts",
+		"./swatch": "./src/swatch.ts",
+		"./zoned-material": "./src/zoned-material.ts",
+		"./package.json": "./package.json"
+	},
+	"sideEffects": false,
+	"files": [
+		"dist",
+		"src",
+		"skills",
+		"!src/**/*.test.ts"
+	],
+	"scripts": {
+		"build": "tsdown",
+		"test": "vitest run",
+		"test:types": "tsc --noEmit"
+	},
+	"peerDependencies": {
+		"three": ">=0.160.0",
+		"three-custom-shader-material": ">=6",
+		"three-stdlib": ">=2.30.0",
+		"zod": ">=3.23.0 || >=4"
+	},
+	"peerDependenciesMeta": {
+		"three-custom-shader-material": {
+			"optional": true
+		},
+		"zod": {
+			"optional": true
+		}
+	},
+	"devDependencies": {
+		"@tanstack/intent": "0.3.6",
+		"@types/three": "0.185.4",
+		"three": "0.185.1",
+		"three-custom-shader-material": "6.4.0",
+		"three-stdlib": "2.36.1",
+		"vitest": "4.1.10",
+		"zod": "4.4.3"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com",
+		"access": "public",
+		"exports": {
+			".": {
+				"import": "./dist/index.js",
+				"require": "./dist/index.cjs"
+			},
+			"./schema": {
+				"import": "./dist/schema.js",
+				"require": "./dist/schema.cjs"
+			},
+			"./swatch": {
+				"import": "./dist/swatch.js",
+				"require": "./dist/swatch.cjs"
+			},
+			"./zoned-material": {
+				"import": "./dist/zoned-material.js",
+				"require": "./dist/zoned-material.cjs"
+			},
+			"./package.json": "./package.json"
+		}
+	}
+}

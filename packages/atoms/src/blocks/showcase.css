@@ -1,0 +1,322 @@
+@layer blocks {
+	/* ── showcase ────────────────────────────────────────────────── */
+
+	/*
+	 * The component museum frame: a toolbar, a stage, and the install commands
+	 * under it. Full-bleed inside prose, because a component shown at 62ch is not
+	 * being shown at all.
+	 */
+	.showcase {
+		margin: var(--s-6) 0 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-card);
+		background: var(--bg-1);
+		box-shadow: var(--lift-1);
+		overflow: hidden;
+	}
+
+	.showcase-bar {
+		border-bottom: 1px solid var(--line-soft);
+	}
+
+	/* fieldset arrives with a border, padding and min-width nobody asked for. */
+	.showcase-group {
+		padding: 0;
+		border: 0;
+		min-width: 0;
+	}
+
+	.showcase-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-2);
+		padding: var(--s-1) var(--s-3);
+		border: 1px solid transparent;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-faint);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition:
+			color 160ms ease,
+			background 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.showcase-btn:hover {
+			color: var(--fg);
+		}
+	}
+
+	.showcase-btn[data-active="true"] {
+		background: var(--bg-3);
+		border-color: var(--line-soft);
+		color: var(--fg);
+	}
+
+	/*
+	 * The device toggle.
+	 *
+	 * No transition in here, unlike the tabs above it. These get pressed a dozen
+	 * times while reading one page, and on a control used that often an animation
+	 * reads as lag rather than as polish. The state change is the feedback.
+	 */
+	.showcase-devices {
+		flex: 0 0 auto;
+		/* The row of width presets is itself the widest thing in the bar on a
+		   phone; wrapping it beats letting XL and XXL push the page sideways. */
+		flex-wrap: wrap;
+		gap: 2px;
+		padding: 2px;
+		margin: 0;
+		min-width: 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-2);
+	}
+
+	.showcase-device {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-1);
+		padding: var(--s-1) var(--s-2);
+		border: 0;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-faint);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		white-space: nowrap;
+		cursor: pointer;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.showcase-device:hover {
+			color: var(--fg-dim);
+		}
+	}
+
+	.showcase-device[data-active="true"] {
+		background: var(--bg-3);
+		color: var(--fg);
+	}
+
+	.showcase-device:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 1px;
+	}
+
+	/*
+	 * The stage: the page ground behind the frames, so a narrow viewport reads as
+	 * a narrow viewport rather than as a broken layout.
+	 *
+	 * `align-items: start` so a short component does not stretch its frame to
+	 * match the tallest one, which would hide the fact that it was short. In
+	 * compare the frames are a row that scrolls; with one selected they centre, so
+	 * the frame stays where the eye already was when switching out of compare.
+	 */
+	.showcase-stage {
+		display: flex;
+		align-items: start;
+		justify-content: center;
+		gap: var(--s-4);
+		background: var(--bg-0);
+		padding: var(--s-3);
+	}
+
+	/* XL and XXL are wider than the stage on most screens; every view scrolls
+	   sideways rather than resizing the page around one frame. */
+	.showcase-stage[data-view="compare"],
+	.showcase-stage[data-view="xl"],
+	.showcase-stage[data-view="xxl"] {
+		justify-content: start;
+		overflow-x: auto;
+	}
+
+	.showcase-frame {
+		flex: 0 0 auto;
+		margin: 0;
+		max-width: 100%;
+	}
+
+	/*
+	 * Every frame says which width it is and why that width. A frame with no label
+	 * is a screenshot; a labelled one is a claim a reader can check.
+	 */
+	.showcase-frame-label {
+		padding: 0 var(--s-1) var(--s-2);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--fg-faint);
+	}
+
+	.showcase-frame-label strong {
+		color: var(--fg-dim);
+		font-weight: 500;
+	}
+
+	.showcase-frame-note {
+		margin-left: auto;
+		padding-left: var(--s-3);
+	}
+
+	.showcase-viewport {
+		display: block;
+		width: 100%;
+		/* The device presets set inline widths wider than a phone; the frame
+		   clamps to its stage rather than carrying the page off with it. */
+		max-width: 100%;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-0);
+	}
+
+	/* One frame at a time: the width change is worth animating, a row is not. */
+	.showcase-stage:not([data-view="compare"]) .showcase-viewport {
+		transition: width 320ms var(--ease-out);
+	}
+
+	@media (max-width: 860px) {
+		/* The note is the first thing to go when the label runs out of room. */
+		.showcase-frame-note {
+			display: none;
+		}
+	}
+
+	/*
+	 * The editable view. Same frame as a viewport, because it is one - the
+	 * difference is that the reader can type in it, not that it looks different.
+	 * Height is set inline: only the caller knows how tall the embed asked to be.
+	 */
+	.showcase-stackblitz {
+		display: block;
+		width: 100%;
+		overflow: hidden;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-0);
+	}
+
+	.showcase-stackblitz iframe {
+		display: block;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+
+	/*
+	 * The Code tab's split: source beside the same iframe the Preview shows.
+	 * Stacks below the narrow breakpoint, code first - the code is what the
+	 * tab is for, the render is the proof beside it.
+	 */
+	.showcase-split {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: var(--s-3);
+		padding: var(--s-3);
+		background: var(--bg-0);
+		align-items: start;
+	}
+
+	@media (max-width: 860px) {
+		.showcase-split {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	.showcase-code {
+		max-height: 480px;
+		overflow: auto;
+	}
+
+	.showcase-code .code-block {
+		margin: 0;
+		border: 0;
+		border-radius: 0;
+	}
+
+	/*
+	 * Installer name, then the command, on a shared column pair.
+	 *
+	 * `max-content` sizes the first column to the longest label, so "TanStack" and
+	 * "shadcn" both end where the longer one does and every command starts at the
+	 * same x. Sized per row, the block reads as two unrelated lines rather than as
+	 * a table of the same thing twice.
+	 */
+	.showcase-install {
+		display: grid;
+		grid-template-columns: max-content minmax(0, 1fr);
+		align-items: center;
+		gap: var(--s-2) var(--s-4);
+		border-top: 1px solid var(--line-soft);
+	}
+
+	@media (max-width: 860px) {
+		/* One column: at this width the label column steals the command's room. */
+		.showcase-install {
+			grid-template-columns: minmax(0, 1fr);
+			gap: var(--s-1);
+		}
+
+		.showcase-install > .label {
+			margin-top: var(--s-2);
+		}
+	}
+
+	/* The preview page inside the iframe: no chrome, just the component. */
+	.preview-root {
+		padding: var(--s-5);
+	}
+
+	/*
+	 * Card fit: one centred object, clipped, never scrolling.
+	 *
+	 * `place-items: center` on a full-viewport grid is what standardises the cards
+	 * - every thumbnail presents its component the same way regardless of the
+	 * component's own size, so the grid reads as a set rather than as ten
+	 * unrelated screenshots.
+	 */
+	.preview-root.is-card {
+		display: grid;
+		place-items: center;
+		width: 100%;
+		height: 100svh;
+		padding: var(--s-4);
+		overflow: hidden;
+	}
+
+	.preview-root.is-card > * {
+		max-width: 100%;
+		max-height: 100%;
+	}
+
+	/*
+	 * `overflow: hidden` on `.preview-root` clips the root's own box, but a
+	 * child positioned `fixed` - the consent bar, docked to a `transform`
+	 * ancestor per its own comment - can still be taller than the viewport,
+	 * and the document root is what shows a scrollbar for that, not this div.
+	 * Only `fit=card` gets this: `fit=full` is the showcase frame and is
+	 * meant to scroll.
+	 */
+	body:has(> .preview-root.is-card) {
+		overflow: hidden;
+	}
+
+	/*
+	 * The consent bar's real position is bottom-right, capped at 26rem - right
+	 * on a full page, where it shares the corner with nothing. A card
+	 * thumbnail is narrower than that cap, so the same rule read as
+	 * `margin-inline-start: auto` squeezing a 26rem box into a ~300px frame:
+	 * one word per line, not a preview of the bar. In the card only, it
+	 * spans the frame and centers instead, which is what a thumbnail of a
+	 * full-width-on-mobile bar should show.
+	 */
+	.preview-root.is-card .consent {
+		inset-inline: var(--s-3);
+		margin-inline-start: 0;
+		max-width: none;
+	}
+}

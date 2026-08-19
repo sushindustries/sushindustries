@@ -1,0 +1,29 @@
+/*
+ * Everything, in cascade order.
+ *
+ *   import '@sushindustries/react-product-viewer/styles.css'
+ *
+ * Optional, and that word is load-bearing: no module in this package imports
+ * this file, so every element works without it, styled by whatever you already
+ * have. Import it for defaults, ignore it and style `.pv-card` yourself.
+ *
+ * The order below is the only thing this file decides:
+ *
+ *   1. tokens   the values, and nothing that uses them
+ *   2. atoms    the behaviours more than one element shares
+ *   3. elements the looks, each in its own file
+ *
+ * Every rule in all three layers is a single class or attribute selector, so
+ * they never fight each other on specificity and yours always wins over ours.
+ *
+ * If you want one element rather than all of them, import its stylesheet
+ * directly and skip this file - `.../elements/model-card/model-card.css`
+ * alongside `tokens.css` and `atoms.css` is a complete, working card.
+ */
+
+@import "./tokens.css";
+@import "./atoms.css";
+
+@import "../elements/model-viewer/model-viewer.css";
+@import "../elements/model-card/model-card.css";
+@import "../elements/model-mark/model-mark.css";

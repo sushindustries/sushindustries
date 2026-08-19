@@ -1,0 +1,55 @@
+{
+	"name": "sushindustries",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Sushindustries. A TanStack Start site, and the packages it is built from.",
+	"engines": {
+		"node": ">=22"
+	},
+	"scripts": {
+		"build": "turbo run build",
+		"check": "pnpm run doctor && pnpm exec biome check . && pnpm run typecheck && pnpm run build && pnpm run test",
+		"db:generate": "pnpm --filter @sushindustries/db db:generate",
+		"db:migrate": "pnpm --filter @sushindustries/db db:migrate",
+		"db:studio": "pnpm --filter @sushindustries/db db:studio",
+		"dev": "turbo run dev",
+		"docs": "node scripts/docs-report.mjs",
+		"doctor": "node scripts/doctor.mjs",
+		"doctor:map": "node scripts/doctor.mjs --map",
+		"schema-org": "node scripts/schema-org.mjs",
+		"media": "node scripts/media.mjs",
+		"shots": "node scripts/shots.mjs",
+		"fix": "node scripts/doctor.mjs --fix && pnpm exec biome check --write .",
+		"new": "node scripts/new.mjs",
+		"prepare": "husky || true",
+		"start": "pnpm --filter @sushindustries/web start",
+		"test": "turbo run test",
+		"typecheck": "turbo run typecheck"
+	},
+	"devDependencies": {
+		"@arethetypeswrong/core": "^0.18.5",
+		"@biomejs/biome": "2.5.8",
+		"@tanstack/cli": "0.70.2",
+		"@tanstack/intent": "0.3.6",
+		"@types/node": "26.2.0",
+		"husky": "^9.1.7",
+		"publint": "^0.3.23",
+		"tsdown": "0.22.14",
+		"turbo": "2.10.10",
+		"typescript": "5.9.3"
+	},
+	"packageManager": "pnpm@11.21.0",
+	"intent": {
+		"skills": [
+			"workspace:@sushindustries/*",
+			"@tanstack/*"
+		],
+		"exclude": [
+			"@tanstack/*devtools*",
+			"get-tsconfig",
+			"@tanstack/virtual-file-routes",
+			"@tanstack/router-plugin"
+		]
+	}
+}

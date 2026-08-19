@@ -1,0 +1,72 @@
+{
+	"name": "@sushindustries/db",
+	"version": "0.1.0",
+	"type": "module",
+	"description": "The schema and the client. Drizzle over Postgres, with the connection kept server-side by construction.",
+	"license": "MIT",
+	"keywords": [
+		"drizzle",
+		"postgres",
+		"schema",
+		"tanstack-intent"
+	],
+	"files": [
+		"dist",
+		"src",
+		"drizzle.config.ts",
+		"skills"
+	],
+	"scripts": {
+		"build": "tsdown",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:studio": "drizzle-kit studio",
+		"typecheck": "tsc --noEmit -p tsconfig.json"
+	},
+	"dependencies": {
+		"drizzle-orm": "0.45.2",
+		"postgres": "3.4.9"
+	},
+	"devDependencies": {
+		"@tanstack/intent": "0.3.6",
+		"drizzle-kit": "0.31.10"
+	},
+	"exports": {
+		"./client.server": "./src/client.server.ts",
+		"./schema": "./src/schema.ts",
+		"./schema-org": "./src/schema-org.ts",
+		"./package.json": "./package.json",
+		"./client": "./src/client.server.ts"
+	},
+	"engines": {
+		"node": ">=20.17.0"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com",
+		"exports": {
+			"./client.server": {
+				"import": "./dist/client.server.mjs",
+				"require": "./dist/client.server.cjs"
+			},
+			"./schema": {
+				"import": "./dist/schema.mjs",
+				"require": "./dist/schema.cjs"
+			},
+			"./schema-org": {
+				"import": "./dist/schema-org.mjs",
+				"require": "./dist/schema-org.cjs"
+			},
+			"./package.json": "./package.json",
+			"./client": {
+				"import": "./dist/client.server.mjs",
+				"require": "./dist/client.server.cjs"
+			}
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sushindustries/sushindustries.git",
+		"directory": "packages/db"
+	},
+	"homepage": "https://adamjurek.com/packages/db"
+}

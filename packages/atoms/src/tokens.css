@@ -1,0 +1,597 @@
+@layer tokens {
+	:root {
+		/*
+		 * The rendering intent, declared.
+		 *
+		 * `color-scheme` is what tells the browser to draw its *own* furniture to
+		 * match - form controls, the default scrollbar, the flash of background
+		 * before the stylesheet lands, and the canvas behind an overscroll bounce.
+		 * Without it a light page keeps a dark native scrollbar and a dark
+		 * overscroll gutter, which is the detail that makes a theme look
+		 * half-applied rather than wrong.
+		 */
+		color-scheme: light;
+
+		/*
+		 * Ground and surfaces: silver, warm rather than blue.
+		 *
+		 * The site was a dark, green-cast grey for a long time and read as an
+		 * aquarium: every surface glowed slightly, the accent floated, and the
+		 * only way to separate two panels was to make one of them lighter, which
+		 * on a dark ground means making it brighter. Depth had nowhere to go but
+		 * up.
+		 *
+		 * Silver inverts that. Panels separate by *shadow* instead of by
+		 * brightness, which is the thing paper does and screens usually do not,
+		 * and it is why almost every surface below picks up a small one.
+		 *
+		 * Silver, and deliberately not paper. The first attempt at this was a warm
+		 * off-white around `#f7f6f4`, and on a lit screen that is not a light
+		 * theme - it is a lamp. Every surface in a room is a fraction of the
+		 * brightest thing in it, and a full-screen near-white makes the display
+		 * *the* brightest thing, which is what makes a light interface tiring
+		 * rather than calm.
+		 *
+		 * The second attempt went the other way and landed on aluminium: correct
+		 * brightness, no colour in it, and the whole page read as a machined part.
+		 *
+		 * This is the middle. About ninety per cent, warm, and with enough of a
+		 * cast that it is a *colour* rather than a grey - which is the difference
+		 * between pastel and greyscale, and it is only two or three points of
+		 * saturation.
+		 *
+		 * The steps between the four surfaces are deliberately tiny. On a dark
+		 * ground panels had to separate by brightness because that was the only
+		 * direction available; here they separate by a shadow, so the fills can
+		 * stay close together and the page stays calm. If two surfaces need a
+		 * large step to be told apart, they wanted a shadow.
+		 *
+		 * `--shell-edge` is a genuine white and reads as a highlight precisely
+		 * because nothing else here is.
+		 *
+		 * The ladder runs light to dark, which is the opposite of the ramp it
+		 * replaced. That is why the names changed with it: the old ramp's darkest step meant the
+		 * darkest thing and was the page ground, and both halves of that stopped
+		 * being true on the same day.
+		 */
+		--sheet-0: #eceae4;
+		--sheet-1: #e4e1da;
+		--sheet-2: #dbd7cf;
+		--sheet-3: #cfcabf;
+		--line: #c2bcb0;
+		--line-soft: #ddd8ce;
+
+		/*
+		 * Ink: near-black with the same warmth as the paper, never `#000`.
+		 *
+		 * Pure black on off-white is the highest contrast available and reads as
+		 * printing rather than as writing. This is about 16:1, which is far past
+		 * what any guideline asks for and still looks like it was set rather than
+		 * stamped.
+		 */
+		--ink: #33302a;
+		/*
+		 * The two quiet steps, darkened until they are actually readable.
+		 *
+		 * They were `#6b655c` and `#767065`, and neither cleared 4.5:1 on any
+		 * surface on this side of the palette: the faint step measured 4.08:1
+		 * on `--sheet-0` and 3.42:1 on `--sheet-2`, so every label, sigil and
+		 * greeting set in it failed AA on the light theme while passing
+		 * comfortably on the dark one. The assistant panel was the place it
+		 * showed worst, because almost everything structural in it is faint.
+		 *
+		 * Same warm hue, moved down the lightness axis only, and spaced so the
+		 * ladder still reads as three steps rather than as one colour with
+		 * rounding errors: 10.9:1, 7.2:1 and 5.4:1 on `--sheet-0`.
+		 *
+		 * The floor is `--sheet-2`, not `--sheet-0`. Checking quiet text against
+		 * the lightest surface is what let this through the first time, since a
+		 * panel is usually drawn on one of the darker ones.
+		 */
+		--ink-dim: #4f4b44;
+		--ink-faint: #625d54;
+
+		/*
+		 * The hues, darkened until they are readable *as text*.
+		 *
+		 * This is the one place the pastel stops. A pale ground and a pale accent
+		 * is a lovely swatch and an unreadable label: the first pass at these was
+		 * a soft terracotta at 2.7:1 against the page, which is below the 3:1 that
+		 * a large heading needs and nowhere near the 4.5:1 that body text does.
+		 *
+		 * On a dark ground these carried their contrast by being *brighter* than
+		 * everything around them. On a pale one there is nothing left to be
+		 * brighter than, so the only direction is down.
+		 *
+		 * Every one of them clears 4.5:1 on `--sheet-0`, checked rather than
+		 * guessed. The palette stays pastel where pastel belongs - the fills, the
+		 * surfaces, the shadows - and the things that carry words do not.
+		 *
+		 *   accent  4.9:1    folder  5.2:1    info  4.9:1
+		 *   wasabi  4.3:1    tamago  4.5:1    tuna  5.1:1
+		 */
+		--salmon: #9e4d2a;
+		--salmon-deep: #7d3a1e;
+		--wasabi: #5f7434;
+		--tamago: #8a6417;
+		--tuna: #a3423a;
+		--info: #3d6b78;
+
+		/*
+		 * The pastel set: fills, and only fills.
+		 *
+		 * Distinct from the hues above, and the distinction is the whole point of
+		 * having both. Those are darkened until they carry *words* at 4.5:1 on the
+		 * page. These never carry words - they are backgrounds for a tag, a
+		 * callout, a chart series, a diff row - so they can stay as pale as they
+		 * like, and they should, because a saturated fill behind body text is
+		 * exactly how a calm page stops being calm.
+		 *
+		 * Pair a fill with the matching hue for whatever sits on it:
+		 *
+		 *   background: var(--pastel-sage);
+		 *   color: var(--wasabi);
+		 *
+		 * They are all the same lightness and the same saturation, mixed from the
+		 * page itself so they sit *in* it rather than on it. A set built by
+		 * picking six colours individually never does - one of them is always
+		 * brighter than the rest and the eye finds it first.
+		 */
+		--pastel-clay: color-mix(in srgb, var(--salmon) 18%, var(--sheet-0));
+		--pastel-sage: color-mix(in srgb, var(--wasabi) 18%, var(--sheet-0));
+		--pastel-sky: color-mix(in srgb, var(--info) 18%, var(--sheet-0));
+		--pastel-sand: color-mix(in srgb, var(--tamago) 18%, var(--sheet-0));
+		--pastel-rose: color-mix(in srgb, var(--tuna) 18%, var(--sheet-0));
+		--pastel-stone: color-mix(in srgb, var(--ink) 8%, var(--sheet-0));
+
+		/*
+		 * A tone per category, so a kind of thing has a colour.
+		 *
+		 * Two pairs of tokens rather than one, and the split is the same one the
+		 * palette already makes: `--tone-*-ink` carries a glyph or a word and
+		 * clears 4.3:1 on the page, `--tone-*` is a fill and never has to.
+		 *
+		 * They are aliases, not new colours. Every one points at a hue that
+		 * already exists, which is what stops a category system from becoming a
+		 * second palette that drifts from the first - adding a sixth category
+		 * means choosing among the hues here, and if none of them fits, the
+		 * honest conclusion is that the category is not really a new kind of
+		 * thing.
+		 *
+		 * Named after the categories in `packages/ui/registry.ts`, and the
+		 * stylesheet is where that mapping lives on purpose. `NavItem.tone` is a
+		 * free string precisely so the library does not have to know this site
+		 * has five categories or what they are called.
+		 */
+		--tone-motion: var(--pastel-clay);
+		--tone-motion-ink: var(--salmon);
+		--tone-layout: var(--pastel-sage);
+		--tone-layout-ink: var(--wasabi);
+		--tone-content: var(--pastel-sky);
+		--tone-content-ink: var(--info);
+		--tone-docs: var(--pastel-sand);
+		--tone-docs-ink: var(--tamago);
+		--tone-3d: var(--pastel-rose);
+		--tone-3d-ink: var(--tuna);
+
+		/* Ink on an accent fill. The paper, so a filled button reads as cut out. */
+		--on-accent: #fdfaf7;
+
+		--bg-0: var(--sheet-0);
+		--bg-1: var(--sheet-1);
+		--bg-2: var(--sheet-2);
+		--bg-3: var(--sheet-3);
+		--fg: var(--ink);
+		--fg-dim: var(--ink-dim);
+		--fg-faint: var(--ink-faint);
+
+		/*
+		 * The one control that destroys something, coloured like it.
+		 *
+		 * Closing a window is the only irreversible thing on the desk, and it
+		 * sat at `--fg-faint` next to a title in the same grey, which made the
+		 * quietest control on the window the one with the largest consequence.
+		 *
+		 * One of the two places this palette does NOT simply follow the ramp,
+		 * so it is written on both sides. On paper red is the mark that reads
+		 * as "stop"; on a dark ground the same red sits close enough to the
+		 * warm hues around it to become decoration, and white is what carries
+		 * there instead. Getting the same meaning out of the two themes means
+		 * different colours, not the same colour twice.
+		 */
+		--close-mark: var(--tuna);
+		--accent: var(--salmon);
+		--accent-dim: var(--salmon-deep);
+
+		/*
+		 * What shadows are made of, as its own token.
+		 *
+		 * This used to be the darkest step of the ramp, which worked only because
+		 * the ramp was dark. A shadow is not a surface: it is the absence of
+		 * light on whatever is underneath, so it stays near-black regardless of
+		 * how pale the page gets, and it is the one value that does *not* invert
+		 * with the theme.
+		 *
+		 * Warm, like everything else here. A neutral grey shadow on warm paper
+		 * reads blue and makes the whole page look colder than its own ground.
+		 */
+		--shadow: #a9a297;
+		--shadow-deep: #8a8378;
+
+		/*
+		 * Depth, as three steps rather than a value per rule.
+		 *
+		 * The whole reason the palette moved to silver: on paper things separate
+		 * by casting a shadow, not by glowing. `--lift-1` is a card resting on the
+		 * page, `--lift-2` is something that has been picked up, `--lift-3` is a
+		 * window somebody dragged over everything else.
+		 *
+		 * Each is two shadows - a tight one for the contact edge and a wide soft
+		 * one for the cast - because a single blur reads as a glow underneath the
+		 * object rather than as the object being above the page.
+		 */
+		--lift-1:
+			0 1px 2px color-mix(in srgb, var(--shadow) 30%, transparent),
+			0 2px 8px color-mix(in srgb, var(--shadow) 18%, transparent);
+		--lift-2:
+			0 2px 4px color-mix(in srgb, var(--shadow) 32%, transparent),
+			0 8px 24px color-mix(in srgb, var(--shadow) 22%, transparent);
+		--lift-3:
+			0 4px 8px color-mix(in srgb, var(--shadow) 34%, transparent),
+			0 24px 60px color-mix(in srgb, var(--shadow) 28%, transparent);
+
+		/*
+		 * The machine's case, which is not a page surface.
+		 *
+		 * A laptop shell is aluminium: slightly darker than the paper it sits on,
+		 * and cool where the paper is warm, because that is the one place on this
+		 * site where a blue cast is telling the truth about a material.
+		 */
+		--shell: #d3cec4;
+		--shell-deep: #b6b0a4;
+		--shell-edge: #ffffff;
+
+		/*
+		 * Radius, as a scale rather than a value per corner.
+		 *
+		 * `--r-sm` was referenced by three rules and defined by none, so each
+		 * of them resolved to nothing and rendered a square corner that read
+		 * as intentional. A custom property with no definition and no fallback
+		 * fails silently, which is the whole reason `pnpm doctor` now looks
+		 * for them.
+		 */
+		--r-sm: 4px;
+		--r: 6px;
+		--r-lg: 10px;
+		--r-card: 16px;
+		/* Fully round. Large enough that any height resolves to a capsule. */
+		--r-pill: 999px;
+
+		/*
+		 * Frosted glass, as three values rather than as a look copied per rule.
+		 *
+		 * `--glass` is a translucent fill; `--glass-edge` is the lit top edge that
+		 * does most of the work; `--glass-blur` is the filter. They are separate
+		 * because the fill and the edge belong on every glass surface and the blur
+		 * does not: see the rule below.
+		 *
+		 * ONE BLUR PER SURFACE. A `backdrop-filter` makes its element a backdrop
+		 * root and forces a GPU readback, so blurs nested inside blurs multiply.
+		 * Eighteen blurred icon tiles inside a blurred panel inside a blurred
+		 * header crashed the renderer outright. Glass on overlays - the header, a
+		 * menu panel, the drawer - and fill-plus-edge without the filter on
+		 * everything that is merely a surface, like a card.
+		 */
+		--glass: color-mix(in srgb, var(--sheet-0) 72%, transparent);
+		--glass-edge: color-mix(in srgb, var(--shell-edge) 70%, transparent);
+		--glass-blur: blur(18px) saturate(130%);
+
+		/*
+		 * The dimming behind a modal. Still near-black, and still not the ground.
+		 *
+		 * A scrim made of the background colour tints what is behind it instead of
+		 * darkening it, and the point is to take the page away. That was true when
+		 * the page was dark and it is more true now: a *pale* scrim over a pale
+		 * page is a sheet of fog, and everything under it stays legible enough to
+		 * keep competing for attention.
+		 *
+		 * Lighter than it was, because it now has less work to do - 42% over
+		 * silver removes as much as 58% did over black.
+		 */
+		--scrim: color-mix(in srgb, #1a1713 42%, transparent);
+
+		/*
+		 * Code is a terminal, whichever theme the page is in.
+		 *
+		 * Everything else on this site is paper, and both themes are versions of
+		 * paper. Code is the one thing on it that is not prose - it is a view into
+		 * a machine - so it keeps the machine's material: a warm charcoal slab that
+		 * does not invert. That is also what lets one syntax palette serve both
+		 * themes instead of two palettes that drift.
+		 *
+		 * The hues are the CLI's. `packages/cli-kit` in the project manager renders
+		 * with xterm-256 codes chosen to survive terminal themes; these are those
+		 * codes as hex - 203, 209, 215, 149, 114, 79, 80, 75, 69, 105, 141 - so a
+		 * command pasted from the terminal into a fence keeps its colours.
+		 */
+		--code-bg: #1d2226;
+		--code-bg-deep: #171b1f;
+		--code-line: #323a40;
+		--code-edge: color-mix(in srgb, #ffffff 9%, transparent);
+		--code-ink: #dde2e4;
+		--code-ink-dim: #8b969c;
+		/* Glass on charcoal. The paper's --glass tokens are mixed from the sheet,
+		   which on this slab would be a smudge of the wrong material. */
+		--code-chip: color-mix(in srgb, #ffffff 8%, transparent);
+		--code-chip-edge: color-mix(in srgb, #ffffff 16%, transparent);
+
+		/*
+		 * Semantic, not decorative: one token per thing the grammar can say,
+		 * named after the `th-*` classes TanStack Highlight emits. The raw hue
+		 * appears exactly once, here - a rule below this layer never holds a hex.
+		 */
+		--syn-keyword: #5fafff;
+		--syn-string: #87d787;
+		--syn-number: #ffaf5f;
+		--syn-literal: #ff875f;
+		--syn-comment: #7b868c;
+		--syn-function: #af87ff;
+		--syn-property: #5fd7af;
+		--syn-variable: #ffd7af;
+		--syn-type: #5fd7d7;
+		--syn-tag: #ff5f5f;
+		--syn-selector: #afd75f;
+		--syn-operator: #a9b3b9;
+		--syn-meta: #8787ff;
+		/* The CLI's brand is orange; a command in a shell fence is the CLI. */
+		--syn-command: #ff875f;
+
+		/*
+		 * Folders are sage, and that is not decoration.
+		 *
+		 * Two hues total, and the rule behind them has not changed: everything
+		 * that is an *action* is the accent, and everything that is a *container*
+		 * is this. That is what separates a thing you press from a thing you open,
+		 * and it is why there are two and not seven.
+		 *
+		 * They were blue, which was right on a cold dark ground and wrong the day
+		 * the page became warm. A cool blue on a warm pastel is the one
+		 * combination that reads as a mistake rather than as a choice - it is not
+		 * that it clashes, it is that it looks like it was inherited.
+		 *
+		 * Sage is the same distance from the accent in hue that blue was, and on
+		 * the same side of the page as everything else. 4.6:1 on `--sheet-0`,
+		 * because a folder glyph at 24px has to read as clearly as text does.
+		 */
+		--folder: #5a6f34;
+		--folder-deep: #44541f;
+		--folder-fill: color-mix(in srgb, var(--folder) 16%, transparent);
+
+		/*
+		 * A live mark standing in for a glyph, and the flat glyph beneath it.
+		 *
+		 * `--mark-glyph` is the accent rather than `currentColor`, because the
+		 * thing under the canvas is a *logo* and a logo has one colour. Inheriting
+		 * put it at `--fg-faint` at rest and at the folder colour on hover, which
+		 * is the tint that says "this is a container" applied to the one icon on
+		 * the desktop that is not one.
+		 */
+		--mark-size: clamp(2.75rem, 11cqi, 3.25rem);
+		--mark-glyph: var(--accent);
+
+		/* The sticky header's height, so anything that must clear it can say so. */
+		--nav-height: 66px;
+
+		--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+		--mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+		--sans: ui-sans-serif, -apple-system, "SF Pro Text", system-ui, sans-serif;
+
+		/* Spacing. A short scale on purpose: every value a section can need, and no
+	   value it can pick arbitrarily. */
+		--s-1: 4px;
+		--s-2: 8px;
+		--s-3: 12px;
+		--s-4: 16px;
+		--s-5: 24px;
+		--s-6: 32px;
+		--s-7: 48px;
+		--s-8: 72px;
+		--s-9: 120px;
+
+		/*
+		 * One row of desktop icons.
+		 *
+		 * A token rather than a number in the grid rule, because two other things
+		 * need to agree with it: an icon dropped on row four is placed by dividing
+		 * a pixel offset by this height, and a tile has to fill a row exactly or
+		 * the arithmetic drifts a row every few screens down.
+		 *
+		 * Fluid against the screen it is on, so a phone's rows are shorter than a
+		 * laptop's without a second value written down anywhere.
+		 */
+		--shelf-row: clamp(5.5rem, 20cqi, 8.5rem);
+
+		/* Type. Body sizes are rem so they follow the reader's browser setting.
+	   Headings are clamped so one scale covers phone through desktop without a
+	   media query per heading. */
+		--t-xs: 0.6875rem;
+		--t-sm: 0.8125rem;
+		--t-md: 0.9375rem;
+		--t-lg: 1.0625rem;
+		--t-h3: clamp(1.0625rem, 0.9rem + 0.7vw, 1.375rem);
+		--t-h2: clamp(1.5rem, 1.1rem + 1.9vw, 2.5rem);
+		--t-h1: clamp(2.75rem, 1.4rem + 6.4vw, 6.5rem);
+
+		--container: 1180px;
+		/* The gutter the container keeps between itself and the screen edge. */
+		--gutter: var(--s-5);
+		/*
+		 * How wide a column of reading runs.
+		 *
+		 * A token because it is the width of a *page*, not of a paragraph: the
+		 * title, the summary, the action strip and the prose all have to agree
+		 * on it or the page reads as three columns of different widths stacked
+		 * on each other. It was written as a literal in `.prose` and again, at a
+		 * different value, in `.max-w-prose` - so a page's lead was 586px and
+		 * the body it introduced was 642px, and the copy button sat 440px to the
+		 * right of both.
+		 */
+		--measure: 68ch;
+
+		/*
+		 * Fluid page rhythm.
+		 *
+		 * The `--s-*` scale above is fixed on purpose: a 12px gap inside a card is
+		 * 12px on every device, because it is spacing between two things that are
+		 * themselves a fixed size. Scaling it with the viewport makes a card look
+		 * puffy on a desktop and cramped on a phone.
+		 *
+		 * The distance between sections is the opposite. It is a proportion of the
+		 * page, and 120px of air above a heading is generous on a laptop and half a
+		 * screen on a phone. So these three are fluid, and they are the only ones.
+		 *
+		 * Each is `clamp(floor, rem + vw, ceiling)`. The middle term carries a rem
+		 * as well as a vw so the value still responds when someone increases their
+		 * browser's font size - a preferred term of pure `vw` ignores that setting
+		 * entirely, which is the usual way a fluid scale becomes an accessibility
+		 * problem.
+		 */
+		--space-block: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+		--space-section: clamp(3rem, 2rem + 5vw, 7.5rem);
+		--space-page: clamp(4rem, 2.5rem + 7.5vw, 11rem);
+
+		/*
+		 * Depth, as a named ladder rather than a number per rule.
+		 *
+		 * Every one of these was a literal picked at the moment it was needed,
+		 * and the file had reached 29, 30 and 31 sitting next to each other.
+		 * That is the failure mode of a raw `z-index`: the numbers stop being a
+		 * scale and become an argument, settled by whoever edited last. Nothing
+		 * tells you that 31 beats 30 on purpose rather than by accident, and
+		 * the only way to add a layer between them is another decimal of nerve.
+		 *
+		 * Named tiers say what a thing IS, so the question at the point of use
+		 * stops being "what number wins" and becomes "which tier is this in".
+		 * The values are unchanged from the literals they replace, so nothing
+		 * moved: this names the order that was already there.
+		 *
+		 * The gaps are deliberate. A tier with room above it can be extended by
+		 * the `-over` token next to it instead of by renumbering its
+		 * neighbours.
+		 */
+		--z-under: -1; /* behind its own parent: the nav's frosted backing */
+		--z-base: 1; /* positioned, still in normal flow */
+		--z-raised: 2; /* lifted inside its own region: a shelf icon */
+		--z-desk: 5; /* the desktop surface: its windows and the dock */
+		--z-boot: 6; /* the boot screen, over the desk it is drawing */
+		--z-sticky: 20; /* the site nav, which outlives the page under it */
+		--z-sticky-over: 21;
+		--z-scrim: 29; /* the dim behind an overlay, under the overlay itself */
+		--z-overlay: 30; /* panels, hover cards, sheets */
+		--z-overlay-over: 31;
+		--z-top: 60; /* menus and toasts, which may cover anything */
+
+		/* Breakpoint, as a documented value. Custom properties cannot be used
+	   inside a media query, so this exists to be quoted - the query still
+	   writes the number. */
+		--bp-narrow: 860px;
+	}
+
+	/*
+	 * Dark, and only the values whose *role* changes.
+		 *
+	 * Everything else follows, which is the entire reason the alias layer exists:
+	 * a second theme costs this block and nothing else. Not one rule below the
+	 * tokens layer knows there are two themes, and that is the claim
+	 * `theming.md` makes - this is the block that either proves it or exposes
+	 * every place a literal leaked out.
+		 *
+	 * Selected by attribute, never by `prefers-color-scheme` alone. The server
+	 * writes `data-theme` into the first byte from a cookie it can read; a media
+	 * query is something only the browser can answer, so a theme chosen that way
+	 * cannot be applied until after the page has already painted. That is the
+	 * flash, and it is not fixable in CSS.
+		 *
+	 * `Settings` still offers System - choosing it writes the resolved value to
+	 * the cookie, which turns a preference the server cannot see into one it can.
+	 */
+	:root[data-theme="dark"] {
+		color-scheme: dark;
+
+		/*
+	 * The ground, cool where the light theme is warm.
+		 *
+	 * Not the inverse of the light ramp. A dark theme built by inverting a
+	 * light one comes out grey and lifeless, because the two are not
+	 * symmetrical: on paper the darkest thing is ink and everything recedes
+	 * from it, while on a screen the ground is unlit and everything emits.
+	 * These have a green cast for the same reason the original dark theme did
+	 * - a truly neutral dark reads as switched-off rather than as a material.
+	 */
+		--sheet-0: #12171a;
+		--sheet-1: #171d21;
+		--sheet-2: #1e2529;
+		--sheet-3: #262e33;
+		--line: #37424a;
+		--line-soft: #232b31;
+
+		--ink: #e8e5df;
+		--ink-dim: #a2aaa8;
+		--ink-faint: #77817f;
+
+		/*
+	 * The hues, lightened back up.
+		 *
+	 * The exact inverse of what the light theme had to do to them, and for
+	 * the same reason in reverse: on a pale ground they carried contrast by
+	 * being darker than everything, and here there is nothing left to be
+	 * darker than. Checked against `--sheet-0` rather than assumed.
+	 */
+		--salmon: #ff9270;
+		--salmon-deep: #e8734d;
+		--wasabi: #a8c46a;
+		--tamago: #e8b84b;
+		--tuna: #e0645a;
+		--info: #7cc0cd;
+		--on-accent: #2a1006;
+		/* White here, not red: see `--close-mark` in the light block above. */
+		--close-mark: var(--fg);
+		--folder: #9ec97a;
+		--folder-deep: #78a854;
+
+		/*
+	 * Shadow is the one token that does not invert.
+		 *
+	 * It is the absence of light on whatever is underneath, not a surface, so
+	 * it stays near-black - it simply has less to do here, because a dark
+	 * page separates surfaces by lightness again and the shadows are back to
+	 * being a hint rather than the whole mechanism.
+	 */
+		--shadow: #05080a;
+		--shadow-deep: #000000;
+
+		--shell: #232a2f;
+		--shell-deep: #161b1f;
+		--shell-edge: color-mix(in srgb, var(--ink) 22%, transparent);
+
+		/* The scrim has to take the page away, and a dark page needs more of it. */
+		--scrim: color-mix(in srgb, #05080a 62%, transparent);
+
+		/*
+		 * Code does not invert - but on a dark page the slab has to sit a step
+		 * *above* the ground to stay a slab, where on paper it sits below.
+		 */
+		--code-bg: #21282d;
+		--code-bg-deep: #1a2025;
+		--code-line: #39434a;
+
+		/*
+	 * Fills are mixed from the ground, so they follow it without being
+	 * restated. This is the line that makes the pastel set free rather than
+	 * doubled - `--pastel-sage` is defined once, in terms of two tokens that
+	 * both just changed.
+	 */
+		--glass: color-mix(in srgb, var(--sheet-2) 62%, transparent);
+	}
+}

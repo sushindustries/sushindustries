@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Before you open an issue
+    url: https://github.com/sushindustries/sushindustries/blob/main/CONTRIBUTING.md
+    about: What's welcome, what isn't, and what to check first
+  - name: Reporting a vulnerability
+    url: https://github.com/sushindustries/sushindustries/blob/main/SECURITY.md
+    about: Use private reporting instead of a public issue for anything exploitable

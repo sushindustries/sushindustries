@@ -1,0 +1,18 @@
+@layer blocks {
+	/*
+	 * A minimised task.
+	 *
+	 * Quieter, and without the underline that marks the front window - it is
+	 * still open, so it is still listed, but it is not on the desk and should
+	 * not read as if it were. Dimming rather than hiding is the point: a window
+	 * that vanishes from the dock when minimised is a window somebody has lost.
+	 */
+	.dock-task-face[data-minimised="true"] {
+		opacity: 0.55;
+		box-shadow: none;
+	}
+
+	.dock-task-face[data-minimised="true"]:hover {
+		opacity: 1;
+	}
+}

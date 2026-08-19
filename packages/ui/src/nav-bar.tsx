@@ -1,0 +1,353 @@
+import type { ReactNode } from "react";
+import { Icon, type IconName } from "./icon";
+
+export interface NavItem {
+	readonly label: string;
+	readonly href: string;
+	readonly icon?: IconName;
+	/** One line, shown under the label in an expanded panel. */
+	readonly description?: string;
+	/** A count, shown right-aligned. Nothing renders when it is absent. */
+	readonly badge?: string;
+	/**
+	 * Which colour this entry belongs to, as a name the stylesheet resolves.
+	 *
+	 * A free string rather than a union, because the set of tones is the
+	 * consumer's - a component library has no business knowing that this site
+	 * has five categories and what they are called. The stylesheet decides what
+	 * `motion` looks like; this only carries the word.
+	 *
+	 * Absent, the icon takes the default surface, which is what an entry with no
+	 * category should look like.
+	 */
+	readonly tone?: string;
+}
+
+export interface NavEntry {
+	readonly label: string;
+	readonly href: string;
+	readonly icon?: IconName;
+	/**
+	 * The expanded panel. An entry with no children is a plain link, which is
+	 * the right answer for most of them: a menu that opens to reveal one link
+	 * is more interface than the thing it hides.
+	 */
+	readonly items?: readonly NavItem[];
+}
+
+export interface NavBarProps {
+	/** The mark at the left. Already wrapped in a link, so do not pass an anchor. */
+	brand: ReactNode;
+	/** Where the mark leads. */
+	brandHref?: string;
+	/** The top row. An entry with `items` becomes a panel, one without stays a plain link. */
+	entries: readonly NavEntry[];
+	/** Right-hand side. Usually one external link. */
+	trailing?: ReactNode;
+	/** Label on the mobile toggle, for screen readers. */
+	menuLabel?: string;
+	/** Rendered around every href, so a router can own navigation. */
+	renderLink?: (props: {
+		href: string;
+		className: string;
+		children: ReactNode;
+	}) => ReactNode;
+}
+
+type RenderLink = NonNullable<NavBarProps["renderLink"]>;
+
+/*
+ * The site header, at three sizes, with panels that expand.
+ *
+ * Built on `<details>` and `<summary>` rather than on React state, and that is
+ * not a stylistic preference. A nav is the first thing a reader touches, often
+ * before hydration has finished, and a menu driven by `useState` is inert until
+ * then. `<details>` opens on click and on Enter, is announced as expandable,
+ * closes on Escape, and does all of it in the browser with no JavaScript from
+ * here at all.
+ *
+ * What it costs is closing itself, which `<details>` has no notion of. That is
+ * bought back with a pair of handlers: `closeOnLeave` when focus moves out,
+ * `closeOnNavigate` when a link inside is clicked. Where neither can tell -
+ * a tap that gives focus to nothing and lands on nothing - the panel stays
+ * open until the summary is pressed again, which is a mildly annoying menu
+ * rather than a broken one.
+ *
+ *   desktop  a row of triggers, each opening a panel below it
+ *   tablet   the same row, with a narrower panel
+ *   mobile   one burger, opening every entry as an accordion
+ *
+ * The mobile version is the same markup with different CSS, not a second
+ * component. Two components would be two things to keep in step, and the one
+ * that is only visible on a phone is the one that goes stale.
+ *
+ * The component knows nothing about which site it is in. Entries come in as
+ * data; on this site that data is a Markdown file.
+ */
+function closeOnLeave(event: React.FocusEvent<HTMLDetailsElement>): void {
+	if (event.currentTarget.contains(event.relatedTarget)) return;
+	/*
+	 * `relatedTarget` is null when focus went nowhere - and on a touch screen
+	 * that is every tap, because iOS gives links and buttons no focus. Closing
+	 * on it hides the drawer between the tap and the click the browser
+	 * synthesises from it, so the click lands on the page behind and the link
+	 * never navigates. That was the bug: every menu link dead on a phone.
+	 * Leave it open; a tap on a link closes through `closeOnNavigate` below.
+	 */
+	if (event.relatedTarget === null) return;
+	event.currentTarget.removeAttribute("open");
+}
+
+/*
+ * The other half of closing: a click that lands on a link means navigation is
+ * underway, so the menu's job is done. This fires after the anchor's default
+ * action is committed, which is what makes it safe where the blur was not -
+ * nothing here can run early enough to take the click away.
+ */
+function closeOnNavigate(event: React.MouseEvent<HTMLDetailsElement>): void {
+	if (!(event.target instanceof Element)) return;
+	if (!event.target.closest("a")) return;
+	event.currentTarget.removeAttribute("open");
+}
+
+/*
+ * A group's own icon, on the same tile its items use.
+ *
+ * In the drawer every row is one column of tiles down the left edge. A group
+ * header with a bare 14px glyph beside rows with 34px tiles reads as two
+ * different lists rather than as a heading over its items - and at that size,
+ * against uppercase mono, the glyph is close to invisible.
+ *
+ * An entry with no icon still gets the tile, empty, so the labels stay on one
+ * vertical line. A ragged left edge is more noticeable than a blank square.
+ */
+function GroupIcon({ icon }: { icon?: IconName }): ReactNode {
+	return (
+		<span className="nav-panel-icon" aria-hidden="true">
+			{icon ? <Icon name={icon} size={16} /> : null}
+		</span>
+	);
+}
+
+function PanelItems({
+	items,
+	renderLink,
+}: {
+	items: readonly NavItem[];
+	renderLink: RenderLink;
+}): ReactNode {
+	return (
+		<ul className="nav-panel-list m-0">
+			{items.map((item) => (
+				<li key={item.href}>
+					{renderLink({
+						href: item.href,
+						className: "nav-panel-item",
+						children: (
+							<>
+								{item.icon ? (
+									/*
+									 * `data-tone` carries the entry's identity into CSS.
+									 *
+									 * A variant as an attribute rather than a second class,
+									 * for the reason every variant here is: it travels with
+									 * the component, cannot be applied without its base, and
+									 * is visible in the props instead of in a stylesheet
+									 * somebody has to go and find. The stylesheet decides
+									 * what each tone looks like; this only says which one.
+									 */
+									<span className="nav-panel-icon" data-tone={item.tone}>
+										<Icon name={item.icon} size={16} />
+									</span>
+								) : null}
+								<span className="min-w-0">
+									<span className="fg text-sm font-medium flex items-baseline gap-2">
+										{item.label}
+										{item.badge ? (
+											<span className="mono text-xs fg-faint">
+												{item.badge}
+											</span>
+										) : null}
+									</span>
+									{item.description ? (
+										<span className="nav-panel-description">
+											{item.description}
+										</span>
+									) : null}
+								</span>
+							</>
+						),
+					})}
+				</li>
+			))}
+		</ul>
+	);
+}
+
+function Panel({
+	entry,
+	renderLink,
+}: {
+	entry: NavEntry;
+	renderLink: RenderLink;
+}): ReactNode {
+	return (
+		// biome-ignore lint/a11y/useKeyWithClickEvents: <details> is natively keyboard-operable (Enter/Space toggles, Escape closes); onClick only closes the panel after a link inside is activated, mouse or keyboard.
+		<details
+			className="nav-menu"
+			onBlur={closeOnLeave}
+			onClick={closeOnNavigate}
+		>
+			<summary className="nav-link flex items-center gap-2">
+				{entry.icon ? <Icon name={entry.icon} size={14} /> : null}
+				{entry.label}
+				<Icon name="chevron" size={13} className="nav-chevron" />
+			</summary>
+
+			<div className="nav-panel">
+				<PanelItems items={entry.items ?? []} renderLink={renderLink} />
+
+				{/* The panel lists parts of a section; this goes to the section. */}
+				{renderLink({
+					href: entry.href,
+					className: "nav-panel-all",
+					children: `All ${entry.label.toLowerCase()}`,
+				})}
+			</div>
+		</details>
+	);
+}
+
+/*
+ * Narrow: one burger holding everything.
+ *
+ * The bars are drawn in CSS rather than as a glyph, because they become an X
+ * when the details is open and a glyph cannot morph.
+ *
+ * Its own function, not inlined in `NavBar`, because the `biome-ignore`
+ * comment below only attaches correctly to a `<details>` that is the sole
+ * expression right after `return (` - one JSX child among several siblings
+ * loses that attachment.
+ */
+function NavBurger({
+	entries,
+	renderLink,
+	menuLabel,
+}: {
+	entries: NavBarProps["entries"];
+	renderLink: RenderLink;
+	menuLabel: string;
+}): ReactNode {
+	return (
+		// biome-ignore lint/a11y/useKeyWithClickEvents: <details> is natively keyboard-operable (Enter/Space toggles, Escape closes); onClick only closes the panel after a link inside is activated, mouse or keyboard.
+		<details
+			className="nav-burger"
+			onBlur={closeOnLeave}
+			onClick={closeOnNavigate}
+		>
+			<summary className="nav-burger-toggle" aria-label={menuLabel}>
+				<span className="nav-burger-bars" />
+			</summary>
+
+			{/*
+			 * `data-lenis-prevent` hands scrolling inside the drawer back to the
+			 * browser.
+			 *
+			 * A smooth-scroll driver like Lenis intercepts wheel and touch for the
+			 * whole page and animates the scroll itself. An overlay with its own
+			 * overflow is invisible to it, so a drag inside this drawer moved the
+			 * article behind it instead. Lenis reads this attribute and leaves the
+			 * subtree alone; anyone not using Lenis gets an inert data attribute.
+			 */}
+			<div className="nav-sheet" data-lenis-prevent>
+				<p className="nav-sheet-title label m-0">{menuLabel}</p>
+
+				{entries.map((entry) =>
+					entry.items && entry.items.length > 0 ? (
+						<details className="nav-group" key={entry.href}>
+							<summary className="nav-group-summary flex items-center gap-3">
+								<GroupIcon icon={entry.icon} />
+								{entry.label}
+								<Icon name="chevron" size={13} className="nav-chevron" />
+							</summary>
+
+							<PanelItems items={entry.items} renderLink={renderLink} />
+
+							{renderLink({
+								href: entry.href,
+								className: "nav-panel-all",
+								children: `All ${entry.label.toLowerCase()}`,
+							})}
+						</details>
+					) : (
+						<span key={entry.href}>
+							{renderLink({
+								href: entry.href,
+								className: "nav-group-summary flex items-center gap-3",
+								children: (
+									<>
+										<GroupIcon icon={entry.icon} />
+										{entry.label}
+									</>
+								),
+							})}
+						</span>
+					),
+				)}
+			</div>
+		</details>
+	);
+}
+
+export function NavBar({
+	brand,
+	brandHref = "/",
+	entries,
+	trailing,
+	menuLabel = "Menu",
+	renderLink = (props) => <a {...props} />,
+}: NavBarProps): ReactNode {
+	return (
+		<header className="nav">
+			<nav className="container flex items-center justify-between gap-4 py-3">
+				{renderLink({
+					href: brandHref,
+					className:
+						"mono text-sm font-semibold fg flex items-center gap-3 shrink-0",
+					children: brand,
+				})}
+
+				{/* Wide: a row of triggers. */}
+				<div className="nav-row">
+					{entries.map((entry) =>
+						entry.items && entry.items.length > 0 ? (
+							<Panel key={entry.href} entry={entry} renderLink={renderLink} />
+						) : (
+							<span key={entry.href}>
+								{renderLink({
+									href: entry.href,
+									className: "nav-link flex items-center gap-2",
+									children: (
+										<>
+											{entry.icon ? <Icon name={entry.icon} size={14} /> : null}
+											{entry.label}
+										</>
+									),
+								})}
+							</span>
+						),
+					)}
+				</div>
+
+				<div className="flex items-center gap-2 shrink-0">
+					{trailing}
+					<NavBurger
+						entries={entries}
+						renderLink={renderLink}
+						menuLabel={menuLabel}
+					/>
+				</div>
+			</nav>
+		</header>
+	);
+}

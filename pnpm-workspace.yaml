@@ -1,0 +1,39 @@
+# Two roots, on purpose.
+#
+# `apps/*` are things that get deployed. `packages/*` are things that get
+# installed - each one is a published artefact with its own README and its own
+# showcase route on the site. Adding a package means adding a directory here
+# and nothing else.
+packages:
+  - apps/*
+  - packages/*
+# esbuild ships a platform-specific binary and needs its postinstall to run.
+allowBuilds:
+  # posthog-js pulls it in; its postinstall only prints a funding note.
+  core-js: false
+  esbuild: true
+
+# drizzle-kit still pulls the deprecated @esbuild-kit/* packages, which pin
+# esbuild 0.18.20 - a version whose dev server accepts requests from any
+# website. Nothing here runs that dev server, so the practical risk is low, but
+# the alert is real and the fix is one line.
+overrides:
+  esbuild@<0.25.0: ">=0.25.0"
+
+  # jsdiff below 8.0.3 can be made to spin on a crafted patch - a denial of
+  # service in parsePatch. It arrives here as a devDependency of
+  # @tanstack/cli, which only ever diffs this repo's own files, so the
+  # practical risk is nil - but the alert is real and the fix is one line.
+  diff@<8.0.3: ">=8.0.3"
+
+  # One React, for the whole workspace.
+  #
+  # The viewer package pins react 19.2.0 for its own tests; the app runs 19.2.8.
+  # pnpm installed both and linked @react-three/fiber against 19.2.0, so the
+  # canvas called hooks from a different React than the one rendering it, and
+  # every render died on "Cannot read properties of null (reading 'useMemo')" -
+  # React's least helpful phrasing of "there are two of me".
+  #
+  # A peer range cannot fix this; only one copy on disk can.
+  react: 19.2.8
+  react-dom: 19.2.8

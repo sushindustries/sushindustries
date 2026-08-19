@@ -1,0 +1,150 @@
+@layer blocks {
+	/* ── command palette ─────────────────────────────────────────── */
+
+	/*
+	 * The search, in the top layer. The dialog is the backdrop and the box is
+	 * the surface: keeping them separate is what makes click-outside a real
+	 * area rather than a guess.
+	 */
+	.palette {
+		width: min(37rem, calc(100vw - 2 * var(--s-4)));
+		margin: 12vh auto auto;
+		padding: 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-card);
+		background: var(--bg-0);
+		box-shadow: var(--lift-3);
+		color: inherit;
+	}
+
+	.palette::backdrop {
+		background: var(--scrim);
+	}
+
+	.palette-box {
+		display: flex;
+		flex-direction: column;
+		max-height: min(24rem, 60vh);
+	}
+
+	.palette-head {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		padding: var(--s-3) var(--s-4);
+		border-bottom: 1px solid var(--line-soft);
+		color: var(--fg-faint);
+	}
+
+	.palette-input {
+		flex: 1;
+		min-width: 0;
+		border: 0;
+		background: transparent;
+		color: var(--fg);
+		font: var(--t-md) / 1.4 var(--sans);
+		outline: none;
+	}
+
+	.palette-kbd {
+		padding: 2px var(--s-2);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--fg-faint);
+	}
+
+	.palette-list {
+		margin: 0;
+		padding: var(--s-2);
+		list-style: none;
+		overflow-y: auto;
+	}
+
+	.palette-item {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		width: 100%;
+		padding: var(--s-2) var(--s-3);
+		border: 0;
+		border-radius: var(--r-lg);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	/*
+	 * The icon on its tile, in the category's pastel - the same tone pairs the
+	 * nav panel uses, so a colour means one thing everywhere it appears.
+	 */
+	.palette-icon {
+		display: grid;
+		place-items: center;
+		width: 28px;
+		height: 28px;
+		flex-shrink: 0;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		background: var(--bg-1);
+		color: var(--fg-faint);
+	}
+
+	.palette-icon[data-tone="motion"] {
+		background: var(--tone-motion);
+		color: var(--tone-motion-ink);
+	}
+
+	.palette-icon[data-tone="layout"] {
+		background: var(--tone-layout);
+		color: var(--tone-layout-ink);
+	}
+
+	.palette-icon[data-tone="content"] {
+		background: var(--tone-content);
+		color: var(--tone-content-ink);
+	}
+
+	.palette-icon[data-tone="docs"] {
+		background: var(--tone-docs);
+		color: var(--tone-docs-ink);
+	}
+
+	.palette-icon[data-tone="3d"] {
+		background: var(--tone-3d);
+		color: var(--tone-3d-ink);
+	}
+
+	.palette-item[data-active="true"] {
+		background: var(--bg-2);
+		color: var(--fg);
+	}
+
+	/* The trigger that lives in the nav: a small field-shaped button. */
+	.palette-trigger {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-2);
+		padding: 6px var(--s-3);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-1);
+		color: var(--fg-faint);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		cursor: pointer;
+		transition:
+			color 160ms ease,
+			border-color 160ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.palette-trigger:hover {
+			color: var(--fg-dim);
+			border-color: var(--line);
+		}
+	}
+}

@@ -1,0 +1,64 @@
+# Skill tree for the sushindustries monorepo.
+#
+# One core skill per public package that ships an API worth teaching. The
+# taxonomy is deliberately flat: each package is small enough that a single
+# well-scoped core skill beats a tree of fragments.
+library:
+  name: sushindustries
+  version: '0.1.0'
+
+skills:
+  - name: core
+    slug: '@sushindustries/atoms#core'
+    path: packages/atoms/skills/core/SKILL.md
+    package: packages/atoms
+    packages: ['@sushindustries/atoms']
+    covers:
+      - utility vocabulary and the one-class-per-job rule
+      - the --s-* token scale with no arbitrary-value escape hatch
+      - container queries and fluid-unit rules
+  - name: core
+    slug: '@sushindustries/ui#core'
+    path: packages/ui/skills/core/SKILL.md
+    package: packages/ui
+    packages: ['@sushindustries/ui']
+    covers:
+      - the two install paths (pnpm add, TanStack CLI registry)
+      - styles come from atoms, variants are data attributes
+  - name: core
+    slug: '@sushindustries/db#core'
+    path: packages/db/skills/core/SKILL.md
+    package: packages/db
+    packages: ['@sushindustries/db']
+    covers:
+      - schema vs client.server entry-point split
+      - lazy connection construction, never at module scope
+  - name: core
+    slug: '@sushindustries/assistant#core'
+    path: packages/assistant/skills/core/SKILL.md
+    package: packages/assistant
+    packages: ['@sushindustries/assistant']
+    covers:
+      - props-in panel with no owned transport
+      - persona.md structure and the JSX comment-escaping trap
+  - name: core
+    slug: '@sushindustries/product-viewer#core'
+    path: packages/product-viewer/skills/core/SKILL.md
+    package: packages/product-viewer
+    packages: ['@sushindustries/product-viewer']
+    covers:
+      - opt-in subpath entries and their peers
+      - mandatory disposal and build-time variant validation
+  - name: core
+    slug: '@sushindustries/react-product-viewer#core'
+    path: packages/react-product-viewer/skills/core/SKILL.md
+    package: packages/react-product-viewer
+    packages: ['@sushindustries/react-product-viewer']
+    covers:
+      - lazy loading without breaking SSR
+      - Query/Router split and the icon-size ModelMark trap
+
+coverage:
+  ignored_packages:
+    - name: '@sushindustries/llms'
+      reason: llms.txt/robots/sitemap text generators; no agent-facing API surface worth a skill yet

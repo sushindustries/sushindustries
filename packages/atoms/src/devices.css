@@ -1,0 +1,114 @@
+/*
+ * Generated from `packages/atoms/devices.md`. Do not edit by hand.
+ *
+ * Which machine the site draws itself as, decided by the stylesheet rather than
+ * by JavaScript. A component that measures the window renders nothing on the
+ * server and the wrong thing on the first client frame; a media query is right
+ * before any JavaScript arrives and cannot disagree with the server about it.
+ *
+ * Every rule is written twice: once under its width for an element that has not
+ * chosen, and once as an attribute selector for an element that has. The two
+ * forms tie on specificity, so the chosen ones come last.
+ *
+ * Add a machine by adding a row to the table, then `pnpm doctor --fix`.
+ */
+
+@layer blocks {
+	/* Held, so it is nearly face on. A phone tilted like a laptop reads as a phone falling over. */
+	.device:not([data-device]) {
+		--device-width: 22rem;
+		--device-aspect: 3 / 6;
+		--device-columns: 3;
+		--device-bezel: 6px;
+		--device-corner: 2.25rem;
+		--device-lens: 1100px;
+		--device-tilt: -1deg;
+		--device-deck: none;
+		--device-hinge: none;
+		--device-camera: block;
+		--device-bar: none;
+		--device-floor: 0px;
+	}
+
+	/* Propped, so a little more rake than a phone and a lot less than a laptop. The 3:4 slab is the shape that says tablet without a keyboard under it. */
+	@media (min-width: 720px) {
+		.device:not([data-device]) {
+			--device-width: 40rem;
+			--device-aspect: 3 / 4;
+			--device-columns: 5;
+			--device-bezel: 10px;
+			--device-corner: 1.5rem;
+			--device-lens: 1300px;
+			--device-tilt: -2deg;
+			--device-deck: none;
+			--device-hinge: none;
+			--device-camera: block;
+			--device-bar: none;
+			--device-floor: 0px;
+		}
+	}
+
+	/* A long lens, because the machine should look like it is being looked at rather than photographed from six inches away. */
+	@media (min-width: 1080px) {
+		.device:not([data-device]) {
+			--device-width: 60rem;
+			--device-aspect: 16 / 10.4;
+			--device-columns: 7;
+			--device-bezel: 8px;
+			--device-corner: 0.75rem;
+			--device-lens: 1400px;
+			--device-tilt: -4deg;
+			--device-deck: block;
+			--device-hinge: block;
+			--device-camera: none;
+			--device-bar: none;
+			--device-floor: 0px;
+		}
+	}
+
+	/* Chosen by hand, in Settings or in a showcase. Beats every query above. */
+	.device[data-device="phone"] {
+		--device-width: 22rem;
+		--device-aspect: 3 / 6;
+		--device-columns: 3;
+		--device-bezel: 6px;
+		--device-corner: 2.25rem;
+		--device-lens: 1100px;
+		--device-tilt: -1deg;
+		--device-deck: none;
+		--device-hinge: none;
+		--device-camera: block;
+		--device-bar: none;
+		--device-floor: 0px;
+	}
+
+	.device[data-device="tablet"] {
+		--device-width: 40rem;
+		--device-aspect: 3 / 4;
+		--device-columns: 5;
+		--device-bezel: 10px;
+		--device-corner: 1.5rem;
+		--device-lens: 1300px;
+		--device-tilt: -2deg;
+		--device-deck: none;
+		--device-hinge: none;
+		--device-camera: block;
+		--device-bar: none;
+		--device-floor: 0px;
+	}
+
+	.device[data-device="laptop"] {
+		--device-width: 60rem;
+		--device-aspect: 16 / 10.4;
+		--device-columns: 7;
+		--device-bezel: 8px;
+		--device-corner: 0.75rem;
+		--device-lens: 1400px;
+		--device-tilt: -4deg;
+		--device-deck: block;
+		--device-hinge: block;
+		--device-camera: none;
+		--device-bar: none;
+		--device-floor: 0px;
+	}
+}

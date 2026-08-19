@@ -1,0 +1,101 @@
+/*
+ * Design tokens and atomic utilities.
+ *
+ * Cool grey ground, warm off-white text, one salmon accent for actions and one
+ * blue for containers. Monospace for structure.
+ *
+ * ── The cascade, declared ────────────────────────────────────────────────
+ *
+ * Four layers, in this order, and the order is the whole design:
+ *
+ *   tokens      custom properties. Nothing else.
+ *   base        the reset and the element defaults.
+ *   blocks      named things - the nav, a card, the machine. Layout that would
+ *               take six classes to say and still be wrong at a breakpoint.
+ *   utilities   one class, one job.
+ *
+ * Utilities are last, so **a utility always beats a block**, regardless of
+ * specificity. That is what makes "compose in the markup" true rather than
+ * aspirational: `<div className="card p-3">` gets 12px of padding without
+ * anybody writing `.card.p-3` or an `!important`, and without the block having
+ * to be careful about how specific it is.
+ *
+ * It also means a block can be written the way it reads best - descendant
+ * selectors, states, attributes - without that specificity leaking out and
+ * beating the scale.
+ *
+ * Anything that needs to beat a utility is a bug in the utility.
+ *
+ * ── What goes where ──────────────────────────────────────────────────────
+ *
+ * A named block earns its place by carrying something markup cannot say: a
+ * pseudo-element, a state, a combinator, a media query, or a layout that would
+ * be six classes and still wrong. `pnpm doctor` fails a block whose every
+ * declaration already exists as a utility - that block is the same properties
+ * written a second time, somewhere the scale no longer reaches.
+ */
+
+@layer tokens, base, blocks, utilities;
+
+/*
+ * Generated, and imported rather than pasted.
+ *
+ * `devices.css` is compiled from `devices.md` and holds one thing: the widths
+ * at which the site draws itself as a phone, a tablet or a laptop. It is a
+ * separate file because it is the output of a generator and this one is not -
+ * a generated region inside a hand-written file is a region somebody edits by
+ * accident and loses on the next run.
+ *
+ * `layer(blocks)` is what keeps it under the utilities. An `@import` with no
+ * layer would land in the unlayered origin, which beats every layer here, and
+ * a media query about the shape of a machine would start winning arguments
+ * with `p-3`.
+ */
+@import "./devices.css" layer(blocks);
+
+@import "./tokens.css";
+@import "./base.css";
+@import "./utilities.css";
+@import "./blocks/credits.css";
+@import "./blocks/page-rhythm.css";
+@import "./blocks/scroll-reveal.css";
+@import "./blocks/nav.css";
+@import "./blocks/grid.css";
+@import "./blocks/hero.css";
+@import "./blocks/cards.css";
+@import "./blocks/code.css";
+@import "./blocks/buttons.css";
+@import "./blocks/command-palette.css";
+@import "./blocks/pagination-breadcrumb.css";
+@import "./blocks/elements.css";
+@import "./blocks/forms.css";
+@import "./blocks/overlays.css";
+@import "./blocks/references.css";
+@import "./blocks/responsive.css";
+@import "./blocks/showcase.css";
+@import "./blocks/prose.css";
+@import "./blocks/doc-layout.css";
+@import "./blocks/breakpoints.css";
+@import "./blocks/menu.css";
+@import "./blocks/shelf.css";
+@import "./blocks/window.css";
+@import "./blocks/folders.css";
+@import "./blocks/device.css";
+@import "./blocks/screen-furniture.css";
+@import "./blocks/shelf-search.css";
+@import "./blocks/desk-windows.css";
+@import "./blocks/dock.css";
+@import "./blocks/terminal.css";
+@import "./blocks/assistant.css";
+@import "./blocks/typed-mark.css";
+@import "./blocks/boot.css";
+@import "./blocks/theme-toggle.css";
+@import "./blocks/scrollbars.css";
+@import "./blocks/dock-icon.css";
+@import "./blocks/window-sizing.css";
+@import "./blocks/search-list.css";
+@import "./blocks/minimised-task.css";
+@import "./blocks/video.css";
+@import "./blocks/video-portrait.css";
+@import "./blocks/questions.css";
+@import "./blocks/consent.css";

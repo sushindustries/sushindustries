@@ -1,0 +1,340 @@
+/*
+ * `@sushindustries/react-product-viewer/styles.css`
+ *
+ * The public stylesheet, and only an entry point. Everything real lives in
+ * `styles/` and `elements/*`, one file per thing, so a consumer who wants the
+ * card and not the dialog can import the card's stylesheet on its own.
+ */
+
+@import "./styles/index.css";
+
+/*
+ * ----------------------------------------------------------------------------
+ * NOT YET SPLIT
+ *
+ * The hero, the dialog and the variant button still have their rules here
+ * rather than beside their components. They move as each element is split out;
+ * this block shrinks to nothing and then this comment goes with it.
+ *
+ * They have already been moved onto tokens, so the values below are current
+ * even though their address is not.
+ * ----------------------------------------------------------------------------
+ */
+
+/* -------------------------------------------------------------- variant -- */
+
+.pv-variant {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--pv-s-2);
+	padding: var(--pv-s-2) var(--pv-s-3);
+	border: 1px solid var(--pv-line);
+	border-radius: var(--pv-r-pill);
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	font-size: var(--pv-t-sm);
+	line-height: 1.2;
+	cursor: pointer;
+	transition:
+		transform var(--pv-dur-press) var(--pv-ease-out),
+		border-color var(--pv-dur-ui) var(--pv-ease-out),
+		background-color var(--pv-dur-ui) var(--pv-ease-out);
+}
+
+.pv-variant:has(.pv-variant__swatch) {
+	padding: var(--pv-s-1) var(--pv-s-3) var(--pv-s-1) var(--pv-s-1);
+}
+
+/* The press has to be felt: swapping a material takes a frame or two, and
+   without this the button looks broken for exactly that long. */
+.pv-variant:active {
+	transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.pv-variant:hover {
+		border-color: var(--pv-accent);
+	}
+}
+
+.pv-variant:focus-visible {
+	outline: 2px solid var(--pv-accent);
+	outline-offset: 2px;
+}
+
+.pv-variant[data-selected] {
+	background: var(--pv-accent);
+	border-color: var(--pv-accent);
+	color: var(--pv-on-accent);
+}
+
+.pv-variant[data-missing] {
+	opacity: 0.55;
+}
+
+/* The floor, and this row was under it before: a 34px pill is a control people
+   miss, and they blame the product rather than the pixel. */
+@media (pointer: coarse) {
+	.pv-variant {
+		min-height: var(--pv-tap);
+	}
+}
+
+.pv-variant__swatch {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	display: block;
+	/* The rendered sphere is lit but has no ground, so a faint ring stops a pale
+     material dissolving into a pale button. */
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+/* Reserves the swatch's space before it has rendered, so a row of buttons does
+   not jump sideways when the pictures arrive. */
+.pv-variant__swatch--pending {
+	background: var(--pv-line);
+	animation: pv-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pv-pulse {
+	50% {
+		opacity: 0.45;
+	}
+}
+
+/* -------------------------------------------------------------- trigger -- */
+
+.pv-trigger {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--pv-s-2);
+	padding: var(--pv-s-2) var(--pv-s-4);
+	border: 1px solid var(--pv-line);
+	border-radius: var(--pv-r);
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+	transition:
+		transform var(--pv-dur-press) var(--pv-ease-out),
+		border-color var(--pv-dur-ui) var(--pv-ease-out);
+}
+
+.pv-trigger:active {
+	transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.pv-trigger:hover {
+		border-color: var(--pv-accent);
+	}
+}
+
+.pv-trigger:focus-visible {
+	outline: 2px solid var(--pv-accent);
+	outline-offset: 2px;
+}
+
+@media (pointer: coarse) {
+	.pv-trigger {
+		min-height: var(--pv-tap);
+	}
+}
+
+/* --------------------------------------------------------------- dialog -- */
+
+.pv-dialog {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	display: grid;
+	grid-template-rows: auto 1fr;
+	background: var(--pv-canvas-bg);
+	color: var(--pv-fg);
+
+	/*
+   * Centred, not anchored. A popover scales from its trigger because it belongs
+   * to it; a fullscreen dialog belongs to the viewport, and scaling it from a
+   * button in the corner would read as the page being sucked sideways.
+   *
+   * From 0.96 rather than 0: nothing in the world appears from nothing.
+   */
+	opacity: 1;
+	transform: scale(1);
+	transition:
+		opacity var(--pv-dur-modal) var(--pv-ease-out),
+		transform var(--pv-dur-modal) var(--pv-ease-out);
+
+	@starting-style {
+		opacity: 0;
+		transform: scale(0.96);
+	}
+}
+
+.pv-dialog__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--pv-s-4);
+	padding: var(--pv-s-3) var(--pv-s-4);
+}
+
+.pv-dialog__title {
+	font-size: var(--pv-t-md);
+}
+
+.pv-dialog__close {
+	border: 1px solid var(--pv-line);
+	border-radius: var(--pv-r);
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	padding: var(--pv-s-2) var(--pv-s-3);
+	cursor: pointer;
+	transition: transform var(--pv-dur-press) var(--pv-ease-out);
+}
+
+.pv-dialog__close:active {
+	transform: scale(0.97);
+}
+
+.pv-dialog__close:focus-visible {
+	outline: 2px solid var(--pv-accent);
+	outline-offset: 2px;
+}
+
+@media (pointer: coarse) {
+	.pv-dialog__close {
+		min-height: var(--pv-tap);
+	}
+}
+
+.pv-dialog__body {
+	display: grid;
+	grid-template-columns: 1fr;
+	min-height: 0;
+}
+
+.pv-dialog__body:has(.pv-dialog__panel) {
+	grid-template-columns: minmax(0, 1fr) 260px;
+}
+
+.pv-dialog__stage {
+	position: relative;
+	min-height: 0;
+}
+
+.pv-dialog__panel {
+	padding: var(--pv-s-4);
+	overflow-y: auto;
+}
+
+/* Below --bp-narrow the side panel becomes a bottom sheet: 260px of controls
+   beside a canvas on a 375px screen leaves neither of them usable. */
+@media (max-width: 720px) {
+	.pv-dialog__body:has(.pv-dialog__panel) {
+		grid-template-columns: 1fr;
+		grid-template-rows: minmax(0, 1fr) auto;
+	}
+
+	.pv-dialog__panel {
+		max-height: 38dvh;
+	}
+}
+
+/* ----------------------------------------------------------------- hero -- */
+
+.pv-hero {
+	position: relative;
+	width: 100%;
+	height: var(--pv-hero-height, min(78dvh, 720px));
+}
+
+.pv-hero__scrim {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
+
+.pv-hero[data-align="top-left"] .pv-hero__scrim {
+	background: linear-gradient(to bottom, var(--pv-scrim), transparent 55%);
+}
+
+.pv-hero[data-align="bottom-left"] .pv-hero__scrim {
+	background: linear-gradient(to top, var(--pv-scrim), transparent 55%);
+}
+
+.pv-hero[data-align="center"] .pv-hero__scrim {
+	background: radial-gradient(
+		ellipse at center,
+		var(--pv-scrim),
+		transparent 70%
+	);
+}
+
+.pv-hero__overlay {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	padding: clamp(var(--pv-s-4), 4vw, var(--pv-s-7));
+	color: #fff;
+	/* Transparent to the pointer so the whole hero stays draggable. Anything
+     genuinely interactive inside opts back in with .pv-hero__interactive. */
+	pointer-events: none;
+}
+
+.pv-hero[data-align="top-left"] .pv-hero__overlay {
+	align-items: start;
+	justify-items: start;
+}
+
+.pv-hero[data-align="bottom-left"] .pv-hero__overlay {
+	align-items: end;
+	justify-items: start;
+}
+
+.pv-hero[data-align="center"] .pv-hero__overlay {
+	align-items: center;
+	justify-items: center;
+	text-align: center;
+}
+
+.pv-hero__content {
+	max-width: 46ch;
+}
+
+.pv-hero__interactive {
+	pointer-events: auto;
+}
+
+/* --------------------------------------------------------------- motion -- */
+
+@media (prefers-reduced-motion: reduce) {
+	.pv-variant,
+	.pv-trigger,
+	.pv-dialog__close {
+		transition-property: border-color, background-color;
+	}
+
+	.pv-variant:active,
+	.pv-trigger:active,
+	.pv-dialog__close:active {
+		transform: none;
+	}
+
+	.pv-variant__swatch--pending {
+		animation: none;
+	}
+
+	/* The dialog still fades - an element appearing with no transition at all
+     reads as broken - but it no longer scales. */
+	.pv-dialog {
+		transition-property: opacity;
+
+		@starting-style {
+			transform: none;
+		}
+	}
+}

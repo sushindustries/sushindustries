@@ -1,0 +1,335 @@
+@layer blocks {
+	/* ── window ──────────────────────────────────────────────────── */
+
+	/*
+	 * The dialog.
+	 *
+	 * Sized in `min()` against both a viewport unit and a ceiling, so it is a
+	 * window on a monitor and very nearly the whole screen on a phone without a
+	 * breakpoint deciding which.
+	 *
+	 * No z-index anywhere in here: `showModal()` puts it in the top layer, which
+	 * is above every stacking context on the page by definition. That is most of
+	 * the reason for using a real dialog rather than a div.
+	 */
+	.window {
+		width: min(46rem, 100% - var(--s-4) * 2);
+		max-height: min(80dvh, 44rem);
+		padding: 0;
+		border: 1px solid var(--line);
+		border-radius: var(--r-card);
+		background:
+			linear-gradient(to bottom, var(--glass-edge), transparent 30%),
+			color-mix(in srgb, var(--bg-1) 94%, transparent);
+		backdrop-filter: var(--glass-blur);
+		color: var(--fg);
+		box-shadow: var(--lift-3);
+		overflow: hidden;
+		animation: window-in 200ms var(--ease-out);
+	}
+
+	.window::backdrop {
+		background: var(--scrim);
+		animation: window-scrim-in 200ms ease;
+	}
+
+	@keyframes window-in {
+		from {
+			opacity: 0;
+			scale: 0.97;
+			translate: 0 8px;
+		}
+	}
+
+	@keyframes window-scrim-in {
+		from {
+			opacity: 0;
+		}
+	}
+
+	/*
+	 * `min-height: 0` is what makes the canvas below actually scroll.
+	 *
+	 * A flex child refuses to shrink below its content without it, so a window
+	 * full of Markdown grew the frame instead of scrolling inside it, and the
+	 * bottom of the page was simply past the end of the window. It is the usual
+	 * reason an `overflow` that is set appears to do nothing.
+	 */
+	/*
+	 * `height: 100%` and not `max-height: inherit`.
+	 *
+	 * `inherit` takes the parent's *computed* max-height, which for a flex child
+	 * is usually `none` - so it did nothing, and the frame sized itself to its
+	 * content. Filling the body is what actually bounds it, and the body is
+	 * already bounded by the window.
+	 */
+	.window-frame {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		min-height: 0;
+		min-width: 0;
+	}
+
+	.window-bar {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		padding: var(--s-3) var(--s-3) var(--s-3) var(--s-4);
+		border-bottom: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--bg-3) 40%, transparent);
+	}
+
+	/*
+	 * The path, on one line.
+	 *
+	 * `flex-wrap: wrap` was here and it is the wrong instinct for a breadcrumb
+	 * in a window somebody drags narrow: the trail wrapped to two and then three
+	 * lines, and the bar grew taller every time, eating the window it is inside.
+	 *
+	 * A path scrolls instead. The end of it is where you are, which is the part
+	 * worth keeping, and the scrollbar is hidden because a bar across a
+	 * breadcrumb is louder than the breadcrumb.
+	 */
+	.window-path {
+		display: flex;
+		align-items: center;
+		flex-wrap: nowrap;
+		gap: 2px;
+		min-width: 0;
+		/*
+		 * `flex: 0 0 auto`, and the `flex: 1` it replaced is worth naming.
+		 *
+		 * This used to sit in a row alongside a title, where `flex: 1` meant
+		 * "take the leftover width". It is now a direct child of the window
+		 * frame, which is a *column* - so the same declaration meant take the
+		 * leftover height, and a one-line breadcrumb grew to fill the window and
+		 * squashed everything below it into whatever was left. That is the
+		 * enormous empty band under the title bar.
+		 *
+		 * A flex shorthand does not mean anything until you know which way the
+		 * container runs, which is why this one moved without being edited and
+		 * broke.
+		 */
+		flex: 0 0 auto;
+		overflow-x: auto;
+		scrollbar-width: none;
+	}
+
+	.window-path::-webkit-scrollbar {
+		display: none;
+	}
+
+	/*
+	 * A crumb keeps its own width and gives up nothing.
+	 *
+	 * `flex: 0 0 auto` is what makes the trail scroll rather than compress.
+	 * Without it the flex line shrinks every crumb equally until the path is a
+	 * row of ellipses, none of which says where you are.
+	 */
+	.window-crumb {
+		display: inline-flex;
+		align-items: center;
+		gap: 2px;
+		flex: 0 0 auto;
+		white-space: nowrap;
+	}
+
+	.window-sep {
+		color: var(--fg-faint);
+		transform: rotate(-90deg);
+	}
+
+	.window-crumb-button {
+		padding: var(--s-1) var(--s-2);
+		border: 0;
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-faint);
+		font: inherit;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		cursor: pointer;
+	}
+
+	/* The last crumb is where you are, so it is not dressed as somewhere to go. */
+	.window-crumb-button[aria-current="true"] {
+		color: var(--fg);
+		cursor: default;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.window-crumb-button:not([aria-current="true"]):hover {
+			background: var(--bg-2);
+			color: var(--fg);
+		}
+	}
+
+	.window-close {
+		display: grid;
+		place-items: center;
+		flex: 0 0 auto;
+		width: 34px;
+		height: 34px;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		background: transparent;
+		color: var(--fg-dim);
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			color 140ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.window-close:hover {
+			background: var(--bg-2);
+			color: var(--fg);
+		}
+	}
+
+	/* The window's own scrolling area, holding a grid rather than a list. */
+	/*
+	 * A window's contents size against the window, not against the page.
+	 *
+	 * `container-type: inline-size` is what makes that true, and it is the only
+	 * way to: a window is resized by dragging its corner, which changes nothing
+	 * a media query can see. Without this, pulling a window from 240px to 900px
+	 * leaves the icons inside at exactly the size they were, which is the
+	 * "resizing does nothing" this was reported as.
+	 *
+	 * `inline-size` rather than `size`, because the height here is content-driven
+	 * and `size` containment would require it to be declared.
+	 */
+	.window-canvas {
+		container-type: inline-size;
+		container-name: pane;
+		flex: 1;
+		min-height: 0;
+		min-width: 0;
+		padding: clamp(var(--s-2), 2.5cqi, var(--s-4));
+		overflow-y: auto;
+		overscroll-behavior: contain;
+	}
+
+	.window-list {
+		margin: 0;
+		padding: var(--s-2);
+		list-style: none;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+	}
+
+	.window-row-cell {
+		min-width: 0;
+	}
+
+	.window-row {
+		position: relative;
+	}
+
+	.window-face {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		width: 100%;
+		/* Room on the right for the menu button, which is absolutely placed. */
+		padding: var(--s-3) calc(var(--s-6) + var(--s-2)) var(--s-3) var(--s-3);
+		min-height: 48px;
+		border: 1px solid transparent;
+		border-radius: var(--r-lg);
+		background: transparent;
+		color: var(--fg-dim);
+		font: inherit;
+		text-align: left;
+		cursor: pointer;
+		transition:
+			background 140ms ease,
+			border-color 140ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.window-face:hover {
+			background: var(--bg-2);
+			border-color: var(--line-soft);
+		}
+	}
+
+	.window-face:focus-visible {
+		background: var(--bg-2);
+		border-color: var(--line-soft);
+	}
+
+	.window-face:active {
+		background: var(--bg-3);
+	}
+
+	.window-icon {
+		display: grid;
+		place-items: center;
+		flex: 0 0 auto;
+		width: 32px;
+		height: 32px;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		background:
+			linear-gradient(160deg, var(--glass-edge), transparent 60%), var(--bg-3);
+		color: var(--fg-dim);
+	}
+
+	.window-note {
+		display: block;
+		margin-top: 1px;
+		font-size: var(--t-xs);
+		line-height: 1.45;
+		color: var(--fg-faint);
+	}
+
+	.window-meta {
+		flex: 0 0 auto;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--fg-faint);
+	}
+
+	.window-into {
+		flex: 0 0 auto;
+		color: var(--fg-faint);
+		transform: rotate(-90deg);
+	}
+
+	/*
+	 * The window's own menu button sits inside a row rather than a tile, so it is
+	 * centred on the row instead of pinned to a corner.
+	 */
+	.window-more {
+		top: 50%;
+		translate: 0 -50%;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.menu,
+		.window,
+		.window::backdrop {
+			animation: none;
+		}
+
+		.shelf-face {
+			transition: none;
+		}
+	}
+
+	@media (max-width: 620px) {
+		/* A phone gets bigger targets and fewer of them per row. */
+		.shelf {
+			grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+		}
+
+		.window {
+			width: 100%;
+			max-height: 86dvh;
+		}
+	}
+}

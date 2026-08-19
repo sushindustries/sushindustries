@@ -1,0 +1,140 @@
+@layer blocks {
+	/* ── grid and spacer ─────────────────────────────────────────── */
+
+	/*
+	 * `auto-fit` plus `minmax` works the column count out from the space
+	 * available, so there is no breakpoint here and no column count to keep in
+	 * step with one. A grid inside a sidebar gets it right for the same reason a
+	 * grid on a full page does: it is asking about its own width, not the
+	 * viewport's.
+	 */
+	.grid-auto {
+		display: grid;
+		grid-template-columns: repeat(
+				auto-fit,
+				minmax(var(--grid-min, 16rem), 1fr)
+			);
+	}
+
+	.grid-auto[data-gap="1"] {
+		gap: var(--s-1);
+	}
+	.grid-auto[data-gap="2"] {
+		gap: var(--s-2);
+	}
+	.grid-auto[data-gap="3"] {
+		gap: var(--s-3);
+	}
+	.grid-auto[data-gap="4"] {
+		gap: var(--s-4);
+	}
+	.grid-auto[data-gap="5"] {
+		gap: var(--s-5);
+	}
+	.grid-auto[data-gap="6"] {
+		gap: var(--s-6);
+	}
+	.grid-auto[data-gap="7"] {
+		gap: var(--s-7);
+	}
+
+	/*
+	 * A fixed count, for content that is genuinely paired. A before and an after
+	 * that reflow to one column stop being a comparison, so these hold until the
+	 * narrow breakpoint and then give up all at once.
+	 */
+	/*
+	 * Spans: how a grid stops being uniform without stopping being a grid.
+	 *
+	 * Any direct child may claim more track - two columns, three, or the full
+	 * row - and that is the whole bento vocabulary: a hero is a full-row card,
+	 * a feature is a 2-span beside two singles. The claim collapses on narrow
+	 * screens along with the columns, so a span can never force a squeeze.
+	 */
+	.grid-auto > [data-span="2"] {
+		grid-column: span 2;
+	}
+
+	.grid-auto > [data-span="3"] {
+		grid-column: span 3;
+	}
+
+	.grid-auto > [data-span="full"] {
+		grid-column: 1 / -1;
+	}
+
+	@media (max-width: 860px) {
+		.grid-auto > [data-span="2"],
+		.grid-auto > [data-span="3"] {
+			grid-column: auto;
+		}
+	}
+
+	.grid-auto[data-columns="2"] {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.grid-auto[data-columns="3"] {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+	.grid-auto[data-columns="4"] {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	@media (max-width: 860px) {
+		.grid-auto[data-columns] {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	.spacer {
+		display: block;
+	}
+
+	.spacer[data-size="1"] {
+		height: var(--s-1);
+	}
+	.spacer[data-size="2"] {
+		height: var(--s-2);
+	}
+	.spacer[data-size="3"] {
+		height: var(--s-3);
+	}
+	.spacer[data-size="4"] {
+		height: var(--s-4);
+	}
+	.spacer[data-size="5"] {
+		height: var(--s-5);
+	}
+	.spacer[data-size="6"] {
+		height: var(--s-6);
+	}
+	.spacer[data-size="7"] {
+		height: var(--s-7);
+	}
+
+	/*
+	 * The rule sits in the middle of the gap rather than at its edge, so the space
+	 * above and below stays symmetric and the spacer keeps its declared height.
+	 */
+	.spacer[data-rule] {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+	}
+
+	.spacer[data-rule]::before,
+	.spacer[data-rule]::after {
+		content: "";
+		flex: 1;
+		height: 1px;
+		background: var(--line-soft);
+	}
+
+	.spacer-label {
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+	}
+}

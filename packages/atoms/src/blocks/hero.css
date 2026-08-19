@@ -1,0 +1,325 @@
+@layer blocks {
+	/* ── hero ────────────────────────────────────────────────────── */
+
+	/*
+	 * One hero, two jobs.
+	 *
+	 * `landing` is the top of the home page: full height, the mark beside the
+	 * sentence, two buttons. `doc` is the head of a documentation page: a
+	 * trail, the element's name, its measured facts, and a picture of itself.
+	 *
+	 * They are one block with two attribute values rather than two blocks,
+	 * because everything below the variant line is the same in both - the split,
+	 * the actions row, the heading, the wrap order. A second block would be
+	 * ninety percent of the first one and would drift on the ten.
+	 *
+	 * The rows are a flex column and the *columns* are a grid inside it, so a
+	 * variant that has a trail above and tabs below can have them without the
+	 * landing variant growing two empty rows.
+	 */
+	.hero {
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-5);
+		/*
+		 * How far apart the pieces of the left column sit, set here so the
+		 * variant can change it in one place. A landing hero breathes; a doc
+		 * hero is a dense header with four things in it.
+		 */
+		--hero-gap: var(--s-4);
+		/*
+		 * How wide the sentence under the title is allowed to run. A doc hero
+		 * measures in characters because it is prose; a landing hero measures in
+		 * pixels because it is one line balanced against a mark beside it.
+		 */
+		--hero-measure: 62ch;
+	}
+
+	.hero-body {
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--hero-gap);
+	}
+
+	/*
+	 * The columns. One until there is something to put in the second, which is
+	 * what `data-media` says - an empty grid track is a gutter the eye reads as
+	 * a mistake.
+	 *
+	 * A container query rather than a viewport one, measured against the `.cq`
+	 * the component puts on itself. The same doc hero renders in the full page
+	 * width and inside a 22rem phone frame in the archive, and it should fold by
+	 * the room it has rather than by the size of the window it is being viewed
+	 * in.
+	 */
+	.hero-split {
+		display: grid;
+		gap: var(--s-6);
+		align-items: center;
+	}
+
+	@container (min-width: 52rem) {
+		.hero-split[data-media] {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
+		}
+	}
+
+	/*
+	 * Both variants' type, declared before either variant overrides it. Written
+	 * the other way round the more specific rule loses to source order, which is
+	 * a bug that looks like a cascade you do not understand.
+	 */
+	.hero-title {
+		margin: 0;
+		font-size: var(--t-h2);
+		line-height: 1.08;
+		letter-spacing: -0.025em;
+		font-weight: 600;
+	}
+
+	.hero-summary {
+		margin: 0;
+		max-width: var(--hero-measure);
+		color: var(--fg-dim);
+		text-wrap: pretty;
+	}
+
+	/*
+	 * `--nav-height` is the sticky header's own height, declared once so anything
+	 * that has to clear it can say so rather than guess. The header is a 42px
+	 * control in `var(--s-3)` of padding.
+	 */
+	.hero[data-variant="landing"] {
+		/*
+		 * The padding is *added* to the height, not taken out of it.
+		 *
+		 * `min-height` is border-box, so `min-height: min(88svh, 780px)` with
+		 * 170px of padding gave the content row 88svh **minus** 170px. The model
+		 * asks for 62svh, and below about a 620px window that no longer fits - so
+		 * the row overflowed, and because it is centred half the overflow went
+		 * upward, under the sticky header.
+		 *
+		 * Written this way the row is `min(72svh, 620px)` and the padding sits
+		 * outside it, so the space the model is sized against is the space it
+		 * actually gets. 62svh inside 72svh has room at every window height
+		 * instead of only at tall ones.
+		 *
+		 * The top padding is what clears the sticky header. Without it the hero
+		 * starts at the top of the document, the header sits over it, and the
+		 * tallest thing in here is cut off by a bar it never knew about.
+		 */
+		min-height: calc(
+			min(72svh, 620px) +
+			var(--nav-height) +
+			var(--s-6) +
+			var(--s-8)
+		);
+		padding-block: calc(var(--nav-height) + var(--s-6)) var(--s-8);
+		--hero-gap: var(--s-6);
+		--hero-measure: 460px;
+	}
+
+	/*
+	 * Even halves, and `flex: 1` so the row is the whole of that min-height.
+	 * `.logo-stage` bounds itself with `max-height: 100%`, and a percentage
+	 * resolves against nothing unless the row it is in has actually been given
+	 * the space.
+	 *
+	 * A viewport breakpoint here, not a container one: this hero is the width of
+	 * the page by definition, and the mark beside it is sized in `svh`. Both are
+	 * facts about the window rather than about a box.
+	 */
+	.hero[data-variant="landing"] .hero-split {
+		flex: 1;
+		grid-template-columns: 1fr 1fr;
+		grid-auto-rows: minmax(0, auto);
+		gap: var(--s-7);
+	}
+
+	.hero[data-variant="landing"] .hero-title {
+		font-size: var(--t-h1);
+		line-height: 0.92;
+		letter-spacing: -0.04em;
+		text-wrap: balance;
+	}
+
+	.hero[data-variant="landing"] .hero-summary {
+		font-size: var(--t-lg);
+	}
+
+	/*
+	 * Monospace, because the name is being quoted as source rather than read as
+	 * a title. The overflow-wrap is for the long ones: `use-scroll-progress` is
+	 * wider than a phone, and a heading that overflows takes the whole page
+	 * sideways with it.
+	 */
+	.hero-name {
+		font-family: var(--mono);
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		overflow-wrap: anywhere;
+	}
+
+	.hero-bracket {
+		color: var(--fg-faint);
+	}
+
+	.hero-version {
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.08em;
+		color: var(--fg-faint);
+		padding: 2px var(--s-2);
+		border: 1px solid var(--line-soft);
+		border-radius: 999px;
+	}
+
+	/*
+	 * A definition list, because that is what it is: three or four labelled
+	 * facts about the document. The labels are off-screen rather than absent -
+	 * a calendar glyph beside a date is unambiguous to anyone who can see it
+	 * and silent to anyone who cannot.
+	 */
+	.hero-facts {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--s-2) var(--s-4);
+		margin: 0;
+	}
+
+	/*
+	 * The group is not a box. `display: contents` lifts each `dd` into the flex
+	 * row above it, so the gap falls between facts rather than between wrappers,
+	 * and the `dl`/`dt`/`dd` nesting a definition list requires survives intact
+	 * for anything reading the structure.
+	 */
+	.hero-fact {
+		display: contents;
+	}
+
+	.hero-fact-label {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+
+	.hero-fact-value {
+		display: flex;
+		align-items: center;
+		gap: var(--s-2);
+		margin: 0;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.06em;
+		color: var(--fg-faint);
+	}
+
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--s-3);
+	}
+
+	/*
+	 * Below 30rem of hero the actions take the width and split it evenly, the
+	 * same way the doc action strip does. Two ragged pills on a phone read as
+	 * debris; two equal ones read as a choice.
+	 */
+	@container (max-width: 30rem) {
+		.hero-actions > * {
+			flex: 1 1 auto;
+			justify-content: center;
+		}
+	}
+
+	/*
+	 * The shot sits in a frame rather than bleeding to the edge, because it is a
+	 * picture of the component and not the component. The border and the lift
+	 * are what stop a screenshot whose own background matches the page from
+	 * looking like a rendering failure.
+	 */
+	.hero-shot {
+		margin: 0;
+		overflow: hidden;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-lg);
+		background: var(--bg-2);
+		box-shadow: var(--lift-1);
+	}
+
+	.hero-shot-image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top center;
+	}
+
+	/*
+	 * The stage the mark occupies.
+	 *
+	 * Square, centred, and bounded on both axes. `min()` against a viewport unit
+	 * and a fixed ceiling is what keeps it whole: on a short laptop window the
+	 * height wins, on a wide monitor the ceiling does, and it never grows to fill
+	 * a column just because the column is there.
+	 *
+	 * It was previously bounded only by height, so on a wide screen the model grew
+	 * to half the page and ran under the header.
+	 */
+	.logo-stage {
+		aspect-ratio: 1;
+		/*
+		 * Bounded by the row it is in, not by the viewport.
+		 *
+		 * `62svh` measured the whole window, and the stage does not get the whole
+		 * window: the hero's `min-height` is `min(88svh, 780px)` *including* its
+		 * padding, and that padding is what clears the sticky header. Below about
+		 * a 620px window the stage wanted more than the row had, and because the
+		 * row is centred the overflow went half upward - straight under the nav,
+		 * which is frosted and paints over it. It read as the model being cut off
+		 * by something.
+		 *
+		 *   600px window:  row 358px, stage wanted 372px
+		 *   500px window:  row 270px, stage wanted 310px
+		 *
+		 * `min-height: 0` is what lets it shrink at all - a grid item's automatic
+		 * minimum is its content, so without it `max-height` is simply ignored and
+		 * the numbers above stay true.
+		 */
+		max-height: 100%;
+		min-height: 0;
+		width: min(100%, 62svh, 460px);
+		margin-inline: auto;
+		display: grid;
+		place-items: center;
+		/*
+		 * The 3D of the CSS spin. `perspective` on the stage rather than on the
+		 * spinning element means the vanishing point is the middle of the stage, so
+		 * the mark turns about the centre of the space it is in rather than about
+		 * its own centre, which is what makes it read as an object in a box.
+		 */
+		perspective: 1100px;
+	}
+
+	.logo-spin {
+		width: 82%;
+		transform-style: preserve-3d;
+		will-change: transform;
+		color: var(--fg);
+	}
+
+	/* Holds the stage open before the canvas exists. Not a mark, and not shaped
+   like one - just the space, so the arrival is a material change. */
+	.logo-placeholder {
+		display: grid;
+		place-items: center;
+		width: 100%;
+		height: 100%;
+	}
+}

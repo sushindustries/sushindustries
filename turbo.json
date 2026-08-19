@@ -1,0 +1,30 @@
+{
+	"$schema": "https://turborepo.dev/schema.json",
+	"globalDependencies": ["tsconfig.base.json", "tsdown.base.ts"],
+	"tasks": {
+		"transit": {
+			"dependsOn": ["^transit"]
+		},
+		"build": {
+			"dependsOn": ["^build", "transit"],
+			"outputs": [".output/**", "dist/**", "src/routeTree.gen.ts"],
+			"env": [
+				"NODE_ENV",
+				"POSTHOG_HOST",
+				"VITE_POSTHOG_HOST",
+				"VITE_POSTHOG_KEY"
+			]
+		},
+		"typecheck": {
+			"dependsOn": ["^build", "build"]
+		},
+		"test": {
+			"dependsOn": ["build"],
+			"env": ["CI"]
+		},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		}
+	}
+}
