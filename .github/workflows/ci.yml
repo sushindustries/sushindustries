@@ -24,6 +24,11 @@ jobs:
 
     # On a PR, turbo runs only the packages the diff can have affected; a push
     # to main always runs everything, because main is what deploys.
+    #
+    # It is used unquoted below and must stay that way: it is either
+    # `--affected` or empty, so quoting it passes an empty argument to turbo
+    # on every push. shellcheck reports SC2086 on those three lines for that
+    # reason, and the report is wrong here.
     env:
       TURBO_FLAGS: ${{ github.event_name == 'pull_request' && '--affected' || '' }}
 
@@ -165,7 +170,12 @@ jobs:
           load: true
           tags: sushindustries:ci
           cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # `min`, not `max`. `max` caches every intermediate layer, and this
+          # repo's Actions cache filled to its 10 GB cap with 175 buildkit
+          # blobs, which then evicted the turbo, pnpm and Playwright caches by
+          # least-recent-use. Those three are what actually save minutes, so
+          # the image cache was buying layer reuse with everyone else's hits.
+          cache-to: type=gha,mode=min
 
       # An image that builds and then exits on boot is still a failed deploy.
       - name: Boot it and hit the healthcheck
