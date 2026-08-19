@@ -56,7 +56,14 @@ def reads(root: Path, relative: str) -> str:
 
 
 def frontmatter(body: str, field: str) -> str:
-    match = re.search(rf"^{field}:\s*(.*)$", body, re.MULTILINE)
+    """The value of one frontmatter key, or "" when it is absent or empty.
+
+    `[ \\t]*` rather than `\\s*`: `\\s` spans newlines, so an empty `summary:`
+    swallowed the line break and captured the `---` that closes the block.
+    An empty field then read as present, which is the exact false pass this
+    gate exists to prevent.
+    """
+    match = re.search(rf"^{re.escape(field)}:[ \t]*(.*)$", body, re.MULTILINE)
     return match.group(1).strip() if match else ""
 
 

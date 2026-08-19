@@ -7,10 +7,10 @@ summary: The icon set, as data. `packages/ui/src/icon.tsx` is generated from thi
 
 Every icon this library draws, one row each.
 
-This file is the source and `src/icon.tsx` is the output. `pnpm doctor`
+This file is the source and `src/icon.tsx` is the output. `pnpm run doctor`
 regenerates it and fails if the two have drifted, so editing the component by
 hand is a change that gets reverted rather than a change that sticks. Add a
-glyph here, run `pnpm doctor --fix`, and the `IconName` union, the paths and
+glyph here, run `pnpm run doctor --fix`, and the `IconName` union, the paths and
 the component all follow.
 
 Paths only, no other SVG element, and each one drawn inside a 24x24 box at a
@@ -67,7 +67,7 @@ Multiple paths per glyph go in separate backticks in the same cell.
 
 ```shell
 pnpm new glyph my-glyph
-pnpm doctor --fix
+pnpm run doctor --fix
 ```
 
 The first adds a row with an empty path and tells you to draw it. The second

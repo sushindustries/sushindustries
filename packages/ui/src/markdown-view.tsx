@@ -118,7 +118,7 @@ const BASE_COMPONENTS = createComponents(NO_REFERENCES);
  *
  * The parser turns `<!-- ::start:name -->` into an element and leaves every
  * other HTML comment as text, so an ordinary Markdown comment is printed on
- * the page. `<!-- generated:api -->` - the fence that tells `pnpm doctor`
+ * the page. `<!-- generated:api -->` - the fence that tells `pnpm run doctor`
  * which half of an API tab it may rewrite - rendered as a visible line above
  * the props table on every component page that had one.
  *

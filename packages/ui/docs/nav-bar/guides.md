@@ -146,7 +146,7 @@ A top-level item is an entry. Indent under one and it becomes a panel;
 leave it alone and it stays a plain link, which is right for most of them - a
 menu that opens to reveal one link is more interface than the thing it hides.
 
-The backticked word is a glyph name. `pnpm doctor` rejects one that is not in
+The backticked word is a glyph name. `pnpm run doctor` rejects one that is not in
 the glyph table, so a typo fails a check rather than silently rendering nothing.
 
 `{categories}` expands from the registry, with a live count per category.

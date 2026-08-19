@@ -10,7 +10,7 @@
  * chosen, and once as an attribute selector for an element that has. The two
  * forms tie on specificity, so the chosen ones come last.
  *
- * Add a machine by adding a row to the table, then `pnpm doctor --fix`.
+ * Add a machine by adding a row to the table, then `pnpm run doctor --fix`.
  */
 
 @layer blocks {

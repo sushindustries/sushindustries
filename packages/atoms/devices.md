@@ -3,7 +3,7 @@
 The three machines the site can be drawn as, and the widths at which each one
 takes over.
 
-This table is the only place these numbers are written down. `pnpm doctor`
+This table is the only place these numbers are written down. `pnpm run doctor`
 generates two files from it:
 
 | Output | Why it cannot just read this file |
@@ -79,7 +79,7 @@ screen.
 
 ## Adding one
 
-Add a row, run `pnpm doctor --fix`, then use the new kind. The type, the media
+Add a row, run `pnpm run doctor --fix`, then use the new kind. The type, the media
 query, the attribute selector and the assistant's idea of where it is running
 all follow from the row.
 

@@ -14,8 +14,8 @@
  * write a sentence are reported and left alone, because a scaffolded
  * description that says "TODO" is worse than an empty one - it looks finished.
  *
- *   pnpm doctor          report
- *   pnpm doctor --fix    report, and repair what can be repaired
+ *   pnpm run doctor          report
+ *   pnpm run doctor --fix    report, and repair what can be repaired
  *
  * Exit code is 1 if anything is still wrong after fixing. That is what the
  * pre-push hook and CI read.
@@ -299,7 +299,7 @@ async function checkWorkspaceReadmes(list) {
 			"readme",
 			workspace,
 			"no README.md - the site renders one per package, so this page is blank",
-			"pnpm doctor --fix",
+			"pnpm run doctor --fix",
 		);
 	}
 }
@@ -427,7 +427,7 @@ function checkPushGateDelegates() {
 			"push-gate",
 			hookPath,
 			"missing - pushes leave this machine unchecked",
-			"pnpm doctor --fix",
+			"pnpm run doctor --fix",
 		);
 		if (shouldFix) {
 			writeFileSync(join(root, hookPath), "#!/bin/sh\npnpm run check\n", {
@@ -836,7 +836,7 @@ async function checkRegistryItemsHaveDocs(items) {
 			"docs",
 			`packages/ui/docs/${item.name}/`,
 			"no index.md - the component page falls back to its registry blurb",
-			"pnpm doctor --fix",
+			"pnpm run doctor --fix",
 		);
 	}
 }
@@ -1058,7 +1058,7 @@ function checkGlyphsAreGenerated() {
 		"glyphs",
 		GLYPH_OUTPUT,
 		`does not match ${GLYPH_SOURCE}`,
-		"pnpm doctor --fix. Edit the table, never the component",
+		"pnpm run doctor --fix. Edit the table, never the component",
 	);
 }
 
@@ -1224,7 +1224,7 @@ function checkDocsHaveSummaries(items) {
 			path,
 			"`summary:` is empty, so the page ships with no meta description",
 			description
-				? "pnpm doctor --fix copies the registry description"
+				? "pnpm run doctor --fix copies the registry description"
 				: "no registry entry to copy from - write one sentence",
 		);
 	}
@@ -1256,7 +1256,7 @@ async function checkApiDocsMatchSource(items) {
 				"docs",
 				path,
 				"no `<!-- generated:api -->` fence, so the props table is maintained by hand and will drift",
-				"wrap the generated section in the fence, then pnpm doctor --fix keeps it current",
+				"wrap the generated section in the fence, then pnpm run doctor --fix keeps it current",
 			);
 			continue;
 		}
@@ -1277,7 +1277,7 @@ async function checkApiDocsMatchSource(items) {
 			"docs",
 			path,
 			"the API section no longer matches the source",
-			"pnpm doctor --fix - and to change a description, edit the JSDoc",
+			"pnpm run doctor --fix - and to change a description, edit the JSDoc",
 		);
 	}
 }
@@ -1555,7 +1555,7 @@ function checkDevicesAreGenerated() {
 			"devices",
 			path,
 			`does not match ${DEVICE_SOURCE}`,
-			"pnpm doctor --fix. Edit the table, never the output",
+			"pnpm run doctor --fix. Edit the table, never the output",
 		);
 	}
 }
@@ -1920,7 +1920,7 @@ function checkNoEmDashes() {
 		}
 
 		const count = body.split(EM_DASH).length - 1;
-		report("style", path, `${count} em dash(es)`, "pnpm doctor --fix");
+		report("style", path, `${count} em dash(es)`, "pnpm run doctor --fix");
 	}
 }
 
@@ -2631,7 +2631,7 @@ for (const [check, bucket] of byCheck) {
 }
 
 if (!shouldFix) {
-	console.error("Some of these repair themselves: pnpm doctor --fix");
+	console.error("Some of these repair themselves: pnpm run doctor --fix");
 }
 
 process.exit(1);

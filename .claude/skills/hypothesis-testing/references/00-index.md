@@ -7,7 +7,7 @@ only place that needs editing.
 
 | Source | Covers |
 | --- | --- |
-| `pipeline.md` | what `pnpm doctor` checks, the documentation surface, adding each kind of thing |
+| `pipeline.md` | what `pnpm run doctor` checks, the documentation surface, adding each kind of thing |
 | `.claude/skills/sushindustries-conventions/SKILL.md` | file layout, naming, route rules, styling boundaries |
 | `apps/web/tests/semantics.test.ts` | the rendered-page contract: headings, landmarks, link graph |
 | `apps/web/tests/layout.test.ts` | the geometry contract: overflow, clipping, breakpoints |

@@ -126,7 +126,7 @@ const DESKS: readonly Desk[] = Object.entries(FILES).map(([path, raw]) => {
 		title: titleOf(raw),
 		/*
 		 * Checked here, where the file that caused it can still be named.
-		 * `pnpm doctor` is the gate that reports this before a push; this is the
+		 * `pnpm run doctor` is the gate that reports this before a push; this is the
 		 * backstop for a desk that reached the server anyway, and it names the
 		 * file rather than letting two icons quietly overlap.
 		 */

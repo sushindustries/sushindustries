@@ -12,7 +12,7 @@ import { sitePaths, siteSections } from "./site-index";
  * a page and using the site.
  *
  * Built from the same Markdown files the tools are built from, so the list
- * cannot describe a capability that is not wired up - `pnpm doctor` fails a
+ * cannot describe a capability that is not wired up - `pnpm run doctor` fails a
  * skill that is declared and unbound, and this reads the same declarations.
  */
 function skillSection(): SiteSection {

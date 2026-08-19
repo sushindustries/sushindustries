@@ -7,7 +7,7 @@
  * running, a settings panel listing what you can pick - agrees with the
  * stylesheet by construction instead of by memory.
  *
- * Add a machine by adding a row to the table, then `pnpm doctor --fix`.
+ * Add a machine by adding a row to the table, then `pnpm run doctor --fix`.
  */
 
 export type DeviceKind = "phone" | "tablet" | "laptop";

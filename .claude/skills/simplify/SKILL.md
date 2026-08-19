@@ -11,7 +11,7 @@ own page, a label that outgrew its tile, a check nobody wrote.
 
 Every rule below is a bug this repo actually shipped. None of them failed
 loudly. That is the point - the whole class is invisible in a diff and obvious
-in a directory, which is why `pnpm doctor` exists and why the first move is
+in a directory, which is why `pnpm run doctor` exists and why the first move is
 always to measure rather than to read.
 
 ## Start by measuring
@@ -19,8 +19,8 @@ always to measure rather than to read.
 Never open files looking for excess. Count first, then open the top of the list.
 
 ```shell
-pnpm doctor          # what is missing or wrong, structurally
-pnpm doctor --map    # how the repo is actually constructed, read from itself
+pnpm run doctor          # what is missing or wrong, structurally
+pnpm run doctor --map    # how the repo is actually constructed, read from itself
 pnpm check           # doctor, biome, types, build, pages - what the hook runs
 ```
 

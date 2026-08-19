@@ -14,7 +14,7 @@ Four layers, and a value may only ever refer downward:
 4  blocks     .card, .nav-panel-icon …                  never a literal
 ```
 
-`pnpm doctor` enforces the last line: a hex value anywhere outside the `tokens`
+`pnpm run doctor` enforces the last line: a hex value anywhere outside the `tokens`
 layer is a build failure. That check is the only reason repainting the whole
 site was a hundred-line diff rather than a week.
 
@@ -138,7 +138,7 @@ Every one, everywhere:
 
 An attribute travels with the component, cannot be applied without its base,
 and is visible in the props rather than in a stylesheet somebody has to find. A
-modifier class is all three of those the wrong way round, and `pnpm doctor`
+modifier class is all three of those the wrong way round, and `pnpm run doctor`
 fails on a `--` in any class name in `packages/ui`.
 
 ## The layer order is the design
