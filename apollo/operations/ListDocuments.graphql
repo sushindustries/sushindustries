@@ -1,0 +1,16 @@
+# What is written here, without its text.
+#
+# Deliberately no `body`. This is the call that answers "what exists", and
+# `tokens` is what tells you which of them is worth reading next.
+query ListDocuments($kind: DocumentKind, $slug: String, $limit: Int = 25) {
+	documents(kind: $kind, slug: $slug, limit: $limit) {
+		path
+		route
+		kind
+		slug
+		section
+		title
+		summary
+		tokens
+	}
+}

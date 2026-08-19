@@ -1,0 +1,13 @@
+# Every dependency whose documentation index is mirrored here.
+#
+# `usedFor` is the part a lockfile never records: why this dependency, in this
+# repo. Start here, then narrow with FindReference.
+query ListProviders {
+	providers {
+		provider
+		title
+		entries
+		usedFor
+		fetchedAt
+	}
+}

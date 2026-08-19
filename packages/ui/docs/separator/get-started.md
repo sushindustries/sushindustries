@@ -15,7 +15,7 @@ import { Separator } from "@sushindustries/ui";
 export function Menu() {
 	return (
 		<nav className="flex items-center gap-3">
-			<a href="/docs">Docs</a>
+			<a href="/components">Components</a>
 			<Separator orientation="vertical" decorative />
 			<a href="/packages">Packages</a>
 		</nav>

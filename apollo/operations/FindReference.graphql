@@ -1,0 +1,23 @@
+# Find the right page in somebody else's documentation.
+#
+# Links and their own one-line descriptions, never their prose. Narrowing by
+# provider is the difference between one result and forty.
+query FindReference(
+	$query: String!
+	$provider: String
+	$section: String
+	$limit: Int = 20
+) {
+	findReference(
+		query: $query
+		provider: $provider
+		section: $section
+		limit: $limit
+	) {
+		name
+		url
+		section
+		provider
+		description
+	}
+}

@@ -1,6 +1,7 @@
 import { createMcpHandler } from "@modelcontextprotocol/server";
 import { createFileRoute } from "@tanstack/react-router";
 import { siteServer } from "../modules/content/mcp.server";
+import { refuse } from "../modules/content/mcp-auth.server";
 import { originFrom } from "../modules/registry/registry.server";
 
 /*
@@ -28,49 +29,6 @@ import { originFrom } from "../modules/registry/registry.server";
  * stateless either way.
  */
 const handler = createMcpHandler(() => siteServer());
-
-/**
- * Whether this request may use the server.
- *
- * Closed by default, and closed loudly. An unset token means the endpoint
- * answers 503 rather than serving anonymously: a private server that quietly
- * becomes public when a variable fails to load is the failure worth designing
- * against, and it is the one nobody notices.
- *
- * Compared at full length rather than with an early return on the first wrong
- * character. The difference is unobservable across the internet, but writing
- * the timing-safe version costs nothing and means the question never comes up.
- */
-function refuse(request: Request): Response | null {
-	const expected = process.env.MCP_AUTH_TOKEN;
-
-	if (!expected) {
-		return new Response(
-			"This endpoint is not configured. Set MCP_AUTH_TOKEN to enable it.",
-			{ status: 503, headers: { "content-type": "text/plain; charset=utf-8" } },
-		);
-	}
-
-	const offered =
-		request.headers.get("authorization")?.replace(/^Bearer\s+/i, "") ?? "";
-
-	let same = offered.length === expected.length;
-	for (let index = 0; index < expected.length; index++) {
-		if (offered[index] !== expected[index]) same = false;
-	}
-
-	if (!same) {
-		return new Response("Unauthorized", {
-			status: 401,
-			headers: {
-				"www-authenticate": 'Bearer realm="sushindustries"',
-				"content-type": "text/plain; charset=utf-8",
-			},
-		});
-	}
-
-	return null;
-}
 
 export const Route = createFileRoute("/mcp")({
 	server: {

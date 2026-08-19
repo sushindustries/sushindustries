@@ -42,6 +42,8 @@
 		"@tanstack/react-start": "1.168.46",
 		"@tanstack/react-store": "^0.11.1",
 		"@tanstack/store": "^0.11.1",
+		"graphql": "^17.0.2",
+		"graphql-yoga": "^5.21.3",
 		"lenis": "1.3.26",
 		"posthog-js": "^1.417.1",
 		"react": "19.2.8",

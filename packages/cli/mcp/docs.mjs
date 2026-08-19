@@ -58,9 +58,23 @@ const KINDS = [
 		about: "The desktop at /, and what is arranged on it.",
 		match: (path) => path.startsWith("apps/web/content/desks/"),
 	},
+	/*
+	 * A skill is a SKILL.md, and nothing else.
+	 *
+	 * `.claude/` also holds the rules a skill points at, the records of what was
+	 * tested, the pipeline and the roadmap. Filing all of it as "skill" made the
+	 * skill list mostly not-skills, and an index built over that list numbered
+	 * things nobody can invoke.
+	 */
 	{
 		kind: "skill",
-		about: "How to work in this repo: conventions, pipelines, checks.",
+		about: "One SKILL.md each: what to do, and when.",
+		match: (path) => /^\.claude\/skills\/.+\/SKILL\.md$/.test(path),
+	},
+	{
+		kind: "note",
+		about:
+			"What the skills point at: the rules, the references, and what was tested.",
 		match: (path) => path.startsWith(".claude/"),
 	},
 	{

@@ -1,0 +1,17 @@
+# One document, with its text.
+#
+# Address it by slug and section - `card` and `api` - rather than by path,
+# because the section is the tab the site renders and reading one is the
+# difference between four hundred tokens and four thousand.
+query ReadDocument($path: String, $slug: String, $section: String) {
+	document(path: $path, slug: $slug, section: $section) {
+		path
+		route
+		kind
+		title
+		summary
+		tokens
+		sha
+		body
+	}
+}

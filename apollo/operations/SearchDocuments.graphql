@@ -1,0 +1,15 @@
+# Which documents mention a phrase, and the line it appeared on.
+#
+# Smallest match first, so a hit in a two-hundred-token API section outranks
+# the same word buried in a source file.
+query SearchDocuments($query: String!, $kind: DocumentKind, $limit: Int = 20) {
+	search(query: $query, kind: $kind, limit: $limit) {
+		excerpt
+		document {
+			path
+			route
+			title
+			tokens
+		}
+	}
+}

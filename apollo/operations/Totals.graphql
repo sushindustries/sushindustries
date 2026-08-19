@@ -1,0 +1,12 @@
+# How much is in the projection, and how old it is.
+#
+# The right first call: it says whether `sync` has ever run and when, so an
+# empty result later is a known state rather than a mystery.
+query Totals {
+	totals {
+		documents
+		referencePages
+		providers
+		syncedAt
+	}
+}

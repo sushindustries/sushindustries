@@ -1,0 +1,237 @@
+# The Query type, hand written.
+#
+# The types it returns are generated from the Drizzle tables by
+# `pnpm sushindustries graphql`, which appends this file to them. What is
+# worth asking is a decision, and no table knows it - so this half stays
+# written by a person and the shape half stays written by the schema.
+
+"What a search matched, and where."
+type SearchHit {
+	document: Document!
+
+	"The line the phrase appeared on, trimmed. Empty when the title matched."
+	excerpt: String!
+}
+
+"Counts, so a caller can tell whether the projection has been synced at all."
+type Totals {
+	documents: Int!
+	referencePages: Int!
+	providers: Int!
+
+	"The newest `syncedAt` across documents. Null when nothing is synced."
+	syncedAt: String
+}
+
+"""
+What this API is, and whether what you hold is still what it serves.
+
+`version` moves when the shape changes and is the thing to check against a
+client. `revision` moves whenever any file does: it is a hash over every
+document's `sha`, so an edit anywhere changes it and nothing else does. A
+caller that remembers the last revision it saw can tell in one cheap call
+whether anything is worth re-reading, which is the question a cache actually
+has.
+"""
+type ApiVersion {
+	"Semantic, and bumped by hand when a field changes meaning or leaves."
+	version: String!
+
+	"""
+	A hash over every document's content hash.
+
+	Same input, same value - so equal means nothing has been edited, and
+	different means something has, without saying what. `changedSince` is the
+	call that says what.
+	"""
+	revision: String!
+
+	"When the projection this revision describes was written."
+	syncedAt: String
+
+	"How many documents went into the revision."
+	documents: Int!
+}
+
+type Query {
+	"""
+	What this API is, and whether anything has changed since you last looked.
+
+	The cheapest call here, and the right first one: compare `revision` against
+	the one you stored, and skip everything else when it matches.
+	"""
+	apiVersion: ApiVersion!
+
+	"Counts and the age of the projection. Cheap, and the right first call."
+	totals: Totals!
+
+	"""
+	Which documents have a different content hash than the ones you hold.
+
+	Pass the shas you know about. What comes back is what does not match, which
+	is exactly the set worth re-reading - and an empty list is a definite "you
+	are current" rather than an absence of news.
+	"""
+	changedSince(shas: [String!]!): [Document!]!
+
+	"""
+	Documents, narrowed.
+
+	Every argument is a filter and they combine. Omitting all of them returns
+	the first `limit` rows in path order, which is rarely what anybody wants.
+	"""
+	documents(
+		kind: DocumentKind
+		slug: String
+		section: String
+		limit: Int = 25
+		offset: Int = 0
+	): [Document!]!
+
+	"One document, by path or by slug and section. Null when there is none."
+	document(path: String, slug: String, section: String): Document
+
+	"Which documents mention a phrase, with the line it appeared on."
+	search(query: String!, kind: DocumentKind, limit: Int = 20): [SearchHit!]!
+
+	"Every mirrored provider, largest first."
+	providers: [ReferenceProvider!]!
+
+	"""
+	Pages in the mirrored indexes, matched on name, description and section.
+
+	Narrowing by provider is the difference between one result and forty:
+	unnarrowed this searches every entry.
+	"""
+	findReference(
+		query: String!
+		provider: String
+		section: String
+		limit: Int = 20
+	): [ReferencePage!]!
+}
+
+# ── the repository, from GitHub ──────────────────────────────────────────
+#
+# Public API only, and no token. Everything below is readable by anyone with
+# the URL, which is the property that keeps this side of the graph from
+# needing a credential story: a token here would be a second thing to hold,
+# rotate and leak, for data that is already public.
+#
+# Unauthenticated GitHub allows sixty requests an hour per address, so these
+# fields are cached in the process for a few minutes. A graph that answers
+# with a rate-limit error under load is worse than one that answers slightly
+# stale.
+
+"A commit on the default branch."
+type Commit {
+	sha: String!
+
+	"The first line of the message. The rest is usually the reasoning."
+	title: String!
+	author: String
+	committedAt: String!
+	url: String!
+}
+
+"An open pull request."
+type PullRequest {
+	number: Int!
+	title: String!
+	author: String
+	draft: Boolean!
+	createdAt: String!
+	url: String!
+}
+
+"One run of a GitHub Actions workflow."
+type WorkflowRun {
+	name: String!
+
+	"queued, in_progress or completed."
+	status: String!
+
+	"success, failure, cancelled, skipped - null while it is still running."
+	conclusion: String
+	branch: String
+	startedAt: String!
+	url: String!
+}
+
+"""
+The repository, as GitHub sees it.
+
+The counterpart to `Document`: that side is what the files say, this side is
+what has been happening to them. Joining the two is the point - a component
+whose page nobody opens and whose source nobody has touched in a year is a
+different finding from one of those alone.
+"""
+type Repository {
+	nameWithOwner: String!
+	description: String
+	defaultBranch: String!
+	stars: Int!
+	openIssues: Int!
+	pushedAt: String!
+	url: String!
+
+	"Recent commits on the default branch, newest first."
+	commits(limit: Int = 10): [Commit!]!
+
+	"Open pull requests, newest first."
+	pullRequests(limit: Int = 10): [PullRequest!]!
+
+	"Recent workflow runs, newest first. Where a red build shows up."
+	workflowRuns(limit: Int = 10): [WorkflowRun!]!
+}
+
+extend type Query {
+	"""
+	The repository this graph describes, read from GitHub's public API.
+
+	Null when GitHub cannot be reached or has rate-limited this address,
+	rather than an error: the rest of the graph is local and should still
+	answer when the network does not.
+	"""
+	repository: Repository
+}
+
+# ── skills ───────────────────────────────────────────────────────────────
+#
+# A view over the documents whose kind is SKILL, not a table of its own. The
+# files in `.claude/skills` are the source; giving them a second home would
+# mean two answers to "what skills are there" and no way to tell which was
+# right.
+#
+# Addressable two ways because they are used two ways. By name when you know
+# what you want, by index when you are working through a list somebody else
+# produced - and the index is stable for a given sync, which is what makes it
+# safe to pass around.
+
+"One skill: what an agent is told to do, and what it costs to be told."
+type Skill {
+	"Position in the list, from one. Stable within a sync."
+	index: Int!
+
+	"The `name` from its frontmatter, which is how the runtime addresses it."
+	name: String!
+	description: String
+	path: String!
+	tokens: Int!
+
+	"The instructions themselves."
+	body: String!
+}
+
+extend type Query {
+	"Every skill in this repository, by name."
+	skills: [Skill!]!
+
+	"""
+	One skill, by name or by index.
+
+	Give one or the other. Name wins if both arrive, because a name survives a
+	sync and an index only survives the list it came from.
+	"""
+	skill(name: String, index: Int): Skill
+}

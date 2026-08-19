@@ -1,0 +1,45 @@
+# Apollo MCP Server, over this repository's graph.
+#
+# Each file in `operations/` becomes one tool, named after the operation inside
+# it and described by the comment above it. That is the whole reason to run
+# Apollo's server rather than expose the graph directly: a tool is a question
+# somebody decided was worth asking, and an open GraphQL endpoint is every
+# question at once, including the ones that return a hundred thousand tokens.
+#
+# The schema is generated from the Drizzle tables by
+# `pnpm sushindustries graphql`, so a field and its column cannot disagree.
+#
+#   apollo-mcp-server apollo/config.yaml
+#
+# The stdio server in packages/cli covers the same ground without a binary to
+# install, and is what the plugin ships. This exists for the case that one does
+# not cover: a client that already speaks Apollo, and a graph reached over the
+# network rather than off a checkout.
+
+endpoint: https://adamjurek.com/graphql
+
+# The bearer token, from the environment. Never written here - this file is
+# committed, and `MCP_AUTH_TOKEN` is the same value Railway holds.
+headers:
+  Authorization: Bearer ${MCP_AUTH_TOKEN}
+
+schema:
+  source: local
+  path: ./schema.graphql
+
+operations:
+  source: local
+  paths:
+    - ./operations
+
+transport:
+  type: stdio
+
+# Introspection stays off. The operations are the surface; leaving the schema
+# walkable would let a client build a query nobody reviewed, which is the thing
+# the operations directory exists to prevent.
+introspection:
+  execute:
+    enabled: false
+  introspect:
+    enabled: false

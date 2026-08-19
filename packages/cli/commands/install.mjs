@@ -31,7 +31,7 @@ export function install() {
 
 	console.log(`  ${bold("Somewhere else, from the marketplace")}\n`);
 	console.log("    /plugin marketplace add sushindustries/sushindustries");
-	console.log("    /plugin install sushindustries@sushindustries");
+	console.log("    /plugin install sushindustries@adamjurek");
 	blank();
 	note("Adds the commands, the skill and the dependency index. The");
 	note(
@@ -47,6 +47,18 @@ export function install() {
 	for (const [key, group] of Object.entries(GROUPS)) {
 		console.log(`      mcp ${key.padEnd(10)} ${dim(group.about)}`);
 	}
+	blank();
+
+	console.log(`  ${bold("From anywhere, over the network")}\n`);
+	console.log("    claude mcp add --transport http sushindustries \\");
+	console.log("      https://adamjurek.com/mcp \\");
+	console.log('      --header "Authorization: Bearer $MCP_AUTH_TOKEN"');
+	blank();
+	note("The deployment answers the documentation tools with no checkout at");
+	note("all, because it reads the index it already holds in memory. The");
+	note("write tools are not there and cannot be: the image has no repository");
+	note("to write to. The same token opens /graphql, which is the same data");
+	note("as a graph rather than as tools.");
 	blank();
 
 	console.log(`  ${bold("Checking it worked")}\n`);
