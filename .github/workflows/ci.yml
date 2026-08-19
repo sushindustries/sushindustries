@@ -22,6 +22,12 @@ jobs:
     name: Lint, types, build
     runs-on: ubuntu-latest
 
+    # GitHub's default is 360 minutes. Nothing here has ever taken ten, so a
+    # job still going at twenty has hung - a stalled download, a test that
+    # never resolves - and every minute after that is paid for a result
+    # nobody will read. The number is the cap on being wrong, not a target.
+    timeout-minutes: 20
+
     # On a PR, turbo runs only the packages the diff can have affected; a push
     # to main always runs everything, because main is what deploys.
     #
@@ -169,6 +175,7 @@ jobs:
   image:
     name: Docker image
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     # Only after the cheap checks pass.
     #
