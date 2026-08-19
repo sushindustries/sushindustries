@@ -36,7 +36,11 @@ import time
 from dataclasses import dataclass
 
 PREBUILD = "Codespaces Prebuilds"
-POLL_SECONDS = 15
+
+# Back off rather than poll flat. Every pass costs a `gh run list` against the
+# REST quota, and a run that has just started is not going to be finished
+# fifteen seconds later. The last value repeats for the rest of the wait.
+POLL_BACKOFF = (30, 60, 120)
 
 
 @dataclass
@@ -124,6 +128,7 @@ def failure_reason(run: Run) -> str:
 def watch(sha: str, max_seconds: int) -> list[Run]:
     """Poll until nothing is left running, cancelling waste as it appears."""
     started: dict[int, float] = {}
+    passes = 0
     while True:
         current = runs_for(sha)
         if not current:
@@ -143,7 +148,8 @@ def watch(sha: str, max_seconds: int) -> list[Run]:
         # on the next pass, which is also when it should be reported.
         if all(run.finished for run in current):
             return current
-        time.sleep(POLL_SECONDS)
+        time.sleep(POLL_BACKOFF[min(passes, len(POLL_BACKOFF) - 1)])
+        passes += 1
 
 
 def main() -> int:
