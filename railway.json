@@ -13,10 +13,8 @@
 			"!CLAUDE.md",
 			"!README.md",
 			"!LICENSE",
-			"!.agents/**",
 			"!_artifacts/**",
 			"!**/skills/**",
-			"!skills-lock.json",
 			"!.gitignore"
 		]
 	},

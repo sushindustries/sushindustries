@@ -56,7 +56,7 @@ const KINDS = [
 	{
 		kind: "skill",
 		about: "How to work in this repo: conventions, pipelines, checks.",
-		match: (path) => path.startsWith(".claude/") || path.startsWith(".agents/"),
+		match: (path) => path.startsWith(".claude/"),
 	},
 	{
 		kind: "repo",
