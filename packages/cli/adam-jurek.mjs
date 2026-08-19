@@ -34,6 +34,10 @@ const COMMANDS = {
 		const { refs } = await import("./commands/refs.mjs");
 		await refs();
 	},
+	async sync() {
+		const { sync } = await import("./commands/sync.mjs");
+		await sync();
+	},
 	async mcp() {
 		const [which] = rest;
 		if (which === "install") {
@@ -73,6 +77,7 @@ adam-jurek - the command line for adamjurek.com
   pnpm sushindustries refs             shard every provider's llms.txt locally
   pnpm sushindustries refs --force     re-fetch shards that already exist
 
+  pnpm sushindustries sync             write the index into Postgres
   pnpm sushindustries mcp <server>     run one MCP server on stdio
   pnpm sushindustries mcp install      wire all three into Claude Code
 

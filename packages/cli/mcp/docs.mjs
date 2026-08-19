@@ -1,11 +1,16 @@
 /*
- * The documentation server. Reads Markdown, and nothing else.
+ * The documentation server. Reads what is written here, and what it describes.
  *
  * Everything it serves is already in the repository, so there is no second
  * copy to go stale. What it adds is the shape: this repo's documentation is
  * not a pile of files, it is a component page split into five sections, and a
  * server that hands back "button" when you wanted the API is a server you have
  * to read around.
+ *
+ * It reads the source too, because half of every real question is in the
+ * implementation. The API section says a prop exists; the source says what
+ * happens when you pass the wrong thing. When the two disagree the source is
+ * right, and having both behind one server is what makes that findable.
  *
  * The five sections are the tabs the site renders - index, get-started,
  * guides, api, examples - so `read-doc { slug: "card", section: "api" }` is
@@ -62,21 +67,56 @@ const KINDS = [
 		kind: "repo",
 		about:
 			"The repository's own front matter: README, contributing, licence, security.",
-		match: () => true,
+		match: (path) => path.endsWith(".md"),
+	},
+	/*
+	 * The code itself.
+	 *
+	 * A documentation server that cannot show the implementation is answering
+	 * half of every question: the API section says a prop exists and the source
+	 * says what it does when you pass the wrong thing. They also disagree
+	 * sometimes, and the source is the one that is right - so being able to
+	 * reach both in one server is what makes the disagreement findable rather
+	 * than a bug somebody hits later.
+	 *
+	 * Only the published packages. The app's own wiring is not installable and
+	 * not what anybody is asking about here.
+	 */
+	{
+		kind: "source",
+		about: "The implementation, for the packages that publish one.",
+		match: (path) => /^packages\/[^/]+\/src\/.+\.(tsx?|css)$/.test(path),
 	},
 ];
 
-const classify = (path) => KINDS.find((one) => one.match(path)).kind;
+/** What a documentation server will read. Markdown, plus the source it describes. */
+const READABLE = /\.(md|tsx?|css)$/;
 
-/** Every Markdown file, with its kind and, for a component, its slug and section. */
-function index() {
-	return walk(".", (name) => name.endsWith(".md")).map((path) => {
+/*
+ * The kind a path belongs to, or nothing.
+ *
+ * Nothing is a real answer and has to be one. The walk reads every `.ts`,
+ * `.tsx` and `.css` in the repository so it can pick up package source, but
+ * only a package's own `src` is source anybody would install - the app's own
+ * components are wiring for one site. Those match no kind, and returning
+ * undefined for them is how they stay out rather than being filed under
+ * whichever bucket happened to be last.
+ */
+const classify = (path) => KINDS.find((one) => one.match(path))?.kind;
+
+/** Every readable file, with its kind and, for a component, its slug and section. */
+export function index() {
+	const found = [];
+
+	for (const path of walk(".", (name) => READABLE.test(name))) {
 		const kind = classify(path);
+		if (!kind) continue;
+
 		const component = path.match(
 			/^packages\/[^/]+\/docs\/([^/]+)\/([^/]+)\.md$/,
 		);
 
-		return {
+		found.push({
 			path,
 			kind,
 			...(component ? { slug: component[1], section: component[2] } : {}),
@@ -84,8 +124,13 @@ function index() {
 			...(kind === "post" || kind === "page" || kind === "desk"
 				? { slug: path.replace(/^.*\/(.+)\.md$/, "$1") }
 				: {}),
-		};
-	});
+			...(kind === "source"
+				? { slug: path.replace(/^.*\/(.+)\.[a-z]+$/, "$1") }
+				: {}),
+		});
+	}
+
+	return found;
 }
 
 /**

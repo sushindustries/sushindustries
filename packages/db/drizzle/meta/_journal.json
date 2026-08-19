@@ -43,6 +43,27 @@
       "when": 1787161742476,
       "tag": "0005_drop-legacy-tables",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1787166704139,
+      "tag": "0006_index-as-rows",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1787167171757,
+      "tag": "0007_drop-reserved-word-table",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1787167180435,
+      "tag": "0008_reference-pages",
+      "breakpoints": true
     }
   ]
 }

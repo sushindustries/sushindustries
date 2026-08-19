@@ -86,6 +86,149 @@ export type PageFeedback = typeof pageFeedback.$inferSelect;
 export type NewPageFeedback = typeof pageFeedback.$inferInsert;
 
 /*
+ * ── the index, as rows ───────────────────────────────────────────────────
+ *
+ * Three tables that are projections, not sources.
+ *
+ * The rule above still holds: what exists is a file in this repo, and a table
+ * listing files would be a second list to keep in step. These are not that.
+ * They are built by `pnpm sushindustries sync`, which drops and rewrites them
+ * from the repository and the fetched shards, so they cannot disagree with
+ * their source - they can only be older than it, which `syncedAt` says out
+ * loud.
+ *
+ * They exist because a file answers "what does this say" and nothing else. A
+ * table answers the questions a directory cannot: which components have no
+ * examples section, which of them nobody has opened, how many tokens a page
+ * costs before you spend them, which pages link to a library that just shipped
+ * a breaking change. Those are joins, and joins want rows.
+ *
+ * Nothing reads these to render a page. The site still globs Markdown at build
+ * time and would render identically with this database switched off.
+ */
+
+/** Which catalogue a document came from. `source` is code, not prose. */
+export type DocumentKind =
+	| "component"
+	| "package"
+	| "post"
+	| "page"
+	| "desk"
+	| "skill"
+	| "repo"
+	| "source";
+
+/**
+ * One row per document or source file in this repository.
+ *
+ * The body is stored, which looks like the copy this file argues against and
+ * is not: nothing reads it to serve a page, and `sync` overwrites it wholesale
+ * from disk. It is here so a remote reader can answer a question without a
+ * checkout, which is the entire point of the projection.
+ *
+ * `sha` is the content hash, so a sync can skip what has not moved and a
+ * reader can tell whether the row it holds is the file it thinks it is.
+ */
+export const documents = pgTable("documents", {
+	/** Repo-relative path. `packages/ui/docs/card/api.md`. */
+	path: text("path").primaryKey(),
+
+	kind: text("kind").$type<DocumentKind>().notNull(),
+
+	/** The thing this belongs to: `card`, `http`, `adding-things`. */
+	slug: text("slug"),
+
+	/** For component pages: index, get-started, guides, api, examples. */
+	section: text("section"),
+
+	/** Site path, when this document is served at one. Null for source files. */
+	route: text("route"),
+
+	title: text("title"),
+	summary: text("summary"),
+	body: text("body").notNull(),
+
+	words: integer("words").notNull().default(0),
+
+	/** Estimated, at four characters per token. Enough to decide before reading. */
+	tokens: integer("tokens").notNull().default(0),
+
+	/** SHA-256 of the body. What makes a sync incremental and a row checkable. */
+	sha: text("sha").notNull(),
+
+	syncedAt: timestamp("synced_at", { withTimezone: true })
+		.notNull()
+		.defaultNow(),
+});
+
+export type Document = typeof documents.$inferSelect;
+export type NewDocument = typeof documents.$inferInsert;
+
+/**
+ * One row per dependency whose documentation index we keep.
+ *
+ * `usedFor` is the sentence a lockfile never records: why this dependency, in
+ * this repo. It comes from stack.yaml, which is written by hand for exactly
+ * that reason.
+ */
+export const referenceProviders = pgTable("reference_providers", {
+	/** Hostname, dashed. `orm-drizzle-team`. */
+	provider: text("provider").primaryKey(),
+
+	title: text("title"),
+
+	/** The llms.txt this was cut from. */
+	source: text("source").notNull(),
+
+	/** Set when this index was itself listed by another provider's index. */
+	parent: text("parent"),
+
+	/** Comma-separated stack entries this serves. */
+	usedFor: text("used_for"),
+
+	entries: integer("entries").notNull().default(0),
+
+	fetchedAt: text("fetched_at").notNull(),
+});
+
+export type ReferenceProvider = typeof referenceProviders.$inferSelect;
+
+/**
+ * One row per page in somebody else's documentation.
+ *
+ * Links, titles, section names and each provider's own one-line description,
+ * taken from the machine-readable index they publish for this purpose. Never
+ * page content, here or anywhere else in this repo.
+ *
+ * That boundary is the whole reason this is safe to store and to share. What
+ * is kept is the map: enough to know which page answers a question, and not
+ * enough to be a copy of thirty-five projects' documentation. Adding a `body`
+ * column here would change what this table is, and it must not be added.
+ */
+/*
+ * Named `reference_pages`, not `references`.
+ *
+ * REFERENCES is a reserved word in SQL - it is the foreign-key clause - so a
+ * table called that has to be quoted in every statement anybody ever writes
+ * against it by hand. Drizzle quotes identifiers and would have hidden this
+ * forever; the first raw query found it in about a second.
+ */
+
+export const referencePages = pgTable("reference_pages", {
+	/** `provider` and `url`, hashed. The URL alone is not unique across shards. */
+	id: text("id").primaryKey(),
+
+	provider: text("provider").notNull(),
+	section: text("section").notNull(),
+	name: text("name").notNull(),
+	url: text("url").notNull(),
+	description: text("description"),
+});
+
+export type ReferencePage = typeof referencePages.$inferSelect;
+export type NewReferencePage = typeof referencePages.$inferInsert;
+
+/*
  * schema.org, as the shape of the JSON-LD a page emits.
  *
  * Every element that shows content has a type at schema.org that already
