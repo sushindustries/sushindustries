@@ -102,6 +102,18 @@ export function readRegistry() {
 			 */
 			variants: variantsIn(block),
 			kind: block.match(/kind:\s*"([^"]+)"/)?.[1] ?? "component",
+			/*
+			 * The element's own version, which is the only version a consumer of
+			 * a *copied* component can cite - there is no lockfile entry for a
+			 * file somebody pasted in. It was missing here for the same reason
+			 * `variants` was: this parser reads what somebody needed at the time,
+			 * so a field nothing had asked for yet is a field it does not know.
+			 *
+			 * The failure is silent and looks like data: `version: undefined`
+			 * written into a generated document, which reads as a bug in the
+			 * generator rather than a gap in the reader.
+			 */
+			version: block.match(/version:\s*"([^"]+)"/)?.[1] ?? "0.0.0",
 			schema: block.match(/schema:\s*"([^"]+)"/)?.[1],
 		});
 	}

@@ -46,6 +46,10 @@ const COMMANDS = {
 		const { studio } = await import("./commands/studio.mjs");
 		await studio();
 	},
+	async graph() {
+		const { graph } = await import("./commands/graph.mjs");
+		await graph();
+	},
 	async graphql() {
 		const { graphql } = await import("./commands/graphql.mjs");
 		await graphql();

@@ -134,6 +134,7 @@ export type DocumentKind =
 	| "note"
 	| "collection"
 	| "task"
+	| "graph"
 	| "template"
 	| "config"
 	| "plugin"

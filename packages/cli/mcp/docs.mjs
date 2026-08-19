@@ -101,6 +101,21 @@ const KINDS = [
 			"A saved filter over the documents index. Membership is computed, never stored.",
 		match: (path) => path.startsWith("apps/web/content/collections/"),
 	},
+	/*
+	 * Generated, and documents all the same. They are Markdown with a mermaid
+	 * fence, the studio renders them, and `sync` indexes them - which is the
+	 * whole reason to write the graph to files rather than serve it.
+	 *
+	 * Their own kind rather than `page`, so a collection can hold them and a
+	 * reader can tell at a glance that editing one is pointless: the registry
+	 * is the source and `pnpm sushindustries graph` rewrites these wholesale.
+	 */
+	{
+		kind: "graph",
+		about:
+			"One element's parts and parents, drawn. Generated from the registry.",
+		match: (path) => path.startsWith("apps/web/content/graphs/"),
+	},
 	{
 		kind: "task",
 		about: "A piece of work worth doing, with why it is worth doing it.",

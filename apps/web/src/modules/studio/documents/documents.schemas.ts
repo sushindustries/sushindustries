@@ -30,6 +30,7 @@ export const DOCUMENT_KINDS = [
 	"note",
 	"collection",
 	"task",
+	"graph",
 	"template",
 	"config",
 	"plugin",
