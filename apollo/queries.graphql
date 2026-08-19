@@ -395,3 +395,163 @@ extend type Query {
 	"How the mirrored documentation is divided, and the rule it is divided by."
 	sharding: Sharding!
 }
+
+# ── elements, and their shards ───────────────────────────────────────────
+#
+# An element is one installable thing in the library. A `component` is one job
+# - a button, a card. A `block` is an assembly that stands as a region of a
+# page: the nav bar, the shelf, the archive. A block's parts are components,
+# and the same components are parts of other blocks, which is the whole reason
+# this needs a graph rather than a list.
+#
+# ## The addressing rule
+#
+#     /{name}/{version}/{facet}[/{section}]
+#
+#     /nav-bar/0.1.0/docs/api
+#     /nav-bar/0.1.0/source
+#     /nav-bar/0.1.0/parts
+#
+# **The version is in the path and it is not decoration.** A copied component
+# has no lockfile entry - that is the whole point of a registry you install
+# from rather than depend on - so the element's own `version` is the only
+# thing a consumer can ever cite about what they took. An address without it
+# is an address that means something different next month.
+#
+# ## What is a shard
+#
+# The same rule the reference indexes are cut by, applied to an element: **a
+# shard is the piece you would want to fetch on its own.** For a documentation
+# page that is a section - the question "what props does this take" is `api`
+# and none of the other four, which for `nav-bar` is 430 tokens against 3,600.
+# For an element it is also its source, its dependencies, and its variants,
+# because each of those is a question somebody asks without the others.
+#
+# Not one shard per file. `nav-bar` copies four files and they are useless
+# apart - installing three of them is a broken component, so `source` is one
+# shard however many files it holds. The unit is the question, not the file.
+#
+# Every shard carries its token cost and its content hash, so a client can
+# decide what to fetch before fetching it and can tell whether what it holds
+# is still current.
+
+enum ElementKind {
+	"One thing with one job."
+	COMPONENT
+	"An assembly of components that stands as a region of a page."
+	BLOCK
+}
+
+enum ElementFacet {
+	"A documentation section. The only facet that has sections of its own."
+	DOCS
+	"The files installing it copies in. One shard however many files."
+	SOURCE
+	"What it needs at runtime: npm packages, and other elements."
+	DEPS
+	"The values its props can be switched between."
+	VARIANTS
+}
+
+"One addressable piece of an element."
+type ElementShard {
+	facet: ElementFacet!
+
+	"For DOCS: index, get-started, guides, api, examples. Null for the rest."
+	section: String
+
+	"The address. `/nav-bar/0.1.0/docs/api`."
+	path: String!
+
+	"""
+	What fetching this costs.
+
+	The number that makes sharding worth doing: it is what tells a client that
+	the answer it wants is four hundred tokens rather than the four thousand it
+	would have paid for the whole element.
+	"""
+	tokens: Int!
+
+	"Content hash, so a held copy can be checked without being re-fetched. Null for facets computed rather than stored."
+	sha: String
+}
+
+"One installable thing, and what it is made of."
+type Element {
+	name: String!
+
+	"""
+	Its own version, independent of the package's.
+
+	Bumped when the element's contract changes. It is in every shard address
+	because a copied component has no other version anybody can cite.
+	"""
+	version: String!
+
+	title: String!
+	description: String!
+	kind: ElementKind!
+
+	category: String!
+	subcategory: String
+	tags: [String!]!
+
+	"""
+	The elements this one is built out of, resolved.
+
+	`nav-bar` is a block, and its parts are the components inside it. Following
+	this is how you find out that installing one thing installs five.
+	"""
+	parts: [Element!]!
+
+	"""
+	The elements that include this one. The inverse of `parts`.
+
+	The question "is this referenced by anything" - which is the difference
+	between a component somebody uses and one that was built and forgotten, and
+	is not answerable from the element's own entry.
+	"""
+	partOf: [Element!]!
+
+	"The ways it can be told to look or behave differently."
+	variants: [ElementVariant!]!
+
+	"Everything addressable about it, with what each piece costs."
+	shards: [ElementShard!]!
+
+	"""
+	What the whole element costs to read: every shard, added up.
+
+	The number to check before loading an element into a context window, and
+	the reason `shards` carries costs individually - so you can decide not to.
+	"""
+	tokens: Int!
+}
+
+"One value a prop can take, and what it is for."
+type ElementVariant {
+	"The prop this is a value of. `variant`, `tone`, `density`."
+	prop: String!
+	value: String!
+	about: String!
+
+	"True for the value you get by leaving the prop off."
+	isDefault: Boolean!
+}
+
+extend type Query {
+	"Every installable element, alphabetically."
+	elements(kind: ElementKind, category: String): [Element!]!
+
+	"One element by name."
+	element(name: String!): Element
+
+	"""
+	One shard, resolved from its address.
+
+	`/nav-bar/0.1.0/docs/api`, or the same without the version to mean whatever
+	is current - which is convenient and is the form to avoid pinning against,
+	for the reason the version exists at all.
+	"""
+	elementShard(path: String!): ElementShard
+}

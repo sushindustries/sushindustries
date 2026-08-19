@@ -15,6 +15,12 @@ import {
 	getCollection,
 	getCollections,
 } from "../studio/collections/collections.server";
+import {
+	getElement,
+	getElementShard,
+	getElements,
+	type ShapedElement,
+} from "./elements.server";
 import { githubResolvers } from "./github.server";
 
 /*
@@ -361,6 +367,31 @@ export const resolvers = {
 		 * not by them sharing code, because the writer runs in the CLI and cannot
 		 * be imported here.
 		 */
+		/*
+		 * Elements: the library as a graph rather than a list.
+		 *
+		 * `parts` and `partOf` are field resolvers rather than being expanded
+		 * here, and that is not an optimisation - it is the only thing that
+		 * terminates. A block's parts have parts: `folder-shelf` includes
+		 * `context-menu`, which includes `icon`. Expanding eagerly would recurse
+		 * until the stack ran out, and a depth limit would be an arbitrary
+		 * number deciding what a client is allowed to ask.
+		 *
+		 * Resolved per field, the client's query decides the depth, which is what
+		 * GraphQL is for.
+		 */
+		async elements(_: unknown, args: { kind?: string; category?: string }) {
+			return getElements(args);
+		},
+
+		async element(_: unknown, args: { name: string }) {
+			return getElement(args.name);
+		},
+
+		async elementShard(_: unknown, args: { path: string }) {
+			return getElementShard(args.path);
+		},
+
 		async sharding() {
 			const SHARD_LIMIT = 500;
 
@@ -442,6 +473,29 @@ export const resolvers = {
 	},
 
 	Repository: githubResolvers.Repository,
+
+	/*
+	 * The two edges of the element graph, resolved on demand.
+	 *
+	 * Each looks its neighbours up by name rather than holding them, so a cycle
+	 * in the registry would produce a query that gets deeper rather than a
+	 * server that never returns - the client's selection set is the bound.
+	 */
+	Element: {
+		async parts(parent: ShapedElement & { partNames: string[] }) {
+			const found = await Promise.all(
+				parent.partNames.map((name) => getElement(name)),
+			);
+			return found.filter(Boolean);
+		},
+
+		async partOf(parent: ShapedElement & { partOfNames: string[] }) {
+			const found = await Promise.all(
+				parent.partOfNames.map((name) => getElement(name)),
+			);
+			return found.filter(Boolean);
+		},
+	},
 
 	ReferenceProvider: {
 		async pages(
