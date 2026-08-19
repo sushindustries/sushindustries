@@ -22,4 +22,4 @@ route file. Confirmed live too: every one of the 95 sitemap paths returns
 200 (`.claude/skills/hypothesis-testing/link_depth.py` output), which a
 missing export would have broken at build time.
 
-**Source:** `references/01-tanstack-official-safety.md`.
+**Source:** `.claude/skills/sushindustries-conventions/references/01-tanstack-official.md`.

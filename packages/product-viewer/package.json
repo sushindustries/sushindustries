@@ -25,8 +25,8 @@
 	"engines": {
 		"node": ">=20.17.0"
 	},
-	"types": "./dist/index.d.cts",
-	"main": "./dist/index.cjs",
+	"types": "./dist/index.d.ts",
+	"main": "./dist/index.js",
 	"module": "./dist/index.js",
 	"exports": {
 		".": "./src/index.ts",
@@ -74,22 +74,10 @@
 		"registry": "https://npm.pkg.github.com",
 		"access": "public",
 		"exports": {
-			".": {
-				"import": "./dist/index.js",
-				"require": "./dist/index.cjs"
-			},
-			"./schema": {
-				"import": "./dist/schema.js",
-				"require": "./dist/schema.cjs"
-			},
-			"./swatch": {
-				"import": "./dist/swatch.js",
-				"require": "./dist/swatch.cjs"
-			},
-			"./zoned-material": {
-				"import": "./dist/zoned-material.js",
-				"require": "./dist/zoned-material.cjs"
-			},
+			".": "./dist/index.js",
+			"./schema": "./dist/schema.js",
+			"./swatch": "./dist/swatch.js",
+			"./zoned-material": "./dist/zoned-material.js",
 			"./package.json": "./package.json"
 		}
 	}

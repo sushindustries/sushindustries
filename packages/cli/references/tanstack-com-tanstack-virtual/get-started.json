@@ -1,0 +1,60 @@
+{
+	"provider": "tanstack-com-tanstack-virtual",
+	"section": "Get Started",
+	"entries": [
+		{
+			"name": "Introduction",
+			"url": "https://tanstack.com/virtual/latest/docs/introduction.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Installation",
+			"url": "https://tanstack.com/virtual/latest/docs/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Text Measurement with Pretext",
+			"url": "https://tanstack.com/virtual/latest/docs/pretext.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: React Virtual",
+			"url": "https://tanstack.com/virtual/latest/docs/framework/react/react-virtual.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Angular Virtual",
+			"url": "https://tanstack.com/virtual/latest/docs/framework/angular/angular-virtual.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Solid Virtual",
+			"url": "https://tanstack.com/virtual/latest/docs/framework/solid/solid-virtual.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: Svelte Virtual",
+			"url": "https://tanstack.com/virtual/latest/docs/framework/svelte/svelte-virtual.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: Vue Virtual",
+			"url": "https://tanstack.com/virtual/latest/docs/framework/vue/vue-virtual.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Marko: Marko Virtual",
+			"url": "https://tanstack.com/virtual/latest/docs/framework/marko/marko-virtual.md",
+			"description": "",
+			"section": "Get Started"
+		}
+	]
+}

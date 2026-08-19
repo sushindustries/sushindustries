@@ -1,0 +1,18 @@
+{
+	"provider": "modelcontextprotocol-io",
+	"source": "https://modelcontextprotocol.io/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"Model Context Protocol"
+	],
+	"title": "Model Context Protocol",
+	"summary": "",
+	"total": 144,
+	"sections": [
+		{
+			"name": "Docs",
+			"entries": 144,
+			"file": "docs.json"
+		}
+	]
+}

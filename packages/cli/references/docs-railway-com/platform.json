@@ -1,0 +1,156 @@
+{
+	"provider": "docs-railway-com",
+	"section": "Platform",
+	"entries": [
+		{
+			"name": "Platform",
+			"url": "https://docs.railway.com/platform.md",
+			"description": "Railway is a modern cloud deployment platform designed to help developers deploy instantly and scale apps effortlessly. Learn about the Railway platform.",
+			"section": "Platform"
+		},
+		{
+			"name": "Philosophy",
+			"url": "https://docs.railway.com/platform/philosophy.md",
+			"description": "Explore Railway’s core philosophy and the principles that drive the Railway platform.",
+			"section": "Platform"
+		},
+		{
+			"name": "Use cases",
+			"url": "https://docs.railway.com/platform/use-cases.md",
+			"description": "Explore real-world use cases for deploying and managing applications on Railway.",
+			"section": "Platform"
+		},
+		{
+			"name": "Support",
+			"url": "https://docs.railway.com/platform/support.md",
+			"description": "Learn about Railway's support channels.",
+			"section": "Platform"
+		},
+		{
+			"name": "Incident management",
+			"url": "https://docs.railway.com/platform/incident-management.md",
+			"description": "Learn how Railway handles incident management.",
+			"section": "Platform"
+		},
+		{
+			"name": "Railway Metal",
+			"url": "https://docs.railway.com/platform/railway-metal.md",
+			"description": "Railway Metal is Railway’s own cloud infrastructure, built for high-performance, scalable, and cost-efficient app deployments. Learn how it works.",
+			"section": "Platform"
+		},
+		{
+			"name": "Priority boarding",
+			"url": "https://docs.railway.com/platform/priority-boarding.md",
+			"description": "Priority Boarding is Railway's beta program for getting access early to new features. Learn how to be a part of it.",
+			"section": "Platform"
+		},
+		{
+			"name": "Compare to Heroku",
+			"url": "https://docs.railway.com/platform/compare-to-heroku.md",
+			"description": "Compare Railway and Heroku on infrastructure, pricing model and deployment experience, with a step-by-step migration guide.",
+			"section": "Platform"
+		},
+		{
+			"name": "Compare to Render",
+			"url": "https://docs.railway.com/platform/compare-to-render.md",
+			"description": "Compare Railway and Render on infrastructure, pricing model and dashboard experience, with a step-by-step migration guide.",
+			"section": "Platform"
+		},
+		{
+			"name": "Compare to Fly",
+			"url": "https://docs.railway.com/platform/compare-to-fly.md",
+			"description": "Compare Railway and Fly.io on deployment model, scaling, pricing and developer workflow, with a step-by-step migration guide.",
+			"section": "Platform"
+		},
+		{
+			"name": "Compare to Northflank",
+			"url": "https://docs.railway.com/platform/compare-to-northflank.md",
+			"description": "Compare Railway and Northflank on infrastructure, scaling, pricing, deployment experience, and AI capabilities, with a step-by-step migration guide.",
+			"section": "Platform"
+		},
+		{
+			"name": "Compare to Vercel",
+			"url": "https://docs.railway.com/platform/compare-to-vercel.md",
+			"description": "Compare Railway and Vercel on infrastructure, pricing model and deployment experience, with a step-by-step migration guide.",
+			"section": "Platform"
+		},
+		{
+			"name": "Compare to DigitalOcean",
+			"url": "https://docs.railway.com/platform/compare-to-digitalocean.md",
+			"description": "Compare Railway and DigitalOcean App Platform on infrastructure, pricing model and deployment experience, with a step-by-step migration guide.",
+			"section": "Platform"
+		},
+		{
+			"name": "Compare to Replit",
+			"url": "https://docs.railway.com/platform/compare-to-replit.md",
+			"description": "Compare Railway and Replit on development workflow, infrastructure control, scaling, and production readiness, with a step-by-step migration guide.",
+			"section": "Platform"
+		},
+		{
+			"name": "Compare to Lovable",
+			"url": "https://docs.railway.com/platform/compare-to-lovable.md",
+			"description": "Compare Railway and Lovable on what they do, infrastructure control, and production readiness, with a step-by-step migration guide.",
+			"section": "Platform"
+		},
+		{
+			"name": "Compare to Bolt",
+			"url": "https://docs.railway.com/platform/compare-to-bolt.md",
+			"description": "Compare Railway and Bolt on what they do, infrastructure control, and production readiness, with a step-by-step migration guide.",
+			"section": "Platform"
+		},
+		{
+			"name": "Compare to VPS",
+			"url": "https://docs.railway.com/platform/compare-to-vps.md",
+			"description": "Compare Railway and VPS hosting on infrastructure management, security, monitoring, pricing, and operational overhead, with a step-by-step migration guide.",
+			"section": "Platform"
+		},
+		{
+			"name": "Migrate from Heroku",
+			"url": "https://docs.railway.com/platform/migrate-from-heroku.md",
+			"description": "Learn how to migrate your apps from Heroku to Railway with this step-by-step guide. Fast, seamless, and hassle-free.",
+			"section": "Platform"
+		},
+		{
+			"name": "Migrate from Render",
+			"url": "https://docs.railway.com/platform/migrate-from-render.md",
+			"description": "Learn how to migrate your apps from Render to Railway with this step-by-step guide. Fast, seamless, and hassle-free.",
+			"section": "Platform"
+		},
+		{
+			"name": "Migrate from Fly",
+			"url": "https://docs.railway.com/platform/migrate-from-fly.md",
+			"description": "Learn how to migrate your apps from Fly.io to Railway with this step-by-step guide. Fast, seamless, and hassle-free.",
+			"section": "Platform"
+		},
+		{
+			"name": "Migrate from Vercel",
+			"url": "https://docs.railway.com/platform/migrate-from-vercel.md",
+			"description": "Learn how to migrate your Next.js app from Vercel to Railway with this step-by-step guide. Fast, seamless, and hassle-free.",
+			"section": "Platform"
+		},
+		{
+			"name": "Migrate from DigitalOcean",
+			"url": "https://docs.railway.com/platform/migrate-from-digitalocean.md",
+			"description": "Learn how to migrate your WordPress site from DigitalOcean to Railway with this step-by-step guide. Fast, seamless, and hassle-free.",
+			"section": "Platform"
+		},
+		{
+			"name": "Migrate from Replit",
+			"url": "https://docs.railway.com/platform/migrate-from-replit.md",
+			"description": "Step-by-step guide to migrate a Replit project to Railway. Covers code export, environment variables, database migration, and deployment configuration.",
+			"section": "Platform"
+		},
+		{
+			"name": "Migrate from Lovable",
+			"url": "https://docs.railway.com/platform/migrate-from-lovable.md",
+			"description": "Step-by-step guide to migrate a Lovable-generated app to Railway. Covers GitHub export, environment variables, database setup, and production configuration.",
+			"section": "Platform"
+		},
+		{
+			"name": "Migrate from Bolt",
+			"url": "https://docs.railway.com/platform/migrate-from-bolt.md",
+			"description": "Step-by-step guide to migrate a Bolt-generated app to Railway. Covers code export, environment variables, and production deployment.",
+			"section": "Platform"
+		}
+	]
+}

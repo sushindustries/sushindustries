@@ -1,0 +1,2664 @@
+{
+	"provider": "posthog-com",
+	"section": "Optional",
+	"entries": [
+		{
+			"name": "signals_source_configs_create",
+			"url": "https://posthog.com/docs/open-api-spec/signals_source_configs_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "signals_source_configs_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/signals_source_configs_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "signals_source_configs_list",
+			"url": "https://posthog.com/docs/open-api-spec/signals_source_configs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "signals_source_configs_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/signals_source_configs_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "signals_source_configs_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/signals_source_configs_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "signals_source_configs_update",
+			"url": "https://posthog.com/docs/open-api-spec/signals_source_configs_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_digest_channels_create",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_digest_channels_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_digest_channels_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_digest_channels_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_digest_channels_list",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_digest_channels_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_digest_channels_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_digest_channels_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_digest_channels_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_digest_channels_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_digest_channels_update",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_digest_channels_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_digest_runs_list",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_digest_runs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_digest_runs_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_digest_runs_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_pull_requests_list",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_pull_requests_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_pull_requests_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_pull_requests_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_repo_configs_create",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_repo_configs_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_repo_configs_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_repo_configs_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_repo_configs_install_info_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_repo_configs_install_info_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_repo_configs_list",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_repo_configs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_repo_configs_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_repo_configs_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_repo_configs_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_repo_configs_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_repo_configs_sync_installation_create",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_repo_configs_sync_installation_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_repo_configs_update",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_repo_configs_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_review_runs_list",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_review_runs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "stamphog_review_runs_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/stamphog_review_runs_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_activate_version_create",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_activate_version_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_connect_info_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_connect_info_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_create",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_create_version_from_source_create",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_create_version_from_source_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_list",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_restart_create",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_restart_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_start_create",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_start_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_status_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_status_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_stop_create",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_stop_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_update",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_upload_version_create",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_upload_version_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "streamlit_apps_versions_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/streamlit_apps_versions_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "subscriptions_create",
+			"url": "https://posthog.com/docs/open-api-spec/subscriptions_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "subscriptions_deliveries_list",
+			"url": "https://posthog.com/docs/open-api-spec/subscriptions_deliveries_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "subscriptions_deliveries_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/subscriptions_deliveries_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "subscriptions_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/subscriptions_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "subscriptions_list",
+			"url": "https://posthog.com/docs/open-api-spec/subscriptions_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "subscriptions_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/subscriptions_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "subscriptions_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/subscriptions_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "subscriptions_summary_quota_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/subscriptions_summary_quota_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "subscriptions_test_delivery_create",
+			"url": "https://posthog.com/docs/open-api-spec/subscriptions_test_delivery_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "subscriptions_update",
+			"url": "https://posthog.com/docs/open-api-spec/subscriptions_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_activity_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_activity_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_all_activity_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_all_activity_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_archived_response_uuids_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_archived_response_uuids_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_create",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_duplicate_to_projects_create",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_duplicate_to_projects_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_generate_translations_create",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_generate_translations_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_global_stats_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_global_stats_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_launch",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_launch.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_list",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_question_labels",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_question_labels.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_responses_archive_create",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_responses_archive_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_responses_count_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_responses_count_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_responses_list",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_responses_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_responses_unarchive_create",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_responses_unarchive_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_stats_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_stats_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_stop",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_stop.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_summarize_responses_create",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_summarize_responses_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_summary_headline_create",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_summary_headline_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "surveys_update",
+			"url": "https://posthog.com/docs/open-api-spec/surveys_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "taggers_create",
+			"url": "https://posthog.com/docs/open-api-spec/taggers_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "taggers_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/taggers_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "taggers_list",
+			"url": "https://posthog.com/docs/open-api-spec/taggers_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "taggers_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/taggers_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "taggers_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/taggers_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "taggers_test_hog_create",
+			"url": "https://posthog.com/docs/open-api-spec/taggers_test_hog_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "taggers_update",
+			"url": "https://posthog.com/docs/open-api-spec/taggers_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_activity_list",
+			"url": "https://posthog.com/docs/open-api-spec/task_activity_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_activity_mark_read_create",
+			"url": "https://posthog.com/docs/open-api-spec/task_activity_mark_read_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_context_generation_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_context_generation_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_context_generation_update",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_context_generation_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_create",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_feed_create",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_feed_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_feed_list",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_feed_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_instructions_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_instructions_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_instructions_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_instructions_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_instructions_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_instructions_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_instructions_update",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_instructions_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_instructions_versions_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_instructions_versions_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_list",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_channels_star_create",
+			"url": "https://posthog.com/docs/open-api-spec/task_channels_star_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "task_mentions_list",
+			"url": "https://posthog.com/docs/open-api-spec/task_mentions_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_active_wizard_run_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_active_wizard_run_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_artifacts_list",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_artifacts_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_comments_list",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_comments_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_comments_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_comments_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_list",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_models_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_models_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_pin_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_pin_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_pinned_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_pinned_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_presence_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_presence_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_presence_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_presence_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_repositories_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_repositories_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_repository_readiness_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_repository_readiness_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_run_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_run_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_append_log_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_append_log_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_artifacts_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_artifacts_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_artifacts_dismiss_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_artifacts_dismiss_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_artifacts_download_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_artifacts_download_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_artifacts_download_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_artifacts_download_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_artifacts_finalize_upload_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_artifacts_finalize_upload_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_artifacts_prepare_upload_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_artifacts_prepare_upload_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_artifacts_presign_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_artifacts_presign_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_cancel_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_cancel_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_clear_conversation_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_clear_conversation_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_command_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_command_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_connection_token_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_connection_token_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_list",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_living_artifacts_chart",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_living_artifacts_chart.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_living_artifacts_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_living_artifacts_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_living_artifacts_edit",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_living_artifacts_edit.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_living_artifacts_list",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_living_artifacts_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_living_artifacts_open",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_living_artifacts_open.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_logs_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_logs_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_relay_message_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_relay_message_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_resume_in_cloud_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_resume_in_cloud_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_session_logs_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_session_logs_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_set_output_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_set_output_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_start_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_start_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_stream_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_stream_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_stream_token_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_stream_token_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_task_session_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_task_session_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_runs_task_session_sync_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_runs_task_session_sync_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_search_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_search_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_slack_thread_context_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_slack_thread_context_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_staged_artifacts_finalize_upload_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_staged_artifacts_finalize_upload_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_staged_artifacts_prepare_upload_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_staged_artifacts_prepare_upload_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_summaries_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_summaries_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_thread_messages_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_thread_messages_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_thread_messages_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_thread_messages_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_thread_messages_list",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_thread_messages_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_thread_messages_send_to_agent_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_thread_messages_send_to_agent_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_update",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_usage_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_usage_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tasks_warm_create",
+			"url": "https://posthog.com/docs/open-api-spec/tasks_warm_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "teams_data_freshness_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/teams_data_freshness_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_aggregate_create",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_aggregate_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_attribute_breakdown_create",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_attribute_breakdown_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_attributes_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_attributes_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_count_create",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_count_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_duration_histogram_create",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_duration_histogram_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_has_spans_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_has_spans_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_latency_heatmap_create",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_latency_heatmap_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_query_create",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_query_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_service_names_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_service_names_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_sparkline_create",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_sparkline_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_symbol_stats_create",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_symbol_stats_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_trace_create",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_trace_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_tree_create",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_tree_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_spans_values_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_spans_values_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_views_create",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_views_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_views_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_views_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_views_list",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_views_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_views_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_views_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_views_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_views_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "tracing_views_update",
+			"url": "https://posthog.com/docs/open-api-spec/tracing_views_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "update",
+			"url": "https://posthog.com/docs/open-api-spec/update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "uploaded_media_create",
+			"url": "https://posthog.com/docs/open-api-spec/uploaded_media_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_home_settings_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/user_home_settings_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_home_settings_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/user_home_settings_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_add_interviewee_create",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_add_interviewee_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_create",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_generate_links_create",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_generate_links_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_interviewees_bulk_create",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_interviewees_bulk_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_interviewees_create",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_interviewees_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_interviewees_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_interviewees_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_interviewees_list",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_interviewees_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_interviewees_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_interviewees_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_interviewees_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_interviewees_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_interviewees_update",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_interviewees_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_links_csv_create",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_links_csv_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_list",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_preview_invite_create",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_preview_invite_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_remove_interviewee_create",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_remove_interviewee_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_send_invites_create",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_send_invites_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_shared_link_create",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_shared_link_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_shared_link_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_shared_link_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_test_link_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_test_link_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interview_topics_update",
+			"url": "https://posthog.com/docs/open-api-spec/user_interview_topics_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interviews_create",
+			"url": "https://posthog.com/docs/open-api-spec/user_interviews_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interviews_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/user_interviews_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interviews_list",
+			"url": "https://posthog.com/docs/open-api-spec/user_interviews_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interviews_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/user_interviews_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interviews_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/user_interviews_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interviews_search_create",
+			"url": "https://posthog.com/docs/open-api-spec/user_interviews_search_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "user_interviews_update",
+			"url": "https://posthog.com/docs/open-api-spec/user_interviews_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_cancel_email_change_request_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/users_cancel_email_change_request_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_credentials_review_complete_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_credentials_review_complete_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/users_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_github_login_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/users_github_login_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_hedgehog_config_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/users_hedgehog_config_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_hedgehog_config_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/users_hedgehog_config_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_integrations_github_branches_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/users_integrations_github_branches_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_integrations_github_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/users_integrations_github_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_integrations_github_install_requests_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/users_integrations_github_install_requests_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_integrations_github_prepare_callback_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_integrations_github_prepare_callback_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_integrations_github_repos_refresh_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_integrations_github_repos_refresh_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_integrations_github_repos_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/users_integrations_github_repos_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_integrations_github_start_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_integrations_github_start_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_integrations_list",
+			"url": "https://posthog.com/docs/open-api-spec/users_integrations_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_integrations_slack_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/users_integrations_slack_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_integrations_slack_linkable_workspaces_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/users_integrations_slack_linkable_workspaces_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_integrations_slack_start_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_integrations_slack_start_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_list",
+			"url": "https://posthog.com/docs/open-api-spec/users_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_login_sessions_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/users_login_sessions_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_login_sessions_list",
+			"url": "https://posthog.com/docs/open-api-spec/users_login_sessions_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_login_sessions_revoke_others_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_login_sessions_revoke_others_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_onboarding_skip_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_onboarding_skip_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/users_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_push_tokens_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_push_tokens_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_push_tokens_unregister_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_push_tokens_unregister_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_request_email_verification_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_request_email_verification_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/users_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_scene_personalisation_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_scene_personalisation_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_signal_autonomy_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_signal_autonomy_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_signal_autonomy_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/users_signal_autonomy_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_signal_autonomy_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/users_signal_autonomy_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_start_2fa_setup_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/users_start_2fa_setup_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_two_factor_backup_codes_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_two_factor_backup_codes_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_two_factor_disable_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_two_factor_disable_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_two_factor_start_setup_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/users_two_factor_start_setup_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_two_factor_status_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/users_two_factor_status_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_two_factor_validate_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_two_factor_validate_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_update",
+			"url": "https://posthog.com/docs/open-api-spec/users_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_validate_2fa_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_validate_2fa_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "users_verify_email_create",
+			"url": "https://posthog.com/docs/open-api-spec/users_verify_email_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_actions_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_actions_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_actions_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/vision_actions_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_actions_list",
+			"url": "https://posthog.com/docs/open-api-spec/vision_actions_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_actions_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/vision_actions_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_actions_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/vision_actions_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_actions_run_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_actions_run_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_actions_runs_list",
+			"url": "https://posthog.com/docs/open-api-spec/vision_actions_runs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_actions_runs_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/vision_actions_runs_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_observations_create_task_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_observations_create_task_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_observations_label_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_observations_label_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_observations_label_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/vision_observations_label_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_observations_list",
+			"url": "https://posthog.com/docs/open-api-spec/vision_observations_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_observations_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/vision_observations_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_observations_retry_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_observations_retry_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_affected_cohort_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_affected_cohort_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_backfills_cancel_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_backfills_cancel_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_backfills_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_backfills_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_backfills_estimate_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_backfills_estimate_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_backfills_list",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_backfills_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_backfills_resume_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_backfills_resume_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_backfills_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_backfills_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_bulk_observe_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_bulk_observe_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_creators_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_creators_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_draft_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_draft_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_estimate_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_estimate_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_impact_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_impact_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_inline_scan_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_inline_scan_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_list",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_observations_create_task_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_observations_create_task_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_observations_label_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_observations_label_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_observations_label_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_observations_label_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_observations_list",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_observations_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_observations_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_observations_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_observations_retry_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_observations_retry_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_observations_stats_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_observations_stats_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_observe_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_observe_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_prompt_suggestions_apply_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_prompt_suggestions_apply_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_prompt_suggestions_current_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_prompt_suggestions_current_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_prompt_suggestions_dismiss_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_prompt_suggestions_dismiss_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_prompt_suggestions_evaluate_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_prompt_suggestions_evaluate_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_prompt_suggestions_generate_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_prompt_suggestions_generate_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_prompt_suggestions_list",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_prompt_suggestions_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_self_driving_stats_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_self_driving_stats_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_stats_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_stats_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "vision_scanners_suggest_tags_create",
+			"url": "https://posthog.com/docs/open-api-spec/vision_scanners_suggest_tags_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_repos_baselines_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_repos_baselines_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_repos_create",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_repos_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_repos_list",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_repos_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_repos_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_repos_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_repos_quarantine_create",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_repos_quarantine_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_repos_quarantine_expire_create",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_repos_quarantine_expire_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_repos_quarantine_list",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_repos_quarantine_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_repos_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_repos_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_repos_runs_counts_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_repos_runs_counts_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_repos_runs_list",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_repos_runs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_repos_snapshots_list",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_repos_snapshots_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_repos_thumbnails_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_repos_thumbnails_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_runs_add_snapshots_create",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_runs_add_snapshots_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_runs_approve_create",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_runs_approve_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_runs_complete_create",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_runs_complete_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_runs_counts_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_runs_counts_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_runs_create",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_runs_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_runs_finalize_create",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_runs_finalize_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_runs_list",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_runs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_runs_recompute_create",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_runs_recompute_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_runs_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_runs_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_runs_snapshot_history_list",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_runs_snapshot_history_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_runs_snapshots_list",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_runs_snapshots_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_runs_tolerate_create",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_runs_tolerate_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "visual_review_runs_tolerated_hashes_list",
+			"url": "https://posthog.com/docs/open-api-spec/visual_review_runs_tolerated_hashes_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_column_annotations_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_column_annotations_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_column_annotations_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_column_annotations_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_column_annotations_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_column_annotations_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_column_annotations_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_column_annotations_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_column_annotations_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_column_annotations_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_column_annotations_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_column_annotations_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_column_statistics_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_column_statistics_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_column_statistics_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_column_statistics_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_dag_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_dag_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_expressions_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_expressions_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_expressions_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_expressions_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_expressions_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_expressions_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_expressions_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_expressions_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_expressions_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_expressions_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_expressions_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_expressions_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_model_paths_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_model_paths_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_model_paths_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_model_paths_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_activity_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_activity_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_ancestors_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_ancestors_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_cancel_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_cancel_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_check_incremental_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_check_incremental_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_check_suite_runs_check_runs_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_check_suite_runs_check_runs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_check_suite_runs_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_check_suite_runs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_check_suite_runs_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_check_suite_runs_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_checks_check_types_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_checks_check_types_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_checks_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_checks_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_checks_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_checks_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_checks_health_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_checks_health_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_checks_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_checks_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_checks_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_checks_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_checks_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_checks_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_checks_run_all_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_checks_run_all_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_checks_run_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_checks_run_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_checks_runs_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_checks_runs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_checks_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_checks_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_dependencies_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_dependencies_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_descendants_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_descendants_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_materialize_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_materialize_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_resume_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_resume_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_resume_schedules_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_resume_schedules_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_revert_materialization_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_revert_materialization_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_run_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_run_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_run_history_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_run_history_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_queries_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_queries_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_query_folders_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_query_folders_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_query_folders_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_query_folders_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_query_folders_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_query_folders_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_query_folders_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_query_folders_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_saved_query_folders_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_saved_query_folders_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_check_suite_runs_check_runs_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_check_suite_runs_check_runs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_check_suite_runs_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_check_suite_runs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_check_suite_runs_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_check_suite_runs_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_checks_check_types_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_checks_check_types_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_checks_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_checks_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_checks_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_checks_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_checks_health_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_checks_health_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_checks_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_checks_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_checks_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_checks_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_checks_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_checks_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_checks_run_all_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_checks_run_all_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_checks_run_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_checks_run_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_checks_runs_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_checks_runs_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_checks_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_checks_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_create_from_upload_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_create_from_upload_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_file_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_file_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_refresh_schema_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_refresh_schema_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_update_schema_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_update_schema_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_tables_upload_file_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_tables_upload_file_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_link_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_link_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_link_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_link_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_link_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_link_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_link_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_link_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_link_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_link_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_link_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_link_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_link_validate_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_link_validate_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_links_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_links_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_links_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_links_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_links_list",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_links_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_links_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_links_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_links_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_links_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_links_update",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_links_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "warehouse_view_links_validate_create",
+			"url": "https://posthog.com/docs/open-api-spec/warehouse_view_links_validate_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_analytics_achievements_acknowledge_celebration",
+			"url": "https://posthog.com/docs/open-api-spec/web_analytics_achievements_acknowledge_celebration.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_analytics_achievements_overview",
+			"url": "https://posthog.com/docs/open-api-spec/web_analytics_achievements_overview.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_analytics_achievements_preferences",
+			"url": "https://posthog.com/docs/open-api-spec/web_analytics_achievements_preferences.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_analytics_achievements_record_interaction",
+			"url": "https://posthog.com/docs/open-api-spec/web_analytics_achievements_record_interaction.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_analytics_achievements_record_visit",
+			"url": "https://posthog.com/docs/open-api-spec/web_analytics_achievements_record_visit.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_analytics_achievements_update_preferences",
+			"url": "https://posthog.com/docs/open-api-spec/web_analytics_achievements_update_preferences.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_analytics_path_cleaning_suggestions_apply",
+			"url": "https://posthog.com/docs/open-api-spec/web_analytics_path_cleaning_suggestions_apply.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_analytics_path_cleaning_suggestions_generate",
+			"url": "https://posthog.com/docs/open-api-spec/web_analytics_path_cleaning_suggestions_generate.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_analytics_path_cleaning_suggestions_preview",
+			"url": "https://posthog.com/docs/open-api-spec/web_analytics_path_cleaning_suggestions_preview.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_analytics_recap",
+			"url": "https://posthog.com/docs/open-api-spec/web_analytics_recap.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_analytics_weekly_digest",
+			"url": "https://posthog.com/docs/open-api-spec/web_analytics_weekly_digest.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_experiments_create",
+			"url": "https://posthog.com/docs/open-api-spec/web_experiments_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_experiments_destroy",
+			"url": "https://posthog.com/docs/open-api-spec/web_experiments_destroy.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_experiments_list",
+			"url": "https://posthog.com/docs/open-api-spec/web_experiments_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_experiments_partial_update",
+			"url": "https://posthog.com/docs/open-api-spec/web_experiments_partial_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_experiments_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/web_experiments_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_experiments_update",
+			"url": "https://posthog.com/docs/open-api-spec/web_experiments_update.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "web_vitals_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/web_vitals_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "welcome_current_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/welcome_current_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "wizard_sessions_create",
+			"url": "https://posthog.com/docs/open-api-spec/wizard_sessions_create.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "wizard_sessions_latest_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/wizard_sessions_latest_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "wizard_sessions_list",
+			"url": "https://posthog.com/docs/open-api-spec/wizard_sessions_list.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "wizard_sessions_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/wizard_sessions_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		},
+		{
+			"name": "wizard_sessions_stream_retrieve",
+			"url": "https://posthog.com/docs/open-api-spec/wizard_sessions_stream_retrieve.md",
+			"description": "",
+			"section": "Optional"
+		}
+	]
+}

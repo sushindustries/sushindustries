@@ -1,0 +1,78 @@
+{
+	"provider": "posthog-com",
+	"section": "Settings",
+	"entries": [
+		{
+			"name": "Access control - Docs",
+			"url": "https://posthog.com/docs/settings/access-control.md",
+			"description": "",
+			"section": "Settings"
+		},
+		{
+			"name": "Account settings - Docs",
+			"url": "https://posthog.com/docs/settings/account-settings.md",
+			"description": "",
+			"section": "Settings"
+		},
+		{
+			"name": "Activity logs - Docs",
+			"url": "https://posthog.com/docs/settings/activity-logs.md",
+			"description": "",
+			"section": "Settings"
+		},
+		{
+			"name": "Agent discovery (auth.md) - Docs",
+			"url": "https://posthog.com/docs/settings/agent-discovery.md",
+			"description": "",
+			"section": "Settings"
+		},
+		{
+			"name": "Approvals - Docs",
+			"url": "https://posthog.com/docs/settings/approvals.md",
+			"description": "",
+			"section": "Settings"
+		},
+		{
+			"name": "ID-JAG (XAA) authentication - Docs",
+			"url": "https://posthog.com/docs/settings/id-jag.md",
+			"description": "",
+			"section": "Settings"
+		},
+		{
+			"name": "Organizations - Docs",
+			"url": "https://posthog.com/docs/settings/organizations.md",
+			"description": "",
+			"section": "Settings"
+		},
+		{
+			"name": "Projects - Docs",
+			"url": "https://posthog.com/docs/settings/projects.md",
+			"description": "",
+			"section": "Settings"
+		},
+		{
+			"name": "Property access control - Docs",
+			"url": "https://posthog.com/docs/settings/property-access-control.md",
+			"description": "",
+			"section": "Settings"
+		},
+		{
+			"name": "SIEM integration - Docs",
+			"url": "https://posthog.com/docs/settings/activity-logs/siem.md",
+			"description": "",
+			"section": "Settings"
+		},
+		{
+			"name": "SSO, SAML, and SCIM - Docs",
+			"url": "https://posthog.com/docs/settings/sso.md",
+			"description": "",
+			"section": "Settings"
+		},
+		{
+			"name": "Warehouse access control - Docs",
+			"url": "https://posthog.com/docs/settings/warehouse-access-control.md",
+			"description": "",
+			"section": "Settings"
+		}
+	]
+}

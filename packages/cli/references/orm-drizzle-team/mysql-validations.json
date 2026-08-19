@@ -1,0 +1,42 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "mysql/Validations",
+	"entries": [
+		{
+			"name": "zod",
+			"url": "https://orm.drizzle.team/docs/mysql/zod",
+			"description": "",
+			"section": "mysql/Validations"
+		},
+		{
+			"name": "valibot",
+			"url": "https://orm.drizzle.team/docs/mysql/valibot",
+			"description": "",
+			"section": "mysql/Validations"
+		},
+		{
+			"name": "typebox",
+			"url": "https://orm.drizzle.team/docs/mysql/typebox",
+			"description": "",
+			"section": "mysql/Validations"
+		},
+		{
+			"name": "arktype",
+			"url": "https://orm.drizzle.team/docs/mysql/arktype",
+			"description": "",
+			"section": "mysql/Validations"
+		},
+		{
+			"name": "typebox-legacy",
+			"url": "https://orm.drizzle.team/docs/mysql/typebox-legacy",
+			"description": "",
+			"section": "mysql/Validations"
+		},
+		{
+			"name": "effect-schema",
+			"url": "https://orm.drizzle.team/docs/mysql/effect-schema",
+			"description": "",
+			"section": "mysql/Validations"
+		}
+	]
+}

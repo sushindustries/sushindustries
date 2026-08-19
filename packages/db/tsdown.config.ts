@@ -13,7 +13,7 @@ import { library } from "../../tsdown.base.ts";
  * is a node module. Inlining either would mean a consumer ships a second copy of
  * a package they already depend on.
  */
-export default defineConfig(
+export default defineConfig([
 	library({
 		/*
 		 * `schema-org` is its own entry because the vocabulary is ninety
@@ -45,4 +45,35 @@ export default defineConfig(
 			},
 		},
 	}),
-);
+
+	/*
+	 * The migration runner, as a self-contained program.
+	 *
+	 * Its own pass because it inverts the rule above: the library keeps
+	 * `drizzle-orm` and `postgres` external so a consumer does not ship a
+	 * second copy of packages they already depend on, and this bundles both
+	 * because it runs in Railway's pre-deploy container, where the image holds
+	 * the Nitro output and no `node_modules` to resolve against.
+	 *
+	 * `exports: false` so it stays out of the package's public map - it is a
+	 * program the deploy runs, not an entry anybody imports - and
+	 * `clean: false` or it would wipe the pass before it.
+	 */
+	library({
+		entry: { migrate: "./src/migrate.server.ts" },
+		platform: "node",
+		/*
+		 * Regexes, not names. The imports here are subpaths -
+		 * `drizzle-orm/postgres-js` and its `/migrator` - and a bare package
+		 * name matches neither, so the first build left drizzle external and
+		 * the program died on `ERR_MODULE_NOT_FOUND` inside the image with no
+		 * `node_modules` to find it in. `postgres` bundled correctly by name
+		 * because that is exactly how it is imported.
+		 */
+		deps: { alwaysBundle: [/^drizzle-orm(\/|$)/, /^postgres(\/|$)/] },
+		dts: false,
+		clean: false,
+		exports: false,
+		unused: false,
+	}),
+]);

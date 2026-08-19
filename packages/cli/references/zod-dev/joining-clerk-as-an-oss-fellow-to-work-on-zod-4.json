@@ -1,0 +1,36 @@
+{
+	"provider": "zod-dev",
+	"section": "Joining Clerk as an OSS Fellow to work on Zod 4",
+	"entries": [
+		{
+			"name": "Joining Clerk as an OSS Fellow to work on Zod 4",
+			"url": "https://zod.dev/blog/clerk-fellowship",
+			"description": "Announcing my Clerk OSS Fellowship and what's coming in Zod 4.",
+			"section": "Joining Clerk as an OSS Fellow to work on Zod 4"
+		},
+		{
+			"name": "On deck: Zod 4",
+			"url": "https://zod.dev/blog/clerk-fellowship?id=on-deck-zod-4",
+			"description": "",
+			"section": "Joining Clerk as an OSS Fellow to work on Zod 4"
+		},
+		{
+			"name": "Zod's current funding story",
+			"url": "https://zod.dev/blog/clerk-fellowship?id=zods-current-funding-story",
+			"description": "",
+			"section": "Joining Clerk as an OSS Fellow to work on Zod 4"
+		},
+		{
+			"name": "The Clerk fellowship",
+			"url": "https://zod.dev/blog/clerk-fellowship?id=the-clerk-fellowship",
+			"description": "",
+			"section": "Joining Clerk as an OSS Fellow to work on Zod 4"
+		},
+		{
+			"name": "OSS, funding models, and trying new things",
+			"url": "https://zod.dev/blog/clerk-fellowship?id=oss-funding-models-and-trying-new-things",
+			"description": "",
+			"section": "Joining Clerk as an OSS Fellow to work on Zod 4"
+		}
+	]
+}

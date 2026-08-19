@@ -1,0 +1,30 @@
+{
+	"provider": "posthog-com",
+	"section": "Slack",
+	"entries": [
+		{
+			"name": "PostHog Slack app - Docs",
+			"url": "https://posthog.com/docs/slack.md",
+			"description": "",
+			"section": "Slack"
+		},
+		{
+			"name": "PostHog Slack app commands and limitations - Docs",
+			"url": "https://posthog.com/docs/slack/commands.md",
+			"description": "",
+			"section": "Slack"
+		},
+		{
+			"name": "PostHog Slack app pricing - Docs",
+			"url": "https://posthog.com/docs/slack/pricing.md",
+			"description": "",
+			"section": "Slack"
+		},
+		{
+			"name": "Set up the PostHog Slack app - Docs",
+			"url": "https://posthog.com/docs/slack/setup.md",
+			"description": "",
+			"section": "Slack"
+		}
+	]
+}

@@ -1,0 +1,18 @@
+{
+	"provider": "vite-dev",
+	"source": "https://vite.dev/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"Vite"
+	],
+	"title": "Vite",
+	"summary": "The Build Tool for the Web",
+	"total": 43,
+	"sections": [
+		{
+			"name": "Table of Contents",
+			"entries": 43,
+			"file": "table-of-contents.json"
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Hog (Query Language)",
+	"entries": [
+		{
+			"name": "Hog - Docs",
+			"url": "https://posthog.com/docs/hog.md",
+			"description": "",
+			"section": "Hog (Query Language)"
+		}
+	]
+}

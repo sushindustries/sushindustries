@@ -1,0 +1,42 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "sqlite/Validations",
+	"entries": [
+		{
+			"name": "zod",
+			"url": "https://orm.drizzle.team/docs/sqlite/zod",
+			"description": "",
+			"section": "sqlite/Validations"
+		},
+		{
+			"name": "valibot",
+			"url": "https://orm.drizzle.team/docs/sqlite/valibot",
+			"description": "",
+			"section": "sqlite/Validations"
+		},
+		{
+			"name": "typebox",
+			"url": "https://orm.drizzle.team/docs/sqlite/typebox",
+			"description": "",
+			"section": "sqlite/Validations"
+		},
+		{
+			"name": "arktype",
+			"url": "https://orm.drizzle.team/docs/sqlite/arktype",
+			"description": "",
+			"section": "sqlite/Validations"
+		},
+		{
+			"name": "typebox-legacy",
+			"url": "https://orm.drizzle.team/docs/sqlite/typebox-legacy",
+			"description": "",
+			"section": "sqlite/Validations"
+		},
+		{
+			"name": "effect-schema",
+			"url": "https://orm.drizzle.team/docs/sqlite/effect-schema",
+			"description": "",
+			"section": "sqlite/Validations"
+		}
+	]
+}

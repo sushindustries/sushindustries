@@ -1,0 +1,42 @@
+{
+	"provider": "tanstack-com-tanstack-cli",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "CLI Reference",
+			"url": "https://tanstack.com/cli/latest/docs/cli-reference.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Add-ons",
+			"url": "https://tanstack.com/cli/latest/docs/add-ons.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Starters",
+			"url": "https://tanstack.com/cli/latest/docs/starters.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Creating Add-ons",
+			"url": "https://tanstack.com/cli/latest/docs/creating-add-ons.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "MCP Migration",
+			"url": "https://tanstack.com/cli/latest/docs/mcp-migration.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Troubleshooting",
+			"url": "https://tanstack.com/cli/latest/docs/troubleshooting.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

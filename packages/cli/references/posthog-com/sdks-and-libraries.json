@@ -1,0 +1,432 @@
+{
+	"provider": "posthog-com",
+	"section": "SDKs and Libraries",
+	"entries": [
+		{
+			"name": ".NET - Docs",
+			"url": "https://posthog.com/docs/libraries/dotnet.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Android - Docs",
+			"url": "https://posthog.com/docs/libraries/android.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Angular - Docs",
+			"url": "https://posthog.com/docs/libraries/angular.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Astro - Docs",
+			"url": "https://posthog.com/docs/libraries/astro.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Bootstrapping PostHog SDKs - Docs",
+			"url": "https://posthog.com/docs/libraries/bootstrapping.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Bubble - Docs",
+			"url": "https://posthog.com/docs/libraries/bubble.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Capacitor - Docs",
+			"url": "https://posthog.com/docs/libraries/capacitor.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Cloudflare Workers - Docs",
+			"url": "https://posthog.com/docs/libraries/cloudflare-workers.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Convex - Docs",
+			"url": "https://posthog.com/docs/libraries/convex.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Django - Docs",
+			"url": "https://posthog.com/docs/libraries/django.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Docusaurus - Docs",
+			"url": "https://posthog.com/docs/libraries/docusaurus.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Elixir - Docs",
+			"url": "https://posthog.com/docs/libraries/elixir.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Flask - Docs",
+			"url": "https://posthog.com/docs/libraries/flask.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Flutter - Docs",
+			"url": "https://posthog.com/docs/libraries/flutter.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Framer - Docs",
+			"url": "https://posthog.com/docs/libraries/framer.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Gatsby - Docs",
+			"url": "https://posthog.com/docs/libraries/gatsby.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Go - Docs",
+			"url": "https://posthog.com/docs/libraries/go.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Google Tag Manager - Docs",
+			"url": "https://posthog.com/docs/libraries/google-tag-manager.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Grafana - Docs",
+			"url": "https://posthog.com/docs/libraries/grafana.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Hono - Docs",
+			"url": "https://posthog.com/docs/libraries/hono.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "How to set up WooCommerce analytics with PostHog - Docs",
+			"url": "https://posthog.com/docs/libraries/woocommerce.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "How to set up WordPress analytics with PostHog - Docs",
+			"url": "https://posthog.com/docs/libraries/wordpress.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "HTML snippet versioning - Docs",
+			"url": "https://posthog.com/docs/libraries/js/snippet-versioning.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "iOS - Docs",
+			"url": "https://posthog.com/docs/libraries/ios.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "iOS SDK configuration - Docs",
+			"url": "https://posthog.com/docs/libraries/ios/configuration.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "iOS SDK usage - Docs",
+			"url": "https://posthog.com/docs/libraries/ios/usage.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Java - Docs",
+			"url": "https://posthog.com/docs/libraries/java.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "JavaScript web - Docs",
+			"url": "https://posthog.com/docs/libraries/js.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "JavaScript web configuration - Docs",
+			"url": "https://posthog.com/docs/libraries/js/config.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "JavaScript web persistence and cookies - Docs",
+			"url": "https://posthog.com/docs/libraries/js/persistence.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "JavaScript web usage - Docs",
+			"url": "https://posthog.com/docs/libraries/js/usage.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Kotlin Multiplatform - Docs",
+			"url": "https://posthog.com/docs/libraries/kmp.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Laravel - Docs",
+			"url": "https://posthog.com/docs/libraries/laravel.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "MoEngage - Docs",
+			"url": "https://posthog.com/docs/libraries/moengage.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "n8n - Docs",
+			"url": "https://posthog.com/docs/libraries/n8n.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "NestJS - Docs",
+			"url": "https://posthog.com/docs/libraries/nestjs.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Next.js - Docs",
+			"url": "https://posthog.com/docs/libraries/next-js.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Next.js: @posthog/next - Docs",
+			"url": "https://posthog.com/docs/libraries/next-js/posthog-next.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Node.js - Docs",
+			"url": "https://posthog.com/docs/libraries/node.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Nuxt.js - Docs",
+			"url": "https://posthog.com/docs/libraries/nuxt-js.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Nuxt.js (v2.16 and below) - Docs",
+			"url": "https://posthog.com/docs/libraries/nuxt-js-2.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Nuxt.js (v3.0 to v3.6) - Docs",
+			"url": "https://posthog.com/docs/libraries/nuxt-js-3-6.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Phoenix - Docs",
+			"url": "https://posthog.com/docs/libraries/phoenix.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "PHP - Docs",
+			"url": "https://posthog.com/docs/libraries/php.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "PostHog SDK comparison - Docs",
+			"url": "https://posthog.com/docs/libraries.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Python - Docs",
+			"url": "https://posthog.com/docs/libraries/python.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "React - Docs",
+			"url": "https://posthog.com/docs/libraries/react.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "React Native - Docs",
+			"url": "https://posthog.com/docs/libraries/react-native.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "React Router - Docs",
+			"url": "https://posthog.com/docs/libraries/react-router.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "React Router V6 - Docs",
+			"url": "https://posthog.com/docs/libraries/react-router/react-router-v6.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "React Router V7 data mode - Docs",
+			"url": "https://posthog.com/docs/libraries/react-router/react-router-v7-data-mode.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "React Router V7 declarative mode - Docs",
+			"url": "https://posthog.com/docs/libraries/react-router/react-router-v7-declarative-mode.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "React Router V7 framework mode (Remix V3) - Docs",
+			"url": "https://posthog.com/docs/libraries/react-router/react-router-v7-framework-mode.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Remix - Docs",
+			"url": "https://posthog.com/docs/libraries/remix.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Retool - Docs",
+			"url": "https://posthog.com/docs/libraries/retool.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Roblox - Docs",
+			"url": "https://posthog.com/docs/libraries/roblox.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Ruby - Docs",
+			"url": "https://posthog.com/docs/libraries/ruby.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Ruby on Rails - Docs",
+			"url": "https://posthog.com/docs/libraries/ruby-on-rails.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "RudderStack - Docs",
+			"url": "https://posthog.com/docs/libraries/rudderstack.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Rust - Docs",
+			"url": "https://posthog.com/docs/libraries/rust.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Segment - Docs",
+			"url": "https://posthog.com/docs/libraries/segment.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Shopify - Docs",
+			"url": "https://posthog.com/docs/libraries/shopify.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Slack - Docs",
+			"url": "https://posthog.com/docs/libraries/slack.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Svelte - Docs",
+			"url": "https://posthog.com/docs/libraries/svelte.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "TanStack Start - Docs",
+			"url": "https://posthog.com/docs/libraries/tanstack-start.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "TypeScript types for script tag installation - Docs",
+			"url": "https://posthog.com/docs/libraries/js/types.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Unity - Docs",
+			"url": "https://posthog.com/docs/libraries/unity.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Vercel - Docs",
+			"url": "https://posthog.com/docs/libraries/vercel.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Vue.js - Docs",
+			"url": "https://posthog.com/docs/libraries/vue-js.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Webflow - Docs",
+			"url": "https://posthog.com/docs/libraries/webflow.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		},
+		{
+			"name": "Zapier - Docs",
+			"url": "https://posthog.com/docs/libraries/zapier.md",
+			"description": "",
+			"section": "SDKs and Libraries"
+		}
+	]
+}

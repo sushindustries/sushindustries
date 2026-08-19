@@ -1,0 +1,30 @@
+{
+	"provider": "tanstack-com-tanstack-intent",
+	"section": "Get Started",
+	"entries": [
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/intent/latest/docs/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start (Consumers)",
+			"url": "https://tanstack.com/intent/latest/docs/getting-started/quick-start-consumers.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start (Maintainers)",
+			"url": "https://tanstack.com/intent/latest/docs/getting-started/quick-start-maintainers.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Get Listed on the Registry",
+			"url": "https://tanstack.com/intent/latest/docs/registry.md",
+			"description": "",
+			"section": "Get Started"
+		}
+	]
+}

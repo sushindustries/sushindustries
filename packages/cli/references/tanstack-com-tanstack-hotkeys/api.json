@@ -1,0 +1,1218 @@
+{
+	"provider": "tanstack-com-tanstack-hotkeys",
+	"section": "API",
+	"entries": [
+		{
+			"name": "Preact: Preact Hooks",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: Solid Primitives",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Core API",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: React Hooks",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Preact Hooks",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: Solid Primitives",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: Angular Inject APIs",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: Vue Composables",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Lit Controllers & Decorators",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: Svelte APIs",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeyManager",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/classes/HotkeyManager.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "getHotkeyManager",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/functions/getHotkeyManager.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeyOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/HotkeyOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeyRegistration",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/HotkeyRegistration.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeyRegistrationHandle",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/HotkeyRegistrationHandle.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeyCallback",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/type-aliases/HotkeyCallback.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeyCallbackContext",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/HotkeyCallbackContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeyMeta",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/HotkeyMeta.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeyRegistrationView",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/HotkeyRegistrationView.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "toHotkeyRegistrationView",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/functions/toHotkeyRegistrationView.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "ConflictBehavior",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/type-aliases/ConflictBehavior.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/useHotkey.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useHotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/useHotkeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useHotkeysContext",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/useHotkeysContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: UseHotkeyOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/interfaces/UseHotkeyOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: UseHotkeyDefinition",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/interfaces/UseHotkeyDefinition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: HotkeysProvider",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/HotkeysProvider.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: HotkeysProviderProps",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/interfaces/HotkeysProviderProps.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: HotkeysProviderOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/interfaces/HotkeysProviderOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useDefaultHotkeysOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/useDefaultHotkeysOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useHotkeyRegistrations",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/useHotkeyRegistrations.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: HotkeyRegistrationsResult",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/interfaces/HotkeyRegistrationsResult.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/functions/useHotkey.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useHotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/functions/useHotkeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useHotkeysContext",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/functions/useHotkeysContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: UseHotkeyOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/interfaces/UseHotkeyOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: UseHotkeyDefinition",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/interfaces/UseHotkeyDefinition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: HotkeysProvider",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/functions/HotkeysProvider.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: HotkeysProviderProps",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/interfaces/HotkeysProviderProps.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: HotkeysProviderOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/interfaces/HotkeysProviderOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useDefaultHotkeysOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useHotkeyRegistrations",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/functions/useHotkeyRegistrations.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: HotkeyRegistrationsResult",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/interfaces/HotkeyRegistrationsResult.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/functions/createHotkey.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createHotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/functions/createHotkeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useHotkeysContext",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/functions/useHotkeysContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: CreateHotkeyOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/interfaces/CreateHotkeyOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: CreateHotkeyDefinition",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/interfaces/CreateHotkeyDefinition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useDefaultHotkeysOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createHotkeyRegistrations",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/functions/createHotkeyRegistrations.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: HotkeyRegistrationsResult",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/interfaces/HotkeyRegistrationsResult.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/functions/injectHotkey.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectHotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/functions/injectHotkeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectHotkeysContext",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/functions/injectHotkeysContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: InjectHotkeyOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/interfaces/InjectHotkeyOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: InjectHotkeyDefinition",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/interfaces/InjectHotkeyDefinition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: provideHotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/functions/provideHotkeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: HotkeysProviderOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/interfaces/HotkeysProviderOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectDefaultHotkeysOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectHotkeyRegistrations",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/functions/injectHotkeyRegistrations.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: HotkeyRegistrationsResult",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/interfaces/HotkeyRegistrationsResult.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/functions/useHotkey.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useHotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/functions/useHotkeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useHotkeysContext",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/functions/useHotkeysContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: UseHotkeyOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/interfaces/UseHotkeyOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: UseHotkeyDefinition",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/interfaces/UseHotkeyDefinition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: provideHotkeysContext",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/functions/provideHotkeysContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: HotkeysProviderOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useDefaultHotkeysOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useHotkeyRegistrations",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/functions/useHotkeyRegistrations.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: HotkeyRegistrationsResult",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/interfaces/HotkeyRegistrationsResult.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: hotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/reference/functions/hotkey.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: HotkeyController",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/reference/classes/HotkeyController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: HotkeyRegistrationsController",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/reference/classes/HotkeyRegistrationsController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/createHotkey.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createHotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/createHotkeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createHotkeyAttachment",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/createHotkeyAttachment.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createHotkeysAttachment",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/createHotkeysAttachment.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: CreateHotkeyOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/interfaces/CreateHotkeyOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: CreateHotkeyDefinition",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/interfaces/CreateHotkeyDefinition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: HotkeysProvider",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/variables/HotkeysProvider.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: HotkeysProviderOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: HotkeysProviderProps",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: DEFAULT_OPTIONS",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/variables/DEFAULT_OPTIONS.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: getDefaultHotkeysOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: getHotkeysContext",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/getHotkeysContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: setHotkeysContext",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/setHotkeysContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: getHotkeyRegistrations",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/getHotkeyRegistrations.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: SvelteHotkeyRegistrations",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/interfaces/SvelteHotkeyRegistrations.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "SequenceManager",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/classes/SequenceManager.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "getSequenceManager",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/functions/getSequenceManager.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "SequenceOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/SequenceOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "createSequenceMatcher",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/functions/createSequenceMatcher.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/type-aliases/HotkeySequence.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "SequenceRegistrationHandle",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/SequenceRegistrationHandle.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "SequenceRegistrationView",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/SequenceRegistrationView.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useHotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/useHotkeySequence.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: UseHotkeySequenceOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/interfaces/UseHotkeySequenceOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useHotkeySequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/useHotkeySequences.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: UseHotkeySequenceDefinition",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/interfaces/UseHotkeySequenceDefinition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useHotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/functions/useHotkeySequence.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: UseHotkeySequenceOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/interfaces/UseHotkeySequenceOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useHotkeySequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/functions/useHotkeySequences.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: UseHotkeySequenceDefinition",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/interfaces/UseHotkeySequenceDefinition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createHotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/functions/createHotkeySequence.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: CreateHotkeySequenceOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/interfaces/CreateHotkeySequenceOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createHotkeySequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/functions/createHotkeySequences.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: CreateHotkeySequenceDefinition",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/interfaces/CreateHotkeySequenceDefinition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectHotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/functions/injectHotkeySequence.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: InjectHotkeySequenceOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/interfaces/InjectHotkeySequenceOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectHotkeySequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/functions/injectHotkeySequences.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: InjectHotkeySequenceDefinition",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/interfaces/InjectHotkeySequenceDefinition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useHotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/functions/useHotkeySequence.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: UseHotkeySequenceOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/interfaces/UseHotkeySequenceOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useHotkeySequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/functions/useHotkeySequences.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: UseHotkeySequenceDefinition",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/interfaces/UseHotkeySequenceDefinition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: hotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/reference/functions/hotkeySequence.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: HotkeySequenceController",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/reference/classes/HotkeySequenceController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createHotkeySequence",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/createHotkeySequence.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createHotkeySequenceAttachment",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/createHotkeySequenceAttachment.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: CreateHotkeySequenceOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/interfaces/CreateHotkeySequenceOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createHotkeySequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/createHotkeySequences.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createHotkeySequencesAttachment",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/createHotkeySequencesAttachment.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: CreateHotkeySequenceDefinition",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/interfaces/CreateHotkeySequenceDefinition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "KeyStateTracker",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/classes/KeyStateTracker.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "getKeyStateTracker",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/functions/getKeyStateTracker.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "KeyStateTrackerState",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/KeyStateTrackerState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "IndividualKey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/type-aliases/IndividualKey.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useKeyHold",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/useKeyHold.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useHeldKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/useHeldKeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useHeldKeyCodes",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/useHeldKeyCodes.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useKeyHold",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/functions/useKeyHold.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useHeldKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/functions/useHeldKeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useHeldKeyCodes",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/functions/useHeldKeyCodes.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createKeyHold",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/functions/createKeyHold.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createHeldKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/functions/createHeldKeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createHeldKeyCodes",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/functions/createHeldKeyCodes.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectKeyHold",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/functions/injectKeyHold.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectHeldKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/functions/injectHeldKeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectHeldKeyCodes",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/functions/injectHeldKeyCodes.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useKeyHold",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/functions/useKeyHold.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useHeldKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/functions/useHeldKeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useHeldKeyCodes",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/functions/useHeldKeyCodes.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: KeyHoldController",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/reference/classes/KeyHoldController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: HeldKeysController",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/reference/classes/HeldKeysController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: HeldKeyCodesController",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/reference/classes/HeldKeyCodesController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: getIsKeyHeld",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/getIsKeyHeld.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: SvelteHeldKeyState",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/interfaces/SvelteHeldKeyState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: getHeldKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/getHeldKeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: SvelteHeldKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/interfaces/SvelteHeldKeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: getHeldKeyCodesMap",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/getHeldKeyCodesMap.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: SvelteHeldKeyCodesMap",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/interfaces/SvelteHeldKeyCodesMap.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/classes/HotkeyRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeyRecorderOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/HotkeyRecorderOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeyRecorderState",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/HotkeyRecorderState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/useHotkeyRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/functions/useHotkeyRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/interfaces/PreactHotkeyRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/functions/createHotkeyRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/interfaces/SolidHotkeyRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/functions/injectHotkeyRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/functions/useHotkeyRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: VueHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/interfaces/VueHotkeyRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: HotkeyRecorderController",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/reference/classes/HotkeyRecorderController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/createHotkeyRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: SvelteHotkeyRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/interfaces/SvelteHotkeyRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/classes/HotkeySequenceRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeySequenceRecorderOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/HotkeySequenceRecorderOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeySequenceRecorderState",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/HotkeySequenceRecorderState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "HotkeySequenceRecorderCommitKeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/type-aliases/HotkeySequenceRecorderCommitKeys.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/functions/useHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: ReactHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/reference/interfaces/ReactHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/functions/useHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: PreactHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/reference/interfaces/PreactHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: createHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/functions/createHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: SolidHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/reference/interfaces/SolidHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/functions/injectHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: AngularHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/reference/interfaces/AngularHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/functions/useHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: VueHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/reference/interfaces/VueHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: HotkeySequenceRecorderController",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/reference/classes/HotkeySequenceRecorderController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/functions/createHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: SvelteHotkeySequenceRecorder",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference/interfaces/SvelteHotkeySequenceRecorder.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "normalizeHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/functions/normalizeHotkey.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "normalizeHotkeyFromParsed",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/functions/normalizeHotkeyFromParsed.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "normalizeHotkeyFromEvent",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/functions/normalizeHotkeyFromEvent.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "normalizeRegisterableHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/functions/normalizeRegisterableHotkey.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "formatForDisplay",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/functions/formatForDisplay.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "formatHotkey",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/functions/formatHotkey.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "formatWithLabels",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/functions/formatWithLabels.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "FormatDisplayOptions",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/interfaces/FormatDisplayOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "KEY_DISPLAY_SYMBOLS",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/variables/KEY_DISPLAY_SYMBOLS.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "PUNCTUATION_KEY_DISPLAY_LABELS",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/variables/PUNCTUATION_KEY_DISPLAY_LABELS.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "MAC_MODIFIER_SYMBOLS",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/variables/MAC_MODIFIER_SYMBOLS.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "MAC_MODIFIER_LABELS",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/variables/MAC_MODIFIER_LABELS.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "WINDOWS_MODIFIER_LABELS",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/variables/WINDOWS_MODIFIER_LABELS.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "LINUX_MODIFIER_LABELS",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/variables/LINUX_MODIFIER_LABELS.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "MODIFIER_ALIASES",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/variables/MODIFIER_ALIASES.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "MODIFIER_ORDER",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/variables/MODIFIER_ORDER.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "MODIFIER_KEYS",
+			"url": "https://tanstack.com/hotkeys/latest/docs/reference/variables/MODIFIER_KEYS.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

@@ -1,0 +1,132 @@
+{
+	"provider": "posthog-com",
+	"section": "Products and tools",
+	"entries": [
+		{
+			"name": "Web (app.posthog.com)",
+			"url": "https://app.posthog.com/",
+			"description": "— Get simple or complex work done without installing anything — the full surface, next to your data.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "PostHog Slack app",
+			"url": "https://posthog.com/slack-app.md",
+			"description": "— Tag @PostHog in any Slack thread to ship a fix, answer a data question, or edit content – without leaving the conversation.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "PostHog Desktop",
+			"url": "https://posthog.com/desktop.md",
+			"description": "— The desktop app that uses signals from production data to diagnose issues and generate pull requests, before you know there's a problem.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "PostHog MCP",
+			"url": "https://posthog.com/docs/model-context-protocol",
+			"description": "— A product analyst that lives in your editor, via MCP.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Product analytics",
+			"url": "https://posthog.com/product-analytics.md",
+			"description": "— The measurement agents use to see what works.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Web analytics",
+			"url": "https://posthog.com/web-analytics.md",
+			"description": "— The lightweight measurement layer feeding the loop.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Session replay",
+			"url": "https://posthog.com/session-replay.md",
+			"description": "— A proactive signal — watch exactly why something happened.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Feature flags",
+			"url": "https://posthog.com/feature-flags.md",
+			"description": "— How agents roll a change out and roll it back.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Experiments",
+			"url": "https://posthog.com/experiments.md",
+			"description": "— The evaluation that proves a change worked.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Error tracking",
+			"url": "https://posthog.com/error-tracking.md",
+			"description": "— The signal that triggers a fix — every error tied to the user who hit it.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Surveys",
+			"url": "https://posthog.com/surveys.md",
+			"description": "— The qualitative signal — what users say, not just what they do.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "AI observability",
+			"url": "https://posthog.com/ai-observability.md",
+			"description": "— Observability for your AI features — the context agents use to fix LLM behavior.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Logs",
+			"url": "https://posthog.com/logs.md",
+			"description": "— Backend signal that triggers fixes, tied to the user who hit it.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Data warehouse",
+			"url": "https://posthog.com/data-warehouse.md",
+			"description": "— Where your product's context lives so agents can use all of it.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "CDP",
+			"url": "https://posthog.com/cdp.md",
+			"description": "— How agents move and act on your data across 50+ destinations.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Endpoints",
+			"url": "https://posthog.com/endpoints.md",
+			"description": "— How your product's context flows out to agents and tools.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Workflows",
+			"url": "https://posthog.com/workflows.md",
+			"description": "— How agents act — automated actions in the loop.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "PostHog AI",
+			"url": "https://posthog.com/ai.md",
+			"description": "— The interface humans and agents use to understand the product.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Support",
+			"url": "https://posthog.com/docs/support",
+			"description": "— Tickets triaged with full product context — agents draft replies and fixes from the same data.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Customer analytics",
+			"url": "https://posthog.com/docs/customer-analytics/start-here",
+			"description": "— Accounts, usage metrics, and customer journeys — the account-level context behind every signal.",
+			"section": "Products and tools"
+		},
+		{
+			"name": "Replay Vision",
+			"url": "https://posthog.com/docs/replay-vision",
+			"description": "— Agents that watch session recordings at scale and turn what users hit into observations.",
+			"section": "Products and tools"
+		}
+	]
+}

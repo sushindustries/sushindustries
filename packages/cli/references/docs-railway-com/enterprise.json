@@ -1,0 +1,48 @@
+{
+	"provider": "docs-railway-com",
+	"section": "Enterprise",
+	"entries": [
+		{
+			"name": "Enterprise",
+			"url": "https://docs.railway.com/enterprise.md",
+			"description": "Railway Enterprise is for organizations that require enterprise-grade security, dedicated resources, and comprehensive control over their infrastructure.",
+			"section": "Enterprise"
+		},
+		{
+			"name": "Compliance",
+			"url": "https://docs.railway.com/enterprise/compliance.md",
+			"description": "Learn about Railway's compliance standards and how we ensure security and regulatory adherence.",
+			"section": "Enterprise"
+		},
+		{
+			"name": "Audit logs",
+			"url": "https://docs.railway.com/enterprise/audit-logs.md",
+			"description": "Learn more about how Railway keeps a record of actions in workspaces.",
+			"section": "Enterprise"
+		},
+		{
+			"name": "SAML SSO",
+			"url": "https://docs.railway.com/enterprise/saml.md",
+			"description": "Learn about how to configure and use SAML Single Sign-On (SSO) for your Railway workspace.",
+			"section": "Enterprise"
+		},
+		{
+			"name": "Access groups",
+			"url": "https://docs.railway.com/enterprise/access-groups.md",
+			"description": "Control which workspace members can access projects by assigning roles to groups of people and projects.",
+			"section": "Enterprise"
+		},
+		{
+			"name": "Environment RBAC",
+			"url": "https://docs.railway.com/enterprise/environment-rbac.md",
+			"description": "Restrict access to sensitive environments like production with role-based access control.",
+			"section": "Enterprise"
+		},
+		{
+			"name": "Guardrails",
+			"url": "https://docs.railway.com/enterprise/guardrails.md",
+			"description": "Enforce workspace-level policies that restrict public networking and deployment sources.",
+			"section": "Enterprise"
+		}
+	]
+}

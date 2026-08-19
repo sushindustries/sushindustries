@@ -1,0 +1,222 @@
+{
+	"provider": "posthog-com",
+	"section": "Surveys",
+	"entries": [
+		{
+			"name": "Android Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/android.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Angular Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/angular.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Astro Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/astro.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Bubble Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/bubble.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Conditional questions - Docs",
+			"url": "https://posthog.com/docs/surveys/conditional-questions.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Create Surveys with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/surveys/create-surveys-ai.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Creating surveys - Docs",
+			"url": "https://posthog.com/docs/surveys/creating-surveys.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Flutter Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/flutter.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Framer Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/framer.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Get started with Surveys - Docs",
+			"url": "https://posthog.com/docs/surveys/start-here.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Implementing custom surveys - Docs",
+			"url": "https://posthog.com/docs/surveys/implementing-custom-surveys.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Initial setup - Docs",
+			"url": "https://posthog.com/docs/surveys/setup.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "iOS Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/ios.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Next.js Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/nextjs.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Nuxt Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/nuxt.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "React Native Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/react-native.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "React Router Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/react-router.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "React Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/react.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Remix Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/remix.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Review survey findings in PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/surveys/surfaces/desktop.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "SDK feature support - Docs",
+			"url": "https://posthog.com/docs/surveys/sdk-feature-support.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Summarize Surveys with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/surveys/summarize-responses-ai.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Survey responses destinations - Docs",
+			"url": "https://posthog.com/docs/surveys/destinations.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Surveys - Docs",
+			"url": "https://posthog.com/docs/surveys.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Surveys API - Docs",
+			"url": "https://posthog.com/docs/surveys/surfaces/api.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Surveys changelog - Docs",
+			"url": "https://posthog.com/docs/surveys/changelog.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Surveys in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/surveys/surfaces/web-app.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Surveys troubleshooting - Docs",
+			"url": "https://posthog.com/docs/surveys/troubleshooting.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Svelte Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/svelte.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Tutorials and guides - Docs",
+			"url": "https://posthog.com/docs/surveys/tutorials.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Use Surveys over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/surveys/surfaces/mcp.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Viewing survey results - Docs",
+			"url": "https://posthog.com/docs/surveys/viewing-results.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Vue Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/vue.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Web Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/web.md",
+			"description": "",
+			"section": "Surveys"
+		},
+		{
+			"name": "Webflow Surveys installation - Docs",
+			"url": "https://posthog.com/docs/surveys/installation/webflow.md",
+			"description": "",
+			"section": "Surveys"
+		}
+	]
+}

@@ -1,0 +1,60 @@
+{
+	"provider": "tanstack-com-tanstack-ai",
+	"section": "Get Started",
+	"entries": [
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/ai/latest/docs/getting-started/overview.md",
+			"description": "(added 2026-04-15, updated 2026-07-31)",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start: React",
+			"url": "https://tanstack.com/ai/latest/docs/getting-started/quick-start.md",
+			"description": "(added 2026-04-15)",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start: React Native",
+			"url": "https://tanstack.com/ai/latest/docs/getting-started/quick-start-react-native.md",
+			"description": "(added 2026-05-28)",
+			"section": "Get Started"
+		},
+		{
+			"name": "Devtools",
+			"url": "https://tanstack.com/ai/latest/docs/getting-started/devtools.md",
+			"description": "(added 2026-04-15, updated 2026-08-19)",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start: Vue",
+			"url": "https://tanstack.com/ai/latest/docs/getting-started/quick-start-vue.md",
+			"description": "(added 2026-04-15)",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start: Svelte",
+			"url": "https://tanstack.com/ai/latest/docs/getting-started/quick-start-svelte.md",
+			"description": "(added 2026-04-15)",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start: Angular",
+			"url": "https://tanstack.com/ai/latest/docs/getting-started/quick-start-angular.md",
+			"description": "(added 2026-06-15)",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start: Server Only",
+			"url": "https://tanstack.com/ai/latest/docs/getting-started/quick-start-server.md",
+			"description": "(added 2026-04-15)",
+			"section": "Get Started"
+		},
+		{
+			"name": "Agent Skills (TanStack Intent)",
+			"url": "https://tanstack.com/ai/latest/docs/getting-started/agent-skills.md",
+			"description": "(added 2026-04-17, updated 2026-07-26)",
+			"section": "Get Started"
+		}
+	]
+}

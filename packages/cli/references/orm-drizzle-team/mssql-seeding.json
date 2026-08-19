@@ -1,0 +1,24 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "mssql/Seeding",
+	"entries": [
+		{
+			"name": "Drizzle Seed",
+			"url": "https://orm.drizzle.team/docs/mssql/seed-overview",
+			"description": "",
+			"section": "mssql/Seeding"
+		},
+		{
+			"name": "Generators",
+			"url": "https://orm.drizzle.team/docs/mssql/seed-functions",
+			"description": "",
+			"section": "mssql/Seeding"
+		},
+		{
+			"name": "Versioning",
+			"url": "https://orm.drizzle.team/docs/mssql/seed-versioning",
+			"description": "",
+			"section": "mssql/Seeding"
+		}
+	]
+}

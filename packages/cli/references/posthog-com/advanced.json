@@ -1,0 +1,138 @@
+{
+	"provider": "posthog-com",
+	"section": "Advanced",
+	"entries": [
+		{
+			"name": "AWS CloudFront reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/cloudfront.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Caddy reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/caddy.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Cloudflare reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/cloudflare.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Content Security Policy and ingestion domains - Docs",
+			"url": "https://posthog.com/docs/advanced/content-security-policy.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Definitions / Infrastructure as code - Docs",
+			"url": "https://posthog.com/docs/advanced/infra-as-code.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Deploy a reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Kubernetes reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/kubernetes-ingress-controller.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Managed reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/managed-reverse-proxy.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Netlify reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/netlify.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Next.js proxy file reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/nextjs-middleware.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Next.js rewrites reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/nextjs.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "nginx reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/nginx.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Node reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/node.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Nuxt reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/nuxt.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Pomerium reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/pomerium.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Railway reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/railway.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Remix reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/remix.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Self-hosted proxy reference - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/proxy-reference.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "SvelteKit reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/sveltekit.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Using PostHog for browser extensions - Docs",
+			"url": "https://posthog.com/docs/advanced/browser-extension.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Using PostHog with a CDP - Docs",
+			"url": "https://posthog.com/docs/advanced/cdp.md",
+			"description": "",
+			"section": "Advanced"
+		},
+		{
+			"name": "Vercel reverse proxy - Docs",
+			"url": "https://posthog.com/docs/advanced/proxy/vercel.md",
+			"description": "",
+			"section": "Advanced"
+		}
+	]
+}

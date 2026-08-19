@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Integrate",
+	"entries": [
+		{
+			"name": "Provisioning API - Docs",
+			"url": "https://posthog.com/docs/integrate/provisioning.md",
+			"description": "",
+			"section": "Integrate"
+		}
+	]
+}

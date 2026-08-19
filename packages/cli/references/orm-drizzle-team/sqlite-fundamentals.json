@@ -1,0 +1,36 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "sqlite/Fundamentals",
+	"entries": [
+		{
+			"name": "Drizzle schema",
+			"url": "https://orm.drizzle.team/docs/sqlite/sql-schema-declaration",
+			"description": "",
+			"section": "sqlite/Fundamentals"
+		},
+		{
+			"name": "Drizzle Relations Fundamentals",
+			"url": "https://orm.drizzle.team/docs/sqlite/relations-schema-declaration",
+			"description": "",
+			"section": "sqlite/Fundamentals"
+		},
+		{
+			"name": "Database connection with Drizzle",
+			"url": "https://orm.drizzle.team/docs/sqlite/connect-overview",
+			"description": "",
+			"section": "sqlite/Fundamentals"
+		},
+		{
+			"name": "Drizzle Queries + CRUD",
+			"url": "https://orm.drizzle.team/docs/sqlite/data-querying",
+			"description": "",
+			"section": "sqlite/Fundamentals"
+		},
+		{
+			"name": "Drizzle migrations fundamentals",
+			"url": "https://orm.drizzle.team/docs/sqlite/migrations",
+			"description": "",
+			"section": "sqlite/Fundamentals"
+		}
+	]
+}

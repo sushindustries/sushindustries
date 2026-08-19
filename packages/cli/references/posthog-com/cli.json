@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Cli",
+	"entries": [
+		{
+			"name": "PostHog CLI - Docs",
+			"url": "https://posthog.com/docs/cli.md",
+			"description": "",
+			"section": "Cli"
+		}
+	]
+}

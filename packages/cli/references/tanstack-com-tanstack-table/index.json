@@ -1,0 +1,47 @@
+{
+	"provider": "tanstack-com-tanstack-table",
+	"source": "https://tanstack.com/table/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Table docs",
+	"summary": "Build tables and data grids with feature-level tree shaking, reactive state, fast row models, and complete control over markup and styles.",
+	"total": 931,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 23,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 248,
+			"file": "guides.json"
+		},
+		{
+			"name": "API",
+			"entries": 267,
+			"file": "api.json"
+		},
+		{
+			"name": "Examples",
+			"entries": 389,
+			"file": "examples.json"
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "cockroach/Connect",
+	"entries": [
+		{
+			"name": "Drizzle \\<\\> CockroachDB",
+			"url": "https://orm.drizzle.team/docs/cockroach/get-started-cockroach",
+			"description": "",
+			"section": "cockroach/Connect"
+		}
+	]
+}

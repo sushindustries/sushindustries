@@ -1,0 +1,24 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "sqlite/Seeding",
+	"entries": [
+		{
+			"name": "Drizzle Seed",
+			"url": "https://orm.drizzle.team/docs/sqlite/seed-overview",
+			"description": "",
+			"section": "sqlite/Seeding"
+		},
+		{
+			"name": "Generators",
+			"url": "https://orm.drizzle.team/docs/sqlite/seed-functions",
+			"description": "",
+			"section": "sqlite/Seeding"
+		},
+		{
+			"name": "Versioning",
+			"url": "https://orm.drizzle.team/docs/sqlite/seed-versioning",
+			"description": "",
+			"section": "sqlite/Seeding"
+		}
+	]
+}

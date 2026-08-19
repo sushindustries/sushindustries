@@ -1,0 +1,228 @@
+{
+	"provider": "docs-railway-com",
+	"section": "Languages & frameworks",
+	"entries": [
+		{
+			"name": "Languages & Frameworks",
+			"url": "https://docs.railway.com/languages-frameworks.md",
+			"description": "Deploy applications using any language or framework on Railway.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Next.js",
+			"url": "https://docs.railway.com/guides/nextjs.md",
+			"description": "Deploy a Next.js app with a Postgres database on Railway. Covers standalone output, one-click deploys, Dockerfile setup, database wiring, and pre-deploy migrations.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Express",
+			"url": "https://docs.railway.com/guides/express.md",
+			"description": "Learn how to deploy an Express app to Railway with one-click templates, GitHub, CLI, or Dockerfile. This guide covers setup, private networking, database integration, and deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Hono",
+			"url": "https://docs.railway.com/guides/hono.md",
+			"description": "Learn how to deploy a Hono app to Railway with this step-by-step guide. It covers quick setup, community templates, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Fastify",
+			"url": "https://docs.railway.com/guides/fastify.md",
+			"description": "Learn how to deploy a Fastify app to Railway with this step-by-step guide. It covers quick setup, one-click deploys, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Nest.js",
+			"url": "https://docs.railway.com/guides/nest.md",
+			"description": "Learn how to deploy a NestJS app to Railway with this step-by-step guide. It covers quick setup, database integration, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Remix",
+			"url": "https://docs.railway.com/guides/remix.md",
+			"description": "Learn how to deploy a Remix app to Railway with this step-by-step guide. It covers quick setup, one-click deploys, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Nuxt",
+			"url": "https://docs.railway.com/guides/nuxt.md",
+			"description": "Learn how to deploy a Nuxt app to Railway with this step-by-step guide. It covers quick setup, one-click deploys, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Astro",
+			"url": "https://docs.railway.com/guides/astro.md",
+			"description": "Learn how to deploy an Astro app to Railway with this step-by-step guide. It covers quick setup, server side rendering, one-click deploys, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "SvelteKit",
+			"url": "https://docs.railway.com/guides/sveltekit.md",
+			"description": "Learn how to deploy a Sveltekit app to Railway with this step-by-step guide. It covers quick setup, adapter configuration, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Bun",
+			"url": "https://docs.railway.com/guides/bun.md",
+			"description": "Learn how to deploy a Bun app to Railway with this step-by-step guide. It covers one-click deploys, Dockerfile setup, and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "React",
+			"url": "https://docs.railway.com/guides/react.md",
+			"description": "Learn how to deploy a React app to Railway with this step-by-step guide. It covers quick setup, caddy server setup, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Vue",
+			"url": "https://docs.railway.com/guides/vue.md",
+			"description": "Learn how to deploy a Vue app to Railway with this step-by-step guide. It covers quick setup, caddy server setup, one-click deploys, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Angular",
+			"url": "https://docs.railway.com/guides/angular.md",
+			"description": "Learn how to deploy an Angular app to Railway with this step-by-step guide. It covers quick setup, caddy server setup, one-click deploys, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Solid",
+			"url": "https://docs.railway.com/guides/solid.md",
+			"description": "Learn how to deploy a SolidJS app to Railway with this step-by-step guide. It covers quick setup, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Sails",
+			"url": "https://docs.railway.com/guides/sails.md",
+			"description": "Learn how to deploy a Sails app to Railway with this step-by-step guide. It covers quick setup, database integration, the Boring JavaScript stack, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Gatsby",
+			"url": "https://docs.railway.com/guides/gatsby.md",
+			"description": "Deploy a Gatsby static site to Railway with Caddy. Covers one-click template deployment, CLI deploys, GitHub deploys, and Dockerfile setup.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "TanStack Start",
+			"url": "https://docs.railway.com/guides/tanstack-start.md",
+			"description": "Deploy a TanStack Start full-stack React application to Railway. Covers GitHub deploys, CLI deploys, Dockerfile setup, and Vinxi server configuration.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "FastAPI",
+			"url": "https://docs.railway.com/guides/fastapi.md",
+			"description": "Learn how to deploy a FastAPI app to Railway with this step-by-step guide. It covers quick setup, one-click deploys, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Flask",
+			"url": "https://docs.railway.com/guides/flask.md",
+			"description": "Learn how to deploy a Flask app to Railway with this step-by-step guide. It covers quick setup, one-click deploys, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Django",
+			"url": "https://docs.railway.com/guides/django.md",
+			"description": "Learn how to deploy a Python Django app to Railway with this step-by-step guide. It covers quick setup, database integration, private networking, Celery, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Laravel",
+			"url": "https://docs.railway.com/guides/laravel.md",
+			"description": "Learn how to deploy a Laravel app to Railway with this step-by-step guide. It covers quick setup, private networking, database integration, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Symfony",
+			"url": "https://docs.railway.com/guides/symfony.md",
+			"description": "Learn how to deploy a Symfony app to Railway with this step-by-step guide. It covers quick setup, database integration, cron and workers, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Rails",
+			"url": "https://docs.railway.com/guides/rails.md",
+			"description": "Learn how to deploy a Rails app to Railway with this step-by-step guide. It covers quick setup, database integration, cron and sidekiq setups, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Gin",
+			"url": "https://docs.railway.com/guides/gin.md",
+			"description": "Learn how to deploy a Gin app to Railway with this step-by-step guide. It covers quick setup, one-click deploys, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Go Fiber",
+			"url": "https://docs.railway.com/guides/go-fiber.md",
+			"description": "Learn how to deploy a Go Fiber app to Railway with this step-by-step guide. It covers quick setup, one-click deploys, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Beego",
+			"url": "https://docs.railway.com/guides/beego.md",
+			"description": "Learn how to deploy a Beego app to Railway with this step-by-step guide. It covers quick setup, private networking, database integration, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Axum",
+			"url": "https://docs.railway.com/guides/axum.md",
+			"description": "Learn how to deploy an Axum app to Railway with this step-by-step guide. It covers quick setup, one-click deploys, GitHub, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Actix Web",
+			"url": "https://docs.railway.com/guides/actix-web.md",
+			"description": "Learn how to deploy an Actix Web app to Railway with this step-by-step guide. It covers quick setup, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Rocket",
+			"url": "https://docs.railway.com/guides/rocket.md",
+			"description": "Learn how to deploy a Rust Rocket app to Railway with this step-by-step guide. It covers quick setup, one-click deploys, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Spring Boot",
+			"url": "https://docs.railway.com/guides/spring-boot.md",
+			"description": "Learn how to deploy a Spring Boot app to Railway with this step-by-step guide. It covers quick setup, one-click deploys, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Ktor",
+			"url": "https://docs.railway.com/guides/ktor.md",
+			"description": "Learn how to deploy a Ktor app to Railway with this step-by-step guide. It covers quick setup, CLI deploys, Dockerfile and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "ASP.NET Core",
+			"url": "https://docs.railway.com/guides/aspnet-core.md",
+			"description": "Learn how to deploy an ASP.NET Core app to Railway with this step-by-step guide. It covers deployment from GitHub, the CLI, and using a Dockerfile.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Play",
+			"url": "https://docs.railway.com/guides/play.md",
+			"description": "Learn how to deploy a Scala Play app to Railway with this step-by-step guide. It covers quick setup, database integration, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Phoenix",
+			"url": "https://docs.railway.com/guides/phoenix.md",
+			"description": "Learn how to deploy a Phoenix app to Railway with this step-by-step guide. It covers quick setup, ecto setup, database integration, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Phoenix + Distillery",
+			"url": "https://docs.railway.com/guides/phoenix-distillery.md",
+			"description": "Learn how to deploy a Phoneix app with Distillery to Railway with this step-by-step guide. It covers quick setup, ecto setup, database integration, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		},
+		{
+			"name": "Luminus",
+			"url": "https://docs.railway.com/guides/luminus.md",
+			"description": "Learn how to deploy your Clojure Luminus app to Railway with this step-by-step guide. It covers quick setup, database integration, one-click deploys and other deployment strategies.",
+			"section": "Languages & frameworks"
+		}
+	]
+}

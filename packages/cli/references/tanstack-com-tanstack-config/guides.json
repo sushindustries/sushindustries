@@ -1,0 +1,36 @@
+{
+	"provider": "tanstack-com-tanstack-config",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "ESLint",
+			"url": "https://tanstack.com/config/latest/docs/eslint.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Publish",
+			"url": "https://tanstack.com/config/latest/docs/publish.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vite",
+			"url": "https://tanstack.com/config/latest/docs/vite.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "CI/CD",
+			"url": "https://tanstack.com/config/latest/docs/ci-cd.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Package Structure",
+			"url": "https://tanstack.com/config/latest/docs/package-structure.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

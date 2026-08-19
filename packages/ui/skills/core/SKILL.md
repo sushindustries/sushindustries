@@ -103,7 +103,7 @@ together; the component only ever writes the attribute, so a stylesheet
 built around a second class never actually matches anything the component
 renders.
 
-Source: sushindustries/sushindustries:.claude/skills/sushindustries-conventions/SKILL.md
+Source: sushindustries/sushindustries:.claude/skills/sushindustries-conventions/rules/03-styling.md
 
 ### [HIGH] Writing component-specific CSS in the consuming app
 

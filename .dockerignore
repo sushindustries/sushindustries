@@ -21,6 +21,12 @@ media
 _artifacts
 .playwright-mcp
 
+# The sharded dependency indexes. Nine thousand entries an agent reads from a
+# checkout; the site never imports them and the runtime image never sees them,
+# so they are two and a half megabytes of build context that only slows the
+# copy down.
+packages/cli/references
+
 *.log
 .DS_Store
 .env

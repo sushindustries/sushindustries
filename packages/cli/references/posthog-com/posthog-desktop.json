@@ -1,0 +1,108 @@
+{
+	"provider": "posthog-com",
+	"section": "Posthog Desktop",
+	"entries": [
+		{
+			"name": "Download PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/download-posthog-desktop.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog Desktop AI-generated content - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/ai-generated-content.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog Desktop cloud runs - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/cloud-runs.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog Desktop code review - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/code-review.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog Desktop Command Center - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/command-center.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog Desktop community - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/community.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog Desktop environments - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/environments.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog Desktop open source - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/open-source.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog Desktop pricing - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/pricing.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog Desktop settings - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/settings.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog Desktop skills - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/skills.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog Desktop tasks - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/tasks.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog Desktop worktrees - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/worktrees.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog Git + GitHub integration - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/git-github-integration.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "PostHog integration for PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/posthog-integration.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "Quick tour of PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		},
+		{
+			"name": "Use any model and any harness - Docs",
+			"url": "https://posthog.com/docs/posthog-desktop/use-any-model-and-harness.md",
+			"description": "",
+			"section": "Posthog Desktop"
+		}
+	]
+}

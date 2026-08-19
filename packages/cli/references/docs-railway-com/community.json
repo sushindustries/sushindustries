@@ -1,0 +1,30 @@
+{
+	"provider": "docs-railway-com",
+	"section": "Community",
+	"entries": [
+		{
+			"name": "Community",
+			"url": "https://docs.railway.com/community.md",
+			"description": "Get involved with the Railway community through the Conductor Program, affiliate partnerships, and bounties.",
+			"section": "Community"
+		},
+		{
+			"name": "The Conductor program",
+			"url": "https://docs.railway.com/community/the-conductor-program.md",
+			"description": "Learn about Railway’s Conductor Program and how it empowers the developer community.",
+			"section": "Community"
+		},
+		{
+			"name": "Affiliate program",
+			"url": "https://docs.railway.com/community/affiliate-program.md",
+			"description": "Show Railway to your network, earn 15% cash commission on referral revenue.",
+			"section": "Community"
+		},
+		{
+			"name": "Bounties",
+			"url": "https://docs.railway.com/community/bounties.md",
+			"description": "Learn how to earn money by helping others in the community.",
+			"section": "Community"
+		}
+	]
+}

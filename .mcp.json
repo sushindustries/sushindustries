@@ -1,0 +1,9 @@
+{
+	"//": "One server, eighteen tools. Relative path, because a project-scoped .mcp.json resolves against the project root - which is the one place these tools mean anything: they read this repository's Markdown, its templates, and the shards committed beside the CLI. No token, no service, no network.",
+	"mcpServers": {
+		"adam-jurek": {
+			"command": "node",
+			"args": ["packages/cli/adam-jurek.mjs", "mcp"]
+		}
+	}
+}

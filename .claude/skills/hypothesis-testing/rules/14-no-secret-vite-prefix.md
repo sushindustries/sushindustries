@@ -23,4 +23,4 @@ if one is needed.
 **Last checked:** 2026-08-18 - **PASSED**. The one `VITE_` variable in use,
 `VITE_POSTHOG_KEY`, is PostHog's public client key by design, not a secret.
 
-**Source:** `references/01-tanstack-official-safety.md`.
+**Source:** `.claude/skills/sushindustries-conventions/references/01-tanstack-official.md`.

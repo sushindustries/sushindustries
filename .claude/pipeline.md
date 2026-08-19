@@ -274,12 +274,18 @@ it is a second list to maintain.
   fed by `references.catalogue.ts`). The doctor flags bare PascalCase mentions
   that should be references.
 - **The agent surface.** `/agent-setup/prompt` routes an agent to
-  `/r/prompt/<name>` (components) and `/r/prompt/packages/<name>` (packages);
-  `/r/md/<name>` is any component page as Markdown. The URLs are extensionless
-  because the dev pipeline classifies dotted paths as asset requests. Every
-  component and package page carries the bar: Last updated (from `updated:`
-  frontmatter), View as Markdown, Copy page, Claude / Cursor / Agent setup
-  (all copy the same one-line prompt), Edit on GitHub.
+  `/r/prompt/<name>` (components) and `/r/prompt/packages/<name>` (packages).
+  Those URLs are extensionless because the dev pipeline classifies dotted
+  paths as asset requests - which is a dev-server behaviour, not a production
+  one, so a dotted URL is verified against the built server.
+- **Markdown mirrors.** Every page is also its own source: `<path>/index.md`
+  returns the Markdown the page renders, and `Accept: text/markdown` on the
+  page URL redirects there. One document, one address. `/r/md/*` used to be a
+  second address for the same text, assembled separately, and was removed once
+  the mirrors covered every page rather than only components and packages.
+  Every component and package page carries the bar: Last updated (from
+  `updated:` frontmatter), View as Markdown, Copy page, Claude / Cursor /
+  Agent setup (all copy the same one-line prompt), Edit on GitHub.
 - **Structured data.** `Breadcrumb` renders the visible trail and its
   schema.org `BreadcrumbList` from one array; component pages add
   `SoftwareSourceCode`, package pages `SoftwareApplication`

@@ -1,0 +1,12 @@
+{
+	"provider": "tanstack-com-tanstack-virtual",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "Chat",
+			"url": "https://tanstack.com/virtual/latest/docs/chat.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "Upgrade to v1.0 RC",
+	"entries": [
+		{
+			"name": "Upgrading to Drizzle v1",
+			"url": "https://orm.drizzle.team/docs/upgrade-v1",
+			"description": "",
+			"section": "Upgrade to v1.0 RC"
+		}
+	]
+}

@@ -1,0 +1,258 @@
+{
+	"provider": "tanstack-com-tanstack-hotkeys",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "React: Hotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/guides/hotkeys.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Sequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/guides/sequences.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Hotkey Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/guides/hotkey-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Hotkey Sequence Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/guides/sequence-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Key State Tracking",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/guides/key-state-tracking.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Formatting & Display",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/guides/formatting-display.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Hotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/guides/hotkeys.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Sequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/guides/sequences.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Hotkey Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/guides/hotkey-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Hotkey Sequence Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/guides/sequence-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Key State Tracking",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/guides/key-state-tracking.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Formatting & Display",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/preact/guides/formatting-display.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Hotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/guides/hotkeys.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Sequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/guides/sequences.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Hotkey Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/guides/hotkey-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Hotkey Sequence Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/guides/sequence-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Key State Tracking",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/guides/key-state-tracking.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Formatting & Display",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/solid/guides/formatting-display.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Hotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/guides/hotkeys.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Sequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/guides/sequences.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Hotkey Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/guides/hotkey-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Hotkey Sequence Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/guides/sequence-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Key State Tracking",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/guides/key-state-tracking.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Formatting & Display",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/guides/formatting-display.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Hotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/guides/hotkeys.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Sequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/guides/sequences.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Hotkey Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/guides/hotkey-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Hotkey Sequence Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/guides/sequence-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Key State Tracking",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/guides/key-state-tracking.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Formatting & Display",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/guides/formatting-display.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Hotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/guides/hotkeys.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Sequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/guides/sequences.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Hotkey Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/guides/hotkey-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Hotkey Sequence Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/guides/sequence-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Key State Tracking",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/guides/key-state-tracking.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Lit: Formatting & Display",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/guides/formatting-display.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Hotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/guides/hotkeys.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Sequences",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/guides/sequences.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Hotkey Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/guides/hotkey-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Hotkey Sequence Recording",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/guides/sequence-recording.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Key State Tracking",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/guides/key-state-tracking.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Formatting & Display",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/guides/formatting-display.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

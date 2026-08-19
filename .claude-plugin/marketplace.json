@@ -1,0 +1,34 @@
+{
+	"name": "sushindustries",
+	"owner": {
+		"name": "Adam Jurek",
+		"url": "https://adamjurek.com"
+	},
+	"metadata": {
+		"description": "One plugin, from the repository adamjurek.com is built out of.",
+		"version": "0.1.0"
+	},
+	"plugins": [
+		{
+			"name": "sushindustries",
+			"source": "./plugins/sushindustries",
+			"description": "Nine thousand documentation entries from thirty-five dependencies, sharded for offline lookup, with four commands and a skill for working the way this repository works.",
+			"version": "0.1.0",
+			"author": {
+				"name": "Adam Jurek",
+				"url": "https://adamjurek.com"
+			},
+			"homepage": "https://adamjurek.com",
+			"repository": "https://github.com/sushindustries/sushindustries",
+			"license": "MIT",
+			"keywords": [
+				"mcp",
+				"documentation",
+				"design-system",
+				"tanstack",
+				"llms-txt"
+			],
+			"category": "documentation"
+		}
+	]
+}

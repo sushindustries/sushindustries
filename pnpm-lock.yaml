@@ -37,16 +37,22 @@ importers:
         version: 0.3.23
       tsdown:
         specifier: 0.22.14
-        version: 0.22.14(@arethetypeswrong/core@0.18.5)(@volar/typescript@2.4.28(typescript@5.9.3))(publint@0.3.23)(tsx@4.23.12)(typescript@5.9.3)
+        version: 0.22.14(@arethetypeswrong/core@0.18.5)(@volar/typescript@2.4.28(typescript@5.9.3))(publint@0.3.23)(tsx@4.23.12)(typescript@5.9.3)(unplugin-unused@0.6.0(esbuild@0.28.2)(rolldown@1.2.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)))
       turbo:
         specifier: 2.10.10
         version: 2.10.10
       typescript:
         specifier: 5.9.3
         version: 5.9.3
+      unplugin-unused:
+        specifier: ^0.6.0
+        version: 0.6.0(esbuild@0.28.2)(rolldown@1.2.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
 
   apps/web:
     dependencies:
+      '@modelcontextprotocol/server':
+        specifier: 2.0.0
+        version: 2.0.0
       '@mux/mux-player-react':
         specifier: ^3.13.2
         version: 3.13.2(@types/react-dom@19.2.4(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -71,6 +77,9 @@ importers:
       '@sushindustries/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@sushindustries/http':
+        specifier: workspace:*
+        version: link:../../packages/http
       '@sushindustries/llms':
         specifier: workspace:*
         version: link:../../packages/llms
@@ -199,15 +208,6 @@ importers:
         specifier: 4.1.10
         version: 4.1.10(@types/node@26.2.0)(jsdom@28.1.0)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
 
-  packages/adam-jurek:
-    dependencies:
-      '@sushindustries/atoms':
-        specifier: workspace:*
-        version: link:../atoms
-      '@sushindustries/ui':
-        specifier: workspace:*
-        version: link:../ui
-
   packages/assistant:
     dependencies:
       '@sushindustries/atoms':
@@ -230,6 +230,15 @@ importers:
         specifier: 0.3.6
         version: 0.3.6
 
+  packages/cli:
+    dependencies:
+      '@modelcontextprotocol/server':
+        specifier: 2.0.0
+        version: 2.0.0
+      zod:
+        specifier: 4.4.3
+        version: 4.4.3
+
   packages/db:
     dependencies:
       drizzle-orm:
@@ -245,6 +254,8 @@ importers:
       drizzle-kit:
         specifier: 0.31.10
         version: 0.31.10
+
+  packages/http: {}
 
   packages/llms: {}
 
@@ -941,6 +952,14 @@ packages:
 
   '@mediapipe/tasks-vision@0.10.17':
     resolution: {integrity: sha512-CZWV/q6TTe8ta61cZXjfnnHsfWIdFhms03M9T7Cnd5y2mdpylJM0rF1qRq+wsQVRMLz1OYPVEBU9ph2Bx8cxrg==}
+
+  '@modelcontextprotocol/core@2.0.0':
+    resolution: {integrity: sha512-pJCEwGG7Lfr/+PQp9ZTwKXNeO5wzbfKL7H3MYpCorM4oFBoQrdjnBgEoqG+RjhsvS1FKrDbKux+M1HhlnGWqcA==}
+    engines: {node: '>=20'}
+
+  '@modelcontextprotocol/server@2.0.0':
+    resolution: {integrity: sha512-YhHWdHfpFMQfd0prsEnxKeS3Qz3ytIGmsS0sth4KDjnacIT7hxk6hXHkJ9KysxlkvTM+WZAtQbbcUhdoP4Hvtw==}
+    engines: {node: '>=20'}
 
   '@monogrid/gainmap-js@3.4.0':
     resolution: {integrity: sha512-2Z0FATFHaoYJ8b+Y4y4Hgfn3FRFwuU5zRrk+9dFWp4uGAdHGqVEdP7HP+gLA3X469KXHmfupJaUbKo1b/aDKIg==}
@@ -2502,6 +2521,10 @@ packages:
     resolution: {integrity: sha512-WUj2qlxaQtO4g6Pq5c29GTcWGDyd8itL8zTlipgECz3JesAiiOKotd8JU6otB3PACgG6xkJUyVhboMS+bje/jA==}
     engines: {node: '>=6'}
 
+  escape-string-regexp@5.0.0:
+    resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
+    engines: {node: '>=12'}
+
   estree-walker@3.0.3:
     resolution: {integrity: sha512-7RUKfXgSMMkzt6ZuXmqapOurLGPPfgj6l9uRZ7lRGolvk0y2yocc35LdcxKC5PQZdn2DMqioAQ2NoWcrTKmm6g==}
 
@@ -2724,6 +2747,9 @@ packages:
   jiti@2.7.0:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
     hasBin: true
+
+  js-tokens@10.0.0:
+    resolution: {integrity: sha512-lM/UBzQmfJRo9ABXbPWemivdCW8V2G8FHaHdypQaIy523snUjog0W71ayWXTjiR+ixeMyVHN2XcpnTd/liPg/Q==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -3497,6 +3523,10 @@ packages:
   unique-string@3.0.0:
     resolution: {integrity: sha512-VGXBUVwxKMBUznyffQweQABPRRW1vHZAbadFZud4pLFAqRGvv/96vafgjWFqzourzr8YonlQiPgH0YCJfawoGQ==}
     engines: {node: '>=12'}
+
+  unplugin-unused@0.6.0:
+    resolution: {integrity: sha512-ov+8yoEs5lyCjK7AqSUmpLuyEhtHwKtNtc1PrpwJVCNQjv+Dins4+7e1+ej57yo8lfiW/zOr9FAEmNmjgU+hFQ==}
+    engines: {node: ^22.18.0 || ^24.11.0 || >=26.0.0}
 
   unplugin@3.3.0:
     resolution: {integrity: sha512-qa66K+crbfyE6JK10GjvbJeRrOsuC/JpbnHctfyp/i4oBTxWOzJfRZyDiOk1PtErMFRu8JhsU/wPvOdBNWe5Rg==}
@@ -4288,6 +4318,15 @@ snapshots:
       '@braidai/lang': 1.1.2
 
   '@mediapipe/tasks-vision@0.10.17': {}
+
+  '@modelcontextprotocol/core@2.0.0':
+    dependencies:
+      zod: 4.4.3
+
+  '@modelcontextprotocol/server@2.0.0':
+    dependencies:
+      '@modelcontextprotocol/core': 2.0.0
+      zod: 4.4.3
 
   '@monogrid/gainmap-js@3.4.0(three@0.185.1)':
     dependencies:
@@ -5733,6 +5772,8 @@ snapshots:
 
   escalade@3.2.0: {}
 
+  escape-string-regexp@5.0.0: {}
+
   estree-walker@3.0.3:
     dependencies:
       '@types/estree': 1.0.9
@@ -5924,6 +5965,8 @@ snapshots:
       picocolors: 1.1.1
 
   jiti@2.7.0: {}
+
+  js-tokens@10.0.0: {}
 
   js-tokens@4.0.0: {}
 
@@ -6537,7 +6580,7 @@ snapshots:
 
   troika-worker-utils@0.52.0: {}
 
-  tsdown@0.22.14(@arethetypeswrong/core@0.18.5)(@volar/typescript@2.4.28(typescript@5.9.3))(publint@0.3.23)(tsx@4.23.12)(typescript@5.9.3):
+  tsdown@0.22.14(@arethetypeswrong/core@0.18.5)(@volar/typescript@2.4.28(typescript@5.9.3))(publint@0.3.23)(tsx@4.23.12)(typescript@5.9.3)(unplugin-unused@0.6.0(esbuild@0.28.2)(rolldown@1.2.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))):
     dependencies:
       ansis: 4.3.1
       cac: 7.0.0
@@ -6559,6 +6602,7 @@ snapshots:
       publint: 0.3.23
       tsx: 4.23.12
       typescript: 5.9.3
+      unplugin-unused: 0.6.0(esbuild@0.28.2)(rolldown@1.2.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
     transitivePeerDependencies:
       - '@typescript/native-preview'
       - '@volar/typescript'
@@ -6621,6 +6665,23 @@ snapshots:
   unique-string@3.0.0:
     dependencies:
       crypto-random-string: 4.0.0
+
+  unplugin-unused@0.6.0(esbuild@0.28.2)(rolldown@1.2.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)):
+    dependencies:
+      empathic: 2.0.1
+      escape-string-regexp: 5.0.0
+      js-tokens: 10.0.0
+      unplugin: 3.3.0(esbuild@0.28.2)(rolldown@1.2.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
+    transitivePeerDependencies:
+      - '@farmfe/core'
+      - '@rspack/core'
+      - bun-types-no-globals
+      - esbuild
+      - rolldown
+      - rollup
+      - unloader
+      - vite
+      - webpack
 
   unplugin@3.3.0(esbuild@0.28.2)(rolldown@1.2.4)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0)):
     dependencies:

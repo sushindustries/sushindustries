@@ -1,0 +1,30 @@
+{
+	"provider": "posthog-com",
+	"section": "Toolbar",
+	"entries": [
+		{
+			"name": "Creating actions from the toolbar - Docs",
+			"url": "https://posthog.com/docs/toolbar/create-toolbar-actions.md",
+			"description": "",
+			"section": "Toolbar"
+		},
+		{
+			"name": "Heatmaps - Docs",
+			"url": "https://posthog.com/docs/toolbar/heatmaps.md",
+			"description": "",
+			"section": "Toolbar"
+		},
+		{
+			"name": "Overriding feature flags - Docs",
+			"url": "https://posthog.com/docs/toolbar/override-feature-flags.md",
+			"description": "",
+			"section": "Toolbar"
+		},
+		{
+			"name": "Toolbar - Docs",
+			"url": "https://posthog.com/docs/toolbar.md",
+			"description": "",
+			"section": "Toolbar"
+		}
+	]
+}

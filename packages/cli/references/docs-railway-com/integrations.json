@@ -1,0 +1,132 @@
+{
+	"provider": "docs-railway-com",
+	"section": "Integrations",
+	"entries": [
+		{
+			"name": "Integrations",
+			"url": "https://docs.railway.com/integrations.md",
+			"description": "Integrate with Railway using OAuth and the GraphQL API.",
+			"section": "Integrations"
+		},
+		{
+			"name": "OAuth",
+			"url": "https://docs.railway.com/integrations/oauth.md",
+			"description": "Enable users to sign in with their Railway account using OAuth 2.0 and OpenID Connect.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Quickstart",
+			"url": "https://docs.railway.com/integrations/oauth/quickstart.md",
+			"description": "Get started with Login with Railway in 5 steps.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Creating an app",
+			"url": "https://docs.railway.com/integrations/oauth/creating-an-app.md",
+			"description": "Create and configure OAuth applications for Login with Railway.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Login & tokens",
+			"url": "https://docs.railway.com/integrations/oauth/login-and-tokens.md",
+			"description": "Understand the OAuth authorization flow and token lifecycle.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Scopes & user consent",
+			"url": "https://docs.railway.com/integrations/oauth/scopes-and-user-consent.md",
+			"description": "Configure OAuth scopes to request appropriate permissions from users.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Fetching workspaces or projects",
+			"url": "https://docs.railway.com/integrations/oauth/fetching-workspaces-or-projects.md",
+			"description": "Query workspaces and projects the user has granted access to.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Managing an app",
+			"url": "https://docs.railway.com/integrations/oauth/managing-an-app.md",
+			"description": "Configure and manage your OAuth applications.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Authorized apps",
+			"url": "https://docs.railway.com/integrations/oauth/authorized-apps.md",
+			"description": "Manage applications you've authorized to access your Railway account.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Troubleshooting",
+			"url": "https://docs.railway.com/integrations/oauth/troubleshooting.md",
+			"description": "Common issues and solutions for Login with Railway.",
+			"section": "Integrations"
+		},
+		{
+			"name": "API",
+			"url": "https://docs.railway.com/integrations/api.md",
+			"description": "Discover the Railway GraphQL Public API.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Introduction to GraphQL",
+			"url": "https://docs.railway.com/integrations/api/graphql-overview.md",
+			"description": "Learn what GraphQL is, why Railway uses it, and how to get started.",
+			"section": "Integrations"
+		},
+		{
+			"name": "API cookbook",
+			"url": "https://docs.railway.com/integrations/api/api-cookbook.md",
+			"description": "Quick reference for common Railway API operations.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Manage projects",
+			"url": "https://docs.railway.com/integrations/api/manage-projects.md",
+			"description": "Learn how to manage projects via the public GraphQL API.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Manage services",
+			"url": "https://docs.railway.com/integrations/api/manage-services.md",
+			"description": "Learn how to create and manage services via the public GraphQL API.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Manage deployments",
+			"url": "https://docs.railway.com/integrations/api/manage-deployments.md",
+			"description": "Learn how to manage deployments via the public GraphQL API.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Manage variables",
+			"url": "https://docs.railway.com/integrations/api/manage-variables.md",
+			"description": "Learn how to manage environment variables via the public GraphQL API.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Manage environments",
+			"url": "https://docs.railway.com/integrations/api/manage-environments.md",
+			"description": "Learn how to manage environments via the public GraphQL API.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Manage domains",
+			"url": "https://docs.railway.com/integrations/api/manage-domains.md",
+			"description": "Learn how to manage domains via the public GraphQL API.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Manage volumes",
+			"url": "https://docs.railway.com/integrations/api/manage-volumes.md",
+			"description": "Learn how to manage persistent volumes via the public GraphQL API.",
+			"section": "Integrations"
+		},
+		{
+			"name": "Stripe Provisioning",
+			"url": "https://docs.railway.com/integrations/stripe.md",
+			"description": "Provision Railway databases, hosting, and storage directly from Stripe using the Agentic Provisioning Protocol.",
+			"section": "Integrations"
+		}
+	]
+}

@@ -1,0 +1,60 @@
+{
+	"provider": "zod-dev",
+	"section": "Ecosystem",
+	"entries": [
+		{
+			"name": "Ecosystem",
+			"url": "https://zod.dev/ecosystem",
+			"description": "Overview of the Zod ecosystem including integrations, tools, and community resources",
+			"section": "Ecosystem"
+		},
+		{
+			"name": "Resources",
+			"url": "https://zod.dev/ecosystem?id=resources",
+			"description": "",
+			"section": "Ecosystem"
+		},
+		{
+			"name": "API Libraries",
+			"url": "https://zod.dev/ecosystem?id=api-libraries",
+			"description": "",
+			"section": "Ecosystem"
+		},
+		{
+			"name": "Form Integrations",
+			"url": "https://zod.dev/ecosystem?id=form-integrations",
+			"description": "",
+			"section": "Ecosystem"
+		},
+		{
+			"name": "Zod to X",
+			"url": "https://zod.dev/ecosystem?id=zod-to-x",
+			"description": "",
+			"section": "Ecosystem"
+		},
+		{
+			"name": "X to Zod",
+			"url": "https://zod.dev/ecosystem?id=x-to-zod",
+			"description": "",
+			"section": "Ecosystem"
+		},
+		{
+			"name": "Mocking Libraries",
+			"url": "https://zod.dev/ecosystem?id=mocking-libraries",
+			"description": "",
+			"section": "Ecosystem"
+		},
+		{
+			"name": "Powered by Zod",
+			"url": "https://zod.dev/ecosystem?id=powered-by-zod",
+			"description": "",
+			"section": "Ecosystem"
+		},
+		{
+			"name": "Zod Utilities",
+			"url": "https://zod.dev/ecosystem?id=zod-utilities",
+			"description": "",
+			"section": "Ecosystem"
+		}
+	]
+}

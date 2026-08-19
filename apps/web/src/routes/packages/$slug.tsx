@@ -17,7 +17,7 @@ import {
 	packageApplication,
 } from "../../modules/content/structured-data";
 import { BLOCKS } from "../../modules/markdown/blocks";
-import { countPackageView } from "../../modules/stats/stats.functions";
+import { countPageView } from "../../modules/stats/stats.functions";
 
 /*
  * Kept as a flat route file rather than a `$slug/` directory. Converting a
@@ -32,7 +32,9 @@ export const Route = createFileRoute("/packages/$slug")({
 
 		// Counted in the loader so a client-side navigation counts too, and
 		// awaited because the incremented total is the number shown.
-		const views = await countPackageView({ data: params.slug });
+		const views = await countPageView({
+			data: { kind: "package", slug: params.slug },
+		});
 
 		return { entry, headings: collectHeadings(entry.body), views };
 	},
@@ -78,7 +80,7 @@ function PackagePage(): ReactNode {
 				<DocActions
 					title={entry.name}
 					markdown={entry.readme}
-					markdownUrl={`/r/md/packages/${entry.slug}`}
+					markdownUrl={`/packages/${entry.slug}/index.md`}
 					promptUrl={`${SITE.url}/r/prompt/packages/${entry.slug}`}
 					editPath={`packages/${entry.slug}/README.md`}
 				/>

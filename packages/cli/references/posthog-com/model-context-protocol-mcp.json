@@ -1,0 +1,78 @@
+{
+	"provider": "posthog-com",
+	"section": "Model Context Protocol (MCP)",
+	"entries": [
+		{
+			"name": "Enterprise-managed authorization (ID-JAG) - Docs",
+			"url": "https://posthog.com/docs/model-context-protocol/enterprise-managed-authorization.md",
+			"description": "",
+			"section": "Model Context Protocol (MCP)"
+		},
+		{
+			"name": "Model Context Protocol (MCP) - Docs",
+			"url": "https://posthog.com/docs/model-context-protocol.md",
+			"description": "",
+			"section": "Model Context Protocol (MCP)"
+		},
+		{
+			"name": "PostHog MCP FAQ and advanced setup - Docs",
+			"url": "https://posthog.com/docs/model-context-protocol/faq.md",
+			"description": "",
+			"section": "Model Context Protocol (MCP)"
+		},
+		{
+			"name": "PostHog MCP for Claude Code - Docs",
+			"url": "https://posthog.com/docs/model-context-protocol/claude-code.md",
+			"description": "",
+			"section": "Model Context Protocol (MCP)"
+		},
+		{
+			"name": "PostHog MCP for Claude Desktop - Docs",
+			"url": "https://posthog.com/docs/model-context-protocol/claude-desktop.md",
+			"description": "",
+			"section": "Model Context Protocol (MCP)"
+		},
+		{
+			"name": "PostHog MCP for Codex - Docs",
+			"url": "https://posthog.com/docs/model-context-protocol/codex.md",
+			"description": "",
+			"section": "Model Context Protocol (MCP)"
+		},
+		{
+			"name": "PostHog MCP for Cursor - Docs",
+			"url": "https://posthog.com/docs/model-context-protocol/cursor.md",
+			"description": "",
+			"section": "Model Context Protocol (MCP)"
+		},
+		{
+			"name": "PostHog MCP for VS Code - Docs",
+			"url": "https://posthog.com/docs/model-context-protocol/vscode.md",
+			"description": "",
+			"section": "Model Context Protocol (MCP)"
+		},
+		{
+			"name": "PostHog MCP for Windsurf - Docs",
+			"url": "https://posthog.com/docs/model-context-protocol/windsurf.md",
+			"description": "",
+			"section": "Model Context Protocol (MCP)"
+		},
+		{
+			"name": "PostHog MCP for Zed - Docs",
+			"url": "https://posthog.com/docs/model-context-protocol/zed.md",
+			"description": "",
+			"section": "Model Context Protocol (MCP)"
+		},
+		{
+			"name": "PostHog MCP tools reference - Docs",
+			"url": "https://posthog.com/docs/model-context-protocol/tools.md",
+			"description": "",
+			"section": "Model Context Protocol (MCP)"
+		},
+		{
+			"name": "PostHog MCP use cases - Docs",
+			"url": "https://posthog.com/docs/model-context-protocol/use-cases.md",
+			"description": "",
+			"section": "Model Context Protocol (MCP)"
+		}
+	]
+}

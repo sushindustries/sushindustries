@@ -12,6 +12,7 @@
 		"typecheck": "tsc --noEmit -p tsconfig.json"
 	},
 	"dependencies": {
+		"@modelcontextprotocol/server": "2.0.0",
 		"@mux/mux-player-react": "^3.13.2",
 		"@posthog/react": "^1.10.3",
 		"@react-three/drei": "10.7.8",
@@ -20,6 +21,7 @@
 		"@sushindustries/assistant": "workspace:*",
 		"@sushindustries/atoms": "workspace:*",
 		"@sushindustries/db": "workspace:*",
+		"@sushindustries/http": "workspace:*",
 		"@sushindustries/llms": "workspace:*",
 		"@sushindustries/product-viewer": "workspace:*",
 		"@sushindustries/react-product-viewer": "workspace:*",

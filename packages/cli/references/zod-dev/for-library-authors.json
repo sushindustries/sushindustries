@@ -1,0 +1,48 @@
+{
+	"provider": "zod-dev",
+	"section": "For library authors",
+	"entries": [
+		{
+			"name": "For library authors",
+			"url": "https://zod.dev/library-authors",
+			"description": "Guidelines and best practices for library authors integrating with Zod",
+			"section": "For library authors"
+		},
+		{
+			"name": "Do I need to depend on Zod?",
+			"url": "https://zod.dev/library-authors?id=do-i-need-to-depend-on-zod",
+			"description": "",
+			"section": "For library authors"
+		},
+		{
+			"name": "How to configure peer dependencies?",
+			"url": "https://zod.dev/library-authors?id=how-to-configure-peer-dependencies",
+			"description": "",
+			"section": "For library authors"
+		},
+		{
+			"name": "Which subpaths should I import from?",
+			"url": "https://zod.dev/library-authors?id=which-subpaths-should-i-import-from",
+			"description": "",
+			"section": "For library authors"
+		},
+		{
+			"name": "How to support Zod 3 alongside Zod 4?",
+			"url": "https://zod.dev/library-authors?id=how-to-support-zod-3-alongside-zod-4",
+			"description": "",
+			"section": "For library authors"
+		},
+		{
+			"name": "How to support Zod and Zod Mini simultaneously?",
+			"url": "https://zod.dev/library-authors?id=how-to-support-zod-and-zod-mini-simultaneously",
+			"description": "",
+			"section": "For library authors"
+		},
+		{
+			"name": "How to accept user-defined schemas?",
+			"url": "https://zod.dev/library-authors?id=how-to-accept-user-defined-schemas",
+			"description": "",
+			"section": "For library authors"
+		}
+	]
+}

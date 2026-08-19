@@ -1,0 +1,342 @@
+{
+	"provider": "tanstack-com-tanstack-pacer",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "Which Utility Should I Choose?",
+			"url": "https://tanstack.com/pacer/latest/docs/guides/which-pacer-utility-should-i-choose.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: Debouncing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/guides/debouncing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: Throttling Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/guides/throttling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: Rate Limiting Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/guides/rate-limiting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: Queuing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/guides/queuing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: Batching Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/guides/batching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: Async Debouncing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/guides/async-debouncing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: Async Throttling Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/guides/async-throttling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: Async Rate Limiting Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/guides/async-rate-limiting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: Async Queuing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/guides/async-queuing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: Async Batching Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/guides/async-batching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vanilla: Async Retrying Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/vanilla/guides/async-retrying.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Debouncing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/guides/debouncing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Throttling Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/guides/throttling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Rate Limiting Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/guides/rate-limiting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Queuing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/guides/queuing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Batching Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/guides/batching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Async Debouncing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/guides/async-debouncing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Async Throttling Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/guides/async-throttling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Async Rate Limiting Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/guides/async-rate-limiting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Async Queuing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/guides/async-queuing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Async Batching Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/guides/async-batching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Async Retrying Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/guides/async-retrying.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Debouncing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/guides/debouncing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Throttling Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/guides/throttling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Rate Limiting Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/guides/rate-limiting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Queuing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/guides/queuing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Batching Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/guides/batching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Async Debouncing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/guides/async-debouncing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Async Throttling Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/guides/async-throttling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Async Rate Limiting Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/guides/async-rate-limiting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Async Queuing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/guides/async-queuing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Async Batching Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/guides/async-batching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Async Retrying Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/guides/async-retrying.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Debouncing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/guides/debouncing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Throttling Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/guides/throttling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Rate Limiting Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/guides/rate-limiting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Queuing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/guides/queuing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Batching Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/guides/batching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Async Debouncing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/guides/async-debouncing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Async Throttling Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/guides/async-throttling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Async Rate Limiting Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/guides/async-rate-limiting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Async Queuing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/guides/async-queuing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Async Batching Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/guides/async-batching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Async Retrying Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/guides/async-retrying.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Debouncing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/guides/debouncing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Throttling Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/guides/throttling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Rate Limiting Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/guides/rate-limiting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Queuing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/guides/queuing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Batching Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/guides/batching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Async Debouncing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/guides/async-debouncing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Async Throttling Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/guides/async-throttling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Async Rate Limiting Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/guides/async-rate-limiting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Async Queuing Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/guides/async-queuing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Async Batching Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/guides/async-batching.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Async Retrying Guide",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/guides/async-retrying.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

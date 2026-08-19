@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Notebooks",
+	"entries": [
+		{
+			"name": "Notebooks - Docs",
+			"url": "https://posthog.com/docs/notebooks.md",
+			"description": "",
+			"section": "Notebooks"
+		}
+	]
+}

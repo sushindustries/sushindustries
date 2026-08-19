@@ -1,0 +1,42 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "mysql/Connect",
+	"entries": [
+		{
+			"name": "Drizzle \\<\\> MySQL",
+			"url": "https://orm.drizzle.team/docs/mysql/get-started-mysql",
+			"description": "",
+			"section": "mysql/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> PlanetScale MySQL",
+			"url": "https://orm.drizzle.team/docs/mysql/connect-planetscale",
+			"description": "",
+			"section": "mysql/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> TiDB Serverless",
+			"url": "https://orm.drizzle.team/docs/mysql/connect-tidb",
+			"description": "",
+			"section": "mysql/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> Bun SQL",
+			"url": "https://orm.drizzle.team/docs/mysql/connect-bun-sql",
+			"description": "",
+			"section": "mysql/Connect"
+		},
+		{
+			"name": "Drizzle \\<\\> AWS Data API MySQL",
+			"url": "https://orm.drizzle.team/docs/mysql/connect-aws-data-api-mysql",
+			"description": "",
+			"section": "mysql/Connect"
+		},
+		{
+			"name": "Drizzle HTTP proxy",
+			"url": "https://orm.drizzle.team/docs/mysql/connect-drizzle-proxy",
+			"description": "",
+			"section": "mysql/Connect"
+		}
+	]
+}

@@ -1,0 +1,36 @@
+{
+	"provider": "posthog-com",
+	"section": "Billing",
+	"entries": [
+		{
+			"name": "Billing limits and alerts - Docs",
+			"url": "https://posthog.com/docs/billing/limits-alerts.md",
+			"description": "",
+			"section": "Billing"
+		},
+		{
+			"name": "Common questions about billing - Docs",
+			"url": "https://posthog.com/docs/billing/common-questions.md",
+			"description": "",
+			"section": "Billing"
+		},
+		{
+			"name": "Estimating usage &amp; costs - Docs",
+			"url": "https://posthog.com/docs/billing/estimating-usage-costs.md",
+			"description": "",
+			"section": "Billing"
+		},
+		{
+			"name": "Pre-paid plans - Docs",
+			"url": "https://posthog.com/docs/billing/pre-paid-plans.md",
+			"description": "",
+			"section": "Billing"
+		},
+		{
+			"name": "Spike detection - Docs",
+			"url": "https://posthog.com/docs/billing/spike-detection.md",
+			"description": "",
+			"section": "Billing"
+		}
+	]
+}

@@ -1,0 +1,54 @@
+{
+	"provider": "tanstack-com-tanstack-hotkeys",
+	"section": "Get Started",
+	"entries": [
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/hotkeys/latest/docs/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Installation",
+			"url": "https://tanstack.com/hotkeys/latest/docs/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Devtools",
+			"url": "https://tanstack.com/hotkeys/latest/docs/devtools.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Quick Start",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/react/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Quick Start",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/angular/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: Quick Start",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/vue/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Lit: Quick Start",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/lit/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: Quick Start",
+			"url": "https://tanstack.com/hotkeys/latest/docs/framework/svelte/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		}
+	]
+}

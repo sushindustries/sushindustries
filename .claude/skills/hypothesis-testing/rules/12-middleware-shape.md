@@ -26,4 +26,4 @@ just source code claiming to set one. `start.ts` wires
 `requestMiddleware: [csrfMiddleware, withResponseHeaders]`, and
 `withResponseHeaders` uses `createMiddleware({ type: "request" })`.
 
-**Source:** `references/01-tanstack-official-safety.md`.
+**Source:** `.claude/skills/sushindustries-conventions/references/01-tanstack-official.md`.

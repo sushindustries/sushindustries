@@ -1,0 +1,18 @@
+{
+	"provider": "posthog-com",
+	"section": "Prompt Management",
+	"entries": [
+		{
+			"name": "A/B testing prompts - Docs",
+			"url": "https://posthog.com/docs/prompt-management/prompt-experiments.md",
+			"description": "",
+			"section": "Prompt Management"
+		},
+		{
+			"name": "Prompt management - Docs",
+			"url": "https://posthog.com/docs/prompt-management.md",
+			"description": "",
+			"section": "Prompt Management"
+		}
+	]
+}

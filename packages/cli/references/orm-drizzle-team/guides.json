@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "Guides",
+			"url": "https://orm.drizzle.team/docs/guides",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

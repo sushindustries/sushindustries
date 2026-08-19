@@ -1,0 +1,42 @@
+{
+	"provider": "tanstack-com-tanstack-store",
+	"source": "https://tanstack.com/store/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Store docs",
+	"summary": "The immutable-reactive data store that powers the core of TanStack libraries and their framework adapters.",
+	"total": 142,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 11,
+			"file": "get-started.json"
+		},
+		{
+			"name": "API",
+			"entries": 91,
+			"file": "api.json"
+		},
+		{
+			"name": "Examples",
+			"entries": 36,
+			"file": "examples.json"
+		}
+	]
+}

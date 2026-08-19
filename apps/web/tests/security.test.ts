@@ -1,5 +1,5 @@
+import { EMBED_PROVIDERS } from "@sushindustries/http";
 import { beforeAll, describe, expect, inject, test } from "vitest";
-import { EMBED_PROVIDERS } from "../src/modules/security/embeds";
 
 /*
  * The policy, checked against the content it is a policy for.

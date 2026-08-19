@@ -78,6 +78,24 @@ export function parseVariantSearch(
 }
 
 /**
+ * What `useVariantSelection` hands back.
+ *
+ * Named rather than inferred so a consumer can hold it in a variable, pass it
+ * down, or type a component's props against it - an anonymous return type is
+ * one a caller can only use in place.
+ */
+export interface VariantSelection {
+	/** The variants currently selected, read from the URL. */
+	readonly variants: readonly string[];
+	/** Replaces the whole selection. */
+	readonly set: (next: readonly string[]) => void;
+	/** Adds a variant, or removes it if already present. */
+	readonly toggle: (variant: string) => void;
+	/** Picks one variant out of a mutually exclusive group. */
+	readonly select: (group: readonly string[], variant: string) => void;
+}
+
+/**
  * Reads and writes the selected variants in the URL.
  *
  * ```tsx filename="src/routes/product.$slug.tsx"
@@ -90,7 +108,7 @@ export function parseVariantSearch(
  * button would walk the customer through their own indecision instead of
  * returning them to the catalogue.
  */
-export function useVariantSelection() {
+export function useVariantSelection(): VariantSelection {
 	const search = useSearch({ strict: false }) as VariantSearch;
 	const navigate = useNavigate();
 

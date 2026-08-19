@@ -1,0 +1,47 @@
+{
+	"provider": "tanstack-com-tanstack-virtual",
+	"source": "https://tanstack.com/virtual/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Virtual docs",
+	"summary": "Virtualize only the visible content for massive scrollable DOM nodes at 60FPS in TS/JS, React, Vue, Solid, Svelte, Lit, Angular & Marko while retaining 100% control over markup and styles.",
+	"total": 74,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 9,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 1,
+			"file": "guides.json"
+		},
+		{
+			"name": "API",
+			"entries": 2,
+			"file": "api.json"
+		},
+		{
+			"name": "Examples",
+			"entries": 58,
+			"file": "examples.json"
+		}
+	]
+}

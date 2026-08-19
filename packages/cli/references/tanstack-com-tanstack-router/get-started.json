@@ -1,0 +1,90 @@
+{
+	"provider": "tanstack-com-tanstack-router",
+	"section": "Get Started",
+	"entries": [
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/router/latest/docs/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start",
+			"url": "https://tanstack.com/router/latest/docs/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Devtools",
+			"url": "https://tanstack.com/router/latest/docs/devtools.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Decisions on DX",
+			"url": "https://tanstack.com/router/latest/docs/decisions-on-dx.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Comparison",
+			"url": "https://tanstack.com/router/latest/docs/comparison.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Frequently Asked Questions",
+			"url": "https://tanstack.com/router/latest/docs/faq.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Manual Setup",
+			"url": "https://tanstack.com/router/latest/docs/installation/manual.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vite",
+			"url": "https://tanstack.com/router/latest/docs/installation/with-vite.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Rspack/Rsbuild",
+			"url": "https://tanstack.com/router/latest/docs/installation/with-rspack.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Webpack",
+			"url": "https://tanstack.com/router/latest/docs/installation/with-webpack.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Esbuild",
+			"url": "https://tanstack.com/router/latest/docs/installation/with-esbuild.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Router CLI",
+			"url": "https://tanstack.com/router/latest/docs/installation/with-router-cli.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Migrate from React Router",
+			"url": "https://tanstack.com/router/latest/docs/installation/migrate-from-react-router.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Migrate from React Location",
+			"url": "https://tanstack.com/router/latest/docs/installation/migrate-from-react-location.md",
+			"description": "",
+			"section": "Get Started"
+		}
+	]
+}

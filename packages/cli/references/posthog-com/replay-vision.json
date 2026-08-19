@@ -1,0 +1,72 @@
+{
+	"provider": "posthog-com",
+	"section": "Replay Vision",
+	"entries": [
+		{
+			"name": "Calibration - Docs",
+			"url": "https://posthog.com/docs/replay-vision/calibration.md",
+			"description": "",
+			"section": "Replay Vision"
+		},
+		{
+			"name": "Creating scanners - Docs",
+			"url": "https://posthog.com/docs/replay-vision/creating-scanners.md",
+			"description": "",
+			"section": "Replay Vision"
+		},
+		{
+			"name": "Digests and alerts - Docs",
+			"url": "https://posthog.com/docs/replay-vision/actions.md",
+			"description": "",
+			"section": "Replay Vision"
+		},
+		{
+			"name": "Getting started with Replay Vision - Docs",
+			"url": "https://posthog.com/docs/replay-vision/start-here.md",
+			"description": "",
+			"section": "Replay Vision"
+		},
+		{
+			"name": "MCP - Docs",
+			"url": "https://posthog.com/docs/replay-vision/mcp.md",
+			"description": "",
+			"section": "Replay Vision"
+		},
+		{
+			"name": "Observations - Docs",
+			"url": "https://posthog.com/docs/replay-vision/observations.md",
+			"description": "",
+			"section": "Replay Vision"
+		},
+		{
+			"name": "Quota and limits - Docs",
+			"url": "https://posthog.com/docs/replay-vision/quota-and-limits.md",
+			"description": "",
+			"section": "Replay Vision"
+		},
+		{
+			"name": "Replay Vision - Docs",
+			"url": "https://posthog.com/docs/replay-vision.md",
+			"description": "",
+			"section": "Replay Vision"
+		},
+		{
+			"name": "Running scanners - Docs",
+			"url": "https://posthog.com/docs/replay-vision/running-scanners.md",
+			"description": "",
+			"section": "Replay Vision"
+		},
+		{
+			"name": "Scanner types - Docs",
+			"url": "https://posthog.com/docs/replay-vision/scanner-types.md",
+			"description": "",
+			"section": "Replay Vision"
+		},
+		{
+			"name": "Troubleshooting - Docs",
+			"url": "https://posthog.com/docs/replay-vision/troubleshooting.md",
+			"description": "",
+			"section": "Replay Vision"
+		}
+	]
+}

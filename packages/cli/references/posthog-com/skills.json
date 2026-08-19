@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Skills",
+	"entries": [
+		{
+			"name": "Skills - Docs",
+			"url": "https://posthog.com/docs/skills.md",
+			"description": "",
+			"section": "Skills"
+		}
+	]
+}

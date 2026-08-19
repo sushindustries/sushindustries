@@ -1,0 +1,24 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "cockroach/Seeding",
+	"entries": [
+		{
+			"name": "Drizzle Seed",
+			"url": "https://orm.drizzle.team/docs/cockroach/seed-overview",
+			"description": "",
+			"section": "cockroach/Seeding"
+		},
+		{
+			"name": "Generators",
+			"url": "https://orm.drizzle.team/docs/cockroach/seed-functions",
+			"description": "",
+			"section": "cockroach/Seeding"
+		},
+		{
+			"name": "Versioning",
+			"url": "https://orm.drizzle.team/docs/cockroach/seed-versioning",
+			"description": "",
+			"section": "cockroach/Seeding"
+		}
+	]
+}

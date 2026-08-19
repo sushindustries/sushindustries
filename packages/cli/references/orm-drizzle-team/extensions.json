@@ -1,0 +1,18 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "Extensions",
+	"entries": [
+		{
+			"name": "ESLint Drizzle Plugin",
+			"url": "https://orm.drizzle.team/docs/eslint-plugin",
+			"description": "",
+			"section": "Extensions"
+		},
+		{
+			"name": "drizzle-graphql",
+			"url": "https://orm.drizzle.team/docs/graphql",
+			"description": "",
+			"section": "Extensions"
+		}
+	]
+}

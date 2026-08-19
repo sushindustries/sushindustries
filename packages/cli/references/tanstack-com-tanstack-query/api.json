@@ -1,0 +1,750 @@
+{
+	"provider": "tanstack-com-tanstack-query",
+	"section": "API",
+	"entries": [
+		{
+			"name": "QueryClient",
+			"url": "https://tanstack.com/query/latest/docs/reference/QueryClient.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "QueryCache",
+			"url": "https://tanstack.com/query/latest/docs/reference/QueryCache.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "MutationCache",
+			"url": "https://tanstack.com/query/latest/docs/reference/MutationCache.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "QueryObserver",
+			"url": "https://tanstack.com/query/latest/docs/reference/QueryObserver.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "InfiniteQueryObserver",
+			"url": "https://tanstack.com/query/latest/docs/reference/InfiniteQueryObserver.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "QueriesObserver",
+			"url": "https://tanstack.com/query/latest/docs/reference/QueriesObserver.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "streamedQuery",
+			"url": "https://tanstack.com/query/latest/docs/reference/streamedQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "focusManager",
+			"url": "https://tanstack.com/query/latest/docs/reference/focusManager.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "onlineManager",
+			"url": "https://tanstack.com/query/latest/docs/reference/onlineManager.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "environmentManager",
+			"url": "https://tanstack.com/query/latest/docs/reference/environmentManager.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "notifyManager",
+			"url": "https://tanstack.com/query/latest/docs/reference/notifyManager.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "timeoutManager",
+			"url": "https://tanstack.com/query/latest/docs/reference/timeoutManager.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/useQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useQueries",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/useQueries.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useInfiniteQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/useInfiniteQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useMutation",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/useMutation.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useIsFetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/useIsFetching.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useIsMutating",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/useIsMutating.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useMutationState",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/useMutationState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useSuspenseQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/useSuspenseQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useSuspenseInfiniteQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/useSuspenseInfiniteQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useSuspenseQueries",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/useSuspenseQueries.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: QueryClientProvider",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/QueryClientProvider.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useQueryClient",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/useQueryClient.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: queryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/queryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: infiniteQueryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/infiniteQueryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: mutationOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/mutationOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: usePrefetchQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/usePrefetchQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: usePrefetchInfiniteQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/usePrefetchInfiniteQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: QueryErrorResetBoundary",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/QueryErrorResetBoundary.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: useQueryErrorResetBoundary",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/useQueryErrorResetBoundary.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: hydration",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/reference/hydration.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/useQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useQueries",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/useQueries.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useInfiniteQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/useInfiniteQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useMutation",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/useMutation.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useIsFetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/useIsFetching.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useIsMutating",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/useIsMutating.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useMutationState",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/useMutationState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: useQueryClient",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/useQueryClient.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: queryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/queryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: infiniteQueryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/infiniteQueryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: mutationOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/mutationOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: usePrefetchQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/usePrefetchQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: usePrefetchInfiniteQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/usePrefetchInfiniteQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: hydration",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reference/hydration.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/reference/useQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useQueries",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/reference/useQueries.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useInfiniteQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/reference/useInfiniteQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useMutation",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/reference/useMutation.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useIsFetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/reference/useIsFetching.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useIsMutating",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/reference/useIsMutating.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: useMutationState",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/reference/useMutationState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: queryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/reference/queryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: infiniteQueryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/reference/infiniteQueryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: mutationOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/reference/mutationOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: hydration",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/reference/hydration.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: Svelte Reference",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/reference/functions/createQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createQueries",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/reference/functions/createQueries.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createInfiniteQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/reference/functions/createInfiniteQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: createMutation",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/reference/functions/createMutation.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: useIsFetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/reference/functions/useIsFetching.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: useIsMutating",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/reference/functions/useIsMutating.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: useMutationState",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/reference/functions/useMutationState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: useQueryClient",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/reference/functions/useQueryClient.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: queryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/reference/functions/queryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: infiniteQueryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/reference/functions/infiniteQueryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: mutationOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/reference/functions/mutationOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: useHydrate",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/reference/functions/useHydrate.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Lit Reference",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: QueryClientProvider",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/classes/QueryClientProvider.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Functions / createQueryController",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/createQueryController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Functions / createQueriesController",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/createQueriesController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Functions / createInfiniteQueryController",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/createInfiniteQueryController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Functions / createMutationController",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/createMutationController.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Functions / useIsFetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/useIsFetching.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Functions / useIsMutating",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/useIsMutating.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Functions / useMutationState",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/useMutationState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Functions / useQueryClient",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/useQueryClient.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Functions / queryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/queryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Functions / infiniteQueryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/infiniteQueryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Functions / mutationOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/mutationOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Context / queryClientContext",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/variables/queryClientContext.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Context / getDefaultQueryClient",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/getDefaultQueryClient.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Context / registerDefaultQueryClient",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/registerDefaultQueryClient.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Context / unregisterDefaultQueryClient",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/unregisterDefaultQueryClient.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Context / resolveQueryClient",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/reference/functions/resolveQueryClient.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: Angular Reference",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: infiniteQueryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/infiniteQueryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectInfiniteQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/injectInfiniteQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectIsFetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/injectIsFetching.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectIsMutating",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/injectIsMutating.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectIsRestoring",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/injectIsRestoring.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectMutation",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/injectMutation.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectMutationState",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/injectMutationState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: injectQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/injectQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: mutationOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/mutationOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: provideIsRestoring",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/provideIsRestoring.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: provideQueryClient",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/provideQueryClient.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: provideTanStackQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/provideTanStackQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: queryFeature",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/queryFeature.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: queryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/reference/functions/queryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Preact Reference",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/useQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useQueries",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/useQueries.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useInfiniteQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/useInfiniteQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useMutation",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/useMutation.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useIsFetching",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/useIsFetching.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useIsMutating",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/useIsMutating.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useMutationState",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/useMutationState.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useSuspenseQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/useSuspenseQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useSuspenseInfiniteQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/useSuspenseInfiniteQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useSuspenseQueries",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/useSuspenseQueries.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: QueryClientProvider",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/QueryClientProvider.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useQueryClient",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/useQueryClient.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: queryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/queryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: infiniteQueryOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/infiniteQueryOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: mutationOptions",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/mutationOptions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: usePrefetchQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/usePrefetchQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: usePrefetchInfiniteQuery",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/usePrefetchInfiniteQuery.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: QueryErrorResetBoundary",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/QueryErrorResetBoundary.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: useQueryErrorResetBoundary",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/useQueryErrorResetBoundary.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: hydration",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/reference/functions/HydrationBoundary.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

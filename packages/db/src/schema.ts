@@ -1,13 +1,5 @@
 import { sql } from "drizzle-orm";
-import {
-	integer,
-	jsonb,
-	pgTable,
-	text,
-	timestamp,
-	unique,
-	uuid,
-} from "drizzle-orm/pg-core";
+import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import type { SchemaTypeName } from "./schema-org.generated";
 
 /*
@@ -20,22 +12,53 @@ import type { SchemaTypeName } from "./schema-org.generated";
  * client at all.
  */
 
-/** One row per package in `packages/`, for the counters the site shows. */
-export const packageStats = pgTable("package_stats", {
-	id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+/** Which catalogue a counted page came from. */
+export type PageKind = "component" | "package" | "post" | "page";
 
-	/** Directory name under `packages/`. The join key to the filesystem. */
-	slug: text("slug").notNull().unique(),
+/*
+ * One row per page anybody has actually opened.
+ *
+ * What exists is not stored here, and must not be. Every component, package,
+ * post and page is a file in this repo, globbed at build time, so a table
+ * listing them would be a second list to keep in step with the first - the
+ * exact thing the catalogues exist to avoid.
+ *
+ * What a build cannot know is what happened afterwards. That is this table,
+ * and it answers the two questions worth asking about anything published:
+ *
+ *   was it added?   `firstSeen` - the first time anyone asked for the path
+ *   is it used?     `views` and `lastSeen` - and no row at all means never
+ *
+ * Keyed by path rather than by slug, because a slug is only unique inside its
+ * own catalogue: `/components/archive` and `/posts/archive` are two pages and
+ * one slug. The path is what a visitor asked for and what a page already
+ * knows about itself, so nothing has to be told which kind it is twice.
+ *
+ * This replaced `package_stats`, which counted one catalogue out of four. The
+ * other three had no answer to "does anyone open this", which for a component
+ * library is the question.
+ */
+export const pageViews = pgTable("page_views", {
+	/** Route path, e.g. `/components/button`. The join key to the catalogue. */
+	path: text("path").primaryKey(),
+
+	/** Kept beside the path so counting one catalogue needs no path parsing. */
+	kind: text("kind").$type<PageKind>().notNull(),
 
 	views: integer("views").notNull().default(0),
 
-	updatedAt: timestamp("updated_at", { withTimezone: true })
+	firstSeen: timestamp("first_seen", { withTimezone: true })
+		.notNull()
+		.defaultNow(),
+
+	/** Most recent view, so a page that stopped being read is visible as one. */
+	lastSeen: timestamp("last_seen", { withTimezone: true })
 		.notNull()
 		.defaultNow(),
 });
 
-export type PackageStat = typeof packageStats.$inferSelect;
-export type NewPackageStat = typeof packageStats.$inferInsert;
+export type PageView = typeof pageViews.$inferSelect;
+export type NewPageView = typeof pageViews.$inferInsert;
 
 /*
  * One row per vote on a documentation page.
@@ -63,73 +86,26 @@ export type PageFeedback = typeof pageFeedback.$inferSelect;
 export type NewPageFeedback = typeof pageFeedback.$inferInsert;
 
 /*
- * schema.org, as the data model.
+ * schema.org, as the shape of the JSON-LD a page emits.
  *
  * Every element that shows content has a type at schema.org that already
  * describes it, and there is no reason to invent a second vocabulary beside
  * one that a search engine, a reader mode and another agent all already parse.
- * So an element is a `Thing` here, its `type` is a class from the published
- * vocabulary, and the JSON-LD a page emits is the row with an `@type` on it
- * rather than a second object somebody keeps in step by hand.
  *
- * One table rather than nine hundred. A table per class would be a migration
- * per class, for a vocabulary whose whole point is that it is open - and the
- * columns below are exactly the properties `Thing` itself declares, which is
- * to say the ones every class inherits and every query wants to filter on.
- * Everything a subtype adds lives in `properties`, validated against
- * `schemaProperties()` from `@sushindustries/db/schema-org`.
+ * There is deliberately no table behind this. One existed, keyed by type and
+ * slug, and nothing ever wrote to it: every page builds its JSON-LD from what
+ * it already has in hand - the video block from its own Markdown attributes,
+ * a component page from its registry entry - because that content is a file
+ * in this repo, not a row. Storing it would have been a copy that drifts.
  *
- * That module is a separate entry on purpose: the vocabulary is ninety
- * kilobytes of generated data, and only the type name is needed here. A type
- * import costs nothing at runtime.
+ * `SchemaTypeName` still comes from the generated vocabulary, and
+ * `schemaProperties()` in `@sushindustries/db/schema-org` still validates
+ * against it. That module is a separate entry because the vocabulary is
+ * ninety kilobytes and only the type name is needed here; a type import
+ * costs nothing at runtime.
  *
  * https://schema.org/Thing
  */
-export const things = pgTable(
-	"things",
-	{
-		id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
-
-		/**
-		 * The schema.org class, e.g. `VideoObject`, `SoftwareSourceCode`.
-		 * Text rather than an enum: nine hundred values is not an enum, and the
-		 * vocabulary gains classes without asking this database first.
-		 */
-		type: text("type").$type<SchemaTypeName>().notNull(),
-
-		/** Our id for it: a registry name, a page path, a slug. */
-		slug: text("slug").notNull(),
-
-		/* The properties `Thing` declares, as columns, because these are the
-		   ones worth an index and a filter. https://schema.org/Thing */
-		name: text("name").notNull(),
-		description: text("description"),
-		url: text("url"),
-		image: text("image"),
-
-		/**
-		 * Everything the subtype adds: `uploadDate` on a VideoObject,
-		 * `programmingLanguage` on SoftwareSourceCode. Keys are checked against
-		 * the vocabulary before a write, so this is open rather than untyped.
-		 */
-		properties: jsonb("properties")
-			.$type<Record<string, unknown>>()
-			.notNull()
-			.default({}),
-
-		createdAt: timestamp("created_at", { withTimezone: true })
-			.notNull()
-			.defaultNow(),
-		updatedAt: timestamp("updated_at", { withTimezone: true })
-			.notNull()
-			.defaultNow(),
-	},
-	/* One row per thing, not one per time something wrote about it. */
-	(table) => [unique("things_type_slug").on(table.type, table.slug)],
-);
-
-export type Thing = typeof things.$inferSelect;
-export type NewThing = typeof things.$inferInsert;
 
 /**
  * The half of a thing that describes it rather than the row it sits in.

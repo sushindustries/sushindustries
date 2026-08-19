@@ -1,0 +1,72 @@
+{
+	"provider": "posthog-com",
+	"section": "Revenue Analytics",
+	"entries": [
+		{
+			"name": "Analyze revenue with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/revenue-analytics/analyze-revenue-ai.md",
+			"description": "",
+			"section": "Revenue Analytics"
+		},
+		{
+			"name": "Capturing revenue events - Docs",
+			"url": "https://posthog.com/docs/revenue-analytics/capture-revenue-events.md",
+			"description": "",
+			"section": "Revenue Analytics"
+		},
+		{
+			"name": "Connect to customers - Docs",
+			"url": "https://posthog.com/docs/revenue-analytics/connect-to-customers.md",
+			"description": "",
+			"section": "Revenue Analytics"
+		},
+		{
+			"name": "Connect to payment platforms - Docs",
+			"url": "https://posthog.com/docs/revenue-analytics/payment-platforms.md",
+			"description": "",
+			"section": "Revenue Analytics"
+		},
+		{
+			"name": "Deferred revenue - Docs",
+			"url": "https://posthog.com/docs/revenue-analytics/deferred-revenue.md",
+			"description": "",
+			"section": "Revenue Analytics"
+		},
+		{
+			"name": "Getting started with revenue analytics - Docs",
+			"url": "https://posthog.com/docs/revenue-analytics/start-here.md",
+			"description": "",
+			"section": "Revenue Analytics"
+		},
+		{
+			"name": "Managed views - Docs",
+			"url": "https://posthog.com/docs/revenue-analytics/managed-views.md",
+			"description": "",
+			"section": "Revenue Analytics"
+		},
+		{
+			"name": "Query revenue with MCP - Docs",
+			"url": "https://posthog.com/docs/revenue-analytics/query-revenue-mcp.md",
+			"description": "",
+			"section": "Revenue Analytics"
+		},
+		{
+			"name": "Revenue Analytics troubleshooting - Docs",
+			"url": "https://posthog.com/docs/revenue-analytics/troubleshooting.md",
+			"description": "",
+			"section": "Revenue Analytics"
+		},
+		{
+			"name": "Revenue metrics - Docs",
+			"url": "https://posthog.com/docs/revenue-analytics/revenue-metrics.md",
+			"description": "",
+			"section": "Revenue Analytics"
+		},
+		{
+			"name": "Stripe payment platform - Docs",
+			"url": "https://posthog.com/docs/revenue-analytics/payment-platforms/stripe.md",
+			"description": "",
+			"section": "Revenue Analytics"
+		}
+	]
+}

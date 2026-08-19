@@ -1,0 +1,42 @@
+{
+	"provider": "posthog-com",
+	"section": "Customer Data Platform (CDP)",
+	"entries": [
+		{
+			"name": "Smartreach source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/smartreach.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Snowflake destination for batch exports - Docs",
+			"url": "https://posthog.com/docs/cdp/batch-exports/snowflake.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Spot by Flexera (Spotinst) source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/spot-io.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Start here - Docs",
+			"url": "https://posthog.com/docs/cdp/start-here.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Using Fivetran, Airbyte or other ETL tools with PostHog - Docs",
+			"url": "https://posthog.com/docs/cdp/fivetran-airbyte.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Write Hog functions with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/cdp/hog-functions-ai.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		}
+	]
+}

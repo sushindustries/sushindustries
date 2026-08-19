@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "cockroach/Performance",
+	"entries": [
+		{
+			"name": "Query performance",
+			"url": "https://orm.drizzle.team/docs/cockroach/perf-queries",
+			"description": "",
+			"section": "cockroach/Performance"
+		}
+	]
+}

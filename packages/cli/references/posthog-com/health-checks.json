@@ -1,0 +1,84 @@
+{
+	"provider": "posthog-com",
+	"section": "Health Checks",
+	"entries": [
+		{
+			"name": "External data sync failures - Docs",
+			"url": "https://posthog.com/docs/health-checks/external-data-sync-failures.md",
+			"description": "",
+			"section": "Health Checks"
+		},
+		{
+			"name": "Health checks (Beta) - Docs",
+			"url": "https://posthog.com/docs/health-checks.md",
+			"description": "",
+			"section": "Health Checks"
+		},
+		{
+			"name": "Ingestion warnings - Docs",
+			"url": "https://posthog.com/docs/health-checks/ingestion-warnings.md",
+			"description": "",
+			"section": "Health Checks"
+		},
+		{
+			"name": "Keeping SDKs current - Docs",
+			"url": "https://posthog.com/docs/health-checks/keeping-sdks-current.md",
+			"description": "",
+			"section": "Health Checks"
+		},
+		{
+			"name": "Materialized view failures - Docs",
+			"url": "https://posthog.com/docs/health-checks/materialized-view-failures.md",
+			"description": "",
+			"section": "Health Checks"
+		},
+		{
+			"name": "Missing pageleave events - Docs",
+			"url": "https://posthog.com/docs/health-checks/pageleave-events.md",
+			"description": "",
+			"section": "Health Checks"
+		},
+		{
+			"name": "Missing web vitals - Docs",
+			"url": "https://posthog.com/docs/health-checks/web-vitals.md",
+			"description": "",
+			"section": "Health Checks"
+		},
+		{
+			"name": "No authorized URLs - Docs",
+			"url": "https://posthog.com/docs/health-checks/authorized-urls.md",
+			"description": "",
+			"section": "Health Checks"
+		},
+		{
+			"name": "No live events - Docs",
+			"url": "https://posthog.com/docs/health-checks/no-live-events.md",
+			"description": "",
+			"section": "Health Checks"
+		},
+		{
+			"name": "No reverse proxy - Docs",
+			"url": "https://posthog.com/docs/health-checks/no-reverse-proxy.md",
+			"description": "",
+			"section": "Health Checks"
+		},
+		{
+			"name": "Partial reverse-proxy coverage - Docs",
+			"url": "https://posthog.com/docs/health-checks/partial-reverse-proxy.md",
+			"description": "",
+			"section": "Health Checks"
+		},
+		{
+			"name": "Scroll-depth tracking disabled - Docs",
+			"url": "https://posthog.com/docs/health-checks/scroll-depth.md",
+			"description": "",
+			"section": "Health Checks"
+		},
+		{
+			"name": "SDK health - Docs",
+			"url": "https://posthog.com/docs/health-checks/sdk-health.md",
+			"description": "",
+			"section": "Health Checks"
+		}
+	]
+}

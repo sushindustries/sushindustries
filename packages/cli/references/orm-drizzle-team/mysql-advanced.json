@@ -1,0 +1,48 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "mysql/Advanced",
+	"entries": [
+		{
+			"name": "Set Operations",
+			"url": "https://orm.drizzle.team/docs/mysql/set-operations",
+			"description": "",
+			"section": "mysql/Advanced"
+		},
+		{
+			"name": "Generated Columns",
+			"url": "https://orm.drizzle.team/docs/mysql/generated-columns",
+			"description": "",
+			"section": "mysql/Advanced"
+		},
+		{
+			"name": "Transactions",
+			"url": "https://orm.drizzle.team/docs/mysql/transactions",
+			"description": "",
+			"section": "mysql/Advanced"
+		},
+		{
+			"name": "Cache",
+			"url": "https://orm.drizzle.team/docs/mysql/cache",
+			"description": "",
+			"section": "mysql/Advanced"
+		},
+		{
+			"name": "Dynamic query building",
+			"url": "https://orm.drizzle.team/docs/mysql/dynamic-query-building",
+			"description": "",
+			"section": "mysql/Advanced"
+		},
+		{
+			"name": "Read Replicas",
+			"url": "https://orm.drizzle.team/docs/mysql/read-replicas",
+			"description": "",
+			"section": "mysql/Advanced"
+		},
+		{
+			"name": "Custom types",
+			"url": "https://orm.drizzle.team/docs/mysql/custom-types",
+			"description": "",
+			"section": "mysql/Advanced"
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "Connect",
+	"entries": [
+		{
+			"name": "Drizzle \\<\\> Gel",
+			"url": "https://orm.drizzle.team/docs/get-started-gel",
+			"description": "",
+			"section": "Connect"
+		}
+	]
+}

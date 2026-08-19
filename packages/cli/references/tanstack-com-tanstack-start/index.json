@@ -1,0 +1,47 @@
+{
+	"provider": "tanstack-com-tanstack-start",
+	"source": "https://tanstack.com/start/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Start docs",
+	"summary": "Full-document SSR, Streaming, Server Functions, bundling and more, powered by TanStack Router and Vite - Ready to deploy to your favorite hosting provider.",
+	"total": 104,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 9,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Tutorial",
+			"entries": 4,
+			"file": "tutorial.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 65,
+			"file": "guides.json"
+		},
+		{
+			"name": "Examples",
+			"entries": 22,
+			"file": "examples.json"
+		}
+	]
+}

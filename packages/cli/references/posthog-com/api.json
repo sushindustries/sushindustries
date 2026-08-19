@@ -1,0 +1,30 @@
+{
+	"provider": "posthog-com",
+	"section": "API",
+	"entries": [
+		{
+			"name": "API overview - Docs",
+			"url": "https://posthog.com/docs/api.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "API queries - Docs",
+			"url": "https://posthog.com/docs/api/queries.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Capture and batch API endpoints - Docs",
+			"url": "https://posthog.com/docs/api/capture.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Flags – the feature flags evaluation API endpoint - Docs",
+			"url": "https://posthog.com/docs/api/flags.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

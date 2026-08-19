@@ -1,0 +1,282 @@
+{
+	"provider": "tanstack-com-tanstack-charts",
+	"section": "API",
+	"entries": [
+		{
+			"name": "API Overview",
+			"url": "https://tanstack.com/charts/latest/docs/reference/index.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Chart Definition API",
+			"url": "https://tanstack.com/charts/latest/docs/reference/chart-definitions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Chart Spec",
+			"url": "https://tanstack.com/charts/latest/docs/reference/chart-spec.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "View Composition",
+			"url": "https://tanstack.com/charts/latest/docs/reference/view-composition.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Data Transforms",
+			"url": "https://tanstack.com/charts/latest/docs/reference/transforms.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Scales, Guides, and Color",
+			"url": "https://tanstack.com/charts/latest/docs/reference/scales-guides-and-color.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "DOM Host",
+			"url": "https://tanstack.com/charts/latest/docs/reference/dom-host.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Adapter Controller",
+			"url": "https://tanstack.com/charts/latest/docs/reference/adapter-controller.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Runtime and Scene",
+			"url": "https://tanstack.com/charts/latest/docs/reference/runtime-and-scene.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Focus and Interaction",
+			"url": "https://tanstack.com/charts/latest/docs/reference/focus-and-interaction.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Rendering and Export",
+			"url": "https://tanstack.com/charts/latest/docs/reference/rendering-and-export.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Motion",
+			"url": "https://tanstack.com/charts/latest/docs/reference/motion.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Custom Extensions",
+			"url": "https://tanstack.com/charts/latest/docs/reference/custom-extensions.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Types",
+			"url": "https://tanstack.com/charts/latest/docs/reference/types.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "React: React Chart Reference",
+			"url": "https://tanstack.com/charts/latest/docs/framework/react/reference/chart.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Preact: Preact Chart Reference",
+			"url": "https://tanstack.com/charts/latest/docs/framework/preact/reference/chart.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Vue: Vue Chart Reference",
+			"url": "https://tanstack.com/charts/latest/docs/framework/vue/reference/chart.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Solid: Solid Chart Reference",
+			"url": "https://tanstack.com/charts/latest/docs/framework/solid/reference/chart.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Svelte: Svelte Chart Reference",
+			"url": "https://tanstack.com/charts/latest/docs/framework/svelte/reference/chart.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Angular: Angular Chart Reference",
+			"url": "https://tanstack.com/charts/latest/docs/framework/angular/reference/chart.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Lit: Lit Chart Reference",
+			"url": "https://tanstack.com/charts/latest/docs/framework/lit/reference/chart.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Alpine: Alpine Chart Reference",
+			"url": "https://tanstack.com/charts/latest/docs/framework/alpine/reference/chart.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Octane: Octane Chart Reference",
+			"url": "https://tanstack.com/charts/latest/docs/framework/octane/reference/chart.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Line and Area Marks",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/line-and-area.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Difference Marks",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/difference.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Linear Regression Marks",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/regression.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Bar and Rect Marks",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/bar-and-rect.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Box Marks",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/box.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Dot and Hexagon Marks",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/dot-and-hexagon.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Dodge Layouts",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/dodge.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Waffle Marks",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/waffle.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Ridgeline Marks",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/ridgeline.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Violin Marks",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/violin.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Focus Guide Marks",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/focus-guide.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Treemap Mark",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/treemap.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Sunburst Mark",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/sunburst.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Sankey Diagram Mark",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/sankey.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Hexbin Mark",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/hexbin.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Contour Mark",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/contour.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Density Contour Mark",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/density.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Delaunay Link Mark",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/delaunay.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Voronoi Mark",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/voronoi.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Rules, Links, Arrows, Vectors, and Ticks",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/rules-links-arrows-vectors-and-ticks.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Text, Frame, and Facet",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/text-frame-and-facet.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Geo Shape Mark",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/geo.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "Polar Marks",
+			"url": "https://tanstack.com/charts/latest/docs/reference/marks/polar.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

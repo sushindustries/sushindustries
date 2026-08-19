@@ -1,0 +1,354 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "meet drizzle",
+	"entries": [
+		{
+			"name": "Get started with Drizzle",
+			"url": "https://orm.drizzle.team/docs/get-started",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and PostgreSQL",
+			"url": "https://orm.drizzle.team/docs/get-started/postgresql-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and PostgreSQL in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/postgresql-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Gel",
+			"url": "https://orm.drizzle.team/docs/get-started/gel-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Gel in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/gel-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and SingleStore",
+			"url": "https://orm.drizzle.team/docs/get-started/singlestore-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and SingleStore in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/singlestore-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Neon",
+			"url": "https://orm.drizzle.team/docs/get-started/neon-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Neon in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/neon-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Supabase",
+			"url": "https://orm.drizzle.team/docs/get-started/supabase-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Supabase in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/supabase-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Xata",
+			"url": "https://orm.drizzle.team/docs/get-started/xata-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Xata in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/xata-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and PGlite",
+			"url": "https://orm.drizzle.team/docs/get-started/pglite-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and PGLite in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/pglite-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Nile",
+			"url": "https://orm.drizzle.team/docs/get-started/nile-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Nile in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/nile-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Vercel Postgres",
+			"url": "https://orm.drizzle.team/docs/get-started/vercel-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Vercel Postgres in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/vercel-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Effect PostgreSQL",
+			"url": "https://orm.drizzle.team/docs/get-started/effect-postgresql-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Effect PostgreSQL in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/effect-postgresql-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and MySQL",
+			"url": "https://orm.drizzle.team/docs/get-started/mysql-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and MySQL in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/mysql-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and PlanetScale",
+			"url": "https://orm.drizzle.team/docs/get-started/planetscale-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and PlanetScale in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/planetscale-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and PlanetScale Postgres",
+			"url": "https://orm.drizzle.team/docs/get-started/planetscale-postgres-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and PlanetScale Postgres in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/planetscale-postgres-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and TiDB",
+			"url": "https://orm.drizzle.team/docs/get-started/tidb-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and TiDB in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/tidb-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and SQLite",
+			"url": "https://orm.drizzle.team/docs/get-started/sqlite-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and SQLite in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/sqlite-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Turso Cloud",
+			"url": "https://orm.drizzle.team/docs/get-started/turso-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Turso Cloud in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/turso-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Turso Database",
+			"url": "https://orm.drizzle.team/docs/get-started/turso-database-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Turso Database in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/turso-database-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and D1",
+			"url": "https://orm.drizzle.team/docs/get-started/d1-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and D1 in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/d1-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and SQLite Durable Objects",
+			"url": "https://orm.drizzle.team/docs/get-started/do-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and SQLite Durable Objects in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/do-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Bun:SQLite",
+			"url": "https://orm.drizzle.team/docs/get-started/bun-sqlite-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Bun:SQLite in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/bun-sqlite-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Node:SQLite",
+			"url": "https://orm.drizzle.team/docs/get-started/node-sqlite-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Node:SQLite in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/node-sqlite-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and SQLite Cloud",
+			"url": "https://orm.drizzle.team/docs/get-started/sqlite-cloud-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and SQLite Cloud in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/sqlite-cloud-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Bun:SQLite",
+			"url": "https://orm.drizzle.team/docs/get-started/bun-sql-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and SQLite in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/bun-sql-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and MSSQL",
+			"url": "https://orm.drizzle.team/docs/get-started/mssql-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and MSSQL in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/mssql-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and CockroachDB",
+			"url": "https://orm.drizzle.team/docs/get-started/cockroach-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and CockroachDB in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/cockroach-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Expo",
+			"url": "https://orm.drizzle.team/docs/get-started/expo-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and Expo in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/expo-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and OP-SQLite",
+			"url": "https://orm.drizzle.team/docs/get-started/op-sqlite-new",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Get Started with Drizzle and OP-SQLite in existing project",
+			"url": "https://orm.drizzle.team/docs/get-started/op-sqlite-existing",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Drizzle Sustainability",
+			"url": "https://orm.drizzle.team/docs/sustainability",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Drizzle ORM",
+			"url": "https://orm.drizzle.team/docs/overview",
+			"description": "",
+			"section": "meet drizzle"
+		},
+		{
+			"name": "Drizzle gotchas",
+			"url": "https://orm.drizzle.team/docs/gotchas",
+			"description": "",
+			"section": "meet drizzle"
+		}
+	]
+}

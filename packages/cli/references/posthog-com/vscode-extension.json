@@ -1,0 +1,42 @@
+{
+	"provider": "posthog-com",
+	"section": "Vscode Extension",
+	"entries": [
+		{
+			"name": "Flag management in the VS Code extension - Docs",
+			"url": "https://posthog.com/docs/vscode-extension/flag-management.md",
+			"description": "",
+			"section": "Vscode Extension"
+		},
+		{
+			"name": "Inline code intelligence and annotations - Docs",
+			"url": "https://posthog.com/docs/vscode-extension/inline-code-intelligence.md",
+			"description": "",
+			"section": "Vscode Extension"
+		},
+		{
+			"name": "Session replays in the VS Code extension - Docs",
+			"url": "https://posthog.com/docs/vscode-extension/session-replay.md",
+			"description": "",
+			"section": "Vscode Extension"
+		},
+		{
+			"name": "Sidebar dashboard in the VS Code extension - Docs",
+			"url": "https://posthog.com/docs/vscode-extension/sidebar-dashboard.md",
+			"description": "",
+			"section": "Vscode Extension"
+		},
+		{
+			"name": "Stale flag cleanup - Docs",
+			"url": "https://posthog.com/docs/vscode-extension/stale-flag-cleanup.md",
+			"description": "",
+			"section": "Vscode Extension"
+		},
+		{
+			"name": "VS Code extension - Docs",
+			"url": "https://posthog.com/docs/vscode-extension.md",
+			"description": "",
+			"section": "Vscode Extension"
+		}
+	]
+}

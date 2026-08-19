@@ -1,0 +1,30 @@
+{
+	"provider": "tanstack-com-tanstack-db",
+	"section": "General",
+	"entries": [
+		{
+			"name": "Docs index",
+			"url": "https://tanstack.com/db/latest/docs/index.md",
+			"description": "This same Markdown index.",
+			"section": "General"
+		},
+		{
+			"name": "LLMs index",
+			"url": "https://tanstack.com/db/latest/llms.txt",
+			"description": "This same Markdown index.",
+			"section": "General"
+		},
+		{
+			"name": "Library home",
+			"url": "https://tanstack.com/db/latest",
+			"description": "",
+			"section": "General"
+		},
+		{
+			"name": "GitHub",
+			"url": "https://github.com/tanstack/db",
+			"description": "",
+			"section": "General"
+		}
+	]
+}

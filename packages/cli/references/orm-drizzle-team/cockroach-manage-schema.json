@@ -1,0 +1,48 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "cockroach/Manage schema",
+	"entries": [
+		{
+			"name": "CockroachDB column types",
+			"url": "https://orm.drizzle.team/docs/cockroach/column-types",
+			"description": "",
+			"section": "cockroach/Manage schema"
+		},
+		{
+			"name": "Indexes & Constraints",
+			"url": "https://orm.drizzle.team/docs/cockroach/indexes-constraints",
+			"description": "",
+			"section": "cockroach/Manage schema"
+		},
+		{
+			"name": "Sequences",
+			"url": "https://orm.drizzle.team/docs/cockroach/sequences",
+			"description": "",
+			"section": "cockroach/Manage schema"
+		},
+		{
+			"name": "Views",
+			"url": "https://orm.drizzle.team/docs/cockroach/views",
+			"description": "",
+			"section": "cockroach/Manage schema"
+		},
+		{
+			"name": "Table schemas",
+			"url": "https://orm.drizzle.team/docs/cockroach/schemas",
+			"description": "",
+			"section": "cockroach/Manage schema"
+		},
+		{
+			"name": "Drizzle soft relations",
+			"url": "https://orm.drizzle.team/docs/cockroach/relations",
+			"description": "",
+			"section": "cockroach/Manage schema"
+		},
+		{
+			"name": "Cockroach extensions",
+			"url": "https://orm.drizzle.team/docs/cockroach/extensions",
+			"description": "",
+			"section": "cockroach/Manage schema"
+		}
+	]
+}

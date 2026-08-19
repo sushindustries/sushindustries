@@ -1,0 +1,870 @@
+{
+	"provider": "modelcontextprotocol-io",
+	"section": "Docs",
+	"entries": [
+		{
+			"name": "What is the Model Context Protocol (MCP)?",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Architecture overview",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Understanding MCP servers",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/learn/server-concepts.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Understanding MCP clients",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/learn/client-concepts.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Versioning",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Connect to local MCP servers",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/develop/connect-local-servers.md",
+			"description": "Learn how to extend Claude Desktop with local MCP servers to enable file system access and other powerful integrations",
+			"section": "Docs"
+		},
+		{
+			"name": "Connect to remote MCP Servers",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/develop/connect-remote-servers.md",
+			"description": "Learn how to connect Claude to remote MCP servers and extend its capabilities with internet-hosted tools and data sources",
+			"section": "Docs"
+		},
+		{
+			"name": "Build with Agent Skills",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/develop/build-with-agent-skills.md",
+			"description": "Use agent skills to guide AI coding assistants through MCP server design and implementation",
+			"section": "Docs"
+		},
+		{
+			"name": "Build an MCP server",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/develop/build-server.md",
+			"description": "Get started building your own server to use in Claude for Desktop and other clients.",
+			"section": "Docs"
+		},
+		{
+			"name": "Build an MCP client",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/develop/build-client.md",
+			"description": "Get started building your own client that can integrate with all MCP servers.",
+			"section": "Docs"
+		},
+		{
+			"name": "Client Best Practices",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/develop/clients/client-best-practices.md",
+			"description": "Patterns for scaling MCP host applications across many servers and tools.",
+			"section": "Docs"
+		},
+		{
+			"name": "SDKs",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/sdk.md",
+			"description": "Official SDKs for building with Model Context Protocol",
+			"section": "Docs"
+		},
+		{
+			"name": "Understanding Authorization in MCP",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/authorization.md",
+			"description": "Learn how to implement secure authorization for MCP servers using OAuth 2.1 to protect sensitive resources and operations",
+			"section": "Docs"
+		},
+		{
+			"name": "Security Best Practices",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices.md",
+			"description": "Security considerations, attack vectors, and best practices for MCP implementations",
+			"section": "Docs"
+		},
+		{
+			"name": "MCP Inspector",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/tools/inspector.md",
+			"description": "Interactive developer tooling for testing and debugging MCP servers, in the browser, on the command line, and in the terminal",
+			"section": "Docs"
+		},
+		{
+			"name": "Web client",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/tools/inspector/web.md",
+			"description": "A tab-by-tab walkthrough of the graphical MCP Inspector",
+			"section": "Docs"
+		},
+		{
+			"name": "CLI client",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/tools/inspector/cli.md",
+			"description": "Scripting the MCP Inspector: methods, output formats, exit codes, and CI recipes",
+			"section": "Docs"
+		},
+		{
+			"name": "TUI client",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/tools/inspector/tui.md",
+			"description": "The terminal MCP Inspector: navigation, tabs, and keyboard reference",
+			"section": "Docs"
+		},
+		{
+			"name": "Configuration and flags",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/tools/inspector/configuration.md",
+			"description": "Catalog vs. config files, which client owns which flag, and every environment variable",
+			"section": "Docs"
+		},
+		{
+			"name": "Authorization",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/tools/inspector/authorization.md",
+			"description": "How the MCP Inspector performs OAuth, re-authorizes mid-session, and shares tokens between its clients",
+			"section": "Docs"
+		},
+		{
+			"name": "Protocol eras",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/tools/inspector/protocol-eras.md",
+			"description": "How the Inspector negotiates legacy vs. modern MCP, and how every feature is handled between protocol eras",
+			"section": "Docs"
+		},
+		{
+			"name": "Recipes",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/tools/inspector/recipes.md",
+			"description": "Practical guides for transports, importing configs, reviewing MCP Apps, Docker, and network hosting",
+			"section": "Docs"
+		},
+		{
+			"name": "Debugging",
+			"url": "https://modelcontextprotocol.io/docs/2026-07-28/tools/debugging.md",
+			"description": "A comprehensive guide to debugging Model Context Protocol (MCP) integrations",
+			"section": "Docs"
+		},
+		{
+			"name": "Example Servers",
+			"url": "https://modelcontextprotocol.io/examples.md",
+			"description": "A list of example servers and implementations",
+			"section": "Docs"
+		},
+		{
+			"name": "Specification",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/index.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Key Changes",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Deprecated Features",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/deprecated.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Architecture",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/architecture/index.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Overview",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/index.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Versioning and Compatibility",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Overview",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/index.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Multi Round-Trip Requests",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Subscriptions",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/subscriptions.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Cancellation",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/cancellation.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Progress",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/progress.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Overview",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/index.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "stdio",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Streamable HTTP",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Authorization",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/index.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Authorization Server Discovery",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/authorization-server-discovery.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Client Registration",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/client-registration.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Authorization Security Considerations",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/security-considerations.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Roots",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/client/roots.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Sampling",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/client/sampling.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Elicitation",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/client/elicitation.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Overview",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/server/index.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Discovery",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Prompts",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/server/prompts.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Resources",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/server/resources.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Tools",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Caching",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/caching.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Completion",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/completion.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Logging",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/logging.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Pagination",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/pagination.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Schema Reference",
+			"url": "https://modelcontextprotocol.io/specification/2026-07-28/schema.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Extensions Overview",
+			"url": "https://modelcontextprotocol.io/extensions/overview.md",
+			"description": "Optional extensions to the Model Context Protocol",
+			"section": "Docs"
+		},
+		{
+			"name": "Extension Support Matrix",
+			"url": "https://modelcontextprotocol.io/extensions/client-matrix.md",
+			"description": "Which MCP clients implement which official extensions",
+			"section": "Docs"
+		},
+		{
+			"name": "MCP Apps",
+			"url": "https://modelcontextprotocol.io/extensions/apps/overview.md",
+			"description": "Interactive UI applications that render inside MCP hosts like Claude Desktop",
+			"section": "Docs"
+		},
+		{
+			"name": "Build an MCP App",
+			"url": "https://modelcontextprotocol.io/extensions/apps/build.md",
+			"description": "Getting started guide for building interactive UI applications with MCP Apps",
+			"section": "Docs"
+		},
+		{
+			"name": "Authorization Extensions",
+			"url": "https://modelcontextprotocol.io/extensions/auth/overview.md",
+			"description": "Supplementary authorization mechanisms for the Model Context Protocol",
+			"section": "Docs"
+		},
+		{
+			"name": "OAuth Client Credentials",
+			"url": "https://modelcontextprotocol.io/extensions/auth/oauth-client-credentials.md",
+			"description": "Machine-to-machine authentication for MCP using the OAuth 2.0 client credentials flow",
+			"section": "Docs"
+		},
+		{
+			"name": "Enterprise-Managed Authorization",
+			"url": "https://modelcontextprotocol.io/extensions/auth/enterprise-managed-authorization.md",
+			"description": "Centralized access control for MCP in enterprise environments via identity providers",
+			"section": "Docs"
+		},
+		{
+			"name": "Tasks",
+			"url": "https://modelcontextprotocol.io/extensions/tasks/overview.md",
+			"description": "Asynchronous task execution for long-running MCP operations",
+			"section": "Docs"
+		},
+		{
+			"name": "The MCP Registry",
+			"url": "https://modelcontextprotocol.io/registry/about.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Quickstart: Publish an MCP Server to the MCP Registry",
+			"url": "https://modelcontextprotocol.io/registry/quickstart.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Frequently Asked Questions",
+			"url": "https://modelcontextprotocol.io/registry/faq.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "MCP Registry Supported Package Types",
+			"url": "https://modelcontextprotocol.io/registry/package-types.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Publishing Remote Servers",
+			"url": "https://modelcontextprotocol.io/registry/remote-servers.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "How to Authenticate When Publishing to the Official MCP Registry",
+			"url": "https://modelcontextprotocol.io/registry/authentication.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Versioning Published MCP Servers",
+			"url": "https://modelcontextprotocol.io/registry/versioning.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "How to Automate Publishing with GitHub Actions",
+			"url": "https://modelcontextprotocol.io/registry/github-actions.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "The MCP Registry Moderation Policy",
+			"url": "https://modelcontextprotocol.io/registry/moderation-policy.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "MCP Registry Aggregators",
+			"url": "https://modelcontextprotocol.io/registry/registry-aggregators.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Official MCP Registry Terms of Service",
+			"url": "https://modelcontextprotocol.io/registry/terms-of-service.md",
+			"description": "",
+			"section": "Docs"
+		},
+		{
+			"name": "Specification Enhancement Proposals (SEPs)",
+			"url": "https://modelcontextprotocol.io/seps/index.md",
+			"description": "Index of all MCP Specification Enhancement Proposals",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-414: Document OpenTelemetry Trace Context Propagation Conventions",
+			"url": "https://modelcontextprotocol.io/seps/414-request-meta.md",
+			"description": "Document OpenTelemetry Trace Context Propagation Conventions",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-932: Model Context Protocol Governance",
+			"url": "https://modelcontextprotocol.io/seps/932-model-context-protocol-governance.md",
+			"description": "Model Context Protocol Governance",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-973: Expose additional metadata for Implementations, Resources, Tools and Prompts",
+			"url": "https://modelcontextprotocol.io/seps/973-expose-additional-metadata-for-implementations-res.md",
+			"description": "Expose additional metadata for Implementations, Resources, Tools and Prompts",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-985: Align OAuth 2.0 Protected Resource Metadata with RFC 9728",
+			"url": "https://modelcontextprotocol.io/seps/985-align-oauth-20-protected-resource-metadata-with-rf.md",
+			"description": "Align OAuth 2.0 Protected Resource Metadata with RFC 9728",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-986: Specify Format for Tool Names",
+			"url": "https://modelcontextprotocol.io/seps/986-specify-format-for-tool-names.md",
+			"description": "Specify Format for Tool Names",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-990: Enable enterprise IdP policy controls during MCP OAuth flows",
+			"url": "https://modelcontextprotocol.io/seps/990-enable-enterprise-idp-policy-controls-during-mcp-o.md",
+			"description": "Enable enterprise IdP policy controls during MCP OAuth flows",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-991: Enable URL-based Client Registration using OAuth Client ID Metadata Documents",
+			"url": "https://modelcontextprotocol.io/seps/991-enable-url-based-client-registration-using-oauth-c.md",
+			"description": "Enable URL-based Client Registration using OAuth Client ID Metadata Documents",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-994: Shared Communication Practices/Guidelines",
+			"url": "https://modelcontextprotocol.io/seps/994-shared-communication-practicesguidelines.md",
+			"description": "Shared Communication Practices/Guidelines",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1024: MCP Client Security Requirements for Local Server Installation",
+			"url": "https://modelcontextprotocol.io/seps/1024-mcp-client-security-requirements-for-local-server-.md",
+			"description": "MCP Client Security Requirements for Local Server Installation",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1034: Support default values for all primitive types in elicitation schemas",
+			"url": "https://modelcontextprotocol.io/seps/1034--support-default-values-for-all-primitive-types-in.md",
+			"description": "Support default values for all primitive types in elicitation schemas",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1036: URL Mode Elicitation for secure out-of-band interactions",
+			"url": "https://modelcontextprotocol.io/seps/1036-url-mode-elicitation-for-secure-out-of-band-intera.md",
+			"description": "URL Mode Elicitation for secure out-of-band interactions",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1046: Support OAuth client credentials flow in authorization",
+			"url": "https://modelcontextprotocol.io/seps/1046-support-oauth-client-credentials-flow-in-authoriza.md",
+			"description": "Support OAuth client credentials flow in authorization",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1302: Formalize Working Groups and Interest Groups in MCP Governance",
+			"url": "https://modelcontextprotocol.io/seps/1302-formalize-working-groups-and-interest-groups-in-mc.md",
+			"description": "Formalize Working Groups and Interest Groups in MCP Governance",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1303: Input Validation Errors as Tool Execution Errors",
+			"url": "https://modelcontextprotocol.io/seps/1303-input-validation-errors-as-tool-execution-errors.md",
+			"description": "Input Validation Errors as Tool Execution Errors",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1319: Decouple Request Payload from RPC Methods Definition",
+			"url": "https://modelcontextprotocol.io/seps/1319-decouple-request-payload-from-rpc-methods-definiti.md",
+			"description": "Decouple Request Payload from RPC Methods Definition",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1330: Elicitation Enum Schema Improvements and Standards Compliance",
+			"url": "https://modelcontextprotocol.io/seps/1330-elicitation-enum-schema-improvements-and-standards.md",
+			"description": "Elicitation Enum Schema Improvements and Standards Compliance",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1577: Sampling With Tools",
+			"url": "https://modelcontextprotocol.io/seps/1577--sampling-with-tools.md",
+			"description": "Sampling With Tools",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1613: Establish JSON Schema 2020-12 as Default Dialect for MCP",
+			"url": "https://modelcontextprotocol.io/seps/1613-establish-json-schema-2020-12-as-default-dialect-f.md",
+			"description": "Establish JSON Schema 2020-12 as Default Dialect for MCP",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1686: Tasks",
+			"url": "https://modelcontextprotocol.io/seps/1686-tasks.md",
+			"description": "Tasks",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1699: Support SSE polling via server-side disconnect",
+			"url": "https://modelcontextprotocol.io/seps/1699-support-sse-polling-via-server-side-disconnect.md",
+			"description": "Support SSE polling via server-side disconnect",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1730: SDKs Tiering System",
+			"url": "https://modelcontextprotocol.io/seps/1730-sdks-tiering-system.md",
+			"description": "SDKs Tiering System",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1850: PR-Based SEP Workflow",
+			"url": "https://modelcontextprotocol.io/seps/1850-pr-based-sep-workflow.md",
+			"description": "PR-Based SEP Workflow",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-1865: MCP Apps - Interactive User Interfaces for MCP",
+			"url": "https://modelcontextprotocol.io/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp.md",
+			"description": "MCP Apps - Interactive User Interfaces for MCP",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2085: Governance Succession and Amendment Procedures",
+			"url": "https://modelcontextprotocol.io/seps/2085-governance-succession-and-amendment.md",
+			"description": "Governance Succession and Amendment Procedures",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2106: Tools `inputSchema` & `outputSchema` Conform to JSON Schema 2020-12",
+			"url": "https://modelcontextprotocol.io/seps/2106-json-schema-2020-12.md",
+			"description": "Tools `inputSchema` & `outputSchema` Conform to JSON Schema 2020-12",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2133: Extensions",
+			"url": "https://modelcontextprotocol.io/seps/2133-extensions.md",
+			"description": "Extensions",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2148: MCP Contributor Ladder",
+			"url": "https://modelcontextprotocol.io/seps/2148-contributor-ladder.md",
+			"description": "MCP Contributor Ladder",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2149: MCP Group Governance and Charter Template",
+			"url": "https://modelcontextprotocol.io/seps/2149-working-group-charter-template.md",
+			"description": "MCP Group Governance and Charter Template",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2164: Standardize Resource Not Found Error Code",
+			"url": "https://modelcontextprotocol.io/seps/2164-resource-not-found-error.md",
+			"description": "Standardize Resource Not Found Error Code",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2207: OIDC-Flavored Refresh Token Guidance",
+			"url": "https://modelcontextprotocol.io/seps/2207-oidc-refresh-token-guidance.md",
+			"description": "OIDC-Flavored Refresh Token Guidance",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2243: HTTP Header Standardization for Streamable HTTP Transport",
+			"url": "https://modelcontextprotocol.io/seps/2243-http-standardization.md",
+			"description": "HTTP Header Standardization for Streamable HTTP Transport",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2260: Require Server requests to be associated with a Client request.",
+			"url": "https://modelcontextprotocol.io/seps/2260-Require-Server-requests-to-be-associated-with-Client-requests.md",
+			"description": "Require Server requests to be associated with a Client request.",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2322: Multi Round-Trip Requests",
+			"url": "https://modelcontextprotocol.io/seps/2322-MRTR.md",
+			"description": "Multi Round-Trip Requests",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2468: Recommend Issuer (iss) Parameter in MCP Auth Responses",
+			"url": "https://modelcontextprotocol.io/seps/2468-recommend-issuer-claim-for-auth.md",
+			"description": "Recommend Issuer (iss) Parameter in MCP Auth Responses",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2484: Require Conformance Tests for Standards Track SEPs to Reach Final Status",
+			"url": "https://modelcontextprotocol.io/seps/2484-conformance-tests-required-for-final-seps.md",
+			"description": "Require Conformance Tests for Standards Track SEPs to Reach Final Status",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2549: TTL for List Results",
+			"url": "https://modelcontextprotocol.io/seps/2549-TTL-for-list-results.md",
+			"description": "TTL for List Results",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2567: Sessionless MCP via Explicit State Handles",
+			"url": "https://modelcontextprotocol.io/seps/2567-sessionless-mcp.md",
+			"description": "Sessionless MCP via Explicit State Handles",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2575: Make MCP Stateless",
+			"url": "https://modelcontextprotocol.io/seps/2575-stateless-mcp.md",
+			"description": "Make MCP Stateless",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2577: Deprecate Roots, Sampling, and Logging",
+			"url": "https://modelcontextprotocol.io/seps/2577-deprecate-roots-sampling-and-logging.md",
+			"description": "Deprecate Roots, Sampling, and Logging",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2596: Specification Feature Lifecycle and Deprecation Policy",
+			"url": "https://modelcontextprotocol.io/seps/2596-spec-feature-lifecycle-and-deprecation.md",
+			"description": "Specification Feature Lifecycle and Deprecation Policy",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP-2663: Tasks Extension",
+			"url": "https://modelcontextprotocol.io/seps/2663-tasks-extension.md",
+			"description": "Tasks Extension",
+			"section": "Docs"
+		},
+		{
+			"name": "Contributing to MCP",
+			"url": "https://modelcontextprotocol.io/community/contributing.md",
+			"description": "How to contribute to the Model Context Protocol project",
+			"section": "Docs"
+		},
+		{
+			"name": "Contributor Communication",
+			"url": "https://modelcontextprotocol.io/community/communication.md",
+			"description": "Communication strategy and framework for the Model Context Protocol community",
+			"section": "Docs"
+		},
+		{
+			"name": "Working and Interest Groups",
+			"url": "https://modelcontextprotocol.io/community/working-interest-groups.md",
+			"description": "Governance rules for the two forms of collaborative groups within the Model Context Protocol community — Working Groups and Interest Groups.",
+			"section": "Docs"
+		},
+		{
+			"name": "Group Charter Template",
+			"url": "https://modelcontextprotocol.io/community/charter-template.md",
+			"description": "Template for MCP Working Group and Interest Group charters.",
+			"section": "Docs"
+		},
+		{
+			"name": "Design Principles",
+			"url": "https://modelcontextprotocol.io/community/design-principles.md",
+			"description": "The core design principles that guide the development of the Model Context Protocol.",
+			"section": "Docs"
+		},
+		{
+			"name": "SEP Guidelines",
+			"url": "https://modelcontextprotocol.io/community/sep-guidelines.md",
+			"description": "Specification Enhancement Proposal (SEP) guidelines for proposing changes to the Model Context Protocol",
+			"section": "Docs"
+		},
+		{
+			"name": "Governance and Stewardship",
+			"url": "https://modelcontextprotocol.io/community/governance.md",
+			"description": "Learn about the Model Context Protocol's governance structure and how to participate in the community",
+			"section": "Docs"
+		},
+		{
+			"name": "Contributor Ladder",
+			"url": "https://modelcontextprotocol.io/community/contributor-ladder.md",
+			"description": "Roles, responsibilities, and advancement criteria for MCP contributors, from first contribution to Core Maintainer",
+			"section": "Docs"
+		},
+		{
+			"name": "Feature Lifecycle and Deprecation Policy",
+			"url": "https://modelcontextprotocol.io/community/feature-lifecycle.md",
+			"description": "How individual MCP specification features move through Active, Deprecated, and Removed states, and the timeline implementers can plan against.",
+			"section": "Docs"
+		},
+		{
+			"name": "SDK Tiering System",
+			"url": "https://modelcontextprotocol.io/community/sdk-tiers.md",
+			"description": "Feature completeness, protocol support, and maintenance commitment levels for Model Context Protocol SDKs",
+			"section": "Docs"
+		},
+		{
+			"name": "Security Policy",
+			"url": "https://modelcontextprotocol.io/community/security.md",
+			"description": "How to report security vulnerabilities in the Model Context Protocol specification and SDKs, what is in and out of scope, and how SDK maintainers coordinate disclosure.",
+			"section": "Docs"
+		},
+		{
+			"name": "Antitrust Policy",
+			"url": "https://modelcontextprotocol.io/community/antitrust.md",
+			"description": "MCP Project Antitrust Policy for participants and contributors",
+			"section": "Docs"
+		},
+		{
+			"name": "Agents Charter",
+			"url": "https://modelcontextprotocol.io/community/working-groups/agents.md",
+			"description": "Charter for the MCP Agents Working Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "File Uploads Charter",
+			"url": "https://modelcontextprotocol.io/community/working-groups/file-uploads.md",
+			"description": "Charter for the MCP File Uploads Working Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "Inspector V2 Working Group Charter",
+			"url": "https://modelcontextprotocol.io/community/working-groups/inspector-v2.md",
+			"description": "Charter for the Inspector V2 Working Group, a Working Group of the Model Context Protocol community.",
+			"section": "Docs"
+		},
+		{
+			"name": "Interceptors Charter",
+			"url": "https://modelcontextprotocol.io/community/working-groups/interceptors.md",
+			"description": "Charter for the MCP Interceptors Working Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "Registry Charter",
+			"url": "https://modelcontextprotocol.io/community/working-groups/registry.md",
+			"description": "Charter for the MCP Registry Working Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "SDK Working Group Charter",
+			"url": "https://modelcontextprotocol.io/community/working-groups/sdk.md",
+			"description": "Charter for the MCP SDK Working Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "Server Card Charter",
+			"url": "https://modelcontextprotocol.io/community/working-groups/server-card.md",
+			"description": "Charter for the MCP Server Card Working Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "Skills Over MCP Charter",
+			"url": "https://modelcontextprotocol.io/community/working-groups/skills-over-mcp.md",
+			"description": "Charter for the MCP Skills Over MCP Working Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "Triggers and Events Charter",
+			"url": "https://modelcontextprotocol.io/community/working-groups/triggers-events.md",
+			"description": "Charter for the MCP Triggers and Events Working Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "Authorization Charter",
+			"url": "https://modelcontextprotocol.io/community/interest-groups/auth.md",
+			"description": "Charter for the MCP Authorization Interest Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "Enterprise-Managed Authorization Charter",
+			"url": "https://modelcontextprotocol.io/community/interest-groups/enterprise-managed-authorization.md",
+			"description": "Charter for the MCP Enterprise-Managed Authorization Interest Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "Financial Services Charter",
+			"url": "https://modelcontextprotocol.io/community/interest-groups/financial-services.md",
+			"description": "Charter for the MCP Financial Services Interest Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "Primitive Grouping Charter",
+			"url": "https://modelcontextprotocol.io/community/interest-groups/primitive-grouping.md",
+			"description": "Charter for the MCP Primitive Grouping Interest Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "Security Charter",
+			"url": "https://modelcontextprotocol.io/community/interest-groups/security.md",
+			"description": "Charter for the MCP Security Interest Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "Tool Annotations Charter",
+			"url": "https://modelcontextprotocol.io/community/interest-groups/tool-annotations.md",
+			"description": "Charter for the MCP Tool Annotations Interest Group.",
+			"section": "Docs"
+		},
+		{
+			"name": "Roadmap",
+			"url": "https://modelcontextprotocol.io/development/roadmap.md",
+			"description": "Our plans for evolving Model Context Protocol",
+			"section": "Docs"
+		}
+	]
+}

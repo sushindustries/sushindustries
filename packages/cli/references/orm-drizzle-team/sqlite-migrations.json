@@ -1,0 +1,72 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "sqlite/Migrations",
+	"entries": [
+		{
+			"name": "Migrations with Drizzle Kit",
+			"url": "https://orm.drizzle.team/docs/sqlite/kit-overview",
+			"description": "",
+			"section": "sqlite/Migrations"
+		},
+		{
+			"name": "`drizzle-kit generate`",
+			"url": "https://orm.drizzle.team/docs/sqlite/drizzle-kit-generate",
+			"description": "",
+			"section": "sqlite/Migrations"
+		},
+		{
+			"name": "`drizzle-kit migrate`",
+			"url": "https://orm.drizzle.team/docs/sqlite/drizzle-kit-migrate",
+			"description": "",
+			"section": "sqlite/Migrations"
+		},
+		{
+			"name": "`drizzle-kit push`",
+			"url": "https://orm.drizzle.team/docs/sqlite/drizzle-kit-push",
+			"description": "",
+			"section": "sqlite/Migrations"
+		},
+		{
+			"name": "`drizzle-kit pull`",
+			"url": "https://orm.drizzle.team/docs/sqlite/drizzle-kit-pull",
+			"description": "",
+			"section": "sqlite/Migrations"
+		},
+		{
+			"name": "`drizzle-kit export`",
+			"url": "https://orm.drizzle.team/docs/sqlite/drizzle-kit-export",
+			"description": "",
+			"section": "sqlite/Migrations"
+		},
+		{
+			"name": "`drizzle-kit check`",
+			"url": "https://orm.drizzle.team/docs/sqlite/drizzle-kit-check",
+			"description": "",
+			"section": "sqlite/Migrations"
+		},
+		{
+			"name": "`drizzle-kit up`",
+			"url": "https://orm.drizzle.team/docs/sqlite/drizzle-kit-up",
+			"description": "",
+			"section": "sqlite/Migrations"
+		},
+		{
+			"name": "`drizzle-kit studio`",
+			"url": "https://orm.drizzle.team/docs/sqlite/drizzle-kit-studio",
+			"description": "",
+			"section": "sqlite/Migrations"
+		},
+		{
+			"name": "Migrations with Drizzle Kit",
+			"url": "https://orm.drizzle.team/docs/sqlite/kit-custom-migrations",
+			"description": "",
+			"section": "sqlite/Migrations"
+		},
+		{
+			"name": "Drizzle Kit configuration file",
+			"url": "https://orm.drizzle.team/docs/sqlite/drizzle-config-file",
+			"description": "",
+			"section": "sqlite/Migrations"
+		}
+	]
+}

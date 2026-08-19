@@ -1,0 +1,24 @@
+{
+	"provider": "posthog-com",
+	"section": "Js Snippets",
+	"entries": [
+		{
+			"name": "JS snippets - Docs",
+			"url": "https://posthog.com/docs/js-snippets.md",
+			"description": "",
+			"section": "Js Snippets"
+		},
+		{
+			"name": "Notification Bar - Docs",
+			"url": "https://posthog.com/docs/js-snippets/notification-bar.md",
+			"description": "",
+			"section": "Js Snippets"
+		},
+		{
+			"name": "Pineapple Mode - Docs",
+			"url": "https://posthog.com/docs/js-snippets/pineapple-mode.md",
+			"description": "",
+			"section": "Js Snippets"
+		}
+	]
+}

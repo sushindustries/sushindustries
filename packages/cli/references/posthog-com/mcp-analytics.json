@@ -1,0 +1,114 @@
+{
+	"provider": "posthog-com",
+	"section": "Mcp Analytics",
+	"entries": [
+		{
+			"name": "Capturing agent intent - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/intent.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "Conversation IDs - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/conversation-id.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "Custom events and metadata - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/custom-events.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "Event and property reference - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/events.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "Fix MCP tools in PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/surfaces/desktop.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "Getting started with MCP Analytics - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/start-here.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "Identifying users - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/identifying-users.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "Installing the MCP Analytics SDK - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/installation.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "Instrumenting a custom server - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/custom-servers.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "MCP Analytics - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "MCP Analytics API - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/surfaces/api.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "MCP Analytics in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/surfaces/web-app.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "MCP analytics notifications - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/notifications.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "MCP SDK v2 - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/sdk-v2.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "Privacy and redaction - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/privacy.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "Query MCP Analytics over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/surfaces/mcp.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "Sample queries - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/queries.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		},
+		{
+			"name": "Tracking missing capabilities - Docs",
+			"url": "https://posthog.com/docs/mcp-analytics/missing-capability.md",
+			"description": "",
+			"section": "Mcp Analytics"
+		}
+	]
+}

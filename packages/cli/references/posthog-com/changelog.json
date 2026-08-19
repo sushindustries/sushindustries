@@ -1,0 +1,18 @@
+{
+	"provider": "posthog-com",
+	"section": "Changelog",
+	"entries": [
+		{
+			"name": "Changelog (last 12 months, Markdown)",
+			"url": "https://posthog.com/changelog.md",
+			"description": "",
+			"section": "Changelog"
+		},
+		{
+			"name": "Changelog RSS feed",
+			"url": "https://posthog.com/changelog.rss",
+			"description": "",
+			"section": "Changelog"
+		}
+	]
+}

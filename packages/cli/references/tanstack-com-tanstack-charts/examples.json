@@ -1,0 +1,1230 @@
+{
+	"provider": "tanstack-com-tanstack-charts",
+	"section": "Examples",
+	"entries": [
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/charts/latest/docs/examples/index.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn/ui Charts",
+			"url": "https://tanstack.com/charts/catalog/collections/shadcn",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Lines and Areas",
+			"url": "https://tanstack.com/charts/latest/docs/examples/lines-and-areas.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Bars and Rankings",
+			"url": "https://tanstack.com/charts/latest/docs/examples/bars-and-rankings.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Scatterplots and Relationships",
+			"url": "https://tanstack.com/charts/latest/docs/examples/scatterplots-and-relationships.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Distributions",
+			"url": "https://tanstack.com/charts/latest/docs/examples/distributions.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Heatmaps and Densities",
+			"url": "https://tanstack.com/charts/latest/docs/examples/heatmaps-and-densities.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Intervals and Financial Charts",
+			"url": "https://tanstack.com/charts/latest/docs/examples/intervals-and-financial.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Stacked and Composed Charts",
+			"url": "https://tanstack.com/charts/latest/docs/examples/stacked-and-composition.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Facets and Multiple Views",
+			"url": "https://tanstack.com/charts/latest/docs/examples/facets-and-multiple-views.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Networks and Hierarchies",
+			"url": "https://tanstack.com/charts/latest/docs/examples/networks-and-hierarchies.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Maps and Spatial Charts",
+			"url": "https://tanstack.com/charts/latest/docs/examples/maps-and-spatial.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Polar and Radar Charts",
+			"url": "https://tanstack.com/charts/latest/docs/examples/polar-and-radar.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Annotations and Overlays",
+			"url": "https://tanstack.com/charts/latest/docs/examples/annotations-and-overlays.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Interactive Charts",
+			"url": "https://tanstack.com/charts/latest/docs/examples/interactive-charts.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Themes and Motion",
+			"url": "https://tanstack.com/charts/latest/docs/examples/themes-and-motion.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Apple stock line with seasonal gaps",
+			"url": "https://tanstack.com/charts/catalog/charts/01-line-gaps/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Industry unemployment with end labels",
+			"url": "https://tanstack.com/charts/catalog/charts/02-multi-line-end-labels/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "San Francisco temperature range band",
+			"url": "https://tanstack.com/charts/catalog/charts/03-temperature-range-band/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Industry unemployment stacked area",
+			"url": "https://tanstack.com/charts/catalog/charts/04-stacked-time-area/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Sorted vertical bars",
+			"url": "https://tanstack.com/charts/catalog/charts/bar-vertical-sorted/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Horizontal ranking with long labels",
+			"url": "https://tanstack.com/charts/catalog/charts/bar-horizontal-ranking/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Grouped bars",
+			"url": "https://tanstack.com/charts/catalog/charts/bar-grouped/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Stacked bars",
+			"url": "https://tanstack.com/charts/catalog/charts/bar-stacked/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Bubble scatterplot",
+			"url": "https://tanstack.com/charts/catalog/charts/scatter-bubble/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Histogram",
+			"url": "https://tanstack.com/charts/catalog/charts/histogram/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Labeled ordinal heatmap",
+			"url": "https://tanstack.com/charts/catalog/charts/heatmap-labeled/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Anscombe quartet small multiples",
+			"url": "https://tanstack.com/charts/catalog/charts/facets-anscombe/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Open-to-close price intervals",
+			"url": "https://tanstack.com/charts/catalog/charts/13-interval-timeline/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Point estimates with error bars",
+			"url": "https://tanstack.com/charts/catalog/charts/14-error-bars/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Grouped boxplot",
+			"url": "https://tanstack.com/charts/catalog/charts/15-boxplot/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ranked lollipop chart",
+			"url": "https://tanstack.com/charts/catalog/charts/16-lollipop/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Dumbbell comparison",
+			"url": "https://tanstack.com/charts/catalog/charts/17-dumbbell/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Cumulative histogram",
+			"url": "https://tanstack.com/charts/catalog/charts/18-cumulative-histogram/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "San Francisco temperature moving averages",
+			"url": "https://tanstack.com/charts/catalog/charts/19-moving-average-line/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Industry share of unemployment",
+			"url": "https://tanstack.com/charts/catalog/charts/20-normalized-stacked-area/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Streamgraph",
+			"url": "https://tanstack.com/charts/catalog/charts/21-streamgraph/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Bollinger band",
+			"url": "https://tanstack.com/charts/catalog/charts/22-bollinger-band/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Quantitative binned heatmap",
+			"url": "https://tanstack.com/charts/catalog/charts/24-quantitative-binned-heatmap/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Precipitation calendar heatmap",
+			"url": "https://tanstack.com/charts/catalog/charts/25-calendar-heatmap/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Diverging Likert responses",
+			"url": "https://tanstack.com/charts/catalog/charts/26-diverging-likert/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Parallel coordinates",
+			"url": "https://tanstack.com/charts/catalog/charts/27-parallel-coordinates/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Candlestick chart",
+			"url": "https://tanstack.com/charts/catalog/charts/28-candlestick/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Annual gasoline-price waterfall",
+			"url": "https://tanstack.com/charts/catalog/charts/29-waterfall/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Two-period slopegraph",
+			"url": "https://tanstack.com/charts/catalog/charts/30-slopegraph/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Scatterplot with linear regression",
+			"url": "https://tanstack.com/charts/catalog/charts/31-linear-regression/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Metro inequality change arrows",
+			"url": "https://tanstack.com/charts/catalog/charts/32-change-arrows/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Apple close versus moving average",
+			"url": "https://tanstack.com/charts/catalog/charts/33-difference-chart/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Pointer-selected tooltip",
+			"url": "https://tanstack.com/charts/catalog/charts/34-pointer-tooltip/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Grouped X tooltip",
+			"url": "https://tanstack.com/charts/catalog/charts/35-grouped-tooltip/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Tidy hierarchy tree",
+			"url": "https://tanstack.com/charts/catalog/charts/36-hierarchy-tree/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Delaunay spatial network",
+			"url": "https://tanstack.com/charts/catalog/charts/37-delaunay-network/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Filled wind-speed contours",
+			"url": "https://tanstack.com/charts/catalog/charts/38-contour-topography/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Point density contours",
+			"url": "https://tanstack.com/charts/catalog/charts/39-density-contours/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Westport House floor plan",
+			"url": "https://tanstack.com/charts/catalog/charts/40-geojson-map/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Les Misérables character network",
+			"url": "https://tanstack.com/charts/catalog/charts/40-force-directed-network/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "English letter frequency waffle",
+			"url": "https://tanstack.com/charts/catalog/charts/41-waffle-unit-chart/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Two-dimensional vector field",
+			"url": "https://tanstack.com/charts/catalog/charts/42-vector-field/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Hexagonally binned density",
+			"url": "https://tanstack.com/charts/catalog/charts/43-hexbin-density/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Framed guide-free scatterplot",
+			"url": "https://tanstack.com/charts/catalog/charts/44-framed-scatter/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Empirical cumulative distribution",
+			"url": "https://tanstack.com/charts/catalog/charts/50-empirical-cdf/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Faceted distributions",
+			"url": "https://tanstack.com/charts/catalog/charts/51-faceted-distributions/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Beeswarm distribution",
+			"url": "https://tanstack.com/charts/catalog/charts/52-beeswarm-dodge/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Log-scale Flare class sizes",
+			"url": "https://tanstack.com/charts/catalog/charts/53-log-scale-scatter/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Industry unemployment bump chart",
+			"url": "https://tanstack.com/charts/catalog/charts/54-bump-ranking/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Indexed industry unemployment",
+			"url": "https://tanstack.com/charts/catalog/charts/55-indexed-multi-line/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Directed connected scatterplot",
+			"url": "https://tanstack.com/charts/catalog/charts/56-connected-scatter/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Scatterplot with marginal histograms",
+			"url": "https://tanstack.com/charts/catalog/charts/57-scatter-marginal-histograms/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Annotated AAPL extrema",
+			"url": "https://tanstack.com/charts/catalog/charts/58-select-extrema/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Mean penguin mass reducer bars",
+			"url": "https://tanstack.com/charts/catalog/charts/59-grouped-reducer-bars/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "AAPL lag-one autocorrelation",
+			"url": "https://tanstack.com/charts/catalog/charts/60-lag-autocorrelation/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Industry unemployment percentile ribbon",
+			"url": "https://tanstack.com/charts/catalog/charts/61-quantile-ribbon/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Ridgeline density comparison",
+			"url": "https://tanstack.com/charts/catalog/charts/62-ridgeline-density/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Violin distribution comparison",
+			"url": "https://tanstack.com/charts/catalog/charts/63-violin-distributions/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Marimekko survey composition",
+			"url": "https://tanstack.com/charts/catalog/charts/64-marimekko-mosaic/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Voronoi nearest-point interaction",
+			"url": "https://tanstack.com/charts/catalog/charts/65-voronoi-nearest-tooltip/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Layered Seattle weather chart",
+			"url": "https://tanstack.com/charts/catalog/charts/70-composed-chart/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Palmer penguins by species and sex",
+			"url": "https://tanstack.com/charts/catalog/charts/71-recharts-population-pyramid/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Stacked and adjacent Seattle weather bars",
+			"url": "https://tanstack.com/charts/catalog/charts/72-recharts-mixed-bars/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Automobile specifications scatter",
+			"url": "https://tanstack.com/charts/catalog/charts/73-many-point-scatter/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Flare analytics treemap",
+			"url": "https://tanstack.com/charts/catalog/charts/74-recharts-treemap/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Simple radar chart",
+			"url": "https://tanstack.com/charts/catalog/charts/75-radar/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "English letter frequency pie",
+			"url": "https://tanstack.com/charts/catalog/charts/76-pie/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "English letter frequency donut",
+			"url": "https://tanstack.com/charts/catalog/charts/77-donut/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Survey agreement share gauge",
+			"url": "https://tanstack.com/charts/catalog/charts/78-gauge/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Snapped axis pointer with grouped tooltip",
+			"url": "https://tanstack.com/charts/catalog/charts/80-echarts-axis-pointer/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Interactive series legend",
+			"url": "https://tanstack.com/charts/catalog/charts/81-recharts-interactive-legend/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Linked chart and data table selection",
+			"url": "https://tanstack.com/charts/catalog/charts/82-chart-table-selection/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Focus and context time window",
+			"url": "https://tanstack.com/charts/catalog/charts/83-focus-context-window/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Expanding pinned energy tooltip",
+			"url": "https://tanstack.com/charts/catalog/charts/84-pinned-nested-chart-tooltip/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Scrollable resource timeline lanes",
+			"url": "https://tanstack.com/charts/catalog/charts/85-scrollable-resource-lanes/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Streaming window preservation",
+			"url": "https://tanstack.com/charts/catalog/charts/86-streaming-window-preservation/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Synchronized cursors across views",
+			"url": "https://tanstack.com/charts/catalog/charts/87-echarts-synchronized-cursors/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Free cursor over car measurements",
+			"url": "https://tanstack.com/charts/catalog/charts/88-echarts-free-cursor/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Observed monthly AAPL brush selection",
+			"url": "https://tanstack.com/charts/catalog/charts/89-brush-range-selection/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Wheel zoom and pan over AAPL closes",
+			"url": "https://tanstack.com/charts/catalog/charts/90-zoomable-time-window/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "AAPL close playback scrubber",
+			"url": "https://tanstack.com/charts/catalog/charts/91-timeline-playback-scrubber/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Editable event range",
+			"url": "https://tanstack.com/charts/catalog/charts/92-editable-event-range/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Letter frequency pie with labels",
+			"url": "https://tanstack.com/charts/catalog/charts/93-labeled-pie/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Letter frequency donut with total",
+			"url": "https://tanstack.com/charts/catalog/charts/94-center-donut/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Rounded letter frequency donut",
+			"url": "https://tanstack.com/charts/catalog/charts/95-rounded-donut/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Nested Flare package sizes",
+			"url": "https://tanstack.com/charts/catalog/charts/96-nested-donut/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "English letter frequency rose",
+			"url": "https://tanstack.com/charts/catalog/charts/97-rose/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "County unemployment gauge",
+			"url": "https://tanstack.com/charts/catalog/charts/98-needle-gauge/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Comparative radar chart",
+			"url": "https://tanstack.com/charts/catalog/charts/99-comparative-radar/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Concentric letter frequency bars",
+			"url": "https://tanstack.com/charts/catalog/charts/100-radial-bars/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Flare analytics sunburst",
+			"url": "https://tanstack.com/charts/catalog/charts/101-sunburst/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "World learning-poverty choropleth",
+			"url": "https://tanstack.com/charts/catalog/charts/102-world-choropleth/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "World population bubble map",
+			"url": "https://tanstack.com/charts/catalog/charts/103-bubble-map/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Orthographic globe with graticule",
+			"url": "https://tanstack.com/charts/catalog/charts/104-orthographic-globe/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "HMS Beagle voyage",
+			"url": "https://tanstack.com/charts/catalog/charts/105-route-map/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Seattle daily high-temperature polar line",
+			"url": "https://tanstack.com/charts/catalog/charts/106-polar-line/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Surface wind polar scatter",
+			"url": "https://tanstack.com/charts/catalog/charts/107-polar-scatter/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "World population-density choropleth",
+			"url": "https://tanstack.com/charts/catalog/charts/108-country-choropleth/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "United States county unemployment choropleth",
+			"url": "https://tanstack.com/charts/catalog/charts/109-us-state-choropleth/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Standard world projection gallery",
+			"url": "https://tanstack.com/charts/catalog/charts/110-projection-gallery/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Basic Sankey",
+			"url": "https://tanstack.com/charts/catalog/charts/111-basic-sankey/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Sankey",
+			"url": "https://tanstack.com/charts/catalog/charts/111-sankey-flow/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Staggered entrance motion",
+			"url": "https://tanstack.com/charts/catalog/charts/112-motion-entrance/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Interrupted spring updates",
+			"url": "https://tanstack.com/charts/catalog/charts/113-motion-updates/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Spring line updates",
+			"url": "https://tanstack.com/charts/catalog/charts/114-spring-line-motion/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Definition-owned motion",
+			"url": "https://tanstack.com/charts/catalog/charts/115-definition-motion/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Cross-chart geometry morph",
+			"url": "https://tanstack.com/charts/catalog/charts/116-geometry-morph/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Focus and crosshair motion",
+			"url": "https://tanstack.com/charts/catalog/charts/117-focus-cursor-motion/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Token use calendar heatmap",
+			"url": "https://tanstack.com/charts/catalog/charts/118-token-usage-calendar/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Stacked bars with band and rule cursors",
+			"url": "https://tanstack.com/charts/catalog/charts/119-stacked-bar-band-cursor/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Themed interactive area card",
+			"url": "https://tanstack.com/charts/catalog/charts/120-themed-interactive-area/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Active bar dashboard",
+			"url": "https://tanstack.com/charts/catalog/charts/121-active-bar-dashboard/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Premium KPI sparklines",
+			"url": "https://tanstack.com/charts/catalog/charts/122-premium-kpi-sparklines/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Active donut metric",
+			"url": "https://tanstack.com/charts/catalog/charts/123-active-donut-metric/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Theme palette matrix",
+			"url": "https://tanstack.com/charts/catalog/charts/124-theme-palette-matrix/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Sales conversion funnel",
+			"url": "https://tanstack.com/charts/catalog/charts/125-sales-funnel/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Drillable Flare sunburst",
+			"url": "https://tanstack.com/charts/catalog/charts/126-drillable-sunburst/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn dashboard",
+			"url": "https://tanstack.com/charts/catalog/charts/127-shadcn-dashboard/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Bar Chart - Multiple",
+			"url": "https://tanstack.com/charts/catalog/charts/128-shadcn-bar-multiple/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Pie Chart - Donut with Text",
+			"url": "https://tanstack.com/charts/catalog/charts/129-shadcn-pie-donut-text/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart - Multiple",
+			"url": "https://tanstack.com/charts/catalog/charts/130-shadcn-radar-multiple/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radial Chart - Text",
+			"url": "https://tanstack.com/charts/catalog/charts/131-shadcn-radial-text/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Tooltip - Advanced",
+			"url": "https://tanstack.com/charts/catalog/charts/132-shadcn-tooltip-advanced/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Area Chart - Axes",
+			"url": "https://tanstack.com/charts/catalog/charts/133-shadcn-area-axes/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Area Chart",
+			"url": "https://tanstack.com/charts/catalog/charts/134-shadcn-area-default/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Area Chart - Gradient",
+			"url": "https://tanstack.com/charts/catalog/charts/135-shadcn-area-gradient/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Area Chart - Icons",
+			"url": "https://tanstack.com/charts/catalog/charts/136-shadcn-area-icons/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Area Chart - Interactive",
+			"url": "https://tanstack.com/charts/catalog/charts/137-shadcn-area-interactive/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Area Chart - Legend",
+			"url": "https://tanstack.com/charts/catalog/charts/138-shadcn-area-legend/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Area Chart - Linear",
+			"url": "https://tanstack.com/charts/catalog/charts/139-shadcn-area-linear/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Area Chart - Stacked Expanded",
+			"url": "https://tanstack.com/charts/catalog/charts/140-shadcn-area-stacked-expand/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Area Chart - Stacked",
+			"url": "https://tanstack.com/charts/catalog/charts/141-shadcn-area-stacked/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Area Chart - Step",
+			"url": "https://tanstack.com/charts/catalog/charts/142-shadcn-area-step/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Bar Chart - Active",
+			"url": "https://tanstack.com/charts/catalog/charts/143-shadcn-bar-active/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Bar Chart",
+			"url": "https://tanstack.com/charts/catalog/charts/144-shadcn-bar-default/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Bar Chart - Horizontal",
+			"url": "https://tanstack.com/charts/catalog/charts/145-shadcn-bar-horizontal/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Bar Chart - Interactive",
+			"url": "https://tanstack.com/charts/catalog/charts/146-shadcn-bar-interactive/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Bar Chart - Custom Label",
+			"url": "https://tanstack.com/charts/catalog/charts/147-shadcn-bar-label-custom/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Bar Chart - Label",
+			"url": "https://tanstack.com/charts/catalog/charts/148-shadcn-bar-label/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Bar Chart - Mixed",
+			"url": "https://tanstack.com/charts/catalog/charts/149-shadcn-bar-mixed/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Bar Chart - Negative",
+			"url": "https://tanstack.com/charts/catalog/charts/150-shadcn-bar-negative/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Bar Chart - Stacked + Legend",
+			"url": "https://tanstack.com/charts/catalog/charts/151-shadcn-bar-stacked/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Line Chart",
+			"url": "https://tanstack.com/charts/catalog/charts/152-shadcn-line-default/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Line Chart - Dots Colors",
+			"url": "https://tanstack.com/charts/catalog/charts/153-shadcn-line-dots-colors/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Line Chart - Custom Dots",
+			"url": "https://tanstack.com/charts/catalog/charts/154-shadcn-line-dots-custom/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Line Chart - Dots",
+			"url": "https://tanstack.com/charts/catalog/charts/155-shadcn-line-dots/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Line Chart - Interactive",
+			"url": "https://tanstack.com/charts/catalog/charts/156-shadcn-line-interactive/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Line Chart - Custom Label",
+			"url": "https://tanstack.com/charts/catalog/charts/157-shadcn-line-label-custom/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Line Chart - Label",
+			"url": "https://tanstack.com/charts/catalog/charts/158-shadcn-line-label/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Line Chart - Linear",
+			"url": "https://tanstack.com/charts/catalog/charts/159-shadcn-line-linear/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Line Chart - Multiple",
+			"url": "https://tanstack.com/charts/catalog/charts/160-shadcn-line-multiple/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Line Chart - Step",
+			"url": "https://tanstack.com/charts/catalog/charts/161-shadcn-line-step/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Pie Chart - Donut Active",
+			"url": "https://tanstack.com/charts/catalog/charts/162-shadcn-pie-donut-active/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Pie Chart - Donut",
+			"url": "https://tanstack.com/charts/catalog/charts/163-shadcn-pie-donut/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Pie Chart - Interactive",
+			"url": "https://tanstack.com/charts/catalog/charts/164-shadcn-pie-interactive/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Pie Chart - Custom Label",
+			"url": "https://tanstack.com/charts/catalog/charts/165-shadcn-pie-label-custom/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Pie Chart - Label List",
+			"url": "https://tanstack.com/charts/catalog/charts/166-shadcn-pie-label-list/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Pie Chart - Label",
+			"url": "https://tanstack.com/charts/catalog/charts/167-shadcn-pie-label/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Pie Chart - Legend",
+			"url": "https://tanstack.com/charts/catalog/charts/168-shadcn-pie-legend/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Pie Chart - Separator None",
+			"url": "https://tanstack.com/charts/catalog/charts/169-shadcn-pie-separator-none/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Pie Chart",
+			"url": "https://tanstack.com/charts/catalog/charts/170-shadcn-pie-simple/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Pie Chart - Stacked",
+			"url": "https://tanstack.com/charts/catalog/charts/171-shadcn-pie-stacked/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart",
+			"url": "https://tanstack.com/charts/catalog/charts/172-shadcn-radar-default/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart - Dots",
+			"url": "https://tanstack.com/charts/catalog/charts/173-shadcn-radar-dots/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart - Grid Circle Filled",
+			"url": "https://tanstack.com/charts/catalog/charts/174-shadcn-radar-grid-circle-fill/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart - Grid Circle - No lines",
+			"url": "https://tanstack.com/charts/catalog/charts/175-shadcn-radar-grid-circle-no-lines/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart - Grid Circle",
+			"url": "https://tanstack.com/charts/catalog/charts/176-shadcn-radar-grid-circle/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart - Grid Custom",
+			"url": "https://tanstack.com/charts/catalog/charts/177-shadcn-radar-grid-custom/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart - Grid Filled",
+			"url": "https://tanstack.com/charts/catalog/charts/178-shadcn-radar-grid-fill/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart - Grid None",
+			"url": "https://tanstack.com/charts/catalog/charts/179-shadcn-radar-grid-none/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart - Icons",
+			"url": "https://tanstack.com/charts/catalog/charts/180-shadcn-radar-icons/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart - Custom Label",
+			"url": "https://tanstack.com/charts/catalog/charts/181-shadcn-radar-label-custom/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart - Legend",
+			"url": "https://tanstack.com/charts/catalog/charts/182-shadcn-radar-legend/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart - Lines Only",
+			"url": "https://tanstack.com/charts/catalog/charts/183-shadcn-radar-lines-only/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radar Chart - Radius Axis",
+			"url": "https://tanstack.com/charts/catalog/charts/184-shadcn-radar-radius/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radial Chart - Grid",
+			"url": "https://tanstack.com/charts/catalog/charts/185-shadcn-radial-grid/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radial Chart - Label",
+			"url": "https://tanstack.com/charts/catalog/charts/186-shadcn-radial-label/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radial Chart - Shape",
+			"url": "https://tanstack.com/charts/catalog/charts/187-shadcn-radial-shape/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radial Chart",
+			"url": "https://tanstack.com/charts/catalog/charts/188-shadcn-radial-simple/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Radial Chart - Stacked",
+			"url": "https://tanstack.com/charts/catalog/charts/189-shadcn-radial-stacked/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Tooltip - Default",
+			"url": "https://tanstack.com/charts/catalog/charts/190-shadcn-tooltip-default/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Tooltip - Formatter",
+			"url": "https://tanstack.com/charts/catalog/charts/191-shadcn-tooltip-formatter/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Tooltip - Icons",
+			"url": "https://tanstack.com/charts/catalog/charts/192-shadcn-tooltip-icons/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Tooltip - Line Indicator",
+			"url": "https://tanstack.com/charts/catalog/charts/193-shadcn-tooltip-indicator-line/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Tooltip - No Indicator",
+			"url": "https://tanstack.com/charts/catalog/charts/194-shadcn-tooltip-indicator-none/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Tooltip - Custom label",
+			"url": "https://tanstack.com/charts/catalog/charts/195-shadcn-tooltip-label-custom/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Tooltip - Label Formatter",
+			"url": "https://tanstack.com/charts/catalog/charts/196-shadcn-tooltip-label-formatter/",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "shadcn Tooltip - No Label",
+			"url": "https://tanstack.com/charts/catalog/charts/197-shadcn-tooltip-label-none/",
+			"description": "",
+			"section": "Examples"
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"provider": "threejs-org",
+	"section": "Renderer Guides",
+	"entries": [
+		{
+			"name": "WebGPURenderer",
+			"url": "https://threejs.org/manual/#en/webgpurenderer",
+			"description": "",
+			"section": "Renderer Guides"
+		}
+	]
+}

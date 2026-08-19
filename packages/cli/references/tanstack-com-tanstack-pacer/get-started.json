@@ -1,0 +1,54 @@
+{
+	"provider": "tanstack-com-tanstack-pacer",
+	"section": "Get Started",
+	"entries": [
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/pacer/latest/docs/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start",
+			"url": "https://tanstack.com/pacer/latest/docs/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Installation",
+			"url": "https://tanstack.com/pacer/latest/docs/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Devtools",
+			"url": "https://tanstack.com/pacer/latest/docs/devtools.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: React Adapter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/react/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Solid Adapter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/solid/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Preact: Preact Adapter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/preact/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Angular Adapter",
+			"url": "https://tanstack.com/pacer/latest/docs/framework/angular/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		}
+	]
+}

@@ -1,0 +1,3006 @@
+{
+	"provider": "posthog-com",
+	"section": "Customer Data Platform (CDP)",
+	"entries": [
+		{
+			"name": "Azure Blob Storage destination for batch exports - Docs",
+			"url": "https://posthog.com/docs/cdp/batch-exports/azureblob.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Batch exports - Docs",
+			"url": "https://posthog.com/docs/cdp/batch-exports.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "BigQuery destination for batch exports - Docs",
+			"url": "https://posthog.com/docs/cdp/batch-exports/bigquery.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "BugHerd source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/bugherd.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "CAST AI source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/cast-ai.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "CloudZero source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/cloudzero.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Create and update Attio CRM contacts from analytics events - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/attio.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Create and update Brevo contacts from analytics events - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/brevo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Create and update Close CRM contacts from analytics events - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/close.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Custom REST source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/custom-rest-source.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Customer Data Platform troubleshooting - Docs",
+			"url": "https://posthog.com/docs/cdp/troubleshooting.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Customizing destinations - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/customizing-destinations.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Customizing transformations - Docs",
+			"url": "https://posthog.com/docs/cdp/transformations/customizing-transformations.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Data pipelines - Docs",
+			"url": "https://posthog.com/docs/cdp.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Data pipelines API - Docs",
+			"url": "https://posthog.com/docs/cdp/surfaces/api.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Data Pipelines changelog - Docs",
+			"url": "https://posthog.com/docs/cdp/changelog.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Data pipelines in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/cdp/surfaces/web-app.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Databricks destination for batch exports - Docs",
+			"url": "https://posthog.com/docs/cdp/batch-exports/databricks.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "DebugBear source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/debugbear.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Downsample - Docs",
+			"url": "https://posthog.com/docs/cdp/transformations/downsampling-plugin.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Drop events - Docs",
+			"url": "https://posthog.com/docs/cdp/transformations/drop-events.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Fix pipeline failures in PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/cdp/surfaces/desktop.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Incoming webhooks - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/incoming-webhooks.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Link a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Ably as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/ably.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking ActiveCampaign as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/active-campaign.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking AdRoll as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/adroll.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking AgileCRM as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/agilecrm.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Aha! as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/aha.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Aha! Ideas as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/aha-ideas.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Airbrake as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/airbrake.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Aircall as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/aircall.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Airtable as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/airtable.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Aiven as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/aiven.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Algolia as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/algolia.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Alguna as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/alguna.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Amazon Ads as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/amazon-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Amazon SES as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/aws-ses.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Amplitude as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/amplitude.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Apify Dataset as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/apify-dataset.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Apitally as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/apitally.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Apollo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/apollo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Appfigures as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/appfigures.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking AppsFlyer as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/appsflyer.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Appstack as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/appstack.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Argo CD as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/argocd.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Asana as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/asana.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Ashby as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/ashby.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking AskNicely as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/asknicely.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking AssemblyAI as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/assemblyai.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Attentive as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/attentive.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Attio as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/attio.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Automox as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/automox.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Aviationstack as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/aviationstack.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking AWS Cost Explorer as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/aws-cost-explorer.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Azure as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/azure-blob.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Azure DevOps as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/azure-devops.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Azure SQL Server as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/microsoft-sql-server.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking babelforce as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/babelforce.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking BambooHR as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/bamboohr.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Baserow as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/baserow.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Beamer as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/beamer.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Bettermode as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/bettermode.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking BigMailer as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/bigmailer.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking BigQuery as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/bigquery.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Bing Ads as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/bing-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Bing Webmaster Tools as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/bing-webmaster-tools.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Bitrise as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/bitrise.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Bland AI as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/bland-ai.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Blogger as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/blogger.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking BlueTally as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/bluetally.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking BoldSign as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/boldsign.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Braintree as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/braintree.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Braze as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/braze.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking BreezoMeter as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/breezometer.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Brevo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/brevo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Brex as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/brex.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Browser Use as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/browser-use.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Bugsnag as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/bugsnag.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking BuildBetter as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/buildbetter.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Bunny.net as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/bunny.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Buzzsprout as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/buzzsprout.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Calendly as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/calendly.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking CallRail as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/callrail.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Campaign Monitor as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/campaign-monitor.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Campayn as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/campayn.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Campfire as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/campfire.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Canny as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/canny.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Capsule CRM as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/capsule-crm.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Care Quality Commission as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/care-quality-commission.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Census as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/census.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Chameleon as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/chameleon.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Chargebee as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/chargebee.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Chargedesk as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/chargedesk.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking ChartHop as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/charthop.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking ChartMogul as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/chartmogul.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Chatwoot as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/chatwoot.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Checkout.com as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/checkout-com.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Churnkey as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/churnkey.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking CIMIS as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/cimis.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking CircleCI as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/circleci.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Cisco Duo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/cisco-duo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Clari as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/clari.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Clerk as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/clerk.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking ClickHouse as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/clickhouse.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking ClickHouse Cloud as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/clickhouse-cloud.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking ClickUp as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/clickup.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Clockify as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/clockify.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Clockodo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/clockodo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Close as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/close.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Cloudflare as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/cloudflare.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Cloudflare R2 as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/r2.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Coda as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/coda.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Codacy as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/codacy.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Codefresh as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/codefresh.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking CodeScene as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/codescene.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Cody as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/cody.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Cohere as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/cohere.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking CoinAPI as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/coin-api.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking CoinGecko as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/coingecko.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking CoinMarketCap as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/coinmarketcap.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking commercetools as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/commercetools.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Concord as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/concord.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking ConfigCat as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/configcat.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Confluence as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/confluence.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Confluent Cloud as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/confluent-cloud.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking ConvertKit as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/convertkit.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Convex as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/convex.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Copper as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/copper.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Coralogix as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/coralogix.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Cortex as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/cortex.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Coupa as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/coupa.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Courier as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/courier.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Cronitor as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/cronitor.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Crunchbase as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/crunchbase.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Culture Amp as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/culture-amp.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Customer.io as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/customer-io.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Customerly as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/customerly.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Databricks as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/databricks.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Datadog as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/datadog.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking DataHub as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/datahub.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking dbt as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/dbt.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Decagon as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/decagon.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Deel as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/deel.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking DeepSource as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/deepsource.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Delighted as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/delighted.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Descope as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/descope.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking DingConnect as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/ding-connect.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Dixa as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/dixa.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking DocuSeal as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/docuseal.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking DocuSign as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/docusign.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking DoIt as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/doit.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Doppler as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/doppler.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Dovetail as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/dovetail.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Drip as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/drip.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Dropbox Sign as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/dropbox-sign.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Dub as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/dub.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Dynatrace as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/dynatrace.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking e-conomic as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/e-conomic.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking EasyPost as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/easypost.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Easypromos as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/easypromos.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Elastic Email as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/elasticemail.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Elasticsearch as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/elasticsearch.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking ElevenLabs as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/elevenlabs.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking EmailOctopus as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/emailoctopus.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Eppo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/eppo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Eventbrite as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/eventbrite.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Eventee as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/eventee.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Everhour as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/everhour.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Exchange Rates API as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/exchange-rates-api.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking EZOfficeInventory as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/ezofficeinventory.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Factorial as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/factorial.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Featurebase as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/featurebase.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Finage as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/finage.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Financial Modeling Prep as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/financial-modelling.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Finnhub as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/finnhub.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Finnworlds as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/finnworlds.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Firecrawl as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/firecrawl.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking FireHydrant as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/firehydrant.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Flagsmith as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/flagsmith.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Fleetio as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/fleetio.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Fly.io as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/fly-io.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Freshdesk as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/freshdesk.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Freshsales as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/freshsales.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Frill as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/frill.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Front as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/front.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Fulcrum as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/fulcrum.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Fullstory as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/fullstory.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking FusionAuth as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/fusionauth.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Gitea as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/gitea.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking GitGuardian as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/gitguardian.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking GitHub as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/github.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking GitLab as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/gitlab.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Gladly as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/gladly.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking GoCardless as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/gocardless.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Gong as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/gong.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Google Ads as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/google-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Google Analytics as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/google-analytics.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Google Cloud Storage as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/gcs.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Google Search Console as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/google-search-console.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Google Sheets as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/google-sheets.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Gorgias as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/gorgias.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Grafana as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/grafana.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Granola as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/granola.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Greenhouse as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/greenhouse.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Guru as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/guru.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Height as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/height.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Helicone as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/helicone.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Heroku as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/heroku.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Hex as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/hex.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking HiBob as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/hibob.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Honeybadger as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/honeybadger.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking HoorayHR as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/hoorayhr.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Hubspot as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/hubspot.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Hugging Face as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/hugging-face.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Humanitix as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/humanitix.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Huntr as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/huntr.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Hyperspell as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/hyperspell.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking IBM Instana Observability as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/instana.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking impact.com as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/impact.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking impact.com Partner as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/impact-partner.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking incident.io as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/incident-io.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking inFlow Inventory as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/inflowinventory.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Instagram as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/instagram.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Instantly as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/instantly.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Intercom as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/intercom.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Iterable as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/iterable.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Jamf Pro as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/jamf-pro.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Jellyfish as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/jellyfish.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking JetBrains TeamCity as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/teamcity.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Jira as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/jira.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking JobNimbus as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/jobnimbus.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Jotform as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/jotform.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking JustSift as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/justsift.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Kernel as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/kernel.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Klaus as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/klaus.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Klaviyo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/klaviyo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Knock as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/knock.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking KnowBe4 as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/knowbe4.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Kustomer as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/kustomer.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Lacework FortiCNAPP as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/lacework.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Lago as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/lago.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Langfuse as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/langfuse.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking LangSmith as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/langsmith.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Lattice as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/lattice.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking LaunchDarkly as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/launchdarkly.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Leexi as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/leexi.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Lemlist as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/lemlist.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Lemon Squeezy as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/lemon-squeezy.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Lever as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/lever.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Lightdash as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/lightdash.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Lightfield as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/lightfield.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Lightspeed Retail as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/lightspeed-retail.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Linear as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/linear.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking LinkedIn Ads as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/linkedin-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Linode as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/linode.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking LlamaCloud as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/llama-cloud.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Mailchimp as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/mailchimp.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking MailerLite as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/mailerlite.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking MailerSend as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/mailersend.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Mailgun as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/mailgun.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Mailjet as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/mailjet.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Matomo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/matomo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Maxio as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/maxio.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Meta Ads as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/meta-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Metabase as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/metabase.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Microsoft Clarity as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/microsoft-clarity.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Mixpanel as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/mixpanel.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Mollie as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/mollie.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Monday.com as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/monday.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking MongoDB as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/mongodb.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Monte Carlo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/monte-carlo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Mux as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/mux.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking My Hours as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/my-hours.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking MySQL as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/mysql.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Nebius AI as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/nebius-ai.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Neon as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/neon.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Netlify as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/netlify.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking New Relic as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/new-relic.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Northflank as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/northflank.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Notion as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/notion.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking npm registry as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/npm-registry.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Octopus Deploy as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/octopus-deploy.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Okta as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/okta.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Omni Analytics as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/omni.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Omnisend as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/omnisend.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking OnceHub as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/oncehub.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking OnePageCRM as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/onepagecrm.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking OpenAI Ads as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/openai-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking OpenAI as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/openai.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking OpenRouter as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/openrouter.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Opinion Stage as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/opinion-stage.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Opsgenie as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/opsgenie.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Optimizely as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/optimizely.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Orb as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/orb.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Ortto as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/ortto.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Oura as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/oura.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Outbrain as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/outbrain.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Pabbly Subscription Billing as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/pabbly-subscriptions-billing.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Paddle as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/paddle.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking PagerDuty as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/pagerduty.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking PandaDoc as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/pandadoc.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Paperform as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/paperform.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Partnerize as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/partnerize.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking PartnerStack as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/partnerstack.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Paystack as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/paystack.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Pendo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/pendo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Perigon as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/perigon.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking PersistIQ as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/persistiq.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Personio as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/personio.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking pganalyze as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/pganalyze.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Pingdom as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/pingdom.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Pinterest Ads as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/pinterest-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Pipedrive as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/pipedrive.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Pipeliner as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/pipeliner.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Plaid as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/plaid.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Plain as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/plain.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Planhat as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/planhat.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Platform.sh as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/platform-sh.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Plausible as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/plausible.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Plunk as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/plunk.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Polar as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/polar.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Postgres as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/postgres.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Postmark as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/postmark.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking pretix as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/pretix.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Productboard as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/productboard.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Pylon as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/pylon.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking PyPI as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/pypi.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Qualaroo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/qualaroo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Railway as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/railway.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Ramp as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/ramp.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Razorpay as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/razorpay.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Recharge as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/recharge.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Recruitee as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/recruitee.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Recurly as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/recurly.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Reddit Ads as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/reddit-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Redshift as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/redshift.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Render as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/render.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking RentCast as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/rentcast.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Reply.io as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/reply-io.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Resend as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/resend.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Retently as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/retently.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking RevenueCat as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/revenuecat.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Rippling as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/rippling.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Rocketlane as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/rocketlane.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Rollbar as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/rollbar.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Rootly as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/rootly.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking RSS.com as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/rss.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking RubyGems.org as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/rubygems.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Ruddr as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/ruddr.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking RunPod as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/runpod.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking S3 as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/s3.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking SafetyCulture as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/safetyculture.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Salesflare as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/salesflare.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Salesforce as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/salesforce.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Salesloft as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/salesloft.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking SavvyCal as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/savvycal.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Scaleway as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/scaleway.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Secoda as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/secoda.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Segment as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/segment.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking SendGrid as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/sendgrid.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking SentinelOne as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/sentinelone.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Sentry as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/sentry.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking ServiceNow as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/servicenow.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Shippo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/shippo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking ShipStation as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/shipstation.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Shopify as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/shopify.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking ShopWired as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/shopwired.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Short.io as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/shortio.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Shortcut as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/shortcut.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking SigNoz as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/signoz.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking SimFin as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/simfin.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Simplecast as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/simplecast.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Simplesat as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/simplesat.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Slack as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/slack.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking SmartEngage as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/smartengage.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Smartsheet as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/smartsheet.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Snapchat Ads as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/snapchat-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Snowflake as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/snowflake.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Snyk as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/snyk.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Spacelift as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/spacelift.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking SparkPost as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/sparkpost.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Split as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/split-io.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Splunk AppDynamics (Cisco) as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/appdynamics.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Splunk Observability Cloud as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/splunk-observability-cloud.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Spotler CRM as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/spotlercrm.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Squadcast as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/squadcast.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Square as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/square.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Squarespace as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/squarespace.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Stack Overflow for Teams as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/stack-overflow-for-teams.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking StatusCake as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/statuscake.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Stigg as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/stigg.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking StreamElements as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/streamelements.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Stripe as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/stripe.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Stytch as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/stytch.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Supabase as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/supabase.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking SurveyMonkey as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/surveymonkey.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking SurveySparrow as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/surveysparrow.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Svix as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/svix.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Swarmia as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/swarmia.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Taboola as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/taboola.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Tavus as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/tavus.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking tawk.to as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/tawk-to.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Teachable as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/teachable.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Teamtailor as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/teamtailor.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Teamwork as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/teamwork.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Telnyx as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/telnyx.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Tempo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/tempo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Temporal.io as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/temporal.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Temporal.io as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/temporalio.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking TestRail as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/testrail.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Thinkific as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/thinkific.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking TikTok Ads as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/tiktok-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking tinyEmail as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/tinyemail.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking TMDb as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/tmdb.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Todoist as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/todoist.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Together AI as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/together-ai.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Travis CI as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/travis-ci.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Trello as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/trello.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Tremendous as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/tremendous.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Trigger.dev as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/trigger-dev.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Trunk.io as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/trunk-io.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Trustpilot as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/trustpilot.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking TVmaze as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/tvmaze.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Twilio as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/twilio.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Typeform as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/typeform.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Ubidots as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/ubidots.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Unstructured as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/unstructured.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking UpPromote as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/uppromote.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking UptimeRobot as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/uptimerobot.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Vapi as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/vapi.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Vercel as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/vercel.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Vitally as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/vitally.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Vultr as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/vultr.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Wasabi as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/wasabi.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Watchmode as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/watchmode.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Webflow as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/webflow.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Weights &amp; Biases as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/weights-and-biases.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Wikipedia Pageviews as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/wikipedia-pageviews.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking WooCommerce as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/woocommerce.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking WordPress as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/wordpress.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Workable as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/workable.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking WorkOS as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/workos.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Wrike as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/wrike.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Wufoo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/wufoo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Yousign as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/yousign.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking ZapSign as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/zapsign.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Zendesk as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/zendesk.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Zendesk Sell as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/zendesk-sell.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Zenloop as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/zenloop.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Zonka Feedback as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/zonka-feedback.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Zoom as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/zoom.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Zuora as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/zuora.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Linking Zylo as a source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/zylo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Manage data pipelines over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/cdp/surfaces/mcp.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Postgres destination for batch exports - Docs",
+			"url": "https://posthog.com/docs/cdp/batch-exports/postgres.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Realtime analytics data exports - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Realtime transformations - Docs",
+			"url": "https://posthog.com/docs/cdp/transformations.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Redshift destination for batch exports - Docs",
+			"url": "https://posthog.com/docs/cdp/batch-exports/redshift.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "S3 destination for batch exports - Docs",
+			"url": "https://posthog.com/docs/cdp/batch-exports/s3.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send analytics events to June - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/june.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send contacts and analytics events to Klaviyo - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/klaviyo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send contacts and PostHog events to Intercom - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/intercom.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog analytics events to your Discord server - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/discord.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog analytics events to your Microsoft Teams server - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/microsoft-teams.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog analytics to Airtable - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/airtable.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog conversion events to Google Ads - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/google-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog conversion events to Meta Ads - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/meta-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog conversion events to Microsoft Ads - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/microsoft-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog conversion events to Reddit Ads (Conversions API) - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/reddit-ads-conversion-api.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog conversion events to Reddit Ads (Pixel) - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/reddit-ads-pixel.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog conversion events to Snapchat Ads - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/snapchat-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog conversion events to TikTok Ads - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/tiktok-ads.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data to another PostHog instance - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/posthog.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data to Avo - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/avo.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data to AWS Kinesis - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/aws-kinesis.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data to Braze - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/braze.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data to Customer.io - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/customerio.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data to Google Cloud Storage - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/google-cloud-storage.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data to Google Pub/Sub - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/google-pubsub.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data to Knock - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/knock.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data to Make - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/make.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data to RudderStack - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/rudderstack.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data to Salesforce - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/salesforce.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data to Slack webhooks - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/slack.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data to Zapier - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/zapier.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog event data using webhooks - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/webhook.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog events and user profiles to Appcues - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/appcues.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog person data to ActiveCampaign - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/activecampaign.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog person data to Engage - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/engage.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog person data to Gleap - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/gleap.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog person data to Hubspot - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/hubspot.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog person data to Loops - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/loops.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog person data to Mailgun - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/mailgun.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog person data to Mailjet - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/mailjet.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog person data to Sendgrid - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/sendgrid.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send PostHog person data to Zendesk - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/zendesk.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send SMS messages using Twilio from analytics events - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/twilio.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Send WhatsApp messages from analytics events - Docs",
+			"url": "https://posthog.com/docs/cdp/destinations/whatsapp.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		},
+		{
+			"name": "Sendowl source - Docs",
+			"url": "https://posthog.com/docs/cdp/sources/sendowl.md",
+			"description": "",
+			"section": "Customer Data Platform (CDP)"
+		}
+	]
+}

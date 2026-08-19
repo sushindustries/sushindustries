@@ -1,0 +1,24 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "singlestore/Seeding",
+	"entries": [
+		{
+			"name": "Drizzle Seed",
+			"url": "https://orm.drizzle.team/docs/singlestore/seed-overview",
+			"description": "",
+			"section": "singlestore/Seeding"
+		},
+		{
+			"name": "Generators",
+			"url": "https://orm.drizzle.team/docs/singlestore/seed-functions",
+			"description": "",
+			"section": "singlestore/Seeding"
+		},
+		{
+			"name": "Versioning",
+			"url": "https://orm.drizzle.team/docs/singlestore/seed-versioning",
+			"description": "",
+			"section": "singlestore/Seeding"
+		}
+	]
+}

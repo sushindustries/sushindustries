@@ -1,0 +1,42 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "singlestore/Advanced",
+	"entries": [
+		{
+			"name": "Set Operations",
+			"url": "https://orm.drizzle.team/docs/singlestore/set-operations",
+			"description": "",
+			"section": "singlestore/Advanced"
+		},
+		{
+			"name": "Transactions",
+			"url": "https://orm.drizzle.team/docs/singlestore/transactions",
+			"description": "",
+			"section": "singlestore/Advanced"
+		},
+		{
+			"name": "Cache",
+			"url": "https://orm.drizzle.team/docs/singlestore/cache",
+			"description": "",
+			"section": "singlestore/Advanced"
+		},
+		{
+			"name": "Dynamic query building",
+			"url": "https://orm.drizzle.team/docs/singlestore/dynamic-query-building",
+			"description": "",
+			"section": "singlestore/Advanced"
+		},
+		{
+			"name": "Read Replicas",
+			"url": "https://orm.drizzle.team/docs/singlestore/read-replicas",
+			"description": "",
+			"section": "singlestore/Advanced"
+		},
+		{
+			"name": "Custom types",
+			"url": "https://orm.drizzle.team/docs/singlestore/custom-types",
+			"description": "",
+			"section": "singlestore/Advanced"
+		}
+	]
+}

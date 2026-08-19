@@ -1,5 +1,6 @@
 import { type Browser, type BrowserContext, chromium } from "playwright";
 import { afterAll, beforeAll, describe, expect, inject, test } from "vitest";
+import { sitemapPagePaths } from "./setup/roster";
 
 /*
  * The geometry, checked in a real browser.
@@ -63,10 +64,7 @@ async function contextAt(viewport: {
 
 beforeAll(async () => {
 	base = inject("baseUrl");
-	const sitemap = await (await fetch(`${base}/sitemap.xml`)).text();
-	paths = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
-		(match) => new URL(match[1] ?? "").pathname,
-	);
+	paths = await sitemapPagePaths(base);
 	expect(paths.length).toBeGreaterThan(0);
 });
 

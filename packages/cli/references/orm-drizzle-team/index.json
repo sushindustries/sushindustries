@@ -1,0 +1,389 @@
+{
+	"provider": "orm-drizzle-team",
+	"source": "https://orm.drizzle.team/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"Drizzle ORM",
+		"Drizzle Kit"
+	],
+	"title": "Drizzle",
+	"summary": "Drizzle is a modern TypeScript ORM developers wanna use in their next project. It is lightweight at only ~7.4kb minified+gzipped, and it's tree shakeable with exactly 0 dependencies. It supports every PostgreSQL, MySQL, SQLite and SingleStore database and is serverless-ready by design.",
+	"total": 436,
+	"sections": [
+		{
+			"name": "meet drizzle",
+			"entries": 58,
+			"file": "meet-drizzle.json"
+		},
+		{
+			"name": "Upgrade to v1.0 RC",
+			"entries": 1,
+			"file": "upgrade-to-v1-0-rc.json"
+		},
+		{
+			"name": "Fundamentals",
+			"entries": 2,
+			"file": "fundamentals.json"
+		},
+		{
+			"name": "Connect",
+			"entries": 1,
+			"file": "connect.json"
+		},
+		{
+			"name": "Manage schema",
+			"entries": 3,
+			"file": "manage-schema.json"
+		},
+		{
+			"name": "Migrations",
+			"entries": 3,
+			"file": "migrations.json"
+		},
+		{
+			"name": "Seeding",
+			"entries": 1,
+			"file": "seeding.json"
+		},
+		{
+			"name": "Performance",
+			"entries": 1,
+			"file": "performance.json"
+		},
+		{
+			"name": "Validations",
+			"entries": 6,
+			"file": "validations.json"
+		},
+		{
+			"name": "Extensions",
+			"entries": 2,
+			"file": "extensions.json"
+		},
+		{
+			"name": "cockroach/meet drizzle",
+			"entries": 1,
+			"file": "cockroach-meet-drizzle.json"
+		},
+		{
+			"name": "cockroach/Fundamentals",
+			"entries": 5,
+			"file": "cockroach-fundamentals.json"
+		},
+		{
+			"name": "cockroach/Connect",
+			"entries": 1,
+			"file": "cockroach-connect.json"
+		},
+		{
+			"name": "cockroach/Manage schema",
+			"entries": 7,
+			"file": "cockroach-manage-schema.json"
+		},
+		{
+			"name": "cockroach/Migrations",
+			"entries": 11,
+			"file": "cockroach-migrations.json"
+		},
+		{
+			"name": "cockroach/Seeding",
+			"entries": 3,
+			"file": "cockroach-seeding.json"
+		},
+		{
+			"name": "cockroach/Access your data",
+			"entries": 9,
+			"file": "cockroach-access-your-data.json"
+		},
+		{
+			"name": "cockroach/Performance",
+			"entries": 1,
+			"file": "cockroach-performance.json"
+		},
+		{
+			"name": "cockroach/Advanced",
+			"entries": 7,
+			"file": "cockroach-advanced.json"
+		},
+		{
+			"name": "cockroach/Validations",
+			"entries": 6,
+			"file": "cockroach-validations.json"
+		},
+		{
+			"name": "mssql/meet drizzle",
+			"entries": 1,
+			"file": "mssql-meet-drizzle.json"
+		},
+		{
+			"name": "mssql/Fundamentals",
+			"entries": 5,
+			"file": "mssql-fundamentals.json"
+		},
+		{
+			"name": "mssql/Connect",
+			"entries": 1,
+			"file": "mssql-connect.json"
+		},
+		{
+			"name": "mssql/Manage schema",
+			"entries": 6,
+			"file": "mssql-manage-schema.json"
+		},
+		{
+			"name": "mssql/Migrations",
+			"entries": 11,
+			"file": "mssql-migrations.json"
+		},
+		{
+			"name": "mssql/Seeding",
+			"entries": 3,
+			"file": "mssql-seeding.json"
+		},
+		{
+			"name": "mssql/Access your data",
+			"entries": 9,
+			"file": "mssql-access-your-data.json"
+		},
+		{
+			"name": "mssql/Performance",
+			"entries": 1,
+			"file": "mssql-performance.json"
+		},
+		{
+			"name": "mssql/Advanced",
+			"entries": 7,
+			"file": "mssql-advanced.json"
+		},
+		{
+			"name": "mssql/Validations",
+			"entries": 6,
+			"file": "mssql-validations.json"
+		},
+		{
+			"name": "mysql/meet drizzle",
+			"entries": 1,
+			"file": "mysql-meet-drizzle.json"
+		},
+		{
+			"name": "mysql/Upgrade to v1.0",
+			"entries": 3,
+			"file": "mysql-upgrade-to-v1-0.json"
+		},
+		{
+			"name": "mysql/Fundamentals",
+			"entries": 5,
+			"file": "mysql-fundamentals.json"
+		},
+		{
+			"name": "mysql/Connect",
+			"entries": 6,
+			"file": "mysql-connect.json"
+		},
+		{
+			"name": "mysql/Manage schema",
+			"entries": 6,
+			"file": "mysql-manage-schema.json"
+		},
+		{
+			"name": "mysql/Migrations",
+			"entries": 11,
+			"file": "mysql-migrations.json"
+		},
+		{
+			"name": "mysql/Seeding",
+			"entries": 3,
+			"file": "mysql-seeding.json"
+		},
+		{
+			"name": "mysql/Access your data",
+			"entries": 10,
+			"file": "mysql-access-your-data.json"
+		},
+		{
+			"name": "mysql/Performance",
+			"entries": 1,
+			"file": "mysql-performance.json"
+		},
+		{
+			"name": "mysql/Advanced",
+			"entries": 7,
+			"file": "mysql-advanced.json"
+		},
+		{
+			"name": "mysql/Validations",
+			"entries": 6,
+			"file": "mysql-validations.json"
+		},
+		{
+			"name": "pg/meet drizzle",
+			"entries": 1,
+			"file": "pg-meet-drizzle.json"
+		},
+		{
+			"name": "pg/Upgrade to v1.0",
+			"entries": 3,
+			"file": "pg-upgrade-to-v1-0.json"
+		},
+		{
+			"name": "pg/Fundamentals",
+			"entries": 5,
+			"file": "pg-fundamentals.json"
+		},
+		{
+			"name": "pg/Connect",
+			"entries": 14,
+			"file": "pg-connect.json"
+		},
+		{
+			"name": "pg/Manage schema",
+			"entries": 8,
+			"file": "pg-manage-schema.json"
+		},
+		{
+			"name": "pg/Migrations",
+			"entries": 11,
+			"file": "pg-migrations.json"
+		},
+		{
+			"name": "pg/Seeding",
+			"entries": 2,
+			"file": "pg-seeding.json"
+		},
+		{
+			"name": "pg/Access your data",
+			"entries": 10,
+			"file": "pg-access-your-data.json"
+		},
+		{
+			"name": "pg/Performance",
+			"entries": 1,
+			"file": "pg-performance.json"
+		},
+		{
+			"name": "pg/Advanced",
+			"entries": 9,
+			"file": "pg-advanced.json"
+		},
+		{
+			"name": "pg/Validations",
+			"entries": 6,
+			"file": "pg-validations.json"
+		},
+		{
+			"name": "singlestore/Upgrade to v1.0 RC",
+			"entries": 1,
+			"file": "singlestore-upgrade-to-v1-0-rc.json"
+		},
+		{
+			"name": "singlestore/Fundamentals",
+			"entries": 3,
+			"file": "singlestore-fundamentals.json"
+		},
+		{
+			"name": "singlestore/Connect",
+			"entries": 1,
+			"file": "singlestore-connect.json"
+		},
+		{
+			"name": "singlestore/Manage schema",
+			"entries": 5,
+			"file": "singlestore-manage-schema.json"
+		},
+		{
+			"name": "singlestore/Migrations",
+			"entries": 11,
+			"file": "singlestore-migrations.json"
+		},
+		{
+			"name": "singlestore/Seeding",
+			"entries": 3,
+			"file": "singlestore-seeding.json"
+		},
+		{
+			"name": "singlestore/Access your data",
+			"entries": 9,
+			"file": "singlestore-access-your-data.json"
+		},
+		{
+			"name": "singlestore/Performance",
+			"entries": 1,
+			"file": "singlestore-performance.json"
+		},
+		{
+			"name": "singlestore/Advanced",
+			"entries": 6,
+			"file": "singlestore-advanced.json"
+		},
+		{
+			"name": "singlestore/Validations",
+			"entries": 6,
+			"file": "singlestore-validations.json"
+		},
+		{
+			"name": "sqlite/meet drizzle",
+			"entries": 1,
+			"file": "sqlite-meet-drizzle.json"
+		},
+		{
+			"name": "sqlite/Upgrade to v1.0 RC",
+			"entries": 3,
+			"file": "sqlite-upgrade-to-v1-0-rc.json"
+		},
+		{
+			"name": "sqlite/Fundamentals",
+			"entries": 5,
+			"file": "sqlite-fundamentals.json"
+		},
+		{
+			"name": "sqlite/Connect",
+			"entries": 14,
+			"file": "sqlite-connect.json"
+		},
+		{
+			"name": "sqlite/Manage schema",
+			"entries": 5,
+			"file": "sqlite-manage-schema.json"
+		},
+		{
+			"name": "sqlite/Migrations",
+			"entries": 11,
+			"file": "sqlite-migrations.json"
+		},
+		{
+			"name": "sqlite/Seeding",
+			"entries": 3,
+			"file": "sqlite-seeding.json"
+		},
+		{
+			"name": "sqlite/Access your data",
+			"entries": 9,
+			"file": "sqlite-access-your-data.json"
+		},
+		{
+			"name": "sqlite/Performance",
+			"entries": 1,
+			"file": "sqlite-performance.json"
+		},
+		{
+			"name": "sqlite/Advanced",
+			"entries": 8,
+			"file": "sqlite-advanced.json"
+		},
+		{
+			"name": "sqlite/Validations",
+			"entries": 6,
+			"file": "sqlite-validations.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 1,
+			"file": "guides.json"
+		},
+		{
+			"name": "Tutorials",
+			"entries": 15,
+			"file": "tutorials.json"
+		}
+	]
+}

@@ -1,0 +1,264 @@
+{
+	"provider": "tanstack-com-tanstack-query",
+	"section": "Get Started",
+	"entries": [
+		{
+			"name": "React: Overview",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Installation",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Quick Start",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Devtools",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/devtools.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Comparison",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/comparison.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: TypeScript",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/typescript.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: GraphQL",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/graphql.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: React Native",
+			"url": "https://tanstack.com/query/latest/docs/framework/react/react-native.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Overview",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Quick Start",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Installation",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Devtools",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/devtools.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: TypeScript",
+			"url": "https://tanstack.com/query/latest/docs/framework/solid/typescript.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: Overview",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: Installation",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: Quick Start",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: Devtools",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/devtools.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: TypeScript",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/typescript.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: Reactivity",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/reactivity.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: GraphQL",
+			"url": "https://tanstack.com/query/latest/docs/framework/vue/graphql.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: Overview",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: Quick Start",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: Installation",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: Devtools",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/devtools.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: SSR & SvelteKit",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/ssr.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: Migrate from v5 to v6",
+			"url": "https://tanstack.com/query/latest/docs/framework/svelte/migrate-from-v5-to-v6.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Lit: Overview",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Lit: Installation",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Lit: Quick Start",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Lit: TypeScript",
+			"url": "https://tanstack.com/query/latest/docs/framework/lit/typescript.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Overview",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Installation",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Quick Start",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Angular HttpClient and other data fetching clients",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/angular-httpclient-and-other-data-fetching-clients.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Devtools",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/devtools.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: TypeScript",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/typescript.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Zoneless",
+			"url": "https://tanstack.com/query/latest/docs/framework/angular/zoneless.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Preact: Overview",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Preact: Installation",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Preact: Quick Start",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Preact: Devtools",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/devtools.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Preact: TypeScript",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/typescript.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Preact: GraphQL",
+			"url": "https://tanstack.com/query/latest/docs/framework/preact/graphql.md",
+			"description": "",
+			"section": "Get Started"
+		}
+	]
+}

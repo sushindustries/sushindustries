@@ -1,0 +1,42 @@
+{
+	"provider": "tanstack-com",
+	"section": "UI & UX docs",
+	"entries": [
+		{
+			"name": "TanStack Table",
+			"url": "https://tanstack.com/table/latest/llms.txt",
+			"description": "Headless, type-safe table and data-grid infrastructure. Frameworks: Angular, Ember, Octane, React, Preact, Solid, Svelte, Vue, Lit, Alpine, Vanilla. Packages: @tanstack/table-core, react-table. GitHub: https://github.com/tanstack/table.",
+			"section": "UI & UX docs"
+		},
+		{
+			"name": "TanStack Charts",
+			"url": "https://tanstack.com/charts/latest/llms.txt",
+			"description": "A chart grammar you don't have to outgrow. Frameworks: React, Preact, Vue, Solid, Svelte, Angular, Lit, Alpine, Octane, Vanilla. Packages: @tanstack/charts. GitHub: https://github.com/tanstack/charts.",
+			"section": "UI & UX docs"
+		},
+		{
+			"name": "TanStack Form",
+			"url": "https://tanstack.com/form/latest/llms.txt",
+			"description": "Headless UI for building performant and type-safe forms. Frameworks: React, Preact, Vue, Angular, Solid, Lit, Svelte. Packages: @tanstack/form-core. GitHub: https://github.com/tanstack/form.",
+			"section": "UI & UX docs"
+		},
+		{
+			"name": "TanStack Hotkeys",
+			"url": "https://tanstack.com/hotkeys/latest/llms.txt",
+			"description": "Type-safe keyboard shortcuts, sequences, and key state tracking for your apps. Frameworks: Vanilla, React, Preact, Solid, Svelte, Vue, Angular, Lit. Packages: @tanstack/hotkeys. GitHub: https://github.com/tanstack/hotkeys.",
+			"section": "UI & UX docs"
+		},
+		{
+			"name": "TanStack Markdown",
+			"url": "https://tanstack.com/markdown/latest/llms.txt",
+			"description": "A serializable document model for docs and AI streams. Frameworks: React, Vanilla. Packages: @tanstack/markdown. GitHub: https://github.com/tanstack/markdown.",
+			"section": "UI & UX docs"
+		},
+		{
+			"name": "TanStack Highlight",
+			"url": "https://tanstack.com/highlight/latest/llms.txt",
+			"description": "Web-first syntax highlighting with compact, themeable HTML. Frameworks: React, Vanilla. Packages: @tanstack/highlight. GitHub: https://github.com/tanstack/highlight.",
+			"section": "UI & UX docs"
+		}
+	]
+}

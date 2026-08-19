@@ -1,0 +1,108 @@
+{
+	"provider": "tanstack-com-tanstack-highlight",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "Language Registration",
+			"url": "https://tanstack.com/highlight/latest/docs/guides/language-registration.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Embedded Languages",
+			"url": "https://tanstack.com/highlight/latest/docs/guides/embedded-languages.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Output and CSS",
+			"url": "https://tanstack.com/highlight/latest/docs/guides/output-and-css.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Themes",
+			"url": "https://tanstack.com/highlight/latest/docs/guides/themes.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Annotations",
+			"url": "https://tanstack.com/highlight/latest/docs/guides/annotations.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Markdown Pipelines",
+			"url": "https://tanstack.com/highlight/latest/docs/guides/markdown-pipelines.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "SSR and Client Rendering",
+			"url": "https://tanstack.com/highlight/latest/docs/guides/ssr-and-client.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React Integration",
+			"url": "https://tanstack.com/highlight/latest/docs/guides/react.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Octane Integration",
+			"url": "https://tanstack.com/highlight/latest/docs/guides/octane.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Custom Languages",
+			"url": "https://tanstack.com/highlight/latest/docs/guides/custom-languages.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Bundle Size and Performance",
+			"url": "https://tanstack.com/highlight/latest/docs/guides/performance.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Language Support",
+			"url": "https://tanstack.com/highlight/latest/docs/language-support.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "FAQ",
+			"url": "https://tanstack.com/highlight/latest/docs/faq.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Architecture",
+			"url": "https://tanstack.com/highlight/latest/docs/architecture.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Testing Strategy",
+			"url": "https://tanstack.com/highlight/latest/docs/test-strategy.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Language Inventory",
+			"url": "https://tanstack.com/highlight/latest/docs/language-inventory.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Upstream Contracts",
+			"url": "https://tanstack.com/highlight/latest/docs/upstream-output-contracts.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

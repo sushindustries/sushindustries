@@ -1,0 +1,90 @@
+{
+	"provider": "tanstack-com-tanstack-devtools",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "Architecture Overview",
+			"url": "https://tanstack.com/devtools/latest/docs/architecture.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Event System",
+			"url": "https://tanstack.com/devtools/latest/docs/event-system.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Plugin Lifecycle",
+			"url": "https://tanstack.com/devtools/latest/docs/plugin-lifecycle.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Source Inspector",
+			"url": "https://tanstack.com/devtools/latest/docs/source-inspector.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Building Custom Plugins",
+			"url": "https://tanstack.com/devtools/latest/docs/building-custom-plugins.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Using devtools-utils",
+			"url": "https://tanstack.com/devtools/latest/docs/devtools-utils.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Bidirectional Communication",
+			"url": "https://tanstack.com/devtools/latest/docs/bidirectional-communication.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Third-party Plugins",
+			"url": "https://tanstack.com/devtools/latest/docs/third-party-plugins.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Custom Plugins",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/react/guides/custom-plugins.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Preact: Custom Plugins",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/preact/guides/custom-plugins.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Custom Plugins",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/solid/guides/custom-plugins.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Vue: Custom Plugins",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/vue/guides/custom-plugins.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Svelte: Custom Plugins",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/svelte/guides/custom-plugins.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Angular: Custom Plugins",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/angular/guides/custom-plugins.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

@@ -1,8 +1,8 @@
 import { listRegistry } from "../registry/registry.catalogue";
 import { listComponentDocs } from "./components/components.catalogue";
-import { listPackages } from "./packages/packages.catalogue";
+import { findPackage, listPackages } from "./packages/packages.catalogue";
 import { listBuiltPages } from "./pages/pages.catalogue";
-import { listPosts } from "./posts/posts.catalogue";
+import { findPost, listPosts } from "./posts/posts.catalogue";
 
 /*
  * One index of everything this site publishes, in one shape.
@@ -82,10 +82,16 @@ export function siteSections(): readonly IndexSection[] {
 		{
 			title: "Packages",
 			description: "Everything published from this monorepo.",
+			/*
+			 * The summary list carries no body, so the README is looked up by
+			 * slug. Without it the full-text index and the Markdown mirrors
+			 * would publish package pages as bare links.
+			 */
 			entries: listPackages().map((entry) => ({
 				path: `/packages/${entry.slug}`,
 				title: entry.name,
 				description: entry.description,
+				body: findPackage(entry.slug)?.body,
 			})),
 		},
 		{
@@ -95,6 +101,7 @@ export function siteSections(): readonly IndexSection[] {
 				path: `/posts/${post.slug}`,
 				title: post.title,
 				description: post.summary,
+				body: findPost(post.slug)?.body,
 			})),
 		},
 		{

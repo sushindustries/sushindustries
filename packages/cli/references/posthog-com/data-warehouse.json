@@ -1,0 +1,192 @@
+{
+	"provider": "posthog-com",
+	"section": "Data Warehouse",
+	"entries": [
+		{
+			"name": "Accessing data using SQL - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/sql/data-access.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Connecting to the managed warehouse - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/managed-warehouse/connect.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Creating materialized views - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/views/materialize.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Creating views - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/views.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Cutting data warehouse costs - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/cutting-costs.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Data warehouse - Docs",
+			"url": "https://posthog.com/docs/data-warehouse.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Data Warehouse changelog - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/changelog.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Data warehouse sources - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/sources.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Data Warehouse troubleshooting - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/troubleshooting.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Getting started with data warehouse - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/start-here.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Joining data - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/join.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Linking PostHog as a data warehouse source - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/sources/posthog.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Linking Snapchat Ads as a source - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/sources/snapchat-ads.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Managed warehouse - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/managed-warehouse.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Performance - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/managed-warehouse/performance-tuning.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "PostHog&#x27;s integrated data warehouse - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/integrated-warehouse.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Querying the data warehouse with SQL - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/query.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Setting up the managed warehouse - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/managed-warehouse/setup.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "SQL editor - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/sql.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "SQL variables - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/sql/variables.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "The data warehouse in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/surfaces/web-app.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Tutorials and guides - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/tutorials.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Under the hood - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/under-the-hood.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Uploading files to the data warehouse - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/sources/file-upload.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Use the data warehouse in PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/surfaces/desktop.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Use the data warehouse over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/surfaces/mcp.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Use the data warehouse over the API - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/surfaces/api.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Useful SQL functions - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/sql/useful-functions.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Visualizing data warehouse data with insights - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/insights.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Warehouse properties - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/warehouse-properties.md",
+			"description": "",
+			"section": "Data Warehouse"
+		},
+		{
+			"name": "Write SQL with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/data-warehouse/write-sql-ai.md",
+			"description": "",
+			"section": "Data Warehouse"
+		}
+	]
+}

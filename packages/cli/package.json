@@ -1,0 +1,39 @@
+{
+	"name": "@sushindustries/cli",
+	"version": "0.1.0",
+	"type": "module",
+	"description": "The adam-jurek command line: the stack as data, the documentation as an index, and three MCP servers that answer questions about this repository without leaving the machine.",
+	"license": "MIT",
+	"bin": {
+		"adam-jurek": "./adam-jurek.mjs"
+	},
+	"dependencies": {
+		"@modelcontextprotocol/server": "2.0.0",
+		"zod": "4.4.3"
+	},
+	"keywords": [
+		"cli",
+		"mcp",
+		"documentation",
+		"llms-txt",
+		"design-system"
+	],
+	"files": [
+		"adam-jurek.mjs",
+		"commands",
+		"lib",
+		"mcp"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sushindustries/sushindustries.git",
+		"directory": "packages/cli"
+	},
+	"homepage": "https://adamjurek.com/packages/cli",
+	"engines": {
+		"node": ">=20.17.0"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	}
+}

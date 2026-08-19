@@ -1,0 +1,60 @@
+{
+	"provider": "threejs-org",
+	"section": "Core Concepts",
+	"entries": [
+		{
+			"name": "TSL Specification",
+			"url": "https://threejs.org/docs/#api/en/nodes/TSL",
+			"description": "Complete shader language reference",
+			"section": "Core Concepts"
+		},
+		{
+			"name": "Animation System",
+			"url": "https://threejs.org/manual/#en/animation-system",
+			"description": "",
+			"section": "Core Concepts"
+		},
+		{
+			"name": "Loading 3D Models",
+			"url": "https://threejs.org/manual/#en/loading-3d-models",
+			"description": "",
+			"section": "Core Concepts"
+		},
+		{
+			"name": "Scene Graph",
+			"url": "https://threejs.org/manual/#en/scenegraph",
+			"description": "",
+			"section": "Core Concepts"
+		},
+		{
+			"name": "Materials",
+			"url": "https://threejs.org/manual/#en/materials",
+			"description": "",
+			"section": "Core Concepts"
+		},
+		{
+			"name": "Textures",
+			"url": "https://threejs.org/manual/#en/textures",
+			"description": "",
+			"section": "Core Concepts"
+		},
+		{
+			"name": "Lights",
+			"url": "https://threejs.org/manual/#en/lights",
+			"description": "",
+			"section": "Core Concepts"
+		},
+		{
+			"name": "Cameras",
+			"url": "https://threejs.org/manual/#en/cameras",
+			"description": "",
+			"section": "Core Concepts"
+		},
+		{
+			"name": "Shadows",
+			"url": "https://threejs.org/manual/#en/shadows",
+			"description": "",
+			"section": "Core Concepts"
+		}
+	]
+}

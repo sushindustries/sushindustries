@@ -1,0 +1,96 @@
+{
+	"provider": "tanstack-com",
+	"section": "Optional",
+	"entries": [
+		{
+			"name": "Blog",
+			"url": "https://tanstack.com/blog",
+			"description": "Release notes, postmortems, performance work, and technical writing from the TanStack team.",
+			"section": "Optional"
+		},
+		{
+			"name": "CodeRabbit",
+			"url": "https://tanstack.com/partners/coderabbit",
+			"description": "Code Review. AI code review platform for pull requests, IDEs, and CLI workflows, with automated review comments, one-click fixes, and configurable review rules. Resources: [CodeRabbit quickstart](https://docs.coderabbit.ai/getting-started/quickstart).",
+			"section": "Optional"
+		},
+		{
+			"name": "Cloudflare",
+			"url": "https://tanstack.com/partners/cloudflare",
+			"description": "Deployment/Hosting. Global network and developer platform with Workers, KV, CDN, and security services. Cloudflare also documents deploying TanStack Start apps on Workers. Resources: [Cloudflare TanStack Start guide](https://developers.cloudflare.com/workers/framework-guides/web-apps/tanstack-start/), [TanStack Start hosting guide](https://tanstack.com/start/latest/docs/framework/react/guide/hosting).",
+			"section": "Optional"
+		},
+		{
+			"name": "Lovable",
+			"url": "https://tanstack.com/partners/lovable",
+			"description": "AI/LLM. AI app-building platform for generating, editing, and shipping web apps from prompts, with GitHub sync, visual editing, Lovable Cloud hosting, and new TanStack Start-powered SSR projects. Resources: [Build with a URL in Lovable](https://docs.lovable.dev/integrations/build-with-url), [Building TanStack Start apps with Lovable](https://lovable.dev/blog/building-apps-using-tanstack-start).",
+			"section": "Optional"
+		},
+		{
+			"name": "Netlify",
+			"url": "https://tanstack.com/partners/netlify",
+			"description": "Deployment/Hosting. Where AI apps go from idea to production — build, deploy, and scale it all in one place: Git-to-edge deployment, serverless and edge functions, Deploy Previews, and native support for AI-generated apps (including TanStack Start), so you're not stitching together separate tools for building and shipping. Resources: [TanStack Start hosting guide](https://tanstack.com/start/latest/docs/framework/react/guide/hosting), [TanStack + Netlify partnership](https://tanstack.com/blog/netlify-partnership).",
+			"section": "Optional"
+		},
+		{
+			"name": "Railway",
+			"url": "https://tanstack.com/partners/railway",
+			"description": "Deployment/Hosting. Application deployment platform for shipping from GitHub, the CLI, Docker images, or templates, with managed networking, observability, and configurable scaling. Resources: [TanStack Start hosting guide](https://tanstack.com/start/latest/docs/framework/react/guide/hosting).",
+			"section": "Optional"
+		},
+		{
+			"name": "AG Grid",
+			"url": "https://tanstack.com/partners/ag-grid",
+			"description": "Data Grids. Data grid library with Community and Enterprise editions. Enterprise features include row grouping, pivoting, aggregation, Excel export, integrated charts, and the server-side row model. Resources: [AG Grid with TanStack Table](https://tanstack.com/table/latest/docs/enterprise/ag-grid), [TanStack + AG Grid partnership](https://tanstack.com/blog/ag-grid-partnership).",
+			"section": "Optional"
+		},
+		{
+			"name": "SerpApi",
+			"url": "https://tanstack.com/partners/serpapi",
+			"description": "API Infrastructure. Search engine results API with structured JSON output, geo-targeting controls, CAPTCHA solving, and support for Google, Maps, Shopping, News, and other engines. Resources: [SerpApi JavaScript integration](https://serpapi.com/integrations/javascript), [SerpApi MCP integration](https://serpapi.com/integrations/mcp).",
+			"section": "Optional"
+		},
+		{
+			"name": "OpenRouter",
+			"url": "https://tanstack.com/partners/openrouter",
+			"description": "AI/LLM. Unified API for accessing hundreds of AI models from dozens of providers through a single OpenAI-compatible endpoint, with routing, fallbacks, and privacy controls. Resources: [TanStack AI OpenRouter adapter](https://tanstack.com/ai/latest/docs/adapters/openrouter), [TanStack + OpenRouter partnership](https://tanstack.com/blog/openrouter-partnership).",
+			"section": "Optional"
+		},
+		{
+			"name": "WorkOS",
+			"url": "https://tanstack.com/partners/workos",
+			"description": "Authentication. Enterprise identity platform with SSO, Directory Sync, MFA for AuthKit, RBAC, audit logs, and admin onboarding tools. It is a strong fit for B2B apps that need enterprise auth features. Resources: [WorkOS AuthKit TanStack Start SDK](https://workos.com/docs/sdks/authkit-tanstack-start), [TanStack Start WorkOS example](https://tanstack.com/start/latest/docs/framework/react/examples/start-workos).",
+			"section": "Optional"
+		},
+		{
+			"name": "Clerk",
+			"url": "https://tanstack.com/partners/clerk",
+			"description": "Authentication. Authentication and user management platform with prebuilt UI, sessions, organizations, and MFA. Clerk has official SDKs and quickstarts for TanStack React Start and React Router. Resources: [Clerk TanStack Start quickstart](https://clerk.com/docs/tanstack-react-start/getting-started/quickstart), [TanStack Start Clerk example](https://tanstack.com/start/latest/docs/framework/react/examples/start-clerk-basic).",
+			"section": "Optional"
+		},
+		{
+			"name": "Electric",
+			"url": "https://tanstack.com/partners/electric",
+			"description": "Databases. Sync-focused data platform for Postgres-backed apps, including Postgres Sync and the partnered TanStack DB project. It is built for reactive and collaborative applications that need live data sync. Resources: [TanStack DB Electric collection](https://tanstack.com/db/latest/docs/collections/electric-collection).",
+			"section": "Optional"
+		},
+		{
+			"name": "Sentry",
+			"url": "https://tanstack.com/partners/sentry",
+			"description": "Error Monitoring. Application monitoring platform for error tracking, tracing, replay, profiling, and logs, with TanStack Router support and an alpha TanStack Start React SDK. Resources: [Sentry for TanStack Start](https://docs.sentry.io/platforms/javascript/guides/tanstackstart-react/).",
+			"section": "Optional"
+		},
+		{
+			"name": "Prisma",
+			"url": "https://tanstack.com/partners/prisma",
+			"description": "Databases. Open-source TypeScript ORM with Prisma Client, migrations, Prisma Studio, and Prisma Postgres for managed PostgreSQL. Resources: [Prisma with TanStack Start](https://docs.prisma.io/docs/guides/frameworks/tanstack-start).",
+			"section": "Optional"
+		},
+		{
+			"name": "Unkey",
+			"url": "https://tanstack.com/partners/unkey",
+			"description": "API Infrastructure. API infrastructure for API key management, rate limiting, usage tracking, audit logs, and access controls. Resources: [Unkey server-side rate limiting](https://www.unkey.com/docs/platform/ratelimiting/introduction), [Unkey API key quickstart](https://www.unkey.com/docs/quickstart/quickstart).",
+			"section": "Optional"
+		}
+	]
+}

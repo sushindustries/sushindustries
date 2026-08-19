@@ -1,0 +1,144 @@
+{
+	"provider": "tanstack-com-tanstack-table",
+	"section": "Get Started",
+	"entries": [
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/table/latest/docs/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Installation",
+			"url": "https://tanstack.com/table/latest/docs/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Devtools",
+			"url": "https://tanstack.com/table/latest/docs/devtools.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Agent Skills (TanStack Intent)",
+			"url": "https://tanstack.com/table/latest/docs/agent-skills.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Alpine: Quick Start",
+			"url": "https://tanstack.com/table/latest/docs/framework/alpine/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Quick Start",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Migrating to V9",
+			"url": "https://tanstack.com/table/latest/docs/framework/angular/guide/migrating.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Ember: Quick Start",
+			"url": "https://tanstack.com/table/latest/docs/framework/ember/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Lit: Quick Start",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Lit: Migrating to V9",
+			"url": "https://tanstack.com/table/latest/docs/framework/lit/guide/migrating.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Quick Start",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Migrating to V9",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/migrating.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: useLegacyTable Guide",
+			"url": "https://tanstack.com/table/latest/docs/framework/react/guide/use-legacy-table.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Preact: Quick Start",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Preact: Migrating to V9",
+			"url": "https://tanstack.com/table/latest/docs/framework/preact/guide/migrating.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Octane: Quick Start",
+			"url": "https://tanstack.com/table/latest/docs/framework/octane/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Quick Start",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Migrating to V9",
+			"url": "https://tanstack.com/table/latest/docs/framework/solid/guide/migrating.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: Quick Start",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: Migrating to V9",
+			"url": "https://tanstack.com/table/latest/docs/framework/svelte/guide/migrating.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: Quick Start",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: Migrating to V9",
+			"url": "https://tanstack.com/table/latest/docs/framework/vue/guide/migrating.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vanilla: Quick Start",
+			"url": "https://tanstack.com/table/latest/docs/framework/vanilla/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		}
+	]
+}

@@ -1,0 +1,18 @@
+{
+	"provider": "tanstack-com-tanstack-router",
+	"section": "API",
+	"entries": [
+		{
+			"name": "Router",
+			"url": "https://tanstack.com/router/latest/docs/api/router.md",
+			"description": "",
+			"section": "API"
+		},
+		{
+			"name": "File-Based Routing",
+			"url": "https://tanstack.com/router/latest/docs/api/file-based-routing.md",
+			"description": "",
+			"section": "API"
+		}
+	]
+}

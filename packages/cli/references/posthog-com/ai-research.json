@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Ai Research",
+	"entries": [
+		{
+			"name": "Image fetcher bot - Docs",
+			"url": "https://posthog.com/docs/ai-research/image-fetcher-bot.md",
+			"description": "",
+			"section": "Ai Research"
+		}
+	]
+}

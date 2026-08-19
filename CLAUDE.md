@@ -6,7 +6,8 @@ write copy in the first person singular - never "we", "our team", or "us".
 ## Read first
 
 - `.claude/skills/sushindustries-conventions/SKILL.md` - the layout and naming
-  rules this repo actually enforces. Read it before adding a file.
+  rules this repo actually enforces. Read it before adding a file. Topic rules
+  are in its `rules/`; read the one that matches the change, not all six.
 - `.claude/pipeline.md` - how a post, a component or a package gets added, and
   which layer of checking catches what. Read it before pushing.
 - The global `tanstack-start-architecture` skill - Official and Safety layers
@@ -31,8 +32,15 @@ apps/web/          the site. TanStack Start on Vite + Nitro.
 packages/atoms/    design tokens + atomic CSS. No build step.
 packages/ui/       the components the site is made of. All installable.
 packages/db/       Drizzle schema + client. Postgres.
+packages/cli/      the adam-jurek command line, and the MCP server it serves.
+plugins/           the Claude Code plugin this repo publishes. Not a workspace.
 tsdown.base.ts     the one build every compiling package extends.
 ```
+
+`plugins/` and `.claude-plugin/marketplace.json` are the one layout in this
+repo not chosen by me: Claude Code requires the manifest at the root and the
+plugin beside it, so neither can move into `packages/`. They are not pnpm
+workspaces and `pnpm-workspace.yaml` deliberately does not glob them.
 
 Every package that compiles does it through `tsdown.base.ts`, which also
 generates that package's `exports`, `main` and `module` from the chunks the

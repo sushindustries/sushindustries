@@ -1,0 +1,264 @@
+{
+	"provider": "vite-dev",
+	"section": "Table of Contents",
+	"entries": [
+		{
+			"name": "Getting Started",
+			"url": "https://vite.dev/guide.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Project Philosophy",
+			"url": "https://vite.dev/guide/philosophy.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Why Vite",
+			"url": "https://vite.dev/guide/why.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Features",
+			"url": "https://vite.dev/guide/features.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Command Line Interface",
+			"url": "https://vite.dev/guide/cli.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Using Plugins",
+			"url": "https://vite.dev/guide/using-plugins.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Dependency Pre-Bundling",
+			"url": "https://vite.dev/guide/dep-pre-bundling.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Static Asset Handling",
+			"url": "https://vite.dev/guide/assets.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Building for Production",
+			"url": "https://vite.dev/guide/build.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Deploying a Static Site",
+			"url": "https://vite.dev/guide/static-deploy.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Env Variables and Modes",
+			"url": "https://vite.dev/guide/env-and-mode.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Server-Side Rendering (SSR)",
+			"url": "https://vite.dev/guide/ssr.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Backend Integration",
+			"url": "https://vite.dev/guide/backend-integration.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Troubleshooting",
+			"url": "https://vite.dev/guide/troubleshooting.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Performance",
+			"url": "https://vite.dev/guide/performance.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Migration from v7",
+			"url": "https://vite.dev/guide/migration.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Breaking Changes",
+			"url": "https://vite.dev/changes.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Plugin API",
+			"url": "https://vite.dev/guide/api-plugin.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "HMR API",
+			"url": "https://vite.dev/guide/api-hmr.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "JavaScript API",
+			"url": "https://vite.dev/guide/api-javascript.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Configuring Vite",
+			"url": "https://vite.dev/config.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Environment API",
+			"url": "https://vite.dev/guide/api-environment.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Using `Environment` Instances",
+			"url": "https://vite.dev/guide/api-environment-instances.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Environment API for Plugins",
+			"url": "https://vite.dev/guide/api-environment-plugins.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Environment API for Frameworks",
+			"url": "https://vite.dev/guide/api-environment-frameworks.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Environment API for Runtimes",
+			"url": "https://vite.dev/guide/api-environment-runtimes.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Configuring Vite",
+			"url": "https://vite.dev/config.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Shared Options",
+			"url": "https://vite.dev/config/shared-options.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Server Options",
+			"url": "https://vite.dev/config/server-options.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Build Options",
+			"url": "https://vite.dev/config/build-options.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Preview Options",
+			"url": "https://vite.dev/config/preview-options.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Dep Optimization Options",
+			"url": "https://vite.dev/config/dep-optimization-options.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "SSR Options",
+			"url": "https://vite.dev/config/ssr-options.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Worker Options",
+			"url": "https://vite.dev/config/worker-options.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "`this.environment` in Hooks",
+			"url": "https://vite.dev/changes/this-environment-in-hooks.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "HMR `hotUpdate` Plugin Hook",
+			"url": "https://vite.dev/changes/hotupdate-hook.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Move to Per-environment APIs",
+			"url": "https://vite.dev/changes/per-environment-apis.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "SSR Using `ModuleRunner` API",
+			"url": "https://vite.dev/changes/ssr-using-modulerunner.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Shared Plugins during Build",
+			"url": "https://vite.dev/changes/shared-plugins-during-build.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "5th anniversary of the Vite Team Creation",
+			"url": "https://vite.dev/live.md",
+			"description": "Vite: The Documentary re-premiere. Join the ecosystem this March 19th at 3 PM UTC to remember the story we wrote together. And participate in the live stage to discuss our past, present, and future. We'll be waiting for you!",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Acknowledgements",
+			"url": "https://vite.dev/acknowledgements.md",
+			"description": "Vite is built upon the shoulders of giants. Thank you to all the projects and contributors that make Vite possible.",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Plugins",
+			"url": "https://vite.dev/plugins.md",
+			"description": "",
+			"section": "Table of Contents"
+		},
+		{
+			"name": "Releases",
+			"url": "https://vite.dev/releases.md",
+			"description": "",
+			"section": "Table of Contents"
+		}
+	]
+}

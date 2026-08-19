@@ -1,0 +1,24 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "Manage schema",
+	"entries": [
+		{
+			"name": "MSSQL column types",
+			"url": "https://orm.drizzle.team/docs/column-types/mssql",
+			"description": "",
+			"section": "Manage schema"
+		},
+		{
+			"name": "CockroachDB column types",
+			"url": "https://orm.drizzle.team/docs/column-types/cockroach",
+			"description": "",
+			"section": "Manage schema"
+		},
+		{
+			"name": "Drizzle soft relations",
+			"url": "https://orm.drizzle.team/docs/relations",
+			"description": "",
+			"section": "Manage schema"
+		}
+	]
+}

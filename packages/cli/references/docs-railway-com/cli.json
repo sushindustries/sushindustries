@@ -1,0 +1,366 @@
+{
+	"provider": "docs-railway-com",
+	"section": "CLI",
+	"entries": [
+		{
+			"name": "CLI",
+			"url": "https://docs.railway.com/cli.md",
+			"description": "Learn how to install and use the Railway CLI to manage your projects.",
+			"section": "CLI"
+		},
+		{
+			"name": "Global options",
+			"url": "https://docs.railway.com/cli/global-options.md",
+			"description": "Flags available across multiple Railway CLI commands.",
+			"section": "CLI"
+		},
+		{
+			"name": "Deploying",
+			"url": "https://docs.railway.com/cli/deploying.md",
+			"description": "Learn how to deploy your applications to Railway using the CLI.",
+			"section": "CLI"
+		},
+		{
+			"name": "Telemetry",
+			"url": "https://docs.railway.com/cli/telemetry.md",
+			"description": "What the Railway CLI collects and how to opt out.",
+			"section": "CLI"
+		},
+		{
+			"name": "add",
+			"url": "https://docs.railway.com/cli/add.md",
+			"description": "Add a service to your project.",
+			"section": "CLI"
+		},
+		{
+			"name": "agent",
+			"url": "https://docs.railway.com/cli/agent.md",
+			"description": "Interact with the Railway Agent to manage your project using natural language.",
+			"section": "CLI"
+		},
+		{
+			"name": "api",
+			"url": "https://docs.railway.com/cli/api.md",
+			"description": "Query the Railway public GraphQL API.",
+			"section": "CLI"
+		},
+		{
+			"name": "autoupdate",
+			"url": "https://docs.railway.com/cli/autoupdate.md",
+			"description": "Manage Railway CLI auto-update preferences.",
+			"section": "CLI"
+		},
+		{
+			"name": "bucket",
+			"url": "https://docs.railway.com/cli/bucket.md",
+			"description": "Manage project buckets.",
+			"section": "CLI"
+		},
+		{
+			"name": "ca",
+			"url": "https://docs.railway.com/cli/ca.md",
+			"description": "Browse, launch, and manage cloud agents from a terminal interface.",
+			"section": "CLI"
+		},
+		{
+			"name": "cdn",
+			"url": "https://docs.railway.com/cli/cdn.md",
+			"description": "Manage CDN caching for a service.",
+			"section": "CLI"
+		},
+		{
+			"name": "code",
+			"url": "https://docs.railway.com/cli/code.md",
+			"description": "Launch a coding agent on a cloud agent VM with your own credentials.",
+			"section": "CLI"
+		},
+		{
+			"name": "completion",
+			"url": "https://docs.railway.com/cli/completion.md",
+			"description": "Generate shell completion scripts.",
+			"section": "CLI"
+		},
+		{
+			"name": "config",
+			"url": "https://docs.railway.com/cli/config.md",
+			"description": "Define, import, preview, and apply Railway Infrastructure as Code.",
+			"section": "CLI"
+		},
+		{
+			"name": "connect",
+			"url": "https://docs.railway.com/cli/connect.md",
+			"description": "Connect to a database's shell.",
+			"section": "CLI"
+		},
+		{
+			"name": "delete",
+			"url": "https://docs.railway.com/cli/delete.md",
+			"description": "Delete a project.",
+			"section": "CLI"
+		},
+		{
+			"name": "deploy",
+			"url": "https://docs.railway.com/cli/deploy.md",
+			"description": "Provision a template into your project.",
+			"section": "CLI"
+		},
+		{
+			"name": "deployment",
+			"url": "https://docs.railway.com/cli/deployment.md",
+			"description": "Manage deployments.",
+			"section": "CLI"
+		},
+		{
+			"name": "dev",
+			"url": "https://docs.railway.com/cli/dev.md",
+			"description": "Run Railway services locally.",
+			"section": "CLI"
+		},
+		{
+			"name": "docs",
+			"url": "https://docs.railway.com/cli/docs.md",
+			"description": "Open Railway Documentation in the browser.",
+			"section": "CLI"
+		},
+		{
+			"name": "domain",
+			"url": "https://docs.railway.com/cli/domain.md",
+			"description": "Add, list, inspect, update, or delete domains for a service.",
+			"section": "CLI"
+		},
+		{
+			"name": "down",
+			"url": "https://docs.railway.com/cli/down.md",
+			"description": "Remove the most recent deployment.",
+			"section": "CLI"
+		},
+		{
+			"name": "environment",
+			"url": "https://docs.railway.com/cli/environment.md",
+			"description": "Manage environments.",
+			"section": "CLI"
+		},
+		{
+			"name": "flag",
+			"url": "https://docs.railway.com/cli/flag.md",
+			"description": "Manage feature flags from the command line.",
+			"section": "CLI"
+		},
+		{
+			"name": "functions",
+			"url": "https://docs.railway.com/cli/functions.md",
+			"description": "Manage project functions.",
+			"section": "CLI"
+		},
+		{
+			"name": "init",
+			"url": "https://docs.railway.com/cli/init.md",
+			"description": "Create a new project.",
+			"section": "CLI"
+		},
+		{
+			"name": "link",
+			"url": "https://docs.railway.com/cli/link.md",
+			"description": "Associate an existing project with the current directory.",
+			"section": "CLI"
+		},
+		{
+			"name": "list",
+			"url": "https://docs.railway.com/cli/list.md",
+			"description": "List all projects in your Railway account.",
+			"section": "CLI"
+		},
+		{
+			"name": "login",
+			"url": "https://docs.railway.com/cli/login.md",
+			"description": "Login to your Railway account.",
+			"section": "CLI"
+		},
+		{
+			"name": "logout",
+			"url": "https://docs.railway.com/cli/logout.md",
+			"description": "Logout of your Railway account.",
+			"section": "CLI"
+		},
+		{
+			"name": "logs",
+			"url": "https://docs.railway.com/cli/logs.md",
+			"description": "View build, deploy, HTTP, network flow, or DNS query logs.",
+			"section": "CLI"
+		},
+		{
+			"name": "mcp",
+			"url": "https://docs.railway.com/cli/mcp.md",
+			"description": "Start, proxy, or install the Railway MCP server for AI coding tools.",
+			"section": "CLI"
+		},
+		{
+			"name": "metrics",
+			"url": "https://docs.railway.com/cli/metrics.md",
+			"description": "View resource and HTTP metrics for a Railway service from the CLI.",
+			"section": "CLI"
+		},
+		{
+			"name": "open",
+			"url": "https://docs.railway.com/cli/open.md",
+			"description": "Open your project dashboard in the browser.",
+			"section": "CLI"
+		},
+		{
+			"name": "outbound-network",
+			"url": "https://docs.railway.com/cli/outbound-network.md",
+			"description": "Manage outbound networking settings for a service.",
+			"section": "CLI"
+		},
+		{
+			"name": "postgres",
+			"url": "https://docs.railway.com/cli/postgres.md",
+			"description": "Manage PostgreSQL backups, point-in-time recovery, high availability, and connection pooling.",
+			"section": "CLI"
+		},
+		{
+			"name": "project",
+			"url": "https://docs.railway.com/cli/project.md",
+			"description": "Manage projects.",
+			"section": "CLI"
+		},
+		{
+			"name": "private-network",
+			"url": "https://docs.railway.com/cli/private-network.md",
+			"description": "Manage private networking for a service.",
+			"section": "CLI"
+		},
+		{
+			"name": "redeploy",
+			"url": "https://docs.railway.com/cli/redeploy.md",
+			"description": "Redeploy the latest deployment of a service.",
+			"section": "CLI"
+		},
+		{
+			"name": "restart",
+			"url": "https://docs.railway.com/cli/restart.md",
+			"description": "Restart the latest deployment of a service (without rebuilding).",
+			"section": "CLI"
+		},
+		{
+			"name": "run",
+			"url": "https://docs.railway.com/cli/run.md",
+			"description": "Run a local command using variables from the active environment.",
+			"section": "CLI"
+		},
+		{
+			"name": "sandbox",
+			"url": "https://docs.railway.com/cli/sandbox.md",
+			"description": "Manage ephemeral sandboxes.",
+			"section": "CLI"
+		},
+		{
+			"name": "scale",
+			"url": "https://docs.railway.com/cli/scale.md",
+			"description": "Scale a service across regions.",
+			"section": "CLI"
+		},
+		{
+			"name": "service",
+			"url": "https://docs.railway.com/cli/service.md",
+			"description": "Manage services.",
+			"section": "CLI"
+		},
+		{
+			"name": "setup",
+			"url": "https://docs.railway.com/cli/setup.md",
+			"description": "Set up Railway tooling for editors and AI agents.",
+			"section": "CLI"
+		},
+		{
+			"name": "shell",
+			"url": "https://docs.railway.com/cli/shell.md",
+			"description": "Open a local subshell with Railway variables available.",
+			"section": "CLI"
+		},
+		{
+			"name": "skills",
+			"url": "https://docs.railway.com/cli/skills.md",
+			"description": "Install or remove Railway agent skills for AI coding tools.",
+			"section": "CLI"
+		},
+		{
+			"name": "ssh",
+			"url": "https://docs.railway.com/cli/ssh.md",
+			"description": "Connect to a service via SSH and manage SSH keys.",
+			"section": "CLI"
+		},
+		{
+			"name": "starship",
+			"url": "https://docs.railway.com/cli/starship.md",
+			"description": "Output metadata for Starship prompt integration.",
+			"section": "CLI"
+		},
+		{
+			"name": "status",
+			"url": "https://docs.railway.com/cli/status.md",
+			"description": "Show information about the linked project, environment, and resources.",
+			"section": "CLI"
+		},
+		{
+			"name": "templates",
+			"url": "https://docs.railway.com/cli/templates.md",
+			"description": "Manage Railway templates from the CLI.",
+			"section": "CLI"
+		},
+		{
+			"name": "tcp-proxy",
+			"url": "https://docs.railway.com/cli/tcp-proxy.md",
+			"description": "Manage public TCP proxies for a service.",
+			"section": "CLI"
+		},
+		{
+			"name": "unlink",
+			"url": "https://docs.railway.com/cli/unlink.md",
+			"description": "Disassociate project from current directory.",
+			"section": "CLI"
+		},
+		{
+			"name": "up",
+			"url": "https://docs.railway.com/cli/up.md",
+			"description": "Upload and deploy project from the current directory.",
+			"section": "CLI"
+		},
+		{
+			"name": "upgrade",
+			"url": "https://docs.railway.com/cli/upgrade.md",
+			"description": "Upgrade the Railway CLI to the latest version.",
+			"section": "CLI"
+		},
+		{
+			"name": "usage",
+			"url": "https://docs.railway.com/cli/usage.md",
+			"description": "Inspect workspace usage and manage compute and agent usage limits.",
+			"section": "CLI"
+		},
+		{
+			"name": "variable",
+			"url": "https://docs.railway.com/cli/variable.md",
+			"description": "Manage environment variables.",
+			"section": "CLI"
+		},
+		{
+			"name": "volume",
+			"url": "https://docs.railway.com/cli/volume.md",
+			"description": "Manage project volumes.",
+			"section": "CLI"
+		},
+		{
+			"name": "waf",
+			"url": "https://docs.railway.com/cli/waf.md",
+			"description": "Manage WAF protection for a service.",
+			"section": "CLI"
+		},
+		{
+			"name": "whoami",
+			"url": "https://docs.railway.com/cli/whoami.md",
+			"description": "Get the current logged in user.",
+			"section": "CLI"
+		}
+	]
+}

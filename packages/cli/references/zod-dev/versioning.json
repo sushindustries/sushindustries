@@ -1,0 +1,36 @@
+{
+	"provider": "zod-dev",
+	"section": "Versioning",
+	"entries": [
+		{
+			"name": "Versioning",
+			"url": "https://zod.dev/v4/versioning",
+			"description": "Versioning strategy and compatibility information for Zod 4",
+			"section": "Versioning"
+		},
+		{
+			"name": "Update — July 8th, 2025",
+			"url": "https://zod.dev/v4/versioning?id=update--july-8th-2025",
+			"description": "",
+			"section": "Versioning"
+		},
+		{
+			"name": "Versioning in Zod 4",
+			"url": "https://zod.dev/v4/versioning?id=versioning-in-zod-4",
+			"description": "",
+			"section": "Versioning"
+		},
+		{
+			"name": "Why?",
+			"url": "https://zod.dev/v4/versioning?id=why",
+			"description": "",
+			"section": "Versioning"
+		},
+		{
+			"name": "Why can't libraries just support v3 and v4 simultaneously?",
+			"url": "https://zod.dev/v4/versioning?id=why-cant-libraries-just-support-v3-and-v4-simultaneously",
+			"description": "",
+			"section": "Versioning"
+		}
+	]
+}

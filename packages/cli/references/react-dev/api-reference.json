@@ -1,0 +1,768 @@
+{
+	"provider": "react-dev",
+	"section": "API Reference",
+	"entries": [
+		{
+			"name": "Overview",
+			"url": "https://react.dev/reference/react.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Hooks",
+			"url": "https://react.dev/reference/react/hooks.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useActionState",
+			"url": "https://react.dev/reference/react/useActionState.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useCallback",
+			"url": "https://react.dev/reference/react/useCallback.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useContext",
+			"url": "https://react.dev/reference/react/useContext.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useDebugValue",
+			"url": "https://react.dev/reference/react/useDebugValue.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useDeferredValue",
+			"url": "https://react.dev/reference/react/useDeferredValue.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useEffect",
+			"url": "https://react.dev/reference/react/useEffect.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useEffectEvent",
+			"url": "https://react.dev/reference/react/useEffectEvent.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useId",
+			"url": "https://react.dev/reference/react/useId.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useImperativeHandle",
+			"url": "https://react.dev/reference/react/useImperativeHandle.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useInsertionEffect",
+			"url": "https://react.dev/reference/react/useInsertionEffect.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useLayoutEffect",
+			"url": "https://react.dev/reference/react/useLayoutEffect.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useMemo",
+			"url": "https://react.dev/reference/react/useMemo.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useOptimistic",
+			"url": "https://react.dev/reference/react/useOptimistic.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useReducer",
+			"url": "https://react.dev/reference/react/useReducer.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useRef",
+			"url": "https://react.dev/reference/react/useRef.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useState",
+			"url": "https://react.dev/reference/react/useState.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useSyncExternalStore",
+			"url": "https://react.dev/reference/react/useSyncExternalStore.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useTransition",
+			"url": "https://react.dev/reference/react/useTransition.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Components",
+			"url": "https://react.dev/reference/react/components.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<Fragment> (<>)",
+			"url": "https://react.dev/reference/react/Fragment.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<Profiler>",
+			"url": "https://react.dev/reference/react/Profiler.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<StrictMode>",
+			"url": "https://react.dev/reference/react/StrictMode.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<Suspense>",
+			"url": "https://react.dev/reference/react/Suspense.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<Activity>",
+			"url": "https://react.dev/reference/react/Activity.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<ViewTransition>",
+			"url": "https://react.dev/reference/react/ViewTransition.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "APIs",
+			"url": "https://react.dev/reference/react/apis.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "act",
+			"url": "https://react.dev/reference/react/act.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "addTransitionType",
+			"url": "https://react.dev/reference/react/addTransitionType.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "cache",
+			"url": "https://react.dev/reference/react/cache.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "cacheSignal",
+			"url": "https://react.dev/reference/react/cacheSignal.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "captureOwnerStack",
+			"url": "https://react.dev/reference/react/captureOwnerStack.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "createContext",
+			"url": "https://react.dev/reference/react/createContext.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "lazy",
+			"url": "https://react.dev/reference/react/lazy.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "memo",
+			"url": "https://react.dev/reference/react/memo.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "startTransition",
+			"url": "https://react.dev/reference/react/startTransition.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "use",
+			"url": "https://react.dev/reference/react/use.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "experimental_taintObjectReference",
+			"url": "https://react.dev/reference/react/experimental_taintObjectReference.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "experimental_taintUniqueValue",
+			"url": "https://react.dev/reference/react/experimental_taintUniqueValue.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Hooks",
+			"url": "https://react.dev/reference/react-dom/hooks.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "useFormStatus",
+			"url": "https://react.dev/reference/react-dom/hooks/useFormStatus.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Components",
+			"url": "https://react.dev/reference/react-dom/components.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Common (e.g. <div>)",
+			"url": "https://react.dev/reference/react-dom/components/common.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<form>",
+			"url": "https://react.dev/reference/react-dom/components/form.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<input>",
+			"url": "https://react.dev/reference/react-dom/components/input.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<option>",
+			"url": "https://react.dev/reference/react-dom/components/option.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<progress>",
+			"url": "https://react.dev/reference/react-dom/components/progress.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<select>",
+			"url": "https://react.dev/reference/react-dom/components/select.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<textarea>",
+			"url": "https://react.dev/reference/react-dom/components/textarea.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<link>",
+			"url": "https://react.dev/reference/react-dom/components/link.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<meta>",
+			"url": "https://react.dev/reference/react-dom/components/meta.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<script>",
+			"url": "https://react.dev/reference/react-dom/components/script.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<style>",
+			"url": "https://react.dev/reference/react-dom/components/style.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "<title>",
+			"url": "https://react.dev/reference/react-dom/components/title.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "APIs",
+			"url": "https://react.dev/reference/react-dom.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "browser",
+			"url": "https://react.dev/reference/react-dom/browser.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "createPortal",
+			"url": "https://react.dev/reference/react-dom/createPortal.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "flushSync",
+			"url": "https://react.dev/reference/react-dom/flushSync.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "preconnect",
+			"url": "https://react.dev/reference/react-dom/preconnect.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "prefetchDNS",
+			"url": "https://react.dev/reference/react-dom/prefetchDNS.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "preinit",
+			"url": "https://react.dev/reference/react-dom/preinit.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "preinitModule",
+			"url": "https://react.dev/reference/react-dom/preinitModule.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "preload",
+			"url": "https://react.dev/reference/react-dom/preload.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "preloadModule",
+			"url": "https://react.dev/reference/react-dom/preloadModule.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Client APIs",
+			"url": "https://react.dev/reference/react-dom/client.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "createRoot",
+			"url": "https://react.dev/reference/react-dom/client/createRoot.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "hydrateRoot",
+			"url": "https://react.dev/reference/react-dom/client/hydrateRoot.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Server APIs",
+			"url": "https://react.dev/reference/react-dom/server.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "renderToPipeableStream",
+			"url": "https://react.dev/reference/react-dom/server/renderToPipeableStream.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "renderToReadableStream",
+			"url": "https://react.dev/reference/react-dom/server/renderToReadableStream.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "renderToStaticMarkup",
+			"url": "https://react.dev/reference/react-dom/server/renderToStaticMarkup.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "renderToString",
+			"url": "https://react.dev/reference/react-dom/server/renderToString.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "resume",
+			"url": "https://react.dev/reference/react-dom/server/resume.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "resumeToPipeableStream",
+			"url": "https://react.dev/reference/react-dom/server/resumeToPipeableStream.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Static APIs",
+			"url": "https://react.dev/reference/react-dom/static.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "prerender",
+			"url": "https://react.dev/reference/react-dom/static/prerender.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "prerenderToNodeStream",
+			"url": "https://react.dev/reference/react-dom/static/prerenderToNodeStream.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "resumeAndPrerender",
+			"url": "https://react.dev/reference/react-dom/static/resumeAndPrerender.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "resumeAndPrerenderToNodeStream",
+			"url": "https://react.dev/reference/react-dom/static/resumeAndPrerenderToNodeStream.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Compiling Libraries",
+			"url": "https://react.dev/reference/react-compiler/compiling-libraries.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Configuration",
+			"url": "https://react.dev/reference/react-compiler/configuration.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "compilationMode",
+			"url": "https://react.dev/reference/react-compiler/compilationMode.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "gating",
+			"url": "https://react.dev/reference/react-compiler/gating.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "logger",
+			"url": "https://react.dev/reference/react-compiler/logger.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "panicThreshold",
+			"url": "https://react.dev/reference/react-compiler/panicThreshold.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "target",
+			"url": "https://react.dev/reference/react-compiler/target.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Directives",
+			"url": "https://react.dev/reference/react-compiler/directives.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "\"use memo\"",
+			"url": "https://react.dev/reference/react-compiler/directives/use-memo.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "\"use no memo\"",
+			"url": "https://react.dev/reference/react-compiler/directives/use-no-memo.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "React Performance tracks",
+			"url": "https://react.dev/reference/dev-tools/react-performance-tracks.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Lints",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "exhaustive-deps",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/exhaustive-deps.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "rules-of-hooks",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/rules-of-hooks.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "component-hook-factories",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/component-hook-factories.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "config",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/config.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "error-boundaries",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/error-boundaries.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "gating",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/gating.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "globals",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/globals.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "immutability",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/immutability.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "incompatible-library",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/incompatible-library.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "preserve-manual-memoization",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/preserve-manual-memoization.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "purity",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/purity.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "refs",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/refs.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "set-state-in-effect",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "set-state-in-render",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-render.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "static-components",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/static-components.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "unsupported-syntax",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/unsupported-syntax.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "use-memo",
+			"url": "https://react.dev/reference/eslint-plugin-react-hooks/lints/use-memo.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Overview",
+			"url": "https://react.dev/reference/rules.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Components and Hooks must be pure",
+			"url": "https://react.dev/reference/rules/components-and-hooks-must-be-pure.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "React calls Components and Hooks",
+			"url": "https://react.dev/reference/rules/react-calls-components-and-hooks.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Rules of Hooks",
+			"url": "https://react.dev/reference/rules/rules-of-hooks.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Server Components",
+			"url": "https://react.dev/reference/rsc/server-components.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Server Functions",
+			"url": "https://react.dev/reference/rsc/server-functions.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Directives",
+			"url": "https://react.dev/reference/rsc/directives.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "'use client'",
+			"url": "https://react.dev/reference/rsc/use-client.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "'use server'",
+			"url": "https://react.dev/reference/rsc/use-server.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Legacy React APIs",
+			"url": "https://react.dev/reference/react/legacy.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Children",
+			"url": "https://react.dev/reference/react/Children.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "cloneElement",
+			"url": "https://react.dev/reference/react/cloneElement.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "Component",
+			"url": "https://react.dev/reference/react/Component.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "createElement",
+			"url": "https://react.dev/reference/react/createElement.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "createRef",
+			"url": "https://react.dev/reference/react/createRef.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "forwardRef",
+			"url": "https://react.dev/reference/react/forwardRef.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "isValidElement",
+			"url": "https://react.dev/reference/react/isValidElement.md",
+			"description": "",
+			"section": "API Reference"
+		},
+		{
+			"name": "PureComponent",
+			"url": "https://react.dev/reference/react/PureComponent.md",
+			"description": "",
+			"section": "API Reference"
+		}
+	]
+}

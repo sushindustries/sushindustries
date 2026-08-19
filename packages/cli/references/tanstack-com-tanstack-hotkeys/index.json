@@ -1,0 +1,47 @@
+{
+	"provider": "tanstack-com-tanstack-hotkeys",
+	"source": "https://tanstack.com/hotkeys/latest/llms.txt",
+	"parent": "tanstack-com",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"TanStack Start",
+		"TanStack Router",
+		"TanStack Query",
+		"TanStack Markdown",
+		"TanStack Store",
+		"TanStack Pacer",
+		"TanStack DB",
+		"TanStack AI",
+		"TanStack Highlight"
+	],
+	"title": "TanStack Hotkeys docs",
+	"summary": "A type-safe, cross-platform hotkey library with sequence detection, key state tracking, hotkey recording, and framework adapters for React and more.",
+	"total": 311,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 4,
+			"file": "general.json"
+		},
+		{
+			"name": "Get Started",
+			"entries": 8,
+			"file": "get-started.json"
+		},
+		{
+			"name": "Guides",
+			"entries": 42,
+			"file": "guides.json"
+		},
+		{
+			"name": "API",
+			"entries": 202,
+			"file": "api.json"
+		},
+		{
+			"name": "Examples",
+			"entries": 55,
+			"file": "examples.json"
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "pg/Performance",
+	"entries": [
+		{
+			"name": "Query performance",
+			"url": "https://orm.drizzle.team/docs/pg/perf-queries",
+			"description": "",
+			"section": "pg/Performance"
+		}
+	]
+}

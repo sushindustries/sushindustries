@@ -1,0 +1,60 @@
+{
+	"provider": "tanstack-com-tanstack-devtools",
+	"section": "Examples",
+	"entries": [
+		{
+			"name": "React: Basic",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/react/examples/basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: TanStack Start",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/react/examples/start.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: Custom Devtools",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/react/examples/custom-devtools.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Basic",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/preact/examples/basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Preact: Custom Devtools",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/preact/examples/custom-devtools.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: Basic",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/solid/examples/basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Vue: Basic",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/vue/examples/basic.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "React: a11y",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/react/examples/a11y-devtools.md",
+			"description": "",
+			"section": "Examples"
+		},
+		{
+			"name": "Solid: A11y",
+			"url": "https://tanstack.com/devtools/latest/docs/framework/solif/examples/a11y-devtools.md",
+			"description": "",
+			"section": "Examples"
+		}
+	]
+}

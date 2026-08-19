@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Alerts",
+	"entries": [
+		{
+			"name": "Alerts - Docs",
+			"url": "https://posthog.com/docs/alerts.md",
+			"description": "",
+			"section": "Alerts"
+		}
+	]
+}

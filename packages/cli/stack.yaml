@@ -1,0 +1,246 @@
+# The stack, as data.
+#
+# One entry per thing this repo depends on. `pnpm sushindustries stack` reads
+# it and `pnpm sushindustries refs` fetches every `llms` URL once and cuts it
+# into a local shard, so looking up someone else's API is a file read rather
+# than a guess.
+#
+# llms: the provider's own machine-readable documentation index. Only listed
+# when it actually resolves. A 404 in here is worse than a blank, because a
+# blank says "nobody publishes one" and a 404 says nothing at all.
+#
+# Shape is deliberately flat: a list of items, one `key: value` per line. The
+# reader in lib/context.mjs is twenty lines because of it, and the table this
+# generates can stay a table.
+
+- name: React
+  package: react
+  version: 19.2.8
+  purpose: interface
+  for: The component model every visible thing in packages/ui is written in.
+  docs: https://react.dev
+  llms: https://react.dev/llms.txt
+
+- name: TanStack Start
+  package: "@tanstack/react-start"
+  version: 1.168.46
+  purpose: interface
+  for: The framework. Vite in front, Nitro behind, server routes for the machine-readable endpoints.
+  docs: https://tanstack.com/start
+  llms: https://tanstack.com/llms.txt
+
+- name: TanStack Router
+  package: "@tanstack/react-router"
+  version: 1.170.29
+  purpose: interface
+  for: File-based routing. Dynamic segments stay flat files and escaped dots carry the .md and .xml endpoints.
+  docs: https://tanstack.com/router
+  llms: https://tanstack.com/llms.txt
+
+- name: TanStack Query
+  package: "@tanstack/react-query"
+  version: 5.101.4
+  purpose: interface
+  for: The little that is fetched rather than inlined at build time.
+  docs: https://tanstack.com/query
+  llms: https://tanstack.com/llms.txt
+
+- name: TanStack Markdown
+  package: "@tanstack/markdown"
+  version: 0.0.13
+  purpose: interface
+  for: Rendering every post, page and component document the site serves.
+  docs: https://tanstack.com/markdown
+  llms: https://tanstack.com/llms.txt
+
+- name: TanStack Store
+  package: "@tanstack/react-store"
+  version: 0.11.1
+  purpose: interface
+  for: Desk window positions and the state the dock reads.
+  docs: https://tanstack.com/store
+  llms: https://tanstack.com/llms.txt
+
+- name: TanStack Pacer
+  package: "@tanstack/react-pacer"
+  version: 0.23.0
+  purpose: interface
+  for: Throttling scroll and resize work so motion stays on one frame budget.
+  docs: https://tanstack.com/pacer
+  llms: https://tanstack.com/llms.txt
+
+- name: TanStack DB
+  package: "@tanstack/react-db"
+  version: 0.2.1
+  purpose: interface
+  for: Collections over the catalogue, so search and filtering are queries rather than array passes.
+  docs: https://tanstack.com/db
+  llms: https://tanstack.com/llms.txt
+
+- name: TanStack AI
+  package: "@tanstack/ai"
+  version: 0.44.1
+  purpose: interface
+  for: The assistant package, talking to Groq.
+  docs: https://tanstack.com/ai
+  llms: https://tanstack.com/llms.txt
+
+- name: TanStack Highlight
+  package: "@tanstack/highlight"
+  version: 0.0.10
+  purpose: interface
+  for: Syntax highlighting in every code fence, without shipping a themeing runtime.
+  docs: https://tanstack.com/highlight
+  llms: https://tanstack.com/llms.txt
+
+- name: Lenis
+  package: lenis
+  version: 1.3.26
+  purpose: interface
+  for: Smoothed scrolling, switched off entirely under reduced motion.
+  docs: https://lenis.darkroom.engineering
+  llms: https://lenis.darkroom.engineering/llms.txt
+
+- name: PostHog
+  package: posthog-js
+  version: 1.417.1
+  purpose: interface
+  for: Analytics, relayed through /ingest so no third-party host is contacted directly.
+  docs: https://posthog.com/docs
+  llms: https://posthog.com/llms.txt
+
+- name: Three.js
+  package: three
+  version: 0.185.1
+  purpose: three-d
+  for: The renderer under every product viewer.
+  docs: https://threejs.org/docs
+  llms: https://threejs.org/docs/llms.txt
+
+- name: React Three Fiber
+  package: "@react-three/fiber"
+  version: 9.7.0
+  purpose: three-d
+  for: Three.js as components, which is what makes a viewer a registry item.
+  docs: https://r3f.docs.pmnd.rs
+  llms: https://r3f.docs.pmnd.rs/llms.txt
+
+- name: Drei
+  package: "@react-three/drei"
+  version: 10.7.8
+  purpose: three-d
+  for: Loaders, controls and environments, so the viewer package is scene code and nothing else.
+  docs: https://drei.docs.pmnd.rs
+  llms: https://drei.docs.pmnd.rs/llms.txt
+
+- name: Nitro
+  package: nitro
+  version: 3.0.260610-beta
+  purpose: server
+  for: The server the built site runs as. Minified, with pre-compressed public assets.
+  docs: https://nitro.build
+  llms: https://nitro.build/llms.txt
+
+- name: Drizzle ORM
+  package: drizzle-orm
+  version: 0.45.2
+  purpose: data
+  for: The schema and every query. Page views, and nothing that is already in a Markdown file.
+  docs: https://orm.drizzle.team
+  llms: https://orm.drizzle.team/llms.txt
+
+- name: Drizzle Kit
+  package: drizzle-kit
+  version: 0.31.10
+  purpose: data
+  for: Generating migrations. Committed, applied by the pre-deploy command, never from a live diff.
+  docs: https://orm.drizzle.team/docs/kit-overview
+  llms: https://orm.drizzle.team/llms.txt
+
+- name: postgres.js
+  package: postgres
+  version: 3.4.9
+  purpose: data
+  for: The driver, bundled into the migration runner because the runtime image has no node_modules.
+  docs: https://github.com/porsager/postgres
+  llms: ""
+
+- name: Zod
+  package: zod
+  version: 4.4.3
+  purpose: data
+  for: Every wire contract, and every MCP tool's input schema in this package.
+  docs: https://zod.dev
+  llms: https://zod.dev/llms.txt
+
+- name: Model Context Protocol
+  package: "@modelcontextprotocol/server"
+  version: 2.0.0
+  purpose: data
+  for: The three servers in this package, which is how an agent reads any of the above.
+  docs: https://modelcontextprotocol.io
+  llms: https://modelcontextprotocol.io/llms.txt
+
+- name: Vite
+  package: vite
+  version: 8.2.1
+  purpose: toolchain
+  for: The dev server and the client build, including the import protection that keeps .server.ts out of the browser.
+  docs: https://vite.dev
+  llms: https://vite.dev/llms.txt
+
+- name: tsdown
+  package: tsdown
+  version: 0.22.14
+  purpose: toolchain
+  for: Every package that compiles, through one shared base that also generates its exports map.
+  docs: https://tsdown.dev
+  llms: https://tsdown.dev/llms.txt
+
+- name: Turborepo
+  package: turbo
+  version: 2.10.10
+  purpose: toolchain
+  for: Task order across the workspace, and the cache that makes pnpm check cheap.
+  docs: https://turborepo.com
+  llms: https://turborepo.com/llms.txt
+
+- name: Biome
+  package: "@biomejs/biome"
+  version: 2.5.8
+  purpose: toolchain
+  for: Formatting and linting, in one pass, for the whole repo.
+  docs: https://biomejs.dev
+  llms: ""
+
+- name: TypeScript
+  package: typescript
+  version: 5.9.3
+  purpose: toolchain
+  for: Isolated declarations, so every package emits its own types without a second pass.
+  docs: https://www.typescriptlang.org/docs
+  llms: ""
+
+- name: Railway
+  package: ""
+  version: ""
+  purpose: toolchain
+  for: What builds the Dockerfile, runs the migrations and serves the result.
+  docs: https://docs.railway.com
+  llms: https://docs.railway.com/llms.txt
+
+- name: Vitest
+  package: vitest
+  version: 4.1.10
+  purpose: testing
+  for: The suites in web, llms and http. Run against the built server, not the dev one.
+  docs: https://vitest.dev
+  llms: https://vitest.dev/llms.txt
+
+- name: Playwright
+  package: playwright
+  version: 1.62.1
+  purpose: testing
+  for: Screenshots for the README and the device frames, on a schedule.
+  docs: https://playwright.dev/docs/intro
+  llms: ""

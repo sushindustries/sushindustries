@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Support Options",
+	"entries": [
+		{
+			"name": "Support options - Docs",
+			"url": "https://posthog.com/docs/support-options.md",
+			"description": "",
+			"section": "Support Options"
+		}
+	]
+}

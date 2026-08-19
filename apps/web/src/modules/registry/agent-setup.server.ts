@@ -62,7 +62,7 @@ export function componentPrompt(item: RegistryItem, origin: string): string {
 		"## 1. Read before touching anything",
 		"",
 		`- Docs page: ${origin}/components/${item.name}`,
-		`- The same page as Markdown: ${origin}/r/md/${item.name}`,
+		`- The same page as Markdown: ${origin}/components/${item.name}/index.md`,
 		"- Components style themselves with atomic classes from `@sushindustries/atoms`. The stylesheet must be loaded once, globally, or the component arrives unstyled.",
 		"",
 		"## 2. Install",

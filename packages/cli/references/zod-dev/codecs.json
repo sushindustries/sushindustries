@@ -1,0 +1,186 @@
+{
+	"provider": "zod-dev",
+	"section": "Codecs",
+	"entries": [
+		{
+			"name": "Codecs",
+			"url": "https://zod.dev/codecs",
+			"description": "Bidirectional transformations with encode and decode",
+			"section": "Codecs"
+		},
+		{
+			"name": "Inverting codecs",
+			"url": "https://zod.dev/codecs?id=inverting-codecs",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "Composability",
+			"url": "https://zod.dev/codecs?id=composability",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "Type-safe inputs",
+			"url": "https://zod.dev/codecs?id=type-safe-inputs",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "Async and safe variants",
+			"url": "https://zod.dev/codecs?id=async-and-safe-variants",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "How encoding works",
+			"url": "https://zod.dev/codecs?id=how-encoding-works",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "Codecs",
+			"url": "https://zod.dev/codecs?id=codecs",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "Pipes",
+			"url": "https://zod.dev/codecs?id=pipes",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "Refinements",
+			"url": "https://zod.dev/codecs?id=refinements",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "Defaults and prefaults",
+			"url": "https://zod.dev/codecs?id=defaults-and-prefaults",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "Catch",
+			"url": "https://zod.dev/codecs?id=catch",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "Stringbool",
+			"url": "https://zod.dev/codecs?id=stringbool",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "Transforms",
+			"url": "https://zod.dev/codecs?id=transforms",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "Useful codecs",
+			"url": "https://zod.dev/codecs?id=useful-codecs",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "stringToNumber",
+			"url": "https://zod.dev/codecs?id=stringtonumber",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "stringToInt",
+			"url": "https://zod.dev/codecs?id=stringtoint",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "stringToBigInt",
+			"url": "https://zod.dev/codecs?id=stringtobigint",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "numberToBigInt",
+			"url": "https://zod.dev/codecs?id=numbertobigint",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "isoDatetimeToDate",
+			"url": "https://zod.dev/codecs?id=isodatetimetodate",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "epochSecondsToDate",
+			"url": "https://zod.dev/codecs?id=epochsecondstodate",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "epochMillisToDate",
+			"url": "https://zod.dev/codecs?id=epochmillistodate",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "json(schema)",
+			"url": "https://zod.dev/codecs?id=jsonschema",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "utf8ToBytes",
+			"url": "https://zod.dev/codecs?id=utf8tobytes",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "bytesToUtf8",
+			"url": "https://zod.dev/codecs?id=bytestoutf8",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "base64ToBytes",
+			"url": "https://zod.dev/codecs?id=base64tobytes",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "base64urlToBytes",
+			"url": "https://zod.dev/codecs?id=base64urltobytes",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "hexToBytes",
+			"url": "https://zod.dev/codecs?id=hextobytes",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "stringToURL",
+			"url": "https://zod.dev/codecs?id=stringtourl",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "stringToHttpURL",
+			"url": "https://zod.dev/codecs?id=stringtohttpurl",
+			"description": "",
+			"section": "Codecs"
+		},
+		{
+			"name": "uriComponent",
+			"url": "https://zod.dev/codecs?id=uricomponent",
+			"description": "",
+			"section": "Codecs"
+		}
+	]
+}

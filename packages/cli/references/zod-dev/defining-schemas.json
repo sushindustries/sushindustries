@@ -1,0 +1,558 @@
+{
+	"provider": "zod-dev",
+	"section": "Defining schemas",
+	"entries": [
+		{
+			"name": "Defining schemas",
+			"url": "https://zod.dev/api",
+			"description": "Complete API reference for all Zod schema types, methods, and validation features",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Primitives",
+			"url": "https://zod.dev/api?id=primitives",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Coercion",
+			"url": "https://zod.dev/api?id=coercion",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Literals",
+			"url": "https://zod.dev/api?id=literals",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Strings",
+			"url": "https://zod.dev/api?id=strings",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "String formats",
+			"url": "https://zod.dev/api?id=string-formats",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Emails",
+			"url": "https://zod.dev/api?id=emails",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "UUIDs",
+			"url": "https://zod.dev/api?id=uuids",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "URLs",
+			"url": "https://zod.dev/api?id=urls",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Phone numbers",
+			"url": "https://zod.dev/api?id=phone-numbers",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "ISO datetimes",
+			"url": "https://zod.dev/api?id=iso-datetimes",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "ISO dates",
+			"url": "https://zod.dev/api?id=iso-dates",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "ISO times",
+			"url": "https://zod.dev/api?id=iso-times",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "IP addresses",
+			"url": "https://zod.dev/api?id=ip-addresses",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "IP blocks (CIDR)",
+			"url": "https://zod.dev/api?id=ip-blocks-cidr",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "MAC Addresses",
+			"url": "https://zod.dev/api?id=mac-addresses",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Credit card numbers",
+			"url": "https://zod.dev/api?id=credit-card-numbers",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "JWTs",
+			"url": "https://zod.dev/api?id=jwts",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Hashes",
+			"url": "https://zod.dev/api?id=hashes",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Custom formats",
+			"url": "https://zod.dev/api?id=custom-formats",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Template literals",
+			"url": "https://zod.dev/api?id=template-literals",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Numbers",
+			"url": "https://zod.dev/api?id=numbers",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Integers",
+			"url": "https://zod.dev/api?id=integers",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "BigInts",
+			"url": "https://zod.dev/api?id=bigints",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Booleans",
+			"url": "https://zod.dev/api?id=booleans",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Dates",
+			"url": "https://zod.dev/api?id=dates",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Enums",
+			"url": "https://zod.dev/api?id=enums",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".enum",
+			"url": "https://zod.dev/api?id=enum",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".exclude()",
+			"url": "https://zod.dev/api?id=exclude",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".extract()",
+			"url": "https://zod.dev/api?id=extract",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Stringbools",
+			"url": "https://zod.dev/api?id=stringbool",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Optionals",
+			"url": "https://zod.dev/api?id=optionals",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Exact optionals",
+			"url": "https://zod.dev/api?id=exact-optionals",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Nullables",
+			"url": "https://zod.dev/api?id=nullables",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Nullish",
+			"url": "https://zod.dev/api?id=nullish",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Unknown",
+			"url": "https://zod.dev/api?id=unknown",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Never",
+			"url": "https://zod.dev/api?id=never",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Objects",
+			"url": "https://zod.dev/api?id=objects",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "z.strictObject",
+			"url": "https://zod.dev/api?id=zstrictobject",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "z.looseObject",
+			"url": "https://zod.dev/api?id=zlooseobject",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".catchall()",
+			"url": "https://zod.dev/api?id=catchall",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".shape",
+			"url": "https://zod.dev/api?id=shape",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".keyof()",
+			"url": "https://zod.dev/api?id=keyof",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".extend()",
+			"url": "https://zod.dev/api?id=extend",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".safeExtend()",
+			"url": "https://zod.dev/api?id=safeextend",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".pick()",
+			"url": "https://zod.dev/api?id=pick",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".omit()",
+			"url": "https://zod.dev/api?id=omit",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".partial()",
+			"url": "https://zod.dev/api?id=partial",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".exactPartial()",
+			"url": "https://zod.dev/api?id=exactpartial",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "z.deepPartial()",
+			"url": "https://zod.dev/api?id=deep-partial",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".required()",
+			"url": "https://zod.dev/api?id=required",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Recursive objects",
+			"url": "https://zod.dev/api?id=recursive-objects",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Circularity errors",
+			"url": "https://zod.dev/api?id=circularity-errors",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Arrays",
+			"url": "https://zod.dev/api?id=arrays",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Tuples",
+			"url": "https://zod.dev/api?id=tuples",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Unions",
+			"url": "https://zod.dev/api?id=unions",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Exclusive unions (XOR)",
+			"url": "https://zod.dev/api?id=exclusive-unions-xor",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Discriminated unions",
+			"url": "https://zod.dev/api?id=discriminated-unions",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Intersections",
+			"url": "https://zod.dev/api?id=intersections",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Records",
+			"url": "https://zod.dev/api?id=records",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "z.record",
+			"url": "https://zod.dev/api?id=zrecord",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "z.partialRecord",
+			"url": "https://zod.dev/api?id=zpartialrecord",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "z.looseRecord",
+			"url": "https://zod.dev/api?id=zlooserecord",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Maps",
+			"url": "https://zod.dev/api?id=maps",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Sets",
+			"url": "https://zod.dev/api?id=sets",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Files",
+			"url": "https://zod.dev/api?id=files",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Promises",
+			"url": "https://zod.dev/api?id=promises",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Instanceof",
+			"url": "https://zod.dev/api?id=instanceof",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Property",
+			"url": "https://zod.dev/api?id=property",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Refinements",
+			"url": "https://zod.dev/api?id=refinements",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".refine()",
+			"url": "https://zod.dev/api?id=refine",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "error",
+			"url": "https://zod.dev/api?id=error",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "abort",
+			"url": "https://zod.dev/api?id=abort",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "path",
+			"url": "https://zod.dev/api?id=path",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "when",
+			"url": "https://zod.dev/api?id=when",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".superRefine()",
+			"url": "https://zod.dev/api?id=superrefine",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".check()",
+			"url": "https://zod.dev/api?id=check",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Codecs",
+			"url": "https://zod.dev/api?id=codecs",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Pipes",
+			"url": "https://zod.dev/api?id=pipes",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "z.input() and z.output()",
+			"url": "https://zod.dev/api?id=input-output",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Transforms",
+			"url": "https://zod.dev/api?id=transforms",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".transform()",
+			"url": "https://zod.dev/api?id=transform",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": ".preprocess()",
+			"url": "https://zod.dev/api?id=preprocess",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Defaults",
+			"url": "https://zod.dev/api?id=defaults",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Prefaults",
+			"url": "https://zod.dev/api?id=prefaults",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Catch",
+			"url": "https://zod.dev/api?id=catch",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Branded types",
+			"url": "https://zod.dev/api?id=branded-types",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Readonly",
+			"url": "https://zod.dev/api?id=readonly",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "JSON",
+			"url": "https://zod.dev/api?id=json",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Functions",
+			"url": "https://zod.dev/api?id=functions",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Custom",
+			"url": "https://zod.dev/api?id=custom",
+			"description": "",
+			"section": "Defining schemas"
+		},
+		{
+			"name": "Apply",
+			"url": "https://zod.dev/api?id=apply",
+			"description": "",
+			"section": "Defining schemas"
+		}
+	]
+}

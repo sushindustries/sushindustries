@@ -1,0 +1,126 @@
+{
+	"provider": "r3f-docs-pmnd-rs",
+	"section": "Documentation",
+	"entries": [
+		{
+			"name": "Introduction",
+			"url": "https://r3f.docs.pmnd.rs/getting-started/introduction",
+			"description": "React-three-fiber is a React renderer for three.js.",
+			"section": "Documentation"
+		},
+		{
+			"name": "Installation",
+			"url": "https://r3f.docs.pmnd.rs/getting-started/installation",
+			"description": "Learn how to install react-three-fiber",
+			"section": "Documentation"
+		},
+		{
+			"name": "Your first scene",
+			"url": "https://r3f.docs.pmnd.rs/getting-started/your-first-scene",
+			"description": "This guide will help you setup your first React Three Fiber scene and introduce you to its core concepts.",
+			"section": "Documentation"
+		},
+		{
+			"name": "Examples",
+			"url": "https://r3f.docs.pmnd.rs/getting-started/examples",
+			"description": "A few examples that demonstrate what you can do with React Three Fiber",
+			"section": "Documentation"
+		},
+		{
+			"name": "Canvas",
+			"url": "https://r3f.docs.pmnd.rs/api/canvas",
+			"description": "The Canvas object is your portal into three.js",
+			"section": "Documentation"
+		},
+		{
+			"name": "Community R3F Components",
+			"url": "https://r3f.docs.pmnd.rs/getting-started/community-r3f-components",
+			"description": "This page showcases some React Three Fiber/r3f community components that have not been merged to the drei components collection or to another pmndrs project.",
+			"section": "Documentation"
+		},
+		{
+			"name": "Objects, properties and constructor arguments",
+			"url": "https://r3f.docs.pmnd.rs/api/objects",
+			"description": "All the effective ways of using React Three Fiber",
+			"section": "Documentation"
+		},
+		{
+			"name": "Hooks",
+			"url": "https://r3f.docs.pmnd.rs/api/hooks",
+			"description": "Hooks are the heart of react-three-fiber",
+			"section": "Documentation"
+		},
+		{
+			"name": "Events",
+			"url": "https://r3f.docs.pmnd.rs/api/events",
+			"description": "All the events you can hook up to",
+			"section": "Documentation"
+		},
+		{
+			"name": "Additional Exports",
+			"url": "https://r3f.docs.pmnd.rs/api/additional-exports",
+			"description": "",
+			"section": "Documentation"
+		},
+		{
+			"name": "TypeScript",
+			"url": "https://r3f.docs.pmnd.rs/api/typescript",
+			"description": "Common scenarios and how to approach them with TypeScript",
+			"section": "Documentation"
+		},
+		{
+			"name": "Testing",
+			"url": "https://r3f.docs.pmnd.rs/api/testing",
+			"description": "How to handle unit tests",
+			"section": "Documentation"
+		},
+		{
+			"name": "Scaling performance",
+			"url": "https://r3f.docs.pmnd.rs/advanced/scaling-performance",
+			"description": "This is a short primer on how to scale performance.",
+			"section": "Documentation"
+		},
+		{
+			"name": "Performance pitfalls",
+			"url": "https://r3f.docs.pmnd.rs/advanced/pitfalls",
+			"description": "Performance 1x1",
+			"section": "Documentation"
+		},
+		{
+			"name": "v9 Migration Guide",
+			"url": "https://r3f.docs.pmnd.rs/tutorials/v9-migration-guide",
+			"description": "Changes and new features with v9 and React 19",
+			"section": "Documentation"
+		},
+		{
+			"name": "Events and Interaction",
+			"url": "https://r3f.docs.pmnd.rs/tutorials/events-and-interaction",
+			"description": "Let's make our meshes react to user input.",
+			"section": "Documentation"
+		},
+		{
+			"name": "Loading Models",
+			"url": "https://r3f.docs.pmnd.rs/tutorials/loading-models",
+			"description": "3D Software to the web!",
+			"section": "Documentation"
+		},
+		{
+			"name": "Loading Textures",
+			"url": "https://r3f.docs.pmnd.rs/tutorials/loading-textures",
+			"description": "Let's load some fancy textures.",
+			"section": "Documentation"
+		},
+		{
+			"name": "Basic Animations",
+			"url": "https://r3f.docs.pmnd.rs/tutorials/basic-animations",
+			"description": "This guide will help you understand refs, useFrame and how to make basic animations with Fiber",
+			"section": "Documentation"
+		},
+		{
+			"name": "How does it work?",
+			"url": "https://r3f.docs.pmnd.rs/tutorials/how-it-works",
+			"description": "This is an advanced guide on the inner workings of Fiber, if you are just getting started, take a look at our introduction!",
+			"section": "Documentation"
+		}
+	]
+}

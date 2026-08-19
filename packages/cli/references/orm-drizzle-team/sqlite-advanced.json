@@ -1,0 +1,54 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "sqlite/Advanced",
+	"entries": [
+		{
+			"name": "Set Operations",
+			"url": "https://orm.drizzle.team/docs/sqlite/set-operations",
+			"description": "",
+			"section": "sqlite/Advanced"
+		},
+		{
+			"name": "Generated Columns",
+			"url": "https://orm.drizzle.team/docs/sqlite/generated-columns",
+			"description": "",
+			"section": "sqlite/Advanced"
+		},
+		{
+			"name": "Transactions",
+			"url": "https://orm.drizzle.team/docs/sqlite/transactions",
+			"description": "",
+			"section": "sqlite/Advanced"
+		},
+		{
+			"name": "Batch API",
+			"url": "https://orm.drizzle.team/docs/sqlite/batch-api",
+			"description": "",
+			"section": "sqlite/Advanced"
+		},
+		{
+			"name": "Cache",
+			"url": "https://orm.drizzle.team/docs/sqlite/cache",
+			"description": "",
+			"section": "sqlite/Advanced"
+		},
+		{
+			"name": "Dynamic query building",
+			"url": "https://orm.drizzle.team/docs/sqlite/dynamic-query-building",
+			"description": "",
+			"section": "sqlite/Advanced"
+		},
+		{
+			"name": "Read Replicas",
+			"url": "https://orm.drizzle.team/docs/sqlite/read-replicas",
+			"description": "",
+			"section": "sqlite/Advanced"
+		},
+		{
+			"name": "Custom types",
+			"url": "https://orm.drizzle.team/docs/sqlite/custom-types",
+			"description": "",
+			"section": "sqlite/Advanced"
+		}
+	]
+}

@@ -1,0 +1,360 @@
+{
+	"provider": "posthog-com",
+	"section": "A/B Testing and Experiments",
+	"entries": [
+		{
+			"name": ".NET Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/dotnet.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "A/B testing prompts - Docs",
+			"url": "https://posthog.com/docs/experiments/llm-prompt-experiments.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Adding experiment code - Docs",
+			"url": "https://posthog.com/docs/experiments/adding-experiment-code.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Analyze Experiments with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/experiments/analyze-experiments-ai.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Analyzing results - Docs",
+			"url": "https://posthog.com/docs/experiments/analyzing-results.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Android Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/android.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Angular Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/angular.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Astro Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/astro.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Bayesian statistics - Docs",
+			"url": "https://posthog.com/docs/experiments/statistics-bayesian.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Bubble Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/bubble.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Creating a no-code web experiment - Docs",
+			"url": "https://posthog.com/docs/experiments/no-code-web-experiments.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Creating an experiment - Docs",
+			"url": "https://posthog.com/docs/experiments/creating-an-experiment.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "CUPED variance reduction - Docs",
+			"url": "https://posthog.com/docs/experiments/cuped.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Django Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/django.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Experiment metrics - Docs",
+			"url": "https://posthog.com/docs/experiments/metrics.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Experiment troubleshooting - Docs",
+			"url": "https://posthog.com/docs/experiments/troubleshooting.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Experiments - Docs",
+			"url": "https://posthog.com/docs/experiments.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Experiments &amp; A/B testing best practices - Docs",
+			"url": "https://posthog.com/docs/experiments/best-practices.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Experiments API - Docs",
+			"url": "https://posthog.com/docs/experiments/surfaces/api.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Experiments changelog - Docs",
+			"url": "https://posthog.com/docs/experiments/changelog.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Experiments in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/experiments/surfaces/web-app.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Exposures - Docs",
+			"url": "https://posthog.com/docs/experiments/exposures.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Flutter Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/flutter.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Framer Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/framer.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Frequentist statistics - Docs",
+			"url": "https://posthog.com/docs/experiments/statistics-frequentist.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Getting started with experiments - Docs",
+			"url": "https://posthog.com/docs/experiments/start-here.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Go Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/go.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Holdouts - Docs",
+			"url": "https://posthog.com/docs/experiments/holdouts.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "How to run Experiments without Feature Flags - Docs",
+			"url": "https://posthog.com/docs/experiments/running-experiments-without-feature-flags.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "How to stop enrollment while tracking long-term metrics - Docs",
+			"url": "https://posthog.com/docs/experiments/tracking-long-term-metrics.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Install Experiments with PostHog - Docs",
+			"url": "https://posthog.com/docs/experiments/installation.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "iOS Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/ios.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Kotlin Multiplatform Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/kmp.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Laravel Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/laravel.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Legacy statistics methodology - Docs",
+			"url": "https://posthog.com/docs/experiments/legacy-methodology.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Managing lifecycle - Docs",
+			"url": "https://posthog.com/docs/experiments/managing-lifecycle.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Next.js Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/nextjs.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Node.js Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/node.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Nuxt Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/nuxt.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "PHP Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/php.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Python Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/python.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "React Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/react.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "React Native Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/react-native.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "React Router Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/react-router.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Remix Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/remix.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Ruby Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/ruby.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Running time and sample size - Docs",
+			"url": "https://posthog.com/docs/experiments/sample-size-running-time.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Rust Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/rust.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Svelte Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/svelte.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Testing and launching an experiment - Docs",
+			"url": "https://posthog.com/docs/experiments/testing-and-launching.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Traffic allocation - Docs",
+			"url": "https://posthog.com/docs/experiments/traffic-allocation.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Tutorials and guides - Docs",
+			"url": "https://posthog.com/docs/experiments/tutorials.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Use experiments in PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/experiments/surfaces/desktop.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Use experiments over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/experiments/surfaces/mcp.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Using Data Warehouse tables in Experiments - Docs",
+			"url": "https://posthog.com/docs/experiments/data-warehouse.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Vue Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/vue.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Web Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/web.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "Webflow Experiments installation - Docs",
+			"url": "https://posthog.com/docs/experiments/installation/webflow.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		},
+		{
+			"name": "What happens when changing distribution after rollout? - Docs",
+			"url": "https://posthog.com/docs/experiments/changing-distribution-after-rollout.md",
+			"description": "",
+			"section": "A/B Testing and Experiments"
+		}
+	]
+}

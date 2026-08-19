@@ -1,0 +1,96 @@
+{
+	"provider": "tanstack-com-tanstack-charts",
+	"section": "Get Started",
+	"entries": [
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/charts/latest/docs/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Compare Libraries",
+			"url": "https://tanstack.com/charts/latest/docs/comparison.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Installation",
+			"url": "https://tanstack.com/charts/latest/docs/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start",
+			"url": "https://tanstack.com/charts/latest/docs/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: React Quick Start",
+			"url": "https://tanstack.com/charts/latest/docs/framework/react/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: React Adapter",
+			"url": "https://tanstack.com/charts/latest/docs/framework/react/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Preact: Preact Adapter",
+			"url": "https://tanstack.com/charts/latest/docs/framework/preact/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: Vue Adapter",
+			"url": "https://tanstack.com/charts/latest/docs/framework/vue/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Solid Adapter",
+			"url": "https://tanstack.com/charts/latest/docs/framework/solid/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: Svelte Adapter",
+			"url": "https://tanstack.com/charts/latest/docs/framework/svelte/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Angular Adapter",
+			"url": "https://tanstack.com/charts/latest/docs/framework/angular/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Lit: Lit Adapter",
+			"url": "https://tanstack.com/charts/latest/docs/framework/lit/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Alpine: Alpine Adapter",
+			"url": "https://tanstack.com/charts/latest/docs/framework/alpine/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Octane: Octane Quick Start",
+			"url": "https://tanstack.com/charts/latest/docs/framework/octane/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Octane: Octane Adapter",
+			"url": "https://tanstack.com/charts/latest/docs/framework/octane/adapter.md",
+			"description": "",
+			"section": "Get Started"
+		}
+	]
+}

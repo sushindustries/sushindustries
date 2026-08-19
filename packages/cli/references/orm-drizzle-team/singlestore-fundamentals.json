@@ -1,0 +1,24 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "singlestore/Fundamentals",
+	"entries": [
+		{
+			"name": "Drizzle schema",
+			"url": "https://orm.drizzle.team/docs/singlestore/sql-schema-declaration",
+			"description": "",
+			"section": "singlestore/Fundamentals"
+		},
+		{
+			"name": "Database connection with Drizzle",
+			"url": "https://orm.drizzle.team/docs/singlestore/connect-overview",
+			"description": "",
+			"section": "singlestore/Fundamentals"
+		},
+		{
+			"name": "Drizzle migrations fundamentals",
+			"url": "https://orm.drizzle.team/docs/singlestore/migrations",
+			"description": "",
+			"section": "singlestore/Fundamentals"
+		}
+	]
+}

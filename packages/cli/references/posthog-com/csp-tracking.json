@@ -1,0 +1,12 @@
+{
+	"provider": "posthog-com",
+	"section": "Csp Tracking",
+	"entries": [
+		{
+			"name": "Content Security Policy tracking - Docs",
+			"url": "https://posthog.com/docs/csp-tracking.md",
+			"description": "",
+			"section": "Csp Tracking"
+		}
+	]
+}

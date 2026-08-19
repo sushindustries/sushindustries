@@ -1,0 +1,103 @@
+{
+	"provider": "docs-railway-com",
+	"source": "https://docs.railway.com/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"Railway"
+	],
+	"title": "Railway Documentation",
+	"summary": "Railway is an all-in-one intelligent cloud provider that makes it easy to provision infrastructure, develop locally, and deploy to the cloud. These docs cover deploying applications, configuring services, managing data, networking, observability, the CLI, and integrating with Railway's API.",
+	"total": 382,
+	"sections": [
+		{
+			"name": "General",
+			"entries": 9,
+			"file": "general.json"
+		},
+		{
+			"name": "Platform",
+			"entries": 25,
+			"file": "platform.json"
+		},
+		{
+			"name": "Pricing",
+			"entries": 10,
+			"file": "pricing.json"
+		},
+		{
+			"name": "Enterprise",
+			"entries": 7,
+			"file": "enterprise.json"
+		},
+		{
+			"name": "AI",
+			"entries": 16,
+			"file": "ai.json"
+		},
+		{
+			"name": "Templates & open source",
+			"entries": 10,
+			"file": "templates-open-source.json"
+		},
+		{
+			"name": "Languages & frameworks",
+			"entries": 37,
+			"file": "languages-frameworks.json"
+		},
+		{
+			"name": "CLI",
+			"entries": 60,
+			"file": "cli.json"
+		},
+		{
+			"name": "Projects",
+			"entries": 4,
+			"file": "projects.json"
+		},
+		{
+			"name": "Build & deploy",
+			"entries": 39,
+			"file": "build-deploy.json"
+		},
+		{
+			"name": "Data & storage",
+			"entries": 21,
+			"file": "data-storage.json"
+		},
+		{
+			"name": "Networking",
+			"entries": 18,
+			"file": "networking.json"
+		},
+		{
+			"name": "Observability",
+			"entries": 4,
+			"file": "observability.json"
+		},
+		{
+			"name": "Access",
+			"entries": 4,
+			"file": "access.json"
+		},
+		{
+			"name": "Integrations",
+			"entries": 21,
+			"file": "integrations.json"
+		},
+		{
+			"name": "Community",
+			"entries": 4,
+			"file": "community.json"
+		},
+		{
+			"name": "More guides",
+			"entries": 92,
+			"file": "more-guides.json"
+		},
+		{
+			"name": "More pages",
+			"entries": 1,
+			"file": "more-pages.json"
+		}
+	]
+}

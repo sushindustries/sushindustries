@@ -1,0 +1,156 @@
+{
+	"provider": "tanstack-com-tanstack-charts",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "Grammar of Graphics",
+			"url": "https://tanstack.com/charts/latest/docs/concepts/grammar-of-graphics.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Chart Definitions",
+			"url": "https://tanstack.com/charts/latest/docs/concepts/chart-definitions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Data and Channels",
+			"url": "https://tanstack.com/charts/latest/docs/concepts/data-and-channels.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Scales",
+			"url": "https://tanstack.com/charts/latest/docs/concepts/scales-and-d3.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Marks and Layering",
+			"url": "https://tanstack.com/charts/latest/docs/concepts/marks-and-layering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Layout, Axes, and Coordinates",
+			"url": "https://tanstack.com/charts/latest/docs/concepts/layout-axes-and-coordinates.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Choosing a Chart",
+			"url": "https://tanstack.com/charts/latest/docs/guides/choosing-a-chart.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Responsive Charts",
+			"url": "https://tanstack.com/charts/latest/docs/guides/responsive-charts.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Themes and Styling",
+			"url": "https://tanstack.com/charts/latest/docs/guides/themes-and-styling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Accessibility",
+			"url": "https://tanstack.com/charts/latest/docs/guides/accessibility.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Dynamic Data and Animation",
+			"url": "https://tanstack.com/charts/latest/docs/guides/dynamic-data-and-animation.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Transforms and Reactivity",
+			"url": "https://tanstack.com/charts/latest/docs/guides/transforms-and-reactivity.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Tooltips and Focus",
+			"url": "https://tanstack.com/charts/latest/docs/guides/tooltips-and-focus.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Interactions and Selections",
+			"url": "https://tanstack.com/charts/latest/docs/guides/interactions-and-selections.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Faceting and Composition",
+			"url": "https://tanstack.com/charts/latest/docs/guides/faceting-and-composition.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Legends and Color",
+			"url": "https://tanstack.com/charts/latest/docs/guides/legends-and-color.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Custom Marks and Renderers",
+			"url": "https://tanstack.com/charts/latest/docs/guides/custom-marks-and-renderers.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Large Data",
+			"url": "https://tanstack.com/charts/latest/docs/guides/large-data.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "SSR and Hydration",
+			"url": "https://tanstack.com/charts/latest/docs/guides/ssr-and-hydration.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Exporting",
+			"url": "https://tanstack.com/charts/latest/docs/guides/exporting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Bundle Size and Performance",
+			"url": "https://tanstack.com/charts/latest/docs/guides/bundle-size-and-performance.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "TypeScript",
+			"url": "https://tanstack.com/charts/latest/docs/guides/typescript.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Testing and Debugging",
+			"url": "https://tanstack.com/charts/latest/docs/guides/testing-and-debugging.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "AI Authoring",
+			"url": "https://tanstack.com/charts/latest/docs/guides/ai-authoring.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Migrating",
+			"url": "https://tanstack.com/charts/latest/docs/guides/migrating.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

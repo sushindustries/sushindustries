@@ -1,0 +1,108 @@
+{
+	"provider": "zod-dev",
+	"section": "JSON Schema",
+	"entries": [
+		{
+			"name": "JSON Schema",
+			"url": "https://zod.dev/json-schema",
+			"description": "How to convert Zod schemas to JSON Schema",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "z.fromJSONSchema()",
+			"url": "https://zod.dev/json-schema?id=zfromjsonschema",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "z.toJSONSchema()",
+			"url": "https://zod.dev/json-schema?id=ztojsonschema",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "io",
+			"url": "https://zod.dev/json-schema?id=io",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "target",
+			"url": "https://zod.dev/json-schema?id=target",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "metadata",
+			"url": "https://zod.dev/json-schema?id=metadata",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "unrepresentable",
+			"url": "https://zod.dev/json-schema?id=unrepresentable",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "cycles",
+			"url": "https://zod.dev/json-schema?id=cycles",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "reused",
+			"url": "https://zod.dev/json-schema?id=reused",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "override",
+			"url": "https://zod.dev/json-schema?id=override",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "Conversion",
+			"url": "https://zod.dev/json-schema?id=conversion",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "String formats",
+			"url": "https://zod.dev/json-schema?id=string-formats",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "Numeric types",
+			"url": "https://zod.dev/json-schema?id=numeric-types",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "Object schemas",
+			"url": "https://zod.dev/json-schema?id=object-schemas",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "File schemas",
+			"url": "https://zod.dev/json-schema?id=file-schemas",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "Nullability",
+			"url": "https://zod.dev/json-schema?id=nullability",
+			"description": "",
+			"section": "JSON Schema"
+		},
+		{
+			"name": "Registries",
+			"url": "https://zod.dev/json-schema?id=registries",
+			"description": "",
+			"section": "JSON Schema"
+		}
+	]
+}

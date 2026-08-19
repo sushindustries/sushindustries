@@ -1,0 +1,102 @@
+{
+	"provider": "posthog-com",
+	"section": "Support",
+	"entries": [
+		{
+			"name": "Automate ticket handling - Docs",
+			"url": "https://posthog.com/docs/support/workflows.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Channels - Docs",
+			"url": "https://posthog.com/docs/support/concepts/channels.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Connect email - Docs",
+			"url": "https://posthog.com/docs/support/email.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Connect GitHub - Docs",
+			"url": "https://posthog.com/docs/support/github.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Connect Slack - Docs",
+			"url": "https://posthog.com/docs/support/slack.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Get started with Support - Docs",
+			"url": "https://posthog.com/docs/support/start-here.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Import from Zendesk - Docs",
+			"url": "https://posthog.com/docs/support/imports/zendesk.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Import historical tickets - Docs",
+			"url": "https://posthog.com/docs/support/imports.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Set up the widget - Docs",
+			"url": "https://posthog.com/docs/support/widget.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Support - Docs",
+			"url": "https://posthog.com/docs/support.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Support inbox - Docs",
+			"url": "https://posthog.com/docs/support/inbox.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Support JavaScript API reference - Docs",
+			"url": "https://posthog.com/docs/support/javascript-api.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Support pricing - Docs",
+			"url": "https://posthog.com/docs/support/pricing.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Use Support in PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/support/surfaces/desktop.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Use Support in PostHog Slack - Docs",
+			"url": "https://posthog.com/docs/support/surfaces/slack.md",
+			"description": "",
+			"section": "Support"
+		},
+		{
+			"name": "Use Support over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/support/surfaces/mcp.md",
+			"description": "",
+			"section": "Support"
+		}
+	]
+}

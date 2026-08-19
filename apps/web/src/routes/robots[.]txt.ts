@@ -9,6 +9,11 @@ import { originFrom } from "../modules/registry/registry.server";
  * heading and no context - indexed, they would compete with the documentation
  * page that embeds them and win on nothing.
  *
+ * `/mcp` is disallowed for a different reason. It is not secret - it answers a
+ * GET with its own instructions - but it is bearer-only, so every crawl of it
+ * is a 401 that teaches nothing, and it is deliberately not advertised while
+ * it is still private.
+ *
  * The content signal is set deliberately rather than left out. This is a
  * portfolio: being read, searched and quoted is the entire point, so all three
  * are yes.
@@ -20,8 +25,12 @@ export const Route = createFileRoute("/robots.txt")({
 				const site = describeSite(originFrom(request));
 
 				const body = renderRobots(site, {
-					disallow: ["/preview/"],
-					indexPaths: ["/llms.txt", "/llms-full.txt"],
+					disallow: ["/preview/", "/mcp"],
+					indexPaths: [
+						"/llms.txt",
+						"/llms-full.txt",
+						"/llms-sitemap-index.xml",
+					],
 					contentSignal: { aiTrain: true, search: true, aiInput: true },
 				});
 

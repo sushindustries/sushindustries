@@ -1,0 +1,42 @@
+{
+	"provider": "zod-dev",
+	"section": "AOT compilation",
+	"entries": [
+		{
+			"name": "AOT compilation",
+			"url": "https://zod.dev/compile",
+			"description": "Ahead-of-time schema compilation for hot validation paths",
+			"section": "AOT compilation"
+		},
+		{
+			"name": "z.compile()",
+			"url": "https://zod.dev/compile?id=zcompile",
+			"description": "",
+			"section": "AOT compilation"
+		},
+		{
+			"name": "import \"zod/compile\"",
+			"url": "https://zod.dev/compile?id=import-zodcompile",
+			"description": "",
+			"section": "AOT compilation"
+		},
+		{
+			"name": "Error parity",
+			"url": "https://zod.dev/compile?id=error-parity",
+			"description": "",
+			"section": "AOT compilation"
+		},
+		{
+			"name": "Unsupported schemas",
+			"url": "https://zod.dev/compile?id=unsupported-schemas",
+			"description": "",
+			"section": "AOT compilation"
+		},
+		{
+			"name": "Content Security Policy",
+			"url": "https://zod.dev/compile?id=content-security-policy",
+			"description": "",
+			"section": "AOT compilation"
+		}
+	]
+}

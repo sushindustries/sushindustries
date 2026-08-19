@@ -1,0 +1,24 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "pg/Upgrade to v1.0",
+	"entries": [
+		{
+			"name": "Upgrading to Drizzle v1",
+			"url": "https://orm.drizzle.team/docs/pg/upgrade-v1",
+			"description": "",
+			"section": "pg/Upgrade to v1.0"
+		},
+		{
+			"name": "Changes in v1",
+			"url": "https://orm.drizzle.team/docs/pg/v0-v1-changes",
+			"description": "",
+			"section": "pg/Upgrade to v1.0"
+		},
+		{
+			"name": "Migrating to Relational Queries version 2",
+			"url": "https://orm.drizzle.team/docs/pg/relations-v1-v2",
+			"description": "",
+			"section": "pg/Upgrade to v1.0"
+		}
+	]
+}

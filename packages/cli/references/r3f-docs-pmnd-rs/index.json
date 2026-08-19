@@ -1,0 +1,18 @@
+{
+	"provider": "r3f-docs-pmnd-rs",
+	"source": "https://r3f.docs.pmnd.rs/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"React Three Fiber"
+	],
+	"title": "React Three Fiber",
+	"summary": "",
+	"total": 20,
+	"sections": [
+		{
+			"name": "Documentation",
+			"entries": 20,
+			"file": "documentation.json"
+		}
+	]
+}

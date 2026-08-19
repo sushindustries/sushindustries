@@ -1,0 +1,288 @@
+{
+	"provider": "posthog-com",
+	"section": "Web Analytics",
+	"entries": [
+		{
+			"name": "AI wizard web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/ai-wizard.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Android web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/android.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Angular web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/angular.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Astro web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/astro.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Bot and traffic detection - Docs",
+			"url": "https://posthog.com/docs/web-analytics/bot-detection.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Bubble web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/bubble.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Campaign attribution troubleshooting - Docs",
+			"url": "https://posthog.com/docs/web-analytics/campaign-attribution-troubleshooting.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Conversion goals - Docs",
+			"url": "https://posthog.com/docs/web-analytics/conversion-goals.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Docusaurus web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/docusaurus.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Flutter web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/flutter.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Framer web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/framer.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Get started with web analytics - Docs",
+			"url": "https://posthog.com/docs/web-analytics/start-here.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Google Tag Manager web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/gtm.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "HTML snippet web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/html-snippet.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Investigate traffic with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/web-analytics/investigate-traffic-ai.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "iOS web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/ios.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "JavaScript web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/web.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Kotlin Multiplatform web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/kmp.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Live - Docs",
+			"url": "https://posthog.com/docs/web-analytics/live.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Managing bot and AI traffic - Docs",
+			"url": "https://posthog.com/docs/web-analytics/managing-bot-traffic.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Marketing Analytics - Docs",
+			"url": "https://posthog.com/docs/web-analytics/marketing-analytics.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Marketing Analytics column definitions - Docs",
+			"url": "https://posthog.com/docs/web-analytics/marketing-analytics-schema.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Next.js web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/nextjs.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Nuxt web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/nuxt.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Path cleaning - Docs",
+			"url": "https://posthog.com/docs/web-analytics/path-cleaning.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Phoenix web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/phoenix.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Query web traffic over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/web-analytics/surfaces/mcp.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "React Native web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/react-native.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "React Router Web Analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/react-router.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "React web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/react.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Remix web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/remix.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Review traffic findings in PostHog Desktop - Docs",
+			"url": "https://posthog.com/docs/web-analytics/surfaces/desktop.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Shopify web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/shopify.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Svelte web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/svelte.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "TanStack Start web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/tanstack.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Vue web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/vue.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Web analytics - Docs",
+			"url": "https://posthog.com/docs/web-analytics.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Web analytics API - Docs",
+			"url": "https://posthog.com/docs/web-analytics/surfaces/api.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Web Analytics changelog - Docs",
+			"url": "https://posthog.com/docs/web-analytics/changelog.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Web analytics dashboard - Docs",
+			"url": "https://posthog.com/docs/web-analytics/dashboard.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Web analytics in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/web-analytics/surfaces/web-app.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Web Analytics troubleshooting - Docs",
+			"url": "https://posthog.com/docs/web-analytics/troubleshooting.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Web vitals - Docs",
+			"url": "https://posthog.com/docs/web-analytics/web-vitals.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "Webflow web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/webflow.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "What is the difference between web analytics and product analytics? - Docs",
+			"url": "https://posthog.com/docs/web-analytics/web-vs-product-analytics.md",
+			"description": "",
+			"section": "Web Analytics"
+		},
+		{
+			"name": "WordPress web analytics installation - Docs",
+			"url": "https://posthog.com/docs/web-analytics/installation/wordpress.md",
+			"description": "",
+			"section": "Web Analytics"
+		}
+	]
+}

@@ -1,0 +1,36 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "pg/Fundamentals",
+	"entries": [
+		{
+			"name": "Drizzle schema",
+			"url": "https://orm.drizzle.team/docs/pg/sql-schema-declaration",
+			"description": "",
+			"section": "pg/Fundamentals"
+		},
+		{
+			"name": "Drizzle Relations Fundamentals",
+			"url": "https://orm.drizzle.team/docs/pg/relations-schema-declaration",
+			"description": "",
+			"section": "pg/Fundamentals"
+		},
+		{
+			"name": "Database connection with Drizzle",
+			"url": "https://orm.drizzle.team/docs/pg/connect-overview",
+			"description": "",
+			"section": "pg/Fundamentals"
+		},
+		{
+			"name": "Drizzle Queries + CRUD",
+			"url": "https://orm.drizzle.team/docs/pg/data-querying",
+			"description": "",
+			"section": "pg/Fundamentals"
+		},
+		{
+			"name": "Drizzle migrations fundamentals",
+			"url": "https://orm.drizzle.team/docs/pg/migrations",
+			"description": "",
+			"section": "pg/Fundamentals"
+		}
+	]
+}

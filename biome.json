@@ -21,11 +21,25 @@
 		"enabled": true,
 		"rules": {
 			"preset": "recommended",
+			"correctness": {
+				"noUnusedFunctionParameters": "error"
+			},
+			"nursery": {
+				"noFloatingPromises": "error"
+			},
 			"suspicious": {
 				"noExplicitAny": "error"
 			},
 			"style": {
-				"useConst": "error"
+				"useConst": "error",
+				"useExportType": "error",
+				"useFilenamingConvention": {
+					"level": "error",
+					"options": {
+						"requireAscii": true,
+						"filenameCases": ["kebab-case"]
+					}
+				}
 			}
 		}
 	},
@@ -37,9 +51,24 @@
 		}
 	},
 	"files": {
-		"includes": ["**", "!apps/web/public/logos"]
+		"includes": [
+			"**",
+			"!apps/web/public/logos",
+			"!packages/db/drizzle",
+			"!packages/cli/references"
+		]
 	},
 	"overrides": [
+		{
+			"includes": ["apps/web/src/routes/**"],
+			"linter": {
+				"rules": {
+					"style": {
+						"useFilenamingConvention": "off"
+					}
+				}
+			}
+		},
 		{
 			"includes": ["scripts/**"],
 			"linter": {

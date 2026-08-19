@@ -1,0 +1,42 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "mssql/Manage schema",
+	"entries": [
+		{
+			"name": "MSSQL column types",
+			"url": "https://orm.drizzle.team/docs/mssql/column-types",
+			"description": "",
+			"section": "mssql/Manage schema"
+		},
+		{
+			"name": "Indexes & Constraints",
+			"url": "https://orm.drizzle.team/docs/mssql/indexes-constraints",
+			"description": "",
+			"section": "mssql/Manage schema"
+		},
+		{
+			"name": "Views",
+			"url": "https://orm.drizzle.team/docs/mssql/views",
+			"description": "",
+			"section": "mssql/Manage schema"
+		},
+		{
+			"name": "Table schemas",
+			"url": "https://orm.drizzle.team/docs/mssql/schemas",
+			"description": "",
+			"section": "mssql/Manage schema"
+		},
+		{
+			"name": "Drizzle soft relations",
+			"url": "https://orm.drizzle.team/docs/mssql/relations",
+			"description": "",
+			"section": "mssql/Manage schema"
+		},
+		{
+			"name": "MSSQL extensions",
+			"url": "https://orm.drizzle.team/docs/mssql/extensions",
+			"description": "",
+			"section": "mssql/Manage schema"
+		}
+	]
+}

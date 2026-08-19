@@ -1,0 +1,396 @@
+{
+	"provider": "tanstack-com-tanstack-start",
+	"section": "Guides",
+	"entries": [
+		{
+			"name": "React: Routing",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/routing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Execution Model",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/execution-model.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Code Execution Patterns",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/code-execution-patterns.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Import Protection",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/import-protection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Path Aliases",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/path-aliases.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Environment Variables",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/environment-variables.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Server Functions",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/server-functions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Streaming Data from Server Functions",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/streaming-data-from-server-functions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Server Components",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/server-components.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Static Server Functions",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/static-server-functions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Environment Functions",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/environment-functions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Middleware",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/middleware.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Error Boundaries",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/error-boundaries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Server Routes",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/server-routes.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Routing",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/routing.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Execution Model",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/execution-model.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Code Execution Patterns",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/code-execution-patterns.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Import Protection",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/import-protection.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Path Aliases",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/path-aliases.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Environment Variables",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/environment-variables.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Server Functions",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/server-functions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Static Server Functions",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/static-server-functions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Environment Functions",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/environment-functions.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Middleware",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/middleware.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Error Boundaries",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/error-boundaries.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Server Routes",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/server-routes.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Hydration Errors",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/hydration-errors.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Deferred Hydration",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/deferred-hydration.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Selective SSR",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/selective-ssr.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: SPA Mode",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/spa-mode.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Static Prerendering",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/static-prerendering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Incremental Static Regeneration (ISR)",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/isr.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Server Entry Point",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/server-entry-point.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Client Entry Point",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/client-entry-point.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Early Hints",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/early-hints.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: CDN Asset URLs",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/cdn-asset-urls.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Hydration Errors",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/hydration-errors.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Deferred Hydration",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/deferred-hydration.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Selective SSR",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/selective-ssr.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: SPA Mode",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/spa-mode.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Static Prerendering",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/static-prerendering.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Server Entry Point",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/server-entry-point.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Client Entry Point",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/client-entry-point.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Early Hints",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/early-hints.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Hosting",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/hosting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Observability",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/observability.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Hosting",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/hosting.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Observability",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/observability.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Authentication Overview",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/authentication-overview.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Authentication Server Primitives",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/authentication-server-primitives.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Authentication",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/authentication.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Databases",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/databases.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Authentication Overview",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/authentication-overview.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Authentication Server Primitives",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/authentication-server-primitives.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Authentication",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/authentication.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Databases",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/databases.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: CSS Styling",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/css-styling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Tailwind CSS Integration",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/tailwind-integration.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Rendering Markdown",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/rendering-markdown.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: SEO",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/seo.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "React: Generative Engine Optimization (GEO)",
+			"url": "https://tanstack.com/start/latest/docs/framework/react/guide/geo.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: CSS Styling",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/css-styling.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Tailwind CSS Integration",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/tailwind-integration.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: SEO",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/seo.md",
+			"description": "",
+			"section": "Guides"
+		},
+		{
+			"name": "Solid: Generative Engine Optimization (GEO)",
+			"url": "https://tanstack.com/start/latest/docs/framework/solid/guide/geo.md",
+			"description": "",
+			"section": "Guides"
+		}
+	]
+}

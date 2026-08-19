@@ -1,0 +1,72 @@
+{
+	"provider": "posthog-com",
+	"section": "Distributed Tracing",
+	"entries": [
+		{
+			"name": ".NET tracing installation - Docs",
+			"url": "https://posthog.com/docs/distributed-tracing/installation/dotnet.md",
+			"description": "",
+			"section": "Distributed Tracing"
+		},
+		{
+			"name": "Getting started with distributed tracing - Docs",
+			"url": "https://posthog.com/docs/distributed-tracing/start-here.md",
+			"description": "",
+			"section": "Distributed Tracing"
+		},
+		{
+			"name": "Go tracing installation - Docs",
+			"url": "https://posthog.com/docs/distributed-tracing/installation/go.md",
+			"description": "",
+			"section": "Distributed Tracing"
+		},
+		{
+			"name": "Install OpenTelemetry tracing - Docs",
+			"url": "https://posthog.com/docs/distributed-tracing/installation.md",
+			"description": "",
+			"section": "Distributed Tracing"
+		},
+		{
+			"name": "Java tracing installation - Docs",
+			"url": "https://posthog.com/docs/distributed-tracing/installation/java.md",
+			"description": "",
+			"section": "Distributed Tracing"
+		},
+		{
+			"name": "Next.js tracing installation - Docs",
+			"url": "https://posthog.com/docs/distributed-tracing/installation/nextjs.md",
+			"description": "",
+			"section": "Distributed Tracing"
+		},
+		{
+			"name": "Node.js tracing installation - Docs",
+			"url": "https://posthog.com/docs/distributed-tracing/installation/nodejs.md",
+			"description": "",
+			"section": "Distributed Tracing"
+		},
+		{
+			"name": "PHP tracing installation - Docs",
+			"url": "https://posthog.com/docs/distributed-tracing/installation/php.md",
+			"description": "",
+			"section": "Distributed Tracing"
+		},
+		{
+			"name": "Python tracing installation - Docs",
+			"url": "https://posthog.com/docs/distributed-tracing/installation/python.md",
+			"description": "",
+			"section": "Distributed Tracing"
+		},
+		{
+			"name": "Ruby tracing installation - Docs",
+			"url": "https://posthog.com/docs/distributed-tracing/installation/ruby.md",
+			"description": "",
+			"section": "Distributed Tracing"
+		},
+		{
+			"name": "Why you need distributed tracing - Docs",
+			"url": "https://posthog.com/docs/distributed-tracing/basics.md",
+			"description": "",
+			"section": "Distributed Tracing"
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "mysql/Performance",
+	"entries": [
+		{
+			"name": "Query performance",
+			"url": "https://orm.drizzle.team/docs/mysql/perf-queries",
+			"description": "",
+			"section": "mysql/Performance"
+		}
+	]
+}

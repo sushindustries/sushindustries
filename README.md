@@ -52,7 +52,6 @@ pnpm dev          # http://localhost:3000
 apps/web/                the site. TanStack Start on Vite + Nitro.
 packages/atoms/          design tokens + atomic CSS. No build step.
 packages/ui/             the components the site is made of. All installable.
-packages/adam-jurek/     the umbrella: all of ui + atoms in one dependency.
 packages/db/             Drizzle schema + client. Postgres.
 ```
 

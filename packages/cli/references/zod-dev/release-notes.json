@@ -1,0 +1,192 @@
+{
+	"provider": "zod-dev",
+	"section": "Release notes",
+	"entries": [
+		{
+			"name": "Release notes",
+			"url": "https://zod.dev/v4",
+			"description": "Zod 4 release notes and new features including performance improvements and breaking changes",
+			"section": "Release notes"
+		},
+		{
+			"name": "Versioning",
+			"url": "https://zod.dev/v4?id=versioning",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Why a new major version?",
+			"url": "https://zod.dev/v4?id=why-a-new-major-version",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Benchmarks",
+			"url": "https://zod.dev/v4?id=benchmarks",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "14x faster string parsing",
+			"url": "https://zod.dev/v4?id=14x-faster-string-parsing",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "7x faster array parsing",
+			"url": "https://zod.dev/v4?id=7x-faster-array-parsing",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "6.5x faster object parsing",
+			"url": "https://zod.dev/v4?id=65x-faster-object-parsing",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "100x reduction in tsc instantiations",
+			"url": "https://zod.dev/v4?id=100x-reduction-in-tsc-instantiations",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "2x reduction in core bundle size",
+			"url": "https://zod.dev/v4?id=2x-reduction-in-core-bundle-size",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Introducing Zod Mini",
+			"url": "https://zod.dev/v4?id=introducing-zod-mini",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "6.6x reduction in core bundle size",
+			"url": "https://zod.dev/v4?id=66x-reduction-in-core-bundle-size",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Metadata",
+			"url": "https://zod.dev/v4?id=metadata",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "The global registry",
+			"url": "https://zod.dev/v4?id=the-global-registry",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": ".meta()",
+			"url": "https://zod.dev/v4?id=meta",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "JSON Schema conversion",
+			"url": "https://zod.dev/v4?id=json-schema-conversion",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Recursive objects",
+			"url": "https://zod.dev/v4?id=recursive-objects",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "File schemas",
+			"url": "https://zod.dev/v4?id=file-schemas",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Internationalization",
+			"url": "https://zod.dev/v4?id=internationalization",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Error pretty-printing",
+			"url": "https://zod.dev/v4?id=error-pretty-printing",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Top-level string formats",
+			"url": "https://zod.dev/v4?id=top-level-string-formats",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Custom email regex",
+			"url": "https://zod.dev/v4?id=custom-email-regex",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Template literal types",
+			"url": "https://zod.dev/v4?id=template-literal-types",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Number formats",
+			"url": "https://zod.dev/v4?id=number-formats",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Stringbool",
+			"url": "https://zod.dev/v4?id=stringbool",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Simplified error customization",
+			"url": "https://zod.dev/v4?id=simplified-error-customization",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Upgraded z.discriminatedUnion()",
+			"url": "https://zod.dev/v4?id=upgraded-zdiscriminatedunion",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Multiple values in z.literal()",
+			"url": "https://zod.dev/v4?id=multiple-values-in-zliteral",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Refinements live inside schemas",
+			"url": "https://zod.dev/v4?id=refinements-live-inside-schemas",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": ".overwrite()",
+			"url": "https://zod.dev/v4?id=overwrite",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "An extensible foundation: zod/v4/core",
+			"url": "https://zod.dev/v4?id=an-extensible-foundation-zodv4core",
+			"description": "",
+			"section": "Release notes"
+		},
+		{
+			"name": "Wrapping up",
+			"url": "https://zod.dev/v4?id=wrapping-up",
+			"description": "",
+			"section": "Release notes"
+		}
+	]
+}

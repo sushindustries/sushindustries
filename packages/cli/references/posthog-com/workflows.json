@@ -1,0 +1,150 @@
+{
+	"provider": "posthog-com",
+	"section": "Workflows",
+	"entries": [
+		{
+			"name": "Android push notifications - Docs",
+			"url": "https://posthog.com/docs/workflows/push-notifications/android.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Configure a workflows channel - Docs",
+			"url": "https://posthog.com/docs/workflows/configure-channels.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Content library and message templates - Docs",
+			"url": "https://posthog.com/docs/workflows/library.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Create emails with PostHog AI - Docs",
+			"url": "https://posthog.com/docs/workflows/create-emails-ai.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Editing a live workflow - Docs",
+			"url": "https://posthog.com/docs/workflows/editing-live-workflows.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Flutter push notifications - Docs",
+			"url": "https://posthog.com/docs/workflows/push-notifications/flutter.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Getting started with workflows - Docs",
+			"url": "https://posthog.com/docs/workflows/start-here.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Import opt-out lists from Customer.io - Docs",
+			"url": "https://posthog.com/docs/workflows/import-customerio-optouts.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Install PostHog SDKs for Workflows - Docs",
+			"url": "https://posthog.com/docs/workflows/installation.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "iOS push notifications - Docs",
+			"url": "https://posthog.com/docs/workflows/push-notifications/ios.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Launch your first workflow - Docs",
+			"url": "https://posthog.com/docs/workflows/launch-workflow.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Opt-outs and suppression - Docs",
+			"url": "https://posthog.com/docs/workflows/opt-outs.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Push notifications - Docs",
+			"url": "https://posthog.com/docs/workflows/push-notifications.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "React Native push notifications - Docs",
+			"url": "https://posthog.com/docs/workflows/push-notifications/react-native.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Set up an email drip campaign - Docs",
+			"url": "https://posthog.com/docs/workflows/email-drip-campaign.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Use Workflows over PostHog MCP - Docs",
+			"url": "https://posthog.com/docs/workflows/surfaces/mcp.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Workflow builder - Docs",
+			"url": "https://posthog.com/docs/workflows/workflow-builder.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Workflow events - Docs",
+			"url": "https://posthog.com/docs/workflows/engagement-events.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Workflows - Docs",
+			"url": "https://posthog.com/docs/workflows.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Workflows API - Docs",
+			"url": "https://posthog.com/docs/workflows/surfaces/api.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Workflows best practices - Docs",
+			"url": "https://posthog.com/docs/workflows/best-practices.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Workflows changelog - Docs",
+			"url": "https://posthog.com/docs/workflows/changelog.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Workflows in PostHog Web - Docs",
+			"url": "https://posthog.com/docs/workflows/surfaces/web-app.md",
+			"description": "",
+			"section": "Workflows"
+		},
+		{
+			"name": "Workflows troubleshooting - Docs",
+			"url": "https://posthog.com/docs/workflows/troubleshooting.md",
+			"description": "",
+			"section": "Workflows"
+		}
+	]
+}

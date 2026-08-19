@@ -31,13 +31,14 @@ COPY packages/db/package.json packages/db/
 COPY packages/llms/package.json packages/llms/
 COPY packages/product-viewer/package.json packages/product-viewer/
 COPY packages/react-product-viewer/package.json packages/react-product-viewer/
+COPY packages/assistant/package.json packages/assistant/
+COPY packages/http/package.json packages/http/
+COPY packages/cli/package.json packages/cli/
 
 # No BuildKit cache mount here on purpose. Railway's builder requires cache
 # mount ids to carry its own cache-key prefix (`s/<service-id>-…`), which would
 # hardcode one platform's service id into a Dockerfile that should build
 # anywhere. The manifest-only COPY above is what actually saves the time.
-COPY packages/assistant/package.json packages/assistant/
-COPY packages/adam-jurek/package.json packages/adam-jurek/
 
 RUN pnpm install --frozen-lockfile
 
@@ -95,10 +96,30 @@ ENV NODE_ENV=production
 # dependencies, so no second install is needed here.
 COPY --from=build /app/apps/web/.output ./.output
 
+# The migration runner and the SQL it applies, for the pre-deploy command in
+# `railway.json`. Both are needed because that command runs in a container
+# built from this image with no `node_modules` to resolve against - which is
+# why `migrate.mjs` is bundled with its driver rather than importing one.
+# Sixty kilobytes of program and sixty of SQL, against a schema change
+# arriving on its own.
+COPY --from=build /app/packages/db/dist/migrate.mjs ./migrate.mjs
+COPY --from=build /app/packages/db/drizzle ./drizzle
+
 # Railway sets PORT; the Nitro server reads it. The EXPOSE is documentation.
 EXPOSE 3000
 
 # Don't run as root.
 USER node
+
+# `/health` already exists as the deploy probe and checks nothing on purpose -
+# it answers when the server can answer, which is the only thing a liveness
+# check should ask. Declaring it here makes the image say so itself, so
+# anything that runs the container knows how to ask without being told.
+#
+# `node -e` rather than curl or wget: node 22 has global fetch and is
+# guaranteed present, while curl is not installed in the alpine base and
+# adding it would mean a package manager in the runtime image.
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
+	CMD ["node", "-e", "fetch('http://127.0.0.1:'+(process.env.PORT||3000)+'/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
 
 CMD ["node", ".output/server/index.mjs"]

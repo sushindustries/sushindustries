@@ -1,0 +1,12 @@
+{
+	"provider": "orm-drizzle-team",
+	"section": "pg/meet drizzle",
+	"entries": [
+		{
+			"name": "Drizzle ORM",
+			"url": "https://orm.drizzle.team/docs/pg/overview",
+			"description": "",
+			"section": "pg/meet drizzle"
+		}
+	]
+}

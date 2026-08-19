@@ -1,0 +1,12 @@
+{
+	"provider": "zod-dev",
+	"section": "Zod",
+	"entries": [
+		{
+			"name": "Zod",
+			"url": "https://zod.dev/packages/zod",
+			"description": "Internals and structure of the Zod library",
+			"section": "Zod"
+		}
+	]
+}

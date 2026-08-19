@@ -24,7 +24,8 @@
 		"@tanstack/markdown": "^0.0.13",
 		"lenis": "^1.3.26",
 		"react": "^19.0.0",
-		"react-dom": "^19.0.0"
+		"react-dom": "^19.0.0",
+		"zod": "^4.0.0"
 	},
 	"peerDependenciesMeta": {
 		"@tanstack/highlight": {
@@ -52,7 +53,7 @@
 		"react-dom": "^19.2.8",
 		"zod": "4.4.3"
 	},
-	"main": "./dist/index.cjs",
+	"main": "./dist/index.js",
 	"module": "./dist/index.js",
 	"exports": {
 		".": "./src/index.ts",
@@ -138,324 +139,90 @@
 	"engines": {
 		"node": ">=20.17.0"
 	},
-	"types": "./dist/index.d.cts",
+	"types": "./dist/index.d.ts",
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com",
 		"exports": {
-			".": {
-				"import": "./dist/index.js",
-				"require": "./dist/index.cjs"
-			},
-			"./accordion": {
-				"import": "./dist/accordion.js",
-				"require": "./dist/accordion.cjs"
-			},
-			"./alert": {
-				"import": "./dist/alert.js",
-				"require": "./dist/alert.cjs"
-			},
-			"./archive": {
-				"import": "./dist/archive.js",
-				"require": "./dist/archive.cjs"
-			},
-			"./archive.schemas": {
-				"import": "./dist/archive.schemas.js",
-				"require": "./dist/archive.schemas.cjs"
-			},
-			"./aspect-ratio": {
-				"import": "./dist/aspect-ratio.js",
-				"require": "./dist/aspect-ratio.cjs"
-			},
-			"./avatar": {
-				"import": "./dist/avatar.js",
-				"require": "./dist/avatar.cjs"
-			},
-			"./badge": {
-				"import": "./dist/badge.js",
-				"require": "./dist/badge.cjs"
-			},
-			"./boot-loader": {
-				"import": "./dist/boot-loader.js",
-				"require": "./dist/boot-loader.cjs"
-			},
-			"./breadcrumb": {
-				"import": "./dist/breadcrumb.js",
-				"require": "./dist/breadcrumb.cjs"
-			},
-			"./button": {
-				"import": "./dist/button.js",
-				"require": "./dist/button.cjs"
-			},
-			"./card": {
-				"import": "./dist/card.js",
-				"require": "./dist/card.cjs"
-			},
-			"./checkbox": {
-				"import": "./dist/checkbox.js",
-				"require": "./dist/checkbox.cjs"
-			},
-			"./clock": {
-				"import": "./dist/clock.js",
-				"require": "./dist/clock.cjs"
-			},
-			"./code-block": {
-				"import": "./dist/code-block.js",
-				"require": "./dist/code-block.cjs"
-			},
-			"./collapsible": {
-				"import": "./dist/collapsible.js",
-				"require": "./dist/collapsible.cjs"
-			},
-			"./command-palette": {
-				"import": "./dist/command-palette.js",
-				"require": "./dist/command-palette.cjs"
-			},
-			"./consent": {
-				"import": "./dist/consent.js",
-				"require": "./dist/consent.cjs"
-			},
-			"./context-menu": {
-				"import": "./dist/context-menu.js",
-				"require": "./dist/context-menu.cjs"
-			},
-			"./copy-button": {
-				"import": "./dist/copy-button.js",
-				"require": "./dist/copy-button.cjs"
-			},
-			"./credit": {
-				"import": "./dist/credit.js",
-				"require": "./dist/credit.cjs"
-			},
-			"./desk-window": {
-				"import": "./dist/desk-window.js",
-				"require": "./dist/desk-window.cjs"
-			},
-			"./device": {
-				"import": "./dist/device.js",
-				"require": "./dist/device.cjs"
-			},
-			"./device-kinds": {
-				"import": "./dist/device-kinds.js",
-				"require": "./dist/device-kinds.cjs"
-			},
-			"./dialog": {
-				"import": "./dist/dialog.js",
-				"require": "./dist/dialog.cjs"
-			},
-			"./doc-aside": {
-				"import": "./dist/doc-aside.js",
-				"require": "./dist/doc-aside.cjs"
-			},
-			"./doc-nav": {
-				"import": "./dist/doc-nav.js",
-				"require": "./dist/doc-nav.cjs"
-			},
-			"./dock": {
-				"import": "./dist/dock.js",
-				"require": "./dist/dock.cjs"
-			},
-			"./empty": {
-				"import": "./dist/empty.js",
-				"require": "./dist/empty.cjs"
-			},
-			"./field": {
-				"import": "./dist/field.js",
-				"require": "./dist/field.cjs"
-			},
-			"./folder-shelf": {
-				"import": "./dist/folder-shelf.js",
-				"require": "./dist/folder-shelf.cjs"
-			},
-			"./frontmatter": {
-				"import": "./dist/frontmatter.js",
-				"require": "./dist/frontmatter.cjs"
-			},
-			"./grid": {
-				"import": "./dist/grid.js",
-				"require": "./dist/grid.cjs"
-			},
-			"./headings": {
-				"import": "./dist/headings.js",
-				"require": "./dist/headings.cjs"
-			},
-			"./hero": {
-				"import": "./dist/hero.js",
-				"require": "./dist/hero.cjs"
-			},
-			"./highlighter": {
-				"import": "./dist/highlighter.js",
-				"require": "./dist/highlighter.cjs"
-			},
-			"./icon": {
-				"import": "./dist/icon.js",
-				"require": "./dist/icon.cjs"
-			},
-			"./input": {
-				"import": "./dist/input.js",
-				"require": "./dist/input.cjs"
-			},
-			"./item": {
-				"import": "./dist/item.js",
-				"require": "./dist/item.cjs"
-			},
-			"./kbd": {
-				"import": "./dist/kbd.js",
-				"require": "./dist/kbd.cjs"
-			},
-			"./markdown-blocks": {
-				"import": "./dist/markdown-blocks.js",
-				"require": "./dist/markdown-blocks.cjs"
-			},
-			"./markdown-view": {
-				"import": "./dist/markdown-view.js",
-				"require": "./dist/markdown-view.cjs"
-			},
-			"./native-select": {
-				"import": "./dist/native-select.js",
-				"require": "./dist/native-select.cjs"
-			},
-			"./nav-bar": {
-				"import": "./dist/nav-bar.js",
-				"require": "./dist/nav-bar.cjs"
-			},
-			"./pagination": {
-				"import": "./dist/pagination.js",
-				"require": "./dist/pagination.cjs"
-			},
-			"./progress": {
-				"import": "./dist/progress.js",
-				"require": "./dist/progress.cjs"
-			},
-			"./questions": {
-				"import": "./dist/questions.js",
-				"require": "./dist/questions.cjs"
-			},
-			"./radio-group": {
-				"import": "./dist/radio-group.js",
-				"require": "./dist/radio-group.cjs"
-			},
-			"./reference": {
-				"import": "./dist/reference.js",
-				"require": "./dist/reference.cjs"
-			},
-			"./reveal": {
-				"import": "./dist/reveal.js",
-				"require": "./dist/reveal.cjs"
-			},
-			"./scroll-area": {
-				"import": "./dist/scroll-area.js",
-				"require": "./dist/scroll-area.cjs"
-			},
-			"./scroll-spin": {
-				"import": "./dist/scroll-spin.js",
-				"require": "./dist/scroll-spin.cjs"
-			},
-			"./section": {
-				"import": "./dist/section.js",
-				"require": "./dist/section.cjs"
-			},
-			"./separator": {
-				"import": "./dist/separator.js",
-				"require": "./dist/separator.cjs"
-			},
-			"./sheet": {
-				"import": "./dist/sheet.js",
-				"require": "./dist/sheet.cjs"
-			},
-			"./showcase": {
-				"import": "./dist/showcase.js",
-				"require": "./dist/showcase.cjs"
-			},
-			"./skeleton": {
-				"import": "./dist/skeleton.js",
-				"require": "./dist/skeleton.cjs"
-			},
-			"./slider": {
-				"import": "./dist/slider.js",
-				"require": "./dist/slider.cjs"
-			},
-			"./smooth-scroll": {
-				"import": "./dist/smooth-scroll.js",
-				"require": "./dist/smooth-scroll.cjs"
-			},
-			"./spacer": {
-				"import": "./dist/spacer.js",
-				"require": "./dist/spacer.cjs"
-			},
-			"./spinner": {
-				"import": "./dist/spinner.js",
-				"require": "./dist/spinner.cjs"
-			},
-			"./switch": {
-				"import": "./dist/switch.js",
-				"require": "./dist/switch.cjs"
-			},
-			"./table": {
-				"import": "./dist/table.js",
-				"require": "./dist/table.cjs"
-			},
-			"./textarea": {
-				"import": "./dist/textarea.js",
-				"require": "./dist/textarea.cjs"
-			},
-			"./theme-toggle": {
-				"import": "./dist/theme-toggle.js",
-				"require": "./dist/theme-toggle.cjs"
-			},
-			"./toast": {
-				"import": "./dist/toast.js",
-				"require": "./dist/toast.cjs"
-			},
-			"./toggle": {
-				"import": "./dist/toggle.js",
-				"require": "./dist/toggle.cjs"
-			},
-			"./tooltip": {
-				"import": "./dist/tooltip.js",
-				"require": "./dist/tooltip.cjs"
-			},
-			"./typed-mark": {
-				"import": "./dist/typed-mark.js",
-				"require": "./dist/typed-mark.cjs"
-			},
-			"./typography": {
-				"import": "./dist/typography.js",
-				"require": "./dist/typography.cjs"
-			},
-			"./use-desk-state": {
-				"import": "./dist/use-desk-state.js",
-				"require": "./dist/use-desk-state.cjs"
-			},
-			"./use-device-kind": {
-				"import": "./dist/use-device-kind.js",
-				"require": "./dist/use-device-kind.cjs"
-			},
-			"./use-drag-place": {
-				"import": "./dist/use-drag-place.js",
-				"require": "./dist/use-drag-place.cjs"
-			},
-			"./use-scroll-progress": {
-				"import": "./dist/use-scroll-progress.js",
-				"require": "./dist/use-scroll-progress.cjs"
-			},
-			"./use-scroll-turn": {
-				"import": "./dist/use-scroll-turn.js",
-				"require": "./dist/use-scroll-turn.cjs"
-			},
-			"./video-player": {
-				"import": "./dist/video-player.js",
-				"require": "./dist/video-player.cjs"
-			},
+			".": "./dist/index.js",
+			"./accordion": "./dist/accordion.js",
+			"./alert": "./dist/alert.js",
+			"./archive": "./dist/archive.js",
+			"./archive.schemas": "./dist/archive.schemas.js",
+			"./aspect-ratio": "./dist/aspect-ratio.js",
+			"./avatar": "./dist/avatar.js",
+			"./badge": "./dist/badge.js",
+			"./boot-loader": "./dist/boot-loader.js",
+			"./breadcrumb": "./dist/breadcrumb.js",
+			"./button": "./dist/button.js",
+			"./card": "./dist/card.js",
+			"./checkbox": "./dist/checkbox.js",
+			"./clock": "./dist/clock.js",
+			"./code-block": "./dist/code-block.js",
+			"./collapsible": "./dist/collapsible.js",
+			"./command-palette": "./dist/command-palette.js",
+			"./consent": "./dist/consent.js",
+			"./context-menu": "./dist/context-menu.js",
+			"./copy-button": "./dist/copy-button.js",
+			"./credit": "./dist/credit.js",
+			"./desk-window": "./dist/desk-window.js",
+			"./device": "./dist/device.js",
+			"./device-kinds": "./dist/device-kinds.js",
+			"./dialog": "./dist/dialog.js",
+			"./doc-aside": "./dist/doc-aside.js",
+			"./doc-nav": "./dist/doc-nav.js",
+			"./dock": "./dist/dock.js",
+			"./empty": "./dist/empty.js",
+			"./field": "./dist/field.js",
+			"./folder-shelf": "./dist/folder-shelf.js",
+			"./frontmatter": "./dist/frontmatter.js",
+			"./grid": "./dist/grid.js",
+			"./headings": "./dist/headings.js",
+			"./hero": "./dist/hero.js",
+			"./highlighter": "./dist/highlighter.js",
+			"./icon": "./dist/icon.js",
+			"./input": "./dist/input.js",
+			"./item": "./dist/item.js",
+			"./kbd": "./dist/kbd.js",
+			"./markdown-blocks": "./dist/markdown-blocks.js",
+			"./markdown-view": "./dist/markdown-view.js",
+			"./native-select": "./dist/native-select.js",
+			"./nav-bar": "./dist/nav-bar.js",
+			"./pagination": "./dist/pagination.js",
+			"./progress": "./dist/progress.js",
+			"./questions": "./dist/questions.js",
+			"./radio-group": "./dist/radio-group.js",
+			"./reference": "./dist/reference.js",
+			"./reveal": "./dist/reveal.js",
+			"./scroll-area": "./dist/scroll-area.js",
+			"./scroll-spin": "./dist/scroll-spin.js",
+			"./section": "./dist/section.js",
+			"./separator": "./dist/separator.js",
+			"./sheet": "./dist/sheet.js",
+			"./showcase": "./dist/showcase.js",
+			"./skeleton": "./dist/skeleton.js",
+			"./slider": "./dist/slider.js",
+			"./smooth-scroll": "./dist/smooth-scroll.js",
+			"./spacer": "./dist/spacer.js",
+			"./spinner": "./dist/spinner.js",
+			"./switch": "./dist/switch.js",
+			"./table": "./dist/table.js",
+			"./textarea": "./dist/textarea.js",
+			"./theme-toggle": "./dist/theme-toggle.js",
+			"./toast": "./dist/toast.js",
+			"./toggle": "./dist/toggle.js",
+			"./tooltip": "./dist/tooltip.js",
+			"./typed-mark": "./dist/typed-mark.js",
+			"./typography": "./dist/typography.js",
+			"./use-desk-state": "./dist/use-desk-state.js",
+			"./use-device-kind": "./dist/use-device-kind.js",
+			"./use-drag-place": "./dist/use-drag-place.js",
+			"./use-scroll-progress": "./dist/use-scroll-progress.js",
+			"./use-scroll-turn": "./dist/use-scroll-turn.js",
+			"./video-player": "./dist/video-player.js",
 			"./package.json": "./package.json",
 			"./registry": {
-				"import": {
-					"types": "./dist/registry.d.ts",
-					"default": "./dist/registry.js"
-				},
-				"require": {
-					"types": "./dist/registry.d.cts",
-					"default": "./dist/registry.cjs"
-				}
+				"types": "./dist/registry.d.ts",
+				"default": "./dist/registry.js"
 			}
 		}
 	},

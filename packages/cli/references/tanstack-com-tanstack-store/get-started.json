@@ -1,0 +1,72 @@
+{
+	"provider": "tanstack-com-tanstack-store",
+	"section": "Get Started",
+	"entries": [
+		{
+			"name": "Overview",
+			"url": "https://tanstack.com/store/latest/docs/overview.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Installation",
+			"url": "https://tanstack.com/store/latest/docs/installation.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Quick Start",
+			"url": "https://tanstack.com/store/latest/docs/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "React: Quick Start - React",
+			"url": "https://tanstack.com/store/latest/docs/framework/react/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Vue: Quick Start - Vue",
+			"url": "https://tanstack.com/store/latest/docs/framework/vue/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Solid: Quick Start - Solid",
+			"url": "https://tanstack.com/store/latest/docs/framework/solid/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Angular: Quick Start - Angular",
+			"url": "https://tanstack.com/store/latest/docs/framework/angular/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Svelte: Quick Start - Svelte",
+			"url": "https://tanstack.com/store/latest/docs/framework/svelte/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Preact: Quick Start - Preact",
+			"url": "https://tanstack.com/store/latest/docs/framework/preact/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Lit: Quick Start - Lit",
+			"url": "https://tanstack.com/store/latest/docs/framework/lit/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		},
+		{
+			"name": "Octane: Quick Start - Octane",
+			"url": "https://tanstack.com/store/latest/docs/framework/octane/quick-start.md",
+			"description": "",
+			"section": "Get Started"
+		}
+	]
+}

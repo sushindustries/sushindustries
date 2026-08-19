@@ -1,0 +1,33 @@
+{
+	"provider": "threejs-org",
+	"source": "https://threejs.org/docs/llms.txt",
+	"fetchedAt": "2026-08-19",
+	"usedFor": [
+		"Three.js"
+	],
+	"title": "Three.js",
+	"summary": "Three.js is a cross-browser JavaScript library for creating 3D graphics using WebGL and WebGPU.",
+	"total": 44,
+	"sections": [
+		{
+			"name": "Getting Started",
+			"entries": 4,
+			"file": "getting-started.json"
+		},
+		{
+			"name": "Renderer Guides",
+			"entries": 1,
+			"file": "renderer-guides.json"
+		},
+		{
+			"name": "Core Concepts",
+			"entries": 9,
+			"file": "core-concepts.json"
+		},
+		{
+			"name": "Essential API",
+			"entries": 30,
+			"file": "essential-api.json"
+		}
+	]
+}
