@@ -65,7 +65,15 @@ jobs:
 
       # Turbo's cache, keyed on the lockfile and the commit. A run that changes
       # only Markdown restores the previous build instead of repeating it.
-      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      #
+      # Restore and save are split on purpose. A cache entry is immutable, so
+      # `actions/cache` writes a new one per commit; because each run restores
+      # the previous `.turbo/cache` and then adds this run's artefacts to it,
+      # entry N+1 is entry N plus everything new, for ever. Measured on this
+      # repo: 33 entries climbing 174 -> 179 -> 185 MB, 4.8 GB of a 10 GB
+      # ceiling, evicting the pnpm and Playwright caches that actually save
+      # time. The save below trims before writing, so the series has a roof.
+      - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: .turbo
           key: turbo-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
@@ -171,6 +179,28 @@ jobs:
       # tarball whose types resolve wrongly fails here rather than on install.
       - name: Manifests match the build
         run: git diff --exit-code -- '**/package.json'
+
+      # Keep the newest 200 artefacts and drop the rest before the entry is
+      # written, so what gets saved is this run's working set rather than every
+      # working set since the lockfile last changed. Only on main: a branch
+      # saving its own entry is how the ceiling got hit in the first place, and
+      # branches restore from main's just as well.
+      - name: Trim the turbo cache
+        if: github.ref == 'refs/heads/main'
+        run: |
+          set -euo pipefail
+          if [ -d .turbo/cache ]; then
+            before=$(du -sm .turbo/cache | cut -f1)
+            find .turbo/cache -type f -printf '%T@ %p\n' \
+              | sort -rn | tail -n +201 | cut -d' ' -f2- | xargs -r rm -f
+            echo "turbo cache: ${before}MB -> $(du -sm .turbo/cache | cut -f1)MB"
+          fi
+
+      - uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          path: .turbo
+          key: turbo-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
 
   image:
     name: Docker image

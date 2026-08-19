@@ -42,6 +42,10 @@ PREBUILD = "Codespaces Prebuilds"
 # fifteen seconds later. The last value repeats for the rest of the wait.
 POLL_BACKOFF = (30, 60, 120)
 
+# How long "no runs yet" is allowed to mean "not created yet" rather than
+# "this commit triggered nothing".
+FIRST_RUN_GRACE = 120
+
 
 @dataclass
 class Run:
@@ -129,11 +133,20 @@ def watch(sha: str, max_seconds: int) -> list[Run]:
     """Poll until nothing is left running, cancelling waste as it appears."""
     started: dict[int, float] = {}
     passes = 0
+    waited_for_first = 0.0
     while True:
         current = runs_for(sha)
         if not current:
-            print("  no runs for this commit yet.")
-            return []
+            # GitHub takes a moment to create the runs for a push, so "none
+            # yet" right after one means too early, not none at all. Giving up
+            # here made this useless in the one moment it is reached for.
+            if waited_for_first >= FIRST_RUN_GRACE:
+                print(f"  no runs for this commit after {FIRST_RUN_GRACE}s.")
+                return []
+            print("  waiting for runs to appear...")
+            time.sleep(POLL_BACKOFF[0])
+            waited_for_first += POLL_BACKOFF[0]
+            continue
         for run in current:
             if run.finished:
                 continue
