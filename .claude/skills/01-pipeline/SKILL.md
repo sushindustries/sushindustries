@@ -2,8 +2,8 @@
 name: 01-pipeline
 description: >
   The ordered stages a thing passes through in this repo, from "it does not
-  exist" to "it is live", with the contract each stage has to hand the next
-  one and the gate that proves it. Use this skill when: (1) asked to add,
+  exist" to "it is live", with the contract each stage hands the next one and
+  a runnable gate that proves it. Use this skill when: (1) asked to add,
   finish or fix a component, package, post or page and it is not obvious what
   is left to do, (2) something exists in code but its page looks wrong or
   empty, (3) asked what state a slug is in, (4) about to call a content or
@@ -13,68 +13,97 @@ description: >
 
 # The pipeline
 
-Six stages. Each one takes what the one before it produced and refuses to
-start without it, so "what do I do next" is always answered by the first gate
-that fails rather than by remembering this file.
+Six stages. Each takes what the one before produced and refuses to start
+without it, so "what do I do next" is answered by the first gate that fails
+rather than by remembering this file.
 
 A stage owns a **contract**, not a task list. The contract is what the next
-stage reads. The gate is a command that checks it, and the skill is where the
-work itself is described. I do not duplicate that work here.
+stage reads. The gate is a command that checks it. The skill is where the work
+itself is described, and I do not duplicate that work here.
+
+## Run the whole thing
+
+```shell
+python3 .claude/skills/01-pipeline/pipeline.py <slug>          # the cheap gates
+python3 .claude/skills/01-pipeline/pipeline.py <slug> --deep   # including the slow ones
+python3 .claude/skills/01-pipeline/pipeline.py <slug> --json   # for a tool to read
+python3 .claude/skills/01-pipeline/pipeline.py <slug> --stage 2
+```
+
+It runs the gates in order and **stops at the first failure**, then names the
+skill that owns that stage. That is the point of the ordering: a later gate
+reading a broken earlier contract reports a confusing failure in the wrong
+place. `pnpm check` fails on a component with no registry entry, and it takes
+a minute to say what stage 01 says in a second.
+
+Exit codes: `0` everything that ran passed, `1` a gate failed, `2` no such
+slug.
 
 ## The stages
 
 | # | Stage | Hands on | Gate | Skill that owns it |
 | --- | --- | --- | --- | --- |
-| 01 | intake | a slug wired into every link point | `intake.py <slug>` | `add-a-component` |
-| 02 | document | every tab that exists carries its contract | `pnpm run docs --slug <slug>` | `document-an-element` |
+| 01 | intake | a slug wired into every link point | `intake.py` (internal) | `add-a-component` |
+| 02 | document | every tab that exists carries its contract | `pnpm run docs --json` | `document-an-element` |
 | 03 | conform | atoms classes, tokens, generated manifests | `pnpm run doctor` | `sushindustries-conventions` |
 | 04 | verify | the served page renders and responds | `pnpm test` | `verify-component`, `toolset` |
-| 05 | prune | nothing dead, nothing unread, nothing bloated | `pnpm run doctor` | `simplify` |
+| 05 | prune | the docs home is still a shop window | word budget | `simplify` |
 | 06 | ship | types, build, CI, deploy | `pnpm check` | `.claude/pipeline.md` |
 
-Only stage 01 is built out as a stage document so far, in
-`stages/01-intake.md`. The rest route straight to the skill in the last
-column, which is why the table is short: a stage whose skill already says
-everything does not need a second page saying it again.
+Stages **04 and 06 are skipped unless `--deep`**. They boot a built server and
+run a full build, a minute or more each. They announce that they were skipped
+rather than reporting a pass, because a gate nobody runs because it is slow is
+worse than one that says it did not run.
 
-## How to use this
+Stage 01 is written out in `stages/01-intake.md`. The rest route straight to
+the skill in the last column: a stage whose skill already says everything does
+not need a second page saying it again.
 
-1. Find the lowest-numbered stage whose gate fails. That is the state the
-   thing is in, whatever anyone said it was.
-2. Open that stage's skill and do the work it describes.
-3. Re-run the gate. Do not skip ahead on the strength of a plausible story -
-   a later gate reading a broken earlier contract reports a confusing failure
-   in the wrong place.
+## Two commands that do not work as written
 
-Running a later gate first is not wrong, only wasteful: `pnpm check` will
-fail on a component that never got a registry entry, and it takes a minute to
-tell you what `intake.py` says in a second.
+`pnpm doctor` and `pnpm docs` collide with **pnpm's own builtins**, so the bare
+forms never reach `scripts/doctor.mjs` or `scripts/docs-report.mjs`. Always
+`pnpm run doctor` and `pnpm run docs`. This gate uses the working form; the CI
+Doctor step and the root `check` script always did.
 
-## Stage 01, intake
+## Stage 01, in a little more detail
 
-The one gate that is a script here rather than a repo command, because
-nothing else in the repo answers it. `pnpm run doctor` checks every rule across
-the whole repo and only sees a component once the registry knows about it.
-This traces one slug, including one the registry has never heard of, which is
-the state a half-finished thing is actually in.
+The one gate that is a script rather than a repo command, because nothing else
+answers it. `pnpm run doctor` checks every rule across the whole repo and only
+sees a component once the registry knows about it. This traces one slug,
+including one the registry has never heard of, which is what a half-finished
+thing actually is.
 
 ```shell
-python3 .claude/skills/01-pipeline/intake.py <slug>          # the report
-python3 .claude/skills/01-pipeline/intake.py <slug> --json   # for a tool to read
+python3 .claude/skills/01-pipeline/intake.py <slug>
 ```
 
-Exit codes: `0` the contract is met, `1` a required link is missing, `2` no
-such slug anywhere.
-
 It never writes. Repairs are `pnpm run doctor --fix` and `pnpm new`, both of
-which the report names per finding, and both of which only copy what already
-exists somewhere rather than inventing prose. See `stages/01-intake.md` for
-the contract per kind and the action loop.
+which the report names per finding, and both of which copy something that
+already exists rather than inventing prose.
+
+## The tests
+
+```shell
+python3 .claude/skills/01-pipeline/test_pipeline.py
+```
+
+Standard library only, no network. The cheap gates run against the real repo
+rather than a fixture, because a fixture passes while the thing it stands for
+drifts, which is the failure this pipeline exists to catch. One test asserts
+that **every registry item passes intake**, so this gate can never become
+quietly stricter than the repo it checks.
+
+They earn their place. The first run caught `frontmatter()` matching with
+`\s*`, which spans newlines, so an empty `summary:` captured the `---` closing
+the block and read as present. An empty field passing a presence check is the
+exact false pass the gate exists to prevent.
 
 ## Adding a stage
 
 A stage earns a document when its contract is not already a skill's opening
 paragraph. Write `stages/NN-name.md` with the same three headings the intake
-document uses - contract, gate, action loop - add the row above, and stop.
-The gate goes in this folder as a script only if no repo command can answer
-it; otherwise the gate is that command and there is nothing to write.
+document uses (contract, gate, action loop), add a function to `STAGES` in
+`pipeline.py`, add the row above, and add a test. The gate goes in this folder
+as a script only when no repo command can answer it; otherwise the gate is
+that command and there is nothing to write.
