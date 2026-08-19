@@ -34,6 +34,10 @@ const COMMANDS = {
 		const { refs } = await import("./commands/refs.mjs");
 		await refs();
 	},
+	async studio() {
+		const { studio } = await import("./commands/studio.mjs");
+		await studio();
+	},
 	async graphql() {
 		const { graphql } = await import("./commands/graphql.mjs");
 		await graphql();
@@ -82,11 +86,13 @@ adam-jurek - the command line for adamjurek.com
   pnpm sushindustries refs --force     re-fetch shards that already exist
 
   pnpm sushindustries graphql          write the GraphQL schema from the tables
+  pnpm sushindustries studio           browse the deployed database
   pnpm sushindustries sync             write the index into Postgres
-  pnpm sushindustries mcp <server>     run one MCP server on stdio
-  pnpm sushindustries mcp install      wire all three into Claude Code
+  pnpm sushindustries mcp              serve all seventeen tools on stdio
+  pnpm sushindustries mcp <group>      serve one group: docs, stack, authoring
+  pnpm sushindustries mcp install      how to register it, four ways
 
-Servers: docs, stack, authoring. Run \`mcp install\` to see what each one is
-for and what the command to add it looks like.
+Everything reads this repository. stack and refs maintain the data, sync and
+graphql project it into Postgres, and mcp hands the lot to an agent.
 `);
 }
