@@ -91,11 +91,26 @@ list. That pairing is what found `/p/*` missing from both.
 A machine without Chromium skips the geometry half with the command to fix it;
 CI installs it and never skips.
 
-**`packages/atoms/src/**` is a `globalDependency`.** Atoms has no build step,
-so nothing else captures its files: editing `atoms.css` left every cached
-build valid and the built server served the previous stylesheet. The first run
-of these tests found it, by fixing a phone overflow four times and watching
-the same 285px come back.
+**Editing `atoms.css` invalidates the site build**, and it has to. Atoms has
+no build step, so a `^build` edge captures nothing of it: editing the
+stylesheet once left every cached build valid and the built server went on
+serving the previous one. The first run of these tests found it, by fixing a
+phone overflow four times and watching the same 285px come back.
+
+The thing that now guarantees it is the `transit` task in `turbo.json`, not a
+`globalDependency`. `transit` depends on `^transit` and `build` depends on
+`transit`, so a package's *sources* enter its dependents' hash without anyone
+waiting on a build output that does not exist. A `globalDependency` would
+have worked too and cost more: it enters the global hash, so every task in
+every package would rebuild on a CSS edit.
+
+Check it rather than trust it. Append a comment to `atoms.css` and compare:
+
+```shell
+pnpm exec turbo run build --dry=json --filter=@sushindustries/web
+```
+
+The `@sushindustries/web#build` hash must change.
 
 ## Not paying twice
 

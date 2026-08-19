@@ -59,6 +59,30 @@ Stage 01 is written out in `stages/01-intake.md`. The rest route straight to
 the skill in the last column: a stage whose skill already says everything does
 not need a second page saying it again.
 
+## After the push: watching what it cost
+
+```shell
+python3 .claude/skills/01-pipeline/ci.py                  # watch HEAD until it stops
+python3 .claude/skills/01-pipeline/ci.py --max-seconds 300
+python3 .claude/skills/01-pipeline/ci.py --sha <sha> --json
+```
+
+`--max-seconds` is **seconds of running time**, not money. The distinction it
+draws is the useful one: a run sitting in the queue is free and is waited on,
+a run that has started is billed and is capped. Both look identical to
+somebody refreshing a browser tab, which is how a hung job bills until
+GitHub's own six-hour timeout.
+
+Two things it cancels without asking. Anything still running past the cap, on
+the grounds that a job which has doubled its usual time has hung rather than
+slowed. And every Codespaces Prebuild, always: it rebuilds a container on
+each push to the default branch, nothing here has a `.devcontainer` for it to
+prebuild, and GitHub refuses to disable a dynamic workflow through its API,
+so cancelling each one as it appears is the only lever left.
+
+A failure prints the first `##[error]` line from the log rather than a link to
+go and read, because the reason is the thing you wanted.
+
 ## Which gates need a prepared repo, and which do not
 
 A hard dependency and a soft one are different things, and only the hard one
