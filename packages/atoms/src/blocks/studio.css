@@ -17,6 +17,95 @@
 	 */
 
 	/*
+	 * The search box, which is the first thing on the hub and looks like it.
+	 *
+	 * Wide, tall and quiet. The one control on a page that is mostly empty
+	 * should not have to compete for attention, which is why there is no border
+	 * colour change on focus beyond the ring every control here already gets -
+	 * the size is what says "start here".
+	 */
+	/*
+	 * There is no `.studio-search` here - it was `flex col gap-2`, three
+	 * utilities that already have names, so the markup composes them. What is
+	 * below is the part utilities cannot say: a field that is a row wrapping an
+	 * input whose own frame has to be taken off.
+	 */
+
+	.studio-search-field {
+		display: flex;
+		align-items: center;
+		gap: var(--s-3);
+		padding-inline-start: var(--s-4);
+		border: 1px solid var(--line);
+		border-radius: var(--r-card);
+		background: var(--bg-1);
+		color: var(--fg-faint);
+	}
+
+	/*
+	 * The input keeps its metrics and gives up its frame entirely.
+	 *
+	 * `border: 0` was not enough and the result was the bug worth recording: a
+	 * focused `.field-control` also paints `box-shadow: 0 0 0 3px accent`, and a
+	 * three-pixel accent ring on a borderless input inside a bordered row reads
+	 * as an orange outline floating *inside* the box. It looked like a styling
+	 * accident because it was two correct rules meeting.
+	 *
+	 * So the ring is removed here and moved to the row below, which is the
+	 * element a reader thinks of as the control. Focus is still visible - it is
+	 * just drawn once, around the thing they clicked.
+	 */
+	.studio-search-field .field-control {
+		flex: 1;
+		min-width: 0;
+		padding-block: var(--s-4);
+		border: 0;
+		background: transparent;
+		font-size: var(--t-md);
+	}
+
+	.studio-search-field .field-control:focus-visible {
+		box-shadow: none;
+		border-color: transparent;
+	}
+
+	/*
+	 * The ring, on the row. `:focus-within` rather than `:focus-visible`,
+	 * because the element that receives focus is the input and the element that
+	 * should show it is its parent - which is exactly the pair `:focus-within`
+	 * exists for.
+	 */
+	.studio-search-field:focus-within {
+		border-color: var(--accent);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+	}
+
+	/*
+	 * Results cascade under the box rather than floating over the page.
+	 *
+	 * A popover would cover the sections below it, which on a hub is the only
+	 * other content there is - so a search would hide the thing you were about
+	 * to click instead. Pushing the page down costs a reflow and hides nothing.
+	 */
+	.studio-search-results {
+		display: flex;
+		flex-direction: column;
+		max-height: 24rem;
+		overflow-y: auto;
+		scrollbar-gutter: stable;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		background: var(--bg-0);
+	}
+
+	.studio-search-note {
+		margin: 0;
+		padding: var(--s-3) var(--s-4);
+		font-size: var(--t-sm);
+		color: var(--fg-faint);
+	}
+
+	/*
 	 * The header's tiles.
 	 *
 	 * `auto-fit` at a minimum width rather than a column count, so four tiles are

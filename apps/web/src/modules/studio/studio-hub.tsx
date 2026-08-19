@@ -1,10 +1,11 @@
-import { BarChart, Icon, MarkdownView } from "@sushindustries/ui";
+import { BarChart, Collapsible, Icon, MarkdownView } from "@sushindustries/ui";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { hubBarsQueryOptions } from "./overview/hub-query-keys";
 import { hubConfig } from "./studio.catalogue";
 import { readySections } from "./studio.sections";
+import { StudioSearch } from "./studio-search";
 
 /*
  * The hub: one card per section, and nothing else.
@@ -29,6 +30,16 @@ export function StudioHub(): ReactNode {
 	return (
 		<div className="flex col gap-6">
 			{/*
+			 * Search first, and nothing competing with it.
+			 *
+			 * The question people arrive with is narrow - *this* post, *that*
+			 * skill - and a box answers it in one step where browsing takes
+			 * three. Everything below is what you read when you did not have a
+			 * question, which is the less common case and belongs lower.
+			 */}
+			<StudioSearch />
+
+			{/*
 			 * The chart is `content/studio/hub.md`, drawn.
 			 *
 			 * Which bars exist, in what order, against which measure - all of it
@@ -38,8 +49,7 @@ export function StudioHub(): ReactNode {
 			 * settings screen to build or to keep in step.
 			 */}
 			{config.bars.length > 0 ? (
-				<section className="flex col gap-3">
-					<h2 className="sr-only">At a glance</h2>
+				<Collapsible summary="At a glance">
 					<BarChart
 						label={`${config.title}: ${config.bars.map((bar) => bar.label).join(", ")}`}
 						description={config.summary}
@@ -50,7 +60,7 @@ export function StudioHub(): ReactNode {
 						colorByCategory
 						height={Math.max(140, config.bars.length * 28)}
 					/>
-				</section>
+				</Collapsible>
 			) : null}
 
 			{config.body ? (

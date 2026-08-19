@@ -1,6 +1,7 @@
 import { Button, Workbench } from "@sushindustries/ui";
 import { useDebouncedValue } from "@tanstack/react-pacer";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { getRouteApi } from "@tanstack/react-router";
 import { type ReactNode, useState } from "react";
 import type { WriteResult } from "../studio.schemas";
 import { applyDocumentAction } from "./documents.functions";
@@ -71,6 +72,13 @@ export const DEFAULT_DOCUMENTS_QUERY: DocumentsQuery = {
 
 const number = (value: number) => value.toLocaleString();
 
+/*
+ * The route's own search params, read through its api rather than a hook that
+ * guesses. `getRouteApi` checks the path against the generated tree, so
+ * renaming the route breaks this at compile time instead of at render.
+ */
+const route = getRouteApi("/studio/documents");
+
 export function DocumentsWorkspace(): ReactNode {
 	const client = useQueryClient();
 
@@ -81,7 +89,17 @@ export function DocumentsWorkspace(): ReactNode {
 	);
 	const [direction, setDirection] = useState<"asc" | "desc">("asc");
 	const [offset, setOffset] = useState(0);
-	const [selected, setSelected] = useState<string | null>(null);
+	/*
+	 * Seeded from `?path=`, then owned by the component.
+	 *
+	 * `useState`'s initial value is read once, which is exactly right here: the
+	 * URL says which document to open *on arrival*, and after that the
+	 * selection is a state of the workspace. Syncing the two in an effect would
+	 * mean clicking a row rewrote the URL, and the back button then walked
+	 * through every document anybody had looked at.
+	 */
+	const opened = route.useSearch().path;
+	const [selected, setSelected] = useState<string | null>(opened ?? null);
 
 	const [pending, setPending] = useState<PendingAction | null>(null);
 	const [result, setResult] = useState<WriteResult | null>(null);

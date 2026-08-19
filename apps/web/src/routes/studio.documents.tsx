@@ -29,6 +29,21 @@ import {
  * `modules/studio/documents/`.
  */
 export const Route = createFileRoute("/studio/documents")({
+	/*
+	 * `?path=` opens the workspace on one document.
+	 *
+	 * It is how the hub's search hands over: a result there navigates here with
+	 * the path, and the workspace opens it selected. Without it a search would
+	 * land you on a list you then have to search again, which is a search that
+	 * did half its job.
+	 *
+	 * Validated rather than read raw. A search param is a string somebody can
+	 * type, it is used to look up a row, and `validateSearch` is where the
+	 * router lets that be checked once for every consumer of the route.
+	 */
+	validateSearch: (search: Record<string, unknown>) => ({
+		path: typeof search.path === "string" ? search.path : undefined,
+	}),
 	loader: async ({ context }) => {
 		await Promise.all([
 			context.queryClient.ensureQueryData(

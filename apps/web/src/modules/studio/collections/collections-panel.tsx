@@ -8,6 +8,7 @@ import {
 } from "@sushindustries/ui";
 import { useQuery } from "@tanstack/react-query";
 import { type ReactNode, useState } from "react";
+import { StudioSearch } from "../studio-search";
 import {
 	collectionQueryOptions,
 	collectionsQueryOptions,
@@ -43,7 +44,14 @@ export function CollectionsPanel(): ReactNode {
 			label="Named sets of documents"
 			maxHeight="min(74vh, 52rem)"
 			rail={
-				<div className="flex col gap-2">
+				<div className="flex col gap-3">
+					{/*
+					 * Scoped to collections. The same box as the hub's, told to look
+					 * at one thing - a search here that returned forty documents
+					 * would be answering a question nobody asked on this page.
+					 */}
+					<StudioSearch scope="collections" />
+
 					<p className="label">{all.length} collections</p>
 
 					<ul className="studio-list">
