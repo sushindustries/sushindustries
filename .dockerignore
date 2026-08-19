@@ -11,6 +11,16 @@ dist
 .git
 .github
 .claude
+
+# Things the repository shows or tools leave behind, none of which the build
+# reads. `media/` is the README's screenshots, written by `pnpm media`, and
+# what the app actually serves lives in `apps/web/public/`. `.agents/` is
+# third-party skills pulled by `npx skills`, already gitignored.
+media
+.agents
+_artifacts
+.playwright-mcp
+
 *.log
 .DS_Store
 .env
