@@ -42,6 +42,17 @@ repo not chosen by me: Claude Code requires the manifest at the root and the
 plugin beside it, so neither can move into `packages/`. They are not pnpm
 workspaces and `pnpm-workspace.yaml` deliberately does not glob them.
 
+**`scripts/` and `packages/cli/` are not the same thing, and neither absorbs
+the other.** `scripts/` checks and generates *this* repository - the doctor,
+the scaffolder, the screenshot and glyph generators. None of it is published,
+all of it must run on a bare `pnpm install` with no build, and the doctor in
+particular is the gate every push goes through, so it stays plain Node with
+nothing between it and the filesystem. `packages/cli/` is the opposite: an
+installable program with dependencies, carrying data other people can use.
+Merging them would either ship the doctor to npm or make the gate depend on a
+build. The test for a new file is whether anyone outside this repo would run
+it.
+
 Every package that compiles does it through `tsdown.base.ts`, which also
 generates that package's `exports`, `main` and `module` from the chunks the
 build emitted. So **`package.json` is partly a build artefact**: if a build
