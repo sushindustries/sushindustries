@@ -208,7 +208,7 @@ export function shelfEntries(): readonly ShelfEntry[] {
 	 * correct content, which is exactly what happened: every post title failed
 	 * and the shelf rendered as an error instead of a desk.
 	 *
-	 * The limit is for labels a person types, and `pnpm doctor` enforces it on
+	 * The limit is for labels a person types, and `pnpm run doctor` enforces it on
 	 * the Markdown where they type them. A long generated label is safe now for
 	 * a different reason - `.shelf-name` wraps it inside its tile rather than
 	 * over its neighbour.

@@ -17,7 +17,7 @@ export interface {pascal}Props {
  *
  * Compose atoms in the markup. Reach for a named `.{slug}` block only when the
  * layout would take six atoms to say, and define it in `atoms.css` when you do
- * - `pnpm doctor` fails on a class the stylesheet does not have.
+ * - `pnpm run doctor` fails on a class the stylesheet does not have.
  */
 export function {pascal}({ children }: {pascal}Props): ReactNode {
 	return <div className="flex col gap-3">{children}</div>;

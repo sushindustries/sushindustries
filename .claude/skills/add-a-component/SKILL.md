@@ -20,14 +20,14 @@ pnpm new component my-thing
 That writes the source, the docs page, the barrel export and the registry entry
 from `templates/`, then prints what it deliberately left blank. It does not
 invent a description, a category or a demo: a scaffold that fills those with
-placeholder text produces a file that looks finished, and `pnpm doctor` can no
+placeholder text produces a file that looks finished, and `pnpm run doctor` can no
 longer tell the difference.
 
 Then, at any point and as often as you like:
 
 ```shell
-pnpm doctor         # what is missing
-pnpm doctor --fix   # repair what can be repaired without inventing prose
+pnpm run doctor         # what is missing
+pnpm run doctor --fix   # repair what can be repaired without inventing prose
 ```
 
 The doctor is the list below, checked. Read it rather than remembering this
@@ -150,7 +150,7 @@ the documentation page nothing.
 ### 6. The docs
 
 ```shell
-pnpm docs --slug my-thing     # what is missing, and the command for each
+pnpm run docs --slug my-thing     # what is missing, and the command for each
 pnpm new docs my-thing api    # the prop table, filled in from your source
 pnpm new docs my-thing guides
 ```
@@ -165,7 +165,7 @@ packages/ui/docs/my-thing/
 ```
 
 **Write the JSDoc on your props.** It becomes the `Does` column of `api.md` and
-the editor hover for everyone who installs this, and `pnpm doctor` fails when
+the editor hover for everyone who installs this, and `pnpm run doctor` fails when
 the table and the interface disagree. That is the one place where editing the
 Markdown is the wrong move.
 

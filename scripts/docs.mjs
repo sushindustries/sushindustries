@@ -3,7 +3,7 @@
  * is derivable.
  *
  * A library, not a script: the doctor checks the contract, `pnpm new docs`
- * scaffolds against it, and `pnpm docs` counts it. A module that ran checks on
+ * scaffolds against it, and `pnpm run docs` counts it. A module that ran checks on
  * import could not be imported by any of them - `scripts/templates.mjs` records
  * what that costs, having silently broken `pnpm new` for as long as the
  * template helpers lived inside the doctor. So: exports, no argv, no writes.
@@ -589,7 +589,7 @@ export const PROSE_WORDS = 80;
  * One document against the contract.
  *
  * Returns findings; it does not report them. The doctor turns a finding into a
- * failure and `pnpm docs` turns it into a row, and both read the same list -
+ * failure and `pnpm run docs` turns it into a row, and both read the same list -
  * which is the only way the gate and the report cannot disagree.
  *
  * `context` is passed in rather than discovered, for the same reason.
@@ -669,12 +669,12 @@ export function evaluateDoc(section, body, context = {}) {
 		const found = generatedApiRegion(body);
 
 		if (!found) {
-			add("api-drift", "no generated API section", "pnpm doctor --fix");
+			add("api-drift", "no generated API section", "pnpm run doctor --fix");
 		} else if (found !== context.expectedApi.trim()) {
 			add(
 				"api-drift",
 				"the API section does not match the source",
-				"pnpm doctor --fix - and edit the JSDoc, not this table",
+				"pnpm run doctor --fix - and edit the JSDoc, not this table",
 			);
 		}
 	}

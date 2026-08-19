@@ -1,6 +1,6 @@
 ---
 name: document-an-element
-description: Write or fix the documentation for a component, block or hook in this repo - which of the five tabs a thing belongs in, what each tab must contain, and why the API tab is generated from the source rather than written. Use when adding docs, when `pnpm docs` reports a finding, or when a page has become too long.
+description: Write or fix the documentation for a component, block or hook in this repo - which of the five tabs a thing belongs in, what each tab must contain, and why the API tab is generated from the source rather than written. Use when adding docs, when `pnpm run docs` reports a finding, or when a page has become too long.
 ---
 
 # Documenting an element
@@ -33,12 +33,12 @@ export interface BadgeProps {
 ```
 
 ```shell
-pnpm doctor --fix    # the table catches up
+pnpm run doctor --fix    # the table catches up
 ```
 
 That is the better trade in both directions: one sentence now serves the docs
 page *and* every consumer's editor hover, and the table cannot drift, because
-`pnpm doctor` fails when it does.
+`pnpm run doctor` fails when it does.
 
 The generated half is fenced. Everything outside the fence is yours and is
 never rewritten:
@@ -59,9 +59,9 @@ somebody's writing.
 ## The three commands
 
 ```shell
-pnpm docs                  every element, every tab, what is missing
-pnpm docs --todo           only the rows with a gap
-pnpm docs --slug button    one element, every finding, and the command to fix it
+pnpm run docs                  every element, every tab, what is missing
+pnpm run docs --todo           only the rows with a gap
+pnpm run docs --slug button    one element, every finding, and the command to fix it
 pnpm new docs button api   add a tab. `api` arrives filled in from the source
 ```
 
@@ -78,7 +78,7 @@ tabs** - that is where content gets rewritten instead of relocated.
 | the component doing a job in a real page | `examples.md` |
 | what it is, the live block, why it is built this way, what it does not do | `index.md` |
 
-## The contract, which `pnpm doctor` enforces
+## The contract, which `pnpm run doctor` enforces
 
 | Section | Must have |
 | --- | --- |
@@ -118,7 +118,7 @@ appended, because there is no entry to generate from. Those write their own.
 ## Voice
 
 One person builds this. Write **"I"**, never "we" or "our". Short sentences,
-plain words, no transitional filler. No em dashes anywhere: `pnpm doctor` fails
+plain words, no transitional filler. No em dashes anywhere: `pnpm run doctor` fails
 on one, and the house form is a spaced hyphen.
 
 Say what the thing avoids, not what the code does - the source already says
@@ -136,6 +136,6 @@ what the code does.
 ## Before you push
 
 ```shell
-pnpm docs --slug <name>    # no findings for the element you touched
+pnpm run docs --slug <name>    # no findings for the element you touched
 pnpm check                 # doctor, biome, types, build, pages
 ```

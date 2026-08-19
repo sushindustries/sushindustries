@@ -69,7 +69,7 @@ ${usage}
  * only generated ones. `templates/component-index.md` has always ended with a
  * note saying install commands are attached automatically and must not be
  * written by hand - and that note was false for every component in the
- * registry. A hand-written `index.md` won outright, `pnpm doctor` guarantees
+ * registry. A hand-written `index.md` won outright, `pnpm run doctor` guarantees
  * every registry item has one, so the generated path this lived in never ran
  * once. Sixty-six pages documented components nobody was told how to install.
  *

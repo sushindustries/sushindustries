@@ -132,7 +132,7 @@ Every skill this repo runs on installs independently of the code -
 
 ```bash
 pnpm new package my-thing
-pnpm doctor --fix
+pnpm run doctor --fix
 ```
 
 The first writes the directory from `templates/`; the second adds the one
@@ -154,12 +154,12 @@ it lands. `DATABASE_URL` is the only one the deploy itself requires.
 
 ```bash
 pnpm check    # doctor, lint, types, build - what the pre-push hook runs
-pnpm doctor   # what this repo is missing. --fix repairs what it can
+pnpm run doctor   # what this repo is missing. --fix repairs what it can
 ```
 
 ## Licence
 
-MIT, and every package in here declares it. `pnpm doctor` fails a published
+MIT, and every package in here declares it. `pnpm run doctor` fails a published
 workspace that does not, because a package telling people to install it while
 granting them no licence is one nobody may legally use.
 

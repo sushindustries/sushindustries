@@ -234,7 +234,7 @@ await browser.close();
 stop();
 
 /*
- * The manifest is what lets `pnpm doctor` tell a stale capture from a fresh
+ * The manifest is what lets `pnpm run doctor` tell a stale capture from a fresh
  * one without opening a browser itself: a hash of the two files a demo's
  * appearance can actually come from, `demos.tsx` (the element) and
  * `demo-sources.ts` (the source shown beside it). Change either and the hash

@@ -7,14 +7,14 @@ costing money it did not need to.
 
 ```shell
 pnpm new <post|page|desk|docs|component|package|glyph> <slug> [section]
-pnpm doctor                                      # what is missing
-pnpm doctor --fix                                # repair what can be repaired
-pnpm doctor:map                                  # how the repo is constructed
-pnpm docs                                        # what every element documents
+pnpm run doctor                                      # what is missing
+pnpm run doctor --fix                                # repair what can be repaired
+pnpm run doctor:map                                  # how the repo is constructed
+pnpm run docs                                        # what every element documents
 pnpm check                                       # doctor, lint, types, build
 ```
 
-`pnpm docs` is a checkbox matrix: one row per element, one column per
+`pnpm run docs` is a checkbox matrix: one row per element, one column per
 documentation tab, plus whether it has a demo and whether it meets the
 contract. `--todo` narrows it to the rows with a gap, `--slug <name>` expands
 one element and prints the command that fixes each finding, `--json` is for
@@ -39,7 +39,7 @@ Each layer catches what the layer before it cannot see, and costs more than it.
 
 | Layer | Runs | Catches | Costs |
 | --- | --- | --- | --- |
-| `pnpm doctor` | seconds, no build | missing docs, missing Dockerfile lines, a class defined nowhere | nothing |
+| `pnpm run doctor` | seconds, no build | missing docs, missing Dockerfile lines, a class defined nowhere | nothing |
 | `pnpm test` | pre-push, after the build | what the *served page* gets wrong: a skipped heading, a second h1, a dead link, a page nothing lists, a phone-width overflow | seconds |
 | `pnpm check` | pre-push | types, import protection, a build that does not build | a minute |
 | CI `check` | on push and PR | the same, in a clean checkout, plus publint, attw and a manifest that disagrees with its build | GitHub minutes |
@@ -139,7 +139,7 @@ required part; the demo and the docs improve the page rather than creating it.
 
 ```shell
 pnpm new package my-package
-pnpm doctor --fix     # adds the Dockerfile manifest COPY line
+pnpm run doctor --fix     # adds the Dockerfile manifest COPY line
 pnpm install
 ```
 
@@ -178,7 +178,7 @@ parent directories for a config file, and a root `tsdown.config.ts` would be
 found by every package that did not have its own. The base is a module you
 import, not a config that leaks downward.
 
-`pnpm doctor` asserts the arrangement: a package that builds has a config, and a
+`pnpm run doctor` asserts the arrangement: a package that builds has a config, and a
 config that exists imports the base. Opting out is allowed; opting out silently
 is not.
 
@@ -210,7 +210,7 @@ for a configuration no consumer runs is just noise.
 They are the reason `@sushindustries/ui/registry` is compiled rather than
 shipped as raw `.ts`: it is a module the site imports, and its own
 `import type { IconName } from "./src/icon"` did not resolve under Node16 for
-anybody who installed it. `pnpm doctor` still reads `packages/ui/registry.ts` by
+anybody who installed it. `pnpm run doctor` still reads `packages/ui/registry.ts` by
 path, as text, so nothing about the installer changed.
 
 `failOnWarn` is `ci-only` too. A warning that is genuinely acceptable gets
@@ -246,7 +246,7 @@ it is a second list to maintain.
   interface: names, types, defaults read out of the destructuring parameter,
   and the JSDoc as the description. So the `Does` column is a source comment,
   and improving a description means editing the interface - where it also
-  reaches every consumer's editor. `pnpm doctor --fix` regenerates; a file with
+  reaches every consumer's editor. `pnpm run doctor --fix` regenerates; a file with
   no fence is reported and never rewritten, because inferring the boundary from
   headings once deleted eighteen lines of somebody's writing.
 - **The five tabs are files.** `index`, `get-started`, `guides`, `api`,

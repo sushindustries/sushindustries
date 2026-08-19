@@ -5,7 +5,7 @@ The files a new thing starts as.
 Every content type on this site is Markdown with a frontmatter block, and every
 catalogue reads that block by name. Which means the answer to "what do I have
 to write for a post" is not in anyone's head - it is the frontmatter keys
-`posts.catalogue.ts` reads, and `pnpm doctor` fails if a file is missing one.
+`posts.catalogue.ts` reads, and `pnpm run doctor` fails if a file is missing one.
 
 These templates are the same information in the form you actually need it in:
 a file to start from.
@@ -45,10 +45,10 @@ pnpm new component my-component   # component source, docs, registry entry
 pnpm new package my-package       # a workspace, its manifest and README
 ```
 
-Then `pnpm doctor` tells you what the scaffold could not know - a description
+Then `pnpm run doctor` tells you what the scaffold could not know - a description
 nobody has written, a demo that does not exist yet.
 
 ## Adding a template
 
-Drop a `.md` in here with a `template:` header. `pnpm doctor` checks the header
+Drop a `.md` in here with a `template:` header. `pnpm run doctor` checks the header
 parses and names a target; nothing else has to be told it exists.

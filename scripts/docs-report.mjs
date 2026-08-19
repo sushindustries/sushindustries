@@ -3,12 +3,12 @@
 /*
  * What every element has documented, and what it is missing.
  *
- *   pnpm docs                 the matrix
- *   pnpm docs --todo          only the rows with a gap
- *   pnpm docs --slug <name>   one element, every finding in full
- *   pnpm docs --json          the same data, for something else to read
+ *   pnpm run docs                 the matrix
+ *   pnpm run docs --todo          only the rows with a gap
+ *   pnpm run docs --slug <name>   one element, every finding in full
+ *   pnpm run docs --json          the same data, for something else to read
  *
- * **This always exits 0.** `pnpm doctor` is the gate; a report that can fail a
+ * **This always exits 0.** `pnpm run doctor` is the gate; a report that can fail a
  * build is a second gate, and two gates disagree eventually. This one is for
  * looking at - it says where the work is, and the doctor says what is not
  * allowed to ship.
@@ -142,6 +142,6 @@ console.log(
 );
 
 if (!todoOnly && findings > 0) {
-	console.log("\n  pnpm docs --todo        only what needs work");
-	console.log("  pnpm docs --slug <name> one element, in full");
+	console.log("\n  pnpm run docs --todo        only what needs work");
+	console.log("  pnpm run docs --slug <name> one element, in full");
 }

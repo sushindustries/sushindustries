@@ -217,7 +217,7 @@ export function renderDevicesCss(devices) {
  * chosen, and once as an attribute selector for an element that has. The two
  * forms tie on specificity, so the chosen ones come last.
  *
- * Add a machine by adding a row to the table, then \`pnpm doctor --fix\`.
+ * Add a machine by adding a row to the table, then \`pnpm run doctor --fix\`.
  */
 
 @layer blocks {
@@ -263,7 +263,7 @@ export function renderDeviceTypes(devices) {
  * running, a settings panel listing what you can pick - agrees with the
  * stylesheet by construction instead of by memory.
  *
- * Add a machine by adding a row to the table, then \`pnpm doctor --fix\`.
+ * Add a machine by adding a row to the table, then \`pnpm run doctor --fix\`.
  */
 
 ${union}

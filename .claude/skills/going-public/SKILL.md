@@ -44,7 +44,7 @@ identity is a `git config user.email` fix, not a GitHub settings problem.
 fetches the repo - the star count, the edit doors, every `codeRepository`
 claim in structured data - reads it, so the day the repo opens is a one-line
 change instead of a hunt through five files for URLs that quietly stopped
-working. Flip it to `true`, run `pnpm doctor`, commit, push.
+working. Flip it to `true`, run `pnpm run doctor`, commit, push.
 
 ## 3. The switch itself
 

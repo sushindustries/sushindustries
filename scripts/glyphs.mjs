@@ -81,7 +81,7 @@ export function renderIconComponent(glyphs) {
  * reason for it, and it is generated into a component because a library cannot
  * read a Markdown file at runtime without stopping being installable.
  *
- * Add a glyph with \`pnpm new glyph <name>\`, then \`pnpm doctor --fix\`.
+ * Add a glyph with \`pnpm new glyph <name>\`, then \`pnpm run doctor --fix\`.
  */
 
 export type IconName =

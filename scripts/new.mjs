@@ -10,7 +10,7 @@
  * This writes the files whose contents are the same every time and stops. It
  * does not write the parts that carry meaning - a summary, a description, a
  * demo - because a scaffold that fills those in with placeholder text produces
- * a file that looks finished and is not, and `pnpm doctor` can no longer tell
+ * a file that looks finished and is not, and `pnpm run doctor` can no longer tell
  * the difference.
  *
  * What it does do is the bookkeeping nobody remembers: the barrel export, the
@@ -229,7 +229,7 @@ async function newPackage() {
 
 	todo.push(`write \`description\` in ${dir}/package.json`);
 	todo.push(
-		"run `pnpm doctor --fix` to add the Dockerfile line, then `pnpm i`",
+		"run `pnpm run doctor --fix` to add the Dockerfile line, then `pnpm i`",
 	);
 }
 
@@ -240,7 +240,7 @@ async function newPackage() {
  *
  * Deliberately not a placeholder square. A glyph that renders as something is
  * a glyph nobody notices they never drew, and it ships in a menu looking like
- * a decision. `pnpm doctor` reports an empty path and refuses to regenerate.
+ * a decision. `pnpm run doctor` reports an empty path and refuses to regenerate.
  */
 async function newGlyph() {
 	const table = "packages/ui/glyphs.md";
@@ -263,7 +263,9 @@ async function newGlyph() {
 	written.push(table);
 	todo.push(`draw \`${slug}\`: one or more paths in a 24x24 box, in ${table}`);
 	todo.push("say why that drawing in the third column");
-	todo.push("run `pnpm doctor --fix` to regenerate packages/ui/src/icon.tsx");
+	todo.push(
+		"run `pnpm run doctor --fix` to regenerate packages/ui/src/icon.tsx",
+	);
 }
 
 /* ── desk ────────────────────────────────────────────────────────────── */
@@ -295,7 +297,7 @@ async function newDesk() {
  *   pnpm new docs <slug> <section>
  *
  * The tabs are files, so adding one is writing a file - which is exactly the
- * kind of bookkeeping this script is for. `pnpm docs --slug <name>` prints the
+ * kind of bookkeeping this script is for. `pnpm run docs --slug <name>` prints the
  * command for every tab an element is missing, so the two compose.
  *
  * `api` is the one that does not come from a template. Its Props table is
@@ -316,7 +318,7 @@ async function newDocs() {
 
 	if (section === "index") {
 		fail(
-			"index.md is written by `pnpm new component <slug>`, and `pnpm doctor --fix` repairs a missing one. A second path to it is a second thing to keep in step.",
+			"index.md is written by `pnpm new component <slug>`, and `pnpm run doctor --fix` repairs a missing one. A second path to it is a second thing to keep in step.",
 		);
 	}
 
@@ -387,4 +389,4 @@ if (todo.length > 0) {
 	for (const item of todo) console.log(`  · ${item}`);
 }
 
-console.log("\nThen: pnpm doctor");
+console.log("\nThen: pnpm run doctor");

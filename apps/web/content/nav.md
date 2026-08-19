@@ -20,7 +20,7 @@ most of them.
   - [Child](/href) `icon` - description
 ```
 
-The backticked word is a glyph from `packages/ui/glyphs.md`. `pnpm doctor`
+The backticked word is a glyph from `packages/ui/glyphs.md`. `pnpm run doctor`
 rejects one that is not in that table, so a typo is caught rather than silently
 rendering nothing.
 

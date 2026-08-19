@@ -21,7 +21,7 @@ export type RegistryCategory = "motion" | "layout" | "content" | "docs" | "3d";
 
 /*
  * Every category carries its glyph, because both the nav and the archive show
- * one. Icon names come from `glyphs.md`; `pnpm doctor` rejects a category whose
+ * one. Icon names come from `glyphs.md`; `pnpm run doctor` rejects a category whose
  * icon is not in that table, and a category with no icon at all.
  */
 export const REGISTRY_CATEGORIES: ReadonlyArray<{
@@ -77,7 +77,7 @@ export interface RegistryItem {
 	 *
 	 * Typed as `string` rather than pulled from `@sushindustries/db` on
 	 * purpose: this package has no dependencies and is not about to take one
-	 * for a string. `pnpm doctor` checks every value against the generated
+	 * for a string. `pnpm run doctor` checks every value against the generated
 	 * vocabulary, so a class that does not exist fails at the gate instead.
 	 */
 	readonly schema: string;

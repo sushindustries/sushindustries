@@ -101,7 +101,7 @@ something and then told it cannot is a model that apologises and tries again.
 
 1. Write `skills/<name>.md`.
 2. Bind the name in the host's skill map.
-3. `pnpm doctor`, which fails on a skill with no handler and on a handler with
+3. `pnpm run doctor`, which fails on a skill with no handler and on a handler with
    no skill.
 
 There is no list to update. The directory is the list.

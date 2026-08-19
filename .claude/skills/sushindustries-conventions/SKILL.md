@@ -132,7 +132,7 @@ Three rules follow:
   directory, on purpose: the import list *is* the cascade order, so it has to
   be written where a human can read it top to bottom.
 - **Order inside a layer still matters.** Rules in the same layer resolve by
-  source order on a specificity tie, and `pnpm doctor` resolves a declaration
+  source order on a specificity tie, and `pnpm run doctor` resolves a declaration
   to the first rule providing it. So `utilities.css` is imported before
   `blocks/`, and a chapter goes where its rules already sat.
 - **Never reopen a chapter later in the list.** Two `@import`s of the same file
@@ -153,7 +153,7 @@ come from the author, so there is no markup to attach classes to.
 Not in `apps/web/src/styles/`. A component whose CSS lives in the site is a
 component that arrives naked in somebody else's project, and it looked finished
 only because it was being read on the one page that had the stylesheet.
-`pnpm doctor` fails on this, and it found `Showcase` doing exactly that.
+`pnpm run doctor` fails on this, and it found `Showcase` doing exactly that.
 
 ### Variants and extension
 
@@ -172,7 +172,7 @@ A variant is a **prop that writes a data attribute**. Never a second class.
 Not `.card--compact`. A modifier class needs a consumer to know both names and
 can be applied without its base; an attribute cannot be applied halfway,
 travels with the component when it is installed, and shows up in the props
-rather than in a stylesheet somebody has to go and find. `pnpm doctor` rejects
+rather than in a stylesheet somebody has to go and find. `pnpm run doctor` rejects
 `--` in a class name in `packages/ui`.
 
 State uses the same mechanism: `data-active`, `data-open`, `data-view`. The
@@ -185,7 +185,7 @@ Three more rules that follow from it:
   that is 90% the first one is two things to keep in step.
 - **Colours are tokens, always.** A literal hex outside `:root` is the point at
   which changing `--accent` stops changing the site. Add the token, then
-  reference it. `pnpm doctor` fails on this too.
+  reference it. `pnpm run doctor` fails on this too.
 - **A utility earns its place by repeating.** Used once, inline it into the
   named block. Used three times, it is an atom. `px-3` sat in the markup for
   weeks without existing in the stylesheet, doing nothing, because nothing
@@ -201,7 +201,7 @@ That is a location rule, and both halves of it have been broken. A file named
 for something outside the five was silently filtered out by the catalogue. A
 file one level shallower - `packages/assistant/docs/index.md`, 208 lines -
 matched neither the glob nor the check that was supposed to catch it, and was
-invisible for as long as it existed. `pnpm doctor` now asserts both.
+invisible for as long as it existed. `pnpm run doctor` now asserts both.
 
 **The API tab is generated, so the prop description is a JSDoc comment.**
 Editing the table in `api.md` is the wrong move: the fenced region is rewritten
@@ -211,7 +211,7 @@ consumer's editor at once.
 
 The rest of the contract - which tab a section belongs in, the word budgets,
 and the rule that a heading must give the reader something to copy - is in
-`.claude/skills/document-an-element/SKILL.md`. `pnpm docs` reports where a page
+`.claude/skills/document-an-element/SKILL.md`. `pnpm run docs` reports where a page
 falls short of it.
 
 ## Voice

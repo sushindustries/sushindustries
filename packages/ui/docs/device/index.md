@@ -34,6 +34,6 @@ them, and are correct before a byte of JavaScript arrives.
 
 > [!NOTE] The numbers are a table
 > Widths, aspect ratios, bezels, corner radii, tilt and which chrome each
-> machine shows all live in `packages/atoms/devices.md`. `pnpm doctor`
+> machine shows all live in `packages/atoms/devices.md`. `pnpm run doctor`
 > compiles it to `devices.css` and `device-kinds.ts`. Editing either output is
 > a change that gets reverted.

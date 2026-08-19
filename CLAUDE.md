@@ -54,7 +54,7 @@ the footer, the logo, the package catalogue.
 ```bash
 pnpm dev          # http://localhost:3000
 pnpm new <kind> <slug>   # post, component or package, from templates/
-pnpm doctor       # what this repo is missing. --fix repairs what it can
+pnpm run doctor       # what this repo is missing. --fix repairs what it can
 pnpm check        # doctor, lint, types, build. What the pre-push hook runs
 pnpm build
 pnpm typecheck
@@ -64,7 +64,7 @@ pnpm typecheck
 
 ```bash
 pnpm new package <name>
-pnpm doctor --fix   # adds the Dockerfile manifest COPY line
+pnpm run doctor --fix   # adds the Dockerfile manifest COPY line
 ```
 
 The site globs `packages/*` at build time, so it appears at `/packages/<name>`
