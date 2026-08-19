@@ -41,3 +41,10 @@ skills-lock.json
 .claude/skills/ci-cd-and-automation
 .claude/skills/code-review
 .claude/skills/open-sourcing
+
+# Claude Code's per-machine settings. It rewrites this file as permissions are
+# granted, so committing it would mean one person's answers becoming everyone's
+# - and leaving it merely untracked meant the linter kept finding a file that
+# changes under it. Ignored is the state that is true: local, and nobody's
+# business but this machine's.
+.claude/settings.local.json
