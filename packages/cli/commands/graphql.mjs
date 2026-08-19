@@ -111,6 +111,7 @@ export async function graphql() {
 		"collection",
 		"task",
 		"graph",
+		"insight",
 		"template",
 		"config",
 		"plugin",

@@ -16,8 +16,81 @@
 		--chart-line: var(--line);
 		--chart-text: var(--fg-faint);
 
+		/*
+		 * How much of the raw hue survives.
+		 *
+		 * The bar colours are the syntax palette, which is nine hues designed to
+		 * sit on `--code-bg` - a near-black. On a pale page they are correct
+		 * hues at the wrong volume: readable, and shouting. Mixing each toward
+		 * the page keeps the hue that tells two bars apart and drops the
+		 * saturation that makes a chart the loudest thing on the screen.
+		 *
+		 * A property rather than a value baked into each rule, so a caller with
+		 * a genuinely dark surface can turn it back up.
+		 */
+		--chart-strength: 72%;
+
 		width: 100%;
 		min-width: 0;
+	}
+
+	/*
+	 * The softening is not here, and the first attempt was.
+	 *
+	 * `fill: color-mix(in srgb, currentColor ...)` looks like it would work and
+	 * cannot: `currentColor` is the `color` property, and a bar's colour is
+	 * `fill` - so the mix would have resolved against whatever text colour the
+	 * SVG inherited and every bar would have come out the same shade. The mix
+	 * lives in the value the component passes instead, where the hue is
+	 * actually known.
+	 */
+	/*
+	 * The bars arrive rather than appearing.
+	 *
+	 * One transform, staggered by index, and nothing that moves after it lands
+	 * - a chart that keeps animating is a chart you cannot read while it does.
+	 * `transform-box: fill-box` so the origin is the bar's own edge and not the
+	 * SVG's, which is the difference between growing from the axis and sliding
+	 * in from the corner.
+	 *
+	 * Entirely inside a reduced-motion guard. The information is the length of
+	 * the bar; the growing is decoration, so it is the whole thing that goes
+	 * rather than a shorter version of it.
+	 */
+	@media (prefers-reduced-motion: no-preference) {
+		.chart svg rect[fill] {
+			transform-box: fill-box;
+			transform-origin: left center;
+			animation: chart-grow 420ms var(--ease-out) backwards;
+		}
+
+		/*
+		 * A tenth of a second between bars, capped at five. Past that the last
+		 * bar arrives a second after the first, which stops reading as one chart
+		 * appearing and starts reading as a list loading.
+		 */
+		.chart svg rect[fill]:nth-of-type(2) {
+			animation-delay: 60ms;
+		}
+		.chart svg rect[fill]:nth-of-type(3) {
+			animation-delay: 120ms;
+		}
+		.chart svg rect[fill]:nth-of-type(4) {
+			animation-delay: 180ms;
+		}
+		.chart svg rect[fill]:nth-of-type(5) {
+			animation-delay: 240ms;
+		}
+		.chart svg rect[fill]:nth-of-type(n + 6) {
+			animation-delay: 300ms;
+		}
+	}
+
+	@keyframes chart-grow {
+		from {
+			scale: 0 1;
+			opacity: 0;
+		}
 	}
 
 	/*

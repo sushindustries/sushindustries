@@ -135,6 +135,7 @@ export type DocumentKind =
 	| "collection"
 	| "task"
 	| "graph"
+	| "insight"
 	| "template"
 	| "config"
 	| "plugin"

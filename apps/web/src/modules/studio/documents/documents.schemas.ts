@@ -31,6 +31,7 @@ export const DOCUMENT_KINDS = [
 	"collection",
 	"task",
 	"graph",
+	"insight",
 	"template",
 	"config",
 	"plugin",

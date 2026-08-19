@@ -111,6 +111,11 @@ const KINDS = [
 	 * is the source and `pnpm sushindustries graph` rewrites these wholesale.
 	 */
 	{
+		kind: "insight",
+		about: "A named question about the index, and the metric that answers it.",
+		match: (path) => path.startsWith("apps/web/content/insights/"),
+	},
+	{
 		kind: "graph",
 		about:
 			"One element's parts and parents, drawn. Generated from the registry.",

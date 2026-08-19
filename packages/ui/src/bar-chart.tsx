@@ -45,25 +45,57 @@ export interface BarChartDatum {
 /**
  * The fills a bar can take, in order.
  *
- * Six, from the site's own category tones, so a chart is visibly the same
- * palette as the nav and the badges rather than a second colour scheme that
- * happens to live on the same page. They are custom properties rather than
- * hex, which is what makes them flip with the theme - a chart is the surface
- * where a hard-coded colour is most obvious, because a whole bar goes the
- * wrong way rather than a one-pixel border.
+ * The syntax palette, which is the one set in this stylesheet designed to be
+ * *cycled*: nine hues chosen to stay apart from each other and carry equal
+ * weight, because that is what highlighting a keyword beside a string
+ * requires. `TypedMark` already cycles them, and a chart wants exactly that
+ * property - so borrowing them makes a chart visibly part of the site rather
+ * than a second colour scheme sharing a page with it.
  *
- * Assigned by position, not by name: a chart cannot know what its categories
+ * The category tones were here first and were wrong twice over. Five of them
+ * are pastel *fills* with a separate ink, so a bar drawn in one is nearly the
+ * background. And they mean something: `--tone-motion` is the motion category,
+ * so a bar coloured "motion" that has nothing to do with motion is a palette
+ * making a claim the data does not.
+ *
+ * Token names rather than `var()` strings, because each one is mixed before it
+ * is used - see `fill` below.
+ *
+ * Assigned by position, not by name. A chart cannot know what its categories
  * mean, and a lookup from category to colour would be a mapping every caller
- * had to supply. Position gives distinct neighbours, which is the whole job.
+ * had to supply.
  */
 const FILLS = [
-	"var(--tone-content-ink)",
-	"var(--tone-motion-ink)",
-	"var(--tone-layout-ink)",
-	"var(--tone-docs-ink)",
-	"var(--tone-3d-ink)",
-	"var(--accent-dim)",
+	"--syn-function",
+	"--syn-string",
+	"--syn-keyword",
+	"--syn-number",
+	"--syn-type",
+	"--syn-property",
+	"--syn-tag",
+	"--syn-variable",
+	"--syn-literal",
 ] as const;
+
+/**
+ * One hue, softened toward the surface it sits on.
+ *
+ * The syntax palette is tuned for `--code-bg`, a near-black, so on a pale page
+ * these are the right hues at the wrong volume - readable, and shouting. The
+ * mix keeps the hue that tells two bars apart and drops the saturation that
+ * makes a chart the loudest thing on the page.
+ *
+ * Composed here rather than in the stylesheet, because a rule cannot see it:
+ * `fill: color-mix(in srgb, currentColor ...)` resolves `currentColor` from
+ * the `color` property and a bar's colour is `fill`, so every bar would have
+ * come out the same shade of whatever text colour the SVG inherited. The value
+ * is the only place the hue is known.
+ *
+ * `--chart-strength` is a property on `.chart`, so a caller on a genuinely
+ * dark surface can turn it back up without touching this.
+ */
+const fill = (token: string) =>
+	`color-mix(in srgb, var(${token}) var(--chart-strength, 72%), var(--bg-1))`;
 
 export interface BarChartProps {
 	readonly rows: readonly BarChartDatum[];
@@ -157,7 +189,7 @@ export function BarChart({
 function fillFor(rows: readonly BarChartDatum[]) {
 	const order = new Map(rows.map((row, at) => [row.label, at]));
 	return (row: BarChartDatum) =>
-		FILLS[(order.get(row.label) ?? 0) % FILLS.length] as string;
+		fill(FILLS[(order.get(row.label) ?? 0) % FILLS.length] as string);
 }
 
 interface OrientedProps {
