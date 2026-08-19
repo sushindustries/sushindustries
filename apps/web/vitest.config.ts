@@ -17,6 +17,9 @@ import { defineConfig } from "vitest/config";
  */
 export default defineConfig({
 	test: {
+		// Named like the two package suites are, so a combined run says which
+		// project a failure came from rather than leaving this one unlabelled.
+		name: "@sushindustries/web",
 		include: ["tests/**/*.test.ts"],
 		globalSetup: ["tests/setup/serve.ts"],
 		// A whole-site crawl in one hook: the budget is the run, not one fetch.
