@@ -311,3 +311,88 @@ extend type Query {
 	"""
 	skill(name: String, index: Int): Skill
 }
+
+# ── collections ──────────────────────────────────────────────────────────
+#
+# A collection is a saved *query* over documents, not a saved list. That is
+# the whole design and it is worth stating in the schema, because the field
+# names look like a list and behave like a view: `members` runs the filter
+# when you ask, so a document added after the collection was written joins it
+# with nothing edited.
+#
+# `skills` above is the older, hand-built version of exactly this idea - a
+# view over the documents whose kind is SKILL. Collections generalise it, and
+# `skills` stays because it carries the instruction bodies, which is a
+# different question from "what is in this set".
+#
+# Defined by a Markdown file in `content/collections/`, so creating, renaming
+# and deleting one is the same write path as any other document.
+
+"A saved query over the documents index, and what it currently matches."
+type Collection {
+	"Its slug, and the name of the file that defines it."
+	id: String!
+
+	title: String!
+	summary: String!
+
+	"The prose explaining why these belong together. Never the members."
+	body: String!
+
+	"The filter itself, so a client can see what it is asking rather than trust the name."
+	kind: DocumentKind
+	section: String
+	search: String
+
+	"How many documents match. The whole set, never the page."
+	total: Int!
+
+	"""
+	What the whole collection costs to read.
+
+	The number to check before reading one: "the conventions is 14,000 tokens"
+	is an answer you can act on, where a list of forty paths is not.
+	"""
+	tokens: Int!
+
+	"The first `limit` matches, in the collection's own order."
+	members: [CollectionMember!]!
+}
+
+"""
+A document as a collection sees it: enough to decide, never the body.
+
+Not `Document`, deliberately. That type is non-null on `body`, `sha` and
+`syncedAt` - correct for a document you asked for by path, and wrong here,
+where fifty members would mean fifty bodies crossing the wire to draw a list
+of titles. Ask `document(path:)` for the one you want to read.
+"""
+type CollectionMember {
+	path: String!
+	kind: DocumentKind!
+	slug: String
+	section: String
+
+	"Where it is served, when it is served anywhere. Null for source files."
+	route: String
+
+	title: String
+	summary: String
+
+	"What this one costs to read, so a member can be chosen on price."
+	tokens: Int!
+}
+
+extend type Query {
+	"Every collection that is not a draft, largest first."
+	collections: [Collection!]!
+
+	"""
+	One collection by id, drafts included.
+
+	Drafts are readable by id and absent from the listing - the same contract a
+	draft post has, so the one you are working on can be opened and nobody
+	finds it by browsing.
+	"""
+	collection(id: String!): Collection
+}

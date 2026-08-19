@@ -107,7 +107,23 @@ export type NewPageFeedback = typeof pageFeedback.$inferInsert;
  * time and would render identically with this database switched off.
  */
 
-/** Which catalogue a document came from. `source` is code, not prose. */
+/**
+ * Which catalogue a document came from. `source` is code, not prose.
+ *
+ * Nine, and the ninth is the one worth explaining. `note` is everything in
+ * `.claude/` that is not a skill - the pipeline, the convention rules, the
+ * checklists. They are documents by every test that matters here (they are
+ * Markdown, they have a path, they cost tokens to read) and they are not
+ * skills, so calling them one would make `skills` return files no runtime can
+ * load.
+ *
+ * This list is duplicated in two places on purpose and checked in both. The
+ * GraphQL enum is generated from `packages/cli/commands/graphql.mjs`, and
+ * `documents.schemas.ts` in the site has it as an array a `<select>` can be
+ * built from - a type cannot be iterated, and an array cannot be a column's
+ * type. `documents.schemas.test.ts` asserts the two agree, because the failure
+ * mode when they do not is a filter that silently returns nothing.
+ */
 export type DocumentKind =
 	| "component"
 	| "package"
@@ -115,6 +131,7 @@ export type DocumentKind =
 	| "page"
 	| "desk"
 	| "skill"
+	| "note"
 	| "repo"
 	| "source";
 

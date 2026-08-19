@@ -987,6 +987,63 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		preview: "Headers, rows and tabular numbers",
 	},
 	{
+		name: "data-table",
+		schema: "Table",
+		version: "0.1.0",
+		title: "Data Table",
+		description:
+			"The same table with TanStack Table under it: sorting, filtering and paging that somebody else has already tested.",
+		files: ["data-table.tsx"],
+		/*
+		 * The one item here with a runtime dependency that is not React. That is
+		 * the trade it exists to make: `table` is the no-dependency version and
+		 * stays, because most tables are read once and sorted never. This is for
+		 * the ones that are worked in - and the sorting, filtering and paging in
+		 * a headless library are somebody else's tested code rather than three
+		 * more things to get subtly wrong here.
+		 *
+		 * v9, which is a different API from v8 - `useTable` with an explicit
+		 * `features` object, not `useReactTable`. The range starts there.
+		 */
+		dependencies: { "@tanstack/react-table": "^9.1.2" },
+		category: "content",
+		subcategory: "Data",
+		tags: ["data", "sorting", "filtering", "pagination", "tanstack"],
+		preview: "A sortable, filtered table with its page controls under it",
+	},
+	{
+		name: "workbench",
+		schema: "WebPageElement",
+		kind: "block",
+		version: "0.1.0",
+		title: "Workbench",
+		description:
+			"The frame around a tool rather than a page: title strip, toolbar, rail, a body that scrolls on its own, and a status line.",
+		files: ["workbench.tsx"],
+		dependencies: {},
+		category: "layout",
+		subcategory: "Containers",
+		tags: ["block", "shell", "panel", "container-query", "no-deps"],
+		preview:
+			"A bordered panel with a title strip above and a status line below",
+	},
+	{
+		name: "dropdown-menu",
+		schema: "SiteNavigationElement",
+		kind: "block",
+		version: "0.1.0",
+		title: "Dropdown Menu",
+		description:
+			"A menu hung off a button: the popover API for the layer, arrow keys for the list, and light-dismiss for free.",
+		files: ["dropdown-menu.tsx"],
+		registryDependencies: ["icon"],
+		dependencies: {},
+		category: "layout",
+		subcategory: "Overlays",
+		tags: ["block", "menu", "popover", "keyboard", "no-deps"],
+		preview: "A button with an open menu of four actions beneath it",
+	},
+	{
 		name: "scroll-area",
 		schema: "WebPageElement",
 		version: "0.1.0",

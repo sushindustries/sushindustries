@@ -1,0 +1,146 @@
+@layer blocks {
+	/* ── studio ──────────────────────────────────────────────────── */
+
+	/*
+	 * The three classes the studio needs that nothing else does.
+	 *
+	 * Everything else it draws is a utility composed in markup or a block that
+	 * already exists - the frame is `workbench`, the tables are `data-table`,
+	 * the menus are `menu`. What is left is a list of documents dense enough to
+	 * scan, which is a genuinely different thing from the site's other lists:
+	 * three lines per row, no gaps between rows, and a selected state, none of
+	 * which `search-list` or `shelf` has.
+	 *
+	 * This chapter is one screen's furniture rather than a component's, so it
+	 * stays here in the app's stylesheet rather than becoming part of what
+	 * anybody installs.
+	 */
+
+	/*
+	 * The header's tiles.
+	 *
+	 * `auto-fit` at a minimum width rather than a column count, so four tiles are
+	 * four across on a laptop and two across on a phone with no breakpoint
+	 * deciding it - and a fifth needs no change here. The utilities have `.grid`
+	 * for `display: grid` and nothing that sets a template, which is correct:
+	 * a template is a layout decision and belongs to the layout.
+	 */
+	.studio-tiles {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+		gap: var(--s-3);
+	}
+
+	/*
+	 * A short warning inside the studio: what an action would break, or why one
+	 * was refused.
+	 *
+	 * Not `.markdown-alert`, which is the renderer's callout and carries a title
+	 * row, an icon column and prose spacing. This is one sentence in a dialog.
+	 */
+	.studio-notice {
+		margin: 0;
+		padding: var(--s-3);
+		border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+		border-radius: var(--r);
+		background: color-mix(in srgb, var(--accent) 8%, transparent);
+		font-size: var(--t-sm);
+	}
+
+	.studio-list {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		/*
+		 * The list is tall and lives in a rail that does not scroll with the
+		 * body, so it gets its own scroll or the rail grows past the panel.
+		 */
+		max-height: 28rem;
+		overflow-y: auto;
+		scrollbar-gutter: stable;
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r);
+		background: var(--bg-0);
+	}
+
+	.studio-list-item {
+		display: grid;
+		gap: 2px;
+		width: 100%;
+		padding: var(--s-2);
+		border: 0;
+		border-bottom: 1px solid var(--line-soft);
+		background: transparent;
+		font: inherit;
+		color: inherit;
+		text-align: left;
+		cursor: pointer;
+	}
+
+	.studio-list li:last-child .studio-list-item {
+		border-bottom: 0;
+	}
+
+	.studio-list-item:hover {
+		background: var(--bg-2);
+	}
+
+	/*
+	 * `aria-current` rather than a `.is-selected` class, so the state a screen
+	 * reader is told and the state that is drawn are the same attribute. Two of
+	 * them is how a list becomes visually correct and silently wrong.
+	 */
+	.studio-list-item[aria-current="true"] {
+		background: var(--bg-2);
+		box-shadow: inset 2px 0 0 var(--accent);
+	}
+
+	/*
+	 * There is no `.studio-list-name` here.
+	 *
+	 * It was three declarations that already have names - `text-sm`,
+	 * `font-semibold`, `break-anywhere` - so a class for them would have been a
+	 * fourth name for the same rules and one more place a size could disagree
+	 * with the text beside it. The markup composes them, which is the rule the
+	 * whole stylesheet follows and which `pnpm run doctor` enforces.
+	 *
+	 * The two below stay, because "monospaced, extra small, faint, breakable"
+	 * is four utilities used twice and reads as a thing rather than as a list.
+	 */
+	.studio-list-path,
+	.studio-list-meta {
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--fg-faint);
+		overflow-wrap: anywhere;
+	}
+
+	/*
+	 * The form beside the preview. Inset rather than raised: it is part of the
+	 * panel it sits in, and a card with its own shadow inside a workbench reads
+	 * as a second surface floating on the first.
+	 */
+	.studio-panel {
+		padding: var(--s-4);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-card);
+		background: var(--bg-0);
+	}
+
+	/*
+	 * The preview is somebody's document rendered at full size inside a pane
+	 * that is not a page. Capped and scrolled, so a two-thousand-word post does
+	 * not push the form that edits it off the top of the screen.
+	 */
+	.studio-preview {
+		max-height: 32rem;
+		overflow-y: auto;
+		scrollbar-gutter: stable;
+		padding: var(--s-4);
+		border: 1px solid var(--line-soft);
+		border-radius: var(--r-card);
+		background: var(--bg-0);
+	}
+}

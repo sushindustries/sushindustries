@@ -11,6 +11,10 @@ import {
 	sql,
 } from "@sushindustries/db/schema";
 import sdl from "../../../../../apollo/schema.graphql?raw";
+import {
+	getCollection,
+	getCollections,
+} from "../studio/collections/collections.server";
 import { githubResolvers } from "./github.server";
 
 /*
@@ -301,6 +305,44 @@ export const resolvers = {
 				);
 			}
 			return args.index ? (all[args.index - 1] ?? null) : null;
+		},
+
+		/*
+		 * Collections: saved queries over the documents index.
+		 *
+		 * Flattened here rather than resolved field by field, because the shape
+		 * the server returns - a definition, a count and a page of members - is
+		 * already one round trip, and a `members` resolver would run the filter a
+		 * second time to answer a field the first query had in hand.
+		 */
+		async collections() {
+			const all = await getCollections();
+			return all.map((one) => ({
+				...one.collection,
+				kind: one.collection.kind ? fromKind(one.collection.kind) : null,
+				total: one.total,
+				tokens: one.tokens,
+				// Deliberately empty in the listing. Every collection's members is
+				// every collection's filter run, which for a page that only shows
+				// sizes is several hundred rows nobody asked for.
+				members: [],
+			}));
+		},
+
+		async collection(_: unknown, args: { id: string }) {
+			const found = await getCollection(args.id);
+			if (!found) return null;
+
+			return {
+				...found.collection,
+				kind: found.collection.kind ? fromKind(found.collection.kind) : null,
+				total: found.total,
+				tokens: found.tokens,
+				members: found.members.map((member) => ({
+					...member,
+					kind: fromKind(member.kind),
+				})),
+			};
 		},
 
 		async providers() {

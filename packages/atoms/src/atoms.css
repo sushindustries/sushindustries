@@ -99,3 +99,7 @@
 @import "./blocks/video-portrait.css";
 @import "./blocks/questions.css";
 @import "./blocks/consent.css";
+@import "./blocks/data-table.css";
+@import "./blocks/dropdown-menu.css";
+@import "./blocks/workbench.css";
+@import "./blocks/studio.css";

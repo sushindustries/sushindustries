@@ -1,5 +1,6 @@
 import { EMBED_PROVIDERS } from "@sushindustries/http";
-import { beforeAll, describe, expect, inject, test } from "vitest";
+import { beforeAll, describe, expect, inject, it, test } from "vitest";
+import { SITE } from "../src/modules/content/site.catalogue";
 
 /*
  * The policy, checked against the content it is a policy for.
@@ -133,5 +134,64 @@ describe("the content security policy", () => {
 		expect(headers.get("referrer-policy")).toBe(
 			"strict-origin-when-cross-origin",
 		);
+	});
+});
+
+/*
+ * The development sign-in is a door, and this is the lock.
+ *
+ * `/auth/dev` issues a session without GitHub, which is right on a laptop and
+ * catastrophic anywhere else. It is closed by two conditions - not production,
+ * and localhost - and this asserts the first one, because that is the one the
+ * deployed image relies on. If this ever goes green for the wrong reason, the
+ * route should be deleted rather than repaired.
+ */
+describe("the development sign-in", () => {
+	it("does not exist unless DEV_SIGNIN is set", async () => {
+		const previous = process.env.DEV_SIGNIN;
+		process.env.DEV_SIGNIN = undefined;
+		delete process.env.DEV_SIGNIN;
+
+		try {
+			const { Route } = await import("../src/routes/auth.dev");
+			const handler = Route.options.server?.handlers?.GET;
+			expect(handler).toBeDefined();
+
+			const response = await (
+				handler as (context: { request: Request }) => Response
+			)({
+				request: new Request("http://localhost:3000/auth/dev"),
+			});
+
+			expect(response.status).toBe(404);
+			expect(response.headers.get("set-cookie")).toBeNull();
+		} finally {
+			if (previous !== undefined) process.env.DEV_SIGNIN = previous;
+		}
+	});
+
+	it("is closed to a host that is not localhost, even when it is set", async () => {
+		const previous = process.env.DEV_SIGNIN;
+		process.env.DEV_SIGNIN = "1";
+
+		try {
+			const { Route } = await import("../src/routes/auth.dev");
+			const handler = Route.options.server?.handlers?.GET;
+
+			const response = await (
+				handler as (context: { request: Request }) => Response
+			)({
+				// The deployment's own origin, read from the catalogue rather than
+				// typed: the point of the assertion is "not localhost", and a second
+				// copy of the domain here would outlive a rename of the first.
+				request: new Request(`${SITE.url}/auth/dev`),
+			});
+
+			expect(response.status).toBe(404);
+			expect(response.headers.get("set-cookie")).toBeNull();
+		} finally {
+			if (previous === undefined) delete process.env.DEV_SIGNIN;
+			else process.env.DEV_SIGNIN = previous;
+		}
 	});
 });

@@ -124,6 +124,11 @@ function group(paths) {
 const CREATES = [
 	["create-post", "post", "A written piece under /posts."],
 	["create-page", "page", "A standing page at the top level, like /about."],
+	[
+		"create-collection",
+		"collection",
+		"A saved query over the documents index - a named filter, not a list. Membership is computed when somebody asks, so anything added later that matches joins it on its own. Use this when a set of documents is worth naming: `skills`, `conventions`, `component-api`.",
+	],
 	["create-desk", "desk", "A desktop arrangement rendered at its own path."],
 	[
 		"create-component",

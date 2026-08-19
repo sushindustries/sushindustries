@@ -1,0 +1,110 @@
+@layer blocks {
+	/*
+	 * A table of rows somebody is reading rather than admiring.
+	 *
+	 * Every value here is a token. That is the rule the rest of this stylesheet
+	 * follows and it matters more in a table than anywhere else: a table is
+	 * mostly borders and spacing, so a single hard-coded grey is a line that
+	 * stops flipping with the theme while everything around it does, and the
+	 * result reads as a rendering bug rather than as a colour choice.
+	 */
+	/*
+	 * There is no `.data-table-scroll` here, on purpose.
+	 *
+	 * The frame around a table - scroll sideways, stay inside the column, take
+	 * a border and a radius - is five utilities that already exist, so writing
+	 * it again as a block class would be a sixth name for the same declarations
+	 * and one more place a radius could disagree with the cards beside it. The
+	 * component composes `overflow-x-auto max-w-full border rounded-xl bg-1` in
+	 * its markup instead, which is the rule the whole stylesheet follows and
+	 * which `pnpm run doctor` enforces - it caught this exact class.
+	 *
+	 * What is below is what the utilities cannot say: a table's own internals.
+	 */
+
+	.data-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: var(--t-sm);
+		/* Tabular figures, so a column of numbers lines up on the decimal. */
+		font-variant-numeric: tabular-nums;
+	}
+
+	.data-table thead th {
+		position: sticky;
+		top: 0;
+		/* Over the rows scrolling under it, and under everything else. */
+		z-index: var(--z-base);
+		text-align: left;
+		white-space: nowrap;
+		padding: var(--s-2) var(--s-3);
+		background: var(--bg-2);
+		border-bottom: 1px solid var(--line);
+		color: var(--fg-dim);
+		font-weight: 600;
+	}
+
+	.data-table tbody td {
+		padding: var(--s-2) var(--s-3);
+		border-bottom: 1px solid var(--line-soft);
+		vertical-align: top;
+	}
+
+	/* The last row's border would sit against the container's own. */
+	.data-table tbody tr:last-child td {
+		border-bottom: 0;
+	}
+
+	.data-table tbody tr:hover {
+		background: var(--bg-2);
+	}
+
+	/*
+	 * A sortable header is a button, not a th with a click handler. Keyboard
+	 * users get it for free and the focus ring is the one every other control
+	 * on the site uses.
+	 */
+	.data-table-sort {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--s-1);
+		background: none;
+		border: 0;
+		padding: 0;
+		font: inherit;
+		color: inherit;
+		cursor: pointer;
+	}
+
+	.data-table-sort:hover {
+		color: var(--fg);
+	}
+
+	/*
+	 * The direction indicator holds its width whether or not it is showing
+	 * anything, so sorting a column does not shift the header row sideways.
+	 */
+	.data-table-sort::after {
+		content: attr(data-direction);
+		display: inline-block;
+		min-width: 1ch;
+		color: var(--fg-faint);
+	}
+
+	/* A cell holding a path or a hash. Long, and not prose. */
+	.data-table-mono {
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		word-break: break-all;
+	}
+
+	.data-table-number {
+		text-align: right;
+	}
+
+	.data-table-empty {
+		padding: var(--s-5) var(--s-3);
+		text-align: center;
+		color: var(--fg-dim);
+	}
+}

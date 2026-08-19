@@ -20,10 +20,24 @@
 import { McpServer } from "@modelcontextprotocol/server";
 import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { registerAuthoringTools } from "./authoring.mjs";
+import { registerCollectionsTools } from "./collections.mjs";
 import { registerDocsTools } from "./docs.mjs";
 import { registerStackTools } from "./stack.mjs";
 
 export const GROUPS = {
+	/*
+	 * Collections first, because it is the group to reach for first.
+	 *
+	 * `list-docs` answers "what is here" with several hundred paths - correct,
+	 * and unusable: a context window spent listing files has nothing left for
+	 * reading them. A collection is somebody's judgement about which of those
+	 * belong together, with the price of the whole set attached, so the
+	 * decision to read one can be made before paying for it.
+	 */
+	collections: {
+		about: "named sets of documents, each a saved filter rather than a list",
+		register: registerCollectionsTools,
+	},
 	docs: {
 		about: "component pages, package READMEs, posts and skills",
 		register: registerDocsTools,

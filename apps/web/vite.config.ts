@@ -128,10 +128,23 @@ export default defineConfig({
 			// worse, quietly increment every package's count once per deploy.
 			// Everything else has no per-request server dependency, confirmed
 			// by grepping every route's loader for a server-function call.
+			//
+			// `/studio` is excluded for a different reason than `/packages`, and a
+			// worse one if it is forgotten. It is behind a sign-in, and a
+			// prerendered page is a static file Nitro serves *before* the route
+			// runs - so the build produced an HTML file of the signed-out shell and
+			// served it to everyone, gate and all, with no error anywhere. The page
+			// looked empty rather than forbidden, which is the failure that takes
+			// longest to recognise.
+			//
+			// Anything private must be in this list. A page whose content depends
+			// on who is asking cannot have one answer baked at build time.
 			prerender: {
 				enabled: true,
 				crawlLinks: true,
-				filter: (page) => !page.path.startsWith("/packages"),
+				filter: (page) =>
+					!page.path.startsWith("/packages") &&
+					!page.path.startsWith("/studio"),
 			},
 		}),
 

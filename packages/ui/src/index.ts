@@ -55,6 +55,11 @@ export {
 } from "./context-menu";
 export { CopyButton, type CopyButtonProps } from "./copy-button";
 export { Credit, type CreditProps } from "./credit";
+export {
+	DataTable,
+	type DataTableColumn,
+	type DataTableProps,
+} from "./data-table";
 export { DeskWindow, type DeskWindowProps } from "./desk-window";
 export { Device, type DeviceProps } from "./device";
 export {
@@ -74,6 +79,11 @@ export {
 	type DocNavSection,
 } from "./doc-nav";
 export { Dock, type DockProps, type DockTask } from "./dock";
+export {
+	type DropdownItem,
+	DropdownMenu,
+	type DropdownMenuProps,
+} from "./dropdown-menu";
 export { Empty, type EmptyProps } from "./empty";
 export { Field, type FieldProps } from "./field";
 export {
@@ -212,3 +222,4 @@ export {
 	type VideoTheme,
 	type VideoVariant,
 } from "./video-player";
+export { Workbench, type WorkbenchProps } from "./workbench";

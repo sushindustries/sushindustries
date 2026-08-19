@@ -363,11 +363,40 @@ async function newDocs() {
 	}
 }
 
+/* ── collection ──────────────────────────────────────────────────────── */
+
+/*
+ * A collection is a saved query over the documents index, not a saved list -
+ * so what this writes is a filter and a paragraph explaining the judgement
+ * behind it. Membership is computed when somebody asks, which is why there is
+ * nothing here to keep in step with anything.
+ */
+async function newCollection() {
+	const target = `apps/web/content/collections/${slug}.md`;
+
+	await writeFrom("collection", target, {
+		slug,
+		title: titleCase(slug),
+		date: new Date().toISOString().slice(0, 10),
+	});
+
+	written.push(target);
+	todo.push(
+		`set the filter in ${target} - ` +
+			`every field is optional, and all of them off matches everything`,
+	);
+	todo.push(
+		`set \`draft: false\` when the filter returns what you meant - ` +
+			`it appears at /studio/collections`,
+	);
+}
+
 /* ── run ─────────────────────────────────────────────────────────────── */
 
 const kinds = {
 	post: newPost,
 	page: newPage,
+	collection: newCollection,
 	desk: newDesk,
 	docs: newDocs,
 	component: newComponent,

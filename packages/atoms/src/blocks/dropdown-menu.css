@@ -1,0 +1,88 @@
+@layer blocks {
+	/* ── dropdown menu ───────────────────────────────────────────── */
+
+	/*
+	 * A menu hung off a button, as opposed to one opened at a pointer.
+	 *
+	 * The surface is `.menu` in `menu.css` and is shared with the context menu -
+	 * two menus that look different is two menus, and there is only one here.
+	 * What this chapter adds is the difference between the two: a popover has to
+	 * undo the user-agent styles that come with the top layer, and a button that
+	 * opens one has a caret that turns.
+	 */
+
+	/*
+	 * The popover's own resets.
+	 *
+	 * A `popover` element arrives with `position: fixed`, `inset: 0`, `margin:
+	 * auto`, a border and a background from the user agent - which centres it in
+	 * the viewport like a dialog. That is the correct default for the element
+	 * and entirely wrong for a menu, so all four are undone here. `inset: auto`
+	 * rather than `inset: 0` is the load-bearing one: without it the left and
+	 * top set in JavaScript are fighting a right and bottom that are also set,
+	 * and the menu stretches instead of moving.
+	 */
+	.dropdown-menu {
+		position: fixed;
+		inset: auto;
+		margin: 0;
+		padding: var(--s-1);
+		overflow: visible;
+		color: inherit;
+	}
+
+	/*
+	 * Closed is `display: none` from the user agent, which cannot be animated
+	 * from and would make the opening keyframe in `menu.css` fire on a box with
+	 * no size. `allow-discrete` is what lets the browser run it anyway.
+	 */
+	@media (prefers-reduced-motion: no-preference) {
+		.dropdown-menu {
+			transition: display 130ms allow-discrete;
+		}
+	}
+
+	/*
+	 * The caret turns when the menu it belongs to is open.
+	 *
+	 * `:has()` on the button, keyed off the popover's own open state, so there
+	 * is no state in React deciding how a chevron is drawn. The chevron points
+	 * right in the icon set, so the closed state is already a quarter turn.
+	 */
+	.dropdown-caret {
+		rotate: 90deg;
+		color: var(--fg-faint);
+		transition: rotate 130ms var(--ease-out);
+	}
+
+	:has(> .dropdown-menu:popover-open) > button > .dropdown-caret,
+	button:has(+ .dropdown-menu:popover-open) .dropdown-caret {
+		rotate: 270deg;
+	}
+
+	/*
+	 * The item that removes something. Colour only - it does not confirm.
+	 *
+	 * `--accent`, which is the palette's one warm red, rather than a `--danger`
+	 * token invented here. There is no danger colour in `tokens.css` and adding
+	 * one for a single menu item would be a decision about the whole palette
+	 * made in a block chapter. Text rather than a filled red row, because a menu
+	 * of four actions with one of them shouting is a menu people misread when
+	 * they are in a hurry - which is when they are reading it.
+	 */
+	.menu-item[data-destructive] {
+		color: var(--accent);
+	}
+
+	.menu-item[data-destructive]:hover:not(:disabled) {
+		background: color-mix(in srgb, var(--accent) 12%, transparent);
+	}
+
+	/* Said in the menu rather than by a button that is not there. */
+	.menu-empty {
+		margin: 0;
+		padding: var(--s-2) var(--s-3);
+		font-size: var(--t-sm);
+		color: var(--fg-faint);
+	}
+}

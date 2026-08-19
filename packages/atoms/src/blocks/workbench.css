@@ -1,0 +1,241 @@
+@layer blocks {
+	/* ── workbench ───────────────────────────────────────────────── */
+
+	/*
+	 * A machine you work in, built the way `device.css` builds one - and
+	 * deliberately without the half that makes that one a picture.
+	 *
+	 * The device is a showcase: a case, a bezel, a screen, tilted in 3D behind a
+	 * perspective, with an aspect ratio that says "laptop". The thing inside it
+	 * is being *demonstrated*. This is the same construction with the tilt, the
+	 * perspective and the aspect ratio taken off, because all three are exactly
+	 * wrong for a surface somebody sits in front of and uses:
+	 *
+	 *   the tilt          text on a rotated plane is text that is slightly
+	 *                     blurred all day
+	 *   the aspect ratio  crops real content to the shape of a lid
+	 *   the perspective   costs a stacking context and buys nothing flat
+	 *
+	 * What is kept is the part that reads as a machine and helps: a case in
+	 * `--shell`, which is a different *material* from the page rather than
+	 * another step on its ladder, and a screen sunk into it with the same inset
+	 * light. That is why a workbench looks like an instrument on the page and a
+	 * plain bordered div looks like a panel of it.
+	 *
+	 * Everything inside is spaced from `--s-*`. There is not a single loose
+	 * pixel in this chapter, which is what stops a dashboard drifting into six
+	 * slightly different gaps.
+	 */
+
+	.workbench {
+		/*
+		 * The bezel, and the corner it implies.
+		 *
+		 * Local properties rather than `--device-*`, because those are set per
+		 * machine by `devices.css` and a workbench is not a machine - inheriting
+		 * them would mean this changed shape when the viewport crossed a laptop
+		 * breakpoint, for no reason anybody could see.
+		 */
+		--workbench-bezel: var(--s-2);
+		--workbench-corner: var(--r-card);
+
+		display: block;
+		min-width: 0;
+		padding: var(--workbench-bezel);
+		border-radius: var(--workbench-corner);
+		/* The case: a material, not a shade of the page. */
+		background: linear-gradient(170deg, var(--shell), var(--shell-deep));
+		box-shadow:
+			0 1px 0 var(--glass-edge) inset,
+			var(--lift-2);
+
+		/*
+		 * Named, so the rail folds on the width of this panel rather than of the
+		 * window. A workbench in a sidebar and one filling a page then behave the
+		 * same at the same size, which a media query cannot express because it is
+		 * asking a different question.
+		 */
+		container: workbench / inline-size;
+	}
+
+	/*
+	 * The screen, sunk into the case.
+	 *
+	 * Its radius is the case's less the bezel. A screen with the same radius as
+	 * the case it sits in has visibly thicker corners than edges, which is the
+	 * tell that it was drawn rather than assembled - the same rule `device.css`
+	 * follows, and the reason both look like objects.
+	 */
+	.workbench-screen {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		border-radius: calc(var(--workbench-corner) - var(--workbench-bezel));
+		background: var(--bg-0);
+		/*
+		 * Light falls *into* a screen behind a bezel. Without the inset the case
+		 * and the screen are two flat rectangles of slightly different colour,
+		 * which on a pale palette is almost nothing at all.
+		 */
+		box-shadow:
+			inset 0 1px 3px color-mix(in srgb, var(--shadow-deep) 40%, transparent),
+			inset 0 0 0 1px color-mix(in srgb, var(--shadow) 25%, transparent);
+		/* Clipped, so the strip's background stops at the rounded corner. */
+		overflow: clip;
+	}
+
+	/*
+	 * Three columns, so the title is centred on the screen rather than on
+	 * whatever is left beside the toolbar - the same reasoning as the device
+	 * strip, and the same failure if it were `space-between`: it looks right
+	 * until the first toolbar arrives.
+	 */
+	.workbench-strip {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+		gap: var(--s-3);
+		flex: 0 0 auto;
+		min-height: 3rem;
+		padding: var(--s-2) var(--s-3);
+		border-bottom: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--bg-1) 80%, transparent);
+		backdrop-filter: blur(8px);
+	}
+
+	.workbench-title {
+		grid-column: 2;
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--fg-faint);
+		text-align: center;
+	}
+
+	/* Always the third column, so it stays put when there is no title. */
+	.workbench-tools {
+		grid-column: 3;
+		justify-self: end;
+		display: flex;
+		align-items: center;
+		gap: var(--s-2);
+		min-width: 0;
+	}
+
+	.workbench-main {
+		display: flex;
+		min-width: 0;
+		/*
+		 * `min-height: 0`, so the body's own overflow wins over the flex default,
+		 * which is to grow the item rather than to scroll it. Without this the
+		 * `max-height` below does nothing and the page scrolls instead.
+		 */
+		min-height: 0;
+	}
+
+	/*
+	 * The rail, which does not scroll with the body.
+	 *
+	 * Wide enough for a search field and a select without either being cramped,
+	 * and capped so a long title in the list cannot widen it. It is a sibling of
+	 * the body rather than a block inside it, so it stays put while the body
+	 * scrolls - inside, a list of filters would scroll away, which is the one
+	 * thing it must not do, because it is what you reach for after scrolling.
+	 */
+	.workbench-rail {
+		flex: 0 0 var(--workbench-rail, 19rem);
+		min-width: 0;
+		/*
+		 * The same cap the body takes, so the two columns end level. `inherit`
+		 * was here and does nothing useful - it would resolve against the flex
+		 * parent, which has no max-height of its own.
+		 */
+		max-height: var(--workbench-body, none);
+		padding: var(--s-4);
+		border-inline-end: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--bg-2) 55%, transparent);
+		overflow-y: auto;
+		scrollbar-gutter: stable;
+	}
+
+	.workbench-body {
+		flex: 1;
+		min-width: 0;
+		min-height: 0;
+		/*
+		 * The main gutter of the whole thing, and the reason it is `--s-5` rather
+		 * than `--s-4`: this is the only edge between a case and real content, so
+		 * it is the one place a tight gap reads as cramped rather than as dense.
+		 */
+		padding: var(--s-5);
+		max-height: var(--workbench-body, none);
+		overflow-y: auto;
+		scrollbar-gutter: stable;
+		/*
+		 * Chains rather than contains. Reaching the bottom of a panel should
+		 * carry on down the page; trapping is for a dialog somebody chose to
+		 * open, not for a surface in the middle of one.
+		 */
+		touch-action: pan-y;
+	}
+
+	/*
+	 * The status line: small, monospaced, the same weight as the title.
+	 *
+	 * Wraps rather than scrolls. It is the one part that must stay readable at
+	 * every width, because it holds the counts and the revision - the two things
+	 * somebody checks without reading anything else.
+	 */
+	.workbench-status {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--s-2) var(--s-4);
+		flex: 0 0 auto;
+		padding: var(--s-2) var(--s-3);
+		border-top: 1px solid var(--line-soft);
+		background: color-mix(in srgb, var(--bg-1) 80%, transparent);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		color: var(--fg-faint);
+	}
+
+	/* A label and its value, so a pair never wraps apart. */
+	.workbench-stat {
+		display: inline-flex;
+		align-items: baseline;
+		gap: var(--s-1);
+		white-space: nowrap;
+	}
+
+	.workbench-stat > b {
+		font-weight: 600;
+		color: var(--fg-dim);
+	}
+
+	/* The status line's own right-hand group: pagers, and anything like them. */
+	.workbench-status > .workbench-end {
+		margin-inline-start: auto;
+		display: flex;
+		align-items: center;
+		gap: var(--s-2);
+	}
+
+	@container workbench (max-width: 46rem) {
+		.workbench-main {
+			flex-direction: column;
+		}
+
+		.workbench-rail {
+			flex: 0 0 auto;
+			max-height: none;
+			border-inline-end: 0;
+			border-block-end: 1px solid var(--line-soft);
+		}
+
+		.workbench-body {
+			padding: var(--s-4);
+		}
+	}
+}

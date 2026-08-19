@@ -574,6 +574,47 @@ readList(meta, "tags");      // ["tanstack", "css"]`,
 		source: `<Switch label="Smooth scrolling" defaultChecked />`,
 		language: "tsx",
 	},
+	"data-table": {
+		source: `<DataTable
+	label="Documents by kind"
+	sortBy="tokens"
+	descending
+	rows={rows}
+	columns={[
+		{ id: "kind", header: "Kind", sortable: true },
+		{ id: "files", header: "Files", numeric: true, sortable: true },
+		{ id: "tokens", header: "Tokens", numeric: true, sortable: true },
+	]}
+/>`,
+		language: "tsx",
+	},
+	"dropdown-menu": {
+		source: `<DropdownMenu
+	label="Actions"
+	icon="terminal"
+	align="end"
+	items={[
+		{ id: "open", label: "Open on the site", icon: "link" },
+		{ id: "retitle", label: "Change title…", icon: "text" },
+		{ id: "remove", label: "Remove…", icon: "close", destructive: true },
+	]}
+	onSelect={(id) => run(id)}
+/>`,
+		language: "tsx",
+	},
+	workbench: {
+		source: `<Workbench
+	title="documents"
+	label="Every document in the index"
+	maxHeight="20rem"
+	toolbar={<Button>New</Button>}
+	rail={<Filters />}
+	status={<span className="workbench-stat"><b>50</b> of <b>1,240</b></span>}
+>
+	<DocumentList />
+</Workbench>`,
+		language: "tsx",
+	},
 	table: {
 		source: `<Table rowKey={(r) => r.name}
 	columns={[

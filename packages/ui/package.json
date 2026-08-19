@@ -77,6 +77,7 @@
 		"./context-menu": "./src/context-menu.tsx",
 		"./copy-button": "./src/copy-button.tsx",
 		"./credit": "./src/credit.tsx",
+		"./data-table": "./src/data-table.tsx",
 		"./desk-window": "./src/desk-window.tsx",
 		"./device": "./src/device.tsx",
 		"./device-kinds": "./src/device-kinds.ts",
@@ -84,6 +85,7 @@
 		"./doc-aside": "./src/doc-aside.tsx",
 		"./doc-nav": "./src/doc-nav.tsx",
 		"./dock": "./src/dock.tsx",
+		"./dropdown-menu": "./src/dropdown-menu.tsx",
 		"./empty": "./src/empty.tsx",
 		"./field": "./src/field.tsx",
 		"./folder-shelf": "./src/folder-shelf.tsx",
@@ -132,6 +134,7 @@
 		"./use-scroll-progress": "./src/use-scroll-progress.ts",
 		"./use-scroll-turn": "./src/use-scroll-turn.ts",
 		"./video-player": "./src/video-player.tsx",
+		"./workbench": "./src/workbench.tsx",
 		"./package.json": "./package.json",
 		"./registry": "./registry.ts"
 	},
@@ -164,6 +167,7 @@
 			"./context-menu": "./dist/context-menu.js",
 			"./copy-button": "./dist/copy-button.js",
 			"./credit": "./dist/credit.js",
+			"./data-table": "./dist/data-table.js",
 			"./desk-window": "./dist/desk-window.js",
 			"./device": "./dist/device.js",
 			"./device-kinds": "./dist/device-kinds.js",
@@ -171,6 +175,7 @@
 			"./doc-aside": "./dist/doc-aside.js",
 			"./doc-nav": "./dist/doc-nav.js",
 			"./dock": "./dist/dock.js",
+			"./dropdown-menu": "./dist/dropdown-menu.js",
 			"./empty": "./dist/empty.js",
 			"./field": "./dist/field.js",
 			"./folder-shelf": "./dist/folder-shelf.js",
@@ -219,6 +224,7 @@
 			"./use-scroll-progress": "./dist/use-scroll-progress.js",
 			"./use-scroll-turn": "./dist/use-scroll-turn.js",
 			"./video-player": "./dist/video-player.js",
+			"./workbench": "./dist/workbench.js",
 			"./package.json": "./package.json",
 			"./registry": {
 				"types": "./dist/registry.d.ts",
@@ -231,5 +237,8 @@
 		"url": "git+https://github.com/sushindustries/sushindustries.git",
 		"directory": "packages/ui"
 	},
-	"homepage": "https://adamjurek.com/packages/ui"
+	"homepage": "https://adamjurek.com/packages/ui",
+	"dependencies": {
+		"@tanstack/react-table": "^9.1.2"
+	}
 }

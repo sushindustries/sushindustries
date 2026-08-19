@@ -21,12 +21,14 @@ import {
 	CopyButton,
 	Credit,
 	type CreditProps,
+	DataTable,
 	DeskWindow,
 	Device,
 	Dialog,
 	DocAside,
 	Dock,
 	DocNav,
+	DropdownMenu,
 	Empty,
 	Field,
 	FolderShelf,
@@ -80,6 +82,7 @@ import {
 	useScrollTurn,
 	useToast,
 	VideoPlayer,
+	Workbench,
 } from "@sushindustries/ui";
 
 import {
@@ -1759,6 +1762,104 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 	toggle: {
 		element: <ToggleDemo />,
 		...DEMO_SOURCES.toggle,
+	},
+
+	"data-table": {
+		element: (
+			<div className="w-full">
+				<DataTable
+					label="Documents by kind, with their token cost"
+					sortBy="tokens"
+					descending
+					rows={[
+						{ kind: "source", files: 96, tokens: 412_310 },
+						{ kind: "component", files: 245, tokens: 188_004 },
+						{ kind: "note", files: 31, tokens: 74_920 },
+						{ kind: "post", files: 6, tokens: 9_140 },
+					]}
+					columns={[
+						{ id: "kind", header: "Kind", sortable: true },
+						{
+							id: "files",
+							header: "Files",
+							numeric: true,
+							sortable: true,
+							cell: (row) => row.files.toLocaleString(),
+						},
+						{
+							id: "tokens",
+							header: "Tokens",
+							numeric: true,
+							sortable: true,
+							cell: (row) => row.tokens.toLocaleString(),
+						},
+					]}
+				/>
+			</div>
+		),
+		...DEMO_SOURCES["data-table"],
+	},
+
+	"dropdown-menu": {
+		element: (
+			<DropdownMenu
+				label="Actions"
+				icon="terminal"
+				items={[
+					{ id: "open", label: "Open on the site", icon: "link" },
+					{ id: "retitle", label: "Change title…", icon: "text" },
+					{ id: "move", label: "Change slug…", icon: "folder" },
+					{
+						id: "remove",
+						label: "Remove…",
+						icon: "close",
+						destructive: true,
+					},
+				]}
+				// A demo, so it says what it would do rather than doing it.
+				onSelect={() => {}}
+			/>
+		),
+		...DEMO_SOURCES["dropdown-menu"],
+	},
+
+	workbench: {
+		element: (
+			<div className="w-full">
+				<Workbench
+					title="documents"
+					label="A workbench with all four of its slots filled"
+					maxHeight="14rem"
+					toolbar={<Button>New</Button>}
+					rail={
+						<div className="flex col gap-2">
+							<span className="label">Kind</span>
+							{["component", "post", "page"].map((kind) => (
+								<span key={kind} className="text-sm fg-dim">
+									{kind}
+								</span>
+							))}
+						</div>
+					}
+					status={
+						<span className="workbench-stat">
+							<b>50</b> of <b>1,240</b>
+						</span>
+					}
+				>
+					<div className="flex col gap-3">
+						<h3 className="m-0">The body scrolls on its own</h3>
+						{Array.from({ length: 8 }, (_, at) => (
+							// biome-ignore lint/suspicious/noArrayIndexKey: static demo rows
+							<p key={at} className="m-0 text-sm fg-dim">
+								Row {at + 1}, inside the screen rather than on the page.
+							</p>
+						))}
+					</div>
+				</Workbench>
+			</div>
+		),
+		...DEMO_SOURCES.workbench,
 	},
 
 	table: {
