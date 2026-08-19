@@ -222,6 +222,32 @@ jobs:
         with:
           persist-credentials: false
 
+      # Lint before building, so a Dockerfile mistake costs seconds rather
+      # than a full multi-stage build. Here rather than in `check` for two
+      # reasons: this job already gates on the Docker plumbing having changed,
+      # and hadolint is a 54 MB download, which is noise beside an image build
+      # and would not be beside a lint job.
+      #
+      # Pinned by version and verified by sha256 before execution, the same way
+      # the actionlint step is. DL3059 and DL3066 are ignored deliberately:
+      # DL3059 wants consecutive RUNs merged in the build stage, whose layers
+      # are discarded because only .output reaches runtime, and DL3066 wants a
+      # numeric UID for host resolution, which matters to Kubernetes
+      # runAsNonRoot and not to Railway - `docker exec id` in this image
+      # reports uid=1000(node), so the name resolves.
+      - name: Dockerfile
+        env:
+          HADOLINT_VERSION: 2.14.0
+          HADOLINT_SHA256: 6bf226944684f56c84dd014e8b979d27425c0148f61b3bd99bcc6f39e9dc5a47
+        run: |
+          set -euo pipefail
+          curl -fsSLo hadolint \
+            "https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64"
+          echo "${HADOLINT_SHA256}  hadolint" | sha256sum -c -
+          chmod +x hadolint
+          ./hadolint --ignore DL3059 --ignore DL3066 Dockerfile
+          rm -f hadolint
+
       - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
 
       # The check that matters. Three deploys failed on things only a real
