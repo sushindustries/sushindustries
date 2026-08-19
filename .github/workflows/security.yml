@@ -31,6 +31,14 @@ permissions:
   contents: read
   security-events: write
 
+# One scan per ref at a time, and never cancel one that has started: a run
+# killed before its upload step uploads no SARIF at all, which reads on the
+# Security tab as "no findings" rather than "did not finish". The scheduled
+# Monday run and a push scan can otherwise overlap.
+concurrency:
+  group: security-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   scan:
     name: Trivy scan

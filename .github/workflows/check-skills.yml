@@ -27,6 +27,14 @@ on:
 
 permissions: {}
 
+# `**/skills/**` matches `.claude/skills/**`, and this repo has twenty of
+# those, so a run of edits to them stacks a global `npm install -g` per push.
+# Superseding is safe here: the validate job only reports, and the review job
+# opens a PR that the next run would open again anyway.
+concurrency:
+  group: check-skills-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
     name: Validate intent skills
