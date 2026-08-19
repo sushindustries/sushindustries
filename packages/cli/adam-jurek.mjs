@@ -34,6 +34,10 @@ const COMMANDS = {
 		const { refs } = await import("./commands/refs.mjs");
 		await refs();
 	},
+	async setup() {
+		const { setup } = await import("./commands/setup.mjs");
+		await setup();
+	},
 	async studio() {
 		const { studio } = await import("./commands/studio.mjs");
 		await studio();
@@ -79,6 +83,8 @@ try {
 function usage() {
 	console.log(`
 adam-jurek - the command line for adamjurek.com
+
+  pnpm sushindustries setup            what this machine is missing, and why
 
   pnpm sushindustries stack            what this repo depends on, and why
   pnpm sushindustries stack --sync     rewrite the versions from the workspace
