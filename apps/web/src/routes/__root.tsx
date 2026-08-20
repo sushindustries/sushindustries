@@ -13,14 +13,10 @@ import { Measure } from "../integrations/posthog/provider";
 import { Devtools } from "../modules/chrome/devtools";
 import { SiteFooter } from "../modules/chrome/site-footer";
 import { SiteNav } from "../modules/chrome/site-nav";
-import {
-	graph,
-	personNode,
-	webSiteNode,
-} from "../modules/content/schema-graph";
-import { seo } from "../modules/content/seo";
 import { SITE } from "../modules/content/site.catalogue";
-import { ldScript } from "../modules/content/structured-data";
+import { graph, personNode, webSiteNode } from "../modules/seo/schema-graph";
+import { seo } from "../modules/seo/seo";
+import { ldScript } from "../modules/seo/structured-data";
 import { getTheme } from "../modules/theme/theme.functions";
 import proseCss from "../styles/prose.css?url";
 

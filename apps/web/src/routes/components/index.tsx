@@ -4,11 +4,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import * as z from "zod";
 import { pageTitle, SITE } from "../../modules/content/site.catalogue";
+import { listRegistry } from "../../modules/registry/registry.catalogue";
 import {
 	componentsCollectionPage,
 	ldScript,
-} from "../../modules/content/structured-data";
-import { listRegistry } from "../../modules/registry/registry.catalogue";
+} from "../../modules/seo/structured-data";
 import { hasDemo } from "../../modules/showcase/demo-sources";
 
 const searchSchema = z.object({

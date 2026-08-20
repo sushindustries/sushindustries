@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
 	authorizeUrl,
 	githubConfigured,
-} from "../modules/content/github-auth.server";
+} from "../modules/access/github-auth.server";
 import { originFrom } from "../modules/registry/registry.server";
 
 /*

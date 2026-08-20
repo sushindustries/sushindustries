@@ -9,7 +9,7 @@ import {
 	personNode,
 	ref,
 	reviewNode,
-} from "../content/schema-graph";
+} from "../seo/schema-graph";
 
 /*
  * People and reviews, written in Markdown and joined to the page's net.

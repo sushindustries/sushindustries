@@ -1,9 +1,9 @@
 import { isSchemaType } from "@sushindustries/db/schema-org";
+import { listPackages } from "../content/packages/packages.catalogue";
+import { listPosts } from "../content/posts/posts.catalogue";
+import { SITE } from "../content/site.catalogue";
 import { listRegistry } from "../registry/registry.catalogue";
-import { listPackages } from "./packages/packages.catalogue";
-import { listPosts } from "./posts/posts.catalogue";
-import { entityId, PERSON_ID, pageId, WEBSITE_ID } from "./schema-graph";
-import { SITE } from "./site.catalogue";
+import { entityId, PERSON_ID, pageId, WEBSITE_ID } from "../seo/schema-graph";
 
 /*
  * The whole site as one entity graph.

@@ -1,4 +1,4 @@
-import { pageTitle, SITE } from "./site.catalogue";
+import { pageTitle, SITE } from "../content/site.catalogue";
 
 /*
  * One head, said once.

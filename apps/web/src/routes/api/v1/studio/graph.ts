@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { openSession } from "../../../../modules/access/github-auth.server";
+import { refuse } from "../../../../modules/access/mcp-auth.server";
 import {
 	getElement,
 	getElements,
-} from "../../../../modules/content/elements.server";
-import { openSession } from "../../../../modules/content/github-auth.server";
-import { refuse } from "../../../../modules/content/mcp-auth.server";
+} from "../../../../modules/graph/elements.server";
 import { json, originFrom } from "../../../../modules/registry/registry.server";
 
 /*

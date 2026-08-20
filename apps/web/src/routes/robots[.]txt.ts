@@ -1,7 +1,7 @@
 import { renderRobots } from "@sushindustries/llms";
 import { createFileRoute } from "@tanstack/react-router";
-import { describeSite } from "../modules/content/llms.server";
 import { originFrom } from "../modules/registry/registry.server";
+import { describeSite } from "../modules/seo/llms.server";
 
 /*
  * Everything is public and indexable except `/preview/*`, which exists only to

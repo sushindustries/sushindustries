@@ -8,7 +8,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
 import { type Invited, inviteRequest } from "../../access/access.schemas";
 import { deliver, linkUrl } from "../../access/delivery.server";
-import { openSession } from "../../content/github-auth.server";
+import { openSession } from "../../access/github-auth.server";
 import { originFrom } from "../../registry/registry.server";
 
 /*

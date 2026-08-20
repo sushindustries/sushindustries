@@ -4,7 +4,7 @@ import {
 	sameSecret,
 	verify,
 } from "@sushindustries/access/tokens.server";
-import type { Scope } from "../access/access.schemas";
+import type { Scope } from "./access.schemas";
 
 /*
  * One bearer gate, for the three endpoints that need one.

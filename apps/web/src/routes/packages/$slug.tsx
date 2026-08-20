@@ -10,13 +10,13 @@ import { DocActions } from "../../modules/content/doc-actions";
 import { DocFeedback } from "../../modules/content/doc-feedback";
 import { findPackage } from "../../modules/content/packages/packages.catalogue";
 import { REFERENCES } from "../../modules/content/references.catalogue";
-import { seo } from "../../modules/content/seo";
 import { SITE } from "../../modules/content/site.catalogue";
+import { BLOCKS } from "../../modules/markdown/blocks";
+import { seo } from "../../modules/seo/seo";
 import {
 	ldScript,
 	packageApplication,
-} from "../../modules/content/structured-data";
-import { BLOCKS } from "../../modules/markdown/blocks";
+} from "../../modules/seo/structured-data";
 import { countPageView } from "../../modules/stats/stats.functions";
 
 /*

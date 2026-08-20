@@ -1,7 +1,7 @@
 import type { RegistryItem } from "@sushindustries/ui/registry";
-import { REPO_IS_PUBLIC, REPO_URL } from "./repo";
+import { REPO_IS_PUBLIC, REPO_URL } from "../content/repo";
+import { SITE } from "../content/site.catalogue";
 import { entityId, pageId, ref } from "./schema-graph";
-import { SITE } from "./site.catalogue";
 
 /*
  * Schema.org, rendered from the same data as the page.

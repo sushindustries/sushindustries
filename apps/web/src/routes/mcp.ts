@@ -1,7 +1,7 @@
 import { createMcpHandler } from "@modelcontextprotocol/server";
 import { createFileRoute } from "@tanstack/react-router";
-import { siteServer } from "../modules/content/mcp.server";
-import { refuse } from "../modules/content/mcp-auth.server";
+import { refuse } from "../modules/access/mcp-auth.server";
+import { siteServer } from "../modules/graph/mcp.server";
 import { originFrom } from "../modules/registry/registry.server";
 
 /*

@@ -1,4 +1,5 @@
 {
+	"//": "The three whole-repo checks, as tasks rather than as `&&`. They were shell-chained, which cost twice: nothing cached them, so a second run with nothing changed paid the full twelve seconds again, and `&&` is a sequence, so none of them could overlap the build they have no dependency on. As tasks they cache like everything else and turbo runs them beside the build instead of before it. `//#` because they belong to the root, not to each workspace - without it turbo looks for a `doctor` script in every package and finds none. Inputs are broad on purpose: all three read the whole repository, which is what makes them structural checks, so any tracked file is a legitimate reason to re-run one. What they must not include is the output of the build they run beside, or every build would invalidate every check.",
 	"$schema": "https://turborepo.dev/schema.json",
 	"globalDependencies": ["tsconfig.base.json", "tsdown.base.ts"],
 	"tasks": {
@@ -38,6 +39,69 @@
 		"dev": {
 			"cache": false,
 			"persistent": true
+		},
+		"//#doctor": {
+			"inputs": [
+				"apps/*/src/**",
+				"apps/*/content/**",
+				"apps/*/*.{ts,json}",
+				"packages/*/src/**",
+				"packages/*/*.{ts,json,md}",
+				"packages/cli/{commands,lib,mcp}/**",
+				"packages/*/docs/**",
+				"scripts/**",
+				"plugins/**",
+				"_artifacts/**",
+				"templates/**",
+				"apollo/**",
+				"*.{json,jsonc,ts}",
+				"Dockerfile",
+				"!**/dist/**",
+				"!**/.output/**",
+				"!**/node_modules/**"
+			]
+		},
+		"//#lint": {
+			"inputs": [
+				"apps/*/src/**",
+				"apps/*/content/**",
+				"apps/*/*.{ts,json}",
+				"packages/*/src/**",
+				"packages/*/*.{ts,json,md}",
+				"packages/cli/{commands,lib,mcp}/**",
+				"packages/*/docs/**",
+				"scripts/**",
+				"plugins/**",
+				"_artifacts/**",
+				"templates/**",
+				"apollo/**",
+				"*.{json,jsonc,ts}",
+				"Dockerfile",
+				"!**/dist/**",
+				"!**/.output/**",
+				"!**/node_modules/**"
+			]
+		},
+		"//#knip": {
+			"inputs": [
+				"apps/*/src/**",
+				"apps/*/content/**",
+				"apps/*/*.{ts,json}",
+				"packages/*/src/**",
+				"packages/*/*.{ts,json,md}",
+				"packages/cli/{commands,lib,mcp}/**",
+				"packages/*/docs/**",
+				"scripts/**",
+				"plugins/**",
+				"_artifacts/**",
+				"templates/**",
+				"apollo/**",
+				"*.{json,jsonc,ts}",
+				"Dockerfile",
+				"!**/dist/**",
+				"!**/.output/**",
+				"!**/node_modules/**"
+			]
 		}
 	},
 	"globalPassThroughEnv": [

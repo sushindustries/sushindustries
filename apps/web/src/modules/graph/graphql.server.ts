@@ -16,12 +16,7 @@ import {
 	getCollection,
 	getCollections,
 } from "../studio/collections/collections.server";
-import {
-	getElement,
-	getElementShard,
-	getElements,
-	type ShapedElement,
-} from "./elements.server";
+import { getElement, getElementShard, getElements } from "./elements.server";
 import { githubResolvers } from "./github.server";
 import type {
 	DocumentKind as GraphQlKind,

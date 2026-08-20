@@ -7,12 +7,17 @@
 # asserts this file stays a delegation and does not grow its own list again.
 #
 # `check:fast` rather than `check`, and the difference is where the slow half
-# went rather than whether it runs. The doctor's drift subset, the formatter and
-# the types take seconds; the build, the browser tests and the screenshot
-# freshness take minutes, and CI runs every one of them on the push this hook
-# just allowed. Paying for both meant paying twice for the same answer, and the
-# one that arrived first was the one blocking the person who had already
-# finished the work.
+# went rather than whether it runs. The doctor, the formatter and the types take
+# seconds; the browser tests and the screenshot freshness take minutes, and CI
+# runs every one of them on the push this hook just allowed. Paying for both
+# meant paying twice for the same answer, and the one that arrived first was the
+# one blocking the person who had already finished the work.
+#
+# Both are turbo graphs now rather than `&&` chains, which changed the arithmetic
+# twice over: the checks run beside each other instead of in sequence, and a
+# repeat with nothing changed replays from cache in well under a second. The
+# reason to keep the split is no longer the seconds - it is that a browser test
+# needs a build, and a build is the one thing worth not doing twice.
 #
 # Skip deliberately with `git push --no-verify` - a hook you cannot bypass is a
 # hook people delete.

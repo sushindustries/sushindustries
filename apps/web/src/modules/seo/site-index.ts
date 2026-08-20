@@ -1,8 +1,11 @@
+import { listComponentDocs } from "../content/components/components.catalogue";
+import {
+	findPackage,
+	listPackages,
+} from "../content/packages/packages.catalogue";
+import { listBuiltPages } from "../content/pages/pages.catalogue";
+import { findPost, listPosts } from "../content/posts/posts.catalogue";
 import { listRegistry } from "../registry/registry.catalogue";
-import { listComponentDocs } from "./components/components.catalogue";
-import { findPackage, listPackages } from "./packages/packages.catalogue";
-import { listBuiltPages } from "./pages/pages.catalogue";
-import { findPost, listPosts } from "./posts/posts.catalogue";
 
 /*
  * One index of everything this site publishes, in one shape.

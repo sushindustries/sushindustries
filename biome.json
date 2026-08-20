@@ -56,7 +56,7 @@
 			"!apps/web/public/logos",
 			"!packages/db/drizzle",
 			"!packages/cli/references",
-			"!apps/web/src/modules/content/graphql.generated.ts"
+			"!apps/web/src/modules/graph/graphql.generated.ts"
 		]
 	},
 	"overrides": [

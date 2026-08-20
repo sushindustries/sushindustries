@@ -1,4 +1,4 @@
-import { REPO_IS_PUBLIC, REPO_SLUG } from "./repo";
+import { REPO_IS_PUBLIC, REPO_SLUG } from "../content/repo";
 
 /*
  * The repository, from GitHub's public API.

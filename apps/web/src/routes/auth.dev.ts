@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { sessionCookie } from "../modules/content/github-auth.server";
+import { sessionCookie } from "../modules/access/github-auth.server";
 import { REPO_SLUG } from "../modules/content/repo";
 
 /*

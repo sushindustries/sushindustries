@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { Scope } from "../../../../modules/access/access.schemas";
-import { openSession } from "../../../../modules/content/github-auth.server";
-import { refuse } from "../../../../modules/content/mcp-auth.server";
+import { openSession } from "../../../../modules/access/github-auth.server";
+import { refuse } from "../../../../modules/access/mcp-auth.server";
 import { json } from "../../../../modules/registry/registry.server";
 import { runDocumentAction } from "../../../../modules/studio/documents/documents.actions.server";
 import {

@@ -1,4 +1,4 @@
-import { SITE } from "./site.catalogue";
+import { SITE } from "../content/site.catalogue";
 
 /*
  * The net, rather than a pile of loose JSON-LD.

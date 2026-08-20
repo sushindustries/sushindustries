@@ -9,8 +9,8 @@
 	},
 	"scripts": {
 		"build": "turbo run build",
-		"check": "pnpm run doctor && pnpm exec biome check . && pnpm run knip && pnpm run typecheck && pnpm run build && pnpm run test",
-		"check:fast": "pnpm run doctor -- --drift && pnpm exec biome check . && pnpm run typecheck",
+		"check": "turbo run //#doctor //#lint //#knip typecheck build test",
+		"check:fast": "turbo run //#doctor //#lint typecheck",
 		"db:generate": "pnpm --filter @sushindustries/db db:generate",
 		"db:migrate": "pnpm --filter @sushindustries/db db:migrate",
 		"db:studio": "pnpm --filter @sushindustries/db db:studio",
@@ -20,6 +20,7 @@
 		"doctor:map": "node scripts/doctor.mjs --map",
 		"fix": "node scripts/doctor.mjs --fix && pnpm exec biome check --write .",
 		"knip": "knip",
+		"lint": "biome check .",
 		"media": "node scripts/media.mjs",
 		"new": "node scripts/new.mjs",
 		"prepare": "husky || true",

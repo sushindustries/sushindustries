@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import * as z from "zod";
-import { connectionsOf, siteGraph } from "../../modules/content/graph.server";
+import { connectionsOf, siteGraph } from "../../modules/graph/graph.server";
 import { json, originFrom } from "../../modules/registry/registry.server";
 
 /*

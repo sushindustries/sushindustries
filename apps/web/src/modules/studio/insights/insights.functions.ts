@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
-import { openSession } from "../../content/github-auth.server";
+import { openSession } from "../../access/github-auth.server";
 import { getInsights } from "./insights.server";
 
 /*

@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createSchema, createYoga } from "graphql-yoga";
-import { resolvers, typeDefs } from "../modules/content/graphql.server";
-import { refuse } from "../modules/content/mcp-auth.server";
+import { refuse } from "../modules/access/mcp-auth.server";
+import { resolvers, typeDefs } from "../modules/graph/graphql.server";
 
 /*
  * The graph, over HTTP.

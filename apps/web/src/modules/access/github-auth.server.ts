@@ -1,5 +1,5 @@
 import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
-import { REPO_SLUG } from "./repo";
+import { REPO_SLUG } from "../content/repo";
 
 /*
  * Signing in with GitHub, for the one page that needs to know who you are.

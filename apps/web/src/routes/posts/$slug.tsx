@@ -4,8 +4,8 @@ import type { ReactNode } from "react";
 import { DocActions } from "../../modules/content/doc-actions";
 import { findPost } from "../../modules/content/posts/posts.catalogue";
 import { REFERENCES } from "../../modules/content/references.catalogue";
-import { seo } from "../../modules/content/seo";
 import { BLOCKS } from "../../modules/markdown/blocks";
+import { seo } from "../../modules/seo/seo";
 
 /*
  * Flat file, not a `$slug/` directory. Converting a dynamic segment to a route

@@ -1,7 +1,7 @@
 import { renderSitemapIndex } from "@sushindustries/llms";
 import { createFileRoute } from "@tanstack/react-router";
-import { describeSite } from "../modules/content/llms.server";
 import { originFrom } from "../modules/registry/registry.server";
+import { describeSite } from "../modules/seo/llms.server";
 
 /*
  * The sitemap of the machine-readable surfaces, same index-into-shards shape

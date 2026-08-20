@@ -4,9 +4,9 @@ import type { ReactNode } from "react";
 import { DocActions } from "../../modules/content/doc-actions";
 import { findBuiltPage } from "../../modules/content/pages/pages.catalogue";
 import { REFERENCES } from "../../modules/content/references.catalogue";
-import { seo } from "../../modules/content/seo";
 import { SITE } from "../../modules/content/site.catalogue";
 import { BLOCKS } from "../../modules/markdown/blocks";
+import { seo } from "../../modules/seo/seo";
 
 /*
  * A built page: Markdown plus the block layer, at a URL.

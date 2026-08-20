@@ -6,7 +6,7 @@ import {
 	withinBudget,
 } from "@sushindustries/llms";
 import { z } from "zod";
-import { siteSections } from "./site-index";
+import { siteSections } from "../seo/site-index";
 
 /*
  * This site, as tools an agent can call over the network.

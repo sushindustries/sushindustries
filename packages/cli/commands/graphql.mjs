@@ -275,7 +275,7 @@ export async function graphql() {
 		return;
 	}
 
-	field("typed", "apps/web/src/modules/content/graphql.generated.ts");
+	field("typed", "apps/web/src/modules/graph/graphql.generated.ts");
 	blank();
 	note("The Query type is hand written in apollo/queries.graphql and appended");
 	note("here, so one file is the contract everything reads.");

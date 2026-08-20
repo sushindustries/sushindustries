@@ -1,6 +1,6 @@
 import type { SiteDescription, SiteSection } from "@sushindustries/llms";
 import { skills } from "../assistant/skills.server";
-import { SITE } from "./site.catalogue";
+import { SITE } from "../content/site.catalogue";
 import { sitePaths, siteSections } from "./site-index";
 
 /*

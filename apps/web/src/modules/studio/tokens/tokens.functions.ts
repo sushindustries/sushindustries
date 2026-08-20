@@ -7,7 +7,7 @@ import {
 import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
 import { mintTokenRequest } from "../../access/access.schemas";
-import { openSession } from "../../content/github-auth.server";
+import { openSession } from "../../access/github-auth.server";
 
 /*
  * The bridge between the browser and the access domain.

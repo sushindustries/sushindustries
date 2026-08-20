@@ -4,7 +4,7 @@ import {
 	ComponentDoc,
 	loadComponentDoc,
 } from "../../modules/content/components/component-doc";
-import { seo } from "../../modules/content/seo";
+import { seo } from "../../modules/seo/seo";
 import { hasDemo } from "../../modules/showcase/demo-sources";
 
 /*

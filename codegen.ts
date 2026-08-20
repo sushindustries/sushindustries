@@ -29,7 +29,7 @@ import type { CodegenConfig } from "@graphql-codegen/cli";
 const config: CodegenConfig = {
 	schema: "apollo/schema.graphql",
 	generates: {
-		"apps/web/src/modules/content/graphql.generated.ts": {
+		"apps/web/src/modules/graph/graphql.generated.ts": {
 			config: {
 				/*
 				 * What the resolvers actually return.

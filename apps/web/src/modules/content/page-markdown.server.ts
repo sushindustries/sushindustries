@@ -5,10 +5,10 @@ import {
 } from "@sushindustries/llms";
 import { markdown, notFoundMarkdown } from "../registry/agent-setup.server";
 import { originFrom } from "../registry/registry.server";
+import { describeSite } from "../seo/llms.server";
+import { siteSections } from "../seo/site-index";
 import { findDemoSource, hasDemo } from "../showcase/demo-sources";
 import { findComponentPage } from "./components/component-page";
-import { describeSite } from "./llms.server";
-import { siteSections } from "./site-index";
 
 /*
  * Every page, as the Markdown it is made of, addressed as `<path>/index.md`.

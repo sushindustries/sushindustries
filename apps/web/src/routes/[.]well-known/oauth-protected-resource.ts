@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { authorizationServer } from "../../modules/content/mcp-auth.server";
+import { authorizationServer } from "../../modules/access/mcp-auth.server";
 import { originFrom } from "../../modules/registry/registry.server";
 
 /*
