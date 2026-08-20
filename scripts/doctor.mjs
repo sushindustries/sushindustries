@@ -390,6 +390,66 @@ function checkTypecheckHasConfig(list) {
 }
 
 /**
+ * A script nothing runs is a check nobody is getting.
+ *
+ * `checkTypecheckHasConfig` above asserts one direction - a typecheck script
+ * needs a tsconfig - and the hole was the other one. `product-viewer` and
+ * `react-product-viewer` each had a tsconfig, a `tsc --noEmit`, and no way for
+ * it to run: the script was called `test:types`, turbo's task is `typecheck`,
+ * and turbo only runs what it has a task for. Two packages went unchecked for
+ * their whole life. They happened to pass when finally run, which is the worst
+ * outcome - nothing would have announced it if they had not.
+ *
+ * So two assertions, and the second is the general form of the first:
+ *
+ *   - a workspace that compiles has a `typecheck` script
+ *   - every workspace script is either a turbo task or named here with a
+ *     reason, because those are the only two ways a script gets run at all
+ *
+ * The allowlist is the point. A script outside it is not necessarily wrong; it
+ * is unaccounted for, which is the state `test:types` was in.
+ */
+const SCRIPTS_OUTSIDE_TURBO = {
+	start: "the deploy's entry point - Railway runs it, not the gate",
+	"db:generate": "writes migrations from the schema, by hand and on purpose",
+	"db:migrate": "changes a production database; caching one would be a bug",
+	"db:studio": "opens a browser and waits, so it is not a task with an end",
+};
+
+function checkEveryScriptIsRun(list) {
+	const turbo = readJson("turbo.json");
+	const tasks = new Set(
+		Object.keys(turbo.tasks ?? {}).map((one) => one.replace(/^\/\/#/, "")),
+	);
+
+	for (const workspace of list) {
+		const manifest = readJson(`${workspace}/package.json`);
+		const scripts = manifest.scripts ?? {};
+
+		if (exists(`${workspace}/tsconfig.json`) && !scripts.typecheck) {
+			report(
+				"scripts",
+				workspace,
+				"has a tsconfig.json and no `typecheck` script, so nothing typechecks it",
+				'add `"typecheck": "tsc --noEmit"`; turbo runs the task, not the file',
+			);
+		}
+
+		for (const name of Object.keys(scripts)) {
+			if (tasks.has(name)) continue;
+			if (name in SCRIPTS_OUTSIDE_TURBO) continue;
+
+			report(
+				"scripts",
+				`${workspace}/package.json`,
+				`\`${name}\` is not a turbo task, so nothing ever runs it`,
+				"rename it to the task it belongs to, or name it in SCRIPTS_OUTSIDE_TURBO with why",
+			);
+		}
+	}
+}
+
+/**
  * The clean-checkout rule.
  *
  * If a tracked file imports something that is gitignored, then the only reason
@@ -3528,6 +3588,7 @@ if (!driftOnly) {
 	checkWorkspaceDescriptions(list);
 	checkLicences(list);
 	checkTypecheckHasConfig(list);
+	checkEveryScriptIsRun(list);
 	checkBuildsShareTheBase(list);
 	checkPushGateDelegates();
 	checkElementsDeclareSchemaType(registry);

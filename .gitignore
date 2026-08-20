@@ -61,3 +61,21 @@ coverage/
 .idea/
 # Anything somebody named `.local` meant to keep local.
 *.local
+
+# Reference material pasted in to be read, not written by this repo. The
+# doctor's file list is `--cached --others`, deliberately: an uncommitted file
+# that breaks a style rule should fail here rather than in CI after the commit.
+# The cost is that anything dropped in to be looked at is held to prose rules
+# it was never written under, so scratch has a name and the name is ignored.
+scratch/
+*.scratch.md
+abc.md
+
+# Reference material pasted in to be read, not prose this repo wrote. The
+# doctor's file list is `--cached --others` on purpose: an uncommitted file that
+# breaks a rule should fail here rather than in CI just after the commit. The
+# cost is that anything dropped in to be looked at gets held to writing rules it
+# was never written under, so scratch has a name and the name is ignored.
+scratch/
+*.scratch.md
+abc.md

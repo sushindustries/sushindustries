@@ -3,6 +3,7 @@
 		"commit": "",
 		"pr": ""
 	},
+	"//": "Two hooks, and which event each one is on is the whole design. Formatting is about the file that was just written, so it runs per write. The doctor is about the repository, so it must not: it used to run on every Write|Edit with exit 2, which meant a whole-repo scan for one file, roughly two seconds of blocking per edit, and - worse - a refusal to write file one of a three-file change because it disagreed with files two and three that did not exist yet. It runs once when the turn ends now, and reports instead of blocking. The push gate is still the gate; this is a nudge, and a nudge that can veto a half-finished edit is not a nudge.",
 	"hooks": {
 		"PostToolUse": [
 			{
@@ -10,11 +11,17 @@
 				"hooks": [
 					{
 						"type": "command",
-						"command": "f=$(jq -r '.tool_input.file_path // empty'); case \"$f\" in *.ts|*.tsx|*.css|*.json) [ -f \"$f\" ] && cd \"$CLAUDE_PROJECT_DIR\" && pnpm exec biome check --write --no-errors-on-unmatched \"$f\" >/dev/null 2>&1 ;; esac; exit 0"
-					},
+						"command": "f=$(jq -r '.tool_input.file_path // empty'); case \"$f\" in *.ts|*.tsx|*.css|*.json) [ -f \"$f\" ] && cd \"$CLAUDE_PROJECT_DIR\" && ./node_modules/.bin/biome check --write --no-errors-on-unmatched \"$f\" >/dev/null 2>&1 ;; esac; exit 0"
+					}
+				]
+			}
+		],
+		"Stop": [
+			{
+				"hooks": [
 					{
 						"type": "command",
-						"command": "f=$(jq -r '.tool_input.file_path // empty'); case \"$f\" in *.ts|*.tsx|*.mjs|*.yaml|*.json) cd \"$CLAUDE_PROJECT_DIR\" || exit 0; out=$(node scripts/doctor.mjs --drift 2>&1) || { printf '%s\\n' \"$out\" >&2; exit 2; } ;; esac; exit 0"
+						"command": "cd \"$CLAUDE_PROJECT_DIR\" || exit 0; out=$(node scripts/doctor.mjs --drift 2>&1) || printf '%s\\n' \"$out\" >&2; exit 0"
 					}
 				]
 			}

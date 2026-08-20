@@ -48,7 +48,7 @@
 	"scripts": {
 		"build": "tsdown",
 		"test": "vitest run",
-		"test:types": "tsc --noEmit"
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@sushindustries/product-viewer": "workspace:*"
