@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { number, useAgo } from "./format";
 import type { StudioReport } from "./overview/overview.server";
 import { readySections } from "./studio.sections";
 
@@ -29,26 +30,8 @@ export interface StudioHeaderProps {
 	readonly login: string;
 }
 
-const number = (value: number) => value.toLocaleString();
-
-/**
- * How long ago, in the largest unit that is still true.
- *
- * A timestamp answers "when" and the question here is "is this stale", which
- * an ISO string makes you compute yourself. Minutes, hours, days - past a week
- * the exact day stops mattering and the point is only that it is old.
- */
-function ago(iso: string | null): string {
-	if (!iso) return "never";
-
-	const minutes = Math.floor((Date.now() - Date.parse(iso)) / 60_000);
-	if (minutes < 1) return "just now";
-	if (minutes < 60) return `${minutes}m ago`;
-	if (minutes < 60 * 24) return `${Math.floor(minutes / 60)}h ago`;
-	return `${Math.floor(minutes / (60 * 24))}d ago`;
-}
-
 export function StudioHeader({ report, login }: StudioHeaderProps): ReactNode {
+	const synced = useAgo(report.syncedAt);
 	const documents = report.tables.documents ?? 0;
 	const tokens = report.documentsByKind.reduce(
 		(total, kind) => total + kind.tokens,
@@ -63,7 +46,7 @@ export function StudioHeader({ report, login }: StudioHeaderProps): ReactNode {
 			value: report.revision.slice(0, 8),
 			note: "content hash",
 		},
-		{ label: "Synced", value: ago(report.syncedAt), note: "last sync" },
+		{ label: "Synced", value: synced, note: "last sync" },
 	];
 
 	return (

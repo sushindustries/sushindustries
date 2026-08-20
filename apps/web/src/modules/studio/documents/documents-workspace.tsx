@@ -3,6 +3,7 @@ import { useDebouncedValue } from "@tanstack/react-pacer";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getRouteApi } from "@tanstack/react-router";
 import { type ReactNode, useState } from "react";
+import { number } from "../format";
 import { PROJECTION, REPOSITORY } from "../studio.cache";
 import type { WriteResult } from "../studio.schemas";
 import { applyDocumentAction } from "./documents.functions";
@@ -18,7 +19,6 @@ import {
 import { DocumentsAside } from "./documents-aside";
 import {
 	documentFiltersQueryOptions,
-	documentKeys,
 	documentsQueryOptions,
 } from "./documents-query-keys";
 import { DocumentViewer } from "./documents-viewer";
@@ -70,8 +70,6 @@ export const DEFAULT_DOCUMENTS_QUERY: DocumentsQuery = {
 	limit: PAGE,
 	offset: 0,
 };
-
-const number = (value: number) => value.toLocaleString();
 
 /*
  * The route's own search params, read through its api rather than a hook that

@@ -8,6 +8,7 @@ import {
 } from "@sushindustries/ui";
 import { useQuery } from "@tanstack/react-query";
 import { type ReactNode, useState } from "react";
+import { number } from "../format";
 import { StudioSearch } from "../studio-search";
 import {
 	collectionQueryOptions,
@@ -28,8 +29,6 @@ import {
  * there rather than a second form over the same file. Two editors for one file
  * is two places for a save to be lost.
  */
-
-const number = (value: number) => value.toLocaleString();
 
 export function CollectionsPanel(): ReactNode {
 	const collections = useQuery(collectionsQueryOptions());

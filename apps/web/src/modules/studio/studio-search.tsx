@@ -5,6 +5,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { type ReactNode, useState } from "react";
 import { listCollections } from "./collections/collections.catalogue";
 import { documentsQueryOptions } from "./documents/documents-query-keys";
+import { number } from "./format";
 
 /*
  * One search box, over everything the studio knows.
@@ -181,8 +182,8 @@ export function StudioSearch({
 							</span>
 							<span className="studio-list-meta">
 								{row.kind}
-								{row.section ? ` · ${row.section}` : ""} ·{" "}
-								{row.tokens.toLocaleString()} tokens
+								{row.section ? ` · ${row.section}` : ""} · {number(row.tokens)}{" "}
+								tokens
 							</span>
 						</button>
 					))}

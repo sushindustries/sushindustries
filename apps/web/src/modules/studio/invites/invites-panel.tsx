@@ -22,6 +22,7 @@ import {
 	SCOPES,
 	type Scope,
 } from "../../access/access.schemas";
+import { dateTime } from "../format";
 import { CREDENTIALS } from "../studio.cache";
 import { sendStudioInvite, withdrawStudioInvite } from "./invites.functions";
 import { inviteKeys, invitesQueryOptions } from "./invites-query-keys";
@@ -39,9 +40,6 @@ import { inviteKeys, invitesQueryOptions } from "./invites-query-keys";
  * the interface cannot leak it by accident; when there is no mailer it does,
  * and the box that shows it says out loud what that costs.
  */
-
-const when = (value: string | null) =>
-	value ? new Date(value).toLocaleString() : "-";
 
 const TONE: Record<InviteSummary["state"], string> = {
 	waiting: "docs",
@@ -109,7 +107,7 @@ export function InvitesPanel(): ReactNode {
 			id: "createdAt",
 			header: "Sent",
 			sortable: true,
-			cell: (row) => when(row.createdAt),
+			cell: (row) => dateTime(row.createdAt),
 		},
 		{
 			id: "state",

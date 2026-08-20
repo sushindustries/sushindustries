@@ -1,5 +1,6 @@
 import { Field, Input, NativeSelect } from "@sushindustries/ui";
 import type { ReactNode } from "react";
+import { number } from "../format";
 import type { DocumentRow, DocumentSort } from "./documents.schemas";
 
 /**
@@ -180,7 +181,7 @@ export function DocumentsAside({
 								<span className="studio-list-meta">
 									{row.kind}
 									{row.section ? ` · ${row.section}` : ""} ·{" "}
-									{row.tokens.toLocaleString()} tokens
+									{number(row.tokens)} tokens
 								</span>
 							</button>
 						</li>

@@ -20,6 +20,7 @@ import {
 	SCOPES,
 	type Scope,
 } from "../../access/access.schemas";
+import { date } from "../format";
 import { CREDENTIALS } from "../studio.cache";
 import { mintStudioToken, revokeStudioToken } from "./tokens.functions";
 import { tokenKeys, tokensQueryOptions } from "./tokens-query-keys";
@@ -39,9 +40,6 @@ import { tokenKeys, tokensQueryOptions } from "./tokens-query-keys";
  * be dismissed, and a copy button, rather than a row in a table somebody
  * assumes they can return to.
  */
-
-const when = (value: string | null) =>
-	value ? new Date(value).toLocaleDateString() : "-";
 
 export function TokensPanel(): ReactNode {
 	const client = useQueryClient();
@@ -100,12 +98,12 @@ export function TokensPanel(): ReactNode {
 			id: "lastUsedAt",
 			header: "Last used",
 			sortable: true,
-			cell: (row) => when(row.lastUsedAt),
+			cell: (row) => date(row.lastUsedAt),
 		},
 		{
 			id: "expiresAt",
 			header: "Expires",
-			cell: (row) => (row.expiresAt ? when(row.expiresAt) : "never"),
+			cell: (row) => (row.expiresAt ? date(row.expiresAt) : "never"),
 		},
 		{
 			id: "state",

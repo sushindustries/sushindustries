@@ -8,6 +8,7 @@ import {
 } from "@sushindustries/ui";
 import { useQuery } from "@tanstack/react-query";
 import type { ReactNode } from "react";
+import { number } from "../format";
 import type { InsightAnswer, InsightRow } from "./insights.schemas";
 import { insightsQueryOptions } from "./insights-query-keys";
 
@@ -30,8 +31,6 @@ import { insightsQueryOptions } from "./insights-query-keys";
  * of the index by weight" is the thing to read, and the rows are the evidence
  * for anybody who doubts it.
  */
-
-const number = (value: number) => value.toLocaleString();
 
 export function InsightsPanel(): ReactNode {
 	const insights = useQuery(insightsQueryOptions());
