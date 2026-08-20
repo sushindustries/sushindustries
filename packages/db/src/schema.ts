@@ -1,5 +1,12 @@
 import { sql } from "drizzle-orm";
-import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import {
+	index,
+	integer,
+	pgTable,
+	text,
+	timestamp,
+	uuid,
+} from "drizzle-orm/pg-core";
 import type { SchemaTypeName } from "./schema-org.generated";
 
 /*
@@ -344,49 +351,62 @@ export type NewAccount = typeof accounts.$inferInsert;
  * `prefix` is the first characters of the token, kept deliberately, because a
  * list of tokens nobody can tell apart is a list nobody dares revoke from.
  */
-export const apiTokens = pgTable("api_tokens", {
-	id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+export const apiTokens = pgTable(
+	"api_tokens",
+	{
+		id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
 
-	accountId: uuid("account_id")
-		.notNull()
-		.references(() => accounts.id, { onDelete: "cascade" }),
+		accountId: uuid("account_id")
+			.notNull()
+			.references(() => accounts.id, { onDelete: "cascade" }),
 
-	/** What it is for, in the holder's words. `railway cron`, `my laptop`. */
-	name: text("name").notNull(),
+		/** What it is for, in the holder's words. `railway cron`, `my laptop`. */
+		name: text("name").notNull(),
 
-	/** The public half, e.g. `aj_7f3c…`. Enough to recognise, useless to use. */
-	prefix: text("prefix").notNull(),
+		/** The public half, e.g. `aj_7f3c…`. Enough to recognise, useless to use. */
+		prefix: text("prefix").notNull(),
 
-	/** SHA-256 of the secret, hex. Unique, so a mint collision is a constraint. */
-	hash: text("hash").notNull().unique(),
+		/** SHA-256 of the secret, hex. Unique, so a mint collision is a constraint. */
+		hash: text("hash").notNull().unique(),
 
-	/**
-	 * Space-separated, in the OAuth style, because that is the form the
-	 * authorization server this will grow into has to speak anyway.
-	 */
-	scopes: text("scopes").notNull(),
+		/**
+		 * Space-separated, in the OAuth style, because that is the form the
+		 * authorization server this will grow into has to speak anyway.
+		 */
+		scopes: text("scopes").notNull(),
 
-	createdAt: timestamp("created_at", { withTimezone: true })
-		.notNull()
-		.defaultNow(),
+		createdAt: timestamp("created_at", { withTimezone: true })
+			.notNull()
+			.defaultNow(),
 
-	/** Null means it does not expire. A deliberate choice, not an oversight. */
-	expiresAt: timestamp("expires_at", { withTimezone: true }),
+		/** Null means it does not expire. A deliberate choice, not an oversight. */
+		expiresAt: timestamp("expires_at", { withTimezone: true }),
 
-	/**
-	 * Moved on every accepted request, best-effort and never awaited.
-	 *
-	 * This is the column that makes the table worth having: a token nobody has
-	 * used in six months is a token to revoke, and there is no other way to know
-	 * that. Writing it costs one statement per authenticated call, which is why
-	 * the gate does not wait for it - the answer to "may this proceed" does not
-	 * depend on whether the bookkeeping landed.
-	 */
-	lastUsedAt: timestamp("last_used_at", { withTimezone: true }),
+		/**
+		 * Moved on every accepted request, best-effort and never awaited.
+		 *
+		 * This is the column that makes the table worth having: a token nobody has
+		 * used in six months is a token to revoke, and there is no other way to know
+		 * that. Writing it costs one statement per authenticated call, which is why
+		 * the gate does not wait for it - the answer to "may this proceed" does not
+		 * depend on whether the bookkeeping landed.
+		 */
+		lastUsedAt: timestamp("last_used_at", { withTimezone: true }),
 
-	/** Set rather than deleted, so a revoked token cannot be re-minted by luck. */
-	revokedAt: timestamp("revoked_at", { withTimezone: true }),
-});
+		/** Set rather than deleted, so a revoked token cannot be re-minted by luck. */
+		revokedAt: timestamp("revoked_at", { withTimezone: true }),
+	},
+	(table) => [
+		/*
+		 * Postgres indexes a unique constraint and a primary key, and no foreign
+		 * key at all. `hash` is covered because it is unique, which is why every
+		 * lookup by secret is fast; `account_id` is covered by nothing, and it is
+		 * the column every listing joins on and the one `on delete cascade` scans
+		 * when an account goes away.
+		 */
+		index("api_tokens_account_id_idx").on(table.accountId),
+	],
+);
 
 export type ApiToken = typeof apiTokens.$inferSelect;
 export type NewApiToken = typeof apiTokens.$inferInsert;
@@ -408,69 +428,82 @@ export type NewApiToken = typeof apiTokens.$inferInsert;
  * prefix kept in the clear so a listing can tell two invitations apart. A row
  * here is as useless to a reader of the database as a row in `api_tokens`.
  */
-export const magicLinks = pgTable("magic_links", {
-	id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+export const magicLinks = pgTable(
+	"magic_links",
+	{
+		id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
 
-	/** Who it was sent to, lower-cased. The address the redemption proves. */
-	email: text("email").notNull(),
+		/** Who it was sent to, lower-cased. The address the redemption proves. */
+		email: text("email").notNull(),
 
-	/** SHA-256 of the link secret, hex. Unique, for the same reason a token's is. */
-	hash: text("hash").notNull().unique(),
+		/** SHA-256 of the link secret, hex. Unique, for the same reason a token's is. */
+		hash: text("hash").notNull().unique(),
 
-	/** The public half. Enough to recognise in a list, useless to redeem with. */
-	prefix: text("prefix").notNull(),
+		/** The public half. Enough to recognise in a list, useless to redeem with. */
+		prefix: text("prefix").notNull(),
 
-	/** What the token will be called once this is redeemed. */
-	tokenName: text("token_name").notNull(),
+		/** What the token will be called once this is redeemed. */
+		tokenName: text("token_name").notNull(),
 
-	/** What the token will carry. Chosen at invitation, not at redemption. */
-	scopes: text("scopes").notNull(),
+		/** What the token will carry. Chosen at invitation, not at redemption. */
+		scopes: text("scopes").notNull(),
 
-	/**
-	 * How long the minted token will last, in days. Null means it will not
-	 * expire - a separate question from how long this link lasts, and the two
-	 * are confused often enough to be worth two columns with two names.
-	 */
-	tokenDays: integer("token_days"),
+		/**
+		 * How long the minted token will last, in days. Null means it will not
+		 * expire - a separate question from how long this link lasts, and the two
+		 * are confused often enough to be worth two columns with two names.
+		 */
+		tokenDays: integer("token_days"),
 
-	/** The account that sent it. Null once that account is deleted, not cascaded. */
-	invitedBy: uuid("invited_by").references(() => accounts.id, {
-		onDelete: "set null",
-	}),
+		/** The account that sent it. Null once that account is deleted, not cascaded. */
+		invitedBy: uuid("invited_by").references(() => accounts.id, {
+			onDelete: "set null",
+		}),
 
-	createdAt: timestamp("created_at", { withTimezone: true })
-		.notNull()
-		.defaultNow(),
+		createdAt: timestamp("created_at", { withTimezone: true })
+			.notNull()
+			.defaultNow(),
 
-	/**
-	 * When the link stops working, which is soon.
-	 *
-	 * Minutes rather than days. A link is a bearer credential sitting in an
-	 * inbox, and the inbox is the part of this system I have no control over -
-	 * so the window in which a copy of that inbox is worth anything is the one
-	 * thing here I can make small.
-	 */
-	expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+		/**
+		 * When the link stops working, which is soon.
+		 *
+		 * Minutes rather than days. A link is a bearer credential sitting in an
+		 * inbox, and the inbox is the part of this system I have no control over -
+		 * so the window in which a copy of that inbox is worth anything is the one
+		 * thing here I can make small.
+		 */
+		expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
 
-	/**
-	 * Set the instant it is redeemed, by a conditional update.
-	 *
-	 * This column is the single-use guarantee, and it only works because the
-	 * write that sets it is the same statement that checks it was null. Reading
-	 * first and writing second would leave a window in which two requests both
-	 * see an unredeemed link, which is exactly what a double-click and a
-	 * link-prefetching mail scanner both produce.
-	 */
-	redeemedAt: timestamp("redeemed_at", { withTimezone: true }),
+		/**
+		 * Set the instant it is redeemed, by a conditional update.
+		 *
+		 * This column is the single-use guarantee, and it only works because the
+		 * write that sets it is the same statement that checks it was null. Reading
+		 * first and writing second would leave a window in which two requests both
+		 * see an unredeemed link, which is exactly what a double-click and a
+		 * link-prefetching mail scanner both produce.
+		 */
+		redeemedAt: timestamp("redeemed_at", { withTimezone: true }),
 
-	/** What it produced. The join that answers "what did I actually give them". */
-	tokenId: uuid("token_id").references(() => apiTokens.id, {
-		onDelete: "set null",
-	}),
+		/** What it produced. The join that answers "what did I actually give them". */
+		tokenId: uuid("token_id").references(() => apiTokens.id, {
+			onDelete: "set null",
+		}),
 
-	/** Set to withdraw an invitation that has not been taken up yet. */
-	revokedAt: timestamp("revoked_at", { withTimezone: true }),
-});
+		/** Set to withdraw an invitation that has not been taken up yet. */
+		revokedAt: timestamp("revoked_at", { withTimezone: true }),
+	},
+	(table) => [
+		/*
+		 * Both foreign keys, for the same reason as `api_tokens`. Neither is on a
+		 * read path today - `hash` is unique and carries every lookup - so these
+		 * exist for the deletes: without them, removing one account scans this
+		 * whole table twice over to find what pointed at it.
+		 */
+		index("magic_links_invited_by_idx").on(table.invitedBy),
+		index("magic_links_token_id_idx").on(table.tokenId),
+	],
+);
 
 export type MagicLink = typeof magicLinks.$inferSelect;
 export type NewMagicLink = typeof magicLinks.$inferInsert;

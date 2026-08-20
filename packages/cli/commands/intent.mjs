@@ -19,7 +19,7 @@
  * output, and inventing a sentence to fill a field is how a map starts lying.
  */
 
-import { existsSync, globSync, readFileSync, writeFileSync } from "node:fs";
+import { globSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { flags, root } from "../lib/context.mjs";
 import { banner, blank, dim, fail, field, note, ok, warn } from "../lib/ui.mjs";

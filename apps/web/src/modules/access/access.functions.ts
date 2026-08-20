@@ -1,5 +1,5 @@
-import { preview, redeem } from "@sushindustries/access/invites.server";
 import { createServerFn } from "@tanstack/react-start";
+import { accessInvites } from "./access.server";
 
 /*
  * The two calls a stranger is allowed to make.
@@ -39,7 +39,7 @@ function keyFrom(input: unknown): { key: string } {
  */
 export const previewInvite = createServerFn({ method: "GET" })
 	.validator(keyFrom)
-	.handler(async ({ data }) => preview(data.key));
+	.handler(async ({ data }) => accessInvites.preview(data.key));
 
 /**
  * Spends the link and returns the token, once.
@@ -51,4 +51,4 @@ export const previewInvite = createServerFn({ method: "GET" })
  */
 export const redeemInvite = createServerFn({ method: "POST" })
 	.validator(keyFrom)
-	.handler(async ({ data }) => redeem(data.key));
+	.handler(async ({ data }) => accessInvites.redeem(data.key));

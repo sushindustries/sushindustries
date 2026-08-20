@@ -19,7 +19,6 @@
  */
 
 import {
-	existsSync,
 	globSync,
 	mkdirSync,
 	readFileSync,

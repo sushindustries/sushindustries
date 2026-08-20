@@ -167,3 +167,21 @@ export function splitScopes(stored: string): readonly Scope[] {
 export function joinScopes(scopes: readonly Scope[]): string {
 	return scopes.join(" ");
 }
+
+/*
+ * The store this package runs on, re-exported from the client-safe entry.
+ *
+ * Types only, so nothing is dragged into a bundle by importing them, and here
+ * rather than only on the subpath because a caller writing an adapter wants
+ * the shapes and the port from one import.
+ */
+export type {
+	AccessStore,
+	AccountRow,
+	AccountSource,
+	HeldToken,
+	InviteInsert,
+	InviteRow,
+	TokenInsert,
+	TokenRow,
+} from "./store.ts";

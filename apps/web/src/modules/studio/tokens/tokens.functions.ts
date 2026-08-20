@@ -1,12 +1,7 @@
-import {
-	accountForLogin,
-	list,
-	mint,
-	revoke,
-} from "@sushindustries/access/tokens.server";
 import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
 import { mintTokenRequest } from "../../access/access.schemas";
+import { accessTokens } from "../../access/access.server";
 import { openSession } from "../../access/github-auth.server";
 
 /*
@@ -32,7 +27,7 @@ function requireSession(): string {
 export const listStudioTokens = createServerFn({ method: "GET" }).handler(
 	async () => {
 		requireSession();
-		return list();
+		return accessTokens.list();
 	},
 );
 
@@ -47,8 +42,8 @@ export const mintStudioToken = createServerFn({ method: "POST" })
 	.validator((input: unknown) => mintTokenRequest.parse(input ?? {}))
 	.handler(async ({ data }) => {
 		const login = requireSession();
-		const account = await accountForLogin(login, "owner");
-		return mint(data, account);
+		const account = await accessTokens.accountForLogin(login, "owner");
+		return accessTokens.mint(data, account);
 	});
 
 /** Takes one away. Returns what it became, so the list can show it struck out. */
@@ -62,5 +57,5 @@ export const revokeStudioToken = createServerFn({ method: "POST" })
 	})
 	.handler(async ({ data }) => {
 		requireSession();
-		return revoke(data.id);
+		return accessTokens.revoke(data.id);
 	});

@@ -1,12 +1,7 @@
-import {
-	invite,
-	listInvites,
-	withdraw,
-} from "@sushindustries/access/invites.server";
-import { accountForLogin } from "@sushindustries/access/tokens.server";
 import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
 import { type Invited, inviteRequest } from "../../access/access.schemas";
+import { accessInvites, accessTokens } from "../../access/access.server";
 import { deliver, linkUrl } from "../../access/delivery.server";
 import { openSession } from "../../access/github-auth.server";
 import { originFrom } from "../../registry/registry.server";
@@ -39,7 +34,7 @@ function requireSession(): string {
 export const listStudioInvites = createServerFn({ method: "GET" }).handler(
 	async () => {
 		requireSession();
-		return listInvites();
+		return accessInvites.list();
 	},
 );
 
@@ -56,9 +51,9 @@ export const sendStudioInvite = createServerFn({ method: "POST" })
 	.validator((input: unknown) => inviteRequest.parse(input ?? {}))
 	.handler(async ({ data }): Promise<Invited> => {
 		const login = requireSession();
-		const owner = await accountForLogin(login, "owner");
+		const owner = await accessTokens.accountForLogin(login, "owner");
 
-		const made = await invite(data, owner.id);
+		const made = await accessInvites.invite(data, owner.id);
 		const sent = await deliver(
 			linkUrl(originFrom(getRequest()), made.secret),
 			data.email,
@@ -85,5 +80,5 @@ export const withdrawStudioInvite = createServerFn({ method: "POST" })
 	})
 	.handler(async ({ data }) => {
 		requireSession();
-		return withdraw(data.id);
+		return accessInvites.withdraw(data.id);
 	});

@@ -6,7 +6,7 @@ import type {
 	NewPageView,
 	NewReferencePage,
 	PageKind,
-} from "./schema";
+} from "./schema.ts";
 
 /*
  * Rows, built once and the same way everywhere.

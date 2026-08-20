@@ -1,8 +1,17 @@
 import { eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import * as schema from "./schema";
-import { pageFeedback } from "./schema";
+/*
+ * The `.ts` extension is required, not stylistic.
+ *
+ * This package's `exports` point at `src`, so a bundler transpiles these and
+ * plain Node type-strips them. Node's stripping does not resolve extensionless
+ * relative specifiers, so `./schema` loads under Vite and fails under `node` -
+ * which is how the CLI could import `db/schema` for years and could not import
+ * this file at all. TypeScript accepts the extension here; nothing is lost.
+ */
+import * as schema from "./schema.ts";
+import { pageFeedback } from "./schema.ts";
 
 /*
  * The database client. Server-only, twice over: the `.server.ts` suffix is in

@@ -1,10 +1,7 @@
 import type { Bearer } from "@sushindustries/access";
-import {
-	bearerFrom,
-	sameSecret,
-	verify,
-} from "@sushindustries/access/tokens.server";
+import { bearerFrom, sameSecret } from "@sushindustries/access/tokens.server";
 import type { Scope } from "./access.schemas";
+import { accessTokens } from "./access.server";
 
 /*
  * One bearer gate, for the three endpoints that need one.
@@ -128,7 +125,9 @@ async function authenticate(
 			 * must not become a 500 either: this is a refusal, and an outage in
 			 * the token table is a reason to refuse rather than to crash.
 			 */
-			const bearer = await verify(offered, scope).catch(() => null);
+			const bearer = await accessTokens
+				.verify(offered, scope)
+				.catch(() => null);
 			if (bearer) return { ok: true, bearer };
 		}
 	}

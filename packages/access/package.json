@@ -2,14 +2,12 @@
 	"name": "@sushindustries/access",
 	"version": "0.1.0",
 	"type": "module",
-	"description": "Scoped API tokens and single-use invitations over Postgres. Mint, verify, revoke; invite by address and let the credential be minted at the moment it is collected.",
+	"description": "Scoped API tokens and single-use invitations over a store you supply. Mint, verify, revoke; invite by address and let the credential be minted at the moment it is collected.",
 	"license": "MIT",
 	"keywords": [
 		"api-tokens",
 		"magic-link",
-		"authentication",
-		"drizzle",
-		"postgres"
+		"authentication"
 	],
 	"files": [
 		"dist",
@@ -19,9 +17,6 @@
 	"scripts": {
 		"build": "tsdown",
 		"typecheck": "tsc --noEmit -p tsconfig.json"
-	},
-	"dependencies": {
-		"@sushindustries/db": "workspace:*"
 	},
 	"exports": {
 		".": "./src/index.ts",
