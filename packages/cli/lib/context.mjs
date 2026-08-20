@@ -16,7 +16,27 @@ import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 
-export const root = resolve(here, "../../..");
+/** Where this file sits: the checkout, or the installed copy of the package. */
+const installed = resolve(here, "../../..");
+
+/**
+ * The repository whose documents the tools answer about.
+ *
+ * Where this file lives, unless somebody has explicitly said otherwise with
+ * `ADAM_JUREK_ROOT`. Deliberately *not* the working directory: an earlier
+ * version walked up from `cwd` looking for a `.git`, which would have meant
+ * launching the MCP server from any other project silently indexed that
+ * project instead - reading files from an unrelated repository because of
+ * where a terminal happened to be. A tool that changes what it reads based on
+ * where it was started is a tool nobody can reason about.
+ *
+ * So: this repository by default, another only when named. The override is
+ * what lets somebody point it at their own checkout on purpose, which is a
+ * different act from doing it by accident.
+ */
+const told = process.env.ADAM_JUREK_ROOT;
+
+export const root = told ? resolve(told) : installed;
 
 /*
  * The stack, and the shards cut from it.

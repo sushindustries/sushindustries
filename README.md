@@ -120,7 +120,6 @@ Every skill this repo runs on installs independently of the code -
 | `add-a-component` | The pipeline for adding a component, its demo, docs and registry entry |
 | `document-an-element` | The five-tab documentation contract this site's docs follow |
 | `simplify` | Find and remove excess - bloated docs, dead pages, rules nothing checks |
-| `going-public` | Flipping a repo from private to public, then publishing its packages |
 | `gh-repo-admin` | Safe `gh api` patterns for editing repo settings - branch protection, visibility, Discussions, checking things no REST field exposes |
 | `verify-component` | Verify a component actually renders and works, in the running site |
 | `toolset` | Check that new content has real content at its live URL, not a source file |

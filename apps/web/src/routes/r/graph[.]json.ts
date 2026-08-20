@@ -12,7 +12,7 @@ import { json, originFrom } from "../../modules/registry/registry.server";
  *
  * A server route rather than a server function, for the reason the registry
  * index is one: the callers are other people's programs - a crawler, an agent,
- * the vault - and they want a URL and a JSON body, not our RPC protocol.
+ * another service - and they want a URL and a JSON body, not our RPC protocol.
  *
  * On GraphQL, since it is the obvious question to ask of something called a
  * graph: it would be a server, a schema language and a client to answer three

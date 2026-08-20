@@ -209,6 +209,16 @@ describe.skipIf(!process.env.DATABASE_URL)("invitations", () => {
 	afterAll(async () => {
 		await getDb().delete(magicLinks).where(eq(magicLinks.email, EMAIL));
 		await getDb().delete(accounts).where(eq(accounts.email, EMAIL));
+
+		/*
+		 * And the owner account this block creates to send the invitations from.
+		 *
+		 * The gate suite above cleans up the same login, but its `afterAll` has
+		 * already run by the time this block starts - so every run left one
+		 * `test-access-*` row behind, and they were sitting in the database in
+		 * plain sight the first time anybody opened Drizzle Studio.
+		 */
+		await getDb().delete(accounts).where(eq(accounts.githubLogin, LOGIN));
 	});
 
 	/** Creates one and digs the secret back out of the returned URL. */

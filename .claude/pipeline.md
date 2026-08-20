@@ -346,4 +346,4 @@ it belongs in `scripts/doctor.mjs`.
 
 This pipeline is per-item - a post, a component, a package. Flipping the
 repo's own visibility and publishing its packages is a once-per-lifecycle
-event with its own procedure: `.claude/skills/going-public/SKILL.md`.
+event with its own procedure, and this repository is already public.
