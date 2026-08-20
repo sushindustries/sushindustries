@@ -2949,6 +2949,80 @@ function checkStackVersionsAreCurrent() {
 	}
 }
 
+/**
+ * Every command, skill and agent carries the frontmatter its kind needs.
+ *
+ * The three are not the same shape, and the differences are load-bearing:
+ *
+ *   command  `description` only. The name comes from the filename, which is
+ *            why 335 of the 1,901 commands installed on this machine carry
+ *            exactly that and nothing else. A command with no description is
+ *            a slash command with no help text next to it.
+ *   skill    `name` and `description`. The description is not documentation -
+ *            it is the entire basis on which a skill is chosen, so a vague one
+ *            is a skill that never loads.
+ *   agent    `name` and `description`, and `tools` if it should not have all
+ *            of them. An agent with no `tools` line gets everything, which is
+ *            how a judging agent ends up able to edit.
+ *
+ * Checked because none of it fails loudly. A missing description costs nothing
+ * at load time and everything at the moment somebody needed the thing to be
+ * found.
+ */
+function checkAuthoredFrontmatter() {
+	const kinds = [
+		{
+			glob: "commands",
+			required: ["description"],
+			where: "plugins/*/commands",
+		},
+		{ glob: "skills", required: ["name", "description"], where: "skills" },
+		{ glob: "agents", required: ["name", "description"], where: "agents" },
+	];
+
+	const files = trackedFiles().filter(
+		(path) =>
+			path.endsWith(".md") &&
+			(path.includes("/commands/") ||
+				path.includes("/agents/") ||
+				path.endsWith("SKILL.md")),
+	);
+
+	for (const file of files) {
+		const kind = file.endsWith("SKILL.md")
+			? kinds[1]
+			: file.includes("/commands/")
+				? kinds[0]
+				: kinds[2];
+
+		const raw = read(file) ?? "";
+		const front = /^---\n([\s\S]*?)\n---/.exec(raw);
+
+		if (!front) {
+			report(
+				"frontmatter",
+				file,
+				"has no frontmatter",
+				`a ${kind.glob.replace(/s$/, "")} needs ${kind.required.join(" and ")}`,
+			);
+			continue;
+		}
+
+		for (const key of kind.required) {
+			// `key:` at the start of a line, so a word inside a description
+			// cannot satisfy the check for a field that is not there.
+			if (new RegExp(`^${key}:`, "m").test(front[1])) continue;
+
+			report(
+				"frontmatter",
+				file,
+				`has no \`${key}\``,
+				`a ${kind.glob.replace(/s$/, "")} without it cannot be found by the thing that looks for it`,
+			);
+		}
+	}
+}
+
 function checkRoutesAreLeaves() {
 	for (const path of trackedFiles()) {
 		if (!path.startsWith("apps/web/src/")) continue;
@@ -3283,6 +3357,7 @@ checkGeneratedFilesAreOrdered();
 checkDocumentKindsAgree();
 checkGraphIsAcyclic();
 checkStackVersionsAreCurrent();
+checkAuthoredFrontmatter();
 checkDomainMapCoversPackages();
 checkCitedFilesExist();
 

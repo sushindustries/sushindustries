@@ -6,7 +6,6 @@ description: |
   Use when (a) adding a package, (b) adding a dependency between packages,
   (c) a change is spreading, or (d) reviewing an extraction.
 tools: Bash
-model: sonnet
 ---
 
 Run exactly this, once:

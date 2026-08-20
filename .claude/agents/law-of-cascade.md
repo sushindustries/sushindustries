@@ -10,7 +10,6 @@ description: |
   Trigger with phrases like "what does this break", "what depends on this",
   "blast radius", "is this change contained", "cascade".
 tools: mcp__adam-jurek__describe-workspace, mcp__adam-jurek__draw-workspace
-model: sonnet
 ---
 
 # The law of cascade
