@@ -15,17 +15,50 @@
 
 import { globSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { flags, root } from "../lib/context.mjs";
+import { flags, read, root } from "../lib/context.mjs";
 import { banner, blank, bold, cyan, dim, field, note, ok } from "../lib/ui.mjs";
 
 const SCOPE = "@sushindustries/";
 
+/**
+ * Where the workspaces are, read from `pnpm-workspace.yaml`.
+ *
+ * `apps/*` and `packages/*` were written here, which made this command a map
+ * of this repository specifically rather than of a pnpm workspace. The globs
+ * are already declared one file away and a repository that added a third root
+ * would have had a map quietly missing a third of itself.
+ */
+function workspaceGlobs() {
+	const declared = read("pnpm-workspace.yaml") ?? "";
+
+	const globs = [];
+	let inPackages = false;
+
+	for (const line of declared.split("\n")) {
+		if (/^packages:\s*$/.test(line)) {
+			inPackages = true;
+			continue;
+		}
+		if (inPackages) {
+			const entry = /^\s+-\s+['"]?([^'"\s#]+)/.exec(line);
+			if (entry?.[1]) {
+				globs.push(entry[1]);
+				continue;
+			}
+			// The list ended at the first line that is not an entry.
+			if (line.trim() && !line.trimStart().startsWith("#")) break;
+		}
+	}
+
+	// A workspace with no declaration is still a workspace of one.
+	return globs.length > 0 ? globs : ["."];
+}
+
 /** Every workspace manifest, as `{ dir, name, description, deps }`. */
 function workspaces() {
-	const manifests = [
-		...globSync("apps/*/package.json", { cwd: root }),
-		...globSync("packages/*/package.json", { cwd: root }),
-	].sort();
+	const manifests = workspaceGlobs()
+		.flatMap((glob) => globSync(`${glob}/package.json`, { cwd: root }))
+		.sort();
 
 	return manifests.flatMap((relative) => {
 		const manifest = JSON.parse(readFileSync(join(root, relative), "utf8"));
@@ -132,6 +165,111 @@ function mermaid(list, modules) {
 	return lines.join("\n");
 }
 
+/*
+ * ── whether the shape is earned ──────────────────────────────────────────
+ *
+ * A dependency graph is the one place complexity is measurable rather than
+ * felt. Four things it can say, and each is a question about universality:
+ *
+ *   cycles       two packages that cannot be installed independently. Always
+ *                wrong, never a matter of degree.
+ *   inversions   a package depending on an app. The package is no longer
+ *                installable by anybody but this repository.
+ *   fan-out      how much of this workspace you must take to take one piece.
+ *                A package with none is portable; one with four is a branch.
+ *   depth        the longest chain. Every link is a rebuild somebody waits
+ *                for and a version somebody has to keep in step.
+ *
+ * None of these have a threshold here on purpose. The numbers are reported and
+ * the two that are unambiguous - cycles and inversions - are what `pnpm run
+ * doctor` refuses. A budget on the other two would be a number somebody picked,
+ * and it would be argued with rather than acted on.
+ */
+
+/** Every cycle in the internal dependency graph, as chains of names. */
+function cycles(list) {
+	const edges = new Map(
+		list.map((one) => [
+			one.name,
+			one.deps.filter((d) => list.some((w) => w.name === d)),
+		]),
+	);
+
+	const found = [];
+	const seen = new Set();
+
+	const walk = (node, trail) => {
+		const at = trail.indexOf(node);
+		if (at !== -1) {
+			const loop = trail.slice(at).concat(node);
+			const signature = [...loop].sort().join(">");
+			if (!seen.has(signature)) {
+				seen.add(signature);
+				found.push(loop);
+			}
+			return;
+		}
+		for (const next of edges.get(node) ?? []) walk(next, [...trail, node]);
+	};
+
+	for (const one of list) walk(one.name, []);
+	return found;
+}
+
+/** A package that depends on an app cannot be installed on its own. */
+function inversions(list) {
+	const apps = new Set(
+		list
+			.filter((one) => !one.dir.startsWith("packages/"))
+			.map((one) => one.name),
+	);
+
+	return list
+		.filter((one) => one.dir.startsWith("packages/"))
+		.flatMap((one) =>
+			one.deps
+				.filter((d) => apps.has(d))
+				.map((d) => ({ from: one.short, to: d })),
+		);
+}
+
+/** The longest chain of internal dependencies, as names. */
+function deepest(list) {
+	const edges = new Map(
+		list.map((one) => [
+			one.name,
+			one.deps.filter((d) => list.some((w) => w.name === d)),
+		]),
+	);
+
+	let longest = [];
+
+	const walk = (node, trail) => {
+		if (trail.includes(node)) return;
+		const path = [...trail, node];
+		if (path.length > longest.length) longest = path;
+		for (const next of edges.get(node) ?? []) walk(next, path);
+	};
+
+	for (const one of list) walk(one.name, []);
+	return longest;
+}
+
+export function complexity(list) {
+	const internal = (one) =>
+		one.deps.filter((d) => list.some((w) => w.name === d));
+
+	const loops = cycles(list);
+	const inverted = inversions(list);
+	const chain = deepest(list);
+
+	const portable = list.filter(
+		(one) => one.dir.startsWith("packages/") && internal(one).length === 0,
+	);
+
+	return { loops, inverted, chain, portable, internal };
+}
+
 export function map() {
 	const list = workspaces();
 	const modules = siteModules();
@@ -145,7 +283,13 @@ export function map() {
 	note("Derived from the workspace manifests, not from a diagram.");
 	blank();
 
-	for (const group of ["apps/", "packages/"]) {
+	/*
+	 * Grouped by the roots the workspace declares, in the order it declares
+	 * them, rather than by two names this command used to know.
+	 */
+	const groups = [...new Set(list.map((one) => `${one.dir.split("/")[0]}/`))];
+
+	for (const group of groups) {
 		console.log(`  ${bold(group.replace("/", ""))}`);
 
 		for (const one of list.filter((w) => w.dir.startsWith(group))) {
@@ -173,6 +317,32 @@ export function map() {
 		}
 		blank();
 	}
+
+	const shape = complexity(list);
+
+	console.log(`  ${bold("is the shape earned")}`);
+
+	for (const loop of shape.loops) {
+		console.log(
+			`    ${dim("cycle")}      ${loop.map((n) => n.replace(SCOPE, "")).join(" -> ")}`,
+		);
+	}
+	for (const one of shape.inverted) {
+		console.log(
+			`    ${dim("inversion")}  ${one.from} depends on ${one.to.replace(SCOPE, "")}, which is an app`,
+		);
+	}
+	if (shape.loops.length === 0 && shape.inverted.length === 0) {
+		console.log(`    ${dim("no cycles, no package depending on an app")}`);
+	}
+
+	console.log(
+		`    ${dim("portable")}   ${shape.portable.length} of ${list.filter((o) => o.dir.startsWith("packages/")).length} packages install with nothing else from here`,
+	);
+	console.log(
+		`    ${dim("deepest")}    ${shape.chain.map((n) => n.replace(SCOPE, "")).join(" -> ")}`,
+	);
+	blank();
 
 	field("workspaces", String(list.length));
 	field("modules", String(modules.length));

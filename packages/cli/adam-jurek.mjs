@@ -71,6 +71,10 @@ const COMMANDS = {
 		const { map } = await import("./commands/map.mjs");
 		return map();
 	},
+	async pipeline() {
+		const { pipeline } = await import("./commands/pipeline.mjs");
+		return pipeline();
+	},
 	async mcp() {
 		const [which] = rest;
 		if (which === "install") {
@@ -150,6 +154,8 @@ adam-jurek - the command line for adamjurek.com
   pnpm sushindustries map --mermaid    the same graph, as a chart
   pnpm sushindustries studio           browse the deployed database
   pnpm sushindustries sync             write the index into Postgres
+  pnpm sushindustries pipeline         run whichever of those are stale, in order
+  pnpm sushindustries pipeline --dry   say what is stale and run nothing
   pnpm sushindustries mcp              serve every tool on stdio
   pnpm sushindustries mcp <group>      serve one group: ${groups}
   pnpm sushindustries mcp install      how to register it, four ways
