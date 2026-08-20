@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Icon, type IconName } from "./icon";
+import { Icon, type IconName } from "./icon.tsx";
 
 /*
  * The top of a documentation page, as one component.

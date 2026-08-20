@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useRef } from "react";
-import { Icon } from "./icon";
+import { Icon } from "./icon.tsx";
 
 export interface DialogProps {
 	/** Calls `showModal`, so the page behind goes inert while it is true. */

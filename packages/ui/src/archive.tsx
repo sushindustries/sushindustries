@@ -1,7 +1,7 @@
 import { Fragment, type ReactNode } from "react";
-import type { ArchiveCategory, ArchiveItem } from "./archive.schemas";
-import { Icon } from "./icon";
-import { Pagination, type PaginationProps } from "./pagination";
+import type { ArchiveCategory, ArchiveItem } from "./archive.schemas.ts";
+import { Icon } from "./icon.tsx";
+import { Pagination, type PaginationProps } from "./pagination.tsx";
 
 export interface ArchiveProps {
 	/** The chips, in the order given. One with no items still gets a chip, counted zero. */

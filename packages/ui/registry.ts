@@ -1,5 +1,5 @@
-import type { IconName } from "./src/icon";
-import type { RegistryCategory, Subcategory, Tag } from "./taxonomy";
+import type { IconName } from "./src/icon.tsx";
+import type { RegistryCategory, Subcategory, Tag } from "./taxonomy.ts";
 
 /*
  * The vocabulary lives in `taxonomy.ts`, and this re-exports the one type
@@ -8,7 +8,7 @@ import type { RegistryCategory, Subcategory, Tag } from "./taxonomy";
  * cost - eighty-nine distinct tags, fifty-nine used once, and two pairs that
  * were the same concept spelled twice.
  */
-export type { RegistryCategory } from "./taxonomy";
+export type { RegistryCategory } from "./taxonomy.ts";
 
 /*
  * What this package publishes, and what each item needs to work.

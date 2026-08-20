@@ -1,8 +1,8 @@
 import { createHighlightedCodeBlockProps } from "@tanstack/highlight/react";
 import type { ReactNode } from "react";
-import { CopyButton } from "./copy-button";
-import { highlighter, resolveLanguage } from "./highlighter";
-import { Icon } from "./icon";
+import { CopyButton } from "./copy-button.tsx";
+import { highlighter, resolveLanguage } from "./highlighter.ts";
+import { Icon } from "./icon.tsx";
 
 export interface CodeBlockProps {
 	/** The source. One trailing newline is dropped, so the copy is exactly what is shown. */

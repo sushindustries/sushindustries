@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useRef } from "react";
-import { Icon } from "./icon";
+import { Icon } from "./icon.tsx";
 
 export interface SheetProps {
 	/** Calls `showModal`. A sheet is still modal - the page behind it cannot be reached. */

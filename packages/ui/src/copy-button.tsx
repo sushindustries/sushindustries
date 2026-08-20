@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useRef, useState } from "react";
-import { Icon, type IconName } from "./icon";
+import { Icon, type IconName } from "./icon.tsx";
 
 export interface CopyButtonProps {
 	/** What lands on the clipboard. */

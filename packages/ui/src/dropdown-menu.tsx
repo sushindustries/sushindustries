@@ -1,5 +1,5 @@
 import { type ReactNode, useCallback, useId, useRef } from "react";
-import { Icon, type IconName } from "./icon";
+import { Icon, type IconName } from "./icon.tsx";
 
 /*
  * A menu hung off a button.

@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useId, useState } from "react";
-import type { DocHeading } from "./headings";
+import type { DocHeading } from "./headings.ts";
 
 export interface DocAsideProps {
 	/** The list to render. Collect it in a route loader, not in the component. */

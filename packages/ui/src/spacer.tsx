@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { Space } from "./grid";
+import type { Space } from "./grid.tsx";
 
 export interface SpacerProps {
 	/** A step on the spacing scale. */

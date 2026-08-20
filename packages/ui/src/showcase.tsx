@@ -1,8 +1,8 @@
 import { Fragment, type ReactNode, useEffect, useRef, useState } from "react";
-import { CopyButton } from "./copy-button";
-import { DEVICES } from "./device-kinds";
-import { Icon } from "./icon";
-import { useDeviceKind } from "./use-device-kind";
+import { CopyButton } from "./copy-button.tsx";
+import { DEVICES } from "./device-kinds.ts";
+import { Icon } from "./icon.tsx";
+import { useDeviceKind } from "./use-device-kind.ts";
 
 /**
  * The viewports a component is checked at.

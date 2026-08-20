@@ -1,5 +1,5 @@
 import type { ReactNode, SelectHTMLAttributes } from "react";
-import { Icon } from "./icon";
+import { Icon } from "./icon.tsx";
 
 export interface NativeSelectProps
 	extends SelectHTMLAttributes<HTMLSelectElement> {}

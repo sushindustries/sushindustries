@@ -8,9 +8,8 @@ export {
 	Accordion,
 	type AccordionItem,
 	type AccordionProps,
-} from "./accordion";
-export { Alert, type AlertProps } from "./alert";
-export { Archive, type ArchiveProps } from "./archive";
+} from "./accordion.tsx";
+export { Alert, type AlertProps } from "./alert.tsx";
 export {
 	type Archive as ArchiveData,
 	type ArchiveCategory,
@@ -19,54 +18,55 @@ export {
 	archiveItemSchema,
 	archiveSchema,
 	parseArchive,
-} from "./archive.schemas";
-export { AspectRatio, type AspectRatioProps } from "./aspect-ratio";
+} from "./archive.schemas.ts";
+export { Archive, type ArchiveProps } from "./archive.tsx";
+export { AspectRatio, type AspectRatioProps } from "./aspect-ratio.tsx";
 export {
 	Avatar,
 	AvatarGroup,
 	type AvatarGroupProps,
 	type AvatarProps,
-} from "./avatar";
-export { Badge, type BadgeProps } from "./badge";
+} from "./avatar.tsx";
+export { Badge, type BadgeProps } from "./badge.tsx";
 export {
 	BarChart,
 	type BarChartDatum,
 	type BarChartProps,
-} from "./bar-chart";
-export { BootLoader, type BootLoaderProps } from "./boot-loader";
+} from "./bar-chart.tsx";
+export { BootLoader, type BootLoaderProps } from "./boot-loader.tsx";
 export {
 	Breadcrumb,
 	type BreadcrumbItem,
 	type BreadcrumbProps,
-} from "./breadcrumb";
-export { Button, type ButtonProps } from "./button";
-export { Card, type CardProps } from "./card";
-export { Checkbox, type CheckboxProps } from "./checkbox";
-export { Clock, type ClockProps } from "./clock";
-export { CodeBlock, type CodeBlockProps } from "./code-block";
-export { Collapsible, type CollapsibleProps } from "./collapsible";
+} from "./breadcrumb.tsx";
+export { Button, type ButtonProps } from "./button.tsx";
+export { Card, type CardProps } from "./card.tsx";
+export { Checkbox, type CheckboxProps } from "./checkbox.tsx";
+export { Clock, type ClockProps } from "./clock.tsx";
+export { CodeBlock, type CodeBlockProps } from "./code-block.tsx";
+export { Collapsible, type CollapsibleProps } from "./collapsible.tsx";
 export {
 	CommandPalette,
 	type CommandPaletteProps,
 	type PaletteEntry,
-} from "./command-palette";
-export * from "./consent";
+} from "./command-palette.tsx";
+export * from "./consent.tsx";
 export {
 	ContextMenu,
 	type ContextMenuProps,
 	type ContextMenuState,
 	type MenuAction,
 	useContextMenu,
-} from "./context-menu";
-export { CopyButton, type CopyButtonProps } from "./copy-button";
-export { Credit, type CreditProps } from "./credit";
+} from "./context-menu.tsx";
+export { CopyButton, type CopyButtonProps } from "./copy-button.tsx";
+export { Credit, type CreditProps } from "./credit.tsx";
 export {
 	DataTable,
 	type DataTableColumn,
 	type DataTableProps,
-} from "./data-table";
-export { DeskWindow, type DeskWindowProps } from "./desk-window";
-export { Device, type DeviceProps } from "./device";
+} from "./data-table.tsx";
+export { DeskWindow, type DeskWindowProps } from "./desk-window.tsx";
+export { Device, type DeviceProps } from "./device.tsx";
 export {
 	DEVICE_KINDS,
 	DEVICES,
@@ -74,23 +74,23 @@ export {
 	type DeviceProfile,
 	deviceKindFor,
 	deviceQuery,
-} from "./device-kinds";
-export { Dialog, type DialogProps } from "./dialog";
-export { DocAside, type DocAsideProps } from "./doc-aside";
+} from "./device-kinds.ts";
+export { Dialog, type DialogProps } from "./dialog.tsx";
+export { DocAside, type DocAsideProps } from "./doc-aside.tsx";
 export {
 	DocNav,
 	type DocNavItem,
 	type DocNavProps,
 	type DocNavSection,
-} from "./doc-nav";
-export { Dock, type DockProps, type DockTask } from "./dock";
+} from "./doc-nav.tsx";
+export { Dock, type DockProps, type DockTask } from "./dock.tsx";
 export {
 	type DropdownItem,
 	DropdownMenu,
 	type DropdownMenuProps,
-} from "./dropdown-menu";
-export { Empty, type EmptyProps } from "./empty";
-export { Field, type FieldProps } from "./field";
+} from "./dropdown-menu.tsx";
+export { Empty, type EmptyProps } from "./empty.tsx";
+export { Field, type FieldProps } from "./field.tsx";
 export {
 	FolderShelf,
 	type FolderShelfProps,
@@ -98,98 +98,98 @@ export {
 	matches,
 	SEARCH_PATH,
 	type ShelfEntry,
-} from "./folder-shelf";
+} from "./folder-shelf.tsx";
 export {
 	type Frontmatter,
 	parseFrontmatter,
 	readList,
 	readString,
 	splitFrontmatter,
-} from "./frontmatter";
-export { Grid, type GridProps, type Space } from "./grid";
-export { collectHeadings, type DocHeading } from "./headings";
+} from "./frontmatter.ts";
+export { Grid, type GridProps, type Space } from "./grid.tsx";
+export { collectHeadings, type DocHeading } from "./headings.ts";
 export {
 	Hero,
 	type HeroFact,
 	type HeroProps,
 	type HeroShot,
 	type HeroShotSource,
-} from "./hero";
-export { highlighter, resolveLanguage } from "./highlighter";
-export { Icon, type IconName, type IconProps } from "./icon";
-export { Input, type InputProps } from "./input";
-export { Item, type ItemProps } from "./item";
-export { Kbd, type KbdProps } from "./kbd";
+} from "./hero.tsx";
+export { highlighter, resolveLanguage } from "./highlighter.ts";
+export { Icon, type IconName, type IconProps } from "./icon.tsx";
+export { Input, type InputProps } from "./input.tsx";
+export { Item, type ItemProps } from "./item.tsx";
+export { Kbd, type KbdProps } from "./kbd.tsx";
 export {
 	createBlockDispatcher,
 	type MarkdownBlockProps,
 	type MarkdownBlocks,
-} from "./markdown-blocks";
-export { MarkdownView, type MarkdownViewProps } from "./markdown-view";
-export { NativeSelect, type NativeSelectProps } from "./native-select";
+} from "./markdown-blocks.tsx";
+export { MarkdownView, type MarkdownViewProps } from "./markdown-view.tsx";
+export { NativeSelect, type NativeSelectProps } from "./native-select.tsx";
 export {
 	NavBar,
 	type NavBarProps,
 	type NavEntry,
 	type NavItem,
-} from "./nav-bar";
-export { Pagination, type PaginationProps } from "./pagination";
-export { Progress, type ProgressProps } from "./progress";
-export { Questions, type QuestionsProps } from "./questions";
+} from "./nav-bar.tsx";
+export { Pagination, type PaginationProps } from "./pagination.tsx";
+export { Progress, type ProgressProps } from "./progress.tsx";
+export { Questions, type QuestionsProps } from "./questions.tsx";
 export {
 	RadioGroup,
 	type RadioGroupProps,
 	type RadioOption,
-} from "./radio-group";
+} from "./radio-group.tsx";
 export {
 	Ref,
 	type Reference,
 	type ReferenceMap,
 	type RefProps,
-} from "./reference";
-export { Reveal, type RevealProps } from "./reveal";
-export { ScrollArea, type ScrollAreaProps } from "./scroll-area";
-export { ScrollSpin, type ScrollSpinProps } from "./scroll-spin";
-export { SecretReveal, type SecretRevealProps } from "./secret-reveal";
-export { Section, type SectionProps } from "./section";
-export { Separator, type SeparatorProps } from "./separator";
-export { Sheet, type SheetProps } from "./sheet";
+} from "./reference.tsx";
+export { Reveal, type RevealProps } from "./reveal.tsx";
+export { ScrollArea, type ScrollAreaProps } from "./scroll-area.tsx";
+export { ScrollSpin, type ScrollSpinProps } from "./scroll-spin.tsx";
+export { SecretReveal, type SecretRevealProps } from "./secret-reveal.tsx";
+export { Section, type SectionProps } from "./section.tsx";
+export { Separator, type SeparatorProps } from "./separator.tsx";
+export { Sheet, type SheetProps } from "./sheet.tsx";
 export {
 	SHOWCASE_DEVICES,
 	Showcase,
 	type ShowcaseDevice,
 	type ShowcaseProps,
-} from "./showcase";
-export { Skeleton, type SkeletonProps } from "./skeleton";
-export { Slider, type SliderProps } from "./slider";
-export { SmoothScroll } from "./smooth-scroll";
-export { Spacer, type SpacerProps } from "./spacer";
-export { Spinner, type SpinnerProps } from "./spinner";
-export { Switch, type SwitchProps } from "./switch";
+} from "./showcase.tsx";
+export { Skeleton, type SkeletonProps } from "./skeleton.tsx";
+export { Slider, type SliderProps } from "./slider.tsx";
+export { SmoothScroll } from "./smooth-scroll.tsx";
+export { Spacer, type SpacerProps } from "./spacer.tsx";
+export { Spinner, type SpinnerProps } from "./spinner.tsx";
+export { Switch, type SwitchProps } from "./switch.tsx";
 export {
 	Table,
 	type TableColumn,
 	type TableProps,
-} from "./table";
-export { Textarea, type TextareaProps } from "./textarea";
+} from "./table.tsx";
+export { Textarea, type TextareaProps } from "./textarea.tsx";
 export {
 	type ThemeOption,
 	ThemeToggle,
 	type ThemeToggleProps,
-} from "./theme-toggle";
+} from "./theme-toggle.tsx";
 export {
 	ToastProvider,
 	type ToastProviderProps,
 	useToast,
-} from "./toast";
+} from "./toast.tsx";
 export {
 	Toggle,
 	ToggleGroup,
 	type ToggleGroupProps,
 	type ToggleProps,
-} from "./toggle";
-export { Tooltip, type TooltipProps } from "./tooltip";
-export { TypedMark, type TypedMarkProps } from "./typed-mark";
+} from "./toggle.tsx";
+export { Tooltip, type TooltipProps } from "./tooltip.tsx";
+export { TypedMark, type TypedMarkProps } from "./typed-mark.tsx";
 export {
 	Heading,
 	type HeadingProps,
@@ -199,34 +199,34 @@ export {
 	type LeadProps,
 	Text,
 	type TextProps,
-} from "./typography";
+} from "./typography.tsx";
 export {
 	type DeskApi,
 	type DeskState,
 	type DeskWindowState,
 	EMPTY_DESK,
 	useDeskState,
-} from "./use-desk-state";
-export { useDeviceKind } from "./use-device-kind";
+} from "./use-desk-state.ts";
+export { useDeviceKind } from "./use-device-kind.ts";
 export {
 	type DragPlaceHandle,
 	type DragPlaceOptions,
 	useDragPlace,
-} from "./use-drag-place";
+} from "./use-drag-place.ts";
 export {
 	type ScrollProgressOptions,
 	useScrollProgress,
-} from "./use-scroll-progress";
+} from "./use-scroll-progress.ts";
 export {
 	type ScrollTurn,
 	type ScrollTurnOptions,
 	useScrollTurn,
-} from "./use-scroll-turn";
+} from "./use-scroll-turn.ts";
 export {
 	VideoPlayer,
 	type VideoPlayerProps,
 	type VideoProvider,
 	type VideoTheme,
 	type VideoVariant,
-} from "./video-player";
-export { Workbench, type WorkbenchProps } from "./workbench";
+} from "./video-player.tsx";
+export { Workbench, type WorkbenchProps } from "./workbench.tsx";

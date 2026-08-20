@@ -1190,9 +1190,12 @@ function checkComponentImportsAreDeclared(items) {
 		for (const file of item.files) {
 			const source = read(sourcePath(item, file));
 
-			for (const [, stem] of source.matchAll(
+			// Specifiers carry their extension so Node can resolve them; the
+			// registry lists files by stem. Compare stems.
+			for (const [, spec] of source.matchAll(
 				/import\s[^;]*?from\s+"\.\/([\w.-]+)"/g,
 			)) {
+				const stem = spec.replace(/\.tsx?$/, "");
 				if (own.has(stem)) continue;
 
 				const holders = owners.get(stem);

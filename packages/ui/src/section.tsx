@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Reveal } from "./reveal";
+import { Reveal } from "./reveal.tsx";
 
 export interface SectionProps {
 	/** Anchor target, so a nav can link straight to it. */

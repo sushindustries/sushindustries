@@ -6,7 +6,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { Icon, type IconName } from "./icon";
+import { Icon, type IconName } from "./icon.tsx";
 
 export interface PaletteEntry {
 	readonly id: string;

@@ -1,5 +1,5 @@
 import { type ReactNode, useCallback, useRef } from "react";
-import { Icon } from "./icon";
+import { Icon } from "./icon.tsx";
 
 export interface DeskWindowProps {
 	title: ReactNode;

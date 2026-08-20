@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useId, useRef } from "react";
-import { Icon, type IconName } from "./icon";
+import { Icon, type IconName } from "./icon.tsx";
 
 export interface DocNavItem {
 	/**

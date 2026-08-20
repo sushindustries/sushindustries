@@ -15,6 +15,7 @@
 		"dist",
 		"src",
 		"registry.ts",
+		"taxonomy.ts",
 		"docs",
 		"skills"
 	],

@@ -1,5 +1,5 @@
 import { Fragment, type ReactNode } from "react";
-import { Icon } from "./icon";
+import { Icon } from "./icon.tsx";
 
 export interface BreadcrumbItem {
 	readonly label: string;

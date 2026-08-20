@@ -1,5 +1,5 @@
 import { type ReactNode, useCallback, useRef } from "react";
-import { type ScrollTurn, useScrollTurn } from "./use-scroll-turn";
+import { type ScrollTurn, useScrollTurn } from "./use-scroll-turn.ts";
 
 export interface ScrollSpinProps {
 	/** Whatever should turn. A logo, a mark, an image, a diagram. */

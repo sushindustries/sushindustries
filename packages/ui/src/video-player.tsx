@@ -6,7 +6,7 @@ import {
 	useRef,
 	useState,
 } from "react";
-import { Icon } from "./icon";
+import { Icon } from "./icon.tsx";
 
 /*
  * A video, held behind a picture of itself.

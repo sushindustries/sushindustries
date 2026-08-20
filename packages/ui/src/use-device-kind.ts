@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DEVICES, type DeviceKind, deviceKindFor } from "./device-kinds";
+import { DEVICES, type DeviceKind, deviceKindFor } from "./device-kinds.ts";
 
 /*
  * Which machine the stylesheet is currently drawing, as a value.

@@ -1,13 +1,17 @@
 import { type ReactNode, useEffect, useRef } from "react";
-import { ContextMenu, type MenuAction, useContextMenu } from "./context-menu";
-import { DeskWindow } from "./desk-window";
-import { Icon, type IconName } from "./icon";
+import {
+	ContextMenu,
+	type MenuAction,
+	useContextMenu,
+} from "./context-menu.tsx";
+import { DeskWindow } from "./desk-window.tsx";
+import { Icon, type IconName } from "./icon.tsx";
 import {
 	type DeskApi,
 	type DeskIconState,
 	useDeskState,
-} from "./use-desk-state";
-import { useDragPlace } from "./use-drag-place";
+} from "./use-desk-state.ts";
+import { useDragPlace } from "./use-drag-place.ts";
 
 /** `useDragPlace` needs a callback; `enabled: false` means it is never called. */
 function noop(): void {}

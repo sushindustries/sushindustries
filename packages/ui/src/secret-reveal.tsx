@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { CopyButton } from "./copy-button";
+import { CopyButton } from "./copy-button.tsx";
 
 export interface SecretRevealProps {
 	/** The thing being shown. A token, a link, a one-time code. */

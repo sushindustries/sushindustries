@@ -7,7 +7,7 @@ import {
 	useState,
 } from "react";
 import { createPortal } from "react-dom";
-import { Icon, type IconName } from "./icon";
+import { Icon, type IconName } from "./icon.tsx";
 
 export interface MenuAction {
 	readonly id: string;

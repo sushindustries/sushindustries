@@ -1,5 +1,5 @@
 import { type ReactNode, useCallback } from "react";
-import { Icon, type IconName } from "./icon";
+import { Icon, type IconName } from "./icon.tsx";
 
 export interface ThemeOption {
 	readonly id: string;

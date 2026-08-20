@@ -1,9 +1,12 @@
 import { docsMarkdownExtensions } from "@tanstack/markdown/extensions/docs";
 import { Markdown, type MarkdownComponents } from "@tanstack/markdown/react";
 import { isValidElement, type ReactNode } from "react";
-import { CodeBlock } from "./code-block";
-import { createBlockDispatcher, type MarkdownBlocks } from "./markdown-blocks";
-import { Ref, type ReferenceMap } from "./reference";
+import { CodeBlock } from "./code-block.tsx";
+import {
+	createBlockDispatcher,
+	type MarkdownBlocks,
+} from "./markdown-blocks.tsx";
+import { Ref, type ReferenceMap } from "./reference.tsx";
 
 /*
  * Markdown, rendered - and the template layer that content files write against.

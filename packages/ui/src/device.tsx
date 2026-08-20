@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { DeviceKind } from "./device-kinds";
+import type { DeviceKind } from "./device-kinds.ts";
 
 export interface DeviceProps {
 	/** The desktop. It scrolls on its own and chains at the end. */
