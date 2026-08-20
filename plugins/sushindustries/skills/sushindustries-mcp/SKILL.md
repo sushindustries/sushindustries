@@ -1,19 +1,39 @@
 ---
 name: sushindustries-mcp
-description: Use when answering anything about adamjurek.com's components, its packages, or the libraries it is built on - to look the answer up in one of the three local servers rather than recalling it. Also covers adding a post, page, component or package to that site.
+description: Use when answering anything about adamjurek.com's components, its packages, or the libraries it is built on - to look the answer up rather than recall it. Also covers adding a post, page, component, collection or package to that site.
 ---
 
-# The three servers
+# One server, four groups
 
-Everything this plugin adds is a lookup that costs a file read. None of it
-needs the network, a token, or a running service, so there is never a reason
-to guess instead.
+Everything here is a lookup that costs a file read. None of it needs the
+network, a token, or a running service, so there is never a reason to guess.
 
-| Server | Answers | Reads |
+| Group | Answers | Reads |
 | --- | --- | --- |
-| `sushindustries` | how a component works, what a package is for | Markdown in the repository |
-| `sushindustries` | what a dependency offers, and where it is documented | 9,152 sharded index entries |
-| `sushindustries` | what the site publishes, and how to add to it | the live sitemap, and `templates/` |
+| collections | which documents belong together, and what the set costs | named filters over the index |
+| docs | how a component works, what a package is for, what it can look like | Markdown and source in the repository |
+| stack | what a dependency offers, and where it is documented | 9,152 sharded index entries |
+| authoring | what the site publishes, and how to add to it | the live sitemap, and `templates/` |
+
+A second server, `sushindustries-graph`, serves the same repository as ten
+named GraphQL operations over the network. It needs the `apollo-mcp-server`
+binary and a token; without either it does not start and the four groups above
+still answer everything. Reach for it when you want the graph rather than the
+files - element shards, sharding rules, collections with their members.
+
+## Start with collections
+
+`list-collections` before `list-docs`, nearly always.
+
+`list-docs` answers "what is here" with several hundred paths. That is correct
+and unusable: a context window spent listing files has none left for reading
+them. A collection is somebody's judgement about which of those belong
+together, with the token cost of the whole set attached - so "should I read
+this" is answerable before paying for it.
+
+`skills`, `conventions`, `component-api` and `the source` are the four to know.
+`component-api` is every component's props page and nothing else, which is the
+one to load before writing markup against this library.
 
 ## Which one, for what
 

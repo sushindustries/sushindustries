@@ -38,7 +38,7 @@ export interface StudioReport {
 export async function studioReport(): Promise<StudioReport> {
 	const client = getDb();
 
-	const [counts] = await client.execute<{
+	const countsQuery = client.execute<{
 		documents: number;
 		reference_pages: number;
 		reference_providers: number;
@@ -55,7 +55,7 @@ export async function studioReport(): Promise<StudioReport> {
 			(select max(synced_at) from ${documents}) as synced_at
 	`);
 
-	const byKind = await client.execute<{
+	const byKindQuery = client.execute<{
 		kind: string;
 		files: number;
 		tokens: number;
@@ -64,15 +64,15 @@ export async function studioReport(): Promise<StudioReport> {
 		from ${documents} group by kind order by tokens desc
 	`);
 
-	const providers = await client.execute<{ provider: string; entries: number }>(
+	const providersQuery = client.execute<{ provider: string; entries: number }>(
 		sql`select provider, entries from ${referenceProviders} order by entries desc limit 10`,
 	);
 
-	const viewed = await client.execute<{ path: string; views: number }>(
+	const viewedQuery = client.execute<{ path: string; views: number }>(
 		sql`select path, views from ${pageViews} order by views desc limit 10`,
 	);
 
-	const heaviest = await client.execute<{ path: string; tokens: number }>(
+	const heaviestQuery = client.execute<{ path: string; tokens: number }>(
 		sql`select path, tokens from ${documents} order by tokens desc limit 10`,
 	);
 
@@ -81,23 +81,48 @@ export async function studioReport(): Promise<StudioReport> {
 	 * every content hash in path order. Two surfaces disagreeing about whether
 	 * anything changed would be worse than neither reporting it.
 	 */
-	const shas = await client.execute<{ sha: string }>(
+	const shasQuery = client.execute<{ sha: string }>(
 		sql`select sha from ${documents} order by path asc`,
 	);
+
+	/*
+	 * Six statements, one wait.
+	 *
+	 * They were six sequential `await`s, which is six round trips one after
+	 * another - and the database is Railway's over a TCP proxy, so each is
+	 * network latency rather than query time. Every studio page inherits this
+	 * loader, so every studio page paid for all six in series: `/studio` took
+	 * 2.7 seconds to answer with nothing in it that was slow.
+	 *
+	 * None of them depends on another. Issuing them together turns six
+	 * latencies into one, and `postgres` pipelines them on the single
+	 * connection without any pool configuration.
+	 */
+	const [counts, byKind, providers, viewed, heaviest, shas] = await Promise.all(
+		[
+			countsQuery,
+			byKindQuery,
+			providersQuery,
+			viewedQuery,
+			heaviestQuery,
+			shasQuery,
+		],
+	);
+
 	const digest = createHash("sha256");
 	for (const row of shas) digest.update(row.sha);
 
 	return {
 		revision: digest.digest("hex").slice(0, 16),
-		syncedAt: counts?.synced_at
-			? new Date(counts.synced_at).toISOString()
+		syncedAt: counts[0]?.synced_at
+			? new Date(counts[0].synced_at as Date).toISOString()
 			: null,
 		tables: {
-			documents: counts?.documents ?? 0,
-			reference_pages: counts?.reference_pages ?? 0,
-			reference_providers: counts?.reference_providers ?? 0,
-			page_views: counts?.page_views ?? 0,
-			page_feedback: counts?.page_feedback ?? 0,
+			documents: counts[0]?.documents ?? 0,
+			reference_pages: counts[0]?.reference_pages ?? 0,
+			reference_providers: counts[0]?.reference_providers ?? 0,
+			page_views: counts[0]?.page_views ?? 0,
+			page_feedback: counts[0]?.page_feedback ?? 0,
 		},
 		documentsByKind: [...byKind],
 		providers: [...providers],

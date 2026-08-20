@@ -4,6 +4,14 @@
 		"sushindustries": {
 			"command": "npx",
 			"args": ["-y", "@sushindustries/cli", "mcp", "stack"]
+		},
+		"sushindustries-graph": {
+			"//": "The same repository as a graph, over the network rather than off a checkout. Ten named operations become ten tools - a tool is a question somebody decided was worth asking, where an open GraphQL endpoint is every question at once including the ones that return a hundred thousand tokens. Needs the `apollo-mcp-server` binary and MCP_AUTH_TOKEN; without either it simply does not start, and the stdio server above still answers.",
+			"command": "apollo-mcp-server",
+			"args": ["apollo/config.yaml"],
+			"env": {
+				"MCP_AUTH_TOKEN": "${MCP_AUTH_TOKEN}"
+			}
 		}
 	}
 }
