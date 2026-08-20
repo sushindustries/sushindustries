@@ -1,11 +1,11 @@
-import { shapeProxy } from "@sushindustries/sync/proxy.server";
 import { createFileRoute } from "@tanstack/react-router";
+import { shapeProxy } from "../../modules/sync/proxy.server";
 
 /*
  * The Electric shape for one page's votes.
  *
  * Everything about how a shape is proxied safely lives in
- * `@sushindustries/sync` - the parameter allowlist, the server-side table and
+ * `../../modules/sync` - the parameter allowlist, the server-side table and
  * filter, the two headers `fetch` leaves lying about the body. What is left
  * here is the only part that is about *this* endpoint: which table, which
  * filter, and where the value for it comes from.

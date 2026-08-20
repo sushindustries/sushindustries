@@ -75,5 +75,3 @@ coverage:
       reason: llms.txt/robots/sitemap text generators; no agent-facing API surface worth a skill yet
     - name: '@sushindustries/product-viewer'
       reason: the framework-free half of the viewer; everything an agent would ask about it is answered by the React package's skill
-    - name: '@sushindustries/sync'
-      reason: two functions and a URL - the traps are stated in the README and enforced by the proxy's own signature, which takes a parameterised where rather than a string

@@ -1,4 +1,4 @@
-import { syncedRows } from "@sushindustries/sync";
+import { syncedRows } from "../sync/rows";
 
 /*
  * A page's votes, as a collection - not a page's tally.

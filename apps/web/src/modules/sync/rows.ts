@@ -1,3 +1,25 @@
+/*
+ * Live rows from Postgres, and the gate in front of them.
+ *
+ * Electric serves a *shape* over HTTP - a table, a filter, some columns - and
+ * has no opinion about who may read one. The shape is the query, so a client
+ * that can name the table can read the table, and every other table the same
+ * Electric instance can see. That is not a flaw; it is the reason the
+ * documented deployment puts an application in front of it.
+ *
+ * This module is that application's half, in two files that only make sense
+ * together:
+ *
+ *   - `proxy.server.ts` defines the shape on the server and forwards the stream
+ *   - `rows.ts` (this file) builds the collection that reads it
+ *
+ * There is deliberately no barrel. The server half must be imported by its
+ * own path so the build's import protection can see it, and a barrel that
+ * re-exported it is exactly the accident that rule exists to catch. One app's
+ * transport concern, so it lives in the app; a second consumer is what would
+ * earn it a package.
+ */
+
 import type { ExternalParamsRecord, Row } from "@electric-sql/client";
 import type { ElectricCollectionConfig } from "@tanstack/electric-db-collection";
 import { electricCollectionOptions } from "@tanstack/electric-db-collection";

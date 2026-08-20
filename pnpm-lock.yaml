@@ -62,6 +62,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@electric-sql/client':
+        specifier: ^1.5.26
+        version: 1.5.26
       '@modelcontextprotocol/server':
         specifier: 2.0.0
         version: 2.0.0
@@ -104,9 +107,6 @@ importers:
       '@sushindustries/react-product-viewer':
         specifier: workspace:*
         version: link:../../packages/react-product-viewer
-      '@sushindustries/sync':
-        specifier: workspace:*
-        version: link:../../packages/sync
       '@sushindustries/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -125,6 +125,9 @@ importers:
       '@tanstack/db':
         specifier: ^0.8.0
         version: 0.8.0(typescript@5.9.3)
+      '@tanstack/electric-db-collection':
+        specifier: ^0.4.0
+        version: 0.4.0(typescript@5.9.3)
       '@tanstack/highlight':
         specifier: ^0.0.10
         version: 0.0.10
@@ -229,11 +232,7 @@ importers:
         specifier: 4.1.10
         version: 4.1.10(@types/node@26.2.0)(jsdom@28.1.0)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
 
-  packages/access:
-    dependencies:
-      '@sushindustries/db':
-        specifier: workspace:*
-        version: link:../db
+  packages/access: {}
 
   packages/assistant:
     dependencies:
@@ -372,18 +371,6 @@ importers:
       vitest:
         specifier: 4.1.10
         version: 4.1.10(@types/node@26.2.0)(jsdom@28.1.0)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0))
-
-  packages/sync:
-    dependencies:
-      '@electric-sql/client':
-        specifier: ^1.5.26
-        version: 1.5.26
-      '@tanstack/electric-db-collection':
-        specifier: ^0.4.0
-        version: 0.4.0(typescript@5.9.3)
-      '@tanstack/react-db':
-        specifier: ^0.3.0
-        version: 0.3.0(react@19.2.8)(typescript@5.9.3)
 
   packages/ui:
     dependencies:

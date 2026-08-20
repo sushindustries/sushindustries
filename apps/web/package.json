@@ -12,6 +12,7 @@
 		"typecheck": "tsc --noEmit -p tsconfig.json"
 	},
 	"dependencies": {
+		"@electric-sql/client": "^1.5.26",
 		"@modelcontextprotocol/server": "2.0.0",
 		"@mux/mux-player-react": "^3.13.2",
 		"@posthog/react": "^1.10.3",
@@ -26,13 +27,13 @@
 		"@sushindustries/llms": "workspace:*",
 		"@sushindustries/product-viewer": "workspace:*",
 		"@sushindustries/react-product-viewer": "workspace:*",
-		"@sushindustries/sync": "workspace:*",
 		"@sushindustries/ui": "workspace:*",
 		"@tanstack/ai": "^0.44.1",
 		"@tanstack/ai-client": "^0.23.2",
 		"@tanstack/ai-groq": "^0.6.0",
 		"@tanstack/ai-react": "^0.19.2",
 		"@tanstack/db": "^0.8.0",
+		"@tanstack/electric-db-collection": "^0.4.0",
 		"@tanstack/highlight": "^0.0.10",
 		"@tanstack/markdown": "^0.0.13",
 		"@tanstack/react-db": "^0.3.0",
