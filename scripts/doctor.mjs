@@ -62,6 +62,19 @@ import { loadTemplate, writeFrom } from "./templates.mjs";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const shouldFix = process.argv.includes("--fix");
 
+/*
+ * `--drift` runs the subset where two things that must agree have stopped
+ * agreeing: the four DocumentKind declarations, the two intent maps, the
+ * comments that name files, and the dependency graph.
+ *
+ * It exists because those are the failures worth catching *as they are made*
+ * rather than at the gate, and the full run is fifty checks - too slow and far
+ * too noisy to sit behind every edit. This subset is the part where being told
+ * a minute later is the difference between a one-line fix and an archaeology
+ * session.
+ */
+const driftOnly = process.argv.includes("--drift");
+
 /* ── the reporting surface ───────────────────────────────────────────── */
 
 /** @type {Array<{check: string, path: string, message: string, hint?: string}>} */
@@ -2790,6 +2803,152 @@ function checkCitedFilesExist() {
 	}
 }
 
+/**
+ * No package depends on an app, and no two packages depend on each other.
+ *
+ * The two failures that are wrong at any size rather than a matter of degree.
+ * A cycle means neither package can be installed without the other, so the
+ * cascade from a change in one comes back round to itself. An inversion - a
+ * package depending on an app - means the package cannot be installed by
+ * anybody but this repository, which for something published is the whole
+ * point undone.
+ *
+ * Computed here from the manifests rather than imported from
+ * `packages/cli/commands/map.mjs`, which draws the same graph. That is a
+ * deliberate duplication and the only one in this file: `scripts/` is the gate
+ * and must run on a bare `pnpm install` with nothing between it and the
+ * filesystem, and reaching into a workspace package for a twenty-line
+ * traversal would make the gate depend on the thing it is gating.
+ */
+function checkGraphIsAcyclic() {
+	const edges = new Map();
+	const apps = new Set();
+
+	for (const workspace of list) {
+		const manifest = readJson(`${workspace}/package.json`);
+		if (!manifest.name) continue;
+
+		if (!workspace.startsWith("packages/")) apps.add(manifest.name);
+
+		edges.set(
+			manifest.name,
+			Object.keys({
+				...manifest.dependencies,
+				...manifest.devDependencies,
+			}).filter((one) => one.startsWith("@sushindustries/")),
+		);
+	}
+
+	for (const [name, deps] of edges) {
+		if (apps.has(name)) continue;
+
+		for (const dep of deps) {
+			if (apps.has(dep)) {
+				report(
+					"graph",
+					`${name} -> ${dep}`,
+					"a package depends on an app",
+					"an app is a sink - nothing installs it, so this package cannot be installed by anybody else either",
+				);
+			}
+		}
+	}
+
+	const seen = new Set();
+
+	const walk = (node, trail) => {
+		if (trail.includes(node)) {
+			const loop = trail.slice(trail.indexOf(node)).concat(node);
+			const signature = [...loop].sort().join(">");
+			if (!seen.has(signature)) {
+				seen.add(signature);
+				report(
+					"graph",
+					loop.map((one) => one.replace("@sushindustries/", "")).join(" -> "),
+					"these packages depend on each other",
+					"neither can be installed without the other - break the weaker edge, or move what they share into a third",
+				);
+			}
+			return;
+		}
+		for (const next of edges.get(node) ?? []) walk(next, [...trail, node]);
+	};
+
+	for (const name of edges.keys()) walk(name, []);
+}
+
+/**
+ * `stack.yaml` still states the versions the workspace actually installs.
+ *
+ * The file is written by hand because the sentence on each entry - why this
+ * dependency, in this repo - is the half a lockfile has never known. The
+ * version beside it is the half that can be derived, and `pnpm sushindustries
+ * stack --sync` rewrites it.
+ *
+ * Nothing checked that anybody had. A stack file claiming a version nobody is
+ * running is worse than no stack file, because it reads as current: the table
+ * it generates goes on the site, and the reference shards are fetched against
+ * whatever it says. This is the check that makes `--sync` something the gate
+ * asks for rather than something somebody remembers.
+ *
+ * Parsed here rather than through `parseStack` in the CLI, for the reason the
+ * graph check gives: the gate must not depend on the thing it is gating. The
+ * format is flat `key: value` precisely so that costs about ten lines.
+ */
+function checkStackVersionsAreCurrent() {
+	const path = "packages/cli/stack.yaml";
+	const raw = read(path);
+	if (!raw) return;
+
+	/* Every version this workspace declares, by package name. */
+	const installed = new Map();
+
+	for (const workspace of ["", ...list]) {
+		const manifest = readJson(
+			workspace ? `${workspace}/package.json` : "package.json",
+		);
+		for (const [name, version] of Object.entries({
+			...manifest.dependencies,
+			...manifest.devDependencies,
+		})) {
+			if (!installed.has(name)) installed.set(name, String(version));
+		}
+	}
+
+	let pkg = null;
+
+	for (const line of raw.split("\n")) {
+		const field = /^\s*-?\s*(package|version):\s*(\S+)/.exec(line);
+		if (!field) continue;
+
+		if (field[1] === "package") {
+			pkg = field[2];
+			continue;
+		}
+
+		if (!pkg) continue;
+
+		const declared = field[2];
+		const named = pkg;
+		const actual = installed.get(named);
+		pkg = null;
+
+		// Only what this workspace installs. The stack lists tools and services
+		// that are not npm packages at all, and they have no version to check.
+		if (!actual) continue;
+
+		const bare = actual.replace(/^[\^~>=<\s]+/, "");
+		if (bare === declared) continue;
+
+		report(
+			"stack",
+			path,
+			`says ${declared} for ${named}, where the workspace installs ${bare}`,
+			"pnpm sushindustries stack --sync",
+		);
+	}
+}
+
 function checkRoutesAreLeaves() {
 	for (const path of trackedFiles()) {
 		if (!path.startsWith("apps/web/src/")) continue;
@@ -3114,60 +3273,69 @@ if (process.argv.includes("--map")) {
 
 await checkDockerfileCoversWorkspaces(list);
 await checkWorkspaceReadmes(list);
-checkWorkspaceDescriptions(list);
-checkLicences(list);
-checkTypecheckHasConfig(list);
-checkBuildsShareTheBase(list);
+/*
+ * The drift subset first, so `--drift` can stop after it.
+ *
+ * Order is otherwise unimportant here - every check reads and reports, none
+ * depends on another having run.
+ */
 checkGeneratedFilesAreOrdered();
-checkPushGateDelegates();
-
-checkElementsDeclareSchemaType(registry);
-checkRegistryFilesExist(registry);
-checkRegistryVariantsExist(registry);
-checkRegistryDependenciesResolve(registry);
-checkComponentImportsAreDeclared(registry);
-checkAtomsAreLayered();
-checkGridsAreResponsive();
-checkTaxonomyIsDeclared(registry);
-checkNothingIsDuplicated(registry);
-checkRegistryFilesAreExported(registry);
-checkExportsAreRegistered(registry);
-await checkRegistryItemsHaveDocs(registry);
-checkRegistryItemsHaveDemos(registry);
-
-checkContentFrontmatter();
-checkMarkdownHierarchy();
-checkTemplates();
-checkGlyphsAreGenerated();
-checkDevicesAreGenerated();
-checkSkills();
-checkDocSectionsAreReal();
-checkDocsAreAddressable();
-checkDeskLabelsFit();
-checkOriginIsWrittenOnce();
-checkDocsFollowTheContract();
-await checkApiDocsMatchSource(registry);
-checkDocsHaveSummaries(registry);
-checkRegistryItemsAreAddressable(registry);
-checkMentionsAreReferences(registry);
-checkCategoriesHaveIcons();
-checkComponentClassesLiveInAtoms();
-checkVariantsAreAttributes();
-checkBlocksAreEarned();
-checkAtomsUseTokens();
-checkDepthsUseTokens();
-checkTokensResolve();
-checkNoEmDashes();
-checkReadmeMedia();
-checkShotsAreFresh();
-checkRoutesAreLeaves();
 checkDocumentKindsAgree();
+checkGraphIsAcyclic();
+checkStackVersionsAreCurrent();
 checkDomainMapCoversPackages();
 checkCitedFilesExist();
-checkBlocksResolve();
-checkBlockTargetsExist();
-checkPagesAreReachable();
-checkReadmesShowUsage();
+
+if (!driftOnly) {
+	checkWorkspaceDescriptions(list);
+	checkLicences(list);
+	checkTypecheckHasConfig(list);
+	checkBuildsShareTheBase(list);
+	checkPushGateDelegates();
+	checkElementsDeclareSchemaType(registry);
+	checkRegistryFilesExist(registry);
+	checkRegistryVariantsExist(registry);
+	checkRegistryDependenciesResolve(registry);
+	checkComponentImportsAreDeclared(registry);
+	checkAtomsAreLayered();
+	checkGridsAreResponsive();
+	checkTaxonomyIsDeclared(registry);
+	checkNothingIsDuplicated(registry);
+	checkRegistryFilesAreExported(registry);
+	checkExportsAreRegistered(registry);
+	await checkRegistryItemsHaveDocs(registry);
+	checkRegistryItemsHaveDemos(registry);
+	checkContentFrontmatter();
+	checkMarkdownHierarchy();
+	checkTemplates();
+	checkGlyphsAreGenerated();
+	checkDevicesAreGenerated();
+	checkSkills();
+	checkDocSectionsAreReal();
+	checkDocsAreAddressable();
+	checkDeskLabelsFit();
+	checkOriginIsWrittenOnce();
+	checkDocsFollowTheContract();
+	await checkApiDocsMatchSource(registry);
+	checkDocsHaveSummaries(registry);
+	checkRegistryItemsAreAddressable(registry);
+	checkMentionsAreReferences(registry);
+	checkCategoriesHaveIcons();
+	checkComponentClassesLiveInAtoms();
+	checkVariantsAreAttributes();
+	checkBlocksAreEarned();
+	checkAtomsUseTokens();
+	checkDepthsUseTokens();
+	checkTokensResolve();
+	checkNoEmDashes();
+	checkReadmeMedia();
+	checkShotsAreFresh();
+	checkRoutesAreLeaves();
+	checkBlocksResolve();
+	checkBlockTargetsExist();
+	checkPagesAreReachable();
+	checkReadmesShowUsage();
+}
 
 if (repairs.length > 0) {
 	console.log(`Repaired ${repairs.length}:`);

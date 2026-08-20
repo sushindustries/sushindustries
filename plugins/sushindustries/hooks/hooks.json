@@ -1,0 +1,16 @@
+{
+	"//": "Runs only after a manifest is written, because that is the only edit that can change the shape of a workspace. Silent when the graph is sound. `${CLAUDE_PLUGIN_ROOT}` resolves to wherever this plugin was installed, which is the only way a shipped script can find itself.",
+	"hooks": {
+		"PostToolUse": [
+			{
+				"matcher": "Write|Edit",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "case \"$(jq -r '.tool_input.file_path // empty')\" in */package.json) node \"${CLAUDE_PLUGIN_ROOT}/scripts/graph-guard.mjs\" ;; *) exit 0 ;; esac"
+					}
+				]
+			}
+		]
+	}
+}

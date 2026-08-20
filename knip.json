@@ -9,6 +9,9 @@
 		},
 		"packages/cli": {
 			"entry": ["commands/*.mjs", "mcp/*.mjs"]
+		},
+		".": {
+			"entry": ["scripts/*.mjs", "plugins/*/scripts/*.mjs"]
 		}
 	}
 }

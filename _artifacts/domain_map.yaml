@@ -67,21 +67,20 @@ skills:
       - 'sushindustries/sushindustries:packages/react-product-viewer/docs/model-mark/index.md'
 
 coverage:
-  # Every public package is either in `skills` above or named here with the
-  # reason it is not. `checkDomainMapCoversPackages` in scripts/doctor.mjs
-  # asserts that, because this file had drifted four packages behind the
-  # workspace and claimed a skill for a seventh that was never written - and
-  # nothing said so, because nothing was looking.
+  # Written by `pnpm sushindustries intent --sync`. Every public package
+  # with no skill appears here; the reason beside it is written by hand and
+  # carried across every regeneration, because why something is out of
+  # scope is not something a directory listing knows.
   ignored_packages:
-    - name: '@sushindustries/llms'
-      reason: llms.txt/robots/sitemap text generators; no agent-facing API surface worth a skill yet
-    - name: '@sushindustries/product-viewer'
-      reason: the framework-free half of the viewer; everything an agent would ask about it is answered by the React package's skill
-    - name: '@sushindustries/http'
-      reason: five decisions a server makes about a response; small enough that the README is the whole teaching surface
     - name: '@sushindustries/access'
       reason: tokens and invitations over Postgres; the README carries the two properties worth knowing and the API is six functions
     - name: '@sushindustries/cli'
       reason: a program rather than a library - it is used by running it, and `adam-jurek --help` is its own documentation
     - name: '@sushindustries/github'
       reason: an Apollo Connectors schema with no resolvers and no code; there is no API to teach
+    - name: '@sushindustries/http'
+      reason: five decisions a server makes about a response; small enough that the README is the whole teaching surface
+    - name: '@sushindustries/llms'
+      reason: llms.txt/robots/sitemap text generators; no agent-facing API surface worth a skill yet
+    - name: '@sushindustries/product-viewer'
+      reason: the framework-free half of the viewer; everything an agent would ask about it is answered by the React package's skill

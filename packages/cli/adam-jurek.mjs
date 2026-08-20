@@ -67,6 +67,10 @@ const COMMANDS = {
 		const { sync } = await import("./commands/sync.mjs");
 		await sync();
 	},
+	async intent() {
+		const { intent } = await import("./commands/intent.mjs");
+		return intent();
+	},
 	async map() {
 		const { map } = await import("./commands/map.mjs");
 		return map();
@@ -150,6 +154,8 @@ adam-jurek - the command line for adamjurek.com
 
   pnpm sushindustries connectors       compose and test every provider package
   pnpm sushindustries graphql          write the GraphQL schema from the tables
+  pnpm sushindustries intent           whether the intent maps still describe the workspace
+  pnpm sushindustries intent --sync    rewrite them from it, keeping the reasons
   pnpm sushindustries map              how this repository is put together
   pnpm sushindustries map --mermaid    the same graph, as a chart
   pnpm sushindustries studio           browse the deployed database

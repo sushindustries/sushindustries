@@ -39,5 +39,10 @@
 			"cache": false,
 			"persistent": true
 		}
-	}
+	},
+	"globalPassThroughEnv": [
+		"CLAUDE_PROJECT_DIR",
+		"CLAUDE_PLUGIN_ROOT",
+		"ADAM_JUREK_ROOT"
+	]
 }

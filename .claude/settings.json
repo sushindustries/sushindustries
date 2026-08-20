@@ -11,6 +11,10 @@
 					{
 						"type": "command",
 						"command": "f=$(jq -r '.tool_input.file_path // empty'); case \"$f\" in *.ts|*.tsx|*.css|*.json) [ -f \"$f\" ] && cd \"$CLAUDE_PROJECT_DIR\" && pnpm exec biome check --write --no-errors-on-unmatched \"$f\" >/dev/null 2>&1 ;; esac; exit 0"
+					},
+					{
+						"type": "command",
+						"command": "f=$(jq -r '.tool_input.file_path // empty'); case \"$f\" in *.ts|*.tsx|*.mjs|*.yaml|*.json) cd \"$CLAUDE_PROJECT_DIR\" || exit 0; out=$(node scripts/doctor.mjs --drift 2>&1) || { printf '%s\\n' \"$out\" >&2; exit 2; } ;; esac; exit 0"
 					}
 				]
 			}
