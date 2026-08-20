@@ -3,7 +3,13 @@
 	"globalDependencies": ["tsconfig.base.json", "tsdown.base.ts"],
 	"tasks": {
 		"transit": {
-			"dependsOn": ["^transit"]
+			"dependsOn": ["^transit"],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				"!**/*.test.ts",
+				"!**/*.test.tsx",
+				"!tests/**"
+			]
 		},
 		"build": {
 			"dependsOn": ["^build", "transit"],
@@ -13,6 +19,12 @@
 				"POSTHOG_HOST",
 				"VITE_POSTHOG_HOST",
 				"VITE_POSTHOG_KEY"
+			],
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				"!**/*.test.ts",
+				"!**/*.test.tsx",
+				"!tests/**"
 			]
 		},
 		"typecheck": {
