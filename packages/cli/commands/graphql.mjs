@@ -16,12 +16,54 @@
  * follow: if a build rewrites it, commit the rewrite.
  */
 
-import { writeFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { existsSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { root } from "../lib/context.mjs";
-import { banner, blank, field, note, ok } from "../lib/ui.mjs";
+import { banner, blank, fail, field, note, ok } from "../lib/ui.mjs";
 
 const OUT = join(root, "apollo/schema.graphql");
+
+/** The codegen config, if this checkout has one. */
+const CODEGEN = join(root, "codegen.ts");
+
+/**
+ * The resolver types, from the schema written a moment ago.
+ *
+ * Here rather than in a script of its own, because the two outputs are one
+ * fact stated twice: the schema says what the field is, the generated
+ * `Resolvers` says what a function answering it must return. Generating them
+ * apart means a run of one and not the other, which is the drift this whole
+ * chain exists to remove.
+ *
+ * A missing `codegen.ts` means a consumer is running the published CLI against
+ * their own checkout, where there are no resolvers to type - that is a skip.
+ * A config that is present and will not run is a failure, said out loud:
+ * a generation step that quietly does nothing is worse than one that stops,
+ * because the stale output stays on disk looking generated.
+ */
+function types() {
+	if (!existsSync(CODEGEN)) {
+		note("No codegen.ts here, so no resolver types to write.");
+		return true;
+	}
+
+	const run = spawnSync(
+		"pnpm",
+		["exec", "graphql-codegen", "--config", "codegen.ts"],
+		{ cwd: root, stdio: "pipe", encoding: "utf8" },
+	);
+
+	if (run.status === 0) return true;
+
+	blank();
+	fail("graphql-codegen did not run, so the resolver types are now stale.");
+	note(
+		(run.stderr || run.stdout || String(run.error)).trim().split("\n").at(-1) ??
+			"",
+	);
+	return false;
+}
 
 /** Postgres column types, as the GraphQL scalar each one becomes. */
 const SCALARS = {
@@ -226,10 +268,18 @@ export async function graphql() {
 
 	field("tables", published.join(", "));
 	field("written", "apollo/schema.graphql");
+
+	if (!types()) {
+		blank();
+		process.exitCode = 1;
+		return;
+	}
+
+	field("typed", "apps/web/src/modules/content/graphql.generated.ts");
 	blank();
 	note("The Query type is hand written in apollo/queries.graphql and appended");
 	note("here, so one file is the contract everything reads.");
 	blank();
-	ok("Schema generated");
+	ok("Schema and resolver types generated");
 	blank();
 }

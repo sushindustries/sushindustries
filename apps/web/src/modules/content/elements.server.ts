@@ -301,9 +301,15 @@ const shape = (
 export type ShapedElement = ReturnType<typeof shape>;
 
 export async function getElements(args: {
-	kind?: string;
-	category?: string;
-}): Promise<readonly ShapedElement[]> {
+	/*
+	 * `null` as well as absent, because that is what a GraphQL optional
+	 * argument is: the schema's `kind: DocumentKind` arrives as `null` when the
+	 * caller omitted it, and a signature that only accepts `undefined` makes
+	 * the resolver cast on the way in.
+	 */
+	kind?: string | null;
+	category?: string | null;
+}): Promise<ShapedElement[]> {
 	const { docs, source } = await snapshot();
 	const partOf = inverse();
 

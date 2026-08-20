@@ -52,7 +52,7 @@ Two known blind spots, both found by being wrong rather than by looking:
   agent read that and called a live package dead weight.
 - **Tools cannot see config-declared consumers.** A hook names its script in
   JSON rather than importing it, so `knip` reported a shipped hook script as
-  unused. Declared as an entry in `knip.json`.
+  unused. Declared as an entry in `knip.jsonc`.
 
 The lesson both taught: **a tool that cannot see an edge reports its absence
 with the same confidence as a fact.** When a tool says something is unused,

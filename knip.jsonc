@@ -1,7 +1,15 @@
 {
 	"$schema": "https://unpkg.com/knip@6/schema.json",
 	"ignoreBinaries": ["rover", "railway", "drizzle-kit"],
-	"ignoreDependencies": ["@tanstack/intent"],
+	// Installed for the Agent Skills they ship, not for anything that imports
+	// them. `@tanstack/intent` reads their `SKILL.md` files off disk, so the
+	// package has to be present and nothing will ever `import` it.
+	"ignoreDependencies": [
+		"@tanstack/intent",
+		"@tanstack/ai",
+		"@tanstack/ai-persistence",
+		"@alavida/agentpack"
+	],
 	"ignoreExportsUsedInFile": true,
 	"workspaces": {
 		"apps/web": {

@@ -83,6 +83,28 @@ interface RepoResponse {
 	html_url: string;
 }
 
+/**
+ * What `repository` resolves to: the fields it reads, and not the three the
+ * schema hangs off it.
+ *
+ * `commits`, `pullRequests` and `workflowRuns` are field resolvers - each is a
+ * separate call to GitHub, made only if the selection set asks. So the parent
+ * this produces is deliberately smaller than the GraphQL type, which is what
+ * `mappers` in `codegen.ts` exists to tell the generator. Without it the
+ * generated resolver demanded all ten fields here and the three that cost a
+ * network call each would have had to be fetched whether or not anybody wanted
+ * them.
+ */
+export interface RepositorySummary {
+	readonly nameWithOwner: string;
+	readonly description: string | null;
+	readonly defaultBranch: string;
+	readonly stars: number;
+	readonly openIssues: number;
+	readonly pushedAt: string;
+	readonly url: string;
+}
+
 export const githubResolvers = {
 	Query: {
 		async repository() {
