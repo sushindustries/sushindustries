@@ -11,12 +11,19 @@
 	 * Position rides on two custom properties so a drag can write them directly
 	 * without going through React. Sixty state updates a second would re-render
 	 * a grid of icons on every frame of every drag.
+	 *
+	 * Named `--win-*` rather than `--x`/`--y`, and the specific name is the bug
+	 * fix. A custom property inherits, a window contains a shelf, and
+	 * `.shelf-tile` reads its own drag offset from two properties of the same
+	 * generic name - so an open window's position was inherited by every tile
+	 * inside it, and dragging the window carried its icons along a second time.
+	 * Nothing looked wrong in either block on its own.
 	 */
 	.desk-window {
 		position: absolute;
 		top: 0;
 		left: 0;
-		translate: var(--x, 0) var(--y, 0);
+		translate: var(--win-x, 0) var(--win-y, 0);
 		display: flex;
 		flex-direction: column;
 		width: min(30rem, calc(100% - var(--s-5)));

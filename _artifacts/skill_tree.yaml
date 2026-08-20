@@ -34,6 +34,15 @@ skills:
       - schema vs client.server entry-point split
       - lazy connection construction, never at module scope
   - name: core
+    slug: '@sushindustries/access#core'
+    path: packages/access/skills/core/SKILL.md
+    package: packages/access
+    packages: ['@sushindustries/access']
+    covers:
+      - the client-safe entry point and the two server-only ones
+      - preview on GET, redeem on POST, and why a scanner spends the link
+      - the plaintext exists once, in the return value that created it
+  - name: core
     slug: '@sushindustries/assistant#core'
     path: packages/assistant/skills/core/SKILL.md
     package: packages/assistant

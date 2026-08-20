@@ -20,6 +20,9 @@ domains:
   - name: assistant
     packages: ['@sushindustries/assistant']
     summary: Props-in chat panel with no owned transport.
+  - name: access
+    packages: ['@sushindustries/access']
+    summary: Scoped API tokens and single-use invitations over Postgres.
   - name: three-d
     packages:
       - '@sushindustries/product-viewer'
@@ -50,6 +53,13 @@ skills:
     sources:
       - 'sushindustries/sushindustries:packages/db/README.md'
   - name: core
+    slug: '@sushindustries/access#core'
+    path: packages/access/skills/core/SKILL.md
+    package: packages/access
+    packages: ['@sushindustries/access']
+    sources:
+      - 'sushindustries/sushindustries:packages/access/README.md'
+  - name: core
     slug: '@sushindustries/assistant#core'
     path: packages/assistant/skills/core/SKILL.md
     package: packages/assistant
@@ -72,8 +82,6 @@ coverage:
   # carried across every regeneration, because why something is out of
   # scope is not something a directory listing knows.
   ignored_packages:
-    - name: '@sushindustries/access'
-      reason: tokens and invitations over Postgres; the README carries the two properties worth knowing and the API is six functions
     - name: '@sushindustries/cli'
       reason: a program rather than a library - it is used by running it, and `adam-jurek --help` is its own documentation
     - name: '@sushindustries/github'

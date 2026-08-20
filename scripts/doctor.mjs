@@ -3055,12 +3055,25 @@ async function checkGraphqlOperationsValidate() {
 	let graphql;
 	try {
 		graphql = await import("graphql");
-	} catch {
+	} catch (error) {
 		/*
-		 * Not installed is not a failure. The gate has to run on a bare
-		 * checkout, and refusing to finish because an optional parser is
-		 * missing would make this check the reason nobody can run the doctor.
+		 * Reported, not skipped, and the difference is the whole value of this
+		 * check. It first shipped with a silent `return` here on the theory
+		 * that a missing parser should not stop the gate - and `graphql` was
+		 * not resolvable from the repo root under pnpm, so for its entire life
+		 * the check ran, found nothing, and passed. A canary operation with a
+		 * misspelt field went through it clean.
+		 *
+		 * `graphql` is a root devDependency now, so the only way to reach this
+		 * is a broken install, which is a thing to be told about rather than a
+		 * reason to quietly stop checking ten files.
 		 */
+		report(
+			"operations",
+			"package.json",
+			`cannot load graphql, so no operation was checked: ${error.message.split("\n")[0]}`,
+			"pnpm install - graphql is a root devDependency and this check needs it",
+		);
 		return;
 	}
 

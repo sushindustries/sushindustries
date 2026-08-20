@@ -142,8 +142,8 @@ export function useDragPlace({
 			 * is what `translate` means, and the layout is untouched until a cell is
 			 * committed. Nothing else on the desk moves while a drag is in progress.
 			 */
-			event.currentTarget.style.setProperty("--x", `${dx}px`);
-			event.currentTarget.style.setProperty("--y", `${dy}px`);
+			event.currentTarget.style.setProperty("--tile-x", `${dx}px`);
+			event.currentTarget.style.setProperty("--tile-y", `${dy}px`);
 		},
 		[threshold],
 	);
@@ -162,8 +162,8 @@ export function useDragPlace({
 			 * from where the state says it is after every single drag.
 			 */
 			const node = event.currentTarget;
-			node.style.removeProperty("--x");
-			node.style.removeProperty("--y");
+			node.style.removeProperty("--tile-x");
+			node.style.removeProperty("--tile-y");
 
 			onPlace(
 				clamp(Math.round(at.current.x / from.current.w), columns - 1),

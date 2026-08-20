@@ -18,7 +18,7 @@ pointer lifts, exactly one state update records where it ended up.
 
 ```css
 .desk-window {
-	translate: var(--x, 0) var(--y, 0);
+	translate: var(--win-x, 0) var(--win-y, 0);
 	width: var(--w, min(30rem, calc(100% - var(--s-5))));
 }
 ```

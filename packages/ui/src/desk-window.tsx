@@ -108,8 +108,8 @@ export function DeskWindow({
 			};
 
 			at.current = next;
-			node.style.setProperty("--x", `${next.x}px`);
-			node.style.setProperty("--y", `${next.y}px`);
+			node.style.setProperty("--win-x", `${next.x}px`);
+			node.style.setProperty("--win-y", `${next.y}px`);
 		},
 		[],
 	);
@@ -195,8 +195,8 @@ export function DeskWindow({
 			aria-label={label}
 			style={
 				{
-					"--x": `${x}px`,
-					"--y": `${y}px`,
+					"--win-x": `${x}px`,
+					"--win-y": `${y}px`,
 					...(w ? { "--w": `${w}px` } : {}),
 					...(h ? { "--h": `${h}px` } : {}),
 					zIndex: z,

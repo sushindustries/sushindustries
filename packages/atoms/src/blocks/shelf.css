@@ -138,13 +138,19 @@
 	 * there does not reach the element's parent. Putting the translate on the
 	 * `<li>` looked correct and moved nothing at all.
 	 *
+	 * `--tile-*` rather than `--x`/`--y`, because a shelf can be inside a
+	 * window and a custom property inherits downwards even though it does not
+	 * reach upwards. Sharing the generic name with `.desk-window` meant every
+	 * tile in an open window was translated by that window's position and
+	 * moved with it as it was dragged.
+	 *
 	 * It was `relative h-full` - two utilities standing in for a block that
 	 * needed a name the moment it had a state and a transform of its own.
 	 */
 	.shelf-tile {
 		position: relative;
 		height: 100%;
-		translate: var(--x, 0) var(--y, 0);
+		translate: var(--tile-x, 0) var(--tile-y, 0);
 	}
 
 	/* Above its neighbours while it is being carried over them. */
