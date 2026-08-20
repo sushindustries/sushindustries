@@ -23,11 +23,37 @@ import {
  * is required even though adding a component deletes nothing.
  */
 
-const SOURCES = import.meta.glob<string>("../../../../../packages/ui/src/*", {
-	eager: true,
-	import: "default",
-	query: "?raw",
-});
+/*
+ * Every package's source, not just `ui`.
+ *
+ * It globbed `packages/ui/src/*` and that was true of every item and untrue of
+ * the library: the 3D work lives in its own packages and had no way into the
+ * registry at all, which is why the `3d` category was declared, drawn in the
+ * nav, and filtered to nothing.
+ *
+ * `**` rather than `*`, because a package that is not `ui` is allowed its own
+ * directories - `ui/src` is flat by convention and nothing else has to be.
+ */
+const SOURCES = import.meta.glob<string>(
+	[
+		"../../../../../packages/*/src/**/*.{ts,tsx,css}",
+		/*
+		 * Never a `.server.` file, and this is not tidiness.
+		 *
+		 * Widening the glob from `ui` to every package immediately pulled in
+		 * `packages/db/src/migrate.server.ts`, and the build failed - which was
+		 * the lucky outcome. The unlucky one is that this inlines whatever it
+		 * matches *as a string*, so a server module that had happened to parse
+		 * would have been shipped to the browser as source with import
+		 * protection none the wiser: the suffix guards imports, not text.
+		 *
+		 * A registry item is a file somebody installs and renders. There has
+		 * never been a reason for one to be a server module.
+		 */
+		"!../../../../../packages/*/src/**/*.server.*",
+	],
+	{ eager: true, import: "default", query: "?raw" },
+);
 
 const ATOM_SOURCES = import.meta.glob<string>(
 	"../../../../../packages/atoms/src/**/*.css",
@@ -69,8 +95,15 @@ function targetPath(file: string): string {
 	return `src/components/sushindustries/${file}`;
 }
 
-function readSource(file: string): string {
-	const key = `../../../../../packages/ui/src/${file}`;
+/**
+ * One file's source, from whichever package the item names.
+ *
+ * `ui` when the item does not say, which is almost all of them - the field
+ * exists so the few that live elsewhere can be described rather than so every
+ * entry has to repeat where it is.
+ */
+function readSource(item: RegistryItem, file: string): string {
+	const key = `../../../../../packages/${item.package ?? "ui"}/src/${file}`;
 	return SOURCES[key] ?? "";
 }
 
@@ -78,7 +111,7 @@ function filesFor(item: RegistryItem): Record<string, string> {
 	const out: Record<string, string> = {};
 
 	for (const file of item.files) {
-		const source = readSource(file);
+		const source = readSource(item, file);
 		if (source) out[targetPath(file)] = source;
 	}
 

@@ -219,6 +219,73 @@ export const resolvers = {
 			return rows.map(shape);
 		},
 
+		/*
+		 * The same query as `documents`, with the numbers that make truncation
+		 * visible.
+		 *
+		 * `documents` clamps to two hundred and says nothing, which is fine for a
+		 * lookup and dangerous for a count - a caller cannot tell a full page
+		 * from a capped one. I acted on that once: a query for five hundred
+		 * component rows returned two hundred, the tail looked absent, and a
+		 * component with all five sections looked like it was missing two.
+		 *
+		 * Two statements rather than one with a window function. `count(*) over
+		 * ()` would save a round trip and makes the row type carry a field that
+		 * is not a column, which every consumer then has to know to ignore.
+		 */
+		async documentPage(
+			_: unknown,
+			args: {
+				kind?: string;
+				slug?: string;
+				section?: string;
+				search?: string;
+				limit?: number;
+				offset?: number;
+			},
+		) {
+			const limit = Math.min(args.limit ?? 25, 200);
+			const offset = args.offset ?? 0;
+
+			const where = [
+				args.kind ? eq(documents.kind, toKind(args.kind) as never) : undefined,
+				args.slug ? eq(documents.slug, args.slug) : undefined,
+				args.section ? eq(documents.section, args.section) : undefined,
+				args.search
+					? sql`(${documents.title} ilike ${contains(args.search)}
+						or ${documents.summary} ilike ${contains(args.search)}
+						or ${documents.path} ilike ${contains(args.search)}
+						or ${documents.body} ilike ${contains(args.search)})`
+					: undefined,
+			].filter(Boolean);
+
+			const conditions = where.length ? and(...where) : undefined;
+
+			const [rows, [counted]] = await Promise.all([
+				db()
+					.select()
+					.from(documents)
+					.where(conditions)
+					.orderBy(asc(documents.path))
+					.limit(limit)
+					.offset(offset),
+				db()
+					.select({ total: sql<number>`count(*)::int` })
+					.from(documents)
+					.where(conditions),
+			]);
+
+			const total = counted?.total ?? 0;
+
+			return {
+				rows: rows.map(shape),
+				total,
+				limit,
+				offset,
+				hasMore: offset + rows.length < total,
+			};
+		},
+
 		async document(
 			_: unknown,
 			args: { path?: string; slug?: string; section?: string },

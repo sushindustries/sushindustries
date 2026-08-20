@@ -2006,6 +2006,16 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 	},
 
 	"product-viewer": {
+		/*
+		 * A poster, because a WebGL scene has nothing to server-render.
+		 *
+		 * The showcase asserts every component page shows *something* without
+		 * JavaScript, and a `<Suspense>` fallback is not that - it is the
+		 * absence of the thing, rendered. `product-variants` beside this has
+		 * had a poster the whole time; this one did not, and nothing noticed
+		 * until it had a registry entry and a page to be measured on.
+		 */
+		poster: <p className="label text-center">A model, turning</p>,
 		element: (
 			<Suspense
 				fallback={<p className="label text-center">Loading the mark</p>}

@@ -42,11 +42,14 @@ import {
 	renderDeviceTypes,
 } from "./devices.mjs";
 import {
+	docsPath,
 	generatedApiRegion,
 	hasDemo,
 	readRegistry,
 	renderApiSection,
+	sourcePath,
 	survey,
+	withGeneratedApi,
 } from "./docs.mjs";
 import {
 	GLYPH_OUTPUT,
@@ -525,7 +528,7 @@ function checkElementsDeclareSchemaType(items) {
 function checkRegistryFilesExist(items) {
 	for (const item of items) {
 		for (const file of item.files) {
-			if (exists(`packages/ui/src/${file}`)) continue;
+			if (exists(sourcePath(item, file))) continue;
 
 			report(
 				"registry",
@@ -560,7 +563,7 @@ function checkRegistryVariantsExist(items) {
 		if (!item.variants?.length) continue;
 
 		const source = item.files
-			.map((file) => read(`packages/ui/src/${file}`) ?? "")
+			.map((file) => read(sourcePath(item, file)) ?? "")
 			.join("\n");
 
 		if (!source) continue;
@@ -655,19 +658,177 @@ function checkExportsAreRegistered(items) {
 	}
 }
 
-/** A file people install has to be importable from the package too. */
-function checkRegistryFilesAreExported(items) {
-	const barrel = read("packages/ui/src/index.ts");
+/**
+ * A file people install has to be importable from the package too.
+ *
+ * From *its own* package, which is the part that was assumed. This read
+ * `packages/ui/src/index.ts` for every item, so registering the 3D viewer -
+ * which lives in `react-product-viewer` and is exported from that barrel -
+ * demanded an export from `ui` that would have been a lie and a dependency.
+ *
+ * A file can also be re-exported through a directory barrel rather than named
+ * directly, which is how the packages outside `ui` are arranged: `ui/src` is
+ * flat by convention and nothing else has to be. So the check is "the barrel
+ * mentions this file's directory or its stem", which is the weakest claim that
+ * still catches the failure it was written for - a file shipped in the
+ * registry that no consumer can import.
+ */
+/**
+ * One walk of the repository, looking for the same thing in two places.
+ *
+ * Every other check asks whether one thing is right. This asks whether two
+ * things are the same thing twice, which is the failure that never errors:
+ * duplicates do not crash, they mean an edit lands on the copy nobody reads.
+ *
+ * Four kinds, and every one of them has actually happened here:
+ *
+ *   a slug documented by two packages   the glob picks one, silently
+ *   a registry name used twice          the second entry wins, silently
+ *   a file shipped by two peers         installing either drags the other
+ *   a collection filtering on a kind    a page that renders a heading and
+ *   no document has                     nothing, forever
+ *
+ * One walk reporting all four, because a walker that has to be run four times
+ * is four commands somebody runs three of.
+ */
+function checkNothingIsDuplicated(items) {
+	/* ── one slug, one package ─────────────────────────────────── */
+	const docOwners = new Map();
+
+	for (const pkg of readdirSync(join(root, "packages"))) {
+		if (!exists(`packages/${pkg}/docs`)) continue;
+
+		for (const slug of readdirSync(join(root, "packages", pkg, "docs"))) {
+			const seen = docOwners.get(slug);
+
+			if (seen && seen !== pkg) {
+				report(
+					"duplicates",
+					`packages/${pkg}/docs/${slug}`,
+					`${slug} is also documented in packages/${seen} - one slug is one page, and the glob picks one of them`,
+					"delete the copy that is not the source, or rename one of the slugs",
+				);
+				continue;
+			}
+			docOwners.set(slug, pkg);
+		}
+	}
+
+	/* ── one name, one item ────────────────────────────────────── */
+	const byName = new Map();
+
+	for (const item of items) {
+		if (byName.has(item.name)) {
+			report(
+				"duplicates",
+				"packages/ui/registry.ts",
+				`two items are called "${item.name}" - the later wins and the earlier is unreachable`,
+				"rename one of them",
+			);
+		}
+		byName.set(item.name, item);
+	}
+
+	/*
+	 * ── one file, one owner ───────────────────────────────────────
+	 *
+	 * Shared files are legitimate and common: `folder-shelf` ships
+	 * `context-menu.tsx` because installing the shelf without it is a broken
+	 * shelf. What is not legitimate is two *peers* both claiming a file with
+	 * neither depending on the other - then installing either quietly brings
+	 * the other's source along and nothing declared it.
+	 */
+	const fileOwners = new Map();
 
 	for (const item of items) {
 		for (const file of item.files) {
+			const key = `${item.package ?? "ui"}/${file}`;
+			const first = fileOwners.get(key);
+
+			if (first) {
+				const related =
+					(first.registryDependencies ?? []).includes(item.name) ||
+					(item.registryDependencies ?? []).includes(first.name);
+
+				if (!related) {
+					report(
+						"duplicates",
+						"packages/ui/registry.ts",
+						`"${item.name}" and "${first.name}" both ship ${file}, and neither depends on the other`,
+						"list one as a registryDependency of the other, so the sharing is declared",
+					);
+				}
+				continue;
+			}
+			fileOwners.set(key, item);
+		}
+	}
+
+	/*
+	 * ── a collection filtering on a kind that does not exist ──────
+	 *
+	 * Checked against the `DocumentKind` union in the schema rather than
+	 * against what is currently indexed, and the difference matters twice.
+	 *
+	 * A typo is always wrong: `kind: skil` can never match anything, whatever
+	 * the database holds. A legal kind with no rows today is a much weaker
+	 * claim - it might mean the collection is premature, and it certainly
+	 * means the projection is stale, which is not this script's business.
+	 *
+	 * The first version read `survey()`, which describes component
+	 * documentation and has no `kind` field at all - so the set was empty and
+	 * every collection in the repository was reported as broken. A check whose
+	 * source of truth is the wrong shape does not fail; it condemns everything.
+	 */
+	const kinds = new Set(
+		[...read("packages/db/src/schema.ts").matchAll(/^\t\| "(\w+)";?$/gm)].map(
+			([, kind]) => kind,
+		),
+	);
+	const collections = "apps/web/content/collections";
+
+	if (exists(collections)) {
+		for (const file of readdirSync(join(root, collections))) {
+			if (!file.endsWith(".md")) continue;
+
+			const wanted = read(`${collections}/${file}`).match(
+				/^kind:\s*(\S+)$/m,
+			)?.[1];
+
+			if (wanted && kinds.size > 0 && !kinds.has(wanted)) {
+				report(
+					"duplicates",
+					`${collections}/${file}`,
+					`filters on kind "${wanted}", which is not a DocumentKind - it can never match anything`,
+					`one of: ${[...kinds].join(", ")}`,
+				);
+			}
+		}
+	}
+}
+
+function checkRegistryFilesAreExported(items) {
+	const barrels = new Map();
+
+	for (const item of items) {
+		const pkg = item.package ?? "ui";
+		const path = `packages/${pkg}/src/index.ts`;
+		if (!barrels.has(pkg)) barrels.set(pkg, exists(path) ? read(path) : "");
+		const barrel = barrels.get(pkg);
+
+		for (const file of item.files) {
 			const stem = file.replace(/\.tsx?$/, "");
+			const directory = stem.includes("/")
+				? stem.slice(0, stem.lastIndexOf("/"))
+				: null;
+
 			if (barrel.includes(`./${stem}`)) continue;
+			if (directory && barrel.includes(`./${directory}`)) continue;
 
 			report(
 				"exports",
-				"packages/ui/src/index.ts",
-				`${file} ships in the registry but is not exported from the package`,
+				path,
+				`${file} ships in the registry but is not exported from ${pkg}`,
 				`export * from "./${stem}";`,
 			);
 		}
@@ -832,6 +993,21 @@ function checkGridsAreResponsive() {
  * module that belongs to a *different* registry item must be declared.
  */
 function checkComponentImportsAreDeclared(items) {
+	/*
+	 * Only what somebody copies.
+	 *
+	 * The check exists because a pasted file whose sibling import was not
+	 * pasted too is an install that fails to resolve - which is a real and
+	 * silent failure, and the reason every relative import has to be in some
+	 * item's `files`.
+	 *
+	 * None of that applies to an item that arrives through a package manager.
+	 * Its imports resolve from the installed package, and demanding they be
+	 * listed would mean enumerating a package's whole internal graph in a
+	 * registry entry to describe one component.
+	 */
+	items = items.filter((item) => (item.install ?? "copy") === "copy");
+
 	// A shared file like icon.tsx ships in many items, so a stem has a set of
 	// owners and any declared one satisfies the import.
 	const owners = new Map();
@@ -848,7 +1024,7 @@ function checkComponentImportsAreDeclared(items) {
 		const own = new Set(item.files.map((file) => file.replace(/\.tsx?$/, "")));
 
 		for (const file of item.files) {
-			const source = read(`packages/ui/src/${file}`);
+			const source = read(sourcePath(item, file));
 
 			for (const [, stem] of source.matchAll(
 				/import\s[^;]*?from\s+"\.\/([\w.-]+)"/g,
@@ -867,7 +1043,7 @@ function checkComponentImportsAreDeclared(items) {
 				if (!holders) {
 					report(
 						"registry",
-						`packages/ui/src/${file}`,
+						sourcePath(item, file),
 						`imports ./${stem}, which no registry item ships - every install of "${item.name}" fails to resolve it`,
 						`add "${stem}.ts(x)" to an item's files - its own, or a new item's`,
 					);
@@ -879,7 +1055,7 @@ function checkComponentImportsAreDeclared(items) {
 				const [suggestion] = holders;
 				report(
 					"registry",
-					`packages/ui/src/${file}`,
+					sourcePath(item, file),
 					`imports ./${stem} but "${item.name}" neither ships it nor declares an item that does`,
 					`add "${stem}.tsx" to its files, or "${suggestion}" to its registryDependencies`,
 				);
@@ -891,21 +1067,20 @@ function checkComponentImportsAreDeclared(items) {
 /** Every registry item gets a page in the museum, so every one needs a doc. */
 async function checkRegistryItemsHaveDocs(items) {
 	for (const item of items) {
-		if (exists(`packages/ui/docs/${item.name}/index.md`)) continue;
+		if (exists(docsPath(item, "index.md"))) continue;
 
 		if (shouldFix) {
-			await writeFrom(
-				"component-index",
-				`packages/ui/docs/${item.name}/index.md`,
-				{ slug: item.name, title: item.title },
-			);
-			repaired(`packages/ui/docs/${item.name}/index.md`);
+			await writeFrom("component-index", docsPath(item, "index.md"), {
+				slug: item.name,
+				title: item.title,
+			});
+			repaired(docsPath(item, "index.md"));
 			continue;
 		}
 
 		report(
 			"docs",
-			`packages/ui/docs/${item.name}/`,
+			`${docsPath(item)}/`,
 			"no index.md - the component page falls back to its registry blurb",
 			"pnpm run doctor --fix",
 		);
@@ -1303,10 +1478,10 @@ function checkDocsHaveSummaries(items) {
 
 async function checkApiDocsMatchSource(items) {
 	for (const item of items) {
-		const path = `packages/ui/docs/${item.name}/api.md`;
+		const path = docsPath(item, "api.md");
 		if (!exists(path)) continue;
 
-		const expected = renderApiSection(`packages/ui/src/${item.files[0]}`);
+		const expected = renderApiSection(sourcePath(item, item.files[0]));
 		if (!expected) continue;
 
 		const body = read(path);
@@ -1335,11 +1510,13 @@ async function checkApiDocsMatchSource(items) {
 		if (found === expected.trim()) continue;
 
 		if (shouldFix) {
-			/* Only between the markers. Everything outside them is untouched. */
-			writeFileSync(
-				join(root, path),
-				body.replace(generatedApiRegion(body), expected.trim()),
-			);
+			/*
+			 * Spliced between the markers by position. Everything outside them is
+			 * untouched, and an empty region is filled rather than prepended to -
+			 * which `String.replace` cannot promise, because replacing "" inserts
+			 * at index zero.
+			 */
+			writeFileSync(join(root, path), withGeneratedApi(body, expected));
 			repaired(`${path}: API section regenerated from the source`);
 			continue;
 		}
@@ -2642,6 +2819,7 @@ checkRegistryDependenciesResolve(registry);
 checkComponentImportsAreDeclared(registry);
 checkAtomsAreLayered();
 checkGridsAreResponsive();
+checkNothingIsDuplicated(registry);
 checkRegistryFilesAreExported(registry);
 checkExportsAreRegistered(registry);
 await checkRegistryItemsHaveDocs(registry);

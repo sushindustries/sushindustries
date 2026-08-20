@@ -58,6 +58,31 @@ export function sectionOrder() {
  * made. It lives here rather than in the doctor so the report and the checks
  * read one parser; two would eventually disagree about what a registry item is.
  */
+/**
+ * Where one of an item's files actually lives.
+ *
+ * Twelve places assumed `packages/ui/src/`, which was true for every item and
+ * is not true of the library - the 3D packages could not be registered at all
+ * because of it. One helper means adding a package outside `ui` is a field on
+ * the item rather than an audit of every reader.
+ */
+export function sourcePath(item, file) {
+	return `packages/${item.package ?? "ui"}/src/${file}`;
+}
+
+/**
+ * Where an item's documentation directory is.
+ *
+ * The fourth place that assumed `ui`, after the source path, the barrel and
+ * the import check. Same fix and the same reason: the registry describes a
+ * library, and a library is not one directory.
+ */
+export function docsPath(item, ...rest) {
+	return ["packages", item.package ?? "ui", "docs", item.name, ...rest].join(
+		"/",
+	);
+}
+
 export function readRegistry() {
 	const source = read("packages/ui/registry.ts");
 	const items = [];
@@ -114,6 +139,10 @@ export function readRegistry() {
 			 * generator rather than a gap in the reader.
 			 */
 			version: block.match(/version:\s*"([^"]+)"/)?.[1] ?? "0.0.0",
+			/* `ui` unless the item says otherwise. See `sourcePath`. */
+			package: block.match(/\n\t\tpackage:\s*"([^"]+)"/)?.[1] ?? "ui",
+			/* `copy` unless it says otherwise - see the field's own comment. */
+			install: block.match(/\n\t\tinstall:\s*"([^"]+)"/)?.[1] ?? "copy",
 			schema: block.match(/schema:\s*"([^"]+)"/)?.[1],
 		});
 	}
@@ -477,6 +506,29 @@ export function generatedApiRegion(body) {
 /** The same region with its fence, ready to write. */
 export function fencedApi(section) {
 	return `${API_OPEN}\n\n${section.trim()}\n\n${API_CLOSE}`;
+}
+
+/**
+ * A body with its generated region replaced, by position rather than by value.
+ *
+ * The obvious version is `body.replace(currentRegion, next)` and it has one
+ * catastrophic input: an **empty** fence. `String.replace("", x)` inserts at
+ * index zero, so a file whose markers sit adjacent gets the generated section
+ * prepended above its own frontmatter - and because the fence is still empty
+ * afterwards, the next run prepends again. I watched a file collect five
+ * copies of a signature block and bury its own frontmatter at line twenty six.
+ *
+ * Splicing between the marker positions cannot do that, whatever is or is not
+ * between them.
+ */
+export function withGeneratedApi(body, section) {
+	const from = body.indexOf(API_OPEN);
+	const to = body.indexOf(API_CLOSE);
+	if (from === -1 || to === -1 || to < from) return body;
+
+	return (
+		body.slice(0, from) + fencedApi(section) + body.slice(to + API_CLOSE.length)
+	);
 }
 
 /** A whole `api.md`, for a tab that does not exist yet. */

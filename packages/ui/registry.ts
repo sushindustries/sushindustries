@@ -114,6 +114,32 @@ export interface RegistryItem {
 	readonly description: string;
 	/** Files copied into the consumer, relative to `src/`. */
 	readonly files: readonly string[];
+	/**
+	 * How somebody gets it.
+	 *
+	 * `copy` is the default and what this registry was built for: the files are
+	 * pasted into a consumer's repository, which is why every import inside
+	 * them has to be shipped too and why `pnpm run doctor` checks that.
+	 *
+	 * `package` means it arrives through a package manager. Its `files` are
+	 * there to be *read* - on the page, in the graph, over MCP - and never
+	 * copied, so its internal imports resolve from the installed package and
+	 * are none of the registry's business.
+	 *
+	 * Stated rather than inferred from `package`, because they are different
+	 * questions: something in another package could still be copyable, and a
+	 * copy-installed item could one day live outside `ui`.
+	 */
+	readonly install?: "copy" | "package";
+	/**
+	 * Which package the files come from. `ui` when absent, which is almost all.
+	 *
+	 * It exists because the registry could describe one directory and the
+	 * library is not one directory. The 3D work lives in its own packages and
+	 * had no way in at all - which is why the `3d` category was declared, drawn
+	 * in the nav, and filtered to nothing.
+	 */
+	readonly package?: string;
 	/** Runtime packages this item needs, with the version it was verified against. */
 	readonly dependencies: Readonly<Record<string, string>>;
 	/** Other items in this registry that must be installed with it. */
@@ -252,7 +278,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 			"A filterable grid with categories, subcategories and tags. Renders its own links through a callback so the router stays yours.",
 		files: ["archive.tsx", "archive.schemas.ts", "pagination.tsx"],
 		dependencies: { zod: "^4.4.3" },
-		registryDependencies: ["icon"],
+		registryDependencies: ["pagination", "icon"],
 		category: "layout",
 		subcategory: "Containers",
 		tags: ["block", "grid", "filter", "schema"],
@@ -282,6 +308,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 			"A phone, a tablet or a laptop in CSS 3D, chosen by the stylesheet rather than by JavaScript, whose screen is a real scroll container with real controls in it.",
 		files: ["device.tsx", "device-kinds.ts"],
 		dependencies: {},
+		/* Ships use-device-kind's file, so the sharing is declared rather than implied. */
+		registryDependencies: ["use-device-kind"],
 		category: "layout",
 		subcategory: "Scenes",
 		tags: ["block", "3d", "perspective", "responsive", "no-js", "no-deps"],
@@ -1128,6 +1156,58 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		preview: "A sortable, filtered table with its page controls under it",
 	},
 	{
+		name: "product-viewer",
+		schema: "3DModel",
+		kind: "block",
+		version: "0.1.0",
+		title: "Product Viewer",
+		description:
+			"A GLB in a React component: variants, zone tints, scroll-driven turn, and a loading overlay that is not a spinner.",
+		install: "package",
+		package: "react-product-viewer",
+		files: ["elements/model-viewer/model-viewer.tsx"],
+		/*
+		 * Installed, not copied. A GLB viewer is a scene graph, a loader, a
+		 * disposal path and a variant system; copying that into somebody's
+		 * repository hands them the maintenance and none of the updates.
+		 *
+		 * The entry exists to make it findable and documented, which is the half
+		 * `pnpm add` does not give anybody. Its demo sat in `demos.tsx` with no
+		 * item to attach to for as long as the registry could only describe one
+		 * directory.
+		 */
+		dependencies: {
+			"@sushindustries/react-product-viewer": "workspace:*",
+			"@react-three/fiber": "9.7.0",
+			"@react-three/drei": "10.7.8",
+			three: "0.185.1",
+		},
+		category: "3d",
+		subcategory: "Scenes",
+		tags: ["block", "3d", "perspective", "facade", "responsive"],
+		preview: "A product model turning in a framed scene",
+	},
+	{
+		name: "product-variants",
+		schema: "3DModel",
+		version: "0.1.0",
+		title: "Product Variants",
+		description:
+			"One model, several configurations, switched without reloading the asset - the GLB already holds them.",
+		install: "package",
+		package: "react-product-viewer",
+		files: ["variant-swatch.tsx"],
+		dependencies: {
+			"@sushindustries/react-product-viewer": "workspace:*",
+			three: "0.185.1",
+		},
+		registryDependencies: ["product-viewer"],
+		category: "3d",
+		subcategory: "Scenes",
+		tags: ["3d", "toggle", "group", "state"],
+		preview: "Four swatches changing one model's finish",
+	},
+	{
 		name: "bar-chart",
 		schema: "ImageObject",
 		version: "0.1.0",
@@ -1320,6 +1400,8 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 			"A responsive grid with no breakpoints in it. One number decides the column count at every width.",
 		files: ["grid.tsx"],
 		dependencies: {},
+		/* Ships spacer's file, so the sharing is declared rather than implied. */
+		registryDependencies: ["spacer"],
 		category: "layout",
 		subcategory: "Page structure",
 		tags: ["grid", "responsive", "no-deps"],

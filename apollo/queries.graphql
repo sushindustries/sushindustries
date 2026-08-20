@@ -79,6 +79,12 @@ type Query {
 
 	Every argument is a filter and they combine. Omitting all of them returns
 	the first `limit` rows in path order, which is rarely what anybody wants.
+
+	**`limit` is clamped to 200 and the list does not say so.** Asking for 500
+	returns 200 with nothing to distinguish it from a set that happened to be
+	that size - which is how I once concluded a component was missing two
+	documentation sections it had. Use `documentPage` when the answer matters;
+	this one is for when you know the set is small.
 	"""
 	documents(
 		kind: DocumentKind
@@ -88,6 +94,41 @@ type Query {
 		offset: Int = 0
 	): [Document!]!
 
+	"""
+	The same query, with the numbers that make a truncated answer visible.
+
+	`documents` clamps silently, which is fine for a lookup and dangerous for a
+	count: a caller cannot tell a full page from a capped one, so a set larger
+	than the cap looks like a smaller set. This returns the total and says
+	whether there is more, which is the difference between "these are the rows"
+	and "these are some of the rows".
+	"""
+	documentPage(
+		kind: DocumentKind
+		slug: String
+		section: String
+		search: String
+		limit: Int = 25
+		offset: Int = 0
+	): DocumentPage!
+}
+
+"One page of documents, and how many there are in total."
+type DocumentPage {
+	rows: [Document!]!
+
+	"Every row matching the filter, however few were returned."
+	total: Int!
+
+	"What was actually applied, which is not always what was asked for."
+	limit: Int!
+	offset: Int!
+
+	"True when `offset + limit` has not reached `total`. The thing `documents` cannot tell you."
+	hasMore: Boolean!
+}
+
+extend type Query {
 	"One document, by path or by slug and section. Null when there is none."
 	document(path: String, slug: String, section: String): Document
 

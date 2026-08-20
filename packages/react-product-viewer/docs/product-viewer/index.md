@@ -9,8 +9,8 @@ finishes authored into the GLB.
 
 Drag it.
 
-<!-- ::start:viewer model="/models/logo.glb" height="460" label="Loading the mark" -->
-<!-- ::end:viewer -->
+<!-- ::start:showcase demo="product-viewer" height="460" -->
+<!-- ::end:showcase -->
 
 That is not a screenshot and not a video. It is the component this page
 documents, mounted from the same package you would install, which is why it

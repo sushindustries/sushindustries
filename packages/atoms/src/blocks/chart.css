@@ -47,20 +47,24 @@
 	/*
 	 * The bars arrive rather than appearing.
 	 *
-	 * One transform, staggered by index, and nothing that moves after it lands
-	 * - a chart that keeps animating is a chart you cannot read while it does.
-	 * `transform-box: fill-box` so the origin is the bar's own edge and not the
-	 * SVG's, which is the difference between growing from the axis and sliding
-	 * in from the corner.
+	 * Opacity and a short slide, and **never `scale`** - which is what this was
+	 * and which was wrong in a way only measurement found. `scale: 0 1` means a
+	 * bar is literally zero pixels wide until its keyframe finishes, so for the
+	 * first three hundred milliseconds four of five bars had no geometry at
+	 * all. The layout test read the chart as one bar; a screenshot tool, a
+	 * crawler or a slow paint would have seen the same thing.
+	 *
+	 * A bar's width *is* its value. Animating the property that carries the
+	 * information means the chart is briefly wrong rather than briefly plain.
+	 * Opacity carries nothing, so it is the one safe thing to animate here.
 	 *
 	 * Entirely inside a reduced-motion guard. The information is the length of
-	 * the bar; the growing is decoration, so it is the whole thing that goes
-	 * rather than a shorter version of it.
+	 * the bar; the arriving is decoration, so the whole thing goes rather than
+	 * a shorter version of it.
 	 */
 	@media (prefers-reduced-motion: no-preference) {
 		.chart svg rect[fill] {
 			transform-box: fill-box;
-			transform-origin: left center;
 			animation: chart-grow 420ms var(--ease-out) backwards;
 		}
 
@@ -88,8 +92,8 @@
 
 	@keyframes chart-grow {
 		from {
-			scale: 0 1;
 			opacity: 0;
+			translate: -6px 0;
 		}
 	}
 
