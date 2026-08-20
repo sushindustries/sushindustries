@@ -279,6 +279,55 @@ export function map() {
 		return;
 	}
 
+	/*
+	 * The facts, with no prose around them.
+	 *
+	 * This exists for the agent that judges the shape. It used to be given the
+	 * human output plus a skill to interpret it plus permission to grep, which
+	 * is three sources and an invitation to go looking - about four thousand
+	 * tokens before it had an opinion. Everything a verdict needs is computable
+	 * here, so it is computed here, and the reader's whole job becomes reading
+	 * one object.
+	 *
+	 * Deliberately not the file counts or the line counts. Those are interesting
+	 * to a person browsing and irrelevant to whether the shape is earned, and
+	 * every field that goes into this is a field somebody pays for.
+	 */
+	if (flags.has("--json")) {
+		const shape = complexity(list);
+
+		console.log(
+			JSON.stringify(
+				{
+					packages: list
+						.filter((one) => one.dir.startsWith("packages/"))
+						.map((one) => ({
+							name: one.short,
+							dependsOn: shape.internal(one).map((d) => d.replace(SCOPE, "")),
+							usedBy: list
+								.filter((other) => other.deps.includes(one.name))
+								.map((other) => other.short),
+						})),
+					apps: list
+						.filter((one) => !one.dir.startsWith("packages/"))
+						.map((one) => ({
+							name: one.short,
+							dependsOn: shape.internal(one).map((d) => d.replace(SCOPE, "")),
+						})),
+					cycles: shape.loops.map((loop) =>
+						loop.map((n) => n.replace(SCOPE, "")),
+					),
+					inversions: shape.inverted,
+					deepestChain: shape.chain.map((n) => n.replace(SCOPE, "")),
+					portable: shape.portable.map((one) => one.short),
+				},
+				null,
+				"\t",
+			),
+		);
+		return;
+	}
+
 	banner("map");
 	note("Derived from the workspace manifests, not from a diagram.");
 	blank();

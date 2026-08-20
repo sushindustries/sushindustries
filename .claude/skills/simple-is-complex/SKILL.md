@@ -1,6 +1,16 @@
 ---
 name: simple-is-complex
-description: The rule that complexity has to be earned, and the measurements that decide it - cycles, inversions, fan-out, depth and portability, read from the dependency graph by `pnpm sushindustries map`. Use before adding a package, before making one package depend on another, and when a change feels like it is spreading.
+description: |
+  Judge whether a workspace has earned its complexity, from the dependency
+  graph `pnpm sushindustries map` reads out of the manifests: cycles,
+  inversions, fan-out, depth and portability.
+  Use when (a) adding a package, (b) making one package depend on another,
+  (c) a change is spreading further than expected, (d) deciding whether to
+  split a file or a module, or (e) reviewing whether an extraction was worth
+  it.
+  Trigger with phrases like "is this too complex", "should this be a package",
+  "why does everything depend on this", "split this module", "dependency
+  cycle", "is this coupled".
 ---
 
 # Simple is complex
