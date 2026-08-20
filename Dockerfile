@@ -41,7 +41,6 @@ COPY packages/cli/package.json packages/cli/
 # anywhere. The manifest-only COPY above is what actually saves the time.
 COPY packages/github/package.json packages/github/
 COPY packages/access/package.json packages/access/
-COPY packages/sync/package.json packages/sync/
 
 RUN pnpm install --frozen-lockfile
 

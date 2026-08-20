@@ -268,6 +268,30 @@ function ignoredFiles() {
  */
 async function checkDockerfileCoversWorkspaces(list) {
 	const dockerfile = read("Dockerfile");
+
+	/*
+	 * Both directions. A workspace with no COPY line installs without its
+	 * manifest; a COPY line with no workspace is worse, because it fails the
+	 * image build outright - `packages/sync` was folded into the app, its
+	 * line stayed, and Railway could not build the Dockerfile while every
+	 * local check was green. A line for a directory that is gone cannot be
+	 * repaired into existence, so it is reported rather than fixed.
+	 */
+	const copied = [
+		...dockerfile.matchAll(
+			/^COPY ((?:apps|packages)\/[\w-]+)\/package\.json /gm,
+		),
+	].map((match) => match[1]);
+	for (const workspace of copied) {
+		if (list.includes(workspace)) continue;
+		report(
+			"dockerfile",
+			"Dockerfile",
+			`copies ${workspace}/package.json, and there is no such workspace - the image cannot build`,
+			`remove the COPY ${workspace}/package.json line`,
+		);
+	}
+
 	const missing = list.filter(
 		(workspace) => !dockerfile.includes(`COPY ${workspace}/package.json`),
 	);
