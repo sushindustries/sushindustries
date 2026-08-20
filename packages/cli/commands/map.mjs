@@ -13,7 +13,7 @@
  * source - both are views of the manifests.
  */
 
-import { globSync, readFileSync, statSync } from "node:fs";
+import { existsSync, globSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { flags, read, root } from "../lib/context.mjs";
 import { banner, blank, bold, cyan, dim, field, note, ok } from "../lib/ui.mjs";
@@ -88,6 +88,36 @@ function workspaces() {
 			},
 		];
 	});
+}
+
+/**
+ * Consumers that no manifest records.
+ *
+ * A package can be used without being imported, and this graph could not see
+ * it. `packages/github` is an Apollo Connectors provider: `connectors` finds
+ * it by looking for a `schema.graphql`, composes it and tests it - so it is
+ * live, load-bearing, and has no dependant anywhere in a `package.json`.
+ *
+ * The map reported it as depended on by nobody, and the agent reading that
+ * output called it "either waiting for a second caller or dead weight". The
+ * agent was reasoning correctly from a graph that was missing an edge, which
+ * is worse than a wrong answer: it was a confident one.
+ *
+ * So discovery counts as consumption, and says who is doing the discovering.
+ * The rule for adding to this list: a command in this CLI that finds packages
+ * by a file rather than by a dependency.
+ */
+function discovered(dir) {
+	const found = [];
+
+	if (existsSync(join(root, dir, "schema.graphql"))) {
+		found.push("cli:connectors");
+	}
+	if (existsSync(join(root, dir, "skills"))) {
+		found.push("intent:skills");
+	}
+
+	return found;
 }
 
 /** How many source files a workspace holds. Cheap, and enough to show weight. */
@@ -294,37 +324,7 @@ export function map() {
 	 * every field that goes into this is a field somebody pays for.
 	 */
 	if (flags.has("--json")) {
-		const shape = complexity(list);
-
-		console.log(
-			JSON.stringify(
-				{
-					packages: list
-						.filter((one) => one.dir.startsWith("packages/"))
-						.map((one) => ({
-							name: one.short,
-							dependsOn: shape.internal(one).map((d) => d.replace(SCOPE, "")),
-							usedBy: list
-								.filter((other) => other.deps.includes(one.name))
-								.map((other) => other.short),
-						})),
-					apps: list
-						.filter((one) => !one.dir.startsWith("packages/"))
-						.map((one) => ({
-							name: one.short,
-							dependsOn: shape.internal(one).map((d) => d.replace(SCOPE, "")),
-						})),
-					cycles: shape.loops.map((loop) =>
-						loop.map((n) => n.replace(SCOPE, "")),
-					),
-					inversions: shape.inverted,
-					deepestChain: shape.chain.map((n) => n.replace(SCOPE, "")),
-					portable: shape.portable.map((one) => one.short),
-				},
-				null,
-				"\t",
-			),
-		);
+		console.log(JSON.stringify(workspaceFacts(), null, "\t"));
 		return;
 	}
 
@@ -409,4 +409,48 @@ export function map() {
 	note("`--mermaid` prints the same graph as a chart.");
 	blank();
 	ok("Mapped");
+}
+
+/*
+ * The two views, exported.
+ *
+ * `map()` prints for a terminal; these return for a caller. The MCP tools use
+ * them, so a tool cannot disagree with the command about what this repository
+ * looks like - which it would within a week if the graph were built twice.
+ */
+
+/** The facts a judgement about structure is computed from. */
+export function workspaceFacts() {
+	const list = workspaces();
+	const shape = complexity(list);
+
+	return {
+		packages: list
+			.filter((one) => one.dir.startsWith("packages/"))
+			.map((one) => ({
+				name: one.short,
+				dependsOn: shape.internal(one).map((d) => d.replace(SCOPE, "")),
+				usedBy: [
+					...list
+						.filter((other) => other.deps.includes(one.name))
+						.map((other) => other.short),
+					...discovered(one.dir),
+				],
+			})),
+		apps: list
+			.filter((one) => !one.dir.startsWith("packages/"))
+			.map((one) => ({
+				name: one.short,
+				dependsOn: shape.internal(one).map((d) => d.replace(SCOPE, "")),
+			})),
+		cycles: shape.loops.map((loop) => loop.map((n) => n.replace(SCOPE, ""))),
+		inversions: shape.inverted,
+		deepestChain: shape.chain.map((n) => n.replace(SCOPE, "")),
+		portable: shape.portable.map((one) => one.short),
+	};
+}
+
+/** The same graph, as a chart. */
+export function workspaceChart() {
+	return mermaid(workspaces(), siteModules());
 }

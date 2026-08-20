@@ -22,6 +22,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { registerAuthoringTools } from "./authoring.mjs";
 import { registerCollectionsTools } from "./collections.mjs";
 import { registerDocsTools } from "./docs.mjs";
+import { registerGraphTools } from "./graph.mjs";
 import { registerStackTools } from "./stack.mjs";
 
 export const GROUPS = {
@@ -45,6 +46,10 @@ export const GROUPS = {
 	stack: {
 		about: "our dependencies' documentation indexes, sharded locally",
 		register: registerStackTools,
+	},
+	graph: {
+		about: "this workspace as facts and as a chart, read from its manifests",
+		register: registerGraphTools,
 	},
 	authoring: {
 		about: "published paths, templates, and adding to the site",

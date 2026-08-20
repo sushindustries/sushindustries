@@ -1,5 +1,5 @@
 {
-	"//": "Installed plugins are copied into a version-pinned cache, so ${CLAUDE_PLUGIN_ROOT} has no path back to the checkout it came from - which is why this runs the published package rather than a relative script. That package carries stack.yaml and the sharded indexes, so the dependency lookups work on a machine that has never seen this repository. The documentation and authoring tools need the repository itself; open it in Claude Code and the .mcp.json at its root registers all twenty-two.",
+	"//": "Installed plugins are copied into a version-pinned cache, so ${CLAUDE_PLUGIN_ROOT} has no path back to the checkout it came from - which is why this runs the published package rather than a relative script. That package carries stack.yaml and the sharded indexes, so the dependency lookups work on a machine that has never seen this repository. The documentation and authoring tools need the repository itself; open it in Claude Code and the .mcp.json at its root registers every group, the workspace graph included. No count is written here; it said twenty-two while the server registered twenty-four.",
 	"mcpServers": {
 		"sushindustries": {
 			"command": "npx",
