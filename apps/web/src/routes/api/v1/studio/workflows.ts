@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { Scope } from "../../../../modules/access/access.schemas";
 import { openSession } from "../../../../modules/content/github-auth.server";
 import { refuse } from "../../../../modules/content/mcp-auth.server";
 import { json } from "../../../../modules/registry/registry.server";
@@ -29,16 +30,25 @@ import {
  * documents endpoint, same reason: a forgotten field should refuse, never act.
  */
 
-function guard(request: Request): Response | null {
+/*
+ * A session, or a bearer with the right scope.
+ *
+ * The scope is a parameter rather than a constant because the two handlers on
+ * this route are not the same permission: listing what can be run is reading,
+ * and running one spawns a process on the deployment. One guard with one scope
+ * would have had to pick, and picking the read one is how a token minted to
+ * poll a status ends up able to trigger a sync.
+ */
+async function guard(request: Request, scope: Scope): Promise<Response | null> {
 	if (openSession(request)) return null;
-	return refuse(request);
+	return refuse(request, scope);
 }
 
 export const Route = createFileRoute("/api/v1/studio/workflows")({
 	server: {
 		handlers: {
-			GET: ({ request }) => {
-				const refused = guard(request);
+			GET: async ({ request }) => {
+				const refused = await guard(request, "studio:read");
 				if (refused) return refused;
 
 				const workflows = workflowStatuses();
@@ -56,7 +66,7 @@ export const Route = createFileRoute("/api/v1/studio/workflows")({
 			},
 
 			POST: async ({ request }) => {
-				const refused = guard(request);
+				const refused = await guard(request, "workflows:run");
 				if (refused) return refused;
 
 				let body: unknown;

@@ -313,4 +313,28 @@
 		border-radius: var(--r-card);
 		background: var(--bg-0);
 	}
+
+	/*
+	 * A secret, shown once.
+	 *
+	 * `word-break: break-all` rather than a scroll, which is the opposite of the
+	 * preview above and for the opposite reason: a document that scrolls loses
+	 * nothing, and a token whose tail is off the right-hand edge is a token
+	 * somebody copies half of. `user-select: all` makes one click take the whole
+	 * thing, for when the clipboard button is unavailable - it needs a secure
+	 * context, and a laptop on plain http does not have one.
+	 */
+	.studio-secret {
+		margin: var(--s-2) 0;
+		padding: var(--s-3);
+		border: 1px solid var(--line);
+		border-radius: var(--r-card);
+		background: var(--bg-0);
+		font-family: var(--mono);
+		font-size: var(--t-xs);
+		line-height: 1.6;
+		white-space: pre-wrap;
+		word-break: break-all;
+		user-select: all;
+	}
 }

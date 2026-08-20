@@ -50,7 +50,7 @@ export const Route = createFileRoute("/graphql")({
 	server: {
 		handlers: {
 			POST: async ({ request }) =>
-				refuse(request) ?? (await yoga.fetch(request)),
+				(await refuse(request, "docs:read")) ?? yoga.fetch(request),
 
 			/*
 			 * A GET says what this is rather than serving the graph. Yoga will

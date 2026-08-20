@@ -28,9 +28,9 @@ import { writerOptions } from "../../../../modules/studio/writers/writers.server
 export const Route = createFileRoute("/api/v1/studio/")({
 	server: {
 		handlers: {
-			GET: ({ request }) => {
+			GET: async ({ request }) => {
 				if (!openSession(request)) {
-					const refused = refuse(request);
+					const refused = await refuse(request, "studio:read");
 					if (refused) return refused;
 				}
 

@@ -253,6 +253,140 @@ export type ReferencePage = typeof referencePages.$inferSelect;
 export type NewReferencePage = typeof referencePages.$inferInsert;
 
 /*
+ * ── who is asking, and with what ─────────────────────────────────────────
+ *
+ * Two tables that are sources, not projections, which makes them the first of
+ * their kind in this file. Everything above is rebuilt from the repository by
+ * `sync` and can be dropped without losing anything. These cannot: a token
+ * nobody can reissue and an account nobody can re-derive are the only rows
+ * here that a `sync` would destroy rather than refresh.
+ *
+ * They exist because the gate was one shared secret in an environment
+ * variable. That answers "may this request proceed" and no other question -
+ * not who is holding it, not when they last used it, not how to stop one
+ * holder without stopping all of them. A shared secret has no revocation
+ * story, only a rotation story, and rotating it logs everybody out at once.
+ *
+ * `MCP_AUTH_TOKEN` still works and is still checked first. It is the key to
+ * the building, kept for the case where the database is the thing that is
+ * broken - a gate that can only be opened by a query cannot be opened when
+ * Postgres is down, and that is exactly when somebody needs to get in.
+ */
+
+/** How an account first proved who it was. */
+export type AccountSource = "owner" | "github" | "magic-link";
+
+/**
+ * One row per person or agent that has ever authenticated.
+ *
+ * Not a user table in the sense the studio cares about - `/studio` is still
+ * one login checked against the repository owner, and this changes nothing
+ * about that. An account is the thing a token belongs to, so that revoking a
+ * person is one statement rather than a hunt through a list of secrets.
+ *
+ * The email is the identity because that is what a magic link can prove.
+ * GitHub sign-in asks for no scopes and therefore learns no email, so an
+ * account created that way carries the login instead and the email stays
+ * null - which is honest, and is why the column is nullable on a table whose
+ * whole point is identity.
+ */
+export const accounts = pgTable("accounts", {
+	id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+
+	/** Lower-cased at the boundary. Unique when present, absent when unproven. */
+	email: text("email").unique(),
+
+	/** Set when GitHub is what identified them. Unique for the same reason. */
+	githubLogin: text("github_login").unique(),
+
+	/** What they call themselves. Display only, and never trusted for a check. */
+	label: text("label"),
+
+	source: text("source").$type<AccountSource>().notNull(),
+
+	createdAt: timestamp("created_at", { withTimezone: true })
+		.notNull()
+		.defaultNow(),
+
+	/** Moved by any successful authentication. What makes a dormant account visible. */
+	lastSeenAt: timestamp("last_seen_at", { withTimezone: true })
+		.notNull()
+		.defaultNow(),
+
+	/**
+	 * Set to refuse everything this account holds, without deleting the history.
+	 *
+	 * A delete would take the tokens with it and leave no record that the
+	 * account was ever here, which is the wrong tool for "this one turned out to
+	 * be a problem" - that is a question somebody asks again in a month.
+	 */
+	blockedAt: timestamp("blocked_at", { withTimezone: true }),
+});
+
+export type Account = typeof accounts.$inferSelect;
+export type NewAccount = typeof accounts.$inferInsert;
+
+/**
+ * One row per minted API token.
+ *
+ * The secret is not here and must not be added. What is stored is its SHA-256,
+ * so a reader of this table - a backup, a `drizzle-kit studio` window, me at
+ * two in the morning - holds nothing that opens anything. The plaintext exists
+ * once, in the response to the mint that created it, and after that it is the
+ * holder's problem, which is the only arrangement where "we cannot recover it
+ * for you" is true rather than a policy.
+ *
+ * `prefix` is the first characters of the token, kept deliberately, because a
+ * list of tokens nobody can tell apart is a list nobody dares revoke from.
+ */
+export const apiTokens = pgTable("api_tokens", {
+	id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+
+	accountId: uuid("account_id")
+		.notNull()
+		.references(() => accounts.id, { onDelete: "cascade" }),
+
+	/** What it is for, in the holder's words. `railway cron`, `my laptop`. */
+	name: text("name").notNull(),
+
+	/** The public half, e.g. `aj_7f3c…`. Enough to recognise, useless to use. */
+	prefix: text("prefix").notNull(),
+
+	/** SHA-256 of the secret, hex. Unique, so a mint collision is a constraint. */
+	hash: text("hash").notNull().unique(),
+
+	/**
+	 * Space-separated, in the OAuth style, because that is the form the
+	 * authorization server this will grow into has to speak anyway.
+	 */
+	scopes: text("scopes").notNull(),
+
+	createdAt: timestamp("created_at", { withTimezone: true })
+		.notNull()
+		.defaultNow(),
+
+	/** Null means it does not expire. A deliberate choice, not an oversight. */
+	expiresAt: timestamp("expires_at", { withTimezone: true }),
+
+	/**
+	 * Moved on every accepted request, best-effort and never awaited.
+	 *
+	 * This is the column that makes the table worth having: a token nobody has
+	 * used in six months is a token to revoke, and there is no other way to know
+	 * that. Writing it costs one statement per authenticated call, which is why
+	 * the gate does not wait for it - the answer to "may this proceed" does not
+	 * depend on whether the bookkeeping landed.
+	 */
+	lastUsedAt: timestamp("last_used_at", { withTimezone: true }),
+
+	/** Set rather than deleted, so a revoked token cannot be re-minted by luck. */
+	revokedAt: timestamp("revoked_at", { withTimezone: true }),
+});
+
+export type ApiToken = typeof apiTokens.$inferSelect;
+export type NewApiToken = typeof apiTokens.$inferInsert;
+
+/*
  * schema.org, as the shape of the JSON-LD a page emits.
  *
  * Every element that shows content has a type at schema.org that already
@@ -334,4 +468,4 @@ export function thingLd(thing: ThingFields): object {
  * an object describing a query. Nothing here opens a connection - that is
  * `client.server.ts`, which cannot be imported from a browser at all.
  */
-export { and, asc, desc, eq, or, sql } from "drizzle-orm";
+export { and, asc, desc, eq, isNull, or, sql } from "drizzle-orm";

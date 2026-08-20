@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import type { Scope } from "../../../../modules/access/access.schemas";
 import { openSession } from "../../../../modules/content/github-auth.server";
 import { refuse } from "../../../../modules/content/mcp-auth.server";
 import { json } from "../../../../modules/registry/registry.server";
@@ -40,10 +41,17 @@ import { getDocuments } from "../../../../modules/studio/documents/documents.ser
  * reason: a forgotten field should describe a rename, not perform one.
  */
 
-/** A session, or a bearer token, or a refusal to hand back. */
-function guard(request: Request): Response | null {
+/**
+ * A session, or a bearer with the right scope, or a refusal to hand back.
+ *
+ * The scope is a parameter because reading this endpoint and writing through it
+ * are different permissions over the same URL: a GET lists documents, and a
+ * POST with `?apply=true` puts a file in the repository. A single scope for
+ * both would mean any token that can search the index can also rewrite a post.
+ */
+async function guard(request: Request, scope: Scope): Promise<Response | null> {
 	if (openSession(request)) return null;
-	return refuse(request);
+	return refuse(request, scope);
 }
 
 /** `?apply=true`. Anything else, including absent, is a dry run. */
@@ -97,7 +105,7 @@ export const Route = createFileRoute("/api/v1/studio/documents")({
 	server: {
 		handlers: {
 			GET: async ({ request }) => {
-				const refused = guard(request);
+				const refused = await guard(request, "studio:read");
 				if (refused) return refused;
 
 				/*
@@ -136,7 +144,7 @@ export const Route = createFileRoute("/api/v1/studio/documents")({
 			},
 
 			POST: async ({ request }) => {
-				const refused = guard(request);
+				const refused = await guard(request, "documents:write");
 				if (refused) return refused;
 
 				const body = await readBody(request);
@@ -161,7 +169,7 @@ export const Route = createFileRoute("/api/v1/studio/documents")({
 			 * order they want them in.
 			 */
 			PUT: async ({ request }) => {
-				const refused = guard(request);
+				const refused = await guard(request, "documents:write");
 				if (refused) return refused;
 
 				const body = await readBody(request);
@@ -224,7 +232,7 @@ export const Route = createFileRoute("/api/v1/studio/documents")({
 			 * client that read the document first has one and should send it.
 			 */
 			PATCH: async ({ request }) => {
-				const refused = guard(request);
+				const refused = await guard(request, "documents:write");
 				if (refused) return refused;
 
 				const body = await readBody(request);
@@ -244,7 +252,7 @@ export const Route = createFileRoute("/api/v1/studio/documents")({
 			},
 
 			DELETE: async ({ request }) => {
-				const refused = guard(request);
+				const refused = await guard(request, "documents:write");
 				if (refused) return refused;
 
 				const body = await readBody(request);

@@ -20,7 +20,7 @@ export const Route = createFileRoute("/studio/report")({
 		handlers: {
 			GET: async ({ request }) => {
 				if (!openSession(request)) {
-					const refused = refuse(request);
+					const refused = await refuse(request, "studio:read");
 					if (refused) return refused;
 				}
 

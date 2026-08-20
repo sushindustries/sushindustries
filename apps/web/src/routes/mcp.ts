@@ -34,7 +34,7 @@ export const Route = createFileRoute("/mcp")({
 	server: {
 		handlers: {
 			POST: async ({ request }) => {
-				return refuse(request) ?? (await handler.fetch(request));
+				return (await refuse(request, "docs:read")) ?? handler.fetch(request);
 			},
 
 			/*

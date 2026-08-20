@@ -33,7 +33,8 @@ export interface StudioSection {
 		| "/studio/documents"
 		| "/studio/collections"
 		| "/studio/workflows"
-		| "/studio/insights";
+		| "/studio/insights"
+		| "/studio/tokens";
 
 	/** The last segment, for keys and for the API description. */
 	readonly path: string;
@@ -91,6 +92,15 @@ export const STUDIO_SECTIONS: readonly StudioSection[] = [
 		about:
 			"What the index costs to read, what people open, and how far behind the repository it is.",
 		icon: "layers",
+		ready: true,
+	},
+	{
+		to: "/studio/tokens",
+		path: "tokens",
+		title: "Tokens",
+		about:
+			"The keys to the endpoints this deployment serves. Mint one for an agent or a cron job, see when each was last used, and take one away without touching the others.",
+		icon: "rule",
 		ready: true,
 	},
 ];
