@@ -41,6 +41,11 @@ skills-lock.json
 .claude/skills/ci-cd-and-automation
 .claude/skills/code-review
 .claude/skills/open-sourcing
+# Copied rather than linked by newer `skills` CLIs, but still theirs, not
+# ours. Reinstall: npx skills add antfu/skills --skill nitro --skill tsdown --skill vite
+.claude/skills/nitro
+.claude/skills/tsdown
+.claude/skills/vite
 
 # Claude Code's per-machine settings. It rewrites this file as permissions are
 # granted, so committing it would mean one person's answers becoming everyone's

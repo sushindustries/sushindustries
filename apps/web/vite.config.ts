@@ -117,7 +117,7 @@ export default defineConfig({
 			// spot for a much larger one.
 			importProtection: {
 				client: {
-					files: ["**/*.server.*", "**/server.ts"],
+					files: ["**/*.server.*", "**/server.ts", "**/server/**"],
 				},
 			},
 			//

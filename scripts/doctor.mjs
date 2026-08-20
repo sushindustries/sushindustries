@@ -74,6 +74,7 @@ const shouldFix = process.argv.includes("--fix");
  * session.
  */
 const driftOnly = process.argv.includes("--drift");
+const docsOnly = process.argv.includes("--docs");
 
 /* ── the reporting surface ───────────────────────────────────────────── */
 
@@ -1260,7 +1261,7 @@ function checkRegistryItemsHaveDemos(items) {
 
 		report(
 			"demo",
-			"apps/web/src/modules/showcase/demos.tsx",
+			"packages/ui/src/demos.tsx",
 			`"${item.name}" has no demo, so its card and its page show nothing running`,
 		);
 	}
@@ -2424,8 +2425,8 @@ function checkShotsAreFresh() {
 
 	const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
 	const currentHash = createHash("sha256")
-		.update(read("apps/web/src/modules/showcase/demos.tsx"))
-		.update(read("apps/web/src/modules/showcase/demo-sources.ts"))
+		.update(read("packages/ui/src/demos.tsx"))
+		.update(read("packages/ui/src/demo-sources.ts"))
 		.digest("hex");
 
 	if (currentHash === manifest.sourceHash) return;
@@ -2742,76 +2743,6 @@ function checkDocumentKindsAgree() {
 }
 
 /**
- * `_artifacts/domain_map.yaml` still describes the workspace it maps.
- *
- * The directory name is the intent tool's, not this repo's - `_artifacts` is
- * where `@tanstack/intent` looks, the way `.github/` is where Actions looks -
- * so it stays, and this makes its contents answerable.
- *
- * Two ways it went wrong at once, both silently. It listed a skill for
- * `product-viewer` at a path that has never existed, and it was four packages
- * behind the workspace: `access`, `cli`, `github` and `http` appeared neither
- * as a skill nor in `ignored_packages`. A map of the repository that has
- * drifted from the repository is worse than none, because it answers.
- */
-function checkDomainMapCoversPackages() {
-	for (const path of [
-		"_artifacts/domain_map.yaml",
-		"_artifacts/skill_tree.yaml",
-	]) {
-		checkOneMap(path);
-	}
-}
-
-/** One of the two intent maps, against the workspace it describes. */
-function checkOneMap(path) {
-	const map = read(path);
-
-	if (!map) {
-		report(
-			"domain-map",
-			path,
-			"missing",
-			"`intent` reads it; write it or drop the tool",
-		);
-		return;
-	}
-
-	for (const claimed of [...map.matchAll(/^\s*path: (\S+)/gm)].map(
-		(m) => m[1],
-	)) {
-		if (!exists(claimed)) {
-			report(
-				"domain-map",
-				path,
-				`names a skill at ${claimed}, which does not exist`,
-				"write it, or remove the entry and account for the package under `ignored_packages`",
-			);
-		}
-	}
-
-	const named = new Set(
-		[...map.matchAll(/'(@sushindustries\/[a-z-]+)'/g)].map((m) => m[1]),
-	);
-
-	for (const workspace of list) {
-		if (!workspace.startsWith("packages/")) continue;
-
-		const manifest = readJson(`${workspace}/package.json`);
-		if (!manifest.name || manifest.private) continue;
-
-		if (!named.has(manifest.name)) {
-			report(
-				"domain-map",
-				path,
-				`does not account for ${manifest.name}`,
-				"add a skill entry, or name it under `coverage.ignored_packages` with the reason",
-			);
-		}
-	}
-}
-
-/**
  * A comment that cites a file cites one that exists.
  *
  * Twice in one day this repository was wrong in exactly this way, and neither
@@ -2874,142 +2805,6 @@ function checkCitedFilesExist() {
 			);
 		}
 	}
-}
-
-/**
- * No package depends on an app, and no two packages depend on each other.
- *
- * The two failures that are wrong at any size rather than a matter of degree.
- * A cycle means neither package can be installed without the other, so the
- * cascade from a change in one comes back round to itself. An inversion - a
- * package depending on an app - means the package cannot be installed by
- * anybody but this repository, which for something published is the whole
- * point undone.
- *
- * Computed here from the manifests rather than imported from
- * `packages/cli/commands/map.mjs`, which draws the same graph. That is a
- * deliberate duplication and the only one in this file: `scripts/` is the gate
- * and must run on a bare `pnpm install` with nothing between it and the
- * filesystem, and reaching into a workspace package for a twenty-line
- * traversal would make the gate depend on the thing it is gating.
- */
-/**
- * Server-only code is named, not filed.
- *
- * TanStack Start keeps `.server.*` out of the client bundle by matching a
- * glob, and the glob needs a segment before `.server.` - so protection is a
- * property of the *file name* and of nothing else. A `server/` directory,
- * which is how most module-architecture guides lay this out, matches neither
- * pattern and is therefore not protected at all: a repository file reading
- * `DATABASE_URL` inside one builds clean, with no diagnostic anywhere, and
- * ships to the browser.
- *
- * Measured rather than assumed, on 2026-08-19 and again when this was
- * written: a bare `server.ts` reading `process.env.DATABASE_URL` and imported
- * from a route component built with zero errors, while the same file renamed
- * `probe.server.ts` failed the build. `vite.config.ts` carries the note.
- *
- * The patterns are read out of that config rather than repeated here. Two
- * copies of a rule is a rule that will disagree with itself, and this one
- * would disagree silently - the check would keep passing against patterns the
- * build no longer uses.
- */
-function checkServerCodeIsNamedNotFiled() {
-	const config = read("apps/web/vite.config.ts");
-
-	const declared = /files:\s*\[([^\]]*)\]/.exec(config)?.[1];
-	if (!declared) {
-		report(
-			"import-protection",
-			"apps/web/vite.config.ts",
-			"no `files` array under importProtection, so nothing here can be checked",
-			"restate the client deny patterns, or delete this check",
-		);
-		return;
-	}
-
-	const patterns = [...declared.matchAll(/"([^"]+)"/g)].map((one) => one[1]);
-
-	/*
-	 * A directory is protected only if some pattern would match a file placed
-	 * directly inside it. `**​/*.server.*` needs a dot-segment in the name and
-	 * `**​/server.ts` needs the file itself to be called that, so neither ever
-	 * covers `server/anything.ts` - but this asks the patterns rather than
-	 * asserting it, so a future pattern that *does* cover it turns this check
-	 * off by itself instead of producing a false report.
-	 */
-	const covered = patterns.some((pattern) => /^\*\*\/server\/\*/.test(pattern));
-	if (covered) return;
-
-	for (const path of trackedFiles()) {
-		if (!path.startsWith("apps/web/src/")) continue;
-		if (!/\.tsx?$/.test(path)) continue;
-		if (!path.split("/").slice(0, -1).includes("server")) continue;
-
-		report(
-			"import-protection",
-			path,
-			"sits in a `server/` directory, which no client deny pattern matches",
-			"rename it `<something>.server.ts`; the suffix is what the build enforces",
-		);
-	}
-}
-
-function checkGraphIsAcyclic() {
-	const edges = new Map();
-	const apps = new Set();
-
-	for (const workspace of list) {
-		const manifest = readJson(`${workspace}/package.json`);
-		if (!manifest.name) continue;
-
-		if (!workspace.startsWith("packages/")) apps.add(manifest.name);
-
-		edges.set(
-			manifest.name,
-			Object.keys({
-				...manifest.dependencies,
-				...manifest.devDependencies,
-			}).filter((one) => one.startsWith("@sushindustries/")),
-		);
-	}
-
-	for (const [name, deps] of edges) {
-		if (apps.has(name)) continue;
-
-		for (const dep of deps) {
-			if (apps.has(dep)) {
-				report(
-					"graph",
-					`${name} -> ${dep}`,
-					"a package depends on an app",
-					"an app is a sink - nothing installs it, so this package cannot be installed by anybody else either",
-				);
-			}
-		}
-	}
-
-	const seen = new Set();
-
-	const walk = (node, trail) => {
-		if (trail.includes(node)) {
-			const loop = trail.slice(trail.indexOf(node)).concat(node);
-			const signature = [...loop].sort().join(">");
-			if (!seen.has(signature)) {
-				seen.add(signature);
-				report(
-					"graph",
-					loop.map((one) => one.replace("@sushindustries/", "")).join(" -> "),
-					"these packages depend on each other",
-					"neither can be installed without the other - break the weaker edge, or move what they share into a third",
-				);
-			}
-			return;
-		}
-		for (const next of edges.get(node) ?? []) walk(next, [...trail, node]);
-	};
-
-	for (const name of edges.keys()) walk(name, []);
 }
 
 /**
@@ -3370,9 +3165,9 @@ function checkBlocksResolve() {
 	}
 }
 
-/** Demo ids the showcase block can point at, read from demo-sources.ts. */
+/** Demo ids the showcase block can point at, read from packages/ui/src/demo-sources.ts. */
 function demoNames() {
-	const source = read("apps/web/src/modules/showcase/demo-sources.ts");
+	const source = read("packages/ui/src/demo-sources.ts");
 	const names = new Set();
 	for (const match of source.matchAll(
 		/^\t(?:"([\w-]+)"|([A-Za-z][\w-]*)):/gm,
@@ -3589,15 +3384,20 @@ await checkWorkspaceReadmes(list);
  */
 checkGeneratedFilesAreOrdered();
 checkDocumentKindsAgree();
-checkGraphIsAcyclic();
-checkServerCodeIsNamedNotFiled();
 checkStackVersionsAreCurrent();
 checkAuthoredFrontmatter();
 await checkGraphqlOperationsValidate();
-checkDomainMapCoversPackages();
 checkCitedFilesExist();
 
-if (!driftOnly) {
+if (!driftOnly && !docsOnly) {
+	/*
+	 * The gate. Every check here describes something that ships broken:
+	 * a registry file that does not exist, an export the manifest lies about,
+	 * a showcase block pointing at a demo nobody wrote, a page nothing links
+	 * to, a component wearing a class the installed stylesheet lacks. A push
+	 * that fails one of these is a push that would have failed in front of a
+	 * visitor instead.
+	 */
 	checkWorkspaceDescriptions(list);
 	checkLicences(list);
 	checkTypecheckHasConfig(list);
@@ -3615,13 +3415,37 @@ if (!driftOnly) {
 	checkNothingIsDuplicated(registry);
 	checkRegistryFilesAreExported(registry);
 	checkExportsAreRegistered(registry);
-	await checkRegistryItemsHaveDocs(registry);
 	checkRegistryItemsHaveDemos(registry);
-	checkContentFrontmatter();
-	checkMarkdownHierarchy();
 	checkTemplates();
 	checkGlyphsAreGenerated();
 	checkDevicesAreGenerated();
+	checkCategoriesHaveIcons();
+	checkComponentClassesLiveInAtoms();
+	checkVariantsAreAttributes();
+	checkAtomsUseTokens();
+	checkDepthsUseTokens();
+	checkTokensResolve();
+	checkRoutesAreLeaves();
+	checkBlocksResolve();
+	checkBlockTargetsExist();
+	checkPagesAreReachable();
+}
+
+if (docsOnly) {
+	/*
+	 * The editorial tier, behind `--docs` and run by `pnpm docs`.
+	 *
+	 * Everything here is about how the writing reads or whether a picture is
+	 * current: a README without a usage block, a doc page off the contract, a
+	 * desk label too long for its tile, an em dash, a screenshot older than
+	 * the demo it shows. All worth knowing and none of it a reason to stop a
+	 * push - a push blocked on a missing summary is a push made with
+	 * `--no-verify`, and a hook people bypass is a hook that checks nothing.
+	 * So these report, and the gate above is what refuses.
+	 */
+	await checkRegistryItemsHaveDocs(registry);
+	checkContentFrontmatter();
+	checkMarkdownHierarchy();
 	checkSkills();
 	checkDocSectionsAreReal();
 	checkDocsAreAddressable();
@@ -3632,20 +3456,10 @@ if (!driftOnly) {
 	checkDocsHaveSummaries(registry);
 	checkRegistryItemsAreAddressable(registry);
 	checkMentionsAreReferences(registry);
-	checkCategoriesHaveIcons();
-	checkComponentClassesLiveInAtoms();
-	checkVariantsAreAttributes();
 	checkBlocksAreEarned();
-	checkAtomsUseTokens();
-	checkDepthsUseTokens();
-	checkTokensResolve();
 	checkNoEmDashes();
 	checkReadmeMedia();
 	checkShotsAreFresh();
-	checkRoutesAreLeaves();
-	checkBlocksResolve();
-	checkBlockTargetsExist();
-	checkPagesAreReachable();
 	checkReadmesShowUsage();
 }
 

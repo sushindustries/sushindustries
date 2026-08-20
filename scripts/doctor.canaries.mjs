@@ -44,13 +44,17 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
  * this parseable without a `--json` flag the doctor does not have. Adding one
  * only for the tests would be a second output format to keep in step.
  */
-function doctorReports() {
+function doctorReports(args = []) {
 	try {
-		execFileSync(process.execPath, [join(root, "scripts/doctor.mjs")], {
-			cwd: root,
-			encoding: "utf8",
-			stdio: "pipe",
-		});
+		execFileSync(
+			process.execPath,
+			[join(root, "scripts/doctor.mjs"), ...args],
+			{
+				cwd: root,
+				encoding: "utf8",
+				stdio: "pipe",
+			},
+		);
 		return new Set();
 	} catch (error) {
 		const text = `${error.stdout ?? ""}${error.stderr ?? ""}`;
@@ -70,10 +74,25 @@ function doctorReports() {
 
 const written = [];
 
+/*
+ * Directories the canary had to create, so it can take them away again.
+ *
+ * Removing only the file left `packages/canary` behind after every run. An
+ * empty directory under a glob root is residue that cannot show up in a diff,
+ * because git does not track empty directories at all - so the leak was
+ * invisible to every check here and survived until somebody listed the tree.
+ *
+ * `mkdirSync(..., { recursive: true })` returns the topmost directory it
+ * created, or undefined when the path already existed. That is exactly the
+ * distinction this needs: only take back what this run brought into being.
+ */
+const planted = [];
+
 /** Writes a file the canary owns, remembering it for cleanup. */
 function plant(relative, contents) {
 	const full = join(root, relative);
-	mkdirSync(dirname(full), { recursive: true });
+	const created = mkdirSync(dirname(full), { recursive: true });
+	if (created) planted.push(created);
 	writeFileSync(full, contents);
 	written.push(full);
 }
@@ -91,21 +110,45 @@ function restore() {
 	for (const path of written.splice(0)) {
 		rmSync(path, { force: true });
 	}
+	for (const path of planted.splice(0)) {
+		rmSync(path, { recursive: true, force: true });
+	}
 	for (const [path, before] of edits.splice(0)) {
 		writeFileSync(path, before);
 	}
 }
 
+/*
+ * A killed run must not leave its plants behind either.
+ *
+ * `finally` covers a throw, which is every failure this file anticipated. It
+ * does not cover a signal, and turbo cancels in-flight tasks the moment another
+ * one fails - so node died between the plant and the restore with the violation
+ * still on disk. The symptom is the expensive kind: the next doctor run reports
+ * `packages/canary` as a real dockerfile problem, in a workspace
+ * nobody wrote, and the run that put it there has already scrolled away.
+ *
+ * SIGKILL still cannot be caught, and nothing here pretends otherwise. The
+ * leftover assertion at the end of this file is the backstop for that.
+ */
+for (const signal of ["SIGINT", "SIGTERM", "SIGHUP"]) {
+	process.on(signal, () => {
+		restore();
+		process.exit(1);
+	});
+}
+
+/*
+ * There is no import-protection canary any more, and the absence is the point.
+ *
+ * The doctor used to grep for a `server/` directory because the build's deny
+ * list did not cover one. It does now - `**\/server/**` in `vite.config.ts` -
+ * and the build refusing is the enforcement, not a script that re-derives
+ * what the build already knows. A canary for it would be a full web build per
+ * run, which is the one cost this file exists to avoid. The build is tested
+ * the way every build is: by running it, which `pnpm check` does.
+ */
 const CANARIES = [
-	{
-		check: "import-protection",
-		about: "a file in a server/ directory, which no deny pattern matches",
-		plant: () =>
-			plant(
-				"apps/web/src/modules/stats/server/canary.ts",
-				"export const canary = process.env.DATABASE_URL;\n",
-			),
-	},
 	{
 		check: "scripts",
 		about: "a workspace script that is not a turbo task",
@@ -138,6 +181,8 @@ const CANARIES = [
 	{
 		check: "style",
 		about: "an em dash in prose",
+		/* An editorial check, so it lives in the report tier, not the gate. */
+		args: ["--docs"],
 		/*
 		 * The character, by code point, and not typed inline.
 		 *
@@ -183,7 +228,7 @@ if (dirty) {
 
 console.log("Checking that each check can fail.\n");
 
-const clean = doctorReports();
+const clean = new Set([...doctorReports(), ...doctorReports(["--docs"])]);
 if (clean.size > 0) {
 	console.error(`The doctor already reports ${[...clean].join(", ")}.`);
 	console.error("Fix that first; a canary cannot be read through it.");
@@ -195,7 +240,7 @@ let failed = 0;
 for (const canary of CANARIES) {
 	try {
 		canary.plant();
-		const reported = doctorReports();
+		const reported = doctorReports(canary.args);
 
 		if (reported.has(canary.check)) {
 			console.log(`  ok    ${canary.check} caught ${canary.about}`);
@@ -221,7 +266,9 @@ if (failed > 0) {
 
 console.log(`All ${CANARIES.length} checks caught their canary.`);
 
-if (existsSync(join(root, "CANARY.md"))) {
-	console.error("A canary was left behind. That is a bug in the cleanup.");
+for (const left of ["CANARY.md", "packages/canary"]) {
+	if (!existsSync(join(root, left))) continue;
+	console.error(`A canary was left behind: ${left}.`);
+	console.error("That is a bug in the cleanup.");
 	process.exit(1);
 }

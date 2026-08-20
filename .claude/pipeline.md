@@ -10,7 +10,7 @@ pnpm new <post|page|desk|docs|component|package|glyph> <slug> [section]
 pnpm run doctor                                      # what is missing
 pnpm run doctor --fix                                # repair what can be repaired
 pnpm run doctor:map                                  # how the repo is constructed
-pnpm run docs                                        # what every element documents
+pnpm run docs                                        # the editorial tier: docs contract, prose, stale shots. Reports, never blocks
 pnpm check                                       # doctor, lint, types, build
 ```
 
@@ -33,13 +33,34 @@ root `prepare` script runs `husky`, so a clone gets it from `pnpm install`.
 It can be bypassed with `git push --no-verify`, because a hook you cannot
 bypass is a hook people delete.
 
+It runs as two turbo invocations rather than one, and the `&&` is load
+bearing. `//#canaries` plants real violations into the real working tree - a
+workspace script turbo never runs, a manifest with no Dockerfile line, prose
+with an em dash - and that is deliberate, because the doctor reads `git ls-files`
+and its own root, so a copy somewhere else would exercise a different thing
+than the one gating the push.
+
+Run concurrently, that tree is also what `//#doctor`, `//#lint` and `//#knip`
+are reading. They found the plants and reported them as real problems, and the
+canary runner then aborted because the doctor was failing - on a violation the
+canary had written itself. Three runs of the old single command failed three
+different tasks, which is what a race looks like from the outside: the gate
+every push goes through was non-deterministic, and the failure named an
+innocent file every time.
+
+So the canary goes last and goes alone. That is also the only state its result
+means anything in, which the runner already knew: it refuses to start when the
+doctor is red, saying a canary cannot be read through an existing failure. It
+just had no way to guarantee it while turbo was free to start it early.
+
 ## Where the checking happens, and why there
 
 Each layer catches what the layer before it cannot see, and costs more than it.
 
 | Layer | Runs | Catches | Costs |
 | --- | --- | --- | --- |
-| `pnpm run doctor` | seconds, no build | missing docs, missing Dockerfile lines, a class defined nowhere | nothing |
+| `pnpm run doctor` | seconds, no build | what ships broken: a registry file that does not exist, a demo nobody wrote, a dead block target, a page nothing links to, a class defined nowhere, a missing Dockerfile line | nothing |
+| `pnpm run docs` | when you ask | what reads badly: a doc page off the contract, a README without usage, an em dash, a screenshot older than its demo. Exits 0 on purpose - a push blocked on a summary is a push made with `--no-verify` | seconds |
 | `pnpm test` | pre-push, after the build | what the *served page* gets wrong: a skipped heading, a second h1, a dead link, a page nothing lists, a phone-width overflow | seconds |
 | `pnpm check` | pre-push | types, import protection, a build that does not build | a minute |
 | CI `check` | on push and PR | the same, in a clean checkout, plus publint, attw and a manifest that disagrees with its build | GitHub minutes |
