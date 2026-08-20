@@ -45,6 +45,30 @@ async function fetchAll<T, R>(
 	return results;
 }
 
+/**
+ * `fetch`, forgiving exactly one dropped socket.
+ *
+ * Every test file shares one built server, and vitest runs the files in
+ * parallel workers - so while this file is fetching ten pages at a time,
+ * three others are too, all over undici's keep-alive pool. A socket the
+ * server closed as idle and the client reused in the same instant reads as
+ * `ECONNRESET`, which is not a broken link and must not be reported as one.
+ *
+ * One retry, and only for a transport failure. A status code is an answer and
+ * is returned; a second reset is a server that has actually died, and
+ * `tests/setup/serve.ts` prints its stderr when that happens.
+ */
+async function fetchOnce(url: string, init?: RequestInit): Promise<Response> {
+	try {
+		return await fetch(url, init);
+	} catch (error) {
+		const code = (error as { cause?: { code?: string } }).cause?.code;
+		if (code !== "ECONNRESET" && code !== "ECONNREFUSED") throw error;
+		await new Promise((resolve) => setTimeout(resolve, 100));
+		return await fetch(url, init);
+	}
+}
+
 beforeAll(async () => {
 	base = inject("baseUrl");
 
@@ -52,7 +76,7 @@ beforeAll(async () => {
 	expect(paths.length).toBeGreaterThan(0);
 
 	pages = await fetchAll(paths, 10, async (path) => {
-		const response = await fetch(base + path);
+		const response = await fetchOnce(base + path);
 		expect(response.status, `${path} did not render`).toBe(200);
 		const html = await response.text();
 		const { document } = parseHTML(html);
@@ -240,7 +264,7 @@ describe("the link graph", () => {
 				[...links.entries()],
 				10,
 				async ([href, from]): Promise<string | null> => {
-					const response = await fetch(base + href, { redirect: "follow" });
+					const response = await fetchOnce(base + href, { redirect: "follow" });
 					return response.status < 400
 						? null
 						: `${href}: ${response.status} (linked from ${from.slice(0, 3).join(", ")})`;

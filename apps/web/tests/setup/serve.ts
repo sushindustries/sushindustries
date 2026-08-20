@@ -67,15 +67,38 @@ export default async function serve(project: TestProject): Promise<() => void> {
 	const port = await freePort();
 	const base = `http://127.0.0.1:${port}`;
 
+	/*
+	 * stderr is kept, not ignored. A server that dies mid-run does not say so:
+	 * the next test to fetch sees `ECONNRESET` and fails with a message about a
+	 * socket, while the stack trace that would name the cause went nowhere.
+	 * Buffering it costs nothing while the server is healthy and is the whole
+	 * diagnosis when it is not.
+	 */
 	const child = spawn(process.execPath, [ENTRY], {
 		env: { ...process.env, PORT: String(port), HOST: "127.0.0.1" },
-		stdio: "ignore",
+		stdio: ["ignore", "ignore", "pipe"],
+	});
+
+	let stderr = "";
+	child.stderr?.setEncoding("utf8");
+	child.stderr?.on("data", (chunk: string) => {
+		stderr += chunk;
+	});
+
+	let stopped = false;
+	child.on("exit", (code, signal) => {
+		if (stopped) return;
+		console.error(
+			`\n[serve] the built server exited early (code ${code}, signal ${signal}).` +
+				` Every fetch after this point fails with ECONNRESET.\n${stderr}`,
+		);
 	});
 
 	await waitForHealth(base, child);
 	project.provide("baseUrl", base);
 
 	return () => {
+		stopped = true;
 		child.kill();
 	};
 }
