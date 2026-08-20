@@ -18,20 +18,27 @@ export default defineConfig({
 	server: {
 		port: 3000,
 		/*
-		 * Cross-origin isolation, for the StackBlitz tab.
+		 * No cross-origin isolation here, and that is the fix rather than an
+		 * omission.
 		 *
-		 * WebContainers run on SharedArrayBuffer, and a page only gets that
-		 * with COOP + COEP set - "embedded without proper isolation headers"
-		 * is the error this pair removes. `credentialless` rather than
-		 * `require-corp`, so third-party subresources keep loading without
-		 * every one of them having to opt in via CORP.
+		 * The pair was set for every dev response so the StackBlitz tab could
+		 * boot a WebContainer, which needs SharedArrayBuffer, which a document
+		 * only gets with COOP and COEP both set. The cost was invisible until
+		 * somebody opened a video: under COEP a cross-origin iframe must itself
+		 * assert COEP or the browser refuses it, `credentialless` relaxes that
+		 * for subresources and not for frames, and YouTube asserts nothing. The
+		 * frame says "refused to connect" with no CSP violation and no useful
+		 * console error.
 		 *
-		 * The production half of this lives in `nitro.config.ts`.
+		 * Vite's dev server takes one `headers` object for every response and
+		 * has no per-route form, so the honest choice is which failure to have
+		 * in dev: no WebContainer, or no embeds anywhere. Embeds appear on
+		 * pages people read and the StackBlitz tab is one control on one tab,
+		 * so embeds win.
+		 *
+		 * Production is per-route and needs no such trade - `nitro.config.ts`
+		 * scopes the pair to `/components/**`, where both work.
 		 */
-		headers: {
-			"Cross-Origin-Opener-Policy": "same-origin",
-			"Cross-Origin-Embedder-Policy": "credentialless",
-		},
 		/*
 		 * The dev half of the analytics relay; production is the `/ingest`
 		 * route rule in `nitro.config.ts`. Same path, same destination, so

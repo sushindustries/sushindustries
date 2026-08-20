@@ -1,0 +1,20 @@
+# One collection: what it is for, and every document currently in it.
+#
+# Returns the members' paths and costs, never their bodies - read the ones you
+# want with ReadDocument, which is the point of getting the prices first.
+query ReadCollection($id: String!) {
+	collection(id: $id) {
+		title
+		summary
+		body
+		total
+		tokens
+		members {
+			path
+			kind
+			section
+			title
+			tokens
+		}
+	}
+}

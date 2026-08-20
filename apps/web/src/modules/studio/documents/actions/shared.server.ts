@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { contentSha } from "@sushindustries/db/factories";
 import type { WriteResult } from "../../studio.schemas";
 import type { Writer } from "../../writers/writers.server";
 
@@ -57,16 +57,17 @@ export const TEMPLATES = {
  */
 export const MOVABLE = new Set(["post", "page", "desk"]);
 /**
- * The content hash, computed the same way `sync` computes the one it stores.
+ * The content hash, from the same factory `sync` writes rows with.
  *
- * Same algorithm, same encoding, so an editor holding a `sha` from the
- * projection can compare it against a file on disk and get a meaningful
- * answer. Two hashes of the same bytes that disagree because one of them
- * hashed a trimmed string is the kind of bug that only shows up as a save
- * being refused for no visible reason.
+ * Not "computed the same way", which is what the comment here used to claim
+ * while a second implementation sat in `sync.mjs`. They disagreed - one hashed
+ * a trimmed string - and the symptom was a save refused for a file nobody had
+ * touched, which is unfalsifiable from the outside.
+ *
+ * One function now, imported by both. That is the entire reason
+ * `@sushindustries/db/factories` exists.
  */
-export const sha256 = (value: string) =>
-	createHash("sha256").update(value).digest("hex");
+export const sha256 = contentSha;
 /** `{token}` substitution, the same one `scripts/templates.mjs` uses. */
 export const fill = (text: string, tokens: Record<string, string>) =>
 	text.replace(/\{(\w+)\}/g, (whole, key) => tokens[key] ?? whole);

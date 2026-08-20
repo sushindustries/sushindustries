@@ -33,6 +33,7 @@
 	},
 	"exports": {
 		"./client.server": "./src/client.server.ts",
+		"./factories": "./src/factories.ts",
 		"./schema": "./src/schema.ts",
 		"./schema-org": "./src/schema-org.ts",
 		"./package.json": "./package.json",
@@ -45,6 +46,7 @@
 		"registry": "https://npm.pkg.github.com",
 		"exports": {
 			"./client.server": "./dist/client.server.mjs",
+			"./factories": "./dist/factories.mjs",
 			"./schema": "./dist/schema.mjs",
 			"./schema-org": "./dist/schema-org.mjs",
 			"./package.json": "./package.json",

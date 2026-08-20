@@ -1,0 +1,36 @@
+# One installable element: what it is made of, and what each piece costs.
+#
+# `shards` is the reason to ask. A component's `api` section is a few hundred
+# tokens against several thousand for the whole element, and every shard
+# carries its own address and price so the cheap answer can be chosen first.
+#
+# `partOf` answers what the element's own entry cannot - whether anything uses
+# it. Nothing, plus no page, means it was built and forgotten.
+query ReadElement($name: String!) {
+	element(name: $name) {
+		name
+		version
+		title
+		kind
+		tokens
+		parts {
+			name
+			kind
+		}
+		partOf {
+			name
+		}
+		variants {
+			prop
+			value
+			about
+			isDefault
+		}
+		shards {
+			facet
+			section
+			path
+			tokens
+		}
+	}
+}

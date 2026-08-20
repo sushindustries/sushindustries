@@ -1,0 +1,17 @@
+# Every named set of documents, with what each costs to read.
+#
+# The right call before ListDocuments. That one answers "what is here" with
+# several hundred paths, which is correct and unusable - a context window spent
+# listing files has none left for reading them. A collection is somebody's
+# judgement about which of those belong together, and `tokens` is what decides
+# whether the set is affordable.
+query ListCollections {
+	collections {
+		id
+		title
+		summary
+		kind
+		total
+		tokens
+	}
+}

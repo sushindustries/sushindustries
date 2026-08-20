@@ -21,7 +21,23 @@ export default defineConfig([
 		 * it into a browser bundle, and a separate entry is what makes that a
 		 * property of the build rather than of everyone's discipline.
 		 */
-		entry: ["./src/schema.ts", "./src/schema-org.ts", "./src/client.server.ts"],
+		/*
+		 * `factories` is its own entry for the same reason `schema` is: it is
+		 * pure functions over the schema's types, so it stays importable from a
+		 * CLI, a route and a test without any of them pulling a driver.
+		 *
+		 * Adding it here rather than only to `package.json` is the whole point -
+		 * `exports` is generated from what this builds, so a file that is not an
+		 * entry silently loses its export map on the next build. Which it did:
+		 * the field was added by hand, the build dropped it, and nothing failed
+		 * because nothing imported it yet.
+		 */
+		entry: [
+			"./src/schema.ts",
+			"./src/schema-org.ts",
+			"./src/factories.ts",
+			"./src/client.server.ts",
+		],
 		platform: "node",
 		deps: {
 			neverBundle: ["drizzle-orm", "postgres"],

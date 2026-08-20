@@ -1,0 +1,21 @@
+# How the mirrored documentation is divided, and by what rule.
+#
+# Worth asking before fetching a provider's index: it arrives as several files
+# of five hundred entries rather than one of five thousand, which is the
+# difference between a lookup and a download.
+query Sharding {
+	sharding {
+		limit
+		providers
+		shards
+		entries
+		byProvider {
+			provider
+			title
+			sections
+			shards
+			entries
+			usedFor
+		}
+	}
+}

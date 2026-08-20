@@ -37,7 +37,24 @@ export default defineNitroConfig({
 	compressPublicAssets: { gzip: true, brotli: true },
 
 	routeRules: {
-		"/**": {
+		/*
+		 * Cross-origin isolation, on the pages that need it and nowhere else.
+		 *
+		 * This was `/**` and it broke every video embed on the site. Under COEP
+		 * a cross-origin iframe must itself assert COEP or the browser refuses
+		 * to load it - `credentialless` relaxes that for *subresources*, not for
+		 * frames - and YouTube asserts nothing. The result is a frame that says
+		 * "refused to connect" with no CSP violation, no console error worth
+		 * finding, and a `frame-src` that lists the origin it just blocked.
+		 *
+		 * Only the component pages need isolation: the StackBlitz tab boots a
+		 * WebContainer, which needs SharedArrayBuffer, which a document only
+		 * gets with COOP and COEP both set. Nothing else on the site does.
+		 *
+		 * The dev half of this is `server.headers` in `vite.config.ts`, which
+		 * has the same narrowing to make.
+		 */
+		"/components/**": {
 			headers: {
 				"cross-origin-opener-policy": "same-origin",
 				"cross-origin-embedder-policy": "credentialless",

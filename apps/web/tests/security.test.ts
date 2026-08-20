@@ -195,3 +195,37 @@ describe("the development sign-in", () => {
 		}
 	});
 });
+
+describe("cross-origin isolation", () => {
+	/*
+	 * Isolation is expensive in a way that does not look expensive.
+	 *
+	 * Under COEP a cross-origin iframe must itself assert COEP or the browser
+	 * refuses it - `credentialless` relaxes that for subresources and not for
+	 * frames - so a site-wide COEP silently breaks every embed. The frame says
+	 * "refused to connect", there is no CSP violation, and `frame-src` lists
+	 * the origin that was just blocked. It shipped that way and nothing here
+	 * noticed, which is what these two tests are for.
+	 */
+	it("is set on component pages, where StackBlitz needs it", async () => {
+		const response = await fetch(`${inject("baseUrl")}/components/card`);
+
+		expect(response.headers.get("cross-origin-embedder-policy")).toBe(
+			"credentialless",
+		);
+		expect(response.headers.get("cross-origin-opener-policy")).toBe(
+			"same-origin",
+		);
+	});
+
+	it("is absent everywhere else, so embeds load", async () => {
+		for (const path of ["/", "/p/markdown", "/posts"]) {
+			const response = await fetch(`${inject("baseUrl")}${path}`);
+
+			expect(
+				response.headers.get("cross-origin-embedder-policy"),
+				`${path} must not be isolated - it would refuse every iframe`,
+			).toBeNull();
+		}
+	});
+});

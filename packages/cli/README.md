@@ -21,13 +21,22 @@ pnpm sushindustries            # what it can do
 ## What it does
 
 ```bash
+pnpm sushindustries setup           # what this deployment is missing
 pnpm sushindustries stack           # what this repo depends on, and why
 pnpm sushindustries stack --sync    # rewrite the versions from the workspace
 pnpm sushindustries refs            # shard every provider's llms.txt locally
 pnpm sushindustries refs --force    # re-fetch shards that already exist
-pnpm sushindustries mcp             # serve all seventeen tools on stdio
+pnpm sushindustries sync            # rewrite the index in Postgres from files
+pnpm sushindustries graphql         # regenerate apollo/schema.graphql from Drizzle
+pnpm sushindustries graph           # draw each element's parts, as mermaid
+pnpm sushindustries connectors      # compose and test the Apollo connectors
+pnpm sushindustries studio          # browse the database over the TCP proxy
+pnpm sushindustries mcp             # serve all twenty-two tools on stdio
 pnpm sushindustries mcp install     # how to register it, three ways
 ```
+
+Three of those write: `sync` rewrites database tables, `graphql` and `graph`
+rewrite checked-in files. The rest only read.
 
 ## The two halves
 
@@ -38,9 +47,16 @@ rule the rest of this repo follows.
 
 | Group | Tools | Reads |
 | --- | --- | --- |
-| docs | `list-docs`, `read-doc`, `search-docs` | Markdown in this repository |
+| collections | `list-collections`, `read-collection` | named filters over the documents index |
+| docs | `list-docs`, `read-doc`, `search-docs`, `list-variants` | Markdown and source in this repository |
 | stack | `list-stack`, `list-providers`, `list-sections`, `find-reference` | 9,152 sharded index entries |
 | authoring | `list-slugs`, `list-templates`, `read-template`, `create-*`, `plan-slug-change` | the live sitemap, and `templates/` |
+
+Start with `list-collections`. `list-docs` answers "what is here" with several
+hundred paths, which is correct and unusable - a context window spent listing
+files has none left for reading them. A collection is somebody's judgement
+about which of those belong together, with the token cost of the whole set
+attached, so the decision to read one can be made before paying for it.
 
 One server, not three. The organisation is in the tool names, which is where it
 reads better and where it costs nothing to keep.
