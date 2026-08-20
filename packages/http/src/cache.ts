@@ -27,7 +27,15 @@
  * "somebody else's page".
  */
 
-const POLICY = [
+/**
+ * The policy itself, exported for the one place that cannot call
+ * `cacheControl`: Nitro's route rules. A prerendered page and a file in
+ * `public/` are answered by the static layer before any middleware runs, so
+ * they can only be given headers declaratively - and a declaration that
+ * restated these five values was a second copy with a comment asking to be
+ * kept in sync. Importing it is how they agree.
+ */
+export const PAGE_CACHE_POLICY = [
 	"public",
 	"max-age=0",
 	"s-maxage=300",
@@ -50,5 +58,5 @@ export function cacheControl(
 	if (!response.ok) return undefined;
 	if (response.headers.has("cache-control")) return undefined;
 
-	return POLICY;
+	return PAGE_CACHE_POLICY;
 }

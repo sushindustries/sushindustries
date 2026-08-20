@@ -1,3 +1,4 @@
+import { PAGE_CACHE_POLICY } from "@sushindustries/http";
 import { defineNitroConfig } from "nitro/config";
 
 /*
@@ -18,16 +19,6 @@ if (!posthogHost) {
  * a page served with COOP + COEP. `credentialless` keeps third-party
  * subresources loading without a CORP header on each.
  */
-/**
- * What a page may be cached for, matching `POLICY` in
- * `packages/http/src/cache.ts`. `max-age=0` so a browser revalidates and a
- * deploy reaches repeat visitors at once; `s-maxage` so the edge holds it;
- * `stale-while-revalidate` so nobody waits for the refresh. Railway purges
- * HTML on every deploy, which makes the five minutes a ceiling, not a delay.
- */
-const PAGES =
-	"public, max-age=0, s-maxage=300, stale-while-revalidate=86400, stale-if-error=604800";
-
 /**
  * What a recapturable asset may be cached for. Never `immutable`.
  *
@@ -71,14 +62,13 @@ export default defineNitroConfig({
 		 * carries no cache headers at all.
 		 *
 		 * Route rules are the only place a static response can be given
-		 * headers, so this is where the two halves are able to agree. The
-		 * values match `POLICY` in `packages/http/src/cache.ts` on purpose - if
-		 * one changes, change both, and the reason each number is what it is
-		 * lives there rather than being restated here.
+		 * headers, so this is where the two halves are able to agree - and
+		 * they agree by sharing the value, not by matching it. The reason
+		 * each number is what it is lives beside the constant.
 		 */
 		"/**": {
 			headers: {
-				"cache-control": PAGES,
+				"cache-control": PAGE_CACHE_POLICY,
 			},
 		},
 

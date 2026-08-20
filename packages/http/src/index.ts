@@ -11,7 +11,7 @@
  * a worker, or a test that never starts a server.
  */
 
-export { cacheControl } from "./cache";
+export { cacheControl, PAGE_CACHE_POLICY } from "./cache";
 export { canonicalRedirect } from "./canonical";
 export type { CspOptions } from "./csp";
 export { contentSecurityPolicy, securityHeaders } from "./csp";

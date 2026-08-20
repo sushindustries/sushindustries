@@ -48,6 +48,21 @@ const shared: UserConfig = {
 	// syntax does this ship", rather than one per tool.
 	target: "es2023",
 
+	/*
+	 * Where entry names are measured from, stated rather than inferred.
+	 *
+	 * Left unset, tsdown takes the common base directory of every entry - so
+	 * the day one entry sits outside `src/`, the common base becomes the
+	 * package root and every export quietly grows a `./src/` prefix: `"."`
+	 * disappears, the app stops resolving the package, and nothing names the
+	 * cause. That happened here, on 2026-08-21, adding two entries from a
+	 * sibling folder. Pinning the root means an entry outside it is a build
+	 * that fails on that entry, rather than a manifest that lies about all of
+	 * them. Object-keyed entries (`{ registry: "./registry.ts" }`) name
+	 * themselves and are not measured from here.
+	 */
+	root: "src",
+
 	dts: true,
 	clean: true,
 	treeshake: true,
