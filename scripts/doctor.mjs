@@ -2655,6 +2655,76 @@ function checkDocumentKindsAgree() {
 	}
 }
 
+/**
+ * `_artifacts/domain_map.yaml` still describes the workspace it maps.
+ *
+ * The directory name is the intent tool's, not this repo's - `_artifacts` is
+ * where `@tanstack/intent` looks, the way `.github/` is where Actions looks -
+ * so it stays, and this makes its contents answerable.
+ *
+ * Two ways it went wrong at once, both silently. It listed a skill for
+ * `product-viewer` at a path that has never existed, and it was four packages
+ * behind the workspace: `access`, `cli`, `github` and `http` appeared neither
+ * as a skill nor in `ignored_packages`. A map of the repository that has
+ * drifted from the repository is worse than none, because it answers.
+ */
+function checkDomainMapCoversPackages() {
+	for (const path of [
+		"_artifacts/domain_map.yaml",
+		"_artifacts/skill_tree.yaml",
+	]) {
+		checkOneMap(path);
+	}
+}
+
+/** One of the two intent maps, against the workspace it describes. */
+function checkOneMap(path) {
+	const map = read(path);
+
+	if (!map) {
+		report(
+			"domain-map",
+			path,
+			"missing",
+			"`intent` reads it; write it or drop the tool",
+		);
+		return;
+	}
+
+	for (const claimed of [...map.matchAll(/^\s*path: (\S+)/gm)].map(
+		(m) => m[1],
+	)) {
+		if (!exists(claimed)) {
+			report(
+				"domain-map",
+				path,
+				`names a skill at ${claimed}, which does not exist`,
+				"write it, or remove the entry and account for the package under `ignored_packages`",
+			);
+		}
+	}
+
+	const named = new Set(
+		[...map.matchAll(/'(@sushindustries\/[a-z-]+)'/g)].map((m) => m[1]),
+	);
+
+	for (const workspace of list) {
+		if (!workspace.startsWith("packages/")) continue;
+
+		const manifest = readJson(`${workspace}/package.json`);
+		if (!manifest.name || manifest.private) continue;
+
+		if (!named.has(manifest.name)) {
+			report(
+				"domain-map",
+				path,
+				`does not account for ${manifest.name}`,
+				"add a skill entry, or name it under `coverage.ignored_packages` with the reason",
+			);
+		}
+	}
+}
+
 function checkRoutesAreLeaves() {
 	for (const path of trackedFiles()) {
 		if (!path.startsWith("apps/web/src/")) continue;
@@ -3027,6 +3097,7 @@ checkReadmeMedia();
 checkShotsAreFresh();
 checkRoutesAreLeaves();
 checkDocumentKindsAgree();
+checkDomainMapCoversPackages();
 checkBlocksResolve();
 checkBlockTargetsExist();
 checkPagesAreReachable();

@@ -58,13 +58,6 @@ skills:
       - 'sushindustries/sushindustries:packages/assistant/README.md'
       - 'sushindustries/sushindustries:packages/assistant/persona.md'
   - name: core
-    slug: '@sushindustries/product-viewer#core'
-    path: packages/product-viewer/skills/core/SKILL.md
-    package: packages/product-viewer
-    packages: ['@sushindustries/product-viewer']
-    sources:
-      - 'sushindustries/sushindustries:packages/product-viewer/README.md'
-  - name: core
     slug: '@sushindustries/react-product-viewer#core'
     path: packages/react-product-viewer/skills/core/SKILL.md
     package: packages/react-product-viewer
@@ -74,6 +67,21 @@ skills:
       - 'sushindustries/sushindustries:packages/react-product-viewer/docs/model-mark/index.md'
 
 coverage:
+  # Every public package is either in `skills` above or named here with the
+  # reason it is not. `checkDomainMapCoversPackages` in scripts/doctor.mjs
+  # asserts that, because this file had drifted four packages behind the
+  # workspace and claimed a skill for a seventh that was never written - and
+  # nothing said so, because nothing was looking.
   ignored_packages:
     - name: '@sushindustries/llms'
       reason: llms.txt/robots/sitemap text generators; no agent-facing API surface worth a skill yet
+    - name: '@sushindustries/product-viewer'
+      reason: the framework-free half of the viewer; everything an agent would ask about it is answered by the React package's skill
+    - name: '@sushindustries/http'
+      reason: five decisions a server makes about a response; small enough that the README is the whole teaching surface
+    - name: '@sushindustries/access'
+      reason: tokens and invitations over Postgres; the README carries the two properties worth knowing and the API is six functions
+    - name: '@sushindustries/cli'
+      reason: a program rather than a library - it is used by running it, and `adam-jurek --help` is its own documentation
+    - name: '@sushindustries/github'
+      reason: an Apollo Connectors schema with no resolvers and no code; there is no API to teach

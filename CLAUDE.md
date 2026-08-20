@@ -37,10 +37,26 @@ plugins/           the Claude Code plugin this repo publishes. Not a workspace.
 tsdown.base.ts     the one build every compiling package extends.
 ```
 
-`plugins/` and `.claude-plugin/marketplace.json` are the one layout in this
-repo not chosen by me: Claude Code requires the manifest at the root and the
-plugin beside it, so neither can move into `packages/`. They are not pnpm
-workspaces and `pnpm-workspace.yaml` deliberately does not glob them.
+Three layouts here are not mine, and each is a tool's requirement:
+
+| Path | Whose convention | Holds |
+| --- | --- | --- |
+| `.claude/` | Claude Code | this repo's own skills, pipeline and settings - used when working *in* here |
+| `.claude-plugin/` | Claude Code | one file: the marketplace manifest, which must sit at the repo root |
+| `plugins/sushindustries/` | Claude Code | the plugin this repo publishes, carrying its *own* `.claude-plugin/plugin.json` |
+| `_artifacts/` | `@tanstack/intent` | the domain map and skill tree, in that tool's snake_case |
+
+`.claude/` and `.claude-plugin/` are not a duplicate and neither can be
+removed. One is what this repository uses; the other is what other people
+install from it, and Claude Code requires the manifest at the root and the
+plugin beside it, so neither can move into `packages/`. The second
+`.claude-plugin/` inside `plugins/sushindustries/` is the plugin's own
+manifest, which is why the name appears twice.
+
+None of them are pnpm workspaces, and `pnpm-workspace.yaml` deliberately does
+not glob them. `_artifacts/`'s two YAML files are asserted against the
+workspace by `pnpm run doctor`, because they had drifted four packages behind
+it and claimed a skill that was never written.
 
 **`scripts/` and `packages/cli/` are not the same thing, and neither absorbs
 the other.** `scripts/` checks and generates *this* repository - the doctor,

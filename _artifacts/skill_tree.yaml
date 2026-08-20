@@ -42,14 +42,6 @@ skills:
       - props-in panel with no owned transport
       - persona.md structure and the JSX comment-escaping trap
   - name: core
-    slug: '@sushindustries/product-viewer#core'
-    path: packages/product-viewer/skills/core/SKILL.md
-    package: packages/product-viewer
-    packages: ['@sushindustries/product-viewer']
-    covers:
-      - opt-in subpath entries and their peers
-      - mandatory disposal and build-time variant validation
-  - name: core
     slug: '@sushindustries/react-product-viewer#core'
     path: packages/react-product-viewer/skills/core/SKILL.md
     package: packages/react-product-viewer
@@ -59,6 +51,20 @@ skills:
       - Query/Router split and the icon-size ModelMark trap
 
 coverage:
+  # Kept in step with domain_map.yaml, and both are asserted by
+  # `checkDomainMapCoversPackages` in scripts/doctor.mjs. They drifted the same
+  # four packages behind the workspace and claimed the same skill that was
+  # never written, which is what two hand-maintained copies of one list do.
   ignored_packages:
     - name: '@sushindustries/llms'
       reason: llms.txt/robots/sitemap text generators; no agent-facing API surface worth a skill yet
+    - name: '@sushindustries/product-viewer'
+      reason: the framework-free half of the viewer; everything an agent would ask about it is answered by the React package's skill
+    - name: '@sushindustries/http'
+      reason: five decisions a server makes about a response; small enough that the README is the whole teaching surface
+    - name: '@sushindustries/access'
+      reason: tokens and invitations over Postgres; the README carries the two properties worth knowing and the API is six functions
+    - name: '@sushindustries/cli'
+      reason: a program rather than a library - it is used by running it, and `adam-jurek --help` is its own documentation
+    - name: '@sushindustries/github'
+      reason: an Apollo Connectors schema with no resolvers and no code; there is no API to teach
