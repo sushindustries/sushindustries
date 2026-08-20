@@ -17,7 +17,7 @@ import { paging, repoPath, slug } from "../studio.schemas";
  *
  * `packages/db/src/schema.ts` has the same list as a union type; this is its
  * runtime half - an array a `<select>` is built from and a schema validates
- * against. `documents.schemas.test.ts` checks the two against each other,
+ * against. `checkDocumentKindsAgree` in `scripts/doctor.mjs` checks them against each other,
  * because two lists is precisely the drift the doctor exists to prevent.
  */
 export const DOCUMENT_KINDS = [

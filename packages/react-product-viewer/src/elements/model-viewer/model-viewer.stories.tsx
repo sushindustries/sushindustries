@@ -5,8 +5,8 @@ import type { ModelViewerProps } from "./model-viewer.types";
 /**
  * Every story renders the same asset.
  *
- * One model across the whole lab, and it is ours: built by
- * `scripts/build-logo-model.mjs` from the authored export, with its four
+ * One model across the whole lab, and it is ours: authored rather than
+ * borrowed, exported with its four
  * finishes authored as `KHR_materials_variants`. Nothing here depends on a
  * sample asset belonging to somebody else, which is what makes this repository
  * safe to make public without an attribution audit.

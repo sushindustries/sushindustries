@@ -117,12 +117,17 @@ export type NewPageFeedback = typeof pageFeedback.$inferInsert;
  * skills, so calling them one would make `skills` return files no runtime can
  * load.
  *
- * This list is duplicated in two places on purpose and checked in both. The
- * GraphQL enum is generated from `packages/cli/commands/graphql.mjs`, and
- * `documents.schemas.ts` in the site has it as an array a `<select>` can be
- * built from - a type cannot be iterated, and an array cannot be a column's
- * type. `documents.schemas.test.ts` asserts the two agree, because the failure
- * mode when they do not is a filter that silently returns nothing.
+ * This list is duplicated in four places on purpose, and asserted in all of
+ * them. A type cannot be iterated and an array cannot be a column's type, so
+ * the same kinds exist here as a union, in `documents.schemas.ts` as an array
+ * a `<select>` is built from, in `packages/cli/mcp/docs.mjs` as a classifier,
+ * and in `packages/cli/commands/graphql.mjs` as the source of the GraphQL
+ * enum.
+ *
+ * `checkDocumentKindsAgree` in `scripts/doctor.mjs` compares them. This
+ * comment used to claim `documents.schemas.test.ts` did, and that file has
+ * never existed - so the guard everybody trusted was a sentence. The failure
+ * it guards against is a filter that silently returns nothing.
  */
 export type DocumentKind =
 	| "component"

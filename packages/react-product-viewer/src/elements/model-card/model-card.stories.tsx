@@ -5,7 +5,7 @@ import type { ModelCardProps } from "./model-card.types";
 /**
  * One asset for the whole lab, and it is ours.
  *
- * Built by `scripts/build-logo-model.mjs`, with four finishes authored as
+ * Authored rather than borrowed, with four finishes baked in as
  * `KHR_materials_variants`. Nothing here borrows a sample model belonging to
  * somebody else.
  */

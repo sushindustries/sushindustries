@@ -1693,7 +1693,7 @@ function checkDeskLabelsFit() {
  * its pattern requires `docs/<slug>/<section>.md`, so a file sitting one level
  * shallower matches neither the check nor the glob, and is invisible to both.
  *
- * `packages/assistant/docs/index.md` was 208 lines written that way. Nothing
+ * packages/assistant/docs/index.md was 208 lines written that way. Nothing
  * failed, nothing warned, and the page it should have been simply did not
  * exist. The slug comes from the *directory*, so a doc without one has no
  * address for a page to live at.
@@ -2725,6 +2725,71 @@ function checkOneMap(path) {
 	}
 }
 
+/**
+ * A comment that cites a file cites one that exists.
+ *
+ * Twice in one day this repository was wrong in exactly this way, and neither
+ * time did anything fail. `schema.ts` and `documents.schemas.ts` both said
+ * documents.schemas.test.ts asserted the document kinds agreed, and that
+ * file has never existed - so the guard four declarations relied on was a
+ * sentence two files repeated to each other. The intent map named a skill at
+ * packages/product-viewer/skills/core/SKILL.md, which has also never
+ * existed.
+ *
+ * Deliberately narrow. Only paths that start with a directory this repository
+ * actually has are considered, which is what keeps it from flagging the
+ * `foo.ts` in an example or the bare `.server.ts` in a sentence about
+ * suffixes. A check that cries wolf on prose is a check people learn to skip,
+ * and this one has to be trusted precisely because nothing else looks here.
+ */
+function checkCitedFilesExist() {
+	/*
+	 * The directories this repository actually has, read from it rather than
+	 * typed here. A hand-written list would need a line the day a top-level
+	 * directory is added, and the failure would be silent: paths under the new
+	 * one would simply stop being checked.
+	 */
+	const roots = [
+		...new Set(
+			trackedFiles()
+				.filter((path) => path.includes("/"))
+				.map((path) => `${path.split("/")[0]}/`),
+		),
+	];
+
+	for (const file of trackedFiles()) {
+		/*
+		 * Code only. Markdown here is teaching, and teaching cites files that
+		 * deliberately do not exist: the output `pnpm new post my-post` would
+		 * write, or the misplaced file an incident is about. Flagging those
+		 * taught people to skip the category, and the two bugs worth catching -
+		 * a schema comment naming a test nobody wrote, an intent map naming a
+		 * skill nobody wrote - were both in code and in YAML.
+		 */
+		if (!/\.(ts|tsx|mjs)$/.test(file)) continue;
+		// The fetched provider indexes are somebody else's prose about their
+		// own repositories, and every path in them is theirs.
+		if (file.startsWith("packages/cli/references/")) continue;
+
+		const text = read(file);
+		if (!text) continue;
+
+		for (const [, cited] of text.matchAll(
+			/`([a-zA-Z0-9_./-]+\.(?:ts|tsx|mjs|md|css|json|yaml))`/g,
+		)) {
+			if (!roots.some((one) => cited.startsWith(one))) continue;
+			if (exists(cited)) continue;
+
+			report(
+				"citation",
+				file,
+				`cites \`${cited}\`, which does not exist`,
+				"write it, correct the path, or delete the claim - a comment naming a file nobody wrote is a guard that is not there",
+			);
+		}
+	}
+}
+
 function checkRoutesAreLeaves() {
 	for (const path of trackedFiles()) {
 		if (!path.startsWith("apps/web/src/")) continue;
@@ -3098,6 +3163,7 @@ checkShotsAreFresh();
 checkRoutesAreLeaves();
 checkDocumentKindsAgree();
 checkDomainMapCoversPackages();
+checkCitedFilesExist();
 checkBlocksResolve();
 checkBlockTargetsExist();
 checkPagesAreReachable();
