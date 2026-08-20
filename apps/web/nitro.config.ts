@@ -18,6 +18,20 @@ if (!posthogHost) {
  * a page served with COOP + COEP. `credentialless` keeps third-party
  * subresources loading without a CORP header on each.
  */
+/**
+ * What a page may be cached for, matching `POLICY` in
+ * `packages/http/src/cache.ts`. `max-age=0` so a browser revalidates and a
+ * deploy reaches repeat visitors at once; `s-maxage` so the edge holds it;
+ * `stale-while-revalidate` so nobody waits for the refresh. Railway purges
+ * HTML on every deploy, which makes the five minutes a ceiling, not a delay.
+ */
+const PAGES =
+	"public, max-age=0, s-maxage=300, stale-while-revalidate=86400, stale-if-error=604800";
+
+/** What a stable-named asset may be cached for. Never `immutable`. */
+const ASSETS =
+	"public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800";
+
 export default defineNitroConfig({
 	/*
 	 * Both default to off, and both are free here.
@@ -37,6 +51,49 @@ export default defineNitroConfig({
 	compressPublicAssets: { gzip: true, brotli: true },
 
 	routeRules: {
+		/*
+		 * The edge policy, for everything Nitro answers without the app.
+		 *
+		 * `cacheControl` in `@sushindustries/http` sets this on responses that
+		 * pass through the application, and for most of this site nothing ever
+		 * did: a prerendered page and a file in `public/` are served by Nitro's
+		 * static layer, which runs before any middleware. So the policy was
+		 * written, documented and correct, and reached the home page, every
+		 * post and every image never. Railway's edge answered `x-cache:
+		 * DYNAMIC` on all of it, which is the honest reading of a response that
+		 * carries no cache headers at all.
+		 *
+		 * Route rules are the only place a static response can be given
+		 * headers, so this is where the two halves are able to agree. The
+		 * values match `POLICY` in `packages/http/src/cache.ts` on purpose - if
+		 * one changes, change both, and the reason each number is what it is
+		 * lives there rather than being restated here.
+		 */
+		"/**": {
+			headers: {
+				"cache-control": PAGES,
+			},
+		},
+
+		/*
+		 * Images and the model, whose names are stable rather than hashed.
+		 *
+		 * Deliberately not `immutable`. That promises the bytes at this URL
+		 * will never change, and `shots/card-laptop.webp` is recaptured under
+		 * the same name every time the demo it photographs changes - so
+		 * `immutable` here is how a component page shows a screenshot of
+		 * something that no longer looks like that, for a year, with no fix but
+		 * renaming the file. A day at the edge and a week of
+		 * stale-while-revalidate buys the same saving and stays correctable.
+		 *
+		 * The hashed build output under `/assets/` needs none of this: Nitro
+		 * already serves it `immutable`, which is safe precisely because its
+		 * names change with its contents.
+		 */
+		"/shots/**": { headers: { "cache-control": ASSETS } },
+		"/logos/**": { headers: { "cache-control": ASSETS } },
+		"/models/**": { headers: { "cache-control": ASSETS } },
+		"/sushi-logo.png": { headers: { "cache-control": ASSETS } },
 		/*
 		 * Cross-origin isolation, on the pages that need it and nowhere else.
 		 *
