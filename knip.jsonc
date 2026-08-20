@@ -1,15 +1,16 @@
 {
 	"$schema": "https://unpkg.com/knip@6/schema.json",
 	"ignoreBinaries": ["rover", "railway", "drizzle-kit"],
-	// Installed for the Agent Skills they ship, not for anything that imports
-	// them. `@tanstack/intent` reads their `SKILL.md` files off disk, so the
-	// package has to be present and nothing will ever `import` it.
-	"ignoreDependencies": [
-		"@tanstack/intent",
-		"@tanstack/ai",
-		"@tanstack/ai-persistence",
-		"@alavida/agentpack"
-	],
+	// Installed for the Agent Skills it ships, not for anything that imports it:
+	// `@tanstack/intent` reads `SKILL.md` files off disk, so the package has to
+	// be present and nothing will ever `import` it.
+	//
+	// This list stays one entry long on purpose. A skills-only dependency is
+	// invisible to every other check in the repo, so the bar for adding one is
+	// that something here actually reads it - and `intent` already discovers
+	// the skills inside packages the workspace depends on for real reasons,
+	// which is why `@tanstack/ai` needs no entry despite shipping twelve.
+	"ignoreDependencies": ["@tanstack/intent"],
 	"ignoreExportsUsedInFile": true,
 	"workspaces": {
 		"apps/web": {
