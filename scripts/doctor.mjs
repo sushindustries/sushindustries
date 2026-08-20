@@ -214,14 +214,27 @@ function workspaces() {
  * been deleted and not staged, and reading one of those throws rather than
  * reporting a problem.
  */
+let tracked;
+
 function trackedFiles() {
+	/*
+	 * Read once. Twenty-three checks ask for this list and the answer cannot
+	 * change while the process runs, so each of them was paying for its own
+	 * `git ls-files` plus a `statSync` per file - which a profile put at most
+	 * of the doctor's runtime, ahead of every check that was doing real work.
+	 * Caching it is the whole difference between "the doctor is slow" and "the
+	 * doctor spawns git twenty-three times".
+	 */
+	if (tracked) return tracked;
+
 	const listed = execFileSync(
 		"git",
 		["ls-files", "--cached", "--others", "--exclude-standard"],
 		{ cwd: root, encoding: "utf8", maxBuffer: 64 * 1024 * 1024 },
 	).split("\n");
 
-	return [...new Set(listed)].filter((path) => path && exists(path));
+	tracked = [...new Set(listed)].filter((path) => path && exists(path));
+	return tracked;
 }
 
 /**
