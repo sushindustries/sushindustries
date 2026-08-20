@@ -138,11 +138,33 @@ export function DocNav({
 
 			<div className="doc-nav-body">
 				{filled.map((section) => (
-					<div key={section.id}>
-						<p className="doc-nav-heading label">
+					/*
+					 * One group open at a time, and it is the one you are in.
+					 *
+					 * Every group used to be expanded, which put seventy-six links in
+					 * a rail beside a page with four headings - so the thing you were
+					 * reading was the smallest thing on screen. Cloudflare's docs, and
+					 * most others worth copying, keep the current section open and the
+					 * rest folded.
+					 *
+					 * `<details>` rather than state: it is open on the server, correct
+					 * before any JavaScript arrives, and a reader who opens a second
+					 * group keeps it open because the browser owns that and React is
+					 * not going to argue with it on the next render.
+					 */
+					<details
+						key={section.id}
+						className="doc-nav-group"
+						open={
+							filled.length === 1 ||
+							section.items.some((item) => item.id === active)
+						}
+					>
+						<summary className="doc-nav-heading label">
 							{section.icon ? <Icon name={section.icon} size={12} /> : null}
 							{section.label}
-						</p>
+							<span className="doc-nav-count">{section.items.length}</span>
+						</summary>
 
 						<ul className="doc-nav-list">
 							{section.items.map((item) => (
@@ -168,7 +190,7 @@ export function DocNav({
 								</li>
 							))}
 						</ul>
-					</div>
+					</details>
 				))}
 			</div>
 		</nav>

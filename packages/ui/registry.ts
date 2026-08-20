@@ -563,11 +563,17 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 			"A component in a real iframe at every width it has to survive, side by side, with its source and install commands.",
 		files: ["showcase.tsx"],
 		dependencies: {},
-		registryDependencies: ["icon", "copy-button"],
+		/*
+		 * `device` carries the machine table the frames are derived from, and
+		 * `use-device-kind` is what opens it on the reader's own machine. Both
+		 * arrived when the frames stopped being six hand-written widths, and an
+		 * item that imports what it does not declare installs broken.
+		 */
+		registryDependencies: ["icon", "copy-button", "device", "use-device-kind"],
 		category: "docs",
 		subcategory: "Presentation",
 		tags: ["iframe", "responsive"],
-		preview: "One component, four real viewports, side by side",
+		preview: "One component at three real widths, side by side",
 	},
 	{
 		name: "clock",

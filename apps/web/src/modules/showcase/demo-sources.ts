@@ -150,7 +150,7 @@ export const DEMO_SOURCES = {
 	}}
 	actions={
 		<>
-			<Button href="/components/avatar?tab=get-started" variant="ghost">
+			<Button href="/components/avatar/get-started" variant="ghost">
 				Docs
 			</Button>
 			<CopyButton text={prompt} label="Copy prompt" icon="spark" ground="accent" />

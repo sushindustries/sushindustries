@@ -1,6 +1,8 @@
-import { Fragment, type ReactNode, useState } from "react";
+import { Fragment, type ReactNode, useEffect, useRef, useState } from "react";
 import { CopyButton } from "./copy-button";
+import { DEVICES } from "./device-kinds";
 import { Icon } from "./icon";
+import { useDeviceKind } from "./use-device-kind";
 
 /**
  * The viewports a component is checked at.
@@ -34,50 +36,73 @@ export interface ShowcaseDevice {
 	readonly note: string;
 }
 
-export const SHOWCASE_DEVICES: readonly ShowcaseDevice[] = [
-	{
-		id: "floor",
-		label: "320",
-		width: "320px",
-		height: 568,
-		note: "the floor, the narrowest this promises to work at",
+/**
+ * The frames, derived from the machines the stylesheet already draws.
+ *
+ * This was six hand-written widths - 320, 390, 900, full, 1280, 1680 - beside
+ * `DEVICES`, which is generated from `packages/atoms/devices.md` and says the
+ * site has three: a phone, a tablet from 720 and a laptop from 1080. Two
+ * tables describing one idea, and they did not agree: none of the six sat on a
+ * breakpoint the stylesheet actually uses, so the showcase was reporting how a
+ * component behaves at widths the design system has no opinion about.
+ *
+ * Three now, one per machine, read from that table. Adding a machine to
+ * `devices.md` adds a frame here; nothing else has to be touched, and the
+ * showcase cannot drift from the breakpoints it is meant to be demonstrating.
+ *
+ * The laptop is `100%` rather than its drawn width. Pinning the widest frame to
+ * a number misreports how a component behaves in a real window, which is the
+ * one case where the stage knows better than the table.
+ */
+/**
+ * How tall to render each frame, which the device table cannot say.
+ *
+ * `DEVICES` describes the machine this site *draws* - its width and the aspect
+ * of its chrome - and that is a different fact from the viewport a component
+ * should be previewed in. Deriving height from that aspect gave a 704px phone
+ * beside a 380px laptop: the smallest machine became the tallest frame, which
+ * is exactly backwards.
+ *
+ * So these are real viewport heights, written down, because nothing generated
+ * knows them. They are short on purpose - a frame as tall as a desktop window
+ * reports `100dvh` and `min(78dvh, 720px)` as fine when on a phone they are
+ * not, which is the failure the small frames exist to catch.
+ *
+ * The last machine takes the stage's height instead: pinning the widest frame
+ * to a number misreports how a component behaves in a real window.
+ */
+const VIEWPORT_HEIGHT: Record<string, number> = {
+	phone: 568,
+	tablet: 700,
+	laptop: 760,
+};
+
+export const SHOWCASE_DEVICES: readonly ShowcaseDevice[] = DEVICES.map(
+	(profile) => {
+		return {
+			id: profile.kind,
+			label: profile.label,
+			/*
+			 * Its own width, including the widest.
+			 *
+			 * The laptop was `100%`, which is meaningless in the compare row:
+			 * three frames in a horizontally scrolling flex container, and one
+			 * of them asking for all of a container that is already wider than
+			 * the stage. The row overflowed and the frames were clipped.
+			 *
+			 * The table's width is the honest number - it is what the stylesheet
+			 * draws a laptop at - and using it means the compare row is the sum
+			 * of three real widths, which is a thing that can scroll properly.
+			 */
+			width: profile.width,
+			height: VIEWPORT_HEIGHT[profile.kind] ?? 640,
+			note:
+				profile.from === 0
+					? "the floor, the narrowest this promises to work at"
+					: `from ${profile.from}px, where the stylesheet switches to it`,
+		};
 	},
-	{
-		id: "mobile",
-		label: "Mobile",
-		width: "390px",
-		height: 667,
-		note: "under the 860px breakpoint",
-	},
-	{
-		id: "tablet",
-		label: "Tablet",
-		width: "900px",
-		height: 700,
-		note: "between 860 and 1080",
-	},
-	{
-		id: "desktop",
-		label: "Desktop",
-		width: "100%",
-		height: 0,
-		note: "whatever the page has",
-	},
-	{
-		id: "xl",
-		label: "XL",
-		width: "1280px",
-		height: 760,
-		note: "past the 1080 wide layout",
-	},
-	{
-		id: "xxl",
-		label: "XXL",
-		width: "1680px",
-		height: 900,
-		note: "a big desktop, where the max-widths hold the line",
-	},
-];
+);
 
 export interface ShowcaseProps {
 	/** URL of a bare page rendering just the component. */
@@ -201,11 +226,39 @@ export function Showcase({
 	renderCode,
 	renderStackblitz,
 }: ShowcaseProps): ReactNode {
-	// "Compare is the default rather than an extra" - the comment above this
-	// component says so, and the state that actually opened on `desktop`
-	// disagreed with it: every reader had to find and click Compare
-	// themselves to get the view the component was built to lead with.
-	const [view, setView] = useState<View>("compare");
+	/*
+	 * Opens on the machine the reader is actually using.
+	 *
+	 * It opened on `compare` - three frames side by side before anybody had
+	 * asked a question. That is the right view for deciding whether a component
+	 * survives every width, and the wrong one for arriving: most readers want to
+	 * see the thing, at their own size, and then compare if they care.
+	 *
+	 * The server cannot know the width, so the first render is the narrowest
+	 * machine - the same answer `devices.css` gives an element that matches no
+	 * query - and `useDeviceKind` corrects it on mount. Reading `innerWidth`
+	 * here instead would disagree with the stylesheet the moment a scrollbar is
+	 * involved, which is the bug that hook exists to avoid.
+	 */
+	const measured = useDeviceKind();
+	const [view, setView] = useState<View>(DEVICES[0].kind);
+
+	/*
+	 * Only until the reader picks one. After a click this stops following the
+	 * window, because a view that changes under somebody resizing their browser
+	 * is a view they cannot hold still.
+	 */
+	const picked = useRef(false);
+
+	useEffect(() => {
+		if (picked.current || !measured) return;
+		setView(measured);
+	}, [measured]);
+
+	function choose(next: View): void {
+		picked.current = true;
+		setView(next);
+	}
 	const [tab, setTab] = useState<Tab>("preview");
 
 	const installEntries = Object.entries(install ?? {});
@@ -260,7 +313,7 @@ export function Showcase({
 							className="showcase-device"
 							data-active={view === "compare"}
 							aria-pressed={view === "compare"}
-							onClick={() => setView("compare")}
+							onClick={() => choose("compare")}
 						>
 							<Icon name="layers" size={13} />
 							Compare
@@ -273,7 +326,7 @@ export function Showcase({
 								className="showcase-device"
 								data-active={view === device.id}
 								aria-pressed={view === device.id}
-								onClick={() => setView(device.id)}
+								onClick={() => choose(device.id)}
 							>
 								{device.label}
 							</button>

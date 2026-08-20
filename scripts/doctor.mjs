@@ -446,10 +446,10 @@ function checkPushGateDelegates() {
 			"pnpm run doctor --fix",
 		);
 		if (shouldFix) {
-			writeFileSync(join(root, hookPath), "#!/bin/sh\npnpm run check\n", {
+			writeFileSync(join(root, hookPath), "#!/bin/sh\npnpm run check:fast\n", {
 				mode: 0o755,
 			});
-			repaired(`${hookPath}: recreated as a delegation to pnpm run check`);
+			repaired(`${hookPath}: recreated as a delegation to pnpm run check:fast`);
 		}
 	} else {
 		const hook = read(hookPath);
@@ -457,13 +457,13 @@ function checkPushGateDelegates() {
 			.split("\n")
 			.filter((line) => line.trim() && !line.trim().startsWith("#"));
 		const delegates =
-			commands.length === 1 && commands[0].trim() === "pnpm run check";
+			commands.length === 1 && commands[0].trim() === "pnpm run check:fast";
 		if (!delegates) {
 			report(
 				"push-gate",
 				hookPath,
-				"carries its own command list instead of delegating to `pnpm run check` - a second copy of the gate is a copy that drifts",
-				"make the hook body exactly `pnpm run check`",
+				"carries its own command list instead of delegating to `pnpm run check:fast` - a second copy of the gate is a copy that drifts",
+				"make the hook body exactly `pnpm run check:fast`",
 			);
 		}
 	}
@@ -3023,6 +3023,92 @@ function checkAuthoredFrontmatter() {
 	}
 }
 
+/**
+ * Every named operation still validates against the schema it is served over.
+ *
+ * `apollo/operations/*.graphql` is not documentation: each file becomes one
+ * tool on the Apollo MCP server, and `apollo/config.yaml` keeps introspection
+ * off precisely so those operations are the whole surface. The schema they run
+ * against is generated from the Drizzle tables.
+ *
+ * So a renamed column rewrites the schema, and an operation selecting the old
+ * field becomes invalid with nothing to say so - the tool simply fails for
+ * whoever is holding it, at a moment nobody is watching. That is the same
+ * drift the rest of this file exists to refuse, and it is the one place the
+ * repository ships a query somebody else executes.
+ *
+ * Validated with `graphql` itself rather than by pattern. A regular expression
+ * over a selection set can tell you a field name appears; only the validator
+ * knows whether it exists on the type being selected from, and that difference
+ * is the entire value of the check.
+ */
+async function checkGraphqlOperationsValidate() {
+	/*
+	 * `schema.graphql` alone: the generator already appends `queries.graphql`
+	 * into it, so reading both and concatenating defines every hand-written
+	 * type twice and the schema stops building. One file is the contract, which
+	 * is what that generator's own comment says.
+	 */
+	const sdl = read("apollo/schema.graphql");
+	if (!sdl) return;
+
+	let graphql;
+	try {
+		graphql = await import("graphql");
+	} catch {
+		/*
+		 * Not installed is not a failure. The gate has to run on a bare
+		 * checkout, and refusing to finish because an optional parser is
+		 * missing would make this check the reason nobody can run the doctor.
+		 */
+		return;
+	}
+
+	let schema;
+	try {
+		schema = graphql.buildSchema(sdl);
+	} catch (error) {
+		report(
+			"operations",
+			"apollo/schema.graphql",
+			`does not parse: ${error.message.split("\n")[0]}`,
+			"pnpm sushindustries graphql regenerates it from the tables",
+		);
+		return;
+	}
+
+	for (const file of trackedFiles()) {
+		if (!file.startsWith("apollo/operations/") || !file.endsWith(".graphql")) {
+			continue;
+		}
+
+		const source = read(file);
+		if (!source) continue;
+
+		let document;
+		try {
+			document = graphql.parse(source);
+		} catch (error) {
+			report(
+				"operations",
+				file,
+				`does not parse: ${error.message.split("\n")[0]}`,
+				"an operation that cannot be parsed is a tool that cannot start",
+			);
+			continue;
+		}
+
+		for (const problem of graphql.validate(schema, document)) {
+			report(
+				"operations",
+				file,
+				problem.message,
+				"the schema is generated from the Drizzle tables - either the operation is out of date, or the column it wants is gone",
+			);
+		}
+	}
+}
+
 function checkRoutesAreLeaves() {
 	for (const path of trackedFiles()) {
 		if (!path.startsWith("apps/web/src/")) continue;
@@ -3358,6 +3444,7 @@ checkDocumentKindsAgree();
 checkGraphIsAcyclic();
 checkStackVersionsAreCurrent();
 checkAuthoredFrontmatter();
+await checkGraphqlOperationsValidate();
 checkDomainMapCoversPackages();
 checkCitedFilesExist();
 

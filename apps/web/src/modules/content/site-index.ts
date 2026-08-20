@@ -41,15 +41,38 @@ function componentEntries(): IndexEntry[] {
 	 * Driven by the registry, not by the docs folder: every registry item has a
 	 * page, so listing only the hand-written ones would hide most of them.
 	 */
-	const fromRegistry = listRegistry().map((item) => {
+	const fromRegistry = listRegistry().flatMap((item) => {
 		const doc = written.get(item.name);
 
-		return {
+		const overview = {
 			path: `/components/${item.name}`,
 			title: item.title,
 			description: doc?.summary || item.description,
 			body: doc?.sections.map((section) => section.body).join("\n\n"),
 		};
+
+		/*
+		 * One entry per section, because each is now its own URL.
+		 *
+		 * They were tabs of one page and one entry was right. They are five
+		 * addresses now, and a page the site links to but never lists is
+		 * invisible to every crawler - which the link tests check and which is
+		 * how this omission was found rather than shipped.
+		 *
+		 * `index` is the overview above and gets no second entry: one page at
+		 * two URLs in one sitemap is the duplicate a canonical tag exists to
+		 * apologise for.
+		 */
+		const sections = (doc?.sections ?? [])
+			.filter((section) => section.id !== "index")
+			.map((section) => ({
+				path: `/components/${item.name}/${section.id}`,
+				title: `${item.title} - ${section.label}`,
+				description: doc?.summary || item.description,
+				body: section.body,
+			}));
+
+		return [overview, ...sections];
 	});
 
 	/*
@@ -61,12 +84,23 @@ function componentEntries(): IndexEntry[] {
 	const registered = new Set(listRegistry().map((item) => item.name));
 	const docOnly = [...written.values()]
 		.filter((doc) => !registered.has(doc.slug))
-		.map((doc) => ({
-			path: `/components/${doc.slug}`,
-			title: doc.title,
-			description: doc.summary,
-			body: doc.sections.map((section) => section.body).join("\n\n"),
-		}));
+		.flatMap((doc) => [
+			{
+				path: `/components/${doc.slug}`,
+				title: doc.title,
+				description: doc.summary,
+				body: doc.sections.map((section) => section.body).join("\n\n"),
+			},
+			// Same reasoning as above: each section is an address of its own.
+			...doc.sections
+				.filter((section) => section.id !== "index")
+				.map((section) => ({
+					path: `/components/${doc.slug}/${section.id}`,
+					title: `${doc.title} - ${section.label}`,
+					description: doc.summary,
+					body: section.body,
+				})),
+		]);
 
 	return [...fromRegistry, ...docOnly];
 }

@@ -87,10 +87,21 @@ export function routeFor(
 		case "package":
 			return `/packages/${slug}`;
 		case "component":
-			// The five sections are tabs of one page, not five pages - so they
-			// share a route and the section is a query the page reads.
+			/*
+			 * A section is a path segment, not a query.
+			 *
+			 * These were `?tab=api` for a while, on the reasoning that five
+			 * sections are tabs of one page. They are five documents: each has
+			 * its own title, its own prose and its own row in this table, and a
+			 * crawler treats a query string as a variant of one page rather
+			 * than as five - so four fifths of the documentation was invisible
+			 * to anything that indexes by URL.
+			 *
+			 * `index` stays bare. It is the section you get by asking for the
+			 * component, so giving it a segment would be one page at two URLs.
+			 */
 			return section && section !== "index"
-				? `/components/${slug}?tab=${section}`
+				? `/components/${slug}/${section}`
 				: `/components/${slug}`;
 		default:
 			return null;

@@ -238,6 +238,43 @@
 		gap: var(--s-5);
 	}
 
+	/*
+	 * A group, folded unless you are in it.
+	 *
+	 * `<details>` carries the state, so this is only appearance: the marker off,
+	 * the row made clickable, and a chevron that turns. Nothing here knows which
+	 * group is open, which is why nothing here can disagree with the markup.
+	 */
+	.doc-nav-group > summary::-webkit-details-marker,
+	.doc-nav-group > summary::marker {
+		display: none;
+		content: "";
+	}
+
+	.doc-nav-group > summary {
+		cursor: pointer;
+		list-style: none;
+		user-select: none;
+	}
+
+	.doc-nav-group > summary::after {
+		content: "›";
+		margin-inline-start: auto;
+		color: var(--fg-faint);
+		transition: transform 140ms var(--ease-out);
+	}
+
+	.doc-nav-group[open] > summary::after {
+		transform: rotate(90deg);
+	}
+
+	/* How many are folded away, so a closed group still says what it holds. */
+	.doc-nav-count {
+		margin-inline-start: var(--s-1);
+		font-variant-numeric: tabular-nums;
+		color: var(--fg-faint);
+	}
+
 	.doc-nav-heading {
 		margin: 0 0 var(--s-2);
 		padding-left: calc(var(--s-3) + 1px);

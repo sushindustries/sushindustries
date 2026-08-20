@@ -143,6 +143,20 @@
 	}
 
 	/*
+	 * In compare, nothing is clamped.
+	 *
+	 * `max-width: 100%` is right when one frame has the stage to itself - a
+	 * 40rem tablet on a phone should shrink rather than push the page sideways.
+	 * In the compare row it cut every frame down to the stage width, so three
+	 * machines that are meant to be different widths were all drawn the same
+	 * and clipped. The row scrolls; that is what the overflow above is for.
+	 */
+	.showcase-stage[data-view="compare"] .showcase-frame,
+	.showcase-stage[data-view="compare"] .showcase-viewport {
+		max-width: none;
+	}
+
+	/*
 	 * Every frame says which width it is and why that width. A frame with no label
 	 * is a screenshot; a labelled one is a claim a reader can check.
 	 */

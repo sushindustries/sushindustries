@@ -196,6 +196,17 @@ describe("every component page", () => {
 			.filter(
 				(page) =>
 					page.path.startsWith("/components/") &&
+					/*
+					 * The overview only. A component is five pages now - the
+					 * sections became `/components/<slug>/<section>` rather than
+					 * `?tab=` - and the showcase lives in the overview's Markdown,
+					 * so requiring one on the API tab is requiring a demo where the
+					 * page is deliberately a prop table.
+					 *
+					 * Two segments after the slash is the overview; three is a
+					 * section of it.
+					 */
+					page.path.split("/").filter(Boolean).length === 2 &&
 					page.html.includes("SoftwareSourceCode") &&
 					!page.document.querySelector(".showcase"),
 			)

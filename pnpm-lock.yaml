@@ -26,6 +26,9 @@ importers:
       '@types/node':
         specifier: 26.2.0
         version: 26.2.0
+      graphql:
+        specifier: 17.0.2
+        version: 17.0.2
       husky:
         specifier: ^9.1.7
         version: 9.1.7

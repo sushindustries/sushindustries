@@ -123,7 +123,10 @@ function buildEntries(): readonly PaletteEntry[] {
 					id: `doc-${doc.slug}-${section.id}`,
 					title: `${doc.title} · ${section.label}`,
 					hint: doc.summary,
-					href: `/components/${doc.slug}?tab=${section.id}`,
+					href:
+						section.id === "index"
+							? `/components/${doc.slug}`
+							: `/components/${doc.slug}/${section.id}`,
 					group: "docs",
 					icon: "book" as const,
 					tone: "docs",

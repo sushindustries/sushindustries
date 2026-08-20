@@ -222,6 +222,17 @@
 		padding-block: var(--s-7);
 	}
 
+	/*
+	 * Bottom-only, for the last thing on a page.
+	 *
+	 * A doc page ends with its backlinks and then the footer starts, with
+	 * nothing between them - the two read as one block. `py-*` would add the
+	 * same space at the top, where the page already has its own rhythm.
+	 */
+	.pb-8 {
+		padding-bottom: var(--s-8);
+	}
+
 	/* sizing */
 	.w-full {
 		width: 100%;
