@@ -21,7 +21,13 @@
 		{
 			"title": "Repo maintenance",
 			"description": "Keeping a repo honest over time - removing excess, checking claims before acting on them, and going from private to public.",
-			"skills": ["simplify", "hypothesis-testing", "gh-repo-admin"]
+			"skills": [
+				"simplify",
+				"hypothesis-testing",
+				"gh-repo-admin",
+				"simple-is-complex",
+				"complex-is-simple"
+			]
 		},
 		{
 			"title": "Reuse the design system",

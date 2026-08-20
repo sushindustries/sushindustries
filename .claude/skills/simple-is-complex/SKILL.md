@@ -94,6 +94,14 @@ A file that is long because the thing it describes is long. Splitting a
 2,000-line module into five 400-line modules that all import each other has
 made five files and one problem.
 
+## The other half
+
+`simple-is-complex` refuses complexity that is not earned.
+`.claude/skills/complex-is-simple/SKILL.md` makes earned complexity
+survivable: derive what can be derived, check what cannot, and say out loud
+what is still held by memory. Reach for that one once the split is justified
+and this one once it is proposed.
+
 ## Before you finish
 
 - [ ] `pnpm sushindustries map` reports no cycle and no inversion.
