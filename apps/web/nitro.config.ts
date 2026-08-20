@@ -28,7 +28,14 @@ if (!posthogHost) {
 const PAGES =
 	"public, max-age=0, s-maxage=300, stale-while-revalidate=86400, stale-if-error=604800";
 
-/** What a stable-named asset may be cached for. Never `immutable`. */
+/**
+ * What a recapturable asset may be cached for. Never `immutable`.
+ *
+ * Only the shots and the mark use this. `/models/**` and `/logos/**` already
+ * had their own rule below and keep it: those change when somebody replaces
+ * the artwork, which is rare and deliberate. A shot is regenerated under the
+ * same name whenever the demo it photographs changes, which is neither.
+ */
 const ASSETS =
 	"public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800";
 
@@ -91,8 +98,6 @@ export default defineNitroConfig({
 		 * names change with its contents.
 		 */
 		"/shots/**": { headers: { "cache-control": ASSETS } },
-		"/logos/**": { headers: { "cache-control": ASSETS } },
-		"/models/**": { headers: { "cache-control": ASSETS } },
 		"/sushi-logo.png": { headers: { "cache-control": ASSETS } },
 		/*
 		 * Cross-origin isolation, on the pages that need it and nowhere else.
@@ -112,6 +117,28 @@ export default defineNitroConfig({
 		 * has the same narrowing to make.
 		 */
 		"/components/**": {
+			headers: {
+				"cross-origin-opener-policy": "same-origin",
+				"cross-origin-embedder-policy": "credentialless",
+			},
+		},
+
+		/*
+		 * The frames those pages embed, isolated too.
+		 *
+		 * This was the missing half and it broke every preview on the site. A
+		 * document under COEP refuses to embed a frame that does not itself
+		 * assert COEP - `credentialless` relaxes that for subresources and not
+		 * for frames, and being same-origin does not exempt it either. So
+		 * `/components/**` was isolated, `/preview/**` was not, and the browser
+		 * declined every showcase iframe: the component pages rendered with
+		 * their previews simply empty, no CSP violation and no useful console
+		 * error, which is the failure that takes longest to recognise.
+		 *
+		 * The two rules are one decision and have to move together. If the
+		 * isolation above is ever dropped, drop this with it.
+		 */
+		"/preview/**": {
 			headers: {
 				"cross-origin-opener-policy": "same-origin",
 				"cross-origin-embedder-policy": "credentialless",
