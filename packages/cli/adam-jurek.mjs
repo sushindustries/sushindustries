@@ -67,6 +67,10 @@ const COMMANDS = {
 		const { sync } = await import("./commands/sync.mjs");
 		await sync();
 	},
+	async map() {
+		const { map } = await import("./commands/map.mjs");
+		return map();
+	},
 	async mcp() {
 		const [which] = rest;
 		if (which === "install") {
@@ -142,6 +146,8 @@ adam-jurek - the command line for adamjurek.com
 
   pnpm sushindustries connectors       compose and test every provider package
   pnpm sushindustries graphql          write the GraphQL schema from the tables
+  pnpm sushindustries map              how this repository is put together
+  pnpm sushindustries map --mermaid    the same graph, as a chart
   pnpm sushindustries studio           browse the deployed database
   pnpm sushindustries sync             write the index into Postgres
   pnpm sushindustries mcp              serve every tool on stdio
