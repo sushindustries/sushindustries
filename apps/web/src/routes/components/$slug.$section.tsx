@@ -1,3 +1,4 @@
+import { hasDemo } from "@sushindustries/ui/demo-sources";
 import { createFileRoute, getRouteApi, notFound } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import {
@@ -5,7 +6,6 @@ import {
 	loadComponentDoc,
 } from "../../modules/content/components/component-doc";
 import { seo } from "../../modules/seo/seo";
-import { hasDemo } from "../../modules/showcase/demo-sources";
 
 /*
  * One section of one component, at its own address.

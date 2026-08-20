@@ -1,11 +1,11 @@
 import { MarkdownView, type ShelfEntry } from "@sushindustries/ui";
+import { findDemoSource, hasDemo } from "@sushindustries/ui/demo-sources";
 import type { ReactNode } from "react";
 import { SiteAssistant } from "../assistant/site-assistant";
 import { findComponentPage } from "../content/components/component-page";
 import { findPackage } from "../content/packages/packages.catalogue";
 import { findPost } from "../content/posts/posts.catalogue";
 import { BLOCKS } from "../markdown/blocks";
-import { findDemoSource, hasDemo } from "../showcase/demo-sources";
 
 /*
  * A page, rendered inside a window on the desktop.

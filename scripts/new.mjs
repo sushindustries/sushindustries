@@ -184,7 +184,7 @@ async function newComponent() {
 		`fill in \`description\`, \`category\` and \`preview\` for "${slug}" in packages/ui/registry.ts`,
 	);
 	todo.push(
-		`add a "${slug}" demo to apps/web/src/modules/showcase/demos.tsx - until then its card shows nothing`,
+		`add a "${slug}" demo to packages/ui/src/demos.tsx - until then its card shows nothing`,
 	);
 	todo.push(`write \`summary:\` in ${doc}`);
 }

@@ -1,4 +1,13 @@
 import {
+	type ComponentType,
+	type ReactNode,
+	Suspense,
+	useCallback,
+	useRef,
+	useState,
+} from "react";
+import { DEMO_SOURCES } from "./demo-sources.ts";
+import {
 	Accordion,
 	Alert,
 	Archive,
@@ -85,21 +94,7 @@ import {
 	useToast,
 	VideoPlayer,
 	Workbench,
-} from "@sushindustries/ui";
-
-import {
-	lazy,
-	type ReactNode,
-	Suspense,
-	useCallback,
-	useRef,
-	useState,
-} from "react";
-import { LOGO_MODEL } from "../chrome/logo";
-import { SITE } from "../content/site.catalogue";
-import { askAssistant } from "../markdown/questions.store";
-import { DEMO_SOURCES } from "./demo-sources";
-import { pacedImport } from "./paced-import";
+} from "./index.ts";
 
 /*
  * The live examples, one per showcase id.
@@ -109,13 +104,47 @@ import { pacedImport } from "./paced-import";
  * same example as text, kept beside the element rather than derived from it:
  * generating source from JSX is a compiler, and hand-writing it is two lines.
  *
- * They are only ever rendered inside the preview route, in an iframe, so a
+ * They are only ever rendered inside a preview route, in an iframe, so a
  * demo that mounts something heavy costs nothing on the documentation page.
+ *
+ * They live with the library rather than with the site because they are the
+ * library's examples: every one of them is a use of a component from `src/`,
+ * and a project that installs the components has a reason to want the same
+ * examples. What they are *not* allowed to know is anything one site chose -
+ * its URL, its 3D mark, its assistant, which viewer it loads the mark with.
+ * Those four arrive through `DemoHost`, and the site binds them once. That
+ * is also what keeps this package free of a dependency on the viewer: the
+ * demo that shows a model is handed a component, not an import.
  */
 
-const ProductViewer = lazy(() =>
-	pacedImport(() => import("@sushindustries/react-product-viewer")),
-);
+/**
+ * What a site supplies to make the demos its own.
+ *
+ * Four things, and the count is a boundary. A fifth one is a sign that a
+ * demo has started to document the site rather than a component.
+ */
+export interface DemoHost<Model = unknown> {
+	/** The origin the copy-a-prompt button points at. No trailing slash. */
+	readonly siteUrl: string;
+	/** What the model demos turn. The site's own mark, in the viewer's shape. */
+	readonly model: Model;
+	/** What the questions demo does with a question. */
+	readonly onAsk: (question: string) => void;
+	/**
+	 * The viewer the model demos render, already lazy if the site wants it
+	 * to be. Typed structurally - the props the demos actually pass - and
+	 * generic over the model, so this package never names the viewer package
+	 * and never has to agree with it about what a model is. The site passes
+	 * both halves from the same import, and TypeScript checks them against
+	 * each other there.
+	 */
+	readonly ProductViewer: ComponentType<{
+		readonly model: Model;
+		readonly loadingLabel?: string;
+		readonly variants?: readonly string[];
+		readonly scroll?: "page";
+	}>;
+}
 
 /*
  * Fixtures for the demos that need input rather than props.
@@ -223,7 +252,17 @@ const ARCHIVE_ITEMS: readonly ArchiveItem[] = [
  */
 function SpinFace(): ReactNode {
 	return (
-		<div className="spin-face">
+		<div
+			style={{
+				display: "grid",
+				placeItems: "center",
+				width: "8rem",
+				aspectRatio: "1",
+				border: "1px solid var(--line)",
+				borderRadius: "var(--r-lg)",
+				background: "var(--bg-2)",
+			}}
+		>
 			<span className="mono">front</span>
 		</div>
 	);
@@ -667,7 +706,11 @@ function MenuDemo(): ReactNode {
  */
 const VARIANTS = ["Original", "White", "Black", "Nothing"] as const;
 
-function VariantsDemo(): ReactNode {
+function VariantsDemo<Model>({
+	host: { ProductViewer, model },
+}: {
+	readonly host: Pick<DemoHost<Model>, "ProductViewer" | "model">;
+}): ReactNode {
 	const [variant, setVariant] = useState<(typeof VARIANTS)[number]>("Original");
 
 	return (
@@ -676,7 +719,7 @@ function VariantsDemo(): ReactNode {
 				fallback={<p className="label text-center">Loading the mark</p>}
 			>
 				<ProductViewer
-					model={LOGO_MODEL}
+					model={model}
 					variants={[variant]}
 					loadingLabel={`Loading ${variant}`}
 					/* The page keeps the wheel; the model is turned by dragging. */
@@ -742,1319 +785,1362 @@ export interface Demo {
 	readonly language: string;
 }
 
-export const DEMOS: Readonly<Record<string, Demo>> = {
-	"scroll-spin": {
-		/*
-		 * A plain square, not a logo.
-		 *
-		 * The demo used to spin an SVG captioned "Sushindustries" that was not the
-		 * Sushindustries logo, which is a worse thing to ship than no mark at all.
-		 * The home page turns the real GLB; this page is about the rotation, and
-		 * an unmarked face shows the rotation better than a logo would anyway -
-		 * you can see which side you are looking at.
-		 */
-		poster: <SpinFace />,
-		element: (
-			<div style={{ minHeight: "160vh", paddingBlock: "10vh" }}>
-				<ScrollSpin revolutions={1.5} tilt={10}>
-					<SpinFace />
-				</ScrollSpin>
-				<p className="label text-center mt-6">Scroll the frame</p>
-			</div>
-		),
-		...DEMO_SOURCES["scroll-spin"],
-	},
+/** Every demo, bound to one site. Call once; the result is a plain record. */
+export function demos<Model>(
+	host: DemoHost<Model>,
+): Readonly<Record<string, Demo>> {
+	const { siteUrl, model, onAsk, ProductViewer } = host;
 
-	"typed-mark": {
-		/*
-		 * On the terminal slab, because that is the surface the `--syn-*` hues
-		 * were checked against. The same nine colours on paper would be a
-		 * demo of an accessibility failure.
-		 */
-		poster: (
-			<div
-				className="p-6 text-lg"
-				style={{
-					background: "var(--code-bg)",
-					borderRadius: "var(--r-lg)",
-					fontFamily: "var(--mono)",
-				}}
-			>
-				<TypedMark text="sushi industries" />
-			</div>
-		),
-		element: (
-			<div
-				className="p-6 grid gap-4"
-				style={{
-					background: "var(--code-bg)",
-					borderRadius: "var(--r-lg)",
-					fontFamily: "var(--mono)",
-				}}
-			>
-				<span className="text-lg">
+	return {
+		"scroll-spin": {
+			/*
+			 * A plain square, not a logo.
+			 *
+			 * The demo used to spin an SVG captioned "Sushindustries" that was not the
+			 * Sushindustries logo, which is a worse thing to ship than no mark at all.
+			 * The home page turns the real GLB; this page is about the rotation, and
+			 * an unmarked face shows the rotation better than a logo would anyway -
+			 * you can see which side you are looking at.
+			 */
+			poster: <SpinFace />,
+			element: (
+				<div style={{ minHeight: "160vh", paddingBlock: "10vh" }}>
+					<ScrollSpin revolutions={1.5} tilt={10}>
+						<SpinFace />
+					</ScrollSpin>
+					<p className="label text-center mt-6">Scroll the frame</p>
+				</div>
+			),
+			...DEMO_SOURCES["scroll-spin"],
+		},
+
+		"typed-mark": {
+			/*
+			 * On the terminal slab, because that is the surface the `--syn-*` hues
+			 * were checked against. The same nine colours on paper would be a
+			 * demo of an accessibility failure.
+			 */
+			poster: (
+				<div
+					className="p-6 text-lg"
+					style={{
+						background: "var(--code-bg)",
+						borderRadius: "var(--r-lg)",
+						fontFamily: "var(--mono)",
+					}}
+				>
 					<TypedMark text="sushi industries" />
-				</span>
-				{/* `offset` moves where the cycle starts, so two marks differ. */}
-				<span className="text-lg">
-					<TypedMark text="one class, one job" offset={4} />
-				</span>
-			</div>
-		),
-		...DEMO_SOURCES["typed-mark"],
-	},
-	reveal: {
-		poster: (
-			<Card title="I arrive on scroll">
-				<p className="m-0 fg-dim text-sm">Fades and rises once, then stays.</p>
-			</Card>
-		),
-		element: (
-			<div style={{ minHeight: "160vh", paddingBlock: "40vh" }}>
-				<Reveal>
-					<Card title="I arrive on scroll">
-						<p className="m-0 fg-dim text-sm">
-							Fades and rises once, then stays.
-						</p>
-					</Card>
-				</Reveal>
-			</div>
-		),
-		...DEMO_SOURCES.reveal,
-	},
-
-	icon: {
-		element: (
-			<div className="flex items-center gap-4 wrap fg-dim">
-				{(
-					[
-						"cube",
-						"package",
-						"note",
-						"layers",
-						"motion",
-						"grid",
-						"text",
-						"book",
-						"folder",
-						"folder-open",
-						"file",
-						"search",
-						"sun",
-						"moon",
-						"chat",
-						"clock",
-						"copy",
-						"github",
-						"terminal",
-						"star",
-						"check",
-						"play",
-						"send",
-					] as const
-				).map((name) => (
-					<Icon key={name} name={name} size={20} />
-				))}
-			</div>
-		),
-		...DEMO_SOURCES.icon,
-	},
-
-	consent: {
-		/*
-		 * The poster wraps it in a transformed box: `transform` makes that box
-		 * the containing block for `position: fixed`, so the bar docks to the
-		 * thumbnail's corner instead of escaping to the card grid's viewport.
-		 * `position: fixed` takes an element out of flow entirely, so this
-		 * wrapper has no intrinsic width from its own content - it needs one
-		 * declared, or a `place-items: center` grid ancestor shrinks it to
-		 * nothing and squeezes the bar to a sliver regardless of the bar's
-		 * own width rules.
-		 */
-		poster: (
-			<div
-				style={{ transform: "translate(0)", width: "100%", minHeight: "11rem" }}
-			>
-				<Consent open onAccept={() => {}} onDecline={() => {}}>
-					I measure page views to see what is worth writing more of. Nothing
-					personal, nothing sold.
-				</Consent>
-			</div>
-		),
-		element: <ConsentDemo />,
-		...DEMO_SOURCES.consent,
-	},
-
-	questions: {
-		element: (
-			<Questions
-				heading="Common questions"
-				questions={[
-					"How do I install a component?",
-					"Do I need the whole library?",
-					"What happens when a component updates?",
-				]}
-				onAsk={askAssistant}
-			/>
-		),
-		...DEMO_SOURCES.questions,
-	},
-
-	card: {
-		element: (
-			<div className="card-grid">
-				<Card title="With meta" meta="v0.1.0">
-					<p className="m-0 fg-dim text-sm">Body goes here.</p>
+				</div>
+			),
+			element: (
+				<div
+					className="p-6 grid gap-4"
+					style={{
+						background: "var(--code-bg)",
+						borderRadius: "var(--r-lg)",
+						fontFamily: "var(--mono)",
+					}}
+				>
+					<span className="text-lg">
+						<TypedMark text="sushi industries" />
+					</span>
+					{/* `offset` moves where the cycle starts, so two marks differ. */}
+					<span className="text-lg">
+						<TypedMark text="one class, one job" offset={4} />
+					</span>
+				</div>
+			),
+			...DEMO_SOURCES["typed-mark"],
+		},
+		reveal: {
+			poster: (
+				<Card title="I arrive on scroll">
+					<p className="m-0 fg-dim text-sm">
+						Fades and rises once, then stays.
+					</p>
 				</Card>
-				<Card title="As a link" href="https://tanstack.com" />
-			</div>
-		),
-		...DEMO_SOURCES.card,
-	},
+			),
+			element: (
+				<div style={{ minHeight: "160vh", paddingBlock: "40vh" }}>
+					<Reveal>
+						<Card title="I arrive on scroll">
+							<p className="m-0 fg-dim text-sm">
+								Fades and rises once, then stays.
+							</p>
+						</Card>
+					</Reveal>
+				</div>
+			),
+			...DEMO_SOURCES.reveal,
+		},
 
-	section: {
-		element: (
-			<Section id="demo" label="Label" title="A section heading">
-				<p className="fg-dim m-0">
-					The kicker and the heading reveal 80ms before this does.
-				</p>
-			</Section>
-		),
-		...DEMO_SOURCES.section,
-	},
+		icon: {
+			element: (
+				<div className="flex items-center gap-4 wrap fg-dim">
+					{(
+						[
+							"cube",
+							"package",
+							"note",
+							"layers",
+							"motion",
+							"grid",
+							"text",
+							"book",
+							"folder",
+							"folder-open",
+							"file",
+							"search",
+							"sun",
+							"moon",
+							"chat",
+							"clock",
+							"copy",
+							"github",
+							"terminal",
+							"star",
+							"check",
+							"play",
+							"send",
+						] as const
+					).map((name) => (
+						<Icon key={name} name={name} size={20} />
+					))}
+				</div>
+			),
+			...DEMO_SOURCES.icon,
+		},
 
-	/*
-	 * Three components below render nothing visible when they are working:
-	 * SmoothScroll mounts a scroll driver, Frontmatter is a parser. A demo for
-	 * one of those cannot show the component, so it shows the effect instead,
-	 * and says which is which. An empty frame would read as a broken demo.
-	 */
-	"smooth-scroll": {
-		element: (
-			<div style={{ minHeight: "220vh" }}>
-				<SmoothScroll />
-				<p className="label">Scroll this frame</p>
-				<p className="fg-dim mt-3 max-w-prose">
-					The easing is Lenis. Nothing here is animated by the demo; the whole
-					frame scrolls differently because the component is mounted.
-				</p>
-				<p className="label" style={{ marginTop: "180vh" }}>
-					The bottom
-				</p>
-			</div>
-		),
-		poster: <p className="label text-center">Changes how the page scrolls</p>,
-		...DEMO_SOURCES["smooth-scroll"],
-	},
+		consent: {
+			/*
+			 * The poster wraps it in a transformed box: `transform` makes that box
+			 * the containing block for `position: fixed`, so the bar docks to the
+			 * thumbnail's corner instead of escaping to the card grid's viewport.
+			 * `position: fixed` takes an element out of flow entirely, so this
+			 * wrapper has no intrinsic width from its own content - it needs one
+			 * declared, or a `place-items: center` grid ancestor shrinks it to
+			 * nothing and squeezes the bar to a sliver regardless of the bar's
+			 * own width rules.
+			 */
+			poster: (
+				<div
+					style={{
+						transform: "translate(0)",
+						width: "100%",
+						minHeight: "11rem",
+					}}
+				>
+					<Consent open onAccept={() => {}} onDecline={() => {}}>
+						I measure page views to see what is worth writing more of. Nothing
+						personal, nothing sold.
+					</Consent>
+				</div>
+			),
+			element: <ConsentDemo />,
+			...DEMO_SOURCES.consent,
+		},
 
-	"doc-nav": {
-		element: (
-			<div className="doc-layout" data-nav="true">
-				<DocNav
-					label="Components"
-					active="doc-nav"
-					sections={[
-						{
-							id: "motion",
-							label: "Motion",
-							icon: "motion",
-							items: [
-								{ id: "reveal", label: "Reveal", href: "#reveal" },
-								{ id: "scroll-spin", label: "Scroll Spin", href: "#spin" },
-							],
-						},
-						{
-							id: "docs",
-							label: "Docs",
-							icon: "book",
-							items: [
-								{ id: "doc-aside", label: "Doc Aside", href: "#aside" },
-								{ id: "doc-nav", label: "Doc Nav", href: "#nav" },
-								{ id: "showcase", label: "Showcase", href: "#showcase" },
-							],
-						},
-						{
-							id: "3d",
-							label: "3D",
-							icon: "cube",
-							items: [{ id: "model", label: "Model", href: "#model" }],
-						},
+		questions: {
+			element: (
+				<Questions
+					heading="Common questions"
+					questions={[
+						"How do I install a component?",
+						"Do I need the whole library?",
+						"What happens when a component updates?",
 					]}
-					/*
-					 * A plain anchor here, because a demo has no router to hand it.
-					 * The site passes a `Link` and spreads the same rest props.
-					 */
-					renderLink={({ href, className, children, ...rest }) => (
-						<a href={href} className={className} {...rest}>
+					onAsk={onAsk}
+				/>
+			),
+			...DEMO_SOURCES.questions,
+		},
+
+		card: {
+			element: (
+				<div className="card-grid">
+					<Card title="With meta" meta="v0.1.0">
+						<p className="m-0 fg-dim text-sm">Body goes here.</p>
+					</Card>
+					<Card title="As a link" href="https://tanstack.com" />
+				</div>
+			),
+			...DEMO_SOURCES.card,
+		},
+
+		section: {
+			element: (
+				<Section id="demo" label="Label" title="A section heading">
+					<p className="fg-dim m-0">
+						The kicker and the heading reveal 80ms before this does.
+					</p>
+				</Section>
+			),
+			...DEMO_SOURCES.section,
+		},
+
+		/*
+		 * Three components below render nothing visible when they are working:
+		 * SmoothScroll mounts a scroll driver, Frontmatter is a parser. A demo for
+		 * one of those cannot show the component, so it shows the effect instead,
+		 * and says which is which. An empty frame would read as a broken demo.
+		 */
+		"smooth-scroll": {
+			element: (
+				<div style={{ minHeight: "220vh" }}>
+					<SmoothScroll />
+					<p className="label">Scroll this frame</p>
+					<p className="fg-dim mt-3 max-w-prose">
+						The easing is Lenis. Nothing here is animated by the demo; the whole
+						frame scrolls differently because the component is mounted.
+					</p>
+					<p className="label" style={{ marginTop: "180vh" }}>
+						The bottom
+					</p>
+				</div>
+			),
+			poster: <p className="label text-center">Changes how the page scrolls</p>,
+			...DEMO_SOURCES["smooth-scroll"],
+		},
+
+		"doc-nav": {
+			element: (
+				<div className="doc-layout" data-nav="true">
+					<DocNav
+						label="Components"
+						active="doc-nav"
+						sections={[
+							{
+								id: "motion",
+								label: "Motion",
+								icon: "motion",
+								items: [
+									{ id: "reveal", label: "Reveal", href: "#reveal" },
+									{ id: "scroll-spin", label: "Scroll Spin", href: "#spin" },
+								],
+							},
+							{
+								id: "docs",
+								label: "Docs",
+								icon: "book",
+								items: [
+									{ id: "doc-aside", label: "Doc Aside", href: "#aside" },
+									{ id: "doc-nav", label: "Doc Nav", href: "#nav" },
+									{ id: "showcase", label: "Showcase", href: "#showcase" },
+								],
+							},
+							{
+								id: "3d",
+								label: "3D",
+								icon: "cube",
+								items: [{ id: "model", label: "Model", href: "#model" }],
+							},
+						]}
+						/*
+						 * A plain anchor here, because a demo has no router to hand it.
+						 * The site passes a `Link` and spreads the same rest props.
+						 */
+						renderLink={({ href, className, children, ...rest }) => (
+							<a href={href} className={className} {...rest}>
+								{children}
+							</a>
+						)}
+					/>
+					<DocAside
+						headings={[
+							{ id: "nav-one", text: "What the rails do", level: 2 },
+							{ id: "nav-two", text: "Where they go", level: 2 },
+						]}
+					/>
+					<div className="doc-main min-w-0">
+						<h2 id="nav-one">What the rails do</h2>
+						<p className="fg-dim">
+							Three columns: the library on the left, the document here, the
+							headings of this page on the right.
+						</p>
+						<h2 id="nav-two" style={{ marginTop: "40vh" }}>
+							Where they go
+						</h2>
+						<p className="fg-dim">
+							Narrow the frame past 1200px and the left rail becomes a row above
+							this text that opens on tap. Narrow it past 860px and the right
+							one joins it.
+						</p>
+					</div>
+				</div>
+			),
+			poster: (
+				<p className="label text-center">A library beside the document</p>
+			),
+			...DEMO_SOURCES["doc-nav"],
+		},
+
+		"doc-aside": {
+			element: (
+				<div className="doc-layout">
+					<DocAside
+						headings={[
+							{ id: "one", text: "The first heading", level: 2 },
+							{ id: "two", text: "The second", level: 2 },
+							{ id: "three", text: "A nested one", level: 3 },
+						]}
+					/>
+					<div className="doc-main min-w-0" style={{ minHeight: "180vh" }}>
+						<h2 id="one">The first heading</h2>
+						<p className="fg-dim">
+							The rail tracks whichever heading you are under. Scroll the frame.
+						</p>
+						<h2 id="two" style={{ marginTop: "70vh" }}>
+							The second
+						</h2>
+						<p className="fg-dim">
+							Narrow the frame and the rail collapses to a row that opens on
+							tap.
+						</p>
+						<h3 id="three" style={{ marginTop: "70vh" }}>
+							A nested one
+						</h3>
+						<p className="fg-dim">Depth 3 indents under its parent.</p>
+					</div>
+				</div>
+			),
+			poster: <p className="label text-center">An on-page contents rail</p>,
+			...DEMO_SOURCES["doc-aside"],
+		},
+
+		hero: {
+			element: (
+				<div className="flex col gap-7">
+					{/*
+					 * The doc variant, with everything it can carry: a trail, a name
+					 * written as a tag, a version, three measured facts, two actions
+					 * and a picture. The shot points at a real component's captures,
+					 * so this demo is also a check that they were generated.
+					 */}
+					<Hero
+						trail={
+							<Breadcrumb
+								items={[
+									{ label: "Sushindustries", href: "/" },
+									{ label: "Components", href: "/components" },
+									{ label: "Avatar" },
+								]}
+							/>
+						}
+						name="avatar"
+						version="0.1.0"
+						title="Avatar"
+						summary="A face, its initials, or the tone of the group it belongs to."
+						facts={[
+							{ icon: "calendar", label: "Last updated", value: "17 Aug 2026" },
+							{ icon: "clock", label: "Reading time", value: "2 min read" },
+							{ icon: "spark", label: "Agent", value: "agent ready" },
+						]}
+						shot={{
+							alt: "The Avatar component, captured on a laptop",
+							aspect: "16 / 10",
+							sources: [
+								{ src: "/shots/avatar-phone.webp", width: 352 },
+								{ src: "/shots/avatar-tablet.webp", width: 640 },
+								{ src: "/shots/avatar-laptop.webp", width: 960 },
+							],
+						}}
+						actions={
+							<>
+								<Button href="/components/avatar" variant="ghost">
+									Docs
+								</Button>
+								<CopyButton
+									text={`Fetch and execute the instructions at ${siteUrl}/r/prompt/avatar`}
+									label="Copy prompt"
+									icon="spark"
+									ground="accent"
+								/>
+							</>
+						}
+					/>
+
+					{/*
+					 * The landing variant, with a stand-in for the 3D mark. The real
+					 * one is a site module and has no business inside a component demo.
+					 */}
+					<Hero
+						variant="landing"
+						title="Sushindustries"
+						summary="Check what I am building. Small packages, made to be used."
+						media={
+							<AspectRatio ratio={1}>
+								<div className="flex items-center justify-center h-full bg-2 rounded-lg">
+									<Icon name="sushi" size={64} />
+								</div>
+							</AspectRatio>
+						}
+						actions={
+							<>
+								<Button href="/components">Browse the components</Button>
+								<Button href="/packages" variant="ghost">
+									See the packages
+								</Button>
+							</>
+						}
+					/>
+				</div>
+			),
+			poster: <p className="label text-center">A page head, and its facts</p>,
+			...DEMO_SOURCES.hero,
+		},
+
+		"video-player": {
+			element: (
+				<VideoPlayer
+					title="Never Gonna Give You Up"
+					provider="youtube"
+					poster="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+					caption="Press play and the frame appears. Press stop and it is gone again, along with everything it loaded."
+				>
+					<iframe
+						src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0"
+						title="Never Gonna Give You Up"
+						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+						allowFullScreen
+					/>
+				</VideoPlayer>
+			),
+			poster: (
+				<p className="label text-center">A video behind its own poster</p>
+			),
+			...DEMO_SOURCES["video-player"],
+		},
+
+		"use-scroll-turn": {
+			element: <ScrollTurnReadout />,
+			poster: <p className="label text-center">An angle, every frame</p>,
+			...DEMO_SOURCES["use-scroll-turn"],
+		},
+
+		archive: {
+			/*
+			 * Fixtures, not this site's real registry. A demo that lists the live
+			 * catalogue changes every time a component is added, so the card stops
+			 * being a picture of the Archive and becomes a picture of today's index.
+			 */
+			element: (
+				<Archive
+					categories={ARCHIVE_CATEGORIES}
+					items={ARCHIVE_ITEMS}
+					hrefForCategory={(id) => `#${id}`}
+					hrefForTag={(tag) => (tag ? `#${tag}` : "#all")}
+					renderLink={({ href, className, children }) => (
+						<a key={href} href={href} className={className}>
 							{children}
 						</a>
 					)}
 				/>
-				<DocAside
-					headings={[
-						{ id: "nav-one", text: "What the rails do", level: 2 },
-						{ id: "nav-two", text: "Where they go", level: 2 },
-					]}
-				/>
-				<div className="doc-main min-w-0">
-					<h2 id="nav-one">What the rails do</h2>
-					<p className="fg-dim">
-						Three columns: the library on the left, the document here, the
-						headings of this page on the right.
-					</p>
-					<h2 id="nav-two" style={{ marginTop: "40vh" }}>
-						Where they go
-					</h2>
-					<p className="fg-dim">
-						Narrow the frame past 1200px and the left rail becomes a row above
-						this text that opens on tap. Narrow it past 860px and the right one
-						joins it.
-					</p>
-				</div>
-			</div>
-		),
-		poster: <p className="label text-center">A library beside the document</p>,
-		...DEMO_SOURCES["doc-nav"],
-	},
+			),
+			...DEMO_SOURCES.archive,
+		},
 
-	"doc-aside": {
-		element: (
-			<div className="doc-layout">
-				<DocAside
-					headings={[
-						{ id: "one", text: "The first heading", level: 2 },
-						{ id: "two", text: "The second", level: 2 },
-						{ id: "three", text: "A nested one", level: 3 },
-					]}
-				/>
-				<div className="doc-main min-w-0" style={{ minHeight: "180vh" }}>
-					<h2 id="one">The first heading</h2>
-					<p className="fg-dim">
-						The rail tracks whichever heading you are under. Scroll the frame.
-					</p>
-					<h2 id="two" style={{ marginTop: "70vh" }}>
-						The second
-					</h2>
-					<p className="fg-dim">
-						Narrow the frame and the rail collapses to a row that opens on tap.
-					</p>
-					<h3 id="three" style={{ marginTop: "70vh" }}>
-						A nested one
-					</h3>
-					<p className="fg-dim">Depth 3 indents under its parent.</p>
-				</div>
-			</div>
-		),
-		poster: <p className="label text-center">An on-page contents rail</p>,
-		...DEMO_SOURCES["doc-aside"],
-	},
+		"use-scroll-progress": {
+			element: <ProgressReadout />,
+			poster: <p className="label text-center">0 to 1, as it arrives</p>,
+			...DEMO_SOURCES["use-scroll-progress"],
+		},
 
-	hero: {
-		element: (
-			<div className="flex col gap-7">
-				{/*
-				 * The doc variant, with everything it can carry: a trail, a name
-				 * written as a tag, a version, three measured facts, two actions
-				 * and a picture. The shot points at a real component's captures,
-				 * so this demo is also a check that they were generated.
-				 */}
-				<Hero
-					trail={
-						<Breadcrumb
-							items={[
-								{ label: "Sushindustries", href: "/" },
-								{ label: "Components", href: "/components" },
-								{ label: "Avatar" },
-							]}
+		"theme-toggle": {
+			element: <ThemeToggleDemo />,
+			poster: <p className="label text-center">three states, one tab stop</p>,
+			...DEMO_SOURCES["theme-toggle"],
+		},
+
+		"boot-loader": {
+			element: (
+				<div className="relative" style={{ height: 300 }}>
+					<BootLoader duration={2400} label="Loading the demo">
+						<div
+							style={{
+								display: "grid",
+								placeItems: "center",
+								width: "8rem",
+								aspectRatio: "1",
+								border: "1px solid var(--line)",
+								borderRadius: "var(--r-lg)",
+								background: "var(--bg-2)",
+							}}
+						>
+							<span className="mono">boot</span>
+						</div>
+					</BootLoader>
+				</div>
+			),
+			...DEMO_SOURCES["boot-loader"],
+		},
+
+		device: {
+			element: (
+				<Device
+					title="a machine"
+					wallpaper={
+						/* Any wallpaper. A site supplies its own; the demo only needs depth. */
+						<span
+							style={{
+								position: "absolute",
+								inset: 0,
+								background: "linear-gradient(160deg, var(--bg-1), var(--bg-3))",
+							}}
 						/>
 					}
-					name="avatar"
-					version="0.1.0"
-					title="Avatar"
-					summary="A face, its initials, or the tone of the group it belongs to."
-					facts={[
-						{ icon: "calendar", label: "Last updated", value: "17 Aug 2026" },
-						{ icon: "clock", label: "Reading time", value: "2 min read" },
-						{ icon: "spark", label: "Agent", value: "agent ready" },
+				>
+					<FolderShelf
+						entries={SHELF_SAMPLE}
+						label="A pantry"
+						actionsFor={sampleActions}
+					/>
+				</Device>
+			),
+			...DEMO_SOURCES.device,
+		},
+
+		"use-device-kind": {
+			element: <DeviceReadout />,
+			poster: <p className="label text-center">the machine, named</p>,
+			...DEMO_SOURCES["use-device-kind"],
+		},
+
+		"desk-window": {
+			element: (
+				<div className="relative" style={{ height: 320 }}>
+					<DeskWindow
+						title="One window"
+						x={12}
+						y={12}
+						z={1}
+						onMove={() => {}}
+						onClose={() => {}}
+						onRaise={() => {}}
+					>
+						<p className="p-4 fg-dim m-0 text-sm">
+							Drag the bar. Position is written to the element while you drag
+							and to state only when you let go.
+						</p>
+					</DeskWindow>
+				</div>
+			),
+			poster: <p className="label text-center">A window you can drag</p>,
+			...DEMO_SOURCES["desk-window"],
+		},
+
+		dock: {
+			element: (
+				<Dock
+					tasks={[
+						{ id: "a", label: "Components", active: true },
+						{ id: "b", label: "Search", icon: "search" },
 					]}
-					shot={{
-						alt: "The Avatar component, captured on a laptop",
-						aspect: "16 / 10",
-						sources: [
-							{ src: "/shots/avatar-phone.webp", width: 352 },
-							{ src: "/shots/avatar-tablet.webp", width: 640 },
-							{ src: "/shots/avatar-laptop.webp", width: 960 },
-						],
-					}}
-					actions={
-						<>
-							<Button href="/components/avatar" variant="ghost">
-								Docs
-							</Button>
-							<CopyButton
-								text={`Fetch and execute the instructions at ${SITE.url}/r/prompt/avatar`}
-								label="Copy prompt"
-								icon="spark"
-								ground="accent"
-							/>
-						</>
-					}
+					onSearch={() => {}}
+					onSelectTask={() => {}}
+					onCloseTask={() => {}}
+					trailing={<Clock />}
 				/>
+			),
+			poster: (
+				<p className="label text-center">Search, what is open, a corner</p>
+			),
+			...DEMO_SOURCES.dock,
+		},
 
-				{/*
-				 * The landing variant, with a stand-in for the 3D mark. The real
-				 * one is a site module and has no business inside a component demo.
-				 */}
-				<Hero
-					variant="landing"
-					title="Sushindustries"
-					summary="Check what I am building. Small packages, made to be used."
-					media={
-						<AspectRatio ratio={1}>
-							<div className="flex items-center justify-center h-full bg-2 rounded-lg">
-								<Icon name="sushi" size={64} />
-							</div>
-						</AspectRatio>
-					}
-					actions={
-						<>
-							<Button href="/components">Browse the components</Button>
-							<Button href="/packages" variant="ghost">
-								See the packages
-							</Button>
-						</>
-					}
-				/>
-			</div>
-		),
-		poster: <p className="label text-center">A page head, and its facts</p>,
-		...DEMO_SOURCES.hero,
-	},
+		"use-desk-state": {
+			element: (
+				<p className="fg-dim p-4 max-w-prose">
+					No UI. It holds which windows are open, where they sit and what has
+					been put away, reads storage in an effect so a server render still
+					matches, and treats every storage failure as "the default desk", which
+					is a working desk.
+				</p>
+			),
+			poster: (
+				<p className="label text-center">It remembers where you left things</p>
+			),
+			...DEMO_SOURCES["use-desk-state"],
+		},
 
-	"video-player": {
-		element: (
-			<VideoPlayer
-				title="Never Gonna Give You Up"
-				provider="youtube"
-				poster="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
-				caption="Press play and the frame appears. Press stop and it is gone again, along with everything it loaded."
-			>
-				<iframe
-					src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0"
-					title="Never Gonna Give You Up"
-					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-					allowFullScreen
-				/>
-			</VideoPlayer>
-		),
-		poster: <p className="label text-center">A video behind its own poster</p>,
-		...DEMO_SOURCES["video-player"],
-	},
+		"context-menu": {
+			element: <MenuDemo />,
+			poster: <p className="label text-center">Right-click, hold, or press</p>,
+			...DEMO_SOURCES["context-menu"],
+		},
 
-	"use-scroll-turn": {
-		element: <ScrollTurnReadout />,
-		poster: <p className="label text-center">An angle, every frame</p>,
-		...DEMO_SOURCES["use-scroll-turn"],
-	},
-
-	archive: {
-		/*
-		 * Fixtures, not this site's real registry. A demo that lists the live
-		 * catalogue changes every time a component is added, so the card stops
-		 * being a picture of the Archive and becomes a picture of today's index.
-		 */
-		element: (
-			<Archive
-				categories={ARCHIVE_CATEGORIES}
-				items={ARCHIVE_ITEMS}
-				hrefForCategory={(id) => `#${id}`}
-				hrefForTag={(tag) => (tag ? `#${tag}` : "#all")}
-				renderLink={({ href, className, children }) => (
-					<a key={href} href={href} className={className}>
-						{children}
-					</a>
-				)}
-			/>
-		),
-		...DEMO_SOURCES.archive,
-	},
-
-	"use-scroll-progress": {
-		element: <ProgressReadout />,
-		poster: <p className="label text-center">0 to 1, as it arrives</p>,
-		...DEMO_SOURCES["use-scroll-progress"],
-	},
-
-	"theme-toggle": {
-		element: <ThemeToggleDemo />,
-		poster: <p className="label text-center">three states, one tab stop</p>,
-		...DEMO_SOURCES["theme-toggle"],
-	},
-
-	"boot-loader": {
-		element: (
-			<div className="relative" style={{ height: 300 }}>
-				<BootLoader duration={2400} label="Loading the demo">
-					<div className="spin-face">
-						<span className="mono">boot</span>
-					</div>
-				</BootLoader>
-			</div>
-		),
-		...DEMO_SOURCES["boot-loader"],
-	},
-
-	device: {
-		element: (
-			<Device title="a machine" wallpaper={<span className="desk-glow" />}>
+		"folder-shelf": {
+			element: (
 				<FolderShelf
 					entries={SHELF_SAMPLE}
 					label="A pantry"
 					actionsFor={sampleActions}
 				/>
-			</Device>
-		),
-		...DEMO_SOURCES.device,
-	},
+			),
+			...DEMO_SOURCES["folder-shelf"],
+		},
 
-	"use-device-kind": {
-		element: <DeviceReadout />,
-		poster: <p className="label text-center">the machine, named</p>,
-		...DEMO_SOURCES["use-device-kind"],
-	},
+		grid: {
+			element: (
+				<Grid min="14rem" gap={4}>
+					{["One", "Two", "Three", "Four"].map((label) => (
+						<Card key={label} title={label}>
+							<p className="m-0 fg-dim text-sm">
+								Narrow the frame. The column count follows the width, and no
+								breakpoint decided it.
+							</p>
+						</Card>
+					))}
+				</Grid>
+			),
+			...DEMO_SOURCES.grid,
+		},
 
-	"desk-window": {
-		element: (
-			<div className="relative" style={{ height: 320 }}>
-				<DeskWindow
-					title="One window"
-					x={12}
-					y={12}
-					z={1}
-					onMove={() => {}}
-					onClose={() => {}}
-					onRaise={() => {}}
-				>
-					<p className="p-4 fg-dim m-0 text-sm">
-						Drag the bar. Position is written to the element while you drag and
-						to state only when you let go.
+		spacer: {
+			element: (
+				<div>
+					<p className="fg-dim m-0">Something above.</p>
+					<Spacer size={6} label="Then" />
+					<p className="fg-dim m-0">
+						Something below, a measured distance away.
 					</p>
-				</DeskWindow>
-			</div>
-		),
-		poster: <p className="label text-center">A window you can drag</p>,
-		...DEMO_SOURCES["desk-window"],
-	},
+					<Spacer size={5} rule />
+					<p className="fg-dim m-0">A rule with no label.</p>
+					<Spacer size={5} />
+					<p className="fg-dim m-0">And a plain gap.</p>
+				</div>
+			),
+			...DEMO_SOURCES.spacer,
+		},
 
-	dock: {
-		element: (
-			<Dock
-				tasks={[
-					{ id: "a", label: "Components", active: true },
-					{ id: "b", label: "Search", icon: "search" },
-				]}
-				onSearch={() => {}}
-				onSelectTask={() => {}}
-				onCloseTask={() => {}}
-				trailing={<Clock />}
-			/>
-		),
-		poster: <p className="label text-center">Search, what is open, a corner</p>,
-		...DEMO_SOURCES.dock,
-	},
+		"nav-bar": {
+			/*
+			 * Its own entries rather than the site's: a demo that renders the live nav
+			 * changes whenever the nav does, and the card stops being a picture of the
+			 * component and starts being a picture of today's menu.
+			 */
+			element: (
+				<NavBar
+					brand={<span className="mono text-sm font-semibold">acme</span>}
+					entries={[
+						{
+							label: "Products",
+							href: "/products",
+							icon: "package",
+							items: [
+								{
+									label: "Motion",
+									href: "/products/motion",
+									icon: "motion",
+									description: "Things that move, and stop when asked not to",
+									badge: "3",
+								},
+								{
+									label: "Layout",
+									href: "/products/layout",
+									icon: "grid",
+									description: "Grids, spacing and page structure",
+									badge: "5",
+								},
+							],
+						},
+						{ label: "Writing", href: "/writing", icon: "note" },
+					]}
+					trailing={<span className="nav-link">GitHub</span>}
+				/>
+			),
+			poster: (
+				<p className="label text-center">A header with expanding panels</p>
+			),
+			...DEMO_SOURCES["nav-bar"],
+		},
 
-	"use-desk-state": {
-		element: (
-			<p className="fg-dim p-4 max-w-prose">
-				No UI. It holds which windows are open, where they sit and what has been
-				put away, reads storage in an effect so a server render still matches,
-				and treats every storage failure as "the default desk", which is a
-				working desk.
-			</p>
-		),
-		poster: (
-			<p className="label text-center">It remembers where you left things</p>
-		),
-		...DEMO_SOURCES["use-desk-state"],
-	},
+		showcase: {
+			/*
+			 * The showcase showing a component is the only demo of it that is not a
+			 * mock-up. The `src` is the same preview route every other frame uses.
+			 */
+			element: (
+				<Showcase
+					src="/preview/card"
+					title="Card"
+					height={260}
+					code={'<Card title="With meta" meta="v0.1.0" />'}
+					install={{ shadcn: "pnpm dlx shadcn@latest add .../card.json" }}
+				/>
+			),
+			...DEMO_SOURCES.showcase,
+		},
 
-	"context-menu": {
-		element: <MenuDemo />,
-		poster: <p className="label text-center">Right-click, hold, or press</p>,
-		...DEMO_SOURCES["context-menu"],
-	},
+		clock: {
+			element: (
+				<div className="flex col gap-4">
+					<p className="fg-dim m-0 max-w-prose">
+						Your weekday and your local time, from `Intl` with no locale and no
+						zone passed. Nothing was asked and nothing was sent.
+					</p>
+					<Clock />
+					<Clock
+						options={{
+							weekday: "long",
+							hour: "2-digit",
+							minute: "2-digit",
+							second: "2-digit",
+						}}
+						every={1000}
+					/>
+				</div>
+			),
+			poster: <Clock />,
+			...DEMO_SOURCES.clock,
+		},
 
-	"folder-shelf": {
-		element: (
-			<FolderShelf
-				entries={SHELF_SAMPLE}
-				label="A pantry"
-				actionsFor={sampleActions}
-			/>
-		),
-		...DEMO_SOURCES["folder-shelf"],
-	},
+		credit: {
+			/*
+			 * Spread rather than written out, because `role` is a real credit field
+			 * and also an ARIA attribute name: written as a literal on JSX it trips
+			 * the a11y rule that has no idea this is not a DOM element. The site
+			 * spreads `CREDITS` for the same reason.
+			 */
+			element: (
+				<div className="flex col gap-3">
+					{CREDIT_SAMPLE.map((credit) => (
+						<Credit key={credit.href} {...credit} />
+					))}
+				</div>
+			),
+			...DEMO_SOURCES.credit,
+		},
 
-	grid: {
-		element: (
-			<Grid min="14rem" gap={4}>
-				{["One", "Two", "Three", "Four"].map((label) => (
-					<Card key={label} title={label}>
-						<p className="m-0 fg-dim text-sm">
-							Narrow the frame. The column count follows the width, and no
-							breakpoint decided it.
-						</p>
-					</Card>
-				))}
-			</Grid>
-		),
-		...DEMO_SOURCES.grid,
-	},
+		"markdown-view": {
+			element: <MarkdownView source={MARKDOWN_SAMPLE} />,
+			...DEMO_SOURCES["markdown-view"],
+		},
 
-	spacer: {
-		element: (
-			<div>
-				<p className="fg-dim m-0">Something above.</p>
-				<Spacer size={6} label="Then" />
-				<p className="fg-dim m-0">Something below, a measured distance away.</p>
-				<Spacer size={5} rule />
-				<p className="fg-dim m-0">A rule with no label.</p>
-				<Spacer size={5} />
-				<p className="fg-dim m-0">And a plain gap.</p>
-			</div>
-		),
-		...DEMO_SOURCES.spacer,
-	},
+		breadcrumb: {
+			element: (
+				<Breadcrumb
+					items={[
+						{ label: "Adam Jurek", href: "/" },
+						{ label: "Components", href: "/components" },
+						{ label: "Docs", href: "/components?category=docs" },
+						{ label: "Breadcrumb" },
+					]}
+				/>
+			),
+			...DEMO_SOURCES.breadcrumb,
+		},
 
-	"nav-bar": {
-		/*
-		 * Its own entries rather than the site's: a demo that renders the live nav
-		 * changes whenever the nav does, and the card stops being a picture of the
-		 * component and starts being a picture of today's menu.
-		 */
-		element: (
-			<NavBar
-				brand={<span className="mono text-sm font-semibold">acme</span>}
-				entries={[
-					{
-						label: "Products",
-						href: "/products",
-						icon: "package",
-						items: [
-							{
-								label: "Motion",
-								href: "/products/motion",
-								icon: "motion",
-								description: "Things that move, and stop when asked not to",
-								badge: "3",
-							},
-							{
-								label: "Layout",
-								href: "/products/layout",
-								icon: "grid",
-								description: "Grids, spacing and page structure",
-								badge: "5",
-							},
-						],
-					},
-					{ label: "Writing", href: "/writing", icon: "note" },
-				]}
-				trailing={<span className="nav-link">GitHub</span>}
-			/>
-		),
-		poster: <p className="label text-center">A header with expanding panels</p>,
-		...DEMO_SOURCES["nav-bar"],
-	},
+		"command-palette": {
+			element: <CommandPaletteDemo />,
+			...DEMO_SOURCES["command-palette"],
+		},
 
-	showcase: {
-		/*
-		 * The showcase showing a component is the only demo of it that is not a
-		 * mock-up. The `src` is the same preview route every other frame uses.
-		 */
-		element: (
-			<Showcase
-				src="/preview/card"
-				title="Card"
-				height={260}
-				code={'<Card title="With meta" meta="v0.1.0" />'}
-				install={{ shadcn: "pnpm dlx shadcn@latest add .../card.json" }}
-			/>
-		),
-		...DEMO_SOURCES.showcase,
-	},
+		pagination: {
+			element: (
+				<div className="flex justify-center">
+					<Pagination
+						page={4}
+						pageCount={12}
+						hrefFor={(page) => `#page-${page}`}
+					/>
+				</div>
+			),
+			...DEMO_SOURCES.pagination,
+		},
 
-	clock: {
-		element: (
-			<div className="flex col gap-4">
-				<p className="fg-dim m-0 max-w-prose">
-					Your weekday and your local time, from `Intl` with no locale and no
-					zone passed. Nothing was asked and nothing was sent.
+		badge: {
+			element: (
+				<div className="flex items-center gap-2 wrap justify-center">
+					<Badge>plain</Badge>
+					<Badge tone="motion">motion</Badge>
+					<Badge tone="layout">layout</Badge>
+					<Badge tone="content">content</Badge>
+					<Badge tone="docs">docs</Badge>
+				</div>
+			),
+			...DEMO_SOURCES.badge,
+		},
+
+		kbd: {
+			element: (
+				<p className="m-0 text-center text-sm fg-dim">
+					Press <Kbd>\u2318K</Kbd> to search, <Kbd>esc</Kbd> to close.
 				</p>
-				<Clock />
-				<Clock
-					options={{
-						weekday: "long",
-						hour: "2-digit",
-						minute: "2-digit",
-						second: "2-digit",
-					}}
-					every={1000}
-				/>
-			</div>
-		),
-		poster: <Clock />,
-		...DEMO_SOURCES.clock,
-	},
+			),
+			...DEMO_SOURCES.kbd,
+		},
 
-	credit: {
-		/*
-		 * Spread rather than written out, because `role` is a real credit field
-		 * and also an ARIA attribute name: written as a literal on JSX it trips
-		 * the a11y rule that has no idea this is not a DOM element. The site
-		 * spreads `CREDITS` for the same reason.
-		 */
-		element: (
-			<div className="flex col gap-3">
-				{CREDIT_SAMPLE.map((credit) => (
-					<Credit key={credit.href} {...credit} />
-				))}
-			</div>
-		),
-		...DEMO_SOURCES.credit,
-	},
-
-	"markdown-view": {
-		element: <MarkdownView source={MARKDOWN_SAMPLE} />,
-		...DEMO_SOURCES["markdown-view"],
-	},
-
-	breadcrumb: {
-		element: (
-			<Breadcrumb
-				items={[
-					{ label: "Adam Jurek", href: "/" },
-					{ label: "Components", href: "/components" },
-					{ label: "Docs", href: "/components?category=docs" },
-					{ label: "Breadcrumb" },
-				]}
-			/>
-		),
-		...DEMO_SOURCES.breadcrumb,
-	},
-
-	"command-palette": {
-		element: <CommandPaletteDemo />,
-		...DEMO_SOURCES["command-palette"],
-	},
-
-	pagination: {
-		element: (
-			<div className="flex justify-center">
-				<Pagination
-					page={4}
-					pageCount={12}
-					hrefFor={(page) => `#page-${page}`}
-				/>
-			</div>
-		),
-		...DEMO_SOURCES.pagination,
-	},
-
-	badge: {
-		element: (
-			<div className="flex items-center gap-2 wrap justify-center">
-				<Badge>plain</Badge>
-				<Badge tone="motion">motion</Badge>
-				<Badge tone="layout">layout</Badge>
-				<Badge tone="content">content</Badge>
-				<Badge tone="docs">docs</Badge>
-			</div>
-		),
-		...DEMO_SOURCES.badge,
-	},
-
-	kbd: {
-		element: (
-			<p className="m-0 text-center text-sm fg-dim">
-				Press <Kbd>\u2318K</Kbd> to search, <Kbd>esc</Kbd> to close.
-			</p>
-		),
-		...DEMO_SOURCES.kbd,
-	},
-
-	separator: {
-		element: (
-			<div className="max-w-sm">
-				<p className="m-0 text-sm">Above the line</p>
-				<div className="mt-3 mb-3">
-					<Separator />
-				</div>
-				<div className="flex items-center gap-3 text-sm">
-					<span>Left</span>
-					<Separator orientation="vertical" decorative />
-					<span>Right</span>
-				</div>
-			</div>
-		),
-		...DEMO_SOURCES.separator,
-	},
-
-	skeleton: {
-		element: (
-			<div className="max-w-sm flex col gap-3">
-				<div className="flex items-center gap-3">
-					<Skeleton shape="circle" />
-					<div className="flex-1 flex col gap-2">
-						<Skeleton shape="line" width="60%" />
-						<Skeleton shape="line" width="40%" />
+		separator: {
+			element: (
+				<div className="max-w-sm">
+					<p className="m-0 text-sm">Above the line</p>
+					<div className="mt-3 mb-3">
+						<Separator />
+					</div>
+					<div className="flex items-center gap-3 text-sm">
+						<span>Left</span>
+						<Separator orientation="vertical" decorative />
+						<span>Right</span>
 					</div>
 				</div>
-				<Skeleton shape="block" />
-			</div>
-		),
-		...DEMO_SOURCES.skeleton,
-	},
+			),
+			...DEMO_SOURCES.separator,
+		},
 
-	spinner: {
-		element: (
-			<div className="flex items-center gap-3 justify-center">
-				<Spinner label="Loading the example" />
-				<span className="text-sm fg-dim">Loading the example</span>
-			</div>
-		),
-		...DEMO_SOURCES.spinner,
-	},
+		skeleton: {
+			element: (
+				<div className="max-w-sm flex col gap-3">
+					<div className="flex items-center gap-3">
+						<Skeleton shape="circle" />
+						<div className="flex-1 flex col gap-2">
+							<Skeleton shape="line" width="60%" />
+							<Skeleton shape="line" width="40%" />
+						</div>
+					</div>
+					<Skeleton shape="block" />
+				</div>
+			),
+			...DEMO_SOURCES.skeleton,
+		},
 
-	avatar: {
-		element: (
-			<div className="flex items-center gap-3 justify-center">
-				<Avatar name="Ada Lovelace" src="/sushi-logo.png" size={40} />
-				<Avatar name="Ada Lovelace" size={40} tone="content" />
-				<Avatar name="Sushi" size={40} tone="motion" />
-			</div>
-		),
-		...DEMO_SOURCES.avatar,
-	},
+		spinner: {
+			element: (
+				<div className="flex items-center gap-3 justify-center">
+					<Spinner label="Loading the example" />
+					<span className="text-sm fg-dim">Loading the example</span>
+				</div>
+			),
+			...DEMO_SOURCES.spinner,
+		},
 
-	"aspect-ratio": {
-		element: (
-			<div className="max-w-sm w-full">
-				<AspectRatio ratio={16 / 9}>
-					<img src="/sushi-logo.png" alt="The mark, held to a 16:9 crop" />
-				</AspectRatio>
-			</div>
-		),
-		...DEMO_SOURCES["aspect-ratio"],
-	},
+		avatar: {
+			element: (
+				<div className="flex items-center gap-3 justify-center">
+					<Avatar name="Ada Lovelace" src="/sushi-logo.png" size={40} />
+					<Avatar name="Ada Lovelace" size={40} tone="content" />
+					<Avatar name="Sushi" size={40} tone="motion" />
+				</div>
+			),
+			...DEMO_SOURCES.avatar,
+		},
 
-	button: {
-		element: (
-			<div className="flex items-center gap-3 justify-center">
-				<Button>The one action</Button>
-				<Button variant="ghost">The alternative</Button>
-			</div>
-		),
-		...DEMO_SOURCES.button,
-	},
+		"aspect-ratio": {
+			element: (
+				<div className="max-w-sm w-full">
+					<AspectRatio ratio={16 / 9}>
+						<img src="/sushi-logo.png" alt="The mark, held to a 16:9 crop" />
+					</AspectRatio>
+				</div>
+			),
+			...DEMO_SOURCES["aspect-ratio"],
+		},
 
-	empty: {
-		element: (
-			<div className="max-w-sm w-full">
-				<Empty
-					title="No posts yet"
-					icon="note"
-					action={<Button variant="ghost">Write one</Button>}
-				>
-					Drafts stay off the index until they say otherwise.
-				</Empty>
-			</div>
-		),
-		...DEMO_SOURCES.empty,
-	},
+		button: {
+			element: (
+				<div className="flex items-center gap-3 justify-center">
+					<Button>The one action</Button>
+					<Button variant="ghost">The alternative</Button>
+				</div>
+			),
+			...DEMO_SOURCES.button,
+		},
 
-	item: {
-		element: (
-			<div className="max-w-sm w-full flex col gap-1">
-				<Item
-					title="Reveal"
-					description="Fades and rises on first sight"
-					meta="v0.1.0"
-					icon="motion"
-					tone="motion"
-					href="#reveal"
+		empty: {
+			element: (
+				<div className="max-w-sm w-full">
+					<Empty
+						title="No posts yet"
+						icon="note"
+						action={<Button variant="ghost">Write one</Button>}
+					>
+						Drafts stay off the index until they say otherwise.
+					</Empty>
+				</div>
+			),
+			...DEMO_SOURCES.empty,
+		},
+
+		item: {
+			element: (
+				<div className="max-w-sm w-full flex col gap-1">
+					<Item
+						title="Reveal"
+						description="Fades and rises on first sight"
+						meta="v0.1.0"
+						icon="motion"
+						tone="motion"
+						href="#reveal"
+					/>
+					<Item
+						title="Grid"
+						description="Columns from one number"
+						meta="v0.1.0"
+						icon="grid"
+						tone="layout"
+						href="#grid"
+					/>
+				</div>
+			),
+			...DEMO_SOURCES.item,
+		},
+
+		input: {
+			element: (
+				<div className="max-w-sm w-full">
+					<Input placeholder="What are you looking for?" />
+				</div>
+			),
+			...DEMO_SOURCES.input,
+		},
+
+		textarea: {
+			element: (
+				<div className="max-w-sm w-full">
+					<Textarea placeholder="Say what happened, in order." />
+				</div>
+			),
+			...DEMO_SOURCES.textarea,
+		},
+
+		field: {
+			element: (
+				<div className="max-w-sm w-full flex col gap-4">
+					<Field label="Email" hint="Only for the reply.">
+						<Input type="email" placeholder="you@example.com" />
+					</Field>
+					<Field label="Handle" error="That one is taken.">
+						<Input defaultValue="sushi" />
+					</Field>
+				</div>
+			),
+			...DEMO_SOURCES.field,
+		},
+
+		checkbox: {
+			element: (
+				<div className="flex col gap-2">
+					<Checkbox label="Ship it" defaultChecked />
+					<Checkbox label="Write it down first" />
+				</div>
+			),
+			...DEMO_SOURCES.checkbox,
+		},
+
+		"radio-group": {
+			element: (
+				<RadioGroup
+					label="Theme"
+					defaultValue="system"
+					options={[
+						{ value: "light", label: "Light" },
+						{ value: "dark", label: "Dark" },
+						{ value: "system", label: "System" },
+					]}
 				/>
-				<Item
-					title="Grid"
-					description="Columns from one number"
-					meta="v0.1.0"
-					icon="grid"
-					tone="layout"
-					href="#grid"
-				/>
-			</div>
-		),
-		...DEMO_SOURCES.item,
-	},
+			),
+			...DEMO_SOURCES["radio-group"],
+		},
 
-	input: {
-		element: (
-			<div className="max-w-sm w-full">
-				<Input placeholder="What are you looking for?" />
-			</div>
-		),
-		...DEMO_SOURCES.input,
-	},
+		switch: {
+			element: (
+				<div className="flex col gap-3">
+					<Switch label="Smooth scrolling" defaultChecked />
+					<Switch label="Reduced motion" />
+				</div>
+			),
+			...DEMO_SOURCES.switch,
+		},
 
-	textarea: {
-		element: (
-			<div className="max-w-sm w-full">
-				<Textarea placeholder="Say what happened, in order." />
-			</div>
-		),
-		...DEMO_SOURCES.textarea,
-	},
+		"native-select": {
+			element: (
+				<div className="max-w-sm w-full">
+					<NativeSelect defaultValue="tanstack">
+						<option value="tanstack">TanStack CLI</option>
+						<option value="shadcn">shadcn</option>
+						<option value="pnpm">pnpm</option>
+					</NativeSelect>
+				</div>
+			),
+			...DEMO_SOURCES["native-select"],
+		},
 
-	field: {
-		element: (
-			<div className="max-w-sm w-full flex col gap-4">
-				<Field label="Email" hint="Only for the reply.">
-					<Input type="email" placeholder="you@example.com" />
-				</Field>
-				<Field label="Handle" error="That one is taken.">
-					<Input defaultValue="sushi" />
-				</Field>
-			</div>
-		),
-		...DEMO_SOURCES.field,
-	},
+		slider: {
+			element: (
+				<div className="max-w-sm w-full">
+					<Slider label="Simplify error" min={0} max={100} defaultValue={35} />
+				</div>
+			),
+			...DEMO_SOURCES.slider,
+		},
 
-	checkbox: {
-		element: (
-			<div className="flex col gap-2">
-				<Checkbox label="Ship it" defaultChecked />
-				<Checkbox label="Write it down first" />
-			</div>
-		),
-		...DEMO_SOURCES.checkbox,
-	},
+		progress: {
+			element: (
+				<div className="max-w-sm w-full flex col gap-4">
+					<Progress label="Uploading the model" value={64} />
+					<Progress label="Thinking" />
+				</div>
+			),
+			...DEMO_SOURCES.progress,
+		},
 
-	"radio-group": {
-		element: (
-			<RadioGroup
-				label="Theme"
-				defaultValue="system"
-				options={[
-					{ value: "light", label: "Light" },
-					{ value: "dark", label: "Dark" },
-					{ value: "system", label: "System" },
-				]}
-			/>
-		),
-		...DEMO_SOURCES["radio-group"],
-	},
+		accordion: {
+			element: (
+				<div className="max-w-sm w-full">
+					<Accordion
+						defaultOpen={["why"]}
+						items={[
+							{
+								id: "why",
+								title: "Why details?",
+								content:
+									"Toggle, keyboard and announcement ship in the element.",
+							},
+							{
+								id: "find",
+								title: "Find in page?",
+								content: "The browser opens the right panel itself.",
+							},
+							{
+								id: "close",
+								title: "Auto-close others?",
+								content: "No - that is a radio group in a costume.",
+							},
+						]}
+					/>
+				</div>
+			),
+			...DEMO_SOURCES.accordion,
+		},
 
-	switch: {
-		element: (
-			<div className="flex col gap-3">
-				<Switch label="Smooth scrolling" defaultChecked />
-				<Switch label="Reduced motion" />
-			</div>
-		),
-		...DEMO_SOURCES.switch,
-	},
+		collapsible: {
+			element: (
+				<div className="max-w-sm w-full">
+					<Collapsible summary="The fine print">
+						It was one sentence all along.
+					</Collapsible>
+				</div>
+			),
+			...DEMO_SOURCES.collapsible,
+		},
 
-	"native-select": {
-		element: (
-			<div className="max-w-sm w-full">
-				<NativeSelect defaultValue="tanstack">
-					<option value="tanstack">TanStack CLI</option>
-					<option value="shadcn">shadcn</option>
-					<option value="pnpm">pnpm</option>
-				</NativeSelect>
-			</div>
-		),
-		...DEMO_SOURCES["native-select"],
-	},
+		alert: {
+			element: (
+				<div className="max-w-sm w-full flex col gap-3">
+					<Alert title="Note" tone="note">
+						The calm default.
+					</Alert>
+					<Alert title="Caution" tone="caution">
+						The one that means it.
+					</Alert>
+				</div>
+			),
+			...DEMO_SOURCES.alert,
+		},
 
-	slider: {
-		element: (
-			<div className="max-w-sm w-full">
-				<Slider label="Simplify error" min={0} max={100} defaultValue={35} />
-			</div>
-		),
-		...DEMO_SOURCES.slider,
-	},
+		tooltip: {
+			element: (
+				<p className="m-0 text-center">
+					Hover the{" "}
+					<Tooltip label="One line, and never any controls">
+						<span className="fg-accent">underlined thing</span>
+					</Tooltip>{" "}
+					to see it.
+				</p>
+			),
+			...DEMO_SOURCES.tooltip,
+		},
 
-	progress: {
-		element: (
-			<div className="max-w-sm w-full flex col gap-4">
-				<Progress label="Uploading the model" value={64} />
-				<Progress label="Thinking" />
-			</div>
-		),
-		...DEMO_SOURCES.progress,
-	},
+		toggle: {
+			element: <ToggleDemo />,
+			...DEMO_SOURCES.toggle,
+		},
 
-	accordion: {
-		element: (
-			<div className="max-w-sm w-full">
-				<Accordion
-					defaultOpen={["why"]}
+		"bar-chart": {
+			element: (
+				<div className="w-full">
+					<BarChart
+						label="Tokens per document kind"
+						description="Source files are two thirds of the index by weight."
+						rows={[
+							{ label: "source", value: 412_310 },
+							{ label: "component", value: 188_004 },
+							{ label: "note", value: 74_920 },
+							{ label: "skill", value: 14_367 },
+							{ label: "post", value: 9_140 },
+						]}
+						colorByCategory
+						height={180}
+					/>
+				</div>
+			),
+			...DEMO_SOURCES["bar-chart"],
+		},
+
+		"data-table": {
+			element: (
+				<div className="w-full">
+					<DataTable
+						label="Documents by kind, with their token cost"
+						sortBy="tokens"
+						descending
+						rows={[
+							{ kind: "source", files: 96, tokens: 412_310 },
+							{ kind: "component", files: 245, tokens: 188_004 },
+							{ kind: "note", files: 31, tokens: 74_920 },
+							{ kind: "post", files: 6, tokens: 9_140 },
+						]}
+						columns={[
+							{ id: "kind", header: "Kind", sortable: true },
+							{
+								id: "files",
+								header: "Files",
+								numeric: true,
+								sortable: true,
+								cell: (row) => row.files.toLocaleString(),
+							},
+							{
+								id: "tokens",
+								header: "Tokens",
+								numeric: true,
+								sortable: true,
+								cell: (row) => row.tokens.toLocaleString(),
+							},
+						]}
+					/>
+				</div>
+			),
+			...DEMO_SOURCES["data-table"],
+		},
+
+		"dropdown-menu": {
+			element: (
+				<DropdownMenu
+					label="Actions"
+					icon="terminal"
 					items={[
+						{ id: "open", label: "Open on the site", icon: "link" },
+						{ id: "retitle", label: "Change title…", icon: "text" },
+						{ id: "move", label: "Change slug…", icon: "folder" },
 						{
-							id: "why",
-							title: "Why details?",
-							content: "Toggle, keyboard and announcement ship in the element.",
-						},
-						{
-							id: "find",
-							title: "Find in page?",
-							content: "The browser opens the right panel itself.",
-						},
-						{
-							id: "close",
-							title: "Auto-close others?",
-							content: "No - that is a radio group in a costume.",
+							id: "remove",
+							label: "Remove…",
+							icon: "close",
+							destructive: true,
 						},
 					]}
+					// A demo, so it says what it would do rather than doing it.
+					onSelect={() => {}}
 				/>
-			</div>
-		),
-		...DEMO_SOURCES.accordion,
-	},
+			),
+			...DEMO_SOURCES["dropdown-menu"],
+		},
 
-	collapsible: {
-		element: (
-			<div className="max-w-sm w-full">
-				<Collapsible summary="The fine print">
-					It was one sentence all along.
-				</Collapsible>
-			</div>
-		),
-		...DEMO_SOURCES.collapsible,
-	},
-
-	alert: {
-		element: (
-			<div className="max-w-sm w-full flex col gap-3">
-				<Alert title="Note" tone="note">
-					The calm default.
-				</Alert>
-				<Alert title="Caution" tone="caution">
-					The one that means it.
-				</Alert>
-			</div>
-		),
-		...DEMO_SOURCES.alert,
-	},
-
-	tooltip: {
-		element: (
-			<p className="m-0 text-center">
-				Hover the{" "}
-				<Tooltip label="One line, and never any controls">
-					<span className="fg-accent">underlined thing</span>
-				</Tooltip>{" "}
-				to see it.
-			</p>
-		),
-		...DEMO_SOURCES.tooltip,
-	},
-
-	toggle: {
-		element: <ToggleDemo />,
-		...DEMO_SOURCES.toggle,
-	},
-
-	"bar-chart": {
-		element: (
-			<div className="w-full">
-				<BarChart
-					label="Tokens per document kind"
-					description="Source files are two thirds of the index by weight."
-					rows={[
-						{ label: "source", value: 412_310 },
-						{ label: "component", value: 188_004 },
-						{ label: "note", value: 74_920 },
-						{ label: "skill", value: 14_367 },
-						{ label: "post", value: 9_140 },
-					]}
-					colorByCategory
-					height={180}
-				/>
-			</div>
-		),
-		...DEMO_SOURCES["bar-chart"],
-	},
-
-	"data-table": {
-		element: (
-			<div className="w-full">
-				<DataTable
-					label="Documents by kind, with their token cost"
-					sortBy="tokens"
-					descending
-					rows={[
-						{ kind: "source", files: 96, tokens: 412_310 },
-						{ kind: "component", files: 245, tokens: 188_004 },
-						{ kind: "note", files: 31, tokens: 74_920 },
-						{ kind: "post", files: 6, tokens: 9_140 },
-					]}
-					columns={[
-						{ id: "kind", header: "Kind", sortable: true },
-						{
-							id: "files",
-							header: "Files",
-							numeric: true,
-							sortable: true,
-							cell: (row) => row.files.toLocaleString(),
-						},
-						{
-							id: "tokens",
-							header: "Tokens",
-							numeric: true,
-							sortable: true,
-							cell: (row) => row.tokens.toLocaleString(),
-						},
-					]}
-				/>
-			</div>
-		),
-		...DEMO_SOURCES["data-table"],
-	},
-
-	"dropdown-menu": {
-		element: (
-			<DropdownMenu
-				label="Actions"
-				icon="terminal"
-				items={[
-					{ id: "open", label: "Open on the site", icon: "link" },
-					{ id: "retitle", label: "Change title…", icon: "text" },
-					{ id: "move", label: "Change slug…", icon: "folder" },
-					{
-						id: "remove",
-						label: "Remove…",
-						icon: "close",
-						destructive: true,
-					},
-				]}
-				// A demo, so it says what it would do rather than doing it.
-				onSelect={() => {}}
-			/>
-		),
-		...DEMO_SOURCES["dropdown-menu"],
-	},
-
-	workbench: {
-		element: (
-			<div className="w-full">
-				<Workbench
-					title="documents"
-					label="A workbench with all four of its slots filled"
-					maxHeight="14rem"
-					toolbar={<Button>New</Button>}
-					rail={
-						<div className="flex col gap-2">
-							<span className="label">Kind</span>
-							{["component", "post", "page"].map((kind) => (
-								<span key={kind} className="text-sm fg-dim">
-									{kind}
-								</span>
+		workbench: {
+			element: (
+				<div className="w-full">
+					<Workbench
+						title="documents"
+						label="A workbench with all four of its slots filled"
+						maxHeight="14rem"
+						toolbar={<Button>New</Button>}
+						rail={
+							<div className="flex col gap-2">
+								<span className="label">Kind</span>
+								{["component", "post", "page"].map((kind) => (
+									<span key={kind} className="text-sm fg-dim">
+										{kind}
+									</span>
+								))}
+							</div>
+						}
+						status={
+							<span className="workbench-stat">
+								<b>50</b> of <b>1,240</b>
+							</span>
+						}
+					>
+						<div className="flex col gap-3">
+							<h3 className="m-0">The body scrolls on its own</h3>
+							{Array.from({ length: 8 }, (_, at) => (
+								// biome-ignore lint/suspicious/noArrayIndexKey: static demo rows
+								<p key={at} className="m-0 text-sm fg-dim">
+									Row {at + 1}, inside the screen rather than on the page.
+								</p>
 							))}
 						</div>
-					}
-					status={
-						<span className="workbench-stat">
-							<b>50</b> of <b>1,240</b>
-						</span>
-					}
-				>
-					<div className="flex col gap-3">
-						<h3 className="m-0">The body scrolls on its own</h3>
-						{Array.from({ length: 8 }, (_, at) => (
+					</Workbench>
+				</div>
+			),
+			...DEMO_SOURCES.workbench,
+		},
+
+		table: {
+			element: (
+				<div className="max-w-sm w-full">
+					<Table
+						caption="Registry items by category"
+						rowKey={(row: { name: string }) => row.name}
+						columns={[
+							{ key: "name", header: "Category", render: (r) => r.name },
+							{
+								key: "count",
+								header: "Items",
+								align: "right",
+								render: (r: { count: number }) => r.count,
+							},
+						]}
+						rows={[
+							{ name: "Motion", count: 6 },
+							{ name: "Layout", count: 17 },
+							{ name: "Content", count: 24 },
+						]}
+					/>
+				</div>
+			),
+			...DEMO_SOURCES.table,
+		},
+
+		"scroll-area": {
+			element: (
+				<div className="max-w-sm w-full">
+					<ScrollArea maxHeight="10rem">
+						{Array.from({ length: 12 }, (_, i) => (
 							// biome-ignore lint/suspicious/noArrayIndexKey: static demo rows
-							<p key={at} className="m-0 text-sm fg-dim">
-								Row {at + 1}, inside the screen rather than on the page.
+							<p key={i} className="m-0 text-sm py-2">
+								Row {i + 1} of a list taller than its frame
 							</p>
 						))}
-					</div>
-				</Workbench>
-			</div>
-		),
-		...DEMO_SOURCES.workbench,
-	},
+					</ScrollArea>
+				</div>
+			),
+			...DEMO_SOURCES["scroll-area"],
+		},
 
-	table: {
-		element: (
-			<div className="max-w-sm w-full">
-				<Table
-					caption="Registry items by category"
-					rowKey={(row: { name: string }) => row.name}
-					columns={[
-						{ key: "name", header: "Category", render: (r) => r.name },
-						{
-							key: "count",
-							header: "Items",
-							align: "right",
-							render: (r: { count: number }) => r.count,
-						},
-					]}
-					rows={[
-						{ name: "Motion", count: 6 },
-						{ name: "Layout", count: 17 },
-						{ name: "Content", count: 24 },
-					]}
+		dialog: {
+			element: <DialogDemo />,
+			...DEMO_SOURCES.dialog,
+		},
+
+		sheet: {
+			element: <SheetDemo />,
+			...DEMO_SOURCES.sheet,
+		},
+
+		toast: {
+			element: <ToastDemo />,
+			...DEMO_SOURCES.toast,
+		},
+
+		typography: {
+			element: (
+				<div>
+					<Label>Eyebrow</Label>
+					<Heading as="h3" size="h2">
+						A heading, sized apart from its level
+					</Heading>
+					<Lead>
+						The paragraph under a title: dimmed, measured, never full-width.
+					</Lead>
+				</div>
+			),
+			...DEMO_SOURCES.typography,
+		},
+
+		"code-block": {
+			element: (
+				<CodeBlock
+					code={`export function greet(name: string): string {\n\t// The CLI's colours, on the slab\n\treturn \`hello, \${name}\`;\n}`}
+					language="ts"
 				/>
-			</div>
-		),
-		...DEMO_SOURCES.table,
-	},
+			),
+			...DEMO_SOURCES["code-block"],
+		},
 
-	"scroll-area": {
-		element: (
-			<div className="max-w-sm w-full">
-				<ScrollArea maxHeight="10rem">
-					{Array.from({ length: 12 }, (_, i) => (
-						// biome-ignore lint/suspicious/noArrayIndexKey: static demo rows
-						<p key={i} className="m-0 text-sm py-2">
-							Row {i + 1} of a list taller than its frame
-						</p>
-					))}
-				</ScrollArea>
-			</div>
-		),
-		...DEMO_SOURCES["scroll-area"],
-	},
+		"copy-button": {
+			element: (
+				<div className="flex items-center gap-3 justify-center">
+					<code className="code">
+						pnpm add @sushindustries/ui
+						<CopyButton text="pnpm add @sushindustries/ui" ground="paper" />
+					</code>
+				</div>
+			),
+			...DEMO_SOURCES["copy-button"],
+		},
 
-	dialog: {
-		element: <DialogDemo />,
-		...DEMO_SOURCES.dialog,
-	},
+		"secret-reveal": {
+			element: (
+				<SecretReveal
+					value="aj_0Q8mWm4Nn2rTgq0v3xJd7YbK1sPzR6cH"
+					label="Copy the token"
+				/>
+			),
+			...DEMO_SOURCES["secret-reveal"],
+		},
 
-	sheet: {
-		element: <SheetDemo />,
-		...DEMO_SOURCES.sheet,
-	},
+		reference: {
+			element: (
+				<p className="m-0 text-center">
+					The figure at the top of every component page is a{" "}
+					<Ref
+						reference={{
+							title: "Showcase",
+							href: "/components/showcase",
+							summary:
+								"A component at every width it has to survive, with its source beside it.",
+							meta: "@sushindustries/ui · content",
+						}}
+					>
+						Showcase
+					</Ref>
+					, and hovering the mention tells you so.
+				</p>
+			),
+			...DEMO_SOURCES.reference,
+		},
 
-	toast: {
-		element: <ToastDemo />,
-		...DEMO_SOURCES.toast,
-	},
+		frontmatter: {
+			element: <FrontmatterDemo />,
+			poster: <p className="label text-center">Reads the metadata block</p>,
+			...DEMO_SOURCES.frontmatter,
+		},
 
-	typography: {
-		element: (
-			<div>
-				<Label>Eyebrow</Label>
-				<Heading as="h3" size="h2">
-					A heading, sized apart from its level
-				</Heading>
-				<Lead>
-					The paragraph under a title: dimmed, measured, never full-width.
-				</Lead>
-			</div>
-		),
-		...DEMO_SOURCES.typography,
-	},
-
-	"code-block": {
-		element: (
-			<CodeBlock
-				code={`export function greet(name: string): string {\n\t// The CLI's colours, on the slab\n\treturn \`hello, \${name}\`;\n}`}
-				language="ts"
-			/>
-		),
-		...DEMO_SOURCES["code-block"],
-	},
-
-	"copy-button": {
-		element: (
-			<div className="flex items-center gap-3 justify-center">
-				<code className="code">
-					pnpm add @sushindustries/ui
-					<CopyButton text="pnpm add @sushindustries/ui" ground="paper" />
-				</code>
-			</div>
-		),
-		...DEMO_SOURCES["copy-button"],
-	},
-
-	"secret-reveal": {
-		element: (
-			<SecretReveal
-				value="aj_0Q8mWm4Nn2rTgq0v3xJd7YbK1sPzR6cH"
-				label="Copy the token"
-			/>
-		),
-		...DEMO_SOURCES["secret-reveal"],
-	},
-
-	reference: {
-		element: (
-			<p className="m-0 text-center">
-				The figure at the top of every component page is a{" "}
-				<Ref
-					reference={{
-						title: "Showcase",
-						href: "/components/showcase",
-						summary:
-							"A component at every width it has to survive, with its source beside it.",
-						meta: "@sushindustries/ui · content",
-					}}
+		"product-viewer": {
+			/*
+			 * A poster, because a WebGL scene has nothing to server-render.
+			 *
+			 * The showcase asserts every component page shows *something* without
+			 * JavaScript, and a `<Suspense>` fallback is not that - it is the
+			 * absence of the thing, rendered. `product-variants` beside this has
+			 * had a poster the whole time; this one did not, and nothing noticed
+			 * until it had a registry entry and a page to be measured on.
+			 */
+			poster: <p className="label text-center">A model, turning</p>,
+			element: (
+				<Suspense
+					fallback={<p className="label text-center">Loading the mark</p>}
 				>
-					Showcase
-				</Ref>
-				, and hovering the mention tells you so.
-			</p>
-		),
-		...DEMO_SOURCES.reference,
-	},
+					<ProductViewer model={model} loadingLabel="Loading the mark" />
+				</Suspense>
+			),
+			...DEMO_SOURCES["product-viewer"],
+		},
 
-	frontmatter: {
-		element: <FrontmatterDemo />,
-		poster: <p className="label text-center">Reads the metadata block</p>,
-		...DEMO_SOURCES.frontmatter,
-	},
-
-	"product-viewer": {
 		/*
-		 * A poster, because a WebGL scene has nothing to server-render.
+		 * The variant system, shown rather than described.
 		 *
-		 * The showcase asserts every component page shows *something* without
-		 * JavaScript, and a `<Suspense>` fallback is not that - it is the
-		 * absence of the thing, rendered. `product-variants` beside this has
-		 * had a poster the whole time; this one did not, and nothing noticed
-		 * until it had a registry entry and a page to be measured on.
+		 * One GLB, four appearances. `logo.glb` carries KHR_materials_variants with
+		 * Original, White, Black and Nothing in it, so this is the model's own data
+		 * doing the work - not four files, and not four materials assigned by hand.
+		 *
+		 * Worth a demo because the documentation had a section explaining variants
+		 * and nothing on the page that let you see one. A three-dimensional feature
+		 * described in prose is the one kind of documentation nobody believes.
 		 */
-		poster: <p className="label text-center">A model, turning</p>,
-		element: (
-			<Suspense
-				fallback={<p className="label text-center">Loading the mark</p>}
-			>
-				<ProductViewer model={LOGO_MODEL} loadingLabel="Loading the mark" />
-			</Suspense>
-		),
-		...DEMO_SOURCES["product-viewer"],
-	},
-
-	/*
-	 * The variant system, shown rather than described.
-	 *
-	 * One GLB, four appearances. `logo.glb` carries KHR_materials_variants with
-	 * Original, White, Black and Nothing in it, so this is the model's own data
-	 * doing the work - not four files, and not four materials assigned by hand.
-	 *
-	 * Worth a demo because the documentation had a section explaining variants
-	 * and nothing on the page that let you see one. A three-dimensional feature
-	 * described in prose is the one kind of documentation nobody believes.
-	 */
-	"product-variants": {
-		poster: <p className="label text-center">One model, four variants</p>,
-		element: <VariantsDemo />,
-		...DEMO_SOURCES["product-variants"],
-	},
-};
-
-export function findDemo(id: string): Demo | undefined {
-	return DEMOS[id];
+		"product-variants": {
+			poster: <p className="label text-center">One model, four variants</p>,
+			element: <VariantsDemo host={host} />,
+			...DEMO_SOURCES["product-variants"],
+		},
+	};
 }

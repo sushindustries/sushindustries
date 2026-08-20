@@ -53,6 +53,7 @@ export default defineConfig([
 							default: "./dist/registry.js",
 						}
 					: "./registry.ts";
+
 				return exports;
 			},
 		},

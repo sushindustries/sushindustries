@@ -1,4 +1,5 @@
 import { Archive, type ArchiveItem, parseArchive } from "@sushindustries/ui";
+import { hasDemo } from "@sushindustries/ui/demo-sources";
 import { REGISTRY_CATEGORIES } from "@sushindustries/ui/registry";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
@@ -9,7 +10,6 @@ import {
 	componentsCollectionPage,
 	ldScript,
 } from "../../modules/seo/structured-data";
-import { hasDemo } from "../../modules/showcase/demo-sources";
 
 const searchSchema = z.object({
 	category: z.string().optional(),

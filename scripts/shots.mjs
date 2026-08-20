@@ -248,10 +248,8 @@ stop();
  */
 if (only.length === 0) {
 	const sourceHash = createHash("sha256")
-		.update(readFileSync(join(root, "apps/web/src/modules/showcase/demos.tsx")))
-		.update(
-			readFileSync(join(root, "apps/web/src/modules/showcase/demo-sources.ts")),
-		)
+		.update(readFileSync(join(root, "packages/ui/src/demos.tsx")))
+		.update(readFileSync(join(root, "packages/ui/src/demo-sources.ts")))
 		.digest("hex");
 
 	writeFileSync(

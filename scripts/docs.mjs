@@ -197,9 +197,9 @@ let demoIds;
 export function demoNames() {
 	if (demoIds) return demoIds;
 
-	const source = read("apps/web/src/modules/showcase/demos.tsx");
+	const source = read("packages/ui/src/demos.tsx");
 	demoIds = new Set(
-		[...source.matchAll(/^\t"?([\w-]+)"?:\s*\{/gm)].map(([, id]) => id),
+		[...source.matchAll(/^\t\t"?([\w-]+)"?:\s*\{/gm)].map(([, id]) => id),
 	);
 
 	return demoIds;

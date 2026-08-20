@@ -154,7 +154,7 @@ def _component_links(root: Path, slug: str) -> list[Link]:
     barrel = f"packages/{package}/src/index.ts"
     registry = f"packages/{package}/registry.ts"
     docs = f"packages/{package}/docs/{slug}/index.md"
-    demos = "apps/web/src/modules/showcase/demos.tsx"
+    demos = "packages/ui/src/demos.tsx"
     return [
         Link("source", source, owner is not None, True, f"pnpm new component {slug}"),
         Link(

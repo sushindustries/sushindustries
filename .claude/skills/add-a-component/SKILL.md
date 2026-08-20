@@ -40,7 +40,7 @@ file.
 2. packages/ui/src/index.ts              export it
 3. packages/ui/package.json              exports subpath
 4. packages/ui/registry.ts               registry entry  -> REQUIRED
-5. apps/web/src/modules/showcase/demos.tsx   live demo   -> optional
+5. packages/ui/src/demos.tsx   live demo   -> optional
 6. packages/ui/docs/<slug>/*.md          docs           -> optional
 ```
 
@@ -133,7 +133,7 @@ request from `packages/ui/src`, which stays the only copy.
 ### 5. The demo
 
 ```tsx
-// apps/web/src/modules/showcase/demos.tsx
+// packages/ui/src/demos.tsx
 "my-thing": {
 	element: <MyThing title="Hello" />,
 	source: `<MyThing title="Hello" />`,

@@ -6,12 +6,12 @@ import {
 	type DocNavSection,
 	MarkdownView,
 } from "@sushindustries/ui";
+import { findDemoSource, hasDemo } from "@sushindustries/ui/demo-sources";
 import { REGISTRY_CATEGORIES } from "@sushindustries/ui/registry";
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { BLOCKS } from "../../markdown/blocks";
 import { listRegistry } from "../../registry/registry.catalogue";
-import { findDemoSource, hasDemo } from "../../showcase/demo-sources";
 import { DocActions } from "../doc-actions";
 import { DocBacklinks } from "../doc-backlinks";
 import { DocFeedback } from "../doc-feedback";

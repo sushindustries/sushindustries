@@ -3,11 +3,11 @@ import {
 	renderPageDocument,
 	renderSectionIndex,
 } from "@sushindustries/llms";
+import { findDemoSource, hasDemo } from "@sushindustries/ui/demo-sources";
 import { markdown, notFoundMarkdown } from "../registry/agent-setup.server";
 import { originFrom } from "../registry/registry.server";
 import { describeSite } from "../seo/llms.server";
 import { siteSections } from "../seo/site-index";
-import { findDemoSource, hasDemo } from "../showcase/demo-sources";
 import { findComponentPage } from "./components/component-page";
 
 /*

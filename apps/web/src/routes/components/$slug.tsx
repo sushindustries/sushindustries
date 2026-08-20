@@ -1,3 +1,4 @@
+import { hasDemo } from "@sushindustries/ui/demo-sources";
 import { createFileRoute, notFound, Outlet } from "@tanstack/react-router";
 import { loadComponentDoc } from "../../modules/content/components/component-doc";
 import { seo } from "../../modules/seo/seo";
@@ -5,7 +6,6 @@ import {
 	componentSourceCode,
 	ldScript,
 } from "../../modules/seo/structured-data";
-import { hasDemo } from "../../modules/showcase/demo-sources";
 
 /*
  * One component, opened at its first section.

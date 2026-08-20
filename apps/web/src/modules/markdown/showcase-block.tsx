@@ -3,10 +3,10 @@ import {
 	type MarkdownBlockProps,
 	Showcase,
 } from "@sushindustries/ui";
+import { findDemoSource } from "@sushindustries/ui/demo-sources";
 import type { ReactNode } from "react";
 import { SITE } from "../content/site.catalogue";
 import { findRegistryItem } from "../registry/registry.catalogue";
-import { findDemoSource } from "../showcase/demo-sources";
 import { StackblitzEmbed } from "../showcase/stackblitz-embed";
 
 /*
