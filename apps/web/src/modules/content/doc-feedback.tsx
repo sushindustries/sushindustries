@@ -2,7 +2,6 @@ import { usePostHog } from "@posthog/react";
 import { CopyButton, Icon } from "@sushindustries/ui";
 import { safeRandomUUID } from "@tanstack/db";
 import { useLiveQuery } from "@tanstack/react-db";
-import { useQueryClient } from "@tanstack/react-query";
 import { ClientOnly } from "@tanstack/react-router";
 import { type ReactNode, useMemo, useState } from "react";
 import { createFeedbackCollection } from "./feedback-collection";
@@ -33,24 +32,18 @@ export function DocFeedback(props: DocFeedbackProps): ReactNode {
 }
 
 /*
- * The collection needs its request's own QueryClient, not one fixed at
- * import time - `getRouter()` makes a fresh one per request on the server,
- * and a module-scope collection would carry a stale client across requests
- * in the same long-lived process. `ClientOnly` already keeps this off the
- * server entirely, so in practice this always runs against the one
- * QueryClient the browser session has - but built the same way regardless,
- * because "always true today" is not the same guarantee as "correct by
- * construction".
+ * The collection opens an Electric stream, so it is built here rather than at
+ * import time and torn down with the component: a module-scope one would hold
+ * a live connection open for every page the reader has ever visited, and on
+ * the server it would outlive the request that made it. `ClientOnly` already
+ * keeps this off the server entirely - built the same way regardless, because
+ * "always true today" is not the same guarantee as "correct by construction".
  */
 function DocFeedbackLive({ page, markdown }: DocFeedbackProps): ReactNode {
-	const queryClient = useQueryClient();
 	const posthog = usePostHog();
 	const [hasVoted, setHasVoted] = useState(false);
 
-	const collection = useMemo(
-		() => createFeedbackCollection(queryClient, page),
-		[queryClient, page],
-	);
+	const collection = useMemo(() => createFeedbackCollection(page), [page]);
 
 	const { data, isLoading } = useLiveQuery((q) => q.from({ v: collection }));
 

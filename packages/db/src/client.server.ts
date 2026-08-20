@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as schema from "./schema";
@@ -40,4 +40,42 @@ export function getPageVotes(
 	page: string,
 ): Promise<Array<typeof schema.pageFeedback.$inferSelect>> {
 	return getDb().select().from(pageFeedback).where(eq(pageFeedback.page, page));
+}
+
+/**
+ * Records a vote and reports the transaction that recorded it.
+ *
+ * The transaction id is the whole reason this is a function rather than an
+ * `insert` at the call site. Electric streams rows out of the Postgres
+ * replication log, so a client that has just written one is racing its own
+ * write back to itself: TanStack DB holds the optimistic row until it sees
+ * the sync catch up, and `txid` is what it matches on. Without it the
+ * optimistic row is dropped the moment the write resolves and reappears a
+ * beat later when the stream delivers it, which reads as a vote flickering
+ * off and on.
+ *
+ * `pg_current_xact_id()` has to be read inside the same transaction as the
+ * insert, which is why both are in one `db.transaction`. Read outside it, the
+ * number belongs to a different transaction than the row and matches nothing.
+ *
+ * A number, because that is what TanStack DB's matching contract takes. The
+ * underlying value is `xid8` and therefore 64-bit, so this is exact only up
+ * to 2^53 transactions on one database - about nine quadrillion, and a
+ * counter this one will not reach. Narrowed here rather than at the call
+ * site so there is one place to change if it ever needs to be a string.
+ */
+export async function recordPageVote(
+	vote: schema.NewPageFeedback,
+): Promise<{ txid: number }> {
+	return getDb().transaction(async (tx) => {
+		await tx.insert(pageFeedback).values(vote);
+
+		const [row] = await tx.execute<{ txid: string }>(
+			sql`select pg_current_xact_id()::text as txid`,
+		);
+
+		if (!row) throw new Error("No transaction id came back with the vote.");
+
+		return { txid: Number(row.txid) };
+	});
 }

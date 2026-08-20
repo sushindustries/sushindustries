@@ -1,4 +1,3 @@
-import { pageFeedback } from "@sushindustries/db/schema";
 import { createFileRoute } from "@tanstack/react-router";
 import * as z from "zod";
 
@@ -63,14 +62,22 @@ export const Route = createFileRoute("/api/feedback")({
 				}
 
 				try {
-					const { getDb } = await import("@sushindustries/db/client");
-					await getDb().insert(pageFeedback).values(parsed.data);
+					const { recordPageVote } = await import("@sushindustries/db/client");
+					/*
+					 * The transaction id goes back to the caller, because the
+					 * caller is a TanStack DB collection whose rows arrive over
+					 * Electric a moment later - it needs to recognise its own
+					 * write coming back rather than treat it as a second vote.
+					 * See `feedback-collection.ts`.
+					 */
+					return Response.json(await recordPageVote(parsed.data));
 				} catch {
-					// No database in this environment: the vote is still worth a line.
+					// No database in this environment: the vote is still worth a
+					// line, and a null txid says there is no transaction to wait
+					// for rather than leaving the client blocked on one.
 					console.info(`[feedback] ${parsed.data.vote} ${parsed.data.page}`);
+					return Response.json({ txid: null });
 				}
-
-				return new Response(null, { status: 204 });
 			},
 		},
 	},

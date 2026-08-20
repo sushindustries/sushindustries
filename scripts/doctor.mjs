@@ -2820,6 +2820,68 @@ function checkCitedFilesExist() {
  * filesystem, and reaching into a workspace package for a twenty-line
  * traversal would make the gate depend on the thing it is gating.
  */
+/**
+ * Server-only code is named, not filed.
+ *
+ * TanStack Start keeps `.server.*` out of the client bundle by matching a
+ * glob, and the glob needs a segment before `.server.` - so protection is a
+ * property of the *file name* and of nothing else. A `server/` directory,
+ * which is how most module-architecture guides lay this out, matches neither
+ * pattern and is therefore not protected at all: a repository file reading
+ * `DATABASE_URL` inside one builds clean, with no diagnostic anywhere, and
+ * ships to the browser.
+ *
+ * Measured rather than assumed, on 2026-08-19 and again when this was
+ * written: a bare `server.ts` reading `process.env.DATABASE_URL` and imported
+ * from a route component built with zero errors, while the same file renamed
+ * `probe.server.ts` failed the build. `vite.config.ts` carries the note.
+ *
+ * The patterns are read out of that config rather than repeated here. Two
+ * copies of a rule is a rule that will disagree with itself, and this one
+ * would disagree silently - the check would keep passing against patterns the
+ * build no longer uses.
+ */
+function checkServerCodeIsNamedNotFiled() {
+	const config = read("apps/web/vite.config.ts");
+
+	const declared = /files:\s*\[([^\]]*)\]/.exec(config)?.[1];
+	if (!declared) {
+		report(
+			"import-protection",
+			"apps/web/vite.config.ts",
+			"no `files` array under importProtection, so nothing here can be checked",
+			"restate the client deny patterns, or delete this check",
+		);
+		return;
+	}
+
+	const patterns = [...declared.matchAll(/"([^"]+)"/g)].map((one) => one[1]);
+
+	/*
+	 * A directory is protected only if some pattern would match a file placed
+	 * directly inside it. `**​/*.server.*` needs a dot-segment in the name and
+	 * `**​/server.ts` needs the file itself to be called that, so neither ever
+	 * covers `server/anything.ts` - but this asks the patterns rather than
+	 * asserting it, so a future pattern that *does* cover it turns this check
+	 * off by itself instead of producing a false report.
+	 */
+	const covered = patterns.some((pattern) => /^\*\*\/server\/\*/.test(pattern));
+	if (covered) return;
+
+	for (const path of trackedFiles()) {
+		if (!path.startsWith("apps/web/src/")) continue;
+		if (!/\.tsx?$/.test(path)) continue;
+		if (!path.split("/").slice(0, -1).includes("server")) continue;
+
+		report(
+			"import-protection",
+			path,
+			"sits in a `server/` directory, which no client deny pattern matches",
+			"rename it `<something>.server.ts`; the suffix is what the build enforces",
+		);
+	}
+}
+
 function checkGraphIsAcyclic() {
 	const edges = new Map();
 	const apps = new Set();
@@ -3455,6 +3517,7 @@ await checkWorkspaceReadmes(list);
 checkGeneratedFilesAreOrdered();
 checkDocumentKindsAgree();
 checkGraphIsAcyclic();
+checkServerCodeIsNamedNotFiled();
 checkStackVersionsAreCurrent();
 checkAuthoredFrontmatter();
 await checkGraphqlOperationsValidate();
