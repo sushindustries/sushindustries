@@ -71,6 +71,13 @@
       "when": 1787218568905,
       "tag": "0009_access-tokens",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1787220678663,
+      "tag": "0010_magic-links",
+      "breakpoints": true
     }
   ]
 }

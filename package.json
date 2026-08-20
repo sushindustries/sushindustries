@@ -9,7 +9,7 @@
 	},
 	"scripts": {
 		"build": "turbo run build",
-		"check": "pnpm run doctor && pnpm exec biome check . && pnpm run typecheck && pnpm run build && pnpm run test",
+		"check": "pnpm run doctor && pnpm exec biome check . && pnpm run knip && pnpm run typecheck && pnpm run build && pnpm run test",
 		"db:generate": "pnpm --filter @sushindustries/db db:generate",
 		"db:migrate": "pnpm --filter @sushindustries/db db:migrate",
 		"db:studio": "pnpm --filter @sushindustries/db db:studio",
@@ -27,15 +27,16 @@
 		"start": "pnpm --filter @sushindustries/web start",
 		"sushindustries": "node packages/cli/adam-jurek.mjs",
 		"test": "turbo run test",
-		"typecheck": "turbo run typecheck"
+		"typecheck": "turbo run typecheck",
+		"knip": "knip"
 	},
 	"devDependencies": {
 		"@arethetypeswrong/core": "^0.18.5",
 		"@biomejs/biome": "2.5.8",
-		"@tanstack/cli": "0.70.2",
 		"@tanstack/intent": "0.3.6",
 		"@types/node": "26.2.0",
 		"husky": "^9.1.7",
+		"knip": "^6.32.2",
 		"publint": "^0.3.23",
 		"tsdown": "0.22.14",
 		"turbo": "2.10.10",

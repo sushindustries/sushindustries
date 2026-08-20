@@ -52,8 +52,6 @@ export const collectionFilter = z.object({
 	limit: z.coerce.number().int().min(1).max(200).default(50),
 });
 
-export type CollectionFilter = z.output<typeof collectionFilter>;
-
 export const collection = collectionFilter.extend({
 	id: slug,
 	title: z.string().min(1).max(120),

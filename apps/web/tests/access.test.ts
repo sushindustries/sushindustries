@@ -1,13 +1,19 @@
 import { randomBytes } from "node:crypto";
-import { getDb } from "@sushindustries/db/client";
-import { accounts, apiTokens, eq } from "@sushindustries/db/schema";
-import { afterAll, describe, expect, inject, it } from "vitest";
-import type { MintTokenRequest } from "../src/modules/access/access.schemas";
+import type { InviteRequest, MintRequest } from "@sushindustries/access";
+import {
+	invite,
+	preview,
+	redeem,
+	withdraw,
+} from "@sushindustries/access/invites.server";
 import {
 	accountForLogin,
 	mint,
 	revoke,
-} from "../src/modules/access/tokens.server";
+} from "@sushindustries/access/tokens.server";
+import { getDb } from "@sushindustries/db/client";
+import { accounts, apiTokens, eq, magicLinks } from "@sushindustries/db/schema";
+import { afterAll, describe, expect, inject, it } from "vitest";
 
 /*
  * The gate, checked against the endpoints it is a gate for.
@@ -55,9 +61,7 @@ function ask(
 	});
 }
 
-async function tokenFor(
-	overrides: Partial<MintTokenRequest> = {},
-): Promise<string> {
+async function tokenFor(overrides: Partial<MintRequest> = {}): Promise<string> {
 	const account = await accountForLogin(LOGIN, "owner");
 	const minted = await mint(
 		{
@@ -185,5 +189,129 @@ describe.skipIf(!process.env.DATABASE_URL)("the bearer gate", () => {
 		});
 
 		expect(response.status).toBe(401);
+	});
+});
+
+/*
+ * Invitations, and the property the whole design rests on.
+ *
+ * A link is a short-lived credential that produces a long-lived one, so the
+ * question that matters is not "does redeeming work" - it is "can redeeming
+ * happen twice". These run against the same database the built server reads,
+ * and the concurrency test fires the redemptions together rather than in
+ * sequence, because a sequential pair passes against an implementation that
+ * reads the row and then updates it, which is exactly the implementation this
+ * is here to rule out.
+ */
+describe.skipIf(!process.env.DATABASE_URL)("invitations", () => {
+	const EMAIL = `invited-${randomBytes(6).toString("hex")}@example.test`;
+
+	afterAll(async () => {
+		await getDb().delete(magicLinks).where(eq(magicLinks.email, EMAIL));
+		await getDb().delete(accounts).where(eq(accounts.email, EMAIL));
+	});
+
+	/** Creates one and digs the secret back out of the returned URL. */
+	async function invited(
+		overrides: Partial<InviteRequest> = {},
+	): Promise<{ key: string; id: string }> {
+		const owner = await accountForLogin(LOGIN, "owner");
+		const result = await invite(
+			{
+				email: EMAIL,
+				tokenName: "invited agent",
+				scopes: ["docs:read"],
+				expiresInDays: null,
+				...overrides,
+			},
+			owner.id,
+		);
+
+		// The package hands back the secret and sends nothing, which is the
+		// seam: delivery is the application's, and a test that had to stub a
+		// mailer to check a redemption would be testing the wrong layer.
+		expect(result.secret).toMatch(/^aji_/);
+
+		return { key: result.secret, id: result.summary.id };
+	}
+
+	it("previews without spending the link", async () => {
+		const { key } = await invited();
+
+		const first = await preview(key);
+		expect(first?.tokenName).toBe("invited agent");
+
+		// Twice, because a preview that consumed the link would make every mail
+		// scanner in the world a denial of service against invitations.
+		const second = await preview(key);
+		expect(second?.tokenName).toBe("invited agent");
+	});
+
+	it("mints a token carrying the scopes the invitation chose", async () => {
+		const { key } = await invited({
+			scopes: ["studio:read"],
+			tokenName: "reporter",
+		});
+
+		const minted = await redeem(key);
+		expect(minted?.summary.name).toBe("reporter");
+		expect(minted?.summary.scopes).toStrictEqual(["studio:read"]);
+
+		// And the token actually works on the endpoint that scope names.
+		const response = await fetch(`${base()}/studio/report`, {
+			headers: { authorization: `Bearer ${minted?.token}` },
+		});
+		expect(response.status).toBe(200);
+	});
+
+	it("refuses the second redemption of one link", async () => {
+		const { key } = await invited();
+
+		expect(await redeem(key)).not.toBeNull();
+		expect(await redeem(key)).toBeNull();
+	});
+
+	/*
+	 * The one that would catch a read-then-write implementation.
+	 *
+	 * Both redemptions are in flight before either resolves, so a version that
+	 * checked `redeemed_at` in JavaScript and updated afterwards would let both
+	 * see null and mint two tokens from one invitation.
+	 */
+	it("mints once even when redeemed twice at the same moment", async () => {
+		const { key } = await invited();
+
+		const [a, b] = await Promise.all([redeem(key), redeem(key)]);
+		const won = [a, b].filter((one) => one !== null);
+
+		expect(won).toHaveLength(1);
+	});
+
+	it("refuses a link that has expired", async () => {
+		const { key, id } = await invited();
+
+		await getDb()
+			.update(magicLinks)
+			.set({ expiresAt: new Date(Date.now() - 1000) })
+			.where(eq(magicLinks.id, id));
+
+		expect(await preview(key)).toBeNull();
+		expect(await redeem(key)).toBeNull();
+	});
+
+	it("refuses a link that was withdrawn", async () => {
+		const { key, id } = await invited();
+
+		await withdraw(id);
+
+		expect(await preview(key)).toBeNull();
+		expect(await redeem(key)).toBeNull();
+	});
+
+	it("refuses a key that was never issued", async () => {
+		expect(
+			await redeem(`aji_${randomBytes(32).toString("base64url")}`),
+		).toBeNull();
+		expect(await redeem("not-even-the-right-shape")).toBeNull();
 	});
 });

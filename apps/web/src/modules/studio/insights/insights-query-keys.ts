@@ -1,5 +1,6 @@
 import { queryOptions } from "@tanstack/react-query";
-import { listStudioInsights, readStudioInsight } from "./insights.functions";
+import { PROJECTION, rootFor } from "../studio.cache";
+import { listStudioInsights } from "./insights.functions";
 
 /*
  * Keys, and the options built on them.
@@ -9,9 +10,8 @@ import { listStudioInsights, readStudioInsight } from "./insights.functions";
  * every metric reads and there is no insight it cannot have changed.
  */
 export const insightKeys = {
-	all: ["studio", "insights"] as const,
+	all: rootFor(PROJECTION, "insights"),
 	list: () => [...insightKeys.all, "list"] as const,
-	detail: (id: string) => [...insightKeys.all, "detail", id] as const,
 };
 
 export const insightsQueryOptions = () =>
@@ -23,12 +23,5 @@ export const insightsQueryOptions = () =>
 		 * projection only moves when a sync runs - so refetching faster asks the
 		 * same question of the same rows.
 		 */
-		staleTime: 60_000,
-	});
-
-export const insightQueryOptions = (id: string) =>
-	queryOptions({
-		queryKey: insightKeys.detail(id),
-		queryFn: () => readStudioInsight({ data: { id } }),
 		staleTime: 60_000,
 	});

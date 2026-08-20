@@ -182,16 +182,3 @@ export function sessionCookie(login: string, secure: boolean): string {
 		.filter(Boolean)
 		.join("; ");
 }
-
-/** The `Set-Cookie` that signs somebody out. */
-export const clearCookie = (secure: boolean) =>
-	[
-		`${COOKIE}=`,
-		"Path=/",
-		"HttpOnly",
-		"SameSite=Lax",
-		"Max-Age=0",
-		secure ? "Secure" : "",
-	]
-		.filter(Boolean)
-		.join("; ");

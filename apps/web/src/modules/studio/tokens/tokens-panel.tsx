@@ -1,25 +1,26 @@
+import type { MintedToken, TokenSummary } from "@sushindustries/access";
 import {
 	Alert,
 	Badge,
 	Button,
 	Checkbox,
-	CopyButton,
 	DataTable,
 	type DataTableColumn,
 	Field,
 	Input,
 	NativeSelect,
+	SecretReveal,
 	Workbench,
 } from "@sushindustries/ui";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { type ReactNode, useState } from "react";
 import {
-	type MintedToken,
+	LIVES,
 	SCOPE_NAMES,
 	SCOPES,
 	type Scope,
-	type TokenSummary,
 } from "../../access/access.schemas";
+import { CREDENTIALS } from "../studio.cache";
 import { mintStudioToken, revokeStudioToken } from "./tokens.functions";
 import { tokenKeys, tokensQueryOptions } from "./tokens-query-keys";
 
@@ -42,14 +43,6 @@ import { tokenKeys, tokensQueryOptions } from "./tokens-query-keys";
 const when = (value: string | null) =>
 	value ? new Date(value).toLocaleDateString() : "-";
 
-/** How long a token lasts, as the handful of answers anybody actually gives. */
-const LIVES = [
-	{ label: "30 days", days: 30 },
-	{ label: "90 days", days: 90 },
-	{ label: "A year", days: 365 },
-	{ label: "Never expires", days: null },
-] as const;
-
 export function TokensPanel(): ReactNode {
 	const client = useQueryClient();
 	const tokens = useQuery(tokensQueryOptions());
@@ -62,7 +55,7 @@ export function TokensPanel(): ReactNode {
 	const refresh = () => client.invalidateQueries({ queryKey: tokenKeys.all });
 
 	const create = useMutation({
-		scope: { id: "studio-tokens" },
+		scope: CREDENTIALS,
 		mutationFn: () =>
 			mintStudioToken({
 				data: {
@@ -79,7 +72,7 @@ export function TokensPanel(): ReactNode {
 	});
 
 	const withdraw = useMutation({
-		scope: { id: "studio-tokens" },
+		scope: CREDENTIALS,
 		mutationFn: (id: string) => revokeStudioToken({ data: { id } }),
 		onSuccess: refresh,
 	});
@@ -267,25 +260,19 @@ function Minted({
 				mint another.
 			</p>
 
-			<pre className="studio-secret">
-				<code>{minted.token}</code>
-			</pre>
-
-			<div className="flex items-center gap-2 wrap">
-				<CopyButton text={minted.token} ground="paper" label="Copy the token" />
+			<SecretReveal value={minted.token} label="Copy the token">
 				<Button variant="ghost" onClick={onDismiss}>
 					I have stored it
 				</Button>
-			</div>
+			</SecretReveal>
 
 			<p className="fg-dim text-sm">
 				Register it with an agent by pointing the MCP client at this deployment:
 			</p>
-			<pre className="studio-secret">
-				<code>
-					{`claude mcp add --transport http sushindustries \\\n  <origin>/mcp \\\n  --header "Authorization: Bearer ${minted.summary.prefix}…"`}
-				</code>
-			</pre>
+			<SecretReveal
+				copy={false}
+				value={`claude mcp add --transport http sushindustries \\\n  <origin>/mcp \\\n  --header "Authorization: Bearer ${minted.summary.prefix}…"`}
+			/>
 		</Alert>
 	);
 }

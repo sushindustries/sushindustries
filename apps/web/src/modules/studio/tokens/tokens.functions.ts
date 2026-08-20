@@ -1,12 +1,12 @@
-import { createServerFn } from "@tanstack/react-start";
-import { getRequest } from "@tanstack/react-start/server";
-import { mintTokenRequest } from "../../access/access.schemas";
 import {
 	accountForLogin,
 	list,
 	mint,
 	revoke,
-} from "../../access/tokens.server";
+} from "@sushindustries/access/tokens.server";
+import { createServerFn } from "@tanstack/react-start";
+import { getRequest } from "@tanstack/react-start/server";
+import { mintTokenRequest } from "../../access/access.schemas";
 import { openSession } from "../../content/github-auth.server";
 
 /*

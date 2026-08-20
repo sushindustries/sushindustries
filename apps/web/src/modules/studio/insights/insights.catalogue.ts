@@ -1,4 +1,8 @@
-import { parseFrontmatter, readString } from "@sushindustries/ui";
+import {
+	parseFrontmatter,
+	readString,
+	splitFrontmatter,
+} from "@sushindustries/ui";
 import { type Insight, insight as insightSchema } from "./insights.schemas";
 
 /*
@@ -23,12 +27,6 @@ const FILES = import.meta.glob<string>("../../../../content/insights/*.md", {
 
 const idFromPath = (path: string) =>
 	path.split("/").at(-1)?.replace(/\.md$/, "") ?? "";
-
-function splitFrontmatter(raw: string): { frontmatter: string; body: string } {
-	const match = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/.exec(raw);
-	if (!match) return { frontmatter: "", body: raw };
-	return { frontmatter: match[1] ?? "", body: raw.slice(match[0].length) };
-}
 
 function toInsight(path: string, raw: string): Insight | undefined {
 	const id = idFromPath(path);
@@ -59,9 +57,4 @@ const INSIGHTS: readonly Insight[] = Object.entries(FILES)
 
 export function listInsights(): readonly Insight[] {
 	return INSIGHTS.filter((one) => !one.draft);
-}
-
-/** One by id, drafts included - the same contract a draft post has. */
-export function findInsight(id: string): Insight | undefined {
-	return INSIGHTS.find((one) => one.id === id);
 }

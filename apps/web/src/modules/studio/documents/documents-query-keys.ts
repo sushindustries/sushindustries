@@ -1,4 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
+import { PROJECTION, rootFor } from "../studio.cache";
 import {
 	listDocuments,
 	readDocument,
@@ -27,7 +28,7 @@ import type { DocumentsQuery } from "./documents.schemas";
  */
 
 export const documentKeys = {
-	all: ["studio", "documents"] as const,
+	all: rootFor(PROJECTION, "documents"),
 
 	lists: () => [...documentKeys.all, "list"] as const,
 	list: (query: DocumentsQuery) => [...documentKeys.lists(), query] as const,

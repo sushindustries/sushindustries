@@ -65,22 +65,6 @@ export async function readViews(path: string): Promise<PageStat | null> {
 	}
 }
 
-/** Every counted page of one kind, newest reads first. */
-export async function readViewsByKind(
-	kind: PageKind,
-): Promise<PageStat[] | null> {
-	try {
-		const rows = await getDb()
-			.select()
-			.from(pageViews)
-			.where(eq(pageViews.kind, kind));
-
-		return rows.map(toStat);
-	} catch {
-		return null;
-	}
-}
-
 /**
  * Count a read, in one statement.
  *

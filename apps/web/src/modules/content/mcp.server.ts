@@ -98,9 +98,27 @@ export function siteServer(): McpServer {
 				lines.push("");
 			}
 
+			/*
+			 * The entries, not just how many there are.
+			 *
+			 * This returned `{ total }` and the lines above as text, which reads
+			 * fine in a client that shows text and hands back nothing usable to one
+			 * that prefers structured content - such a client displays `{"total":
+			 * 99}` for a tool whose own description promises "a path, a title and
+			 * one sentence". The text is what a person reads; this is the same
+			 * answer for something that is going to filter it.
+			 */
 			return {
 				...text(lines.join("\n").trimEnd() || "Nothing matches that section."),
-				structuredContent: { total: all.length },
+				structuredContent: {
+					total: all.length,
+					entries: all.map((entry) => ({
+						path: entry.path,
+						section: entry.section,
+						title: entry.title,
+						description: entry.description ?? null,
+					})),
+				},
 			};
 		},
 	);

@@ -1,4 +1,8 @@
-import { parseFrontmatter, readString } from "@sushindustries/ui";
+import {
+	parseFrontmatter,
+	readString,
+	splitFrontmatter,
+} from "@sushindustries/ui";
 
 /*
  * Built pages: Markdown assembled from the block layer.
@@ -25,12 +29,6 @@ const FILES = import.meta.glob<string>("../../../../content/pages/*.md", {
 	import: "default",
 	query: "?raw",
 });
-
-function splitFrontmatter(raw: string): { frontmatter: string; body: string } {
-	const match = /^---\n([\s\S]*?)\n---\n?/.exec(raw);
-	if (!match) return { frontmatter: "", body: raw };
-	return { frontmatter: match[1] ?? "", body: raw.slice(match[0].length) };
-}
 
 function toPage(path: string, raw: string): BuiltPage | undefined {
 	const slug = path.split("/").at(-1)?.replace(/\.md$/, "");

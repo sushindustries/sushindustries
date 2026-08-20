@@ -3,8 +3,8 @@ import { z } from "zod";
 /*
  * The vocabulary every studio feature shares, and nothing else.
  *
- * `documents/`, `collections/`, `overview/` and `writers/` are four features
- * that know almost nothing about each other. What they do share is small and
+ * `documents/`, `collections/`, `hub/` and `overview/` are features that
+ * know almost nothing about each other. What they do share is small and
  * load-bearing: what a slug may be, what a repository path may be, what a page
  * of results looks like. That is this file.
  *
@@ -69,8 +69,6 @@ export const paging = z.object({
 	limit: z.coerce.number().int().min(1).max(200).default(50),
 	offset: z.coerce.number().int().min(0).default(0),
 });
-
-export type Paging = z.output<typeof paging>;
 
 /**
  * A page of rows, and how many there are in total.

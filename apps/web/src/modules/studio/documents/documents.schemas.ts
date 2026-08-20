@@ -39,8 +39,6 @@ export const DOCUMENT_KINDS = [
 	"source",
 ] as const;
 
-export type DocumentKind = (typeof DOCUMENT_KINDS)[number];
-
 /**
  * The kinds a person can author, out of the kinds that exist.
  *

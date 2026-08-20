@@ -3,6 +3,7 @@ import { useDebouncedValue } from "@tanstack/react-pacer";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getRouteApi } from "@tanstack/react-router";
 import { type ReactNode, useState } from "react";
+import { PROJECTION, REPOSITORY } from "../studio.cache";
 import type { WriteResult } from "../studio.schemas";
 import { applyDocumentAction } from "./documents.functions";
 import type {
@@ -149,13 +150,13 @@ export function DocumentsWorkspace(): ReactNode {
 		 * press waits for the first to finish and then plans against the file the
 		 * first one wrote.
 		 */
-		scope: { id: "studio-writes" },
+		scope: REPOSITORY,
 		mutationFn: (request: DocumentActionRequest) =>
 			applyDocumentAction({ data: request }),
 		onSuccess: (answer) => {
 			setResult(answer);
 			if (answer.applied) {
-				client.invalidateQueries({ queryKey: documentKeys.all });
+				client.invalidateQueries({ queryKey: PROJECTION });
 				// The document it was showing may not be at that path any more.
 				if (answer.action === "move" || answer.action === "remove") {
 					setSelected(null);

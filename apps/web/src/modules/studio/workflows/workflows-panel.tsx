@@ -10,7 +10,7 @@ import {
 } from "@sushindustries/ui";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { type ReactNode, useState } from "react";
-import { documentKeys } from "../documents/documents-query-keys";
+import { PROJECTION, REPOSITORY } from "../studio.cache";
 import { startWorkflow } from "./workflows.functions";
 import type { WorkflowRun } from "./workflows.schemas";
 import { workflowsQueryOptions } from "./workflows-query-keys";
@@ -68,21 +68,26 @@ export function WorkflowsPanel(): ReactNode {
 	 * tables - the second would win, having done the same work twice.
 	 */
 	const start = useMutation({
-		scope: { id: "studio-workflows" },
+		scope: REPOSITORY,
 		mutationFn: (id: string) => startWorkflow({ data: { id, confirm: true } }),
 		onSuccess: (run) => {
 			setResult(run);
 			setPending(null);
 
 			/*
-			 * A successful sync rewrote every document row, so everything the
-			 * studio is showing is now the old copy. Invalidating the documents
-			 * feature is the cheapest correct answer - narrower would mean
-			 * knowing which rows moved, which is exactly what a wholesale rewrite
-			 * does not tell you.
+			 * A successful sync rewrote the whole projection, so everything drawn
+			 * from it is now the old copy - the documents, the collections whose
+			 * membership is a query over them, every insight computed from them,
+			 * and the counts in the hub and the header.
+			 *
+			 * Invalidating the origin rather than each feature is what makes that
+			 * true rather than merely intended. This invalidated the documents
+			 * alone, and the other four went on serving pre-sync numbers under a
+			 * header reporting the sync had finished. A section added under
+			 * `PROJECTION` tomorrow is refreshed by this line untouched.
 			 */
 			if (run.ok && run.id === "sync") {
-				client.invalidateQueries({ queryKey: documentKeys.all });
+				client.invalidateQueries({ queryKey: PROJECTION });
 			}
 		},
 	});

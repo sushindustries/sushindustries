@@ -59,6 +59,7 @@ import {
 	ScrollArea,
 	ScrollSpin,
 	type ScrollTurn,
+	SecretReveal,
 	Section,
 	Separator,
 	Sheet,
@@ -1976,6 +1977,16 @@ export const DEMOS: Readonly<Record<string, Demo>> = {
 			</div>
 		),
 		...DEMO_SOURCES["copy-button"],
+	},
+
+	"secret-reveal": {
+		element: (
+			<SecretReveal
+				value="aj_0Q8mWm4Nn2rTgq0v3xJd7YbK1sPzR6cH"
+				label="Copy the token"
+			/>
+		),
+		...DEMO_SOURCES["secret-reveal"],
 	},
 
 	reference: {

@@ -1,4 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
+import { PROJECTION, rootFor } from "../studio.cache";
 import { readHubBars } from "./hub.functions";
 
 /*
@@ -9,7 +10,7 @@ import { readHubBars } from "./hub.functions";
  * is the silent version of a prefetch: paid for, and never read.
  */
 export const hubKeys = {
-	all: ["studio", "hub"] as const,
+	all: rootFor(PROJECTION, "hub"),
 	bars: () => [...hubKeys.all, "bars"] as const,
 };
 

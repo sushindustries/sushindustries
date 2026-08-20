@@ -21,9 +21,18 @@
 
 import { fail } from "./lib/ui.mjs";
 
-const [command, ...rest] = process.argv
-	.slice(2)
-	.filter((a) => !a.startsWith("--"));
+const argv = process.argv.slice(2);
+
+/*
+ * Flags are stripped before the command is taken, which is why the help flags
+ * have to be looked for in the raw argv rather than in `command`. `--help`
+ * filtered itself out, left `command` undefined, and took the "invoked with
+ * nothing" branch - printing the usage and exiting 1, so it looked like it had
+ * worked and failed every `set -e` script that ran it.
+ */
+const askedForHelp = argv.some((one) => one === "--help" || one === "-h");
+
+const [command, ...rest] = argv.filter((a) => !a.startsWith("--"));
 
 const COMMANDS = {
 	async stack() {
@@ -69,15 +78,32 @@ const COMMANDS = {
 	},
 };
 
-if (!command || command === "help") {
-	usage();
-	process.exit(command ? 0 : 1);
+/*
+ * `--help` and `-h` as well as `help`, because those are what people type and
+ * what a shell completion offers. They used to fall through to the unknown
+ * command branch, which printed the usage and then exited 1 - so `adam-jurek
+ * --help` looked like it worked and failed every `set -e` script and CI step
+ * that ran it.
+ *
+ * Asking for help succeeds. Invoking with nothing at all does not: there is no
+ * default action, and exiting 0 having done nothing is how a broken pipeline
+ * stays green.
+ */
+if (askedForHelp || !command || command === "help") {
+	await usage();
+
+	// Asking for help succeeds. Invoking with nothing at all does not: there is
+	// no default action, and exiting 0 having done nothing is how a broken
+	// pipeline stays green.
+	process.exit(askedForHelp || command ? 0 : 1);
 }
 
 const run = COMMANDS[command];
 if (!run) {
 	fail(`Unknown command "${command}".`);
-	usage();
+	// Awaited: `usage` reads the tool groups from their own module, so exiting
+	// without waiting printed the error and none of the help under it.
+	await usage();
 	process.exit(1);
 }
 
@@ -88,7 +114,22 @@ try {
 	process.exit(1);
 }
 
-function usage() {
+/*
+ * The groups are read from the module that defines them, not typed here.
+ *
+ * This line said "docs, stack, authoring" and had said it since before
+ * `collections` was added - so the group the MCP server itself calls "the one
+ * to reach for first" was the one the help did not mention. A list of names
+ * beside the thing that owns the names is a list that goes stale silently,
+ * which is the whole argument for importing it.
+ *
+ * The import is dynamic so it only costs anything when help is actually asked
+ * for, and it is `await`ed by the one caller.
+ */
+async function usage() {
+	const { GROUPS } = await import("./mcp/index.mjs");
+	const groups = Object.keys(GROUPS).join(", ");
+
 	console.log(`
 adam-jurek - the command line for adamjurek.com
 
@@ -103,8 +144,8 @@ adam-jurek - the command line for adamjurek.com
   pnpm sushindustries graphql          write the GraphQL schema from the tables
   pnpm sushindustries studio           browse the deployed database
   pnpm sushindustries sync             write the index into Postgres
-  pnpm sushindustries mcp              serve all seventeen tools on stdio
-  pnpm sushindustries mcp <group>      serve one group: docs, stack, authoring
+  pnpm sushindustries mcp              serve every tool on stdio
+  pnpm sushindustries mcp <group>      serve one group: ${groups}
   pnpm sushindustries mcp install      how to register it, four ways
 
 Everything reads this repository. stack and refs maintain the data, sync and

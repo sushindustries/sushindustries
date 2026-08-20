@@ -22,7 +22,6 @@ export const green = (value) => paint("32", value);
 export const yellow = (value) => paint("33", value);
 export const red = (value) => paint("31", value);
 export const cyan = (value) => paint("36", value);
-export const magenta = (value) => paint("35", value);
 
 export const blank = () => console.log("");
 

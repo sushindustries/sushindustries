@@ -1,4 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
+import { ACCESS, rootFor } from "../studio.cache";
 import { listStudioTokens } from "./tokens.functions";
 
 /*
@@ -16,7 +17,7 @@ import { listStudioTokens } from "./tokens.functions";
  */
 
 export const tokenKeys = {
-	all: ["studio", "tokens"] as const,
+	all: rootFor(ACCESS, "tokens"),
 	lists: () => [...tokenKeys.all, "list"] as const,
 };
 

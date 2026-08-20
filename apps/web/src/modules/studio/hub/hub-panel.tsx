@@ -2,10 +2,10 @@ import { BarChart, Collapsible, Icon, MarkdownView } from "@sushindustries/ui";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { hubBarsQueryOptions } from "./overview/hub-query-keys";
-import { hubConfig } from "./studio.catalogue";
-import { readySections } from "./studio.sections";
-import { StudioSearch } from "./studio-search";
+import { hubConfig } from "../studio.catalogue";
+import { readySections } from "../studio.sections";
+import { StudioSearch } from "../studio-search";
+import { hubBarsQueryOptions } from "./hub-query-keys";
 
 /*
  * The hub: one card per section, and nothing else.
@@ -23,7 +23,7 @@ import { StudioSearch } from "./studio-search";
  * and a route file - this file does not change, and cannot fall behind.
  */
 
-export function StudioHub(): ReactNode {
+export function HubPanel(): ReactNode {
 	const config = hubConfig();
 	const bars = useQuery(hubBarsQueryOptions());
 

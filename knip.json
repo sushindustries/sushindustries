@@ -1,0 +1,14 @@
+{
+	"$schema": "https://unpkg.com/knip@6/schema.json",
+	"ignoreDependencies": ["@tanstack/intent"],
+	"ignoreBinaries": ["rover", "railway", "drizzle-kit"],
+	"ignoreExportsUsedInFile": true,
+	"workspaces": {
+		"apps/web": {
+			"entry": ["src/routes/**/*.{ts,tsx}", "tests/**/*.test.ts"]
+		},
+		"packages/cli": {
+			"entry": ["commands/*.mjs", "mcp/*.mjs"]
+		}
+	}
+}

@@ -40,6 +40,7 @@ COPY packages/cli/package.json packages/cli/
 # hardcode one platform's service id into a Dockerfile that should build
 # anywhere. The manifest-only COPY above is what actually saves the time.
 COPY packages/github/package.json packages/github/
+COPY packages/access/package.json packages/access/
 
 RUN pnpm install --frozen-lockfile
 

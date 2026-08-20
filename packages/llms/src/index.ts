@@ -498,7 +498,9 @@ function splitFrontmatter(source: string): {
 	frontmatter: Record<string, string>;
 	body: string;
 } {
-	const match = /^---\n([\s\S]*?)\n---\n?/.exec(source);
+	// `\r?` on both newlines: a file that round-tripped through a Windows
+	// editor is otherwise indistinguishable and silently loses its frontmatter.
+	const match = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/.exec(source);
 	if (!match) return { frontmatter: {}, body: source };
 
 	const frontmatter: Record<string, string> = {};

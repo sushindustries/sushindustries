@@ -1,33 +1,28 @@
+import {
+	type Scope as AnyScope,
+	type InviteSummary,
+	LINK_MINUTES,
+} from "@sushindustries/access";
 import { z } from "zod";
 
 /*
- * What a token is allowed to be, as constants and a schema.
+ * What a scope means here, and what a form is allowed to ask for.
  *
- * Client-safe by suffix and by contents: the mint form imports this to build
- * its checkboxes, the server function imports it to validate what the form
- * sent, and the API route imports it to describe itself. One declaration read
- * three ways, because a scope list written twice is a scope the UI offers and
- * the gate has never heard of.
+ * `@sushindustries/access` stores scopes, compares them and hands them back,
+ * and deliberately has no idea what any of them opens. That question is this
+ * site's, and this file is the answer: the four strings that exist, what each
+ * one is called, and which endpoints it lets through.
  *
- * Nothing here hashes, signs or connects. That is `tokens.server.ts`.
+ * Everything a browser needs comes from here or from the package's own
+ * client-safe entry - the mint form builds its checkboxes from `SCOPES`, the
+ * server functions validate against these schemas, and the API route describes
+ * itself from the same table. A scope list written twice is a scope the
+ * interface offers and the gate has never heard of.
+ *
+ * Nothing here hashes, signs or connects.
  */
 
-/**
- * The prefix every token carries. Three characters and an underscore.
- *
- * It exists so a leaked token is greppable. A secret scanner - GitHub's, or
- * mine - can only find a credential it can recognise, and a bare base64 string
- * is indistinguishable from every other bare base64 string in a log.
- */
-export const TOKEN_PREFIX = "aj_";
-
-/**
- * How much of a token is kept in the clear, counting the prefix.
- *
- * Eleven characters: `aj_` and eight of the secret. Enough that a list of
- * tokens can be told apart, and 48 bits short of enough to be worth guessing.
- */
-export const PREFIX_LENGTH = 11;
+export { LINK_MINUTES };
 
 /**
  * The scopes that exist, and what each one actually opens.
@@ -72,11 +67,42 @@ export type Scope = keyof typeof SCOPES;
 
 export const SCOPE_NAMES = Object.keys(SCOPES) as readonly Scope[];
 
-/** Splits the stored column back into scopes. Space-separated, OAuth style. */
-export function parseScopes(stored: string): readonly Scope[] {
-	return stored.split(/\s+/).filter((one): one is Scope => one in SCOPES);
+/**
+ * The scopes on a stored credential that this site still recognises.
+ *
+ * The package hands back whatever strings were saved, which is the honest
+ * thing for it to do: a scope removed from the table above does not vanish
+ * from the tokens that already carry it. This narrows to the ones that can be
+ * described, so a listing showing titles never looks one up and finds nothing.
+ */
+export function knownScopes(scopes: readonly AnyScope[]): readonly Scope[] {
+	return scopes.filter((one): one is Scope => one in SCOPES);
 }
 
+/** How long a token may last, as the handful of answers anybody actually gives. */
+export const LIVES = [
+	{ label: "30 days", days: 30 },
+	{ label: "90 days", days: 90 },
+	{ label: "A year", days: 365 },
+	{ label: "Never expires", days: null },
+] as const;
+
+const scopeList = z
+	.array(z.enum(SCOPE_NAMES as [Scope, ...Scope[]]))
+	.min(1)
+	.max(SCOPE_NAMES.length);
+
+const lifetime = z.number().int().min(1).max(3650).nullable();
+
+/*
+ * The inferred types of these two schemas are deliberately not exported.
+ *
+ * They would be a second name for `MintRequest` and `InviteRequest` in
+ * `@sushindustries/access`, which is what the handlers actually pass them to -
+ * and two names for one shape is how a field gets added to the one nobody is
+ * importing. What a validator produces has to satisfy the package's type, and
+ * the compiler checks that at the call site without a re-export.
+ */
 export const mintTokenRequest = z.object({
 	/** What it is for, in the holder's words. Required, and required for a reason. */
 	name: z.string().trim().min(1).max(64),
@@ -85,10 +111,7 @@ export const mintTokenRequest = z.object({
 	 * At least one. A token with no scopes authenticates and authorises nothing,
 	 * which is a support question rather than a security posture.
 	 */
-	scopes: z
-		.array(z.enum(SCOPE_NAMES as [Scope, ...Scope[]]))
-		.min(1)
-		.max(SCOPE_NAMES.length),
+	scopes: scopeList,
 
 	/**
 	 * Null means it never expires, and the form has to say so out loud.
@@ -97,43 +120,51 @@ export const mintTokenRequest = z.object({
 	 * default of 90 days would silently break the cron somebody set up in March.
 	 * So it is asked, every time, and the answer is recorded.
 	 */
-	expiresInDays: z.number().int().min(1).max(3650).nullable(),
+	expiresInDays: lifetime,
 });
 
-export type MintTokenRequest = z.infer<typeof mintTokenRequest>;
+/*
+ * There is deliberately no "email me a link" endpoint anywhere in this site.
+ * An invitation is created by the signed-in owner, so there is no way for a
+ * stranger to make this deployment send mail to an address of their choosing -
+ * the abuse surface every public magic-link form has is absent by construction
+ * rather than defended with a rate limiter.
+ */
+export const inviteRequest = z.object({
+	/**
+	 * Lower-cased here rather than at the database, so the value that is stored
+	 * and the value that is compared come out of the same expression.
+	 */
+	email: z
+		.string()
+		.trim()
+		.toLowerCase()
+		.email("That does not look like an email address.")
+		.max(254),
+
+	/** What the token they collect will be called, in a list of tokens. */
+	tokenName: z.string().trim().min(1).max(64),
+
+	scopes: scopeList,
+
+	/** The lifetime of the token they collect. Not of the link. */
+	expiresInDays: lifetime,
+});
 
 /**
- * A token as anything other than its creator ever sees it.
+ * What creating an invitation returns to the studio.
  *
- * No secret and no hash. This is what the studio lists, what the API returns,
- * and what a future account page would show its owner - the same shape in all
- * three places, so none of them can accidentally be the one that leaks.
+ * `url` is present only when nothing sent it. With a mailer configured the
+ * link goes to the address and never comes back through this response, which
+ * is the arrangement that makes redemption evidence the address was real; with
+ * no mailer it has to be handed over by whoever created it, and the studio says
+ * plainly that this proves nothing about who receives it.
  */
-export interface TokenSummary {
-	readonly id: string;
-	readonly name: string;
-	readonly prefix: string;
-	readonly scopes: readonly Scope[];
-	readonly createdAt: string;
-	readonly expiresAt: string | null;
-	readonly lastUsedAt: string | null;
-	readonly revokedAt: string | null;
+export interface Invited {
+	readonly summary: InviteSummary;
+	readonly url: string | null;
+	readonly delivered: "sent" | "not-configured" | "failed";
 
-	/** The account it belongs to, as something a person can read. */
-	readonly holder: string;
-
-	/**
-	 * Worked out here rather than left to every caller.
-	 *
-	 * "Is this token live" is three comparisons - revoked, expired, blocked -
-	 * and a listing that renders two of them is a listing that shows a dead
-	 * token as green. One field, computed once, beside the data it describes.
-	 */
-	readonly state: "active" | "expired" | "revoked";
-}
-
-/** The one moment the secret exists outside the holder's hands. */
-export interface MintedToken {
-	readonly token: string;
-	readonly summary: TokenSummary;
+	/** Why delivery failed, when it did. Shown to the owner, never to a visitor. */
+	readonly detail: string | null;
 }

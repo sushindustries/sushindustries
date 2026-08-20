@@ -112,6 +112,16 @@ export function readRegistry() {
 			).replace(/\\"/g, '"'),
 			category: block.match(/category:\s*"([^"]+)"/)?.[1],
 			/*
+			 * The vocabulary fields, which this reader did not parse and the
+			 * taxonomy check therefore could not see. That is the third time in
+			 * one day a check passed by having nothing to look at - the pattern
+			 * is always the same: this parser reads what somebody needed at the
+			 * time, so a field nothing had asked for yet is a field it does not
+			 * know, and a checker reading `undefined` finds no violations.
+			 */
+			subcategory: block.match(/subcategory:\s*"([^"]+)"/)?.[1],
+			tags: list("tags"),
+			/*
 			 * The one nested structure in an item, so it gets its own parse.
 			 *
 			 * `list()` above cannot read it: that helper stops at the first `]`,

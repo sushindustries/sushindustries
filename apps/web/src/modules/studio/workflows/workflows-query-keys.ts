@@ -1,4 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
+import { RUNTIME, rootFor } from "../studio.cache";
 import { listWorkflows } from "./workflows.functions";
 
 /*
@@ -10,7 +11,7 @@ import { listWorkflows } from "./workflows.functions";
  * is the wrong answer in the most confusing possible way.
  */
 export const workflowKeys = {
-	all: ["studio", "workflows"] as const,
+	all: rootFor(RUNTIME, "workflows"),
 	list: () => [...workflowKeys.all, "list"] as const,
 };
 

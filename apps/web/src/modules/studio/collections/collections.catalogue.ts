@@ -1,4 +1,8 @@
-import { parseFrontmatter, readString } from "@sushindustries/ui";
+import {
+	parseFrontmatter,
+	readString,
+	splitFrontmatter,
+} from "@sushindustries/ui";
 import {
 	type Collection,
 	collection as collectionSchema,
@@ -42,12 +46,6 @@ const idFromPath = (path: string) =>
  * `../../../../` that only means anything to Vite.
  */
 const repoPath = (id: string) => `apps/web/content/collections/${id}.md`;
-
-function splitFrontmatter(raw: string): { frontmatter: string; body: string } {
-	const match = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/.exec(raw);
-	if (!match) return { frontmatter: "", body: raw };
-	return { frontmatter: match[1] ?? "", body: raw.slice(match[0].length) };
-}
 
 function toCollection(path: string, raw: string): Collection | undefined {
 	const id = idFromPath(path);

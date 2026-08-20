@@ -1,4 +1,9 @@
-import { parseFrontmatter, readList, readString } from "@sushindustries/ui";
+import {
+	parseFrontmatter,
+	readList,
+	readString,
+	splitFrontmatter,
+} from "@sushindustries/ui";
 import type { Post, PostSummary } from "./posts.schemas";
 
 /*
@@ -19,22 +24,6 @@ const FILES = import.meta.glob<string>("../../../../content/posts/*.md", {
 /** `.../posts/hello-world.md` -> `hello-world` */
 function slugFromPath(path: string): string {
 	return path.split("/").at(-1)?.replace(/\.md$/, "") ?? "";
-}
-
-/*
- * The parser reports frontmatter but hands back the original source, so the
- * body has to be split off here or every post renders its own metadata as a
- * paragraph of text.
- */
-function splitFrontmatter(raw: string): { frontmatter: string; body: string } {
-	const match = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/.exec(raw);
-
-	if (!match) return { frontmatter: "", body: raw };
-
-	return {
-		frontmatter: match[1] ?? "",
-		body: raw.slice(match[0].length),
-	};
 }
 
 function toPost(path: string, raw: string): Post | undefined {

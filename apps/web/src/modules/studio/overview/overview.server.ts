@@ -10,6 +10,17 @@ import {
 } from "@sushindustries/db/schema";
 
 /*
+ * The report: what the projection holds, how old it is, and what it cost.
+ *
+ * This directory held two features until they were separated. `hub.*` drew the
+ * chart on `/studio` and `overview.*` answered the header and `/studio/report`,
+ * they shared no code and no import, and they shared a directory - so one
+ * folder carried two naming schemes and a reader had to open a file to learn
+ * which of the two it belonged to. The hub is now `../hub/`, and this is only
+ * the report.
+ */
+
+/*
  * What is in the database, in one query's worth of answers.
  *
  * The question a database browser was being opened to answer, without the

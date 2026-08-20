@@ -1,5 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import { readStudio } from "../modules/studio/overview/overview.functions";
+import { overviewQueryOptions } from "../modules/studio/overview/overview-query-keys";
 import { StudioHeader } from "../modules/studio/studio-header";
 
 /*
@@ -36,10 +37,29 @@ export const Route = createFileRoute("/studio")({
 	 * not a route calls it - a guard that only protects the page is a guard that
 	 * looks correct in a screenshot.
 	 */
-	loader: async () => {
-		const view = await readStudio();
-		if (!view) throw redirect({ href: "/auth/github" });
-		return view;
+	loader: async ({ context }) => {
+		/*
+		 * `ensureQueryData` rather than a bare call, so the gate and the header
+		 * are one fetch. The loader still has to hold the answer - the redirect
+		 * below cannot wait for a component - and filling the cache with it means
+		 * the header reads the same object through `useQuery` and can be
+		 * invalidated afterwards, which as loader data it could not be.
+		 */
+		const view = await context.queryClient.ensureQueryData(
+			overviewQueryOptions(),
+		);
+
+		/*
+		 * The destination comes back with the answer rather than being written
+		 * here, because which door to offer depends on the environment and the
+		 * host - and this file is in the client bundle, where neither is visible.
+		 *
+		 * It used to be a literal `/auth/github`, which was wrong on a laptop:
+		 * this repo's OAuth app has one callback URL and it points at the
+		 * deployment, so signing in locally bounced to a flow that could not
+		 * finish. The only way in was knowing `/auth/dev` existed.
+		 */
+		if (!("login" in view)) throw redirect({ href: view.signInHref });
 	},
 	component: Studio,
 	head: () => ({
@@ -53,7 +73,18 @@ export const Route = createFileRoute("/studio")({
 });
 
 function Studio() {
-	const { report, login } = Route.useLoaderData();
+	/*
+	 * Read from the cache the loader filled, not from loader data. The two would
+	 * hold the same object on first paint and diverge the moment anything
+	 * invalidated the projection - and the header is precisely the thing that
+	 * has to notice when it does.
+	 */
+	const view = useQuery(overviewQueryOptions());
+
+	// The loader redirected anybody without a session, so by here there is one.
+	if (!view.data || !("login" in view.data)) return null;
+
+	const { report, login } = view.data;
 
 	/*
 	 * `container` is the page's own width and gutters - the same one every other

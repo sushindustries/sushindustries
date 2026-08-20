@@ -106,14 +106,3 @@ export function navEntries(): readonly NavEntry[] {
 
 	return entries;
 }
-
-/**
- * Every glyph the nav asks for, so the doctor's check has something to compare
- * against without parsing TSX.
- */
-export function navIcons(): readonly string[] {
-	return navEntries().flatMap((entry) => [
-		...(entry.icon ? [entry.icon] : []),
-		...(entry.items ?? []).flatMap((item) => (item.icon ? [item.icon] : [])),
-	]);
-}

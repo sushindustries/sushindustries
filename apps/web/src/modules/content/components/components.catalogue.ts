@@ -1,4 +1,8 @@
-import { parseFrontmatter, readString } from "@sushindustries/ui";
+import {
+	parseFrontmatter,
+	readString,
+	splitFrontmatter,
+} from "@sushindustries/ui";
 
 /*
  * Component docs, from `packages/<pkg>/docs/<slug>/<section>.md`.
@@ -73,13 +77,6 @@ function partsFrom(path: string): {
 		slug: segments.at(-2) ?? "",
 		pkg: segments.at(-4) ?? "",
 	};
-}
-
-function splitFrontmatter(raw: string): { frontmatter: string; body: string } {
-	const match = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/.exec(raw);
-	if (!match) return { frontmatter: "", body: raw };
-
-	return { frontmatter: match[1] ?? "", body: raw.slice(match[0].length) };
 }
 
 function isSectionId(value: string): value is SectionId {

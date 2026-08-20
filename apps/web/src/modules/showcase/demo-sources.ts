@@ -458,6 +458,13 @@ desk.raise(id);`,
 />`,
 		language: "tsx",
 	},
+	"secret-reveal": {
+		source: `<SecretReveal
+	value="aj_0Q8mWm4Nn2rTgq0v3xJd7YbK1sPzR6cH"
+	label="Copy the token"
+/>`,
+		language: "tsx",
+	},
 	reference: {
 		source: `<Ref reference={{
 	title: "Showcase",

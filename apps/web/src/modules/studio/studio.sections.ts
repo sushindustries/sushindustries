@@ -34,7 +34,8 @@ export interface StudioSection {
 		| "/studio/collections"
 		| "/studio/workflows"
 		| "/studio/insights"
-		| "/studio/tokens";
+		| "/studio/tokens"
+		| "/studio/invites";
 
 	/** The last segment, for keys and for the API description. */
 	readonly path: string;
@@ -101,6 +102,15 @@ export const STUDIO_SECTIONS: readonly StudioSection[] = [
 		about:
 			"The keys to the endpoints this deployment serves. Mint one for an agent or a cron job, see when each was last used, and take one away without touching the others.",
 		icon: "rule",
+		ready: true,
+	},
+	{
+		to: "/studio/invites",
+		path: "invites",
+		title: "Invites",
+		about:
+			"Give somebody a token without either of us ever putting it in a message. A link that lasts minutes, works once, and mints the credential at the moment it is collected.",
+		icon: "send",
 		ready: true,
 	},
 ];

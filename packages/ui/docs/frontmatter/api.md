@@ -8,6 +8,12 @@ summary: What it takes, what it gives back, and what it does between.
 ## Signature
 
 ```ts
+splitFrontmatter(raw: string): { frontmatter: string; body: string; }
+```
+
+The `---` block and everything after it, told apart. `parseFrontmatter` reads a block; this is what finds one. They are separate because a Markdown parser that reports frontmatter usually hands back the original source with it - so a caller that only parses renders the metadata as a paragraph of text at the top of the page. This existed five times in this repository, once per catalogue, and the copies had drifted: four matched `\r?\n` and the fifth did not, so a page saved with Windows line endings would have had no title, no summary, and its own frontmatter printed as prose. Nothing failed, nothing warned, and the only symptom was one page looking wrong. That is the whole argument for it living here. A regular expression copied five times is five chances to be right, and the one that is wrong is the one nobody reads.
+
+```ts
 parseFrontmatter(raw: string | undefined): Frontmatter
 ```
 

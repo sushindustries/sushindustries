@@ -87,10 +87,55 @@ function typeFor(
 export async function graphql() {
 	banner("graphql");
 
-	const { documents, referencePages, referenceProviders } = await import(
-		"@sushindustries/db/schema"
+	const schema = await import("@sushindustries/db/schema");
+	const { documents, referencePages, referenceProviders, GRAPHQL_EXPOSURE } =
+		schema;
+	const { getTableColumns, getTableName, is } = await import("drizzle-orm");
+	const { PgTable } = await import("drizzle-orm/pg-core");
+
+	/*
+	 * Every table has to have been classified, and this refuses to run until it
+	 * is. The columns below have always come from Drizzle, so a field could
+	 * never disagree with its column - but *which* tables was three names
+	 * destructured by hand, so adding a table to the schema did nothing here at
+	 * all. Three tables holding credentials were added and the graph did not
+	 * notice, which is the good outcome of a bad mechanism: safe by accident.
+	 *
+	 * `GRAPHQL_EXPOSURE` in the schema is where the decision is written down,
+	 * and this is what makes writing it down compulsory. A new table now fails
+	 * this command with its own name in the message, which is a minute of
+	 * annoyance in exchange for the two silent failures it removes: a private
+	 * table quietly published, and a public one quietly missing.
+	 */
+	const tables = Object.values(schema)
+		.filter((value) => is(value, PgTable))
+		.map(getTableName)
+		.sort();
+
+	const unclassified = tables.filter((name) => !GRAPHQL_EXPOSURE[name]);
+
+	if (unclassified.length > 0) {
+		throw new Error(
+			`These tables are not classified in GRAPHQL_EXPOSURE: ${unclassified.join(", ")}.\n` +
+				"Add each to packages/db/src/schema.ts as `public` or `private`, with the reason.\n" +
+				"Nothing is exposed by default - a table has to be decided about before this can run.",
+		);
+	}
+
+	const stale = Object.keys(GRAPHQL_EXPOSURE).filter(
+		(name) => !tables.includes(name),
 	);
-	const { getTableColumns } = await import("drizzle-orm");
+
+	if (stale.length > 0) {
+		throw new Error(
+			`GRAPHQL_EXPOSURE names tables that no longer exist: ${stale.join(", ")}.\n` +
+				"Remove them from packages/db/src/schema.ts - a classification for a dropped table is a rule about nothing.",
+		);
+	}
+
+	const published = tables.filter(
+		(name) => GRAPHQL_EXPOSURE[name] === "public",
+	);
 
 	/*
 	 * The Query type and the doc comments live in their own file, hand written.
@@ -179,7 +224,7 @@ export async function graphql() {
 
 	writeFileSync(OUT, sdl);
 
-	field("tables", "documents, reference_providers, reference_pages");
+	field("tables", published.join(", "));
 	field("written", "apollo/schema.graphql");
 	blank();
 	note("The Query type is hand written in apollo/queries.graphql and appended");

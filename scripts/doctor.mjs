@@ -691,6 +691,83 @@ function checkExportsAreRegistered(items) {
  * One walk reporting all four, because a walker that has to be run four times
  * is four commands somebody runs three of.
  */
+/**
+ * Every subcategory and tag an item uses is one the taxonomy declares.
+ *
+ * `category` has always been a union, so a wrong one is a compile error.
+ * `subcategory` and `tags` were free strings, and the cost of that only shows
+ * up when you count: eighty-nine distinct tags across seventy-odd items,
+ * fifty-nine of them used exactly once, and two pairs that are the same
+ * concept spelled twice - `filter`/`filtering`, `heading`/`headings`.
+ *
+ * A tag that exists under two spellings is worse than a missing one. The
+ * filter still works, still returns rows, and silently returns half of them.
+ * Nothing errors and nothing looks wrong.
+ *
+ * Checked here rather than typed as a union in `registry.ts`, because a union
+ * of twenty-two strings would be the vocabulary written twice - and this can
+ * say which value is wrong and what the alternatives are, where a compiler
+ * says only that an assignment failed.
+ */
+function checkTaxonomyIsDeclared(items) {
+	const taxonomy = read("packages/ui/taxonomy.ts");
+
+	const subcategories = new Set(
+		[...taxonomy.matchAll(/\n\t\tname: "([^"]+)",\n\t\tcategory:/g)].map(
+			([, name]) => name,
+		),
+	);
+	/*
+	 * Across lines or on one, because the formatter decides which. The first
+	 * pattern only matched the tight form and found eighty-one of eighty-eight
+	 * - so seven declared tags read as undeclared, and the check reported real
+	 * items for using words that were right there in the file.
+	 */
+	const tags = new Set(
+		[...taxonomy.matchAll(/name: "([^"]+)",\s*about:/g)].map(
+			([, name]) => name,
+		),
+	);
+
+	/*
+	 * A parser that finds nothing must not silently pass everything. This has
+	 * happened twice in this file today - a check whose source of truth was the
+	 * wrong shape reported every collection as broken, and a variants check
+	 * passed vacuously because the registry reader did not parse the field.
+	 */
+	if (subcategories.size === 0 || tags.size === 0) {
+		report(
+			"taxonomy",
+			"packages/ui/taxonomy.ts",
+			`read ${subcategories.size} subcategories and ${tags.size} tags - the parser found nothing, so nothing below was checked`,
+			"the shape of taxonomy.ts changed; fix the patterns in checkTaxonomyIsDeclared",
+		);
+		return;
+	}
+
+	for (const item of items) {
+		if (item.subcategory && !subcategories.has(item.subcategory)) {
+			report(
+				"taxonomy",
+				"packages/ui/registry.ts",
+				`"${item.name}" uses subcategory "${item.subcategory}", which taxonomy.ts does not declare`,
+				"add it to SUBCATEGORIES, or use one that is there",
+			);
+		}
+
+		for (const tag of item.tags ?? []) {
+			if (tags.has(tag)) continue;
+
+			report(
+				"taxonomy",
+				"packages/ui/registry.ts",
+				`"${item.name}" uses tag "${tag}", which taxonomy.ts does not declare`,
+				"add it to TAGS with a sentence saying what it claims, or use an existing one",
+			);
+		}
+	}
+}
+
 function checkNothingIsDuplicated(items) {
 	/* ── one slug, one package ─────────────────────────────────── */
 	const docOwners = new Map();
@@ -2481,6 +2558,103 @@ function checkMentionsAreReferences(items) {
  * the route stops being deletable. The one legal consumer of the generated
  * tree is `router.tsx`, which is what the tree exists for.
  */
+/**
+ * The four places `DocumentKind` is written agree with each other.
+ *
+ * A type cannot be iterated and an array cannot be a column's type, so this
+ * one list genuinely has to exist more than once: as a union in the schema, as
+ * an array the studio builds a `<select>` from, as a GraphQL enum the CLI
+ * generates, and as the classifier the MCP server matches paths with.
+ *
+ * Two comments in the codebase claimed `documents.schemas.test.ts` asserted
+ * they agree. That file has never existed. The lists happened to match, so
+ * nothing was wrong yet - but the next person to add a kind would have trusted
+ * a guard that was not there, and the failure mode is a filter that silently
+ * returns nothing: no error, no empty state, just a kind that appears in the
+ * dropdown and matches no rows.
+ */
+function checkDocumentKindsAgree() {
+	const union = [
+		...(read("packages/db/src/schema.ts")
+			.split("export type DocumentKind =")[1]
+			?.split(";")[0]
+			?.matchAll(/"([a-z]+)"/g) ?? []),
+	].map((match) => match[1]);
+
+	if (union.length === 0) {
+		report(
+			"kinds",
+			"packages/db/src/schema.ts",
+			"could not read the DocumentKind union",
+			"this check parses it - if the declaration moved, move this with it",
+		);
+		return;
+	}
+
+	const others = [
+		{
+			path: "apps/web/src/modules/studio/documents/documents.schemas.ts",
+			between: ["export const DOCUMENT_KINDS = [", "] as const"],
+			pattern: /"([a-z]+)"/g,
+		},
+		{
+			path: "packages/cli/mcp/docs.mjs",
+			between: ["const KINDS = [", "\n];"],
+			pattern: /kind: "([a-z]+)"/g,
+		},
+		/*
+		 * The fifth copy, and the one that proves the point. This check was
+		 * written comparing three declarations and missed the array the GraphQL
+		 * generator builds its enum from - so a check against drift had itself
+		 * drifted from the thing it checks before it was a day old.
+		 */
+		{
+			path: "packages/cli/commands/graphql.mjs",
+			between: ["const kinds = [", "\n\t];"],
+			pattern: /"([a-z]+)"/g,
+		},
+	];
+
+	for (const one of others) {
+		const body = read(one.path)
+			.split(one.between[0])[1]
+			?.split(one.between[1])[0];
+
+		if (body === undefined) {
+			report(
+				"kinds",
+				one.path,
+				`could not find ${one.between[0].trim()}`,
+				"this check parses it - if the declaration moved, move this with it",
+			);
+			continue;
+		}
+
+		const found = [...body.matchAll(one.pattern)].map((match) => match[1]);
+
+		const missing = union.filter((kind) => !found.includes(kind));
+		const extra = found.filter((kind) => !union.includes(kind));
+
+		for (const kind of missing) {
+			report(
+				"kinds",
+				one.path,
+				`does not carry "${kind}", which DocumentKind declares`,
+				"add it here, or remove it from the union in packages/db/src/schema.ts",
+			);
+		}
+
+		for (const kind of extra) {
+			report(
+				"kinds",
+				one.path,
+				`carries "${kind}", which DocumentKind does not declare`,
+				"add it to the union in packages/db/src/schema.ts, or remove it here",
+			);
+		}
+	}
+}
+
 function checkRoutesAreLeaves() {
 	for (const path of trackedFiles()) {
 		if (!path.startsWith("apps/web/src/")) continue;
@@ -2819,6 +2993,7 @@ checkRegistryDependenciesResolve(registry);
 checkComponentImportsAreDeclared(registry);
 checkAtomsAreLayered();
 checkGridsAreResponsive();
+checkTaxonomyIsDeclared(registry);
 checkNothingIsDuplicated(registry);
 checkRegistryFilesAreExported(registry);
 checkExportsAreRegistered(registry);
@@ -2851,6 +3026,7 @@ checkNoEmDashes();
 checkReadmeMedia();
 checkShotsAreFresh();
 checkRoutesAreLeaves();
+checkDocumentKindsAgree();
 checkBlocksResolve();
 checkBlockTargetsExist();
 checkPagesAreReachable();

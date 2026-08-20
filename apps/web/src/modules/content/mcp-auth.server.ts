@@ -1,10 +1,10 @@
-import type { Scope } from "../access/access.schemas";
+import type { Bearer } from "@sushindustries/access";
 import {
-	type Bearer,
 	bearerFrom,
 	sameSecret,
 	verify,
-} from "../access/tokens.server";
+} from "@sushindustries/access/tokens.server";
+import type { Scope } from "../access/access.schemas";
 
 /*
  * One bearer gate, for the three endpoints that need one.
@@ -74,9 +74,10 @@ const closed = () => !process.env[VARIABLE] && !process.env.DATABASE_URL;
  * scope is a permission granted by forgetting to think about it.
  *
  * The verified bearer is not returned. Every caller today only needs the
- * yes-or-no, and handing back an identity nobody uses would be an invitation
- * to start logging it - `withBearer` exists for when a caller genuinely needs
- * to know who is asking.
+ * yes-or-no, and handing back an identity nobody uses is how a value starts
+ * being logged. `authenticate` below already carries it, so the day a caller
+ * genuinely needs to know who is asking, the answer is to export that - not to
+ * keep a second entry point warm on the chance somebody wants one.
  */
 export async function refuse(
 	request: Request,
@@ -84,16 +85,6 @@ export async function refuse(
 ): Promise<Response | null> {
 	const outcome = await authenticate(request, scope);
 	return outcome.ok ? null : outcome.response;
-}
-
-/** The same decision, with the holder attached when it succeeded. */
-export async function withBearer(
-	request: Request,
-	scope: Scope,
-): Promise<
-	{ ok: true; bearer: Bearer | null } | { ok: false; response: Response }
-> {
-	return authenticate(request, scope);
 }
 
 async function authenticate(

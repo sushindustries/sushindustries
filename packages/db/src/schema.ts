@@ -386,6 +386,142 @@ export const apiTokens = pgTable("api_tokens", {
 export type ApiToken = typeof apiTokens.$inferSelect;
 export type NewApiToken = typeof apiTokens.$inferInsert;
 
+/**
+ * One row per invitation to collect a token.
+ *
+ * A magic link, and it is worth being exact about which kind. It does not sign
+ * anybody in: `/studio` is still one login checked against the repository
+ * owner, and no link changes that. What it does is hand somebody a credential
+ * without either of us ever putting the credential in a message - I choose the
+ * scopes and the lifetime here, they follow a link, and the token is minted at
+ * the moment they collect it and shown only to them.
+ *
+ * That is the whole reason this table is not a `pending_tokens` table with a
+ * secret in it. Nothing that opens anything exists until it is redeemed.
+ *
+ * The link's own secret is stored the same way a token is: hashed, with a
+ * prefix kept in the clear so a listing can tell two invitations apart. A row
+ * here is as useless to a reader of the database as a row in `api_tokens`.
+ */
+export const magicLinks = pgTable("magic_links", {
+	id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
+
+	/** Who it was sent to, lower-cased. The address the redemption proves. */
+	email: text("email").notNull(),
+
+	/** SHA-256 of the link secret, hex. Unique, for the same reason a token's is. */
+	hash: text("hash").notNull().unique(),
+
+	/** The public half. Enough to recognise in a list, useless to redeem with. */
+	prefix: text("prefix").notNull(),
+
+	/** What the token will be called once this is redeemed. */
+	tokenName: text("token_name").notNull(),
+
+	/** What the token will carry. Chosen at invitation, not at redemption. */
+	scopes: text("scopes").notNull(),
+
+	/**
+	 * How long the minted token will last, in days. Null means it will not
+	 * expire - a separate question from how long this link lasts, and the two
+	 * are confused often enough to be worth two columns with two names.
+	 */
+	tokenDays: integer("token_days"),
+
+	/** The account that sent it. Null once that account is deleted, not cascaded. */
+	invitedBy: uuid("invited_by").references(() => accounts.id, {
+		onDelete: "set null",
+	}),
+
+	createdAt: timestamp("created_at", { withTimezone: true })
+		.notNull()
+		.defaultNow(),
+
+	/**
+	 * When the link stops working, which is soon.
+	 *
+	 * Minutes rather than days. A link is a bearer credential sitting in an
+	 * inbox, and the inbox is the part of this system I have no control over -
+	 * so the window in which a copy of that inbox is worth anything is the one
+	 * thing here I can make small.
+	 */
+	expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+
+	/**
+	 * Set the instant it is redeemed, by a conditional update.
+	 *
+	 * This column is the single-use guarantee, and it only works because the
+	 * write that sets it is the same statement that checks it was null. Reading
+	 * first and writing second would leave a window in which two requests both
+	 * see an unredeemed link, which is exactly what a double-click and a
+	 * link-prefetching mail scanner both produce.
+	 */
+	redeemedAt: timestamp("redeemed_at", { withTimezone: true }),
+
+	/** What it produced. The join that answers "what did I actually give them". */
+	tokenId: uuid("token_id").references(() => apiTokens.id, {
+		onDelete: "set null",
+	}),
+
+	/** Set to withdraw an invitation that has not been taken up yet. */
+	revokedAt: timestamp("revoked_at", { withTimezone: true }),
+});
+
+export type MagicLink = typeof magicLinks.$inferSelect;
+export type NewMagicLink = typeof magicLinks.$inferInsert;
+
+/*
+ * ── what may leave this database ─────────────────────────────────────────
+ *
+ * Every table, and whether it is publishable through the GraphQL schema.
+ *
+ * This exists because "the schema self-generates from Drizzle" was half true.
+ * The *columns* were read from the tables, so a field could never disagree
+ * with its column - but *which* tables was three names destructured by hand in
+ * the generator, so adding a table to this file did nothing at all. Three
+ * tables carrying credentials were added and the graph never noticed, which is
+ * the good outcome of a bad mechanism: it was safe by accident.
+ *
+ * Accidents are not a security boundary, so the generator now reads this and
+ * refuses to run when a table is missing from it. That turns adding a table
+ * into a decision somebody has to write down, and makes the two failures it
+ * guards against impossible rather than unlikely:
+ *
+ *   a new table is silently exposed   - it cannot be; unclassified fails
+ *   a new table is silently forgotten - it cannot be; unclassified fails
+ *
+ * `private` is not a weaker `public`. It means the rows are a liability to
+ * hand out, and the reason is written next to each one.
+ */
+export const GRAPHQL_EXPOSURE: Readonly<Record<string, "public" | "private">> =
+	{
+		/* The projection. Public because it is a map of a public repository. */
+		documents: "public",
+		reference_providers: "public",
+		reference_pages: "public",
+
+		/*
+		 * Private: credentials and the people holding them.
+		 *
+		 * `api_tokens` stores hashes, so exposing it would not hand anybody a key -
+		 * and it would hand them the prefix, the scopes, the expiry and the holder
+		 * of every key that exists, which is a map of what to attack and who to
+		 * ask. `magic_links` is the same argument before the credential exists.
+		 * `accounts` is somebody's email address.
+		 */
+		accounts: "private",
+		api_tokens: "private",
+		magic_links: "private",
+
+		/*
+		 * Private for a duller reason: nobody has asked. These are counters and
+		 * votes, and a field nothing queries is a field that still has to be kept
+		 * working. They become public the day something wants them.
+		 */
+		page_views: "private",
+		page_feedback: "private",
+	};
+
 /*
  * schema.org, as the shape of the JSON-LD a page emits.
  *

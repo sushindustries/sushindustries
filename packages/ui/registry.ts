@@ -1,4 +1,14 @@
 import type { IconName } from "./src/icon";
+import type { RegistryCategory, Subcategory, Tag } from "./taxonomy";
+
+/*
+ * The vocabulary lives in `taxonomy.ts`, and this re-exports the one type
+ * consumers were already importing from here. Categories were always a union;
+ * subcategories and tags were free strings until counting showed what that
+ * cost - eighty-nine distinct tags, fifty-nine used once, and two pairs that
+ * were the same concept spelled twice.
+ */
+export type { RegistryCategory } from "./taxonomy";
 
 /*
  * What this package publishes, and what each item needs to work.
@@ -11,13 +21,6 @@ import type { IconName } from "./src/icon";
  * gets installed. The site reads this to build its registry endpoints; it does
  * not own it.
  */
-
-/*
- * Coarse groups, chosen so every item lands in exactly one. An item that
- * plausibly fits two means the groups are wrong, not that it needs a second
- * tag.
- */
-export type RegistryCategory = "motion" | "layout" | "content" | "docs" | "3d";
 
 /*
  * Every category carries its glyph, because both the nav and the archive show
@@ -145,10 +148,23 @@ export interface RegistryItem {
 	/** Other items in this registry that must be installed with it. */
 	readonly registryDependencies?: readonly string[];
 	readonly category: RegistryCategory;
-	/** A finer grouping inside the category. For reading, not filtering. */
-	readonly subcategory?: string;
-	/** Cross-cutting labels. These are filterable. */
-	readonly tags?: readonly string[];
+	/**
+	 * A finer grouping inside the category. For reading, not filtering.
+	 *
+	 * Checked against `taxonomy.ts` by `pnpm run doctor` rather than typed as a
+	 * union here, because a union of twenty-two strings would be the vocabulary
+	 * written twice - and the doctor can say which value is wrong and what the
+	 * alternatives are, where a compiler says only that an assignment failed.
+	 */
+	readonly subcategory?: Subcategory["name"];
+	/**
+	 * Cross-cutting labels. These are the ones people filter by.
+	 *
+	 * Also checked against `taxonomy.ts`. The set is closed because it was not:
+	 * a tag existing under two spellings is worse than a missing tag, since the
+	 * filter still works, still returns rows, and silently returns half of them.
+	 */
+	readonly tags?: readonly Tag["name"][];
 	/**
 	 * The looks and behaviours this element can be switched between.
 	 *
@@ -631,6 +647,21 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		preview: "Copy, with the confirmation in the button",
 	},
 	{
+		name: "secret-reveal",
+		schema: "SoftwareSourceCode",
+		version: "0.1.0",
+		title: "Secret Reveal",
+		description:
+			"A credential shown once: it wraps rather than scrolls, one click selects all of it, and the copy button sits under it rather than over it.",
+		files: ["secret-reveal.tsx"],
+		registryDependencies: ["copy-button"],
+		dependencies: {},
+		category: "content",
+		subcategory: "Rendering",
+		tags: ["clipboard", "no-deps"],
+		preview: "A token, for the one moment it is visible",
+	},
+	{
 		name: "breadcrumb",
 		schema: "BreadcrumbList",
 		version: "0.1.0",
@@ -692,7 +723,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		dependencies: {},
 		category: "content",
 		subcategory: "Text",
-		tags: ["typography", "headings", "no-deps"],
+		tags: ["typography", "heading", "no-deps"],
 		preview: "A label, a heading and a lead, in the site's own scale",
 	},
 	{
@@ -1132,7 +1163,7 @@ export const REGISTRY_ITEMS: readonly RegistryItem[] = [
 		dependencies: { "@tanstack/react-table": "^9.1.2" },
 		category: "content",
 		subcategory: "Data",
-		tags: ["data", "sorting", "filtering", "pagination", "tanstack"],
+		tags: ["data", "sorting", "filter", "pagination", "tanstack"],
 		variants: [
 			{
 				prop: "density",

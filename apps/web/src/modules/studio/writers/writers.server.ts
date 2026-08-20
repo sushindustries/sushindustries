@@ -4,6 +4,19 @@ import { dirname, join, resolve } from "node:path";
 import { REPO_SLUG } from "../../content/repo";
 
 /*
+ * Shared infrastructure, not a studio feature.
+ *
+ * It sits beside `documents/`, `hub/` and the rest, which makes it look like
+ * one, and it is not: it has no panel, no route, no query key and no section.
+ * It is the thing that knows how to put a file somewhere - used by every
+ * document action, by the workflows runner and by one API route - and it is
+ * here rather than one level up because only the studio writes.
+ *
+ * The test for adding to this file: **two features need it.** A helper only
+ * the documents workspace uses belongs with the documents workspace.
+ */
+
+/*
  * How a change reaches the repository, which is not the same question as what
  * the change is.
  *
@@ -31,13 +44,6 @@ import { REPO_SLUG } from "../../content/repo";
  *
  * `.server.ts` because it holds a token and touches a filesystem.
  */
-
-export interface FileChange {
-	readonly path: string;
-	readonly effect: "added" | "changed" | "moved" | "removed";
-	/** Where it went. Only set for a move. */
-	readonly to?: string;
-}
 
 export interface Writer {
 	readonly name: "local" | "github";

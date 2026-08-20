@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { hubBarsQueryOptions } from "../modules/studio/overview/hub-query-keys";
-import { StudioHub } from "../modules/studio/studio-hub";
+import { HubPanel } from "../modules/studio/hub/hub-panel";
+import { hubBarsQueryOptions } from "../modules/studio/hub/hub-query-keys";
 
 /*
  * The hub: which part of the studio do you want.
@@ -23,5 +23,5 @@ export const Route = createFileRoute("/studio/")({
 	 */
 	loader: ({ context }) =>
 		context.queryClient.ensureQueryData(hubBarsQueryOptions()),
-	component: StudioHub,
+	component: HubPanel,
 });

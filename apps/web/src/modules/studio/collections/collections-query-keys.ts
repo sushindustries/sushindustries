@@ -1,4 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
+import { PROJECTION, rootFor } from "../studio.cache";
 import {
 	listStudioCollections,
 	readStudioCollection,
@@ -19,7 +20,7 @@ import {
  */
 
 export const collectionKeys = {
-	all: ["studio", "collections"] as const,
+	all: rootFor(PROJECTION, "collections"),
 	lists: () => [...collectionKeys.all, "list"] as const,
 	details: () => [...collectionKeys.all, "detail"] as const,
 	detail: (id: string) => [...collectionKeys.details(), id] as const,

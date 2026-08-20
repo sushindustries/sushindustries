@@ -1,8 +1,6 @@
 import { getDb } from "@sushindustries/db/client";
 import {
-	and,
 	documents,
-	eq,
 	pageViews,
 	referencePages,
 	sql,
@@ -94,22 +92,4 @@ export async function getHubBars(): Promise<readonly HubBarValue[]> {
 		label: bar.label,
 		value: Number(row?.[`b${at}`] ?? 0),
 	}));
-}
-
-/**
- * How stale the projection is, in one boolean the hub can act on.
- *
- * Six hours, chosen against how often a sync actually runs rather than
- * against anything principled: a projection that has not moved in a working
- * day is one somebody forgot, and saying so on the hub is cheaper than
- * noticing a wrong number three screens in.
- */
-export async function isStale(): Promise<boolean> {
-	const [row] = await getDb()
-		.select({ synced: sql<Date | null>`max(${documents.syncedAt})` })
-		.from(documents)
-		.where(and(eq(sql`1`, sql`1`)));
-
-	if (!row?.synced) return true;
-	return Date.now() - new Date(row.synced).getTime() > 6 * 60 * 60 * 1000;
 }

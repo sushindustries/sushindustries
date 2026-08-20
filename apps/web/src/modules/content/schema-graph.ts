@@ -75,37 +75,6 @@ export function webSiteNode(): object {
 	};
 }
 
-export interface PageNode {
-	readonly path: string;
-	readonly title: string;
-	readonly description?: string;
-	/** The id of what this page is about, when it is about a thing. */
-	readonly about?: string;
-	/** ISO date, when the page states one. */
-	readonly updated?: string;
-}
-
-export function webPageNode(page: PageNode): object {
-	return {
-		"@type": "WebPage",
-		"@id": pageId(page.path),
-		url: `${SITE.url}${page.path}`,
-		name: page.title,
-		...(page.description ? { description: page.description } : {}),
-		...(page.updated ? { dateModified: page.updated } : {}),
-		isPartOf: ref(WEBSITE_ID),
-		about: page.about ? ref(page.about) : undefined,
-		/*
-		 * No `breadcrumb` reference here. The trail is emitted by the
-		 * `Breadcrumb` component from the visible crumbs, and pointing at an id
-		 * that node does not yet carry would be a dangling edge - which is the
-		 * one thing this whole arrangement exists to avoid. It joins the net
-		 * when the component publishes an id, not before.
-		 */
-		author: ref(PERSON_ID),
-	};
-}
-
 export interface ReviewFields {
 	/** What is being reviewed. An id, so the review joins the net. */
 	readonly about: string;

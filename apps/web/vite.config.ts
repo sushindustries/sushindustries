@@ -151,7 +151,11 @@ export default defineConfig({
 				crawlLinks: true,
 				filter: (page) =>
 					!page.path.startsWith("/packages") &&
-					!page.path.startsWith("/studio"),
+					!page.path.startsWith("/studio") &&
+					// An invitation page is per-link and single-use. Baking one at
+					// build time would serve every visitor the same answer about a
+					// credential that only exists for one of them.
+					!page.path.startsWith("/access"),
 			},
 		}),
 

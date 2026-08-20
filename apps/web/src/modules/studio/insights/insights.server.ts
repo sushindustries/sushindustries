@@ -1,6 +1,6 @@
 import { getDb } from "@sushindustries/db/client";
 import { desc, documents, eq, pageViews, sql } from "@sushindustries/db/schema";
-import { findInsight, listInsights } from "./insights.catalogue";
+import { listInsights } from "./insights.catalogue";
 import type {
 	Insight,
 	InsightAnswer,
@@ -258,11 +258,6 @@ const RUN: Record<Metric, (limit: number) => Promise<Answer>> = {
 async function answer(insight: Insight): Promise<InsightAnswer> {
 	const { rows, total, finding } = await RUN[insight.metric](insight.limit);
 	return { insight, rows, total, finding };
-}
-
-export async function getInsight(id: string): Promise<InsightAnswer | null> {
-	const found = findInsight(id);
-	return found ? answer(found) : null;
 }
 
 /**

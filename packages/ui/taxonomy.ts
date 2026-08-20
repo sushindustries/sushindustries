@@ -41,6 +41,14 @@ export interface Subcategory {
 	readonly about: string;
 }
 
+/**
+ * @public
+ *
+ * Read by `pnpm run doctor` textually rather than imported, which is why knip
+ * cannot see a consumer: the doctor is plain Node with nothing between it and
+ * the filesystem, so it parses this file instead of importing a `.ts` it would
+ * need a build to load. The `@public` tag is how knip is told that.
+ */
 export const SUBCATEGORIES: readonly Subcategory[] = [
 	{
 		name: "Scroll effects",
@@ -167,6 +175,11 @@ export interface Tag {
 	readonly about: string;
 }
 
+/**
+ * @public
+ *
+ * Read textually by the doctor, like `SUBCATEGORIES` above.
+ */
 export const TAGS: readonly Tag[] = [
 	/* ── what it costs to install ─────────────────────────────────── */
 	{
@@ -293,6 +306,3 @@ export const TAGS: readonly Tag[] = [
 	{ name: "assistant", about: "Part of the assistant surface." },
 	{ name: "action", about: "Performs a side effect when used." },
 ];
-
-export const SUBCATEGORY_NAMES = SUBCATEGORIES.map((one) => one.name);
-export const TAG_NAMES = TAGS.map((one) => one.name);

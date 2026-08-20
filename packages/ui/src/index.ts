@@ -104,6 +104,7 @@ export {
 	parseFrontmatter,
 	readList,
 	readString,
+	splitFrontmatter,
 } from "./frontmatter";
 export { Grid, type GridProps, type Space } from "./grid";
 export { collectHeadings, type DocHeading } from "./headings";
@@ -149,6 +150,7 @@ export {
 export { Reveal, type RevealProps } from "./reveal";
 export { ScrollArea, type ScrollAreaProps } from "./scroll-area";
 export { ScrollSpin, type ScrollSpinProps } from "./scroll-spin";
+export { SecretReveal, type SecretRevealProps } from "./secret-reveal";
 export { Section, type SectionProps } from "./section";
 export { Separator, type SeparatorProps } from "./separator";
 export { Sheet, type SheetProps } from "./sheet";

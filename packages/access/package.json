@@ -1,0 +1,54 @@
+{
+	"name": "@sushindustries/access",
+	"version": "0.1.0",
+	"type": "module",
+	"description": "Scoped API tokens and single-use invitations over Postgres. Mint, verify, revoke; invite by address and let the credential be minted at the moment it is collected.",
+	"license": "MIT",
+	"keywords": [
+		"api-tokens",
+		"magic-link",
+		"authentication",
+		"drizzle",
+		"postgres"
+	],
+	"files": [
+		"dist",
+		"src"
+	],
+	"scripts": {
+		"build": "tsdown",
+		"typecheck": "tsc --noEmit -p tsconfig.json"
+	},
+	"dependencies": {
+		"@sushindustries/db": "workspace:*"
+	},
+	"exports": {
+		".": "./src/index.ts",
+		"./invites.server": "./src/invites.server.ts",
+		"./tokens.server": "./src/tokens.server.ts",
+		"./package.json": "./package.json"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com",
+		"access": "public",
+		"exports": {
+			".": "./dist/index.mjs",
+			"./invites.server": "./dist/invites.server.mjs",
+			"./tokens.server": "./dist/tokens.server.mjs",
+			"./package.json": "./package.json"
+		}
+	},
+	"sideEffects": false,
+	"engines": {
+		"node": ">=20.17.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sushindustries/sushindustries.git",
+		"directory": "packages/access"
+	},
+	"homepage": "https://adamjurek.com/packages/access",
+	"main": "./dist/index.mjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.mts"
+}
