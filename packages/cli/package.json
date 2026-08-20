@@ -25,7 +25,10 @@
 		"adam-jurek.mjs",
 		"commands",
 		"lib",
-		"mcp"
+		"mcp",
+		"references",
+		"setup.md",
+		"stack.yaml"
 	],
 	"repository": {
 		"type": "git",
