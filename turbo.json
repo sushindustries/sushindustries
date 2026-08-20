@@ -102,6 +102,17 @@
 				"!**/.output/**",
 				"!**/node_modules/**"
 			]
+		},
+		"//#canaries": {
+			"inputs": [
+				"scripts/doctor.mjs",
+				"scripts/doctor.canaries.mjs",
+				"turbo.json",
+				"package.json",
+				"apollo/**",
+				"Dockerfile",
+				"packages/*/package.json"
+			]
 		}
 	},
 	"globalPassThroughEnv": [

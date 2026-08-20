@@ -9,7 +9,8 @@
 	},
 	"scripts": {
 		"build": "turbo run build",
-		"check": "turbo run //#doctor //#lint //#knip typecheck build test",
+		"canaries": "node scripts/doctor.canaries.mjs",
+		"check": "turbo run //#doctor //#canaries //#lint //#knip typecheck build test",
 		"check:fast": "turbo run //#doctor //#lint typecheck",
 		"db:generate": "pnpm --filter @sushindustries/db db:generate",
 		"db:migrate": "pnpm --filter @sushindustries/db db:migrate",
