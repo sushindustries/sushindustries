@@ -48,17 +48,17 @@ jobs:
       # Full history, no blobs. `--affected` and `turbo query affected` need
       # the merge base to exist in the checkout - a shallow clone makes every
       # package look changed - and blob filtering keeps the full fetch cheap.
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           filter: blob:none
           persist-credentials: false
 
-      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
 
       # The version lives in `engines.node` in package.json - one declaration,
       # read here rather than repeated here.
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: package.json
           cache: pnpm
@@ -73,7 +73,7 @@ jobs:
       # repo: 33 entries climbing 174 -> 179 -> 185 MB, 4.8 GB of a 10 GB
       # ceiling, evicting the pnpm and Playwright caches that actually save
       # time. The save below trims before writing, so the series has a roof.
-      - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      - uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .turbo
           key: turbo-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
@@ -152,7 +152,7 @@ jobs:
 
       # The browser the layout tests measure in. Cached on the lockfile, since
       # the Playwright version is what decides which build gets downloaded.
-      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
@@ -196,7 +196,7 @@ jobs:
             echo "turbo cache: ${before}MB -> $(du -sm .turbo/cache | cut -f1)MB"
           fi
 
-      - uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      - uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         if: github.ref == 'refs/heads/main'
         with:
           path: .turbo
@@ -218,7 +218,7 @@ jobs:
     if: github.event_name != 'pull_request' || needs.check.outputs.image == 'true'
 
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
@@ -248,14 +248,14 @@ jobs:
           ./hadolint --ignore DL3059 --ignore DL3066 Dockerfile
           rm -f hadolint
 
-      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+      - uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e # v4.3.0
 
       # The check that matters. Three deploys failed on things only a real
       # image build catches: a workspace whose dist was never built, a COPY of
       # a node_modules that does not exist, and a cache mount the host rejects.
       # `pnpm build` on a developer machine passes through all of them.
       - name: Build the image
-        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
         with:
           context: .
           push: false
