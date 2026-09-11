@@ -67,7 +67,7 @@
 		"three": "0.185.1",
 		"three-custom-shader-material": "6.4.0",
 		"three-stdlib": "2.36.1",
-		"vitest": "4.1.10",
+		"vitest": "4.1.11",
 		"zod": "4.4.3"
 	},
 	"publishConfig": {
