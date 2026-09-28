@@ -29,7 +29,7 @@
 		"typecheck": "tsc --noEmit -p tsconfig.json"
 	},
 	"devDependencies": {
-		"@tanstack/intent": "0.3.6",
+		"@tanstack/intent": "0.4.0",
 		"@types/react": "19.2.18",
 		"react": "^19.2.8"
 	},
