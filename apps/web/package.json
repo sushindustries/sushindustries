@@ -13,7 +13,7 @@
 	},
 	"dependencies": {
 		"@electric-sql/client": "^1.5.26",
-		"@modelcontextprotocol/server": "2.0.0",
+		"@modelcontextprotocol/server": "2.3.0",
 		"@mux/mux-player-react": "^3.13.2",
 		"@posthog/react": "^1.10.3",
 		"@react-three/drei": "10.7.8",
