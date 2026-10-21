@@ -8,7 +8,7 @@
 		"adam-jurek": "./adam-jurek.mjs"
 	},
 	"dependencies": {
-		"@modelcontextprotocol/server": "2.0.0",
+		"@modelcontextprotocol/server": "2.3.0",
 		"@sushindustries/db": "workspace:*",
 		"drizzle-orm": "0.45.2",
 		"postgres": "3.4.9",
