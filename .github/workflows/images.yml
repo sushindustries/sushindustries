@@ -1,0 +1,11 @@
+name: images
+on:
+  push: {branches: [main], tags: ["v*"]}
+  pull_request:
+permissions: {}
+jobs:
+  images:
+    uses: sushindustries/.github/.github/workflows/images.yml@main  # TODO pin to a SHA once that repo exists
+    permissions: {contents: read, packages: write, id-token: write, attestations: write}
+    with:
+      images: '[{"name":"sushindustries","context":".","dockerfile":"Dockerfile"}]'
