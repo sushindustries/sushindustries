@@ -168,3 +168,11 @@ name the projects this site is built on, and the mark in
 something to reuse. Everything that renders it is MIT and works with any model.
 
 Built by Adam Jurek. One person, which is why everything here is written "I".
+
+## Deploy (Coolify)
+
+I can also run this on Coolify with the Docker Compose build pack, using
+`deploy/coolify/compose.yaml` (web, a one-shot migration job and Postgres).
+The image is `ghcr.io/sushindustries/sushindustries`, built by
+`.github/workflows/images.yml`. Steps, env keys and known gaps are in
+[`deploy/coolify/README.md`](deploy/coolify/README.md).
