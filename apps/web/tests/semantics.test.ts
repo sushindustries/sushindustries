@@ -52,18 +52,22 @@ async function fetchAll<T, R>(
  * parallel workers - so while this file is fetching ten pages at a time,
  * three others are too, all over undici's keep-alive pool. A socket the
  * server closed as idle and the client reused in the same instant reads as
- * `ECONNRESET`, which is not a broken link and must not be reported as one.
+ * `ECONNRESET` (or undici's `UND_ERR_SOCKET`, "other side closed"), which is
+ * not a broken link and must not be reported as one.
  *
  * One retry, and only for a transport failure. A status code is an answer and
  * is returned; a second reset is a server that has actually died, and
  * `tests/setup/serve.ts` prints its stderr when that happens.
  */
+const RETRYABLE = new Set(["ECONNRESET", "ECONNREFUSED", "UND_ERR_SOCKET"]);
+
 async function fetchOnce(url: string, init?: RequestInit): Promise<Response> {
 	try {
 		return await fetch(url, init);
 	} catch (error) {
-		const code = (error as { cause?: { code?: string } }).cause?.code;
-		if (code !== "ECONNRESET" && code !== "ECONNREFUSED") throw error;
+		const err = error as { code?: string; cause?: { code?: string } };
+		const code = err.cause?.code ?? err.code;
+		if (!code || !RETRYABLE.has(code)) throw error;
 		await new Promise((resolve) => setTimeout(resolve, 100));
 		return await fetch(url, init);
 	}
@@ -262,7 +266,7 @@ describe("the link graph", () => {
 		const offenders = (
 			await fetchAll(
 				[...links.entries()],
-				10,
+				5,
 				async ([href, from]): Promise<string | null> => {
 					const response = await fetchOnce(base + href, { redirect: "follow" });
 					return response.status < 400
